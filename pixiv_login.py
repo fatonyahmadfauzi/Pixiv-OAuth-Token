@@ -16,6 +16,8 @@ from urllib.parse import urlencode, urlparse, parse_qs
 from webbrowser import open as open_url
 from pprint import pprint
 from sys import exit, stdout
+import sys
+import traceback
 from pathlib import Path
 import json
 import os
@@ -448,6 +450,15 @@ def print_config(lang: str, color_on: bool):
     print("Supported:", ", ".join(SUPPORTED_LANGS))
 
 
+def _pause_before_exit_if_frozen() -> None:
+    if not getattr(sys, "frozen", False):
+        return
+    try:
+        input("\nPress Enter to exit...")
+    except Exception:
+        pass
+
+
 # ===== MAIN =====
 def main():
     parser = ArgumentParser(description="Pixiv OAuth Login Tool")
@@ -515,7 +526,18 @@ def main():
 
     else:
         parser.print_help()
+        _pause_before_exit_if_frozen()
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nInterrupted by user.")
+        _pause_before_exit_if_frozen()
+        exit(130)
+    except Exception as exc:
+        print("\nUnexpected error:", exc)
+        traceback.print_exc()
+        _pause_before_exit_if_frozen()
+        exit(1)
