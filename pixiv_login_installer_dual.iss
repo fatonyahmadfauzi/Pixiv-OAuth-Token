@@ -8,7 +8,7 @@
 #define ExeGUI "dist_gui\pixiv_login_gui.exe"
 
 [Setup]
-AppId={6DAF3DDD-BDF0-47B1-A0F4-D8E3D77A955A}
+AppId={{6DAF3DDD-BDF0-47B1-A0F4-D8E3D77A955A}}
 AppName={#ProductName}
 AppVersion={#ProductVersion}
 AppPublisher={#Publisher}

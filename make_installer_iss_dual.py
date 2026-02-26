@@ -50,7 +50,7 @@ def main():
 #define ExeGUI "{EXE_GUI}"
 
 [Setup]
-AppId={{{appid}}}
+AppId={{{{{appid}}}}}
 AppName={{#ProductName}}
 AppVersion={{#ProductVersion}}
 AppPublisher={{#Publisher}}
