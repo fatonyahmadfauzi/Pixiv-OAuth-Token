@@ -6,7 +6,7 @@ VERSION_FILE = os.path.join(ROOT, "version.json")
 OUT_FILE = os.path.join(ROOT, "version_info.txt")
 
 # Edit these if you want:
-COMPANY = "Faton Dev"
+COMPANY = "Fatony Ahmad Fauzi Dev"
 PRODUCT = "Pixiv Login CLI"
 DESCRIPTION = "Pixiv OAuth Login Tool"
 INTERNAL = "pixiv_login_plus"

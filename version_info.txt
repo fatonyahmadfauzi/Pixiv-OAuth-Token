@@ -1,8 +1,8 @@
 # UTF-8
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(1,0,4,0),
-    prodvers=(1,0,4,0),
+    filevers=(1,0,11,0),
+    prodvers=(1,0,11,0),
     mask=0x3f,
     flags=0x0,
     OS=0x40004,
@@ -15,13 +15,13 @@ VSVersionInfo(
       [
         StringTable(
           '040904B0',
-          [StringStruct('CompanyName', 'Faton Dev'),
+          [StringStruct('CompanyName', 'Fatony Ahmad Fauzi Dev'),
            StringStruct('FileDescription', 'Pixiv OAuth Login Tool'),
-           StringStruct('FileVersion', '1.0.4'),
+           StringStruct('FileVersion', '1.0.11'),
            StringStruct('InternalName', 'pixiv_login_plus'),
            StringStruct('OriginalFilename', 'pixiv_login_plus.exe'),
            StringStruct('ProductName', 'Pixiv Login CLI'),
-           StringStruct('ProductVersion', '1.0.4')])
+           StringStruct('ProductVersion', '1.0.11')])
       ]),
     VarFileInfo([VarStruct('Translation', [1033, 1200])])
   ]

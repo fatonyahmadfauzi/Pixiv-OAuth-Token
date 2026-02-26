@@ -3,23 +3,28 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
 REM ==========================================================
-REM build_all_pro.bat (FULL RELEASE)
-REM - Clean
-REM - Build portable (auto bump)
-REM - Generate .iss
-REM - Delete old installers (optional)
-REM - Build installer (auto-detect ISCC)
-REM - Auto-sign IF codesign.pfx exists
-REM - Build release ZIP
+REM build_all_pro.bat (UPDATED)
+REM 1-click build for:
+REM   - CLI portable (build_portable_pro.bat)   -> dist_portable\
+REM   - GUI (build_gui_pro.bat)                -> dist_gui\
+REM   - Installer (optional)                   -> dist_installer\
+REM   - Release ZIP (build_release_zip.bat)    -> PixivLoginRelease_vX.Y.Z.zip
 REM
 REM Usage:
-REM   build_all_pro.bat [patch|minor|major|none] [noinst] [nosign] [nozip] [nopause]
+REM   build_all_pro.bat [patch|minor|major|none] [noinst] [nosign] [nozip] [nogui] [nopause]
+REM
+REM Notes:
+REM   - Version bump is applied ONLY on CLI build (so CLI+GUI+Installer share same version.json).
+REM   - GUI build is invoked with "none" to keep version consistent.
+REM   - Installer step will auto-detect ISCC.exe if a .iss exists:
+REM       pixiv_login_installer_dual.iss (preferred) or pixiv_login_installer.iss
 REM ==========================================================
 
 set BUMP=patch
 set SKIP_INST=0
 set SKIP_SIGN=0
 set SKIP_ZIP=0
+set SKIP_GUI=0
 set NO_PAUSE=0
 
 if not "%~1"=="" set BUMP=%~1
@@ -28,75 +33,118 @@ for %%A in (%*) do (
   if /I "%%~A"=="noinst" set SKIP_INST=1
   if /I "%%~A"=="nosign" set SKIP_SIGN=1
   if /I "%%~A"=="nozip"  set SKIP_ZIP=1
+  if /I "%%~A"=="nogui"  set SKIP_GUI=1
   if /I "%%~A"=="nopause" set NO_PAUSE=1
 )
 
 echo.
-echo ===== Pixiv Login - FULL RELEASE =====
+echo ===== Pixiv Login - Build All (CLI + GUI + Installer + ZIP) =====
 echo Folder : %cd%
 echo Bump   : %BUMP%
-if %SKIP_INST%==1 (echo Installer: SKIP) else (echo Installer: YES)
-if %SKIP_SIGN%==1 (echo Signing : SKIP) else (echo Signing : AUTO if PFX exists)
+if %SKIP_GUI%==1 (echo GUI     : SKIP) else (echo GUI     : YES)
+if %SKIP_INST%==1 (echo Installer: SKIP) else (echo Installer: AUTO)
+if %SKIP_SIGN%==1 (echo Signing : SKIP) else (echo Signing : AUTO if sign_auto.bat exists)
 if %SKIP_ZIP%==1  (echo ZIP     : SKIP) else (echo ZIP     : YES)
 echo.
 
-REM 1) Clean
-call clean_build.bat
+REM --- Clean (optional) ---
+if exist clean_build.bat (
+  call clean_build.bat
+)
 
-REM 2) Build portable
+REM --- Build CLI (this bumps version by default) ---
+if not exist build_portable_pro.bat (
+  echo [ERROR] build_portable_pro.bat not found.
+  exit /b 1
+)
 call build_portable_pro.bat %BUMP%
 if errorlevel 1 (
-  echo [ERROR] Portable build failed.
+  echo [ERROR] CLI build failed.
   exit /b 1
 )
 
-REM 3) Generate .iss
-python make_installer_iss.py
+REM --- Build GUI (keep version consistent; do NOT bump here) ---
+if %SKIP_GUI%==1 goto after_gui
+if not exist build_gui_pro.bat (
+  echo [ERROR] build_gui_pro.bat not found. (Download/update it first)
+  exit /b 1
+)
+call build_gui_pro.bat none
+if errorlevel 1 (
+  echo [ERROR] GUI build failed.
+  exit /b 1
+)
+:after_gui
 
-REM 4) Installer
+REM --- Build installer (optional) ---
 if %SKIP_INST%==1 goto after_inst
 
-REM Delete old installers (keeps folder clean)
-if exist dist_installer (
-  del /q dist_installer\PixivLoginSetup_v*.exe 2>nul
+set ISS_FILE=
+if exist pixiv_login_installer_dual.iss set ISS_FILE=pixiv_login_installer_dual.iss
+if "%ISS_FILE%"=="" if exist pixiv_login_installer.iss set ISS_FILE=pixiv_login_installer.iss
+
+if "%ISS_FILE%"=="" (
+  echo [WARN] No .iss installer script found. Skipping installer.
+  goto after_inst
+)
+
+REM If there is a generator for dual iss, run it first (optional)
+if exist make_installer_iss_dual.py (
+  python make_installer_iss_dual.py
+) else if exist make_installer_iss.py (
+  python make_installer_iss.py
 )
 
 set ISCC_PATH=
 if exist "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" set ISCC_PATH=C:\Program Files (x86)\Inno Setup 6\ISCC.exe
 if exist "C:\Program Files\Inno Setup 6\ISCC.exe" set ISCC_PATH=C:\Program Files\Inno Setup 6\ISCC.exe
-
 if "%ISCC_PATH%"=="" (
   where ISCC.exe >nul 2>nul
   if not errorlevel 1 set ISCC_PATH=ISCC.exe
 )
 
 if "%ISCC_PATH%"=="" (
-  echo [WARN] ISCC.exe not found. Skipping installer.
-) else (
-  echo.
-  echo ===== Building installer =====
-  echo Using: "%ISCC_PATH%"
-  "%ISCC_PATH%" pixiv_login_installer.iss
+  echo [WARN] ISCC.exe not found. Skipping installer build.
+  echo Install Inno Setup, then ensure ISCC.exe is in PATH.
+  goto after_inst
+)
+
+echo.
+echo ===== Building Installer =====
+echo Using: "%ISCC_PATH%"
+echo Script: %ISS_FILE%
+"%ISCC_PATH%" "%ISS_FILE%"
+if errorlevel 1 (
+  echo [ERROR] Installer build failed.
+  exit /b 1
 )
 
 :after_inst
 
-REM 5) Signing (auto if PFX exists)
+REM --- Signing (optional) ---
 if %SKIP_SIGN%==1 goto after_sign
-call sign_auto.bat
-
+if exist sign_auto.bat (
+  call sign_auto.bat
+) else (
+  echo [WARN] sign_auto.bat not found. Skipping signing.
+)
 :after_sign
 
-REM 6) ZIP release
+REM --- Release ZIP ---
 if %SKIP_ZIP%==1 goto done
-call build_release_zip.bat
+if exist build_release_zip.bat (
+  call build_release_zip.bat
+) else (
+  echo [WARN] build_release_zip.bat not found. Skipping ZIP.
+)
 
 :done
 echo.
 echo ===== DONE =====
-echo Portable : dist_portable\pixiv_login_plus.exe
-echo Installer: dist_installer\PixivLoginSetup_vX.Y.Z.exe (if built)
-echo Release  : PixivLoginRelease_vX.Y.Z.zip (if built)
+if exist dist_portable\pixiv_login_plus.exe echo CLI : dist_portable\pixiv_login_plus.exe
+if exist dist_gui\pixiv_login_gui.exe echo GUI : dist_gui\pixiv_login_gui.exe
+echo Installer: dist_installer\ (if built)
+echo ZIP      : PixivLoginRelease_vX.Y.Z.zip (if built)
 echo.
 
 if %NO_PAUSE%==1 exit /b 0

@@ -54,3 +54,9 @@ cert.b64
 # MkDocs build output
 # ==============================
 site/
+
+# ==============================
+# Version Control System Folders
+# ==============================
+.git/
+.gitmodules
