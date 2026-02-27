@@ -102,6 +102,21 @@ textarea { width: 100%; min-height: 120px; padding: 12px; resize: vertical; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
+.result-card pre {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.result-actions {
+  gap: 10px;
+  margin-top: 0;
+}
+
+.result-actions .btn {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
 pre {
   white-space: pre-wrap;
   word-break: break-word;
@@ -139,12 +154,14 @@ pre {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+  align-items: stretch;
 }
 
 .cmd-block {
   display: grid;
   gap: 8px;
-  align-content: start;
+  grid-template-rows: auto minmax(180px, 1fr) auto;
+  align-content: stretch;
 }
 
 .cmd-block h3 {
@@ -154,6 +171,10 @@ pre {
   align-items: center;
   gap: 8px;
   font-size: 1rem;
+}
+
+.cmd-block pre {
+  height: 100%;
 }
 
 .site-footer { max-width: 1100px; margin: 4px auto 30px; padding: 8px 16px; }

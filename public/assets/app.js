@@ -96,6 +96,7 @@ async function hydrateReleaseAssets() {
   try {
     const res = await fetch(RELEASE_API, { headers: { Accept: "application/vnd.github+json" } });
     if (!res.ok) throw new Error("release api unavailable");
+
     const release = await res.json();
     const assets = release.assets || [];
     const pick = (matcher) => assets.find((a) => matcher(a.name || ""))?.browser_download_url;
