@@ -40,6 +40,19 @@ CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 # ===== LANGUAGE CONFIG =====
 DEFAULT_LANG = "en"
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
+LANG_LABELS = {
+    "en": "🇬🇧 English",
+    "pl": "🇵🇱 Polski",
+    "zh": "🇨🇳 中文",
+    "jp": "🇯🇵 日本語",
+    "de": "🇩🇪 Deutsch",
+    "fr": "🇫🇷 Français",
+    "es": "🇪🇸 Español",
+    "ru": "🇷🇺 Русский",
+    "pt": "🇵🇹 Português",
+    "id": "🇮🇩 Indonesia",
+    "kr": "🇰🇷 한국어",
+}
 
 LANGUAGES = {
     "en": {
@@ -197,6 +210,10 @@ LANGUAGES = {
         "config_detected_lang": "检测到系统语言:",
     },
 }
+
+
+def supported_langs_display() -> str:
+    return ", ".join(f"{code} ({LANG_LABELS.get(code, code)})" for code in SUPPORTED_LANGS)
 
 
 def get_lang(lang_code: str):
@@ -447,7 +464,7 @@ def print_config(lang: str, color_on: bool):
     print(colorize(L["config_path"], Ansi.DIM, color_on), str(CONFIG_FILE))
     print(L["config_default_lang"], cfg_lang if cfg_lang else "(not set)")
     print(L["config_detected_lang"], sys_lang if sys_lang else "(unknown)")
-    print("Supported:", ", ".join(SUPPORTED_LANGS))
+    print("Supported:", supported_langs_display())
 
 
 def _pause_before_exit_if_frozen() -> None:
@@ -516,7 +533,7 @@ def main():
             L = get_lang(ui_lang)
 
             if new_lang not in SUPPORTED_LANGS:
-                print(colorize(L["config_invalid_lang"], Ansi.RED, color_on), ", ".join(SUPPORTED_LANGS))
+                print(colorize(L["config_invalid_lang"], Ansi.RED, color_on), supported_langs_display())
                 exit(2)
 
             set_default_lang(new_lang)
