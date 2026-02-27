@@ -141,7 +141,7 @@ if exist build_linux.sh (
   if not errorlevel 1 (
     echo.
     echo ===== Building Linux Binary =====
-    bash -lc "./build_linux.sh"
+    bash build_linux.sh
     if errorlevel 1 (
       echo [WARN] Linux build failed. Continuing.
     )
