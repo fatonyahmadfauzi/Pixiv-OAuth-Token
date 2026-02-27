@@ -8,7 +8,7 @@ import json
 import uuid
 from pathlib import Path
 
-PRODUCT_NAME = "Pixiv OAuth Login Tool"
+PRODUCT_NAME = "Pixiv OAuth"
 PUBLISHER = "Fatony Ahmad Fauzi"
 EXE_CLI = r"dist_portable\pixiv_login_plus.exe"
 EXE_GUI = r"dist_gui\pixiv_login_gui.exe"
@@ -50,7 +50,7 @@ def main():
 #define ExeGUI "{EXE_GUI}"
 
 [Setup]
-AppId={{{appid}}}
+AppId={{{{{appid}}}}}
 AppName={{#ProductName}}
 AppVersion={{#ProductVersion}}
 AppPublisher={{#Publisher}}
@@ -70,31 +70,31 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 ; --- Types let user pick CLI/GUI easily ---
 [Types]
-Name: "full"; Description: "Install CLI + GUI"; Flags: iscustom
+Name: "full"; Description: "Install CLI + GUI"
 Name: "cli"; Description: "Install CLI only"
 Name: "gui"; Description: "Install GUI only"
 Name: "custom"; Description: "Custom installation"; Flags: iscustom
 
 [Components]
-Name: "cli"; Description: "Pixiv Login (CLI)"; Types: full cli custom; Flags: fixed
-Name: "gui"; Description: "Pixiv Login (GUI)"; Types: full gui custom
+Name: "cli"; Description: "Pixiv OAuth CLi"; Types: full cli custom; Flags: fixed
+Name: "gui"; Description: "Pixiv OAuth GUi"; Types: full gui custom
 
 [Tasks]
-Name: "desktopicon"; Description: "Create a &desktop icon for GUI"; GroupDescription: "Additional icons:"; Components: gui
-Name: "addtopath"; Description: "Add CLI to PATH (recommended)"; GroupDescription: "CLI options:"; Components: cli
+Name: "desktopicon"; Description: "Create a &desktop icon for GUi"; GroupDescription: "Additional icons:"; Components: gui
+Name: "addtopath"; Description: "Add CLi to PATH (recommended)"; GroupDescription: "CLI options:"; Components: cli
 
 [Files]
 Source: "{{#ExeCLI}}"; DestDir: "{{app}}"; Flags: ignoreversion; Components: cli
 Source: "{{#ExeGUI}}"; DestDir: "{{app}}"; Flags: ignoreversion; Components: gui
 
 [Icons]
-Name: "{{group}}\\Pixiv Login (GUI)"; Filename: "{{app}}\\pixiv_login_gui.exe"; Components: gui
-Name: "{{group}}\\Pixiv Login (CLI)"; Filename: "{{app}}\\pixiv_login_plus.exe"; Components: cli
-Name: "{{commondesktop}}\\Pixiv Login (GUI)"; Filename: "{{app}}\\pixiv_login_gui.exe"; Tasks: desktopicon; Components: gui
+Name: "{{group}}\\Pixiv OAuth GUi"; Filename: "{{app}}\\pixiv_login_gui.exe"; Components: gui
+Name: "{{group}}\\Pixiv OAuth CLi"; Filename: "{{app}}\\pixiv_login_plus.exe"; Components: cli
+Name: "{{commondesktop}}\\Pixiv OAuth GUi"; Filename: "{{app}}\\pixiv_login_gui.exe"; Tasks: desktopicon; Components: gui
 
 [Run]
-Filename: "{{app}}\\pixiv_login_gui.exe"; Description: "Launch Pixiv Login (GUI)"; Flags: nowait postinstall skipifsilent; Components: gui
-Filename: "{{app}}\\pixiv_login_plus.exe"; Description: "Launch Pixiv Login (CLI)"; Flags: nowait postinstall skipifsilent; Components: cli
+Filename: "{{app}}\\pixiv_login_gui.exe"; Description: "Launch Pixiv OAuth GUi"; Flags: nowait postinstall skipifsilent; Components: gui
+Filename: "{{app}}\\pixiv_login_plus.exe"; Description: "Launch Pixiv OAuth CLi"; Flags: nowait postinstall skipifsilent; Components: cli
 
 [Code]
 function NeedsAddPath(Param: string): Boolean;
@@ -115,8 +115,7 @@ begin
         PathEnv := PathEnv + ';';
       NewPath := PathEnv + ExpandConstant('{{app}}');
       RegWriteStringValue(HKCU, 'Environment', 'Path', NewPath);
-      ; Tell Explorer to reload env vars
-      SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, 'Environment', SMTO_ABORTIFHUNG, 5000, NewPath);
+      // PATH changes apply to new processes after install
     end;
   end;
 end;
