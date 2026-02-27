@@ -206,3 +206,17 @@ Checklist perbaikan:
 2. Pastikan file endpoint ada: `api/token.js`.
 3. Pastikan env var benar: `PIXIV_CLIENT_SECRET` (jika terlanjur typo, gunakan alias `PIXV_CLIENT_SECRET`).
 4. Redeploy dari commit terbaru.
+
+## Tombol Download di Web
+
+Halaman web sekarang menyediakan tombol download langsung untuk:
+- Pixiv OAuth CLi Setup
+- Pixiv OAuth CLi (Portable)
+- Pixiv OAuth GUi Setup
+- Pixiv OAuth GUi (Portable)
+- Pixiv OAuth Linux
+
+Sumber download menggunakan URL:
+`https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download`
+
+Jika ingin menyimpan binary langsung di repo, gunakan folder `downloads/` (sudah tidak di-ignore).
