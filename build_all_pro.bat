@@ -135,6 +135,23 @@ if exist sign_auto.bat (
 )
 :after_sign
 
+REM --- Build Linux binary (optional, if bash + script available) ---
+if exist build_linux.sh (
+  where bash >nul 2>nul
+  if not errorlevel 1 (
+    echo.
+    echo ===== Building Linux Binary =====
+    bash build_linux.sh
+    if errorlevel 1 (
+      echo [WARN] Linux build failed. Continuing.
+    )
+  ) else (
+    echo [WARN] bash not found. Skipping Linux build.
+  )
+) else (
+  echo [WARN] build_linux.sh not found. Skipping Linux build.
+)
+
 REM --- Release ZIP ---
 if %SKIP_ZIP%==1 goto after_zip
 if exist build_release_zip.bat (

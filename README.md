@@ -28,6 +28,8 @@ python pixiv_login_gui.py
 
 ### Build semua (CLI + GUI + Installer + ZIP)
 
+> Catatan: `build_all_pro.bat` juga akan mencoba build Linux otomatis jika `bash` tersedia dan `build_linux.sh` ada.
+
 ```bat
 build_all_pro.bat patch
 ```
