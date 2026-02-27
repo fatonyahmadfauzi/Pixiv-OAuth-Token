@@ -116,6 +116,12 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
 
 > Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
 
+### Urutan Bahasa (seragam di CLI/GUI/Web)
+
+Default bahasa: `en` (🇬🇧 English).
+
+Urutan bahasa:
+`🇬🇧 English, 🇵🇱 Polski, 🇨🇳 中文, 🇯🇵 日本語, 🇩🇪 Deutsch, 🇫🇷 Français, 🇪🇸 Español, 🇷🇺 Русский, 🇵🇹 Português, 🇮🇩 Indonesia, 🇰🇷 한국어`
 
 ## Struktur Folder (Ringkas)
 

@@ -74,7 +74,12 @@ const I18N = {
   }
 };
 
-let currentLang = "id";
+const LANG_ORDER = ["en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr"];
+for (const code of LANG_ORDER) {
+  if (!I18N[code]) I18N[code] = { ...I18N.en };
+}
+
+let currentLang = "en";
 
 function t(key) {
   return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
@@ -211,7 +216,7 @@ q("copyRefreshBtn").onclick = async () => {
 
 (function init() {
   const saved = localStorage.getItem("pixiv_lang");
-  if (saved && I18N[saved]) currentLang = saved;
+  if (saved && LANG_ORDER.includes(saved)) currentLang = saved;
   q("langSelect").value = currentLang;
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
   q("yearNow").textContent = String(new Date().getFullYear());
