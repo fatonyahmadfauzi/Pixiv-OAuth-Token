@@ -78,3 +78,33 @@ Versi aplikasi disimpan di `version.json`.
 ## Lisensi
 
 Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
+
+## Web Version (Netlify / Vercel)
+
+Project ini sekarang punya versi web responsive:
+
+- `index.html`
+- `web/style.css`
+- `web/app.js`
+- API serverless:
+  - Vercel: `api/token.js`
+  - Netlify: `netlify/functions/token.js`
+
+### Deploy ke Netlify
+
+1. Connect repo ke Netlify.
+2. Build command: kosongkan (static + functions).
+3. Publish directory: `.`
+4. Set environment variable (opsional):
+   - `PIXIV_CLIENT_SECRET`
+
+`netlify.toml` sudah menyiapkan redirect `/api/token` -> `/.netlify/functions/token`.
+
+### Deploy ke Vercel
+
+1. Import repo ke Vercel.
+2. `vercel.json` sudah menyiapkan route API Node di `/api/token`.
+3. Set environment variable (opsional):
+   - `PIXIV_CLIENT_SECRET`
+
+> Catatan: default fallback `client_secret` tetap ada untuk kompatibilitas script lama, tapi sangat disarankan pakai environment variable di platform deploy.
