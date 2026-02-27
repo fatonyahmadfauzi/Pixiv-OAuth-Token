@@ -3,32 +3,38 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
 REM ==========================================================
-REM build_release_zip.bat (FINAL)
-REM Creates: PixivLoginRelease_vX.Y.Z.zip
+REM build_release_zip.bat
+REM Creates: PixivOAuthRelease_vX.Y.Z.zip
 REM Contents:
-REM   - dist_portable\pixiv_login_plus.exe
-REM   - dist_gui\pixiv_login_gui.exe
-REM   - latest dist_installer\PixivLoginSetup_v*.exe (if exists)
-REM   - version.json
-REM   - README.md / CHANGELOG.md / LICENSE* / SECURITY.md (if exists)
+REM   - Pixiv OAuth CLi (Portable).exe
+REM   - Pixiv OAuth GUi (Portable).exe
+REM   - Pixiv OAuth CLi Setup_vX.Y.Z.exe (if exists)
+REM   - Pixiv OAuth GUi Setup_vX.Y.Z.exe (if exists)
+REM   - version.json + docs
 REM ==========================================================
 
 for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
 
 set RELEASE_DIR=release
-set ZIP_NAME=PixivLoginRelease_v%VER%.zip
+set ZIP_NAME=PixivOAuthRelease_v%VER%.zip
 
 if not exist "%RELEASE_DIR%" mkdir "%RELEASE_DIR%"
 del /q "%RELEASE_DIR%\*" 2>nul
 
-if exist "dist_portable\pixiv_login_plus.exe" copy /y "dist_portable\pixiv_login_plus.exe" "%RELEASE_DIR%\pixiv_login_plus.exe" >nul
-if exist "dist_gui\pixiv_login_gui.exe" copy /y "dist_gui\pixiv_login_gui.exe" "%RELEASE_DIR%\pixiv_login_gui.exe" >nul
+if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth CLi (Portable).exe" >nul
+if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth GUi (Portable).exe" >nul
 
-for /f "delims=" %%f in ('dir /b /o:-d dist_installer\PixivLoginSetup_v*.exe 2^>nul') do (
+for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
   copy /y "dist_installer\%%f" "%RELEASE_DIR%\%%f" >nul
-  goto :copied_inst
+  goto :copied_cli_inst
 )
-:copied_inst
+:copied_cli_inst
+
+for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2^>nul') do (
+  copy /y "dist_installer\%%f" "%RELEASE_DIR%\%%f" >nul
+  goto :copied_gui_inst
+)
+:copied_gui_inst
 
 if exist "version.json" copy /y "version.json" "%RELEASE_DIR%\version.json" >nul
 

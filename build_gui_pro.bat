@@ -17,6 +17,7 @@ REM ==========================================================
 set SCRIPT=pixiv_login_gui.py
 set NAME=pixiv_login_gui
 set ICON=pixiv_login_pro.ico
+set PORTABLE_LABEL=Pixiv OAuth GUi (Portable)
 
 set BUMP=none
 if not "%~1"=="" set BUMP=%~1
@@ -57,12 +58,15 @@ if errorlevel 1 (
 
 REM Copy outputs
 if not exist dist_gui mkdir dist_gui
+del /q dist_gui\*_v*.exe 2>nul
 copy /y dist\%NAME%.exe dist_gui\%NAME%.exe >nul
 copy /y dist\%NAME%.exe dist_gui\%NAME%_v%VER%.exe >nul
+copy /y dist\%NAME%.exe "dist_gui\%PORTABLE_LABEL%.exe" >nul
 
 echo.
 echo GUI built:
 echo   dist_gui\%NAME%.exe
 echo   dist_gui\%NAME%_v%VER%.exe
+echo   dist_gui\%PORTABLE_LABEL%.exe
 echo.
 exit /b 0
