@@ -28,7 +28,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 ; --- Types let user pick CLI/GUI easily ---
 [Types]
-Name: "full"; Description: "Install CLI + GUI"; Flags: iscustom
+Name: "full"; Description: "Install CLI + GUI"
 Name: "cli"; Description: "Install CLI only"
 Name: "gui"; Description: "Install GUI only"
 Name: "custom"; Description: "Custom installation"; Flags: iscustom
