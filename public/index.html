@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>Pixiv OAuth Web | Professional Token Helper</title>
+  <meta name="description" content="Pixiv OAuth adalah toolkit token helper untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel, build script otomatis, dan opsi release portable/setup.">
+  <meta name="keywords" content="pixiv oauth, pixiv token helper, oauth pkce, cli gui web, netlify, vercel">
+  <meta name="author" content="Fatony Ahmad Fauzi">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pixiv OAuth Web">
+  <meta property="og:title" content="Pixiv OAuth Web | Professional Token Helper">
+  <meta property="og:description" content="Generate dan refresh Pixiv OAuth token dengan antarmuka modern, multi-bahasa, dan dukungan serverless API untuk Netlify/Vercel.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#5b8cff">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p id="kickerText" class="kicker">Pixiv OAuth Toolkit</p>
+        <h1 id="titleText">Pixiv OAuth Web</h1>
+        <p id="subtitleText" class="muted">Toolkit untuk mendapatkan token OAuth Pixiv melalui CLI, GUI, maupun Web dengan alur PKCE yang aman dan deployment siap Netlify/Vercel.</p>
+        <div class="hero-badges">
+          <span id="badgePkce" class="badge">PKCE Flow</span>
+          <span id="badgeDeploy" class="badge">Netlify & Vercel Ready</span>
+          <span id="badgeRelease" class="badge">Release Download</span>
+        </div>
+      </div>
+      <div class="lang-wrap">
+        <label for="langSelect" id="langLabel">Language</label>
+        <select id="langSelect">
+          <option value="en">🇬🇧 English</option>
+          <option value="pl">🇵🇱 Polski</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="jp">🇯🇵 日本語</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="pt">🇵🇹 Português</option>
+          <option value="id">🇮🇩 Indonesia</option>
+          <option value="kr">🇰🇷 한국어</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="card info-grid">
+      <article>
+        <h2 id="overviewTitle">Project Overview</h2>
+        <p id="overviewDesc" class="muted">Project ini menyediakan helper untuk exchange dan refresh token Pixiv OAuth, plus build script untuk menghasilkan artifact Portable/Setup di Windows dan dukungan Linux binary.</p>
+      </article>
+      <article>
+        <h3 id="modesTitle">Available Modes</h3>
+        <ul class="clean-list">
+          <li id="modeCli">CLI: <code>pixiv_login.py</code></li>
+          <li id="modeGui">GUI: <code>pixiv_login_gui.py</code></li>
+          <li id="modeWeb">Web: static UI + serverless <code>/api/token</code></li>
+        </ul>
+      </article>
+      <article>
+        <h3 id="requirementsTitle">Requirements</h3>
+        <ul class="clean-list">
+          <li id="reqPy">Python 3.11+</li>
+          <li id="reqDeps">Dependencies: <code>requests</code>, <code>pyinstaller</code></li>
+          <li id="reqBuild">Windows build toolchain for setup installer</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card grid">
+      <h2 id="oauthTitle">OAuth Token Console</h2>
+      <button id="openLoginBtn" class="btn primary">1) Open Login Page</button>
+      <textarea id="inputCode" placeholder="2) Paste pixiv:// callback URL or code here"></textarea>
+      <div class="actions">
+        <button id="exchangeBtn" class="btn">Exchange Token</button>
+        <button id="refreshBtn" class="btn">Refresh Token</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="resultTitle">Result</h2>
+      <pre id="output">Ready.</pre>
+      <div class="actions">
+        <button id="copyAccessBtn" class="btn">Copy access_token</button>
+        <button id="copyRefreshBtn" class="btn">Copy refresh_token</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="downloadsTitle">Downloads</h2>
+      <p class="muted" id="downloadsDesc">Unduh build terbaru langsung dari GitHub Releases.</p>
+      <div class="download-grid">
+        <a id="dlCliSetup" class="btn" target="_blank" rel="noopener">Pixiv OAuth CLi Setup</a>
+        <a id="dlCliPortable" class="btn" target="_blank" rel="noopener">Pixiv OAuth CLi (Portable)</a>
+        <a id="dlGuiSetup" class="btn" target="_blank" rel="noopener">Pixiv OAuth GUi Setup</a>
+        <a id="dlGuiPortable" class="btn" target="_blank" rel="noopener">Pixiv OAuth GUi (Portable)</a>
+        <a id="dlLinux" class="btn" target="_blank" rel="noopener">Pixiv OAuth Linux</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="quickCmdTitle">Quick Command</h2>
+      <p class="muted" id="quickCmdDesc">Salin command untuk download cepat via PowerShell/CMD dan install via pip.</p>
+      <div class="cmd-grid">
+        <div class="cmd-block">
+          <h3>PowerShell</h3>
+          <pre id="psCmd"></pre>
+          <button class="btn" id="copyPsBtn">Copy PowerShell</button>
+        </div>
+        <div class="cmd-block">
+          <h3>CMD</h3>
+          <pre id="cmdCmd"></pre>
+          <button class="btn" id="copyCmdBtn">Copy CMD</button>
+        </div>
+        <div class="cmd-block">
+          <h3>Python / pip</h3>
+          <pre id="pipCmd"></pre>
+          <button class="btn" id="copyPipBtn">Copy pip command</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <section>
+        <h3 id="footerResourceTitle">Resources</h3>
+        <ul>
+          <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub Repository</a></li>
+          <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
+          <li><a href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
+          <li><a href="https://pyinstaller.org/" target="_blank" rel="noopener">PyInstaller</a></li>
+          <li><a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a></li>
+          <li><a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerContactTitle">Contact</h3>
+        <ul>
+          <li><a href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com/fatonyahmad89" target="_blank" rel="noopener">Twitter</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerDevTitle">Developer</h3>
+        <p>Fatony Ahmad Fauzi</p>
+      </section>
+    </div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
