@@ -102,21 +102,6 @@ textarea { width: 100%; min-height: 120px; padding: 12px; resize: vertical; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 10px; }
 
-.result-card pre {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.result-actions {
-  gap: 10px;
-  margin-top: 0;
-}
-
-.result-actions .btn {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-
 pre {
   white-space: pre-wrap;
   word-break: break-word;
