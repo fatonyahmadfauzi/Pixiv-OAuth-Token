@@ -30,87 +30,122 @@ const I18N = {
     copiedRefresh: "refresh_token copied.",
     nothingAccess: "No access_token available.",
     nothingRefresh: "No refresh_token available.",
+    resource: "Resource",
+    contact: "Contact",
+    dev: "Dev",
+    errApiNotFound: "API endpoint not found (404). Deploy /api/token (Vercel) or Netlify function first.",
+    errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
   },
   pl: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Czysty i responsywny helper OAuth token dla Netlify/Vercel.",
     lang: "Język", open: "1) Otwórz stronę logowania", placeholder: "2) Wklej URL pixiv:// lub kod",
     exchange: "Wymień token", refresh: "Odśwież token", result: "Wynik",
     copyAccess: "Kopiuj access_token", copyRefresh: "Kopiuj refresh_token", ready: "Gotowe.",
     opened: "Strona logowania otwarta. Po logowaniu wklej URL pixiv:// lub kod.",
     codeEmpty: "Kod jest pusty.", clickOpen: "Najpierw kliknij 'Otwórz stronę logowania'.",
     noRefresh: "Brak refresh_token.", copiedAccess: "Skopiowano access_token.", copiedRefresh: "Skopiowano refresh_token.",
-    nothingAccess: "Brak access_token.", nothingRefresh: "Brak refresh_token."
+    nothingAccess: "Brak access_token.", nothingRefresh: "Brak refresh_token.",
+    resource: "Zasoby", contact: "Kontakt", dev: "Dev"
   },
   zh: {
+    title: "Pixiv OAuth Web",
+    subtitle: "适用于 Netlify/Vercel 的简洁响应式 OAuth 令牌助手。",
     lang: "语言", open: "1) 打开登录页面", placeholder: "2) 粘贴 pixiv:// 回调 URL 或代码",
     exchange: "获取令牌", refresh: "刷新令牌", result: "结果",
     copyAccess: "复制 access_token", copyRefresh: "复制 refresh_token", ready: "准备就绪。",
     opened: "登录页面已打开。登录后请粘贴 pixiv:// URL 或代码。",
     codeEmpty: "代码为空。", clickOpen: "请先点击“打开登录页面”。", noRefresh: "没有 refresh_token。",
-    copiedAccess: "已复制 access_token。", copiedRefresh: "已复制 refresh_token。", nothingAccess: "没有 access_token。", nothingRefresh: "没有 refresh_token。"
+    copiedAccess: "已复制 access_token。", copiedRefresh: "已复制 refresh_token。", nothingAccess: "没有 access_token。", nothingRefresh: "没有 refresh_token。",
+    resource: "资源", contact: "联系", dev: "开发者"
   },
   jp: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Netlify/Vercel向けのクリーンでレスポンシブなOAuthトークンヘルパー。",
     lang: "言語", open: "1) ログインページを開く", placeholder: "2) pixiv:// コールバックURLまたはコードを貼り付け",
     exchange: "トークン取得", refresh: "トークン更新", result: "結果",
     copyAccess: "access_tokenをコピー", copyRefresh: "refresh_tokenをコピー", ready: "準備完了。",
     opened: "ログインページを開きました。ログイン後にpixiv:// URLかコードを貼り付けてください。",
     codeEmpty: "コードが空です。", clickOpen: "先に「ログインページを開く」を押してください。", noRefresh: "refresh_tokenがありません。",
-    copiedAccess: "access_tokenをコピーしました。", copiedRefresh: "refresh_tokenをコピーしました。", nothingAccess: "access_tokenがありません。", nothingRefresh: "refresh_tokenがありません。"
+    copiedAccess: "access_tokenをコピーしました。", copiedRefresh: "refresh_tokenをコピーしました。", nothingAccess: "access_tokenがありません。", nothingRefresh: "refresh_tokenがありません。",
+    resource: "リソース", contact: "連絡先", dev: "開発者"
   },
   de: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Sauberer, responsiver OAuth-Token-Helper für Netlify/Vercel.",
     lang: "Sprache", open: "1) Login-Seite öffnen", placeholder: "2) pixiv:// URL oder Code einfügen",
     exchange: "Token abrufen", refresh: "Token aktualisieren", result: "Ergebnis",
     copyAccess: "access_token kopieren", copyRefresh: "refresh_token kopieren", ready: "Bereit.",
     opened: "Login-Seite geöffnet. Nach Login pixiv:// URL oder Code einfügen.",
     codeEmpty: "Code ist leer.", clickOpen: "Bitte zuerst 'Login-Seite öffnen' klicken.", noRefresh: "Kein refresh_token vorhanden.",
-    copiedAccess: "access_token kopiert.", copiedRefresh: "refresh_token kopiert.", nothingAccess: "Kein access_token vorhanden.", nothingRefresh: "Kein refresh_token vorhanden."
+    copiedAccess: "access_token kopiert.", copiedRefresh: "refresh_token kopiert.", nothingAccess: "Kein access_token vorhanden.", nothingRefresh: "Kein refresh_token vorhanden.",
+    resource: "Ressourcen", contact: "Kontakt", dev: "Entwickler"
   },
   fr: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Assistant OAuth token propre et responsive pour Netlify/Vercel.",
     lang: "Langue", open: "1) Ouvrir la page de connexion", placeholder: "2) Collez l'URL pixiv:// ou le code",
     exchange: "Échanger le token", refresh: "Rafraîchir le token", result: "Résultat",
     copyAccess: "Copier access_token", copyRefresh: "Copier refresh_token", ready: "Prêt.",
     opened: "Page de connexion ouverte. Après connexion, collez l'URL pixiv:// ou le code.",
     codeEmpty: "Le code est vide.", clickOpen: "Veuillez d'abord cliquer sur 'Ouvrir la page de connexion'.", noRefresh: "Aucun refresh_token disponible.",
-    copiedAccess: "access_token copié.", copiedRefresh: "refresh_token copié.", nothingAccess: "Aucun access_token disponible.", nothingRefresh: "Aucun refresh_token disponible."
+    copiedAccess: "access_token copié.", copiedRefresh: "refresh_token copié.", nothingAccess: "Aucun access_token disponible.", nothingRefresh: "Aucun refresh_token disponible.",
+    resource: "Ressources", contact: "Contact", dev: "Développeur"
   },
   es: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Asistente OAuth de token limpio y responsive para Netlify/Vercel.",
     lang: "Idioma", open: "1) Abrir página de inicio", placeholder: "2) Pega la URL pixiv:// o el código",
     exchange: "Canjear token", refresh: "Actualizar token", result: "Resultado",
     copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Listo.",
     opened: "Página de inicio abierta. Después, pega la URL pixiv:// o el código.",
     codeEmpty: "El código está vacío.", clickOpen: "Primero pulsa 'Abrir página de inicio'.", noRefresh: "No hay refresh_token disponible.",
-    copiedAccess: "access_token copiado.", copiedRefresh: "refresh_token copiado.", nothingAccess: "No hay access_token disponible.", nothingRefresh: "No hay refresh_token disponible."
+    copiedAccess: "access_token copiado.", copiedRefresh: "refresh_token copiado.", nothingAccess: "No hay access_token disponible.", nothingRefresh: "No hay refresh_token disponible.",
+    resource: "Recursos", contact: "Contacto", dev: "Dev"
   },
   ru: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Чистый и адаптивный OAuth helper для Netlify/Vercel.",
     lang: "Язык", open: "1) Открыть страницу входа", placeholder: "2) Вставьте pixiv:// URL или код",
     exchange: "Получить токен", refresh: "Обновить токен", result: "Результат",
     copyAccess: "Копировать access_token", copyRefresh: "Копировать refresh_token", ready: "Готово.",
     opened: "Страница входа открыта. После входа вставьте pixiv:// URL или код.",
     codeEmpty: "Код пуст.", clickOpen: "Сначала нажмите 'Открыть страницу входа'.", noRefresh: "refresh_token отсутствует.",
-    copiedAccess: "access_token скопирован.", copiedRefresh: "refresh_token скопирован.", nothingAccess: "Нет access_token.", nothingRefresh: "Нет refresh_token."
+    copiedAccess: "access_token скопирован.", copiedRefresh: "refresh_token скопирован.", nothingAccess: "Нет access_token.", nothingRefresh: "Нет refresh_token.",
+    resource: "Ресурсы", contact: "Контакты", dev: "Разработчик"
   },
   pt: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Helper OAuth limpo e responsivo para Netlify/Vercel.",
     lang: "Idioma", open: "1) Abrir página de login", placeholder: "2) Cole a URL pixiv:// ou o código",
     exchange: "Trocar token", refresh: "Atualizar token", result: "Resultado",
     copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Pronto.",
     opened: "Página de login aberta. Depois, cole a URL pixiv:// ou o código.",
     codeEmpty: "Código vazio.", clickOpen: "Clique primeiro em 'Abrir página de login'.", noRefresh: "Sem refresh_token disponível.",
-    copiedAccess: "access_token copiado.", copiedRefresh: "refresh_token copiado.", nothingAccess: "Sem access_token disponível.", nothingRefresh: "Sem refresh_token disponível."
+    copiedAccess: "access_token copiado.", copiedRefresh: "refresh_token copiado.", nothingAccess: "Sem access_token disponível.", nothingRefresh: "Sem refresh_token disponível.",
+    resource: "Recursos", contact: "Contato", dev: "Dev"
   },
   id: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Helper token OAuth yang clean dan responsive untuk Netlify/Vercel.",
     lang: "Bahasa", open: "1) Buka Halaman Login", placeholder: "2) Tempel URL callback pixiv:// atau code di sini",
     exchange: "Ambil Token", refresh: "Refresh Token", result: "Hasil",
     copyAccess: "Salin access_token", copyRefresh: "Salin refresh_token", ready: "Siap.",
     opened: "Halaman login dibuka. Setelah login, tempel URL pixiv:// atau code.",
     codeEmpty: "Code kosong.", clickOpen: "Klik 'Buka Halaman Login' dulu.", noRefresh: "Belum ada refresh_token.",
-    copiedAccess: "access_token tersalin.", copiedRefresh: "refresh_token tersalin.", nothingAccess: "Belum ada access_token.", nothingRefresh: "Belum ada refresh_token."
+    copiedAccess: "access_token tersalin.", copiedRefresh: "refresh_token tersalin.", nothingAccess: "Belum ada access_token.", nothingRefresh: "Belum ada refresh_token.",
+    resource: "Resource", contact: "Kontak", dev: "Developer"
   },
   kr: {
+    title: "Pixiv OAuth Web",
+    subtitle: "Netlify/Vercel용 깔끔하고 반응형 OAuth 토큰 헬퍼입니다.",
     lang: "언어", open: "1) 로그인 페이지 열기", placeholder: "2) pixiv:// 콜백 URL 또는 코드를 붙여넣기",
     exchange: "토큰 받기", refresh: "토큰 새로고침", result: "결과",
     copyAccess: "access_token 복사", copyRefresh: "refresh_token 복사", ready: "준비 완료.",
     opened: "로그인 페이지를 열었습니다. 로그인 후 pixiv:// URL 또는 코드를 붙여넣으세요.",
     codeEmpty: "코드가 비어 있습니다.", clickOpen: "먼저 '로그인 페이지 열기'를 클릭하세요.", noRefresh: "refresh_token이 없습니다.",
-    copiedAccess: "access_token을 복사했습니다.", copiedRefresh: "refresh_token을 복사했습니다.", nothingAccess: "access_token이 없습니다.", nothingRefresh: "refresh_token이 없습니다."
+    copiedAccess: "access_token을 복사했습니다.", copiedRefresh: "refresh_token을 복사했습니다.", nothingAccess: "access_token이 없습니다.", nothingRefresh: "refresh_token이 없습니다.",
+    resource: "리소스", contact: "연락처", dev: "개발자"
   }
 };
 
@@ -135,6 +170,9 @@ function applyLang() {
   q("resultTitle").textContent = t("result");
   q("copyAccessBtn").textContent = t("copyAccess");
   q("copyRefreshBtn").textContent = t("copyRefresh");
+  q("footerResourceTitle").textContent = t("resource");
+  q("footerContactTitle").textContent = t("contact");
+  q("footerDevTitle").textContent = t("dev");
   output.textContent = t("ready");
 }
 
@@ -167,7 +205,17 @@ async function callApi(payload) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
   });
-  const data = await res.json();
+  const raw = await res.text();
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch {
+    if (res.status === 404) throw new Error(t("errApiNotFound"));
+    if ((raw && raw.toLowerCase().includes("<html")) || raw.startsWith("The page")) {
+      throw new Error(t("errApiHtml"));
+    }
+    throw new Error(raw || "Unknown API response");
+  }
   if (!res.ok) throw new Error(data.error || JSON.stringify(data));
   return data;
 }
