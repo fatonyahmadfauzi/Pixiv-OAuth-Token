@@ -81,11 +81,11 @@ Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
 
 ## Web Version (Netlify / Vercel)
 
-Project ini sekarang punya versi web responsive:
+Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
 
 - `public/index.html`
-- `public/assets/style.css`
-- `public/assets/app.js`
+- `public/assets/style.css` (clean UI + responsive + footer)
+- `public/assets/app.js` (PKCE + i18n EN/ID/JP)
 - API serverless:
   - Vercel: `api/token.js`
   - Netlify: `netlify/functions/token.js`
