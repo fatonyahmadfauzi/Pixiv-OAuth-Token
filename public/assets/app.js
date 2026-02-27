@@ -2,6 +2,7 @@ const CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT";
 const REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback";
 const LOGIN_URL = "https://app-api.pixiv.net/web/v1/login";
 const RELEASE_BASE = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download";
+const RELEASE_API = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
 
 let codeVerifier = "";
 let tokenState = { access_token: "", refresh_token: "" };
@@ -12,40 +13,34 @@ const output = q("output");
 const LANG_ORDER = ["en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr"];
 const I18N = {
   en: {
+    kicker: "Pixiv OAuth Toolkit",
     title: "Pixiv OAuth Web",
-    subtitle: "Pixiv OAuth helper for CLI, GUI, and Web (PKCE) with Netlify/Vercel deployment support.",
-    lang: "Language",
-    open: "1) Open Login Page",
-    placeholder: "2) Paste pixiv:// callback URL or code here",
-    exchange: "Exchange Token",
-    refresh: "Refresh Token",
-    result: "Result",
-    copyAccess: "Copy access_token",
-    copyRefresh: "Copy refresh_token",
-    ready: "Ready.",
+    subtitle: "Toolkit to generate Pixiv OAuth tokens via CLI, GUI, and Web with secure PKCE flow and Netlify/Vercel-ready deployment.",
+    badgePkce: "PKCE Flow", badgeDeploy: "Netlify & Vercel Ready", badgeRelease: "Release Download",
+    overviewTitle: "Project Overview",
+    overviewDesc: "This project helps exchange/refresh Pixiv OAuth tokens and ships Windows build scripts for Portable/Setup artifacts plus Linux binary support.",
+    modesTitle: "Available Modes", modeCli: "CLI: pixiv_login.py", modeGui: "GUI: pixiv_login_gui.py", modeWeb: "Web: static UI + serverless /api/token",
+    requirementsTitle: "Requirements", reqPy: "Python 3.11+", reqDeps: "Dependencies: requests, pyinstaller", reqBuild: "Windows build toolchain for setup installer",
+    oauthTitle: "OAuth Token Console",
+    lang: "Language", open: "1) Open Login Page", placeholder: "2) Paste pixiv:// callback URL or code here",
+    exchange: "Exchange Token", refresh: "Refresh Token", result: "Result",
+    copyAccess: "Copy access_token", copyRefresh: "Copy refresh_token", ready: "Ready.",
     opened: "Login page opened. After login, paste pixiv:// callback URL or code.",
-    codeEmpty: "Code is empty.",
-    clickOpen: "Click 'Open Login Page' first.",
-    noRefresh: "No refresh_token available.",
-    copiedAccess: "access_token copied.",
-    copiedRefresh: "refresh_token copied.",
-    nothingAccess: "No access_token available.",
-    nothingRefresh: "No refresh_token available.",
-    resource: "Resources",
-    contact: "Contact",
-    dev: "Dev",
-    downloadsTitle: "Downloads",
-    downloadsDesc: "Download latest build directly from GitHub Releases.",
-    quickCmdTitle: "Quick Command",
-    quickCmdDesc: "Copy command for PowerShell/CMD download and pip install.",
-    copyPs: "Copy PowerShell",
-    copyCmd: "Copy CMD",
-    copyPip: "Copy pip command",
+    codeEmpty: "Code is empty.", clickOpen: "Click 'Open Login Page' first.", noRefresh: "No refresh_token available.",
+    copiedAccess: "access_token copied.", copiedRefresh: "refresh_token copied.",
+    nothingAccess: "No access_token available.", nothingRefresh: "No refresh_token available.",
+    resource: "Resources", contact: "Contact", dev: "Developer",
+    downloadsTitle: "Downloads", downloadsDesc: "Download latest build directly from GitHub Releases.",
+    quickCmdTitle: "Quick Command", quickCmdDesc: "Copy command for PowerShell/CMD download and pip install.",
+    copyPs: "Copy PowerShell", copyCmd: "Copy CMD", copyPip: "Copy pip command",
     errApiNotFound: "API endpoint not found (404). Deploy /api/token (Vercel) or Netlify function first.",
-    errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config."
+    errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
+    copiedPs: "PowerShell command copied.", copiedCmd: "CMD command copied.", copiedPip: "pip command copied."
   },
   id: {
-    subtitle: "Helper Pixiv OAuth untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel.",
+    subtitle: "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Netlify/Vercel.",
+    overviewTitle: "Ringkasan Project", overviewDesc: "Project ini membantu exchange/refresh token Pixiv OAuth dan menyediakan script build Windows untuk artifact Portable/Setup serta dukungan binary Linux.",
+    modesTitle: "Mode Tersedia", requirementsTitle: "Kebutuhan", oauthTitle: "Konsol Token OAuth",
     lang: "Bahasa", open: "1) Buka Halaman Login", placeholder: "2) Tempel URL callback pixiv:// atau code di sini",
     exchange: "Ambil Token", refresh: "Refresh Token", result: "Hasil",
     copyAccess: "Salin access_token", copyRefresh: "Salin refresh_token", ready: "Siap.",
@@ -58,10 +53,12 @@ const I18N = {
     quickCmdTitle: "Perintah Cepat", quickCmdDesc: "Salin command download PowerShell/CMD dan install pip.",
     copyPs: "Salin PowerShell", copyCmd: "Salin CMD", copyPip: "Salin perintah pip",
     errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token (Vercel) atau function Netlify dulu.",
-    errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy."
+    errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy.",
+    copiedPs: "Command PowerShell tersalin.", copiedCmd: "Command CMD tersalin.", copiedPip: "Command pip tersalin."
   },
   jp: {
-    subtitle: "CLI・GUI・Web向け Pixiv OAuth（PKCE）ヘルパー。Netlify/Vercel に対応。",
+    subtitle: "CLI・GUI・Web向け Pixiv OAuth（PKCE）ツールキット。Netlify/Vercel にデプロイ可能。",
+    overviewTitle: "プロジェクト概要", modesTitle: "利用モード", requirementsTitle: "要件", oauthTitle: "OAuth トークンコンソール",
     lang: "言語", open: "1) ログインページを開く", placeholder: "2) pixiv:// コールバックURLまたはコードを貼り付け",
     exchange: "トークン取得", refresh: "トークン更新", result: "結果",
     copyAccess: "access_tokenをコピー", copyRefresh: "refresh_tokenをコピー", ready: "準備完了。",
@@ -75,21 +72,37 @@ const I18N = {
     copyPs: "PowerShellをコピー", copyCmd: "CMDをコピー", copyPip: "pipコマンドをコピー"
   }
 };
-
 for (const code of LANG_ORDER) I18N[code] = { ...I18N.en, ...(I18N[code] || {}) };
-
 let currentLang = "en";
 
 function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key; }
-
 function releaseLink(name) { return `${RELEASE_BASE}/${encodeURIComponent(name)}`; }
 
-function setDownloadLinks() {
-  q("dlCliSetup").href = releaseLink("Pixiv OAuth CLi Setup_v1.0.13.exe");
-  q("dlCliPortable").href = releaseLink("Pixiv OAuth CLi (Portable).exe");
-  q("dlGuiSetup").href = releaseLink("Pixiv OAuth GUi Setup_v1.0.13.exe");
-  q("dlGuiPortable").href = releaseLink("Pixiv OAuth GUi (Portable).exe");
-  q("dlLinux").href = releaseLink("pixiv_login_plus_linux");
+function setDownloadLinks(assets = {}) {
+  q("dlCliSetup").href = assets.cliSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+  q("dlCliPortable").href = assets.cliPortable || releaseLink("Pixiv OAuth CLi (Portable).exe");
+  q("dlGuiSetup").href = assets.guiSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+  q("dlGuiPortable").href = assets.guiPortable || releaseLink("Pixiv OAuth GUi (Portable).exe");
+  q("dlLinux").href = assets.linux || releaseLink("pixiv_login_plus_linux");
+}
+
+async function hydrateReleaseAssets() {
+  try {
+    const res = await fetch(RELEASE_API, { headers: { Accept: "application/vnd.github+json" } });
+    if (!res.ok) throw new Error("release api unavailable");
+    const release = await res.json();
+    const assets = release.assets || [];
+    const pick = (matcher) => assets.find((a) => matcher(a.name || ""))?.browser_download_url;
+    setDownloadLinks({
+      cliSetup: pick((n) => /Pixiv OAuth CLi Setup/i.test(n)),
+      cliPortable: pick((n) => /Pixiv OAuth CLi \(Portable\)/i.test(n)),
+      guiSetup: pick((n) => /Pixiv OAuth GUi Setup/i.test(n)),
+      guiPortable: pick((n) => /Pixiv OAuth GUi \(Portable\)/i.test(n)),
+      linux: pick((n) => /pixiv_login_plus_linux/i.test(n))
+    });
+  } catch {
+    setDownloadLinks();
+  }
 }
 
 function setCommandBlocks() {
@@ -104,32 +117,20 @@ async function copyText(text, okMessage) {
 }
 
 function applyLang() {
-  q("titleText").textContent = t("title");
-  q("subtitleText").textContent = t("subtitle");
-  q("langLabel").textContent = t("lang");
-  q("openLoginBtn").textContent = t("open");
+  const map = {
+    kickerText: "kicker", titleText: "title", subtitleText: "subtitle", badgePkce: "badgePkce", badgeDeploy: "badgeDeploy", badgeRelease: "badgeRelease",
+    overviewTitle: "overviewTitle", overviewDesc: "overviewDesc", modesTitle: "modesTitle", requirementsTitle: "requirementsTitle", oauthTitle: "oauthTitle",
+    langLabel: "lang", openLoginBtn: "open", exchangeBtn: "exchange", refreshBtn: "refresh", resultTitle: "result", copyAccessBtn: "copyAccess",
+    copyRefreshBtn: "copyRefresh", footerResourceTitle: "resource", footerContactTitle: "contact", footerDevTitle: "dev", downloadsTitle: "downloadsTitle",
+    downloadsDesc: "downloadsDesc", quickCmdTitle: "quickCmdTitle", quickCmdDesc: "quickCmdDesc", copyPsBtn: "copyPs", copyCmdBtn: "copyCmd", copyPipBtn: "copyPip",
+    modeCli: "modeCli", modeGui: "modeGui", modeWeb: "modeWeb", reqPy: "reqPy", reqDeps: "reqDeps", reqBuild: "reqBuild"
+  };
+  Object.entries(map).forEach(([id, key]) => { q(id).textContent = t(key); });
   q("inputCode").placeholder = t("placeholder");
-  q("exchangeBtn").textContent = t("exchange");
-  q("refreshBtn").textContent = t("refresh");
-  q("resultTitle").textContent = t("result");
-  q("copyAccessBtn").textContent = t("copyAccess");
-  q("copyRefreshBtn").textContent = t("copyRefresh");
-  q("footerResourceTitle").textContent = t("resource");
-  q("footerContactTitle").textContent = t("contact");
-  q("footerDevTitle").textContent = t("dev");
-  q("downloadsTitle").textContent = t("downloadsTitle");
-  q("downloadsDesc").textContent = t("downloadsDesc");
-  q("quickCmdTitle").textContent = t("quickCmdTitle");
-  q("quickCmdDesc").textContent = t("quickCmdDesc");
-  q("copyPsBtn").textContent = t("copyPs");
-  q("copyCmdBtn").textContent = t("copyCmd");
-  q("copyPipBtn").textContent = t("copyPip");
   output.textContent = t("ready");
 }
 
-function b64Url(bytes) {
-  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
+function b64Url(bytes) { return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
 
 async function createPkce() {
   const arr = crypto.getRandomValues(new Uint8Array(32));
@@ -145,10 +146,7 @@ function parseCode(input) {
   try { return new URL(tVal).searchParams.get("code") || tVal; } catch { return tVal; }
 }
 
-function apiBase() {
-  if (location.hostname.includes("netlify")) return "/.netlify/functions/token";
-  return "/api/token";
-}
+function apiBase() { return location.hostname.includes("netlify") ? "/.netlify/functions/token" : "/api/token"; }
 
 async function callApi(payload) {
   const res = await fetch(apiBase(), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -202,22 +200,20 @@ q("copyAccessBtn").onclick = async () => {
   if (!tokenState.access_token) return (output.textContent = t("nothingAccess"));
   await copyText(tokenState.access_token, t("copiedAccess"));
 };
-
 q("copyRefreshBtn").onclick = async () => {
   if (!tokenState.refresh_token) return (output.textContent = t("nothingRefresh"));
   await copyText(tokenState.refresh_token, t("copiedRefresh"));
 };
+q("copyPsBtn").onclick = async () => copyText(q("psCmd").textContent, t("copiedPs"));
+q("copyCmdBtn").onclick = async () => copyText(q("cmdCmd").textContent, t("copiedCmd"));
+q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copiedPip"));
 
-q("copyPsBtn").onclick = async () => copyText(q("psCmd").textContent, "PowerShell command copied.");
-q("copyCmdBtn").onclick = async () => copyText(q("cmdCmd").textContent, "CMD command copied.");
-q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, "pip command copied.");
-
-(function init() {
+(async function init() {
   const saved = localStorage.getItem("pixiv_lang");
   if (saved && LANG_ORDER.includes(saved)) currentLang = saved;
   q("langSelect").value = currentLang;
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
-  setDownloadLinks();
   setCommandBlocks();
   applyLang();
+  await hydrateReleaseAssets();
 })();
