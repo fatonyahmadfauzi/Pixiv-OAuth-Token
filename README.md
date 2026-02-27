@@ -79,7 +79,6 @@ Versi aplikasi disimpan di `version.json`.
 
 Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
 
-
 ## Web Version (Netlify / Vercel)
 
 Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
@@ -117,9 +116,6 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
 
 > Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
 
-
-
-
 ### Urutan Bahasa (seragam di CLI/GUI/Web)
 
 Default bahasa: `en` (🇬🇧 English).
@@ -141,7 +137,6 @@ api/
 netlify/functions/
   token.js
 ```
-
 
 ## Kenapa muncul error `API endpoint not found (404)`?
 
