@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="format-detection" content="telephone=no">
+  <title>Pixiv OAuth Web | Professional Token Helper</title>
+  <meta name="description" content="Pixiv OAuth adalah toolkit token helper untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel, build script otomatis, dan opsi release portable/setup.">
+  <meta name="keywords" content="pixiv oauth, pixiv token helper, oauth pkce, cli gui web, netlify, vercel">
+  <meta name="author" content="Fatony Ahmad Fauzi">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pixiv OAuth Web">
+  <meta property="og:title" content="Pixiv OAuth Web | Professional Token Helper">
+  <meta property="og:description" content="Generate dan refresh Pixiv OAuth token dengan antarmuka modern, multi-bahasa, dan dukungan serverless API untuk Netlify/Vercel.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#5b8cff">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero card">
+      <div class="hero-copy">
+        <p id="kickerText" class="kicker">Pixiv OAuth Toolkit</p>
+        <h1 id="titleText">Pixiv OAuth Web</h1>
+        <p id="subtitleText" class="muted">Toolkit untuk mendapatkan token OAuth Pixiv melalui CLI, GUI, maupun Web dengan alur PKCE yang aman dan deployment siap Netlify/Vercel.</p>
+        <div class="hero-badges">
+          <span id="badgePkce" class="badge">PKCE Flow</span>
+          <span id="badgeDeploy" class="badge">Netlify & Vercel Ready</span>
+          <span id="badgeRelease" class="badge">Release Download</span>
+        </div>
+      </div>
+      <div class="lang-wrap">
+        <label for="langToggle" id="langLabel">Language</label>
+        <div class="lang-control" id="langControl">
+          <button type="button" id="langToggle" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
+            <span id="langCurrent">English</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul id="langMenu" class="lang-menu" role="listbox" aria-label="Language">
+            <li role="option" data-lang="en"><span class="fi fi-gb" aria-hidden="true"></span><span>English</span></li>
+            <li role="option" data-lang="pl"><span class="fi fi-pl" aria-hidden="true"></span><span>Polski</span></li>
+            <li role="option" data-lang="zh"><span class="fi fi-cn" aria-hidden="true"></span><span>中文</span></li>
+            <li role="option" data-lang="jp"><span class="fi fi-jp" aria-hidden="true"></span><span>日本語</span></li>
+            <li role="option" data-lang="de"><span class="fi fi-de" aria-hidden="true"></span><span>Deutsch</span></li>
+            <li role="option" data-lang="fr"><span class="fi fi-fr" aria-hidden="true"></span><span>Français</span></li>
+            <li role="option" data-lang="es"><span class="fi fi-es" aria-hidden="true"></span><span>Español</span></li>
+            <li role="option" data-lang="ru"><span class="fi fi-ru" aria-hidden="true"></span><span>Русский</span></li>
+            <li role="option" data-lang="pt"><span class="fi fi-pt" aria-hidden="true"></span><span>Português</span></li>
+            <li role="option" data-lang="id"><span class="fi fi-id" aria-hidden="true"></span><span>Indonesia</span></li>
+            <li role="option" data-lang="kr"><span class="fi fi-kr" aria-hidden="true"></span><span>한국어</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card info-grid">
+      <article>
+        <h2 id="overviewTitle">Project Overview</h2>
+        <p id="overviewDesc" class="muted">Project ini menyediakan helper untuk exchange dan refresh token Pixiv OAuth, plus build script untuk menghasilkan artifact Portable/Setup di Windows dan dukungan Linux binary.</p>
+        <a id="docsBtn" class="btn docs-btn" href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/README.md" target="_blank" rel="noopener"><i class="bi bi-book" aria-hidden="true"></i><span id="docsBtnLabel">Read the docs</span></a>
+      </article>
+      <article>
+        <h3 id="modesTitle">Available Modes</h3>
+        <ul class="clean-list">
+          <li id="modeCli">CLI: <code>pixiv_login.py</code></li>
+          <li id="modeGui">GUI: <code>pixiv_login_gui.py</code></li>
+          <li id="modeWeb">Web: static UI + serverless <code>/api/token</code></li>
+        </ul>
+      </article>
+      <article>
+        <h3 id="requirementsTitle">Requirements</h3>
+        <ul class="clean-list">
+          <li id="reqPy">Python 3.11+</li>
+          <li id="reqDeps">Dependencies: <code>requests</code>, <code>pyinstaller</code></li>
+          <li id="reqBuild">Windows build toolchain for setup installer</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card grid">
+      <h2 id="oauthTitle">OAuth Token Console</h2>
+      <button id="openLoginBtn" class="btn primary">
+        <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+        <span id="openLoginBtnLabel">1) Open Login Page</span>
+      </button>
+      <textarea id="inputCode" placeholder="2) Paste pixiv:// callback URL or code here"></textarea>
+      <div class="actions">
+        <button id="exchangeBtn" class="btn"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span id="exchangeBtnLabel">Exchange Token</span></button>
+        <button id="refreshBtn" class="btn"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i><span id="refreshBtnLabel">Refresh Token</span></button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="resultTitle">Result</h2>
+      <pre id="output">Ready.</pre>
+      <div class="actions result-actions">
+        <button id="copyAccessBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyAccessBtnLabel">Copy access_token</span></button>
+        <button id="copyRefreshBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyRefreshBtnLabel">Copy refresh_token</span></button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="downloadsTitle">Downloads</h2>
+      <p class="muted" id="downloadsDesc">Unduh build terbaru langsung dari GitHub Releases.</p>
+      <div class="download-grid">
+        <a id="dlCliSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
+        <a id="dlCliPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
+        <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
+        <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
+        <a id="dlLinux" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-ubuntu" aria-hidden="true"></i> Pixiv OAuth Linux</span><i class="bi bi-download" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="quickCmdTitle">Quick Command</h2>
+      <p class="muted" id="quickCmdDesc">Salin command untuk download cepat via PowerShell/CMD dan install via pip.</p>
+      <div class="cmd-grid">
+        <div class="cmd-block">
+          <h3><i class="bi bi-terminal-fill" aria-hidden="true"></i> PowerShell</h3>
+          <pre id="psCmd"></pre>
+          <button class="btn" id="copyPsBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPsBtnLabel">Copy PowerShell</span></button>
+        </div>
+        <div class="cmd-block">
+          <h3><i class="bi bi-command" aria-hidden="true"></i> CMD</h3>
+          <pre id="cmdCmd"></pre>
+          <button class="btn" id="copyCmdBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyCmdBtnLabel">Copy CMD</span></button>
+        </div>
+        <div class="cmd-block">
+          <h3><i class="bi bi-filetype-py" aria-hidden="true"></i> Python / pip</h3>
+          <pre id="pipCmd"></pre>
+          <button class="btn" id="copyPipBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPipBtnLabel">Copy pip command</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <section>
+        <h3 id="footerResourceTitle">Resources</h3>
+        <ul>
+          <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub Repository</a></li>
+          <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
+          <li><a href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
+          <li><a href="https://pyinstaller.org/" target="_blank" rel="noopener">PyInstaller</a></li>
+          <li><a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a></li>
+          <li><a href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerContactTitle">Contact</h3>
+        <ul>
+          <li><a href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://x.com/fatonyahmad89" target="_blank" rel="noopener">Twitter</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerDevTitle">Developer</h3>
+        <p>Fatony Ahmad Fauzi</p>
+      </section>
+    </div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
