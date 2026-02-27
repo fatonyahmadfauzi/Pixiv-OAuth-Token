@@ -2,7 +2,7 @@
 ; Do not edit manually unless you know what you're doing.
 
 #define ProductName "Pixiv OAuth"
-#define ProductVersion "1.0.11"
+#define ProductVersion "1.0.13"
 #define Publisher "Fatony Ahmad Fauzi"
 #define ExeCLI "dist_portable\pixiv_login_plus.exe"
 #define ExeGUI "dist_gui\pixiv_login_gui.exe"
