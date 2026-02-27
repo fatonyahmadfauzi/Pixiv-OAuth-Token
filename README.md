@@ -137,3 +137,59 @@ api/
 netlify/functions/
   token.js
 ```
+
+## Kenapa muncul error `API endpoint not found (404)`?
+
+Error ini muncul karena web mencoba request ke endpoint backend (`/api/token` atau `/.netlify/functions/token`) tapi endpoint serverless belum aktif/ter-route.
+
+Penyebab paling umum:
+- Belum deploy ke Vercel/Netlify (masih buka file HTML langsung).
+- Konfigurasi deploy belum sesuai (`public` untuk static, function untuk backend).
+- Endpoint API belum ikut terdeploy.
+
+Solusi cepat:
+1. Deploy ke Vercel/Netlify sesuai panduan di bawah.
+2. Pastikan endpoint bisa diakses:
+   - Vercel: `https://<domain>/api/token`
+   - Netlify: `https://<domain>/.netlify/functions/token`
+3. Set environment variable `PIXIV_CLIENT_SECRET`.
+
+## Download Aplikasi (Release)
+
+Base release URL (ganti jika repo/fork berbeda):
+
+`https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download`
+
+File download:
+- Portable GUI: `Pixiv OAuth GUi (Portable).exe`
+- Setup GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
+- Portable CLI: `Pixiv OAuth CLi (Portable).exe`
+- Setup CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
+- Linux build: `pixiv_login_plus_linux` (jika disertakan di release)
+
+### PowerShell (langsung download)
+
+```powershell
+$base = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download"
+Invoke-WebRequest "$base/Pixiv%20OAuth%20GUi%20(Portable).exe" -OutFile "Pixiv OAuth GUi (Portable).exe"
+Invoke-WebRequest "$base/Pixiv%20OAuth%20CLi%20(Portable).exe" -OutFile "Pixiv OAuth CLi (Portable).exe"
+```
+
+### CMD (langsung download)
+
+```cmd
+curl -L "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20(Portable).exe" -o "Pixiv OAuth GUi (Portable).exe"
+curl -L "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20(Portable).exe" -o "Pixiv OAuth CLi (Portable).exe"
+```
+
+### Python package / source install
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Atau install langsung dari GitHub:
+
+```bash
+python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
+```

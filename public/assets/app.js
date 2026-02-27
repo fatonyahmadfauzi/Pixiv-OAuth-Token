@@ -12,7 +12,7 @@ const LANG_ORDER = ["en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", 
 const I18N = {
   en: {
     title: "Pixiv OAuth Web",
-    subtitle: "Clean, responsive OAuth token helper for Netlify/Vercel.",
+    subtitle: "Pixiv OAuth helper untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel.",
     lang: "Language",
     open: "1) Open Login Page",
     placeholder: "2) Paste pixiv:// callback URL or code here",
@@ -30,7 +30,7 @@ const I18N = {
     copiedRefresh: "refresh_token copied.",
     nothingAccess: "No access_token available.",
     nothingRefresh: "No refresh_token available.",
-    resource: "Resource",
+    resource: "Resources",
     contact: "Contact",
     dev: "Dev",
     errApiNotFound: "API endpoint not found (404). Deploy /api/token (Vercel) or Netlify function first.",
@@ -38,7 +38,7 @@ const I18N = {
   },
   pl: {
     title: "Pixiv OAuth Web",
-    subtitle: "Czysty i responsywny helper OAuth token dla Netlify/Vercel.",
+    subtitle: "Pomocnik Pixiv OAuth untuk CLI, GUI, i Web (PKCE) dengan wdrożeniem Netlify/Vercel.",
     lang: "Język", open: "1) Otwórz stronę logowania", placeholder: "2) Wklej URL pixiv:// lub kod",
     exchange: "Wymień token", refresh: "Odśwież token", result: "Wynik",
     copyAccess: "Kopiuj access_token", copyRefresh: "Kopiuj refresh_token", ready: "Gotowe.",
@@ -50,7 +50,7 @@ const I18N = {
   },
   zh: {
     title: "Pixiv OAuth Web",
-    subtitle: "适用于 Netlify/Vercel 的简洁响应式 OAuth 令牌助手。",
+    subtitle: "支持 Netlify/Vercel 部署的 Pixiv OAuth 助手（CLI/GUI/Web，PKCE）。",
     lang: "语言", open: "1) 打开登录页面", placeholder: "2) 粘贴 pixiv:// 回调 URL 或代码",
     exchange: "获取令牌", refresh: "刷新令牌", result: "结果",
     copyAccess: "复制 access_token", copyRefresh: "复制 refresh_token", ready: "准备就绪。",
@@ -61,7 +61,7 @@ const I18N = {
   },
   jp: {
     title: "Pixiv OAuth Web",
-    subtitle: "Netlify/Vercel向けのクリーンでレスポンシブなOAuthトークンヘルパー。",
+    subtitle: "Netlify/Vercel対応、CLI・GUI・Web向け Pixiv OAuth（PKCE）ヘルパー。",
     lang: "言語", open: "1) ログインページを開く", placeholder: "2) pixiv:// コールバックURLまたはコードを貼り付け",
     exchange: "トークン取得", refresh: "トークン更新", result: "結果",
     copyAccess: "access_tokenをコピー", copyRefresh: "refresh_tokenをコピー", ready: "準備完了。",
@@ -72,7 +72,7 @@ const I18N = {
   },
   de: {
     title: "Pixiv OAuth Web",
-    subtitle: "Sauberer, responsiver OAuth-Token-Helper für Netlify/Vercel.",
+    subtitle: "Pixiv OAuth-Helfer für CLI, GUI und Web (PKCE) mit Netlify/Vercel-Deployment.",
     lang: "Sprache", open: "1) Login-Seite öffnen", placeholder: "2) pixiv:// URL oder Code einfügen",
     exchange: "Token abrufen", refresh: "Token aktualisieren", result: "Ergebnis",
     copyAccess: "access_token kopieren", copyRefresh: "refresh_token kopieren", ready: "Bereit.",
@@ -83,7 +83,7 @@ const I18N = {
   },
   fr: {
     title: "Pixiv OAuth Web",
-    subtitle: "Assistant OAuth token propre et responsive pour Netlify/Vercel.",
+    subtitle: "Assistant Pixiv OAuth pour CLI, GUI et Web (PKCE), compatible Netlify/Vercel.",
     lang: "Langue", open: "1) Ouvrir la page de connexion", placeholder: "2) Collez l'URL pixiv:// ou le code",
     exchange: "Échanger le token", refresh: "Rafraîchir le token", result: "Résultat",
     copyAccess: "Copier access_token", copyRefresh: "Copier refresh_token", ready: "Prêt.",
@@ -94,7 +94,7 @@ const I18N = {
   },
   es: {
     title: "Pixiv OAuth Web",
-    subtitle: "Asistente OAuth de token limpio y responsive para Netlify/Vercel.",
+    subtitle: "Asistente Pixiv OAuth para CLI, GUI y Web (PKCE) con despliegue Netlify/Vercel.",
     lang: "Idioma", open: "1) Abrir página de inicio", placeholder: "2) Pega la URL pixiv:// o el código",
     exchange: "Canjear token", refresh: "Actualizar token", result: "Resultado",
     copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Listo.",
@@ -105,7 +105,7 @@ const I18N = {
   },
   ru: {
     title: "Pixiv OAuth Web",
-    subtitle: "Чистый и адаптивный OAuth helper для Netlify/Vercel.",
+    subtitle: "Pixiv OAuth helper для CLI, GUI и Web (PKCE) с деплоем Netlify/Vercel.",
     lang: "Язык", open: "1) Открыть страницу входа", placeholder: "2) Вставьте pixiv:// URL или код",
     exchange: "Получить токен", refresh: "Обновить токен", result: "Результат",
     copyAccess: "Копировать access_token", copyRefresh: "Копировать refresh_token", ready: "Готово.",
@@ -116,7 +116,7 @@ const I18N = {
   },
   pt: {
     title: "Pixiv OAuth Web",
-    subtitle: "Helper OAuth limpo e responsivo para Netlify/Vercel.",
+    subtitle: "Helper Pixiv OAuth para CLI, GUI e Web (PKCE) com deploy Netlify/Vercel.",
     lang: "Idioma", open: "1) Abrir página de login", placeholder: "2) Cole a URL pixiv:// ou o código",
     exchange: "Trocar token", refresh: "Atualizar token", result: "Resultado",
     copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Pronto.",
@@ -127,18 +127,18 @@ const I18N = {
   },
   id: {
     title: "Pixiv OAuth Web",
-    subtitle: "Helper token OAuth yang clean dan responsive untuk Netlify/Vercel.",
+    subtitle: "Helper Pixiv OAuth untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel.",
     lang: "Bahasa", open: "1) Buka Halaman Login", placeholder: "2) Tempel URL callback pixiv:// atau code di sini",
     exchange: "Ambil Token", refresh: "Refresh Token", result: "Hasil",
     copyAccess: "Salin access_token", copyRefresh: "Salin refresh_token", ready: "Siap.",
     opened: "Halaman login dibuka. Setelah login, tempel URL pixiv:// atau code.",
     codeEmpty: "Code kosong.", clickOpen: "Klik 'Buka Halaman Login' dulu.", noRefresh: "Belum ada refresh_token.",
     copiedAccess: "access_token tersalin.", copiedRefresh: "refresh_token tersalin.", nothingAccess: "Belum ada access_token.", nothingRefresh: "Belum ada refresh_token.",
-    resource: "Resource", contact: "Kontak", dev: "Developer"
+    resource: "Resources", contact: "Kontak", dev: "Developer"
   },
   kr: {
     title: "Pixiv OAuth Web",
-    subtitle: "Netlify/Vercel용 깔끔하고 반응형 OAuth 토큰 헬퍼입니다.",
+    subtitle: "Netlify/Vercel 배포를 지원하는 CLI/GUI/Web용 Pixiv OAuth (PKCE) 헬퍼입니다.",
     lang: "언어", open: "1) 로그인 페이지 열기", placeholder: "2) pixiv:// 콜백 URL 또는 코드를 붙여넣기",
     exchange: "토큰 받기", refresh: "토큰 새로고침", result: "결과",
     copyAccess: "access_token 복사", copyRefresh: "refresh_token 복사", ready: "준비 완료.",
