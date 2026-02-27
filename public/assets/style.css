@@ -1,0 +1,37 @@
+:root {
+  --bg: #0b1220;
+  --card: #131c30;
+  --text: #e8eefc;
+  --muted: #9cb0d5;
+  --primary: #5b8cff;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: Inter, Segoe UI, Roboto, Arial, sans-serif; background: linear-gradient(145deg,#0b1220,#121d34); color: var(--text); }
+.container { max-width: 980px; margin: 0 auto; padding: 16px; display:grid; gap:12px; }
+.card { background: var(--card); border: 1px solid #22314f; border-radius: 14px; padding: 14px; }
+.header-row { display:flex; justify-content:space-between; gap:12px; align-items:flex-start; }
+.lang-wrap { display:grid; gap:6px; min-width:160px; }
+.lang-wrap select { border-radius:10px; border:1px solid #32466d; background:#0c162b; color:var(--text); padding:8px; }
+.muted { color: var(--muted); }
+.grid { display:grid; gap:10px; }
+textarea { min-height:110px; width:100%; border-radius:10px; border:1px solid #32466d; background:#0c162b; color:var(--text); padding:10px; }
+.btn { display:inline-block; text-decoration:none; border:1px solid #3b5390; background:#1a2a4a; color:var(--text); border-radius:10px; padding:10px 12px; cursor:pointer; }
+.btn.primary { background: var(--primary); border-color: var(--primary); color: #fff; }
+.actions { display:flex; flex-wrap:wrap; gap:8px; }
+pre { white-space:pre-wrap; word-break:break-word; background:#0c162b; border:1px solid #32466d; border-radius:10px; padding:10px; min-height:80px; }
+.download-grid { display:grid; grid-template-columns: repeat(2, minmax(180px,1fr)); gap:10px; margin-top:8px; }
+.cmd-block { margin-top: 12px; }
+.cmd-block h3 { margin: 0 0 8px; font-size: 0.98rem; }
+.site-footer { margin-top:18px; border-top:1px solid #22314f; padding:18px 16px 24px; max-width:980px; margin-left:auto; margin-right:auto; }
+.footer-grid { display:grid; gap:16px; grid-template-columns: repeat(3,minmax(160px,1fr)); }
+.site-footer h3 { margin:0 0 8px; font-size:1rem; }
+.site-footer ul { list-style:none; margin:0; padding:0; display:grid; gap:6px; }
+.site-footer a { color:#b9c8eb; text-decoration:none; }
+.site-footer a:hover { text-decoration:underline; }
+@media (max-width: 760px) {
+  .container { padding:10px; }
+  h1 { font-size:1.3rem; }
+  .header-row { flex-direction:column; }
+  .footer-grid { grid-template-columns:1fr; }
+  .download-grid { grid-template-columns:1fr; }
+}
