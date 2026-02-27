@@ -135,23 +135,6 @@ if exist sign_auto.bat (
 )
 :after_sign
 
-REM --- Build Linux binary (optional, if bash + script available) ---
-if exist build_linux.sh (
-  where bash >nul 2>nul
-  if not errorlevel 1 (
-    echo.
-    echo ===== Building Linux Binary =====
-    bash -lc "tr -d '\r' < build_linux.sh | bash"
-    if errorlevel 1 (
-      echo [WARN] Linux build failed. Continuing.
-    )
-  ) else (
-    echo [WARN] bash not found. Skipping Linux build.
-  )
-) else (
-  echo [WARN] build_linux.sh not found. Skipping Linux build.
-)
-
 REM --- Release ZIP ---
 if %SKIP_ZIP%==1 goto after_zip
 if exist build_release_zip.bat (
@@ -184,8 +167,6 @@ for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.
   goto :copied_dl_gui_inst
 )
 :copied_dl_gui_inst
-if exist "pixiv_login_plus_linux" copy /y "pixiv_login_plus_linux" "downloads\pixiv_login_plus_linux" >nul
-if exist "dist_linux\pixiv_login_plus_linux" copy /y "dist_linux\pixiv_login_plus_linux" "downloads\pixiv_login_plus_linux" >nul
 for /f "delims=" %%f in ('dir /b /o:-d "PixivOAuthRelease_v*.zip" 2^>nul') do (
   copy /y "%%f" "downloads\%%f" >nul
   goto :copied_dl_zip

@@ -59,6 +59,7 @@ textarea,
   color: var(--text);
 }
 
+
 .lang-control {
   position: relative;
   width: 100%;
@@ -150,6 +151,7 @@ textarea,
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
   gap: 14px;
 }
+
 
 .docs-btn {
   margin-top: 10px;

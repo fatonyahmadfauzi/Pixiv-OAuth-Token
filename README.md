@@ -28,8 +28,6 @@ python pixiv_login_gui.py
 
 ### Build semua (CLI + GUI + Installer + ZIP)
 
-> Catatan: `build_all_pro.bat` juga akan mencoba build Linux otomatis jika `bash` tersedia dan `build_linux.sh` ada.
-
 ```bat
 build_all_pro.bat patch
 ```
@@ -62,7 +60,7 @@ build_all_pro.bat patch noinst nosign
 - Installer CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe`
 - Installer GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe`
 - Release ZIP: `PixivOAuthRelease_v<version>.zip`
-- Folder sinkron otomatis: `downloads/` (portable, setup terbaru, Linux bila ada, dan ZIP release).
+- Folder sinkron otomatis: `downloads/` (portable, setup terbaru, dan ZIP release).
 
 ## Signing
 
@@ -81,6 +79,7 @@ Versi aplikasi disimpan di `version.json`.
 ## Lisensi
 
 Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
+
 
 ## Web Version (Netlify / Vercel)
 
@@ -121,6 +120,9 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
 
 > Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
 
+
+
+
 ### Urutan Bahasa (seragam di CLI/GUI/Web)
 
 Default bahasa: `en` (🇬🇧 English).
@@ -142,6 +144,7 @@ api/
 netlify/functions/
   token.js
 ```
+
 
 ## Kenapa muncul error `API endpoint not found (404)`?
 
@@ -170,7 +173,6 @@ File download:
 - Setup GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
 - Portable CLI: `Pixiv OAuth CLi (Portable).exe`
 - Setup CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
-- Linux build: `pixiv_login_plus_linux` (jika disertakan di release)
 
 ### PowerShell (langsung download, otomatis versi terbaru)
 
@@ -186,13 +188,11 @@ $guiPortable = Get-AssetUrl "Pixiv OAuth GUi \(Portable\)"
 $cliPortable = Get-AssetUrl "Pixiv OAuth CLi \(Portable\)"
 $guiSetup    = Get-AssetUrl "Pixiv OAuth GUi Setup"
 $cliSetup    = Get-AssetUrl "Pixiv OAuth CLi Setup"
-$linux       = Get-AssetUrl "pixiv_login_plus_linux"
 
 Invoke-WebRequest $guiPortable -OutFile "Pixiv OAuth GUi (Portable).exe"
 Invoke-WebRequest $cliPortable -OutFile "Pixiv OAuth CLi (Portable).exe"
 Invoke-WebRequest $guiSetup    -OutFile "Pixiv OAuth GUi Setup.exe"
 Invoke-WebRequest $cliSetup    -OutFile "Pixiv OAuth CLi Setup.exe"
-if ($linux) { Invoke-WebRequest $linux -OutFile "pixiv_login_plus_linux" }
 ```
 
 ### CMD (langsung download, otomatis versi terbaru)
@@ -206,6 +206,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 
 ### Python package / source install
 
+
 ```bash
 python -m pip install -r requirements.txt
 ```
@@ -215,6 +216,7 @@ Atau install langsung dari GitHub:
 ```bash
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
+
 
 ### Catatan khusus error Vercel `Deploying outputs... Error: API endpoint not found (404)`
 
@@ -234,7 +236,6 @@ Halaman web sekarang menyediakan tombol download langsung untuk:
 - Pixiv OAuth CLi (Portable)
 - Pixiv OAuth GUi Setup
 - Pixiv OAuth GUi (Portable)
-- Pixiv OAuth Linux
 
 Sumber download sekarang prioritasnya:
 1. GitHub Releases terbaru (jika ada asset)

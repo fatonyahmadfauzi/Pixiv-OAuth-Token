@@ -18,7 +18,7 @@ set ZIP_NAME=PixivOAuthRelease_v%VER%.zip
 if not exist "%RELEASE_DIR%" mkdir "%RELEASE_DIR%"
 del /q "%RELEASE_DIR%\*" 2>nul
 
-REM --- Portable + Linux (prefer downloads/) ---
+REM --- Portable (prefer downloads/) ---
 if exist "downloads\Pixiv OAuth CLi (Portable).exe" (
   copy /y "downloads\Pixiv OAuth CLi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth CLi (Portable).exe" >nul
 ) else if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
@@ -29,14 +29,6 @@ if exist "downloads\Pixiv OAuth GUi (Portable).exe" (
   copy /y "downloads\Pixiv OAuth GUi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth GUi (Portable).exe" >nul
 ) else if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" (
   copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth GUi (Portable).exe" >nul
-)
-
-if exist "downloads\pixiv_login_plus_linux" (
-  copy /y "downloads\pixiv_login_plus_linux" "%RELEASE_DIR%\pixiv_login_plus_linux" >nul
-) else if exist "pixiv_login_plus_linux" (
-  copy /y "pixiv_login_plus_linux" "%RELEASE_DIR%\pixiv_login_plus_linux" >nul
-) else if exist "dist_linux\pixiv_login_plus_linux" (
-  copy /y "dist_linux\pixiv_login_plus_linux" "%RELEASE_DIR%\pixiv_login_plus_linux" >nul
 )
 
 REM --- Installer (prefer downloads/latest alias) ---
