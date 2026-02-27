@@ -83,28 +83,51 @@ Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
 
 Project ini sekarang punya versi web responsive:
 
-- `index.html`
-- `web/style.css`
-- `web/app.js`
+- `public/index.html`
+- `public/assets/style.css`
+- `public/assets/app.js`
 - API serverless:
   - Vercel: `api/token.js`
   - Netlify: `netlify/functions/token.js`
 
 ### Deploy ke Netlify
 
-1. Connect repo ke Netlify.
-2. Build command: kosongkan (static + functions).
-3. Publish directory: `.`
-4. Set environment variable (opsional):
-   - `PIXIV_CLIENT_SECRET`
+1. Push repo ke GitHub.
+2. Di Netlify: **Add new site** → **Import from Git**.
+3. Build settings (otomatis dari `netlify.toml`):
+   - Publish directory: `public`
+   - Functions directory: `netlify/functions`
+4. Tambahkan Environment Variable:
+   - `PIXIV_CLIENT_SECRET` = client secret Pixiv kamu.
+5. Deploy, lalu buka URL Netlify.
 
 `netlify.toml` sudah menyiapkan redirect `/api/token` -> `/.netlify/functions/token`.
 
 ### Deploy ke Vercel
 
-1. Import repo ke Vercel.
-2. `vercel.json` sudah menyiapkan route API Node di `/api/token`.
-3. Set environment variable (opsional):
-   - `PIXIV_CLIENT_SECRET`
+1. Push repo ke GitHub.
+2. Di Vercel: **Add New...** → **Project** → import repo ini.
+3. `vercel.json` sudah menyiapkan:
+   - Static hosting dari folder `public/`
+   - Serverless API di `/api/token`
+4. Tambahkan Environment Variable:
+   - `PIXIV_CLIENT_SECRET` = client secret Pixiv kamu.
+5. Deploy, lalu buka URL Vercel.
 
-> Catatan: default fallback `client_secret` tetap ada untuk kompatibilitas script lama, tapi sangat disarankan pakai environment variable di platform deploy.
+> Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
+
+
+## Struktur Folder (Ringkas)
+
+```
+public/
+  index.html
+  assets/
+    app.js
+    style.css
+api/
+  token.js
+  _oauthProxy.js
+netlify/functions/
+  token.js
+```
