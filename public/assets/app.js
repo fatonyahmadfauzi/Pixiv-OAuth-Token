@@ -1,8 +1,10 @@
 const CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT";
 const REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback";
 const LOGIN_URL = "https://app-api.pixiv.net/web/v1/login";
-const RELEASE_BASE = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download";
+const REPO_BASE = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token";
+const RELEASE_BASE = `${REPO_BASE}/releases/latest/download`;
 const RELEASE_API = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+const DOWNLOADS_BASE = `${REPO_BASE}/raw/master/downloads`;
 
 let codeVerifier = "";
 let tokenState = { access_token: "", refresh_token: "" };
@@ -163,12 +165,16 @@ function releaseLink(name) {
   return `${RELEASE_BASE}/${encodeURIComponent(name)}`;
 }
 
+function repoDownloadLink(name) {
+  return `${DOWNLOADS_BASE}/${encodeURIComponent(name)}`;
+}
+
 function setDownloadLinks(assets = {}) {
-  q("dlCliSetup").href = assets.cliSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-  q("dlCliPortable").href = assets.cliPortable || releaseLink("Pixiv OAuth CLi (Portable).exe");
-  q("dlGuiSetup").href = assets.guiSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-  q("dlGuiPortable").href = assets.guiPortable || releaseLink("Pixiv OAuth GUi (Portable).exe");
-  q("dlLinux").href = assets.linux || releaseLink("pixiv_login_plus_linux");
+  q("dlCliSetup").href = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+  q("dlCliPortable").href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable).exe");
+  q("dlGuiSetup").href = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
+  q("dlGuiPortable").href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable).exe");
+  q("dlLinux").href = assets.linux || repoDownloadLink("pixiv_login_plus_linux");
 }
 
 async function hydrateReleaseAssets() {
@@ -178,6 +184,7 @@ async function hydrateReleaseAssets() {
 
     const release = await res.json();
     const assets = release.assets || [];
+    if (!assets.length) throw new Error("no release assets");
     const pick = (matcher) => assets.find((a) => matcher(a.name || ""))?.browser_download_url;
 
     const resolved = {
@@ -196,11 +203,11 @@ async function hydrateReleaseAssets() {
 }
 
 function setCommandBlocks(assets = {}) {
-  const guiPortable = assets.guiPortable || releaseLink("Pixiv OAuth GUi (Portable).exe");
-  const cliPortable = assets.cliPortable || releaseLink("Pixiv OAuth CLi (Portable).exe");
-  const guiSetup = assets.guiSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-  const cliSetup = assets.cliSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-  const linux = assets.linux || releaseLink("pixiv_login_plus_linux");
+  const guiPortable = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable).exe");
+  const cliPortable = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable).exe");
+  const guiSetup = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
+  const cliSetup = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+  const linux = assets.linux || repoDownloadLink("pixiv_login_plus_linux");
 
   q("psCmd").textContent = `$guiPortable = "${guiPortable}"
 $cliPortable = "${cliPortable}"

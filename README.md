@@ -233,7 +233,27 @@ Halaman web sekarang menyediakan tombol download langsung untuk:
 - Pixiv OAuth GUi (Portable)
 - Pixiv OAuth Linux
 
-Sumber download menggunakan URL:
-`https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download`
+Sumber download sekarang prioritasnya:
+1. GitHub Releases terbaru (jika ada asset)
+2. Fallback ke folder repo `downloads/` (raw link) jika release kosong/belum dibuat.
 
-Jika ingin menyimpan binary langsung di repo, gunakan folder `downloads/` (sudah tidak di-ignore).
+Jika ingin tombol web langsung bisa dipakai tanpa release, pastikan file di `downloads/` tersedia (termasuk alias `Pixiv OAuth CLi Setup_latest.exe` dan `Pixiv OAuth GUi Setup_latest.exe`).
+
+
+### Jika belum ada GitHub Release
+
+Tombol download di Web sekarang otomatis:
+1. Coba ambil file dari **GitHub Releases terbaru** (jika release ada).
+2. Jika release belum ada / kosong, otomatis fallback ke folder repo **`downloads/`**.
+
+Jadi saat halaman Releases masih kosong, jalankan build lalu commit isi `downloads/` (termasuk file `*_latest.exe`) agar tombol web tetap bisa dipakai.
+
+
+## Release ZIP dari folder downloads
+
+`build_release_zip.bat` sekarang memprioritaskan file dari folder `downloads/` sebagai sumber ZIP release.
+Jika file tidak ada di `downloads/`, script akan fallback ke `dist_*` / root seperti sebelumnya.
+
+Dengan begitu alurnya jadi otomatis:
+1. `build_all_pro.bat patch` -> sinkron artifacts ke `downloads/`
+2. `build_release_zip.bat` -> ambil dari `downloads/` untuk membuat ZIP release

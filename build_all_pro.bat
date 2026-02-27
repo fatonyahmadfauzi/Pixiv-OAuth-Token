@@ -151,11 +151,13 @@ if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" copy /y "dist_portable\P
 if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable).exe" >nul
 for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
   copy /y "dist_installer\%%f" "downloads\%%f" >nul
+  copy /y "dist_installer\%%f" "downloads\Pixiv OAuth CLi Setup_latest.exe" >nul
   goto :copied_dl_cli_inst
 )
 :copied_dl_cli_inst
 for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2^>nul') do (
   copy /y "dist_installer\%%f" "downloads\%%f" >nul
+  copy /y "dist_installer\%%f" "downloads\Pixiv OAuth GUi Setup_latest.exe" >nul
   goto :copied_dl_gui_inst
 )
 :copied_dl_gui_inst
