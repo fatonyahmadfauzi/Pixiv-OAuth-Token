@@ -1,13 +1,16 @@
 const AUTH_TOKEN_URL = "https://oauth.secure.pixiv.net/auth/token";
 const USER_AGENT = "PixivAndroidApp/5.0.234 (Android 11; Pixel 5)";
 const CLIENT_SECRET_FALLBACK = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj";
+const CLIENT_SECRET_ENV =
+  process.env["PIXIV_CLIENT_SECRET"] || // preferred
+  process.env["PIXV_CLIENT_SECRET"]; // alias for common typo (missing I after PIX)
 
 function buildForm(payload) {
   const form = new URLSearchParams();
   for (const [k, v] of Object.entries(payload || {})) {
     if (v !== undefined && v !== null && v !== "") form.set(k, String(v));
   }
-  form.set("client_secret", process.env.PIXIV_CLIENT_SECRET || CLIENT_SECRET_FALLBACK);
+  form.set("client_secret", CLIENT_SECRET_ENV || CLIENT_SECRET_FALLBACK);
   return form;
 }
 

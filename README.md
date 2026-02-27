@@ -99,6 +99,7 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
    - Functions directory: `netlify/functions`
 4. Tambahkan Environment Variable:
    - `PIXIV_CLIENT_SECRET` = client secret Pixiv kamu.
+   - (opsional kompatibilitas typo lama) `PIXV_CLIENT_SECRET` (tanpa huruf "I" setelah PIX)
 5. Deploy, lalu buka URL Netlify.
 
 `netlify.toml` sudah menyiapkan redirect `/api/token` -> `/.netlify/functions/token`.
@@ -112,6 +113,7 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
    - Serverless API di `/api/token`
 4. Tambahkan Environment Variable:
    - `PIXIV_CLIENT_SECRET` = client secret Pixiv kamu.
+   - (opsional kompatibilitas typo lama) `PIXV_CLIENT_SECRET` (tanpa huruf "I" setelah PIX)
 5. Deploy, lalu buka URL Vercel.
 
 > Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
@@ -152,7 +154,7 @@ Solusi cepat:
 2. Pastikan endpoint bisa diakses:
    - Vercel: `https://<domain>/api/token`
    - Netlify: `https://<domain>/.netlify/functions/token`
-3. Set environment variable `PIXIV_CLIENT_SECRET`.
+3. Set environment variable `PIXIV_CLIENT_SECRET` (atau alias kompatibel typo: `PIXV_CLIENT_SECRET`).
 
 ## Download Aplikasi (Release)
 
@@ -193,3 +195,14 @@ Atau install langsung dari GitHub:
 ```bash
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
+
+
+### Catatan khusus error Vercel `Deploying outputs... Error: API endpoint not found (404)`
+
+Biasanya ini terjadi karena routing lama `builds/routes` tidak memetakan `api/token.js` dengan benar, atau env var salah ketik.
+
+Checklist perbaikan:
+1. Gunakan `vercel.json` berbasis `rewrites` (tanpa `builds`) seperti di repo ini.
+2. Pastikan file endpoint ada: `api/token.js`.
+3. Pastikan env var benar: `PIXIV_CLIENT_SECRET` (jika terlanjur typo, gunakan alias `PIXV_CLIENT_SECRET`).
+4. Redeploy dari commit terbaru.
