@@ -72,11 +72,17 @@ const I18N = {
     copyPs: "PowerShellをコピー", copyCmd: "CMDをコピー", copyPip: "pipコマンドをコピー"
   }
 };
+
 for (const code of LANG_ORDER) I18N[code] = { ...I18N.en, ...(I18N[code] || {}) };
 let currentLang = "en";
 
-function t(key) { return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key; }
-function releaseLink(name) { return `${RELEASE_BASE}/${encodeURIComponent(name)}`; }
+function t(key) {
+  return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
+}
+
+function releaseLink(name) {
+  return `${RELEASE_BASE}/${encodeURIComponent(name)}`;
+}
 
 function setDownloadLinks(assets = {}) {
   q("dlCliSetup").href = assets.cliSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
@@ -93,6 +99,7 @@ async function hydrateReleaseAssets() {
     const release = await res.json();
     const assets = release.assets || [];
     const pick = (matcher) => assets.find((a) => matcher(a.name || ""))?.browser_download_url;
+
     setDownloadLinks({
       cliSetup: pick((n) => /Pixiv OAuth CLi Setup/i.test(n)),
       cliPortable: pick((n) => /Pixiv OAuth CLi \(Portable\)/i.test(n)),
@@ -118,19 +125,53 @@ async function copyText(text, okMessage) {
 
 function applyLang() {
   const map = {
-    kickerText: "kicker", titleText: "title", subtitleText: "subtitle", badgePkce: "badgePkce", badgeDeploy: "badgeDeploy", badgeRelease: "badgeRelease",
-    overviewTitle: "overviewTitle", overviewDesc: "overviewDesc", modesTitle: "modesTitle", requirementsTitle: "requirementsTitle", oauthTitle: "oauthTitle",
-    langLabel: "lang", openLoginBtn: "open", exchangeBtn: "exchange", refreshBtn: "refresh", resultTitle: "result", copyAccessBtn: "copyAccess",
-    copyRefreshBtn: "copyRefresh", footerResourceTitle: "resource", footerContactTitle: "contact", footerDevTitle: "dev", downloadsTitle: "downloadsTitle",
-    downloadsDesc: "downloadsDesc", quickCmdTitle: "quickCmdTitle", quickCmdDesc: "quickCmdDesc", copyPsBtn: "copyPs", copyCmdBtn: "copyCmd", copyPipBtn: "copyPip",
-    modeCli: "modeCli", modeGui: "modeGui", modeWeb: "modeWeb", reqPy: "reqPy", reqDeps: "reqDeps", reqBuild: "reqBuild"
+    kickerText: "kicker",
+    titleText: "title",
+    subtitleText: "subtitle",
+    badgePkce: "badgePkce",
+    badgeDeploy: "badgeDeploy",
+    badgeRelease: "badgeRelease",
+    overviewTitle: "overviewTitle",
+    overviewDesc: "overviewDesc",
+    modesTitle: "modesTitle",
+    requirementsTitle: "requirementsTitle",
+    oauthTitle: "oauthTitle",
+    langLabel: "lang",
+    openLoginBtnLabel: "open",
+    exchangeBtnLabel: "exchange",
+    refreshBtnLabel: "refresh",
+    resultTitle: "result",
+    copyAccessBtnLabel: "copyAccess",
+    copyRefreshBtnLabel: "copyRefresh",
+    footerResourceTitle: "resource",
+    footerContactTitle: "contact",
+    footerDevTitle: "dev",
+    downloadsTitle: "downloadsTitle",
+    downloadsDesc: "downloadsDesc",
+    quickCmdTitle: "quickCmdTitle",
+    quickCmdDesc: "quickCmdDesc",
+    copyPsBtnLabel: "copyPs",
+    copyCmdBtnLabel: "copyCmd",
+    copyPipBtnLabel: "copyPip",
+    modeCli: "modeCli",
+    modeGui: "modeGui",
+    modeWeb: "modeWeb",
+    reqPy: "reqPy",
+    reqDeps: "reqDeps",
+    reqBuild: "reqBuild"
   };
-  Object.entries(map).forEach(([id, key]) => { q(id).textContent = t(key); });
+
+  Object.entries(map).forEach(([id, key]) => {
+    q(id).textContent = t(key);
+  });
+
   q("inputCode").placeholder = t("placeholder");
   output.textContent = t("ready");
 }
 
-function b64Url(bytes) { return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); }
+function b64Url(bytes) {
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
 
 async function createPkce() {
   const arr = crypto.getRandomValues(new Uint8Array(32));
@@ -140,24 +181,39 @@ async function createPkce() {
 }
 
 function parseCode(input) {
-  const tVal = input.trim();
-  if (!tVal) return "";
-  if (tVal.startsWith("pixiv://")) return new URL(tVal).searchParams.get("code") || "";
-  try { return new URL(tVal).searchParams.get("code") || tVal; } catch { return tVal; }
+  const value = input.trim();
+  if (!value) return "";
+  if (value.startsWith("pixiv://")) return new URL(value).searchParams.get("code") || "";
+
+  try {
+    return new URL(value).searchParams.get("code") || value;
+  } catch {
+    return value;
+  }
 }
 
-function apiBase() { return location.hostname.includes("netlify") ? "/.netlify/functions/token" : "/api/token"; }
+function apiBase() {
+  return location.hostname.includes("netlify") ? "/.netlify/functions/token" : "/api/token";
+}
 
 async function callApi(payload) {
-  const res = await fetch(apiBase(), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+  const res = await fetch(apiBase(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
   const raw = await res.text();
   let data;
-  try { data = JSON.parse(raw); }
-  catch {
+
+  try {
+    data = JSON.parse(raw);
+  } catch {
     if (res.status === 404) throw new Error(t("errApiNotFound"));
     if ((raw && raw.toLowerCase().includes("<html")) || raw.startsWith("The page")) throw new Error(t("errApiHtml"));
     throw new Error(raw || "Unknown API response");
   }
+
   if (!res.ok) throw new Error(data.error || JSON.stringify(data));
   return data;
 }
@@ -181,29 +237,59 @@ q("exchangeBtn").onclick = async () => {
     const code = parseCode(q("inputCode").value);
     if (!code) throw new Error(t("codeEmpty"));
     if (!codeVerifier) throw new Error(t("clickOpen"));
-    const data = await callApi({ grant_type: "authorization_code", code, code_verifier: codeVerifier, redirect_uri: REDIRECT_URI, client_id: CLIENT_ID, include_policy: true });
+
+    const data = await callApi({
+      grant_type: "authorization_code",
+      code,
+      code_verifier: codeVerifier,
+      redirect_uri: REDIRECT_URI,
+      client_id: CLIENT_ID,
+      include_policy: true
+    });
+
     tokenState = data;
     output.textContent = JSON.stringify(data, null, 2);
-  } catch (e) { output.textContent = `Error: ${e.message}`; }
+  } catch (e) {
+    output.textContent = `Error: ${e.message}`;
+  }
 };
 
 q("refreshBtn").onclick = async () => {
   try {
     if (!tokenState.refresh_token) throw new Error(t("noRefresh"));
-    const data = await callApi({ grant_type: "refresh_token", refresh_token: tokenState.refresh_token, client_id: CLIENT_ID, include_policy: true });
+
+    const data = await callApi({
+      grant_type: "refresh_token",
+      refresh_token: tokenState.refresh_token,
+      client_id: CLIENT_ID,
+      include_policy: true
+    });
+
     tokenState = data;
     output.textContent = JSON.stringify(data, null, 2);
-  } catch (e) { output.textContent = `Error: ${e.message}`; }
+  } catch (e) {
+    output.textContent = `Error: ${e.message}`;
+  }
 };
 
 q("copyAccessBtn").onclick = async () => {
-  if (!tokenState.access_token) return (output.textContent = t("nothingAccess"));
+  if (!tokenState.access_token) {
+    output.textContent = t("nothingAccess");
+    return;
+  }
+
   await copyText(tokenState.access_token, t("copiedAccess"));
 };
+
 q("copyRefreshBtn").onclick = async () => {
-  if (!tokenState.refresh_token) return (output.textContent = t("nothingRefresh"));
+  if (!tokenState.refresh_token) {
+    output.textContent = t("nothingRefresh");
+    return;
+  }
+
   await copyText(tokenState.refresh_token, t("copiedRefresh"));
 };
+
 q("copyPsBtn").onclick = async () => copyText(q("psCmd").textContent, t("copiedPs"));
 q("copyCmdBtn").onclick = async () => copyText(q("cmdCmd").textContent, t("copiedCmd"));
 q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copiedPip"));
@@ -211,8 +297,10 @@ q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copie
 (async function init() {
   const saved = localStorage.getItem("pixiv_lang");
   if (saved && LANG_ORDER.includes(saved)) currentLang = saved;
+
   q("langSelect").value = currentLang;
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
+
   setCommandBlocks();
   applyLang();
   await hydrateReleaseAssets();
