@@ -34,22 +34,26 @@
         </div>
       </div>
       <div class="lang-wrap">
-        <label for="langSelect" id="langLabel">Language</label>
-        <div class="lang-control">
-          <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
-          <select id="langSelect">
-            <option value="en">English</option>
-            <option value="pl">Polski</option>
-            <option value="zh">中文</option>
-            <option value="jp">日本語</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="es">Español</option>
-            <option value="ru">Русский</option>
-            <option value="pt">Português</option>
-            <option value="id">Indonesia</option>
-            <option value="kr">한국어</option>
-          </select>
+        <label for="langToggle" id="langLabel">Language</label>
+        <div class="lang-control" id="langControl">
+          <button type="button" id="langToggle" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
+            <span id="langCurrent">English</span>
+            <i class="bi bi-chevron-down" aria-hidden="true"></i>
+          </button>
+          <ul id="langMenu" class="lang-menu" role="listbox" aria-label="Language">
+            <li role="option" data-lang="en"><span class="fi fi-gb" aria-hidden="true"></span><span>English</span></li>
+            <li role="option" data-lang="pl"><span class="fi fi-pl" aria-hidden="true"></span><span>Polski</span></li>
+            <li role="option" data-lang="zh"><span class="fi fi-cn" aria-hidden="true"></span><span>中文</span></li>
+            <li role="option" data-lang="jp"><span class="fi fi-jp" aria-hidden="true"></span><span>日本語</span></li>
+            <li role="option" data-lang="de"><span class="fi fi-de" aria-hidden="true"></span><span>Deutsch</span></li>
+            <li role="option" data-lang="fr"><span class="fi fi-fr" aria-hidden="true"></span><span>Français</span></li>
+            <li role="option" data-lang="es"><span class="fi fi-es" aria-hidden="true"></span><span>Español</span></li>
+            <li role="option" data-lang="ru"><span class="fi fi-ru" aria-hidden="true"></span><span>Русский</span></li>
+            <li role="option" data-lang="pt"><span class="fi fi-pt" aria-hidden="true"></span><span>Português</span></li>
+            <li role="option" data-lang="id"><span class="fi fi-id" aria-hidden="true"></span><span>Indonesia</span></li>
+            <li role="option" data-lang="kr"><span class="fi fi-kr" aria-hidden="true"></span><span>한국어</span></li>
+          </ul>
         </div>
       </div>
     </section>

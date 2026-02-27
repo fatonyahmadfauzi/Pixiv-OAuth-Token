@@ -77,6 +77,7 @@ for (const code of LANG_ORDER) I18N[code] = { ...I18N.en, ...(I18N[code] || {}) 
 let currentLang = "en";
 
 const FLAG_CLASS = { en: "fi-gb", pl: "fi-pl", zh: "fi-cn", jp: "fi-jp", de: "fi-de", fr: "fi-fr", es: "fi-es", ru: "fi-ru", pt: "fi-pt", id: "fi-id", kr: "fi-kr" };
+const LANG_NAME = { en: "English", pl: "Polski", zh: "中文", jp: "日本語", de: "Deutsch", fr: "Français", es: "Español", ru: "Русский", pt: "Português", id: "Indonesia", kr: "한국어" };
 
 function t(key) {
   return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
@@ -128,8 +129,52 @@ async function copyText(text, okMessage) {
 
 function updateLangFlag() {
   const el = q("langFlag");
-  if (!el) return;
-  el.className = `fi ${FLAG_CLASS[currentLang] || "fi-gb"}`;
+  const current = q("langCurrent");
+  if (el) el.className = `fi ${FLAG_CLASS[currentLang] || "fi-gb"}`;
+  if (current) current.textContent = LANG_NAME[currentLang] || "English";
+
+  document.querySelectorAll("#langMenu li").forEach((li) => {
+    li.classList.toggle("active", li.dataset.lang === currentLang);
+  });
+}
+
+function setupLanguageMenu() {
+  const toggle = q("langToggle");
+  const menu = q("langMenu");
+  if (!toggle || !menu) return;
+
+  const close = () => {
+    menu.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  menu.querySelectorAll("li").forEach((item) => {
+    item.tabIndex = 0;
+    const selectLang = () => {
+      currentLang = item.dataset.lang;
+      localStorage.setItem("pixiv_lang", currentLang);
+      document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
+      applyLang();
+      close();
+    };
+
+    item.addEventListener("click", selectLang);
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        selectLang();
+      }
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!q("langControl")?.contains(e.target)) close();
+  });
 }
 
 function applyLang() {
@@ -228,13 +273,6 @@ async function callApi(payload) {
   return data;
 }
 
-q("langSelect").onchange = (e) => {
-  currentLang = e.target.value;
-  localStorage.setItem("pixiv_lang", currentLang);
-  document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
-  applyLang();
-};
-
 q("openLoginBtn").onclick = async () => {
   const { codeChallenge } = await createPkce();
   const url = `${LOGIN_URL}?${new URLSearchParams({ code_challenge: codeChallenge, code_challenge_method: "S256", client: "pixiv-android" })}`;
@@ -308,9 +346,9 @@ q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copie
   const saved = localStorage.getItem("pixiv_lang");
   if (saved && LANG_ORDER.includes(saved)) currentLang = saved;
 
-  q("langSelect").value = currentLang;
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
 
+  setupLanguageMenu();
   setCommandBlocks();
   applyLang();
   await hydrateReleaseAssets();
