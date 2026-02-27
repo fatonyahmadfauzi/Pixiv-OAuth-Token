@@ -60,3 +60,6 @@ site/
 # ==============================
 .git/
 .gitmodules
+# Keep release binaries if manually placed in repository downloads folder
+!downloads/
+!downloads/**
