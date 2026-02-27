@@ -76,6 +76,8 @@ const I18N = {
 for (const code of LANG_ORDER) I18N[code] = { ...I18N.en, ...(I18N[code] || {}) };
 let currentLang = "en";
 
+const FLAG_CLASS = { en: "fi-gb", pl: "fi-pl", zh: "fi-cn", jp: "fi-jp", de: "fi-de", fr: "fi-fr", es: "fi-es", ru: "fi-ru", pt: "fi-pt", id: "fi-id", kr: "fi-kr" };
+
 function t(key) {
   return (I18N[currentLang] && I18N[currentLang][key]) || I18N.en[key] || key;
 }
@@ -124,6 +126,12 @@ async function copyText(text, okMessage) {
   output.textContent = okMessage;
 }
 
+function updateLangFlag() {
+  const el = q("langFlag");
+  if (!el) return;
+  el.className = `fi ${FLAG_CLASS[currentLang] || "fi-gb"}`;
+}
+
 function applyLang() {
   const map = {
     kickerText: "kicker",
@@ -168,6 +176,7 @@ function applyLang() {
 
   q("inputCode").placeholder = t("placeholder");
   output.textContent = t("ready");
+  updateLangFlag();
 }
 
 function b64Url(bytes) {

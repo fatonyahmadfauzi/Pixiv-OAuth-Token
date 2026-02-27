@@ -17,6 +17,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#5b8cff">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body>
@@ -34,19 +35,22 @@
       </div>
       <div class="lang-wrap">
         <label for="langSelect" id="langLabel">Language</label>
-        <select id="langSelect">
-          <option value="en">🇬🇧 English</option>
-          <option value="pl">🇵🇱 Polski</option>
-          <option value="zh">🇨🇳 中文</option>
-          <option value="jp">🇯🇵 日本語</option>
-          <option value="de">🇩🇪 Deutsch</option>
-          <option value="fr">🇫🇷 Français</option>
-          <option value="es">🇪🇸 Español</option>
-          <option value="ru">🇷🇺 Русский</option>
-          <option value="pt">🇵🇹 Português</option>
-          <option value="id">🇮🇩 Indonesia</option>
-          <option value="kr">🇰🇷 한국어</option>
-        </select>
+        <div class="lang-control">
+          <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
+          <select id="langSelect">
+            <option value="en">English</option>
+            <option value="pl">Polski</option>
+            <option value="zh">中文</option>
+            <option value="jp">日本語</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+            <option value="ru">Русский</option>
+            <option value="pt">Português</option>
+            <option value="id">Indonesia</option>
+            <option value="kr">한국어</option>
+          </select>
+        </div>
       </div>
     </section>
 
@@ -89,7 +93,7 @@
     <section class="card">
       <h2 id="resultTitle">Result</h2>
       <pre id="output">Ready.</pre>
-      <div class="actions">
+      <div class="actions result-actions">
         <button id="copyAccessBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyAccessBtnLabel">Copy access_token</span></button>
         <button id="copyRefreshBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyRefreshBtnLabel">Copy refresh_token</span></button>
       </div>
