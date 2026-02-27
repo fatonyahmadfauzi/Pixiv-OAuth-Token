@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eu
+(set -o pipefail) 2>/dev/null || true
 
 OUT="pixiv_login_plus_linux"
 
