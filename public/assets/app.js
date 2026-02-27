@@ -4,7 +4,7 @@ const LOGIN_URL = "https://app-api.pixiv.net/web/v1/login";
 const REPO_BASE = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token";
 const RELEASE_BASE = `${REPO_BASE}/releases/latest/download`;
 const RELEASE_API = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-const DOWNLOADS_BASE = `${REPO_BASE}/raw/master/downloads`;
+const DOWNLOADS_BASE = `${REPO_BASE}/raw/HEAD/downloads`;
 
 let codeVerifier = "";
 let tokenState = { access_token: "", refresh_token: "" };
@@ -171,9 +171,9 @@ function repoDownloadLink(name) {
 
 function setDownloadLinks(assets = {}) {
   q("dlCliSetup").href = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
-  q("dlCliPortable").href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable).exe");
+  q("dlCliPortable").href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
   q("dlGuiSetup").href = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
-  q("dlGuiPortable").href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable).exe");
+  q("dlGuiPortable").href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
   q("dlLinux").href = assets.linux || repoDownloadLink("pixiv_login_plus_linux");
 }
 
@@ -203,8 +203,8 @@ async function hydrateReleaseAssets() {
 }
 
 function setCommandBlocks(assets = {}) {
-  const guiPortable = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable).exe");
-  const cliPortable = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable).exe");
+  const guiPortable = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
+  const cliPortable = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
   const guiSetup = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
   const cliSetup = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
   const linux = assets.linux || repoDownloadLink("pixiv_login_plus_linux");

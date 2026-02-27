@@ -235,9 +235,9 @@ Halaman web sekarang menyediakan tombol download langsung untuk:
 
 Sumber download sekarang prioritasnya:
 1. GitHub Releases terbaru (jika ada asset)
-2. Fallback ke folder repo `downloads/` (raw link) jika release kosong/belum dibuat.
+2. Fallback ke folder repo `downloads/` (raw link (HEAD branch)) jika release kosong/belum dibuat.
 
-Jika ingin tombol web langsung bisa dipakai tanpa release, pastikan file di `downloads/` tersedia (termasuk alias `Pixiv OAuth CLi Setup_latest.exe` dan `Pixiv OAuth GUi Setup_latest.exe`).
+Jika ingin tombol web langsung bisa dipakai tanpa release, pastikan file di `downloads/` tersedia (termasuk alias `Pixiv OAuth CLi Setup_latest.exe`, `Pixiv OAuth GUi Setup_latest.exe`, `Pixiv OAuth CLi (Portable)_latest.exe`, dan `Pixiv OAuth GUi (Portable)_latest.exe`).
 
 
 ### Jika belum ada GitHub Release

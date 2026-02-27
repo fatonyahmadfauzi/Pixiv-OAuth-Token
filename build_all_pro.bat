@@ -147,8 +147,14 @@ if exist build_release_zip.bat (
 
 REM --- Sync latest artifacts into downloads ---
 if not exist downloads mkdir downloads
-if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable).exe" >nul
-if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable).exe" >nul
+if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable).exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable)_latest.exe" >nul
+)
+if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" (
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable).exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable)_latest.exe" >nul
+)
 for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
   copy /y "dist_installer\%%f" "downloads\%%f" >nul
   copy /y "dist_installer\%%f" "downloads\Pixiv OAuth CLi Setup_latest.exe" >nul
