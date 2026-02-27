@@ -73,7 +73,7 @@ begin
         PathEnv := PathEnv + ';';
       NewPath := PathEnv + ExpandConstant('{app}');
       RegWriteStringValue(HKCU, 'Environment', 'Path', NewPath);
-      ; Tell Explorer to reload env vars
+      // Tell Explorer to reload env vars
       SendMessageTimeout(HWND_BROADCAST, WM_SETTINGCHANGE, 0, 'Environment', SMTO_ABORTIFHUNG, 5000, NewPath);
     end;
   end;
