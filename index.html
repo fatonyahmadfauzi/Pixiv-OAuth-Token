@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixiv OAuth Web</title>
+  <link rel="stylesheet" href="web/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="card">
+      <h1>Pixiv OAuth Web</h1>
+      <p class="muted">Clean, responsive OAuth token helper for Netlify/Vercel.</p>
+    </header>
+
+    <section class="card grid">
+      <button id="openLoginBtn" class="btn primary">1) Open Login Page</button>
+      <textarea id="inputCode" placeholder="2) Paste pixiv:// callback URL or code here"></textarea>
+      <div class="actions">
+        <button id="exchangeBtn" class="btn">Exchange Token</button>
+        <button id="refreshBtn" class="btn">Refresh Token</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Result</h2>
+      <pre id="output">Ready.</pre>
+      <div class="actions">
+        <button id="copyAccessBtn" class="btn">Copy access_token</button>
+        <button id="copyRefreshBtn" class="btn">Copy refresh_token</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="web/app.js"></script>
+</body>
+</html>

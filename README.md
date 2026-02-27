@@ -80,7 +80,6 @@ Versi aplikasi disimpan di `version.json`.
 
 Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
 
-
 ## Web Version (Netlify / Vercel)
 
 Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
@@ -120,9 +119,6 @@ Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
 
 > Catatan keamanan: fallback `client_secret` bawaan masih ada untuk kompatibilitas script lama, tetapi untuk production sangat disarankan selalu set `PIXIV_CLIENT_SECRET` di platform deploy.
 
-
-
-
 ### Urutan Bahasa (seragam di CLI/GUI/Web)
 
 Default bahasa: `en` (🇬🇧 English).
@@ -144,7 +140,6 @@ api/
 netlify/functions/
   token.js
 ```
-
 
 ## Kenapa muncul error `API endpoint not found (404)`?
 
@@ -209,7 +204,6 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 
 ### Python package / source install
 
-
 ```bash
 python -m pip install -r requirements.txt
 ```
@@ -220,7 +214,6 @@ Atau install langsung dari GitHub:
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
 
-
 ### Catatan khusus error Vercel `Deploying outputs... Error: API endpoint not found (404)`
 
 Biasanya ini terjadi karena routing lama `builds/routes` tidak memetakan `api/token.js` dengan benar, atau env var salah ketik.
@@ -230,7 +223,6 @@ Checklist perbaikan:
 2. Pastikan file endpoint ada: `api/token.js`.
 3. Pastikan env var benar: `PIXIV_CLIENT_SECRET` (jika terlanjur typo, gunakan alias `PIXV_CLIENT_SECRET`).
 4. Redeploy dari commit terbaru.
-
 
 ## Tombol Download di Web
 
