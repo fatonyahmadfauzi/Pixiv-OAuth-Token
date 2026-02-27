@@ -19,6 +19,7 @@ const I18N = {
     badgePkce: "PKCE Flow", badgeDeploy: "Netlify & Vercel Ready", badgeRelease: "Release Download",
     overviewTitle: "Project Overview",
     overviewDesc: "This project helps exchange/refresh Pixiv OAuth tokens and ships Windows build scripts for Portable/Setup artifacts plus Linux binary support.",
+    docs: "Read the docs",
     modesTitle: "Available Modes", modeCli: "CLI: pixiv_login.py", modeGui: "GUI: pixiv_login_gui.py", modeWeb: "Web: static UI + serverless /api/token",
     requirementsTitle: "Requirements", reqPy: "Python 3.11+", reqDeps: "Dependencies: requests, pyinstaller", reqBuild: "Windows build toolchain for setup installer",
     oauthTitle: "OAuth Token Console",
@@ -40,6 +41,7 @@ const I18N = {
   id: {
     subtitle: "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Netlify/Vercel.",
     overviewTitle: "Ringkasan Project", overviewDesc: "Project ini membantu exchange/refresh token Pixiv OAuth dan menyediakan script build Windows untuk artifact Portable/Setup serta dukungan binary Linux.",
+    docs: "Baca dokumentasi",
     modesTitle: "Mode Tersedia", requirementsTitle: "Kebutuhan", oauthTitle: "Konsol Token OAuth",
     lang: "Bahasa", open: "1) Buka Halaman Login", placeholder: "2) Tempel URL callback pixiv:// atau code di sini",
     exchange: "Ambil Token", refresh: "Refresh Token", result: "Hasil",
@@ -59,6 +61,8 @@ const I18N = {
   jp: {
     subtitle: "CLI・GUI・Web向け Pixiv OAuth（PKCE）ツールキット。Netlify/Vercel にデプロイ可能。",
     overviewTitle: "プロジェクト概要", modesTitle: "利用モード", requirementsTitle: "要件", oauthTitle: "OAuth トークンコンソール",
+    overviewDesc: "このプロジェクトは Pixiv OAuth トークンの取得/更新を支援し、Windows の Portable/Setup ビルドと Linux バイナリを提供します。",
+    docs: "ドキュメントを読む",
     lang: "言語", open: "1) ログインページを開く", placeholder: "2) pixiv:// コールバックURLまたはコードを貼り付け",
     exchange: "トークン取得", refresh: "トークン更新", result: "結果",
     copyAccess: "access_tokenをコピー", copyRefresh: "refresh_tokenをコピー", ready: "準備完了。",
@@ -70,6 +74,78 @@ const I18N = {
     downloadsTitle: "ダウンロード", downloadsDesc: "GitHub Releases から最新ビルドをダウンロード。",
     quickCmdTitle: "クイックコマンド", quickCmdDesc: "PowerShell/CMD ダウンロードと pip インストール用コマンド。",
     copyPs: "PowerShellをコピー", copyCmd: "CMDをコピー", copyPip: "pipコマンドをコピー"
+  },
+  pl: {
+    lang: "Język", overviewTitle: "Przegląd projektu", modesTitle: "Dostępne tryby", requirementsTitle: "Wymagania", oauthTitle: "Konsola tokenów OAuth",
+    overviewDesc: "Projekt pomaga uzyskiwać/odświeżać tokeny Pixiv OAuth i zawiera skrypty build dla Windows oraz binarkę Linux.", docs: "Czytaj dokumentację",
+    open: "1) Otwórz stronę logowania", placeholder: "2) Wklej URL zwrotny pixiv:// lub kod tutaj", exchange: "Wymień token", refresh: "Odśwież token", result: "Wynik",
+    copyAccess: "Kopiuj access_token", copyRefresh: "Kopiuj refresh_token", ready: "Gotowe.",
+    resource: "Zasoby", contact: "Kontakt", dev: "Deweloper", downloadsTitle: "Pobieranie", downloadsDesc: "Pobierz najnowszą wersję z GitHub Releases.",
+    quickCmdTitle: "Szybkie polecenie", quickCmdDesc: "Skopiuj polecenie PowerShell/CMD oraz instalację pip.",
+    copyPs: "Kopiuj PowerShell", copyCmd: "Kopiuj CMD", copyPip: "Kopiuj polecenie pip"
+  },
+  zh: {
+    lang: "语言", overviewTitle: "项目概览", modesTitle: "可用模式", requirementsTitle: "环境要求", oauthTitle: "OAuth 令牌控制台",
+    overviewDesc: "该项目可帮助获取/刷新 Pixiv OAuth 令牌，并提供 Windows 打包脚本和 Linux 二进制。", docs: "阅读文档",
+    open: "1) 打开登录页面", placeholder: "2) 在此粘贴 pixiv:// 回调URL或代码", exchange: "交换令牌", refresh: "刷新令牌", result: "结果",
+    copyAccess: "复制 access_token", copyRefresh: "复制 refresh_token", ready: "就绪。",
+    resource: "资源", contact: "联系", dev: "开发者", downloadsTitle: "下载", downloadsDesc: "从 GitHub Releases 下载最新版本。",
+    quickCmdTitle: "快速命令", quickCmdDesc: "复制 PowerShell/CMD 下载命令和 pip 安装命令。",
+    copyPs: "复制 PowerShell", copyCmd: "复制 CMD", copyPip: "复制 pip 命令"
+  },
+  de: {
+    lang: "Sprache", overviewTitle: "Projektübersicht", modesTitle: "Verfügbare Modi", requirementsTitle: "Anforderungen", oauthTitle: "OAuth-Token-Konsole",
+    overviewDesc: "Dieses Projekt hilft beim Abrufen/Aktualisieren von Pixiv OAuth-Token und enthält Build-Skripte für Windows sowie Linux-Binärdatei.", docs: "Dokumentation lesen",
+    open: "1) Login-Seite öffnen", placeholder: "2) pixiv:// Callback-URL oder Code hier einfügen", exchange: "Token abrufen", refresh: "Token aktualisieren", result: "Ergebnis",
+    copyAccess: "access_token kopieren", copyRefresh: "refresh_token kopieren", ready: "Bereit.",
+    resource: "Ressourcen", contact: "Kontakt", dev: "Entwickler", downloadsTitle: "Downloads", downloadsDesc: "Lade den neuesten Build von GitHub Releases herunter.",
+    quickCmdTitle: "Schnellbefehl", quickCmdDesc: "Kopiere PowerShell/CMD-Download- und pip-Installationsbefehle.",
+    copyPs: "PowerShell kopieren", copyCmd: "CMD kopieren", copyPip: "pip-Befehl kopieren"
+  },
+  fr: {
+    lang: "Langue", overviewTitle: "Aperçu du projet", modesTitle: "Modes disponibles", requirementsTitle: "Prérequis", oauthTitle: "Console de jetons OAuth",
+    overviewDesc: "Ce projet aide à échanger/rafraîchir les jetons Pixiv OAuth et fournit des scripts de build Windows ainsi qu'un binaire Linux.", docs: "Lire la documentation",
+    open: "1) Ouvrir la page de connexion", placeholder: "2) Collez l'URL callback pixiv:// ou le code ici", exchange: "Échanger le jeton", refresh: "Rafraîchir le jeton", result: "Résultat",
+    copyAccess: "Copier access_token", copyRefresh: "Copier refresh_token", ready: "Prêt.",
+    resource: "Ressources", contact: "Contact", dev: "Développeur", downloadsTitle: "Téléchargements", downloadsDesc: "Téléchargez la dernière version depuis GitHub Releases.",
+    quickCmdTitle: "Commande rapide", quickCmdDesc: "Copiez les commandes PowerShell/CMD et l'installation pip.",
+    copyPs: "Copier PowerShell", copyCmd: "Copier CMD", copyPip: "Copier la commande pip"
+  },
+  es: {
+    lang: "Idioma", overviewTitle: "Resumen del proyecto", modesTitle: "Modos disponibles", requirementsTitle: "Requisitos", oauthTitle: "Consola de token OAuth",
+    overviewDesc: "Este proyecto ayuda a intercambiar/actualizar tokens Pixiv OAuth e incluye scripts de build para Windows y binario Linux.", docs: "Leer la documentación",
+    open: "1) Abrir página de inicio de sesión", placeholder: "2) Pega aquí la URL callback pixiv:// o el código", exchange: "Intercambiar token", refresh: "Actualizar token", result: "Resultado",
+    copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Listo.",
+    resource: "Recursos", contact: "Contacto", dev: "Desarrollador", downloadsTitle: "Descargas", downloadsDesc: "Descarga la última versión desde GitHub Releases.",
+    quickCmdTitle: "Comando rápido", quickCmdDesc: "Copia comandos de PowerShell/CMD e instalación por pip.",
+    copyPs: "Copiar PowerShell", copyCmd: "Copiar CMD", copyPip: "Copiar comando pip"
+  },
+  ru: {
+    lang: "Язык", overviewTitle: "Обзор проекта", modesTitle: "Доступные режимы", requirementsTitle: "Требования", oauthTitle: "Консоль OAuth-токена",
+    overviewDesc: "Проект помогает получать/обновлять токены Pixiv OAuth и включает скрипты сборки для Windows и Linux-бинарник.", docs: "Читать документацию",
+    open: "1) Открыть страницу входа", placeholder: "2) Вставьте pixiv:// callback URL или код", exchange: "Получить токен", refresh: "Обновить токен", result: "Результат",
+    copyAccess: "Копировать access_token", copyRefresh: "Копировать refresh_token", ready: "Готово.",
+    resource: "Ресурсы", contact: "Контакты", dev: "Разработчик", downloadsTitle: "Загрузки", downloadsDesc: "Скачать последнюю сборку с GitHub Releases.",
+    quickCmdTitle: "Быстрая команда", quickCmdDesc: "Скопируйте команды PowerShell/CMD и установку pip.",
+    copyPs: "Копировать PowerShell", copyCmd: "Копировать CMD", copyPip: "Копировать команду pip"
+  },
+  pt: {
+    lang: "Idioma", overviewTitle: "Visão geral do projeto", modesTitle: "Modos disponíveis", requirementsTitle: "Requisitos", oauthTitle: "Console de token OAuth",
+    overviewDesc: "Este projeto ajuda a trocar/atualizar tokens Pixiv OAuth e inclui scripts de build para Windows e binário Linux.", docs: "Ler a documentação",
+    open: "1) Abrir página de login", placeholder: "2) Cole a URL de callback pixiv:// ou código aqui", exchange: "Trocar token", refresh: "Atualizar token", result: "Resultado",
+    copyAccess: "Copiar access_token", copyRefresh: "Copiar refresh_token", ready: "Pronto.",
+    resource: "Recursos", contact: "Contato", dev: "Desenvolvedor", downloadsTitle: "Downloads", downloadsDesc: "Baixe a versão mais recente no GitHub Releases.",
+    quickCmdTitle: "Comando rápido", quickCmdDesc: "Copie comandos de download PowerShell/CMD e instalação via pip.",
+    copyPs: "Copiar PowerShell", copyCmd: "Copiar CMD", copyPip: "Copiar comando pip"
+  },
+  kr: {
+    lang: "언어", overviewTitle: "프로젝트 개요", modesTitle: "사용 가능한 모드", requirementsTitle: "요구 사항", oauthTitle: "OAuth 토큰 콘솔",
+    overviewDesc: "이 프로젝트는 Pixiv OAuth 토큰 발급/갱신을 돕고 Windows 빌드 스크립트와 Linux 바이너리를 제공합니다.", docs: "문서 읽기",
+    open: "1) 로그인 페이지 열기", placeholder: "2) pixiv:// 콜백 URL 또는 코드를 붙여넣으세요", exchange: "토큰 교환", refresh: "토큰 갱신", result: "결과",
+    copyAccess: "access_token 복사", copyRefresh: "refresh_token 복사", ready: "준비 완료.",
+    resource: "리소스", contact: "연락처", dev: "개발자", downloadsTitle: "다운로드", downloadsDesc: "GitHub Releases에서 최신 빌드를 다운로드하세요.",
+    quickCmdTitle: "빠른 명령", quickCmdDesc: "PowerShell/CMD 다운로드 명령과 pip 설치 명령을 복사하세요.",
+    copyPs: "PowerShell 복사", copyCmd: "CMD 복사", copyPip: "pip 명령 복사"
   }
 };
 
@@ -187,6 +263,7 @@ function applyLang() {
     badgeRelease: "badgeRelease",
     overviewTitle: "overviewTitle",
     overviewDesc: "overviewDesc",
+    docsBtnLabel: "docs",
     modesTitle: "modesTitle",
     requirementsTitle: "requirementsTitle",
     oauthTitle: "oauthTitle",

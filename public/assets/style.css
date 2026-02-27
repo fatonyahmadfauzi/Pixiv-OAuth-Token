@@ -151,6 +151,11 @@ textarea,
   gap: 14px;
 }
 
+.docs-btn {
+  margin-top: 10px;
+  width: fit-content;
+}
+
 .clean-list {
   margin: 8px 0 0;
   padding-left: 18px;
