@@ -102,11 +102,6 @@ pre {
   text-decoration: none;
 }
 .site-footer a:hover { text-decoration: underline; }
-.copyright {
-  margin: 18px 0 0;
-  color: var(--muted);
-  text-align: center;
-}
 @media (max-width: 760px) {
   .container { padding: 10px; }
   h1 { font-size: 1.3rem; }

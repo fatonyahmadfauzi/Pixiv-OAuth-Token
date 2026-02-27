@@ -434,11 +434,19 @@ class App(tk.Tk):
         self.lang_label = ttk.Label(top, text="Language:")
         self.lang_label.pack(side="left")
 
+
+        style = ttk.Style()
+        try:
+            style.configure("Lang.TCombobox", font=("Segoe UI Emoji", 11))
+        except Exception:
+            pass
+
         self.lang_combo = ttk.Combobox(
             top,
+            style="Lang.TCombobox",
             textvariable=self.lang_var,
             values=[name for name, _ in LANG_CHOICES],
-            width=14,
+            width=20,
             state="readonly",
         )
         self.lang_combo.pack(side="left", padx=(6, 16))
