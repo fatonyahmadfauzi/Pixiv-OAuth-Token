@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Primary Meta Tags -->
+  <title>Pixiv OAuth Web | Token Helper</title>
+  <meta name="description" content="Pixiv OAuth Web adalah tool untuk membantu login dan exchange token Pixiv OAuth dengan tampilan clean, responsive, dan support Netlify/Vercel.">
+  <meta name="keywords" content="pixiv oauth, pixiv token, pixiv login helper, oauth pkce, netlify vercel">
+  <meta name="author" content="Fatony Ahmad Fauzi">
+  <meta name="robots" content="index, follow">
+
+  <!-- Geo -->
+  <meta name="geo.region" content="ID">
+  <meta name="geo.placename" content="Indonesia">
+  <meta name="location" content="Indonesia">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Pixiv OAuth Web">
+  <meta property="og:url" content="https://pixiv-oauth-web.vercel.app">
+  <meta property="og:title" content="Pixiv OAuth Web | Token Helper">
+  <meta property="og:description" content="Tool web untuk login dan exchange token Pixiv OAuth, clean UI dan responsive untuk semua device.">
+  <meta property="og:image" content="/assets/og-image.png">
+  <meta property="og:locale" content="id_ID">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pixiv OAuth Web | Token Helper">
+  <meta name="twitter:description" content="Tool web untuk login dan exchange token Pixiv OAuth, clean UI dan responsive untuk semua device.">
+  <meta name="twitter:image" content="/assets/og-image.png">
+
+  <!-- Theme & Canonical -->
+  <meta name="theme-color" content="#5b8cff">
+  <link rel="canonical" href="https://pixiv-oauth-web.vercel.app">
+
+  <!-- Optional Resource Links -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="/assets/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Pixiv OAuth Web",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "author": {
+      "@type": "Person",
+      "name": "Fatony Ahmad Fauzi"
+    },
+    "description": "Tool web untuk membantu proses Pixiv OAuth (PKCE), exchange token, dan refresh token."
+  }
+  </script>
+</head>
+<body>
+  <main class="container">
+    <header class="card header-row">
+      <div>
+        <h1 id="titleText">Pixiv OAuth Web</h1>
+        <p id="subtitleText" class="muted">Pixiv OAuth helper untuk CLI, GUI, dan Web (PKCE) dengan dukungan deploy Netlify/Vercel.</p>
+      </div>
+      <div class="lang-wrap">
+        <label for="langSelect" id="langLabel">Language</label>
+        <select id="langSelect">
+          <option value="en">🇬🇧 English</option>
+          <option value="pl">🇵🇱 Polski</option>
+          <option value="zh">🇨🇳 中文</option>
+          <option value="jp">🇯🇵 日本語</option>
+          <option value="de">🇩🇪 Deutsch</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="ru">🇷🇺 Русский</option>
+          <option value="pt">🇵🇹 Português</option>
+          <option value="id">🇮🇩 Indonesia</option>
+          <option value="kr">🇰🇷 한국어</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="card grid">
+      <button id="openLoginBtn" class="btn primary">1) Open Login Page</button>
+      <textarea id="inputCode" placeholder="2) Paste pixiv:// callback URL or code here"></textarea>
+      <div class="actions">
+        <button id="exchangeBtn" class="btn">Exchange Token</button>
+        <button id="refreshBtn" class="btn">Refresh Token</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 id="resultTitle">Result</h2>
+      <pre id="output">Ready.</pre>
+      <div class="actions">
+        <button id="copyAccessBtn" class="btn">Copy access_token</button>
+        <button id="copyRefreshBtn" class="btn">Copy refresh_token</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <section>
+        <h3 id="footerResourceTitle">Resource</h3>
+        <ul>
+          <li><a id="footerPython" href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
+          <li><a id="footerRequests" href="https://pypi.org/project/requests/" target="_blank" rel="noopener">Requests</a></li>
+          <li><a id="footerPyInstaller" href="https://pyinstaller.org/" target="_blank" rel="noopener">PyInstaller</a></li>
+          <li><a id="footerInno" href="https://jrsoftware.org/isinfo.php" target="_blank" rel="noopener">Inno Setup</a></li>
+          <li><a id="footerVercel" href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a></li>
+          <li><a id="footerNetlify" href="https://www.netlify.com/" target="_blank" rel="noopener">Netlify</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerContactTitle">Contact</h3>
+        <ul>
+          <li><a id="footerTikTok" href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a id="footerTwitter" href="https://x.com/fatonyahmad89" target="_blank" rel="noopener">Twitter</a></li>
+        </ul>
+      </section>
+      <section>
+        <h3 id="footerDevTitle">Dev</h3>
+        <p>Fatony Ahmad Fauzi</p>
+      </section>
+    </div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>
