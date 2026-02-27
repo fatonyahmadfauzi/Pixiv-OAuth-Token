@@ -36,24 +36,25 @@ CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 
 
 # ===== LANGUAGE =====
-SUPPORTED_LANGS = ("en", "id", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "kr")
+SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
 LANG_CHOICES = [
-    ("English", "en"),
-    ("Indonesia", "id"),
-    ("Polski", "pl"),
-    ("日本語", "jp"),
-    ("中文", "zh"),
-    ("Deutsch", "de"),
-    ("Français", "fr"),
-    ("Español", "es"),
-    ("Русский", "ru"),
-    ("Português", "pt"),
-    ("한국어", "kr"),
+    ("🇬🇧 English", "en"),
+    ("🇵🇱 Polski", "pl"),
+    ("🇨🇳 中文", "zh"),
+    ("🇯🇵 日本語", "jp"),
+    ("🇩🇪 Deutsch", "de"),
+    ("🇫🇷 Français", "fr"),
+    ("🇪🇸 Español", "es"),
+    ("🇷🇺 Русский", "ru"),
+    ("🇵🇹 Português", "pt"),
+    ("🇮🇩 Indonesia", "id"),
+    ("🇰🇷 한국어", "kr"),
 ]
 
 LANG_NAME_TO_CODE = {name: code for name, code in LANG_CHOICES}
 LANG_CODE_TO_NAME = {code: name for name, code in LANG_CHOICES}
+LANG_LABELS = {code: name for name, code in LANG_CHOICES}
 
 
 UI = {
@@ -380,7 +381,7 @@ class App(tk.Tk):
         default_code = self.cfg.get("default_lang", "en")
         if default_code not in SUPPORTED_LANGS:
             default_code = "en"
-        default_name = LANG_CODE_TO_NAME.get(default_code, "English")
+        default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧 English")
 
         self.code_verifier: str | None = None
         self.last_access_token: str | None = None
