@@ -58,7 +58,6 @@ textarea,
   color: var(--text);
 }
 
-
 .lang-control {
   display: flex;
   align-items: center;
@@ -82,8 +81,6 @@ textarea,
   color: var(--text);
   outline: none;
 }
-
-
 
 .info-grid {
   display: grid;
