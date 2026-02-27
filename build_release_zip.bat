@@ -23,6 +23,8 @@ del /q "%RELEASE_DIR%\*" 2>nul
 
 if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth CLi (Portable).exe" >nul
 if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth GUi (Portable).exe" >nul
+if exist "pixiv_login_plus_linux" copy /y "pixiv_login_plus_linux" "%RELEASE_DIR%\pixiv_login_plus_linux" >nul
+if exist "dist_linux\pixiv_login_plus_linux" copy /y "dist_linux\pixiv_login_plus_linux" "%RELEASE_DIR%\pixiv_login_plus_linux" >nul
 
 for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
   copy /y "dist_installer\%%f" "%RELEASE_DIR%\%%f" >nul

@@ -180,22 +180,47 @@ async function hydrateReleaseAssets() {
     const assets = release.assets || [];
     const pick = (matcher) => assets.find((a) => matcher(a.name || ""))?.browser_download_url;
 
-    setDownloadLinks({
+    const resolved = {
       cliSetup: pick((n) => /Pixiv OAuth CLi Setup/i.test(n)),
       cliPortable: pick((n) => /Pixiv OAuth CLi \(Portable\)/i.test(n)),
       guiSetup: pick((n) => /Pixiv OAuth GUi Setup/i.test(n)),
       guiPortable: pick((n) => /Pixiv OAuth GUi \(Portable\)/i.test(n)),
       linux: pick((n) => /pixiv_login_plus_linux/i.test(n))
-    });
+    };
+    setDownloadLinks(resolved);
+    setCommandBlocks(resolved);
   } catch {
     setDownloadLinks();
+    setCommandBlocks();
   }
 }
 
-function setCommandBlocks() {
-  q("psCmd").textContent = `$base = "${RELEASE_BASE}"\nInvoke-WebRequest "$base/Pixiv%20OAuth%20GUi%20(Portable).exe" -OutFile "Pixiv OAuth GUi (Portable).exe"\nInvoke-WebRequest "$base/Pixiv%20OAuth%20CLi%20(Portable).exe" -OutFile "Pixiv OAuth CLi (Portable).exe"`;
-  q("cmdCmd").textContent = `curl -L "${RELEASE_BASE}/Pixiv%20OAuth%20GUi%20(Portable).exe" -o "Pixiv OAuth GUi (Portable).exe"\ncurl -L "${RELEASE_BASE}/Pixiv%20OAuth%20CLi%20(Portable).exe" -o "Pixiv OAuth CLi (Portable).exe"`;
-  q("pipCmd").textContent = `python -m pip install -r requirements.txt\npython -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"`;
+function setCommandBlocks(assets = {}) {
+  const guiPortable = assets.guiPortable || releaseLink("Pixiv OAuth GUi (Portable).exe");
+  const cliPortable = assets.cliPortable || releaseLink("Pixiv OAuth CLi (Portable).exe");
+  const guiSetup = assets.guiSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+  const cliSetup = assets.cliSetup || "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+  const linux = assets.linux || releaseLink("pixiv_login_plus_linux");
+
+  q("psCmd").textContent = `$guiPortable = "${guiPortable}"
+$cliPortable = "${cliPortable}"
+$guiSetup = "${guiSetup}"
+$cliSetup = "${cliSetup}"
+$linux = "${linux}"
+Invoke-WebRequest $guiPortable -OutFile "Pixiv OAuth GUi (Portable).exe"
+Invoke-WebRequest $cliPortable -OutFile "Pixiv OAuth CLi (Portable).exe"
+Invoke-WebRequest $guiSetup -OutFile "Pixiv OAuth GUi Setup.exe"
+Invoke-WebRequest $cliSetup -OutFile "Pixiv OAuth CLi Setup.exe"
+Invoke-WebRequest $linux -OutFile "pixiv_login_plus_linux"`;
+
+  q("cmdCmd").textContent = `curl -L "${guiPortable}" -o "Pixiv OAuth GUi (Portable).exe"
+curl -L "${cliPortable}" -o "Pixiv OAuth CLi (Portable).exe"
+curl -L "${guiSetup}" -o "Pixiv OAuth GUi Setup.exe"
+curl -L "${cliSetup}" -o "Pixiv OAuth CLi Setup.exe"
+curl -L "${linux}" -o "pixiv_login_plus_linux"`;
+
+  q("pipCmd").textContent = `python -m pip install -r requirements.txt
+python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"`;
 }
 
 async function copyText(text, okMessage) {
@@ -426,7 +451,6 @@ q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copie
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
 
   setupLanguageMenu();
-  setCommandBlocks();
   applyLang();
   await hydrateReleaseAssets();
 })();

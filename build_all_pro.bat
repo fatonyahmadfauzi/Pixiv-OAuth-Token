@@ -136,12 +136,36 @@ if exist sign_auto.bat (
 :after_sign
 
 REM --- Release ZIP ---
-if %SKIP_ZIP%==1 goto done
+if %SKIP_ZIP%==1 goto after_zip
 if exist build_release_zip.bat (
   call build_release_zip.bat
 ) else (
   echo [WARN] build_release_zip.bat not found. Skipping ZIP.
 )
+
+:after_zip
+
+REM --- Sync latest artifacts into downloads ---
+if not exist downloads mkdir downloads
+if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable).exe" >nul
+if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable).exe" >nul
+for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
+  copy /y "dist_installer\%%f" "downloads\%%f" >nul
+  goto :copied_dl_cli_inst
+)
+:copied_dl_cli_inst
+for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2^>nul') do (
+  copy /y "dist_installer\%%f" "downloads\%%f" >nul
+  goto :copied_dl_gui_inst
+)
+:copied_dl_gui_inst
+if exist "pixiv_login_plus_linux" copy /y "pixiv_login_plus_linux" "downloads\pixiv_login_plus_linux" >nul
+if exist "dist_linux\pixiv_login_plus_linux" copy /y "dist_linux\pixiv_login_plus_linux" "downloads\pixiv_login_plus_linux" >nul
+for /f "delims=" %%f in ('dir /b /o:-d "PixivOAuthRelease_v*.zip" 2^>nul') do (
+  copy /y "%%f" "downloads\%%f" >nul
+  goto :copied_dl_zip
+)
+:copied_dl_zip
 
 :done
 echo.

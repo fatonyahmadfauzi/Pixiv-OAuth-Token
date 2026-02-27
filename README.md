@@ -60,6 +60,7 @@ build_all_pro.bat patch noinst nosign
 - Installer CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe`
 - Installer GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe`
 - Release ZIP: `PixivOAuthRelease_v<version>.zip`
+- Folder sinkron otomatis: `downloads/` (portable, setup terbaru, Linux bila ada, dan ZIP release).
 
 ## Signing
 
@@ -169,19 +170,36 @@ File download:
 - Setup CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
 - Linux build: `pixiv_login_plus_linux` (jika disertakan di release)
 
-### PowerShell (langsung download)
+### PowerShell (langsung download, otomatis versi terbaru)
 
 ```powershell
-$base = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download"
-Invoke-WebRequest "$base/Pixiv%20OAuth%20GUi%20(Portable).exe" -OutFile "Pixiv OAuth GUi (Portable).exe"
-Invoke-WebRequest "$base/Pixiv%20OAuth%20CLi%20(Portable).exe" -OutFile "Pixiv OAuth CLi (Portable).exe"
+$api = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
+$assets = (Invoke-RestMethod -Uri $api).assets
+
+function Get-AssetUrl([string]$pattern) {
+  ($assets | Where-Object { $_.name -match $pattern } | Select-Object -First 1).browser_download_url
+}
+
+$guiPortable = Get-AssetUrl "Pixiv OAuth GUi \(Portable\)"
+$cliPortable = Get-AssetUrl "Pixiv OAuth CLi \(Portable\)"
+$guiSetup    = Get-AssetUrl "Pixiv OAuth GUi Setup"
+$cliSetup    = Get-AssetUrl "Pixiv OAuth CLi Setup"
+$linux       = Get-AssetUrl "pixiv_login_plus_linux"
+
+Invoke-WebRequest $guiPortable -OutFile "Pixiv OAuth GUi (Portable).exe"
+Invoke-WebRequest $cliPortable -OutFile "Pixiv OAuth CLi (Portable).exe"
+Invoke-WebRequest $guiSetup    -OutFile "Pixiv OAuth GUi Setup.exe"
+Invoke-WebRequest $cliSetup    -OutFile "Pixiv OAuth CLi Setup.exe"
+if ($linux) { Invoke-WebRequest $linux -OutFile "pixiv_login_plus_linux" }
 ```
 
-### CMD (langsung download)
+### CMD (langsung download, otomatis versi terbaru)
 
 ```cmd
-curl -L "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20(Portable).exe" -o "Pixiv OAuth GUi (Portable).exe"
-curl -L "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20(Portable).exe" -o "Pixiv OAuth CLi (Portable).exe"
+for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth GUi \(Portable\)''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth GUi (Portable).exe"
+for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi \(Portable\)''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi (Portable).exe"
+for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth GUi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth GUi Setup.exe"
+for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
 ### Python package / source install
@@ -195,7 +213,6 @@ Atau install langsung dari GitHub:
 ```bash
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
-
 
 ### Catatan khusus error Vercel `Deploying outputs... Error: API endpoint not found (404)`
 
