@@ -79,7 +79,6 @@ Versi aplikasi disimpan di `version.json`.
 
 Proyek ini dilisensikan di bawah MIT License. Lihat file `LICENSE`.
 
-
 ## Web Version (Netlify / Vercel)
 
 Project ini sekarang punya versi web responsive + SEO metadata + multi-bahasa:
