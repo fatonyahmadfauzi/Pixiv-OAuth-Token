@@ -3,21 +3,15 @@ setlocal enabledelayedexpansion
 cd /d "%~dp0"
 
 REM ==========================================================
-REM build_all_pro.bat (UPDATED)
+REM build_all_pro.bat
 REM 1-click build for:
 REM   - CLI portable (build_portable_pro.bat)   -> dist_portable\
-REM   - GUI (build_gui_pro.bat)                -> dist_gui\
-REM   - Installer (optional)                   -> dist_installer\
-REM   - Release ZIP (build_release_zip.bat)    -> PixivLoginRelease_vX.Y.Z.zip
+REM   - GUI portable (build_gui_pro.bat)        -> dist_gui\
+REM   - Installer (optional)                    -> dist_installer\
+REM   - Release ZIP (build_release_zip.bat)     -> PixivOAuthRelease_vX.Y.Z.zip
 REM
 REM Usage:
 REM   build_all_pro.bat [patch|minor|major|none] [noinst] [nosign] [nozip] [nogui] [nopause]
-REM
-REM Notes:
-REM   - Version bump is applied ONLY on CLI build (so CLI+GUI+Installer share same version.json).
-REM   - GUI build is invoked with "none" to keep version consistent.
-REM   - Installer step will auto-detect ISCC.exe if a .iss exists:
-REM       pixiv_login_installer_dual.iss (preferred) or pixiv_login_installer.iss
 REM ==========================================================
 
 set BUMP=patch
@@ -38,16 +32,23 @@ for %%A in (%*) do (
 )
 
 echo.
-echo ===== Pixiv Login - Build All (CLI + GUI + Installer + ZIP) =====
+echo ===== Pixiv OAuth - Build All =====
 echo Folder : %cd%
 echo Bump   : %BUMP%
-if %SKIP_GUI%==1 (echo GUI     : SKIP) else (echo GUI     : YES)
+if %SKIP_GUI%==1 (echo GUI      : SKIP) else (echo GUI      : YES)
 if %SKIP_INST%==1 (echo Installer: SKIP) else (echo Installer: AUTO)
-if %SKIP_SIGN%==1 (echo Signing : SKIP) else (echo Signing : AUTO if sign_auto.bat exists)
-if %SKIP_ZIP%==1  (echo ZIP     : SKIP) else (echo ZIP     : YES)
+if %SKIP_SIGN%==1 (echo Signing  : SKIP) else (echo Signing  : AUTO if sign_auto.bat exists)
+if %SKIP_ZIP%==1  (echo ZIP      : SKIP) else (echo ZIP      : YES)
 echo.
 
-REM --- Clean (optional) ---
+REM --- Clean old versioned artifacts (keep only newest after build) ---
+if exist dist_portable del /q dist_portable\*_v*.exe 2>nul
+if exist dist_gui del /q dist_gui\*_v*.exe 2>nul
+if exist dist_installer (
+  del /q "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
+  del /q "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2>nul
+)
+
 if exist clean_build.bat (
   call clean_build.bat
 )
@@ -66,7 +67,7 @@ if errorlevel 1 (
 REM --- Build GUI (keep version consistent; do NOT bump here) ---
 if %SKIP_GUI%==1 goto after_gui
 if not exist build_gui_pro.bat (
-  echo [ERROR] build_gui_pro.bat not found. (Download/update it first)
+  echo [ERROR] build_gui_pro.bat not found.
   exit /b 1
 )
 call build_gui_pro.bat none
@@ -88,7 +89,6 @@ if "%ISS_FILE%"=="" (
   goto after_inst
 )
 
-REM If there is a generator for dual iss, run it first (optional)
 if exist make_installer_iss_dual.py (
   python make_installer_iss_dual.py
 ) else if exist make_installer_iss.py (
@@ -105,18 +105,23 @@ if "%ISCC_PATH%"=="" (
 
 if "%ISCC_PATH%"=="" (
   echo [WARN] ISCC.exe not found. Skipping installer build.
-  echo Install Inno Setup, then ensure ISCC.exe is in PATH.
   goto after_inst
 )
 
 echo.
 echo ===== Building Installer =====
-echo Using: "%ISCC_PATH%"
-echo Script: %ISS_FILE%
 "%ISCC_PATH%" "%ISS_FILE%"
 if errorlevel 1 (
   echo [ERROR] Installer build failed.
   exit /b 1
+)
+
+for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
+if exist "dist_installer\PixivLoginSetup_v!VER!.exe" (
+  del /q "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
+  del /q "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2>nul
+  copy /y "dist_installer\PixivLoginSetup_v!VER!.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!.exe" >nul
+  copy /y "dist_installer\PixivLoginSetup_v!VER!.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!.exe" >nul
 )
 
 :after_inst
@@ -141,10 +146,10 @@ if exist build_release_zip.bat (
 :done
 echo.
 echo ===== DONE =====
-if exist dist_portable\pixiv_login_plus.exe echo CLI : dist_portable\pixiv_login_plus.exe
-if exist dist_gui\pixiv_login_gui.exe echo GUI : dist_gui\pixiv_login_gui.exe
-echo Installer: dist_installer\ (if built)
-echo ZIP      : PixivLoginRelease_vX.Y.Z.zip (if built)
+if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" echo CLI Portable : dist_portable\Pixiv OAuth CLi (Portable).exe
+if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" echo GUI Portable : dist_gui\Pixiv OAuth GUi (Portable).exe
+if exist dist_installer echo Installer    : dist_installer\
+echo ZIP          : PixivOAuthRelease_vX.Y.Z.zip (if built)
 echo.
 
 if %NO_PAUSE%==1 exit /b 0
