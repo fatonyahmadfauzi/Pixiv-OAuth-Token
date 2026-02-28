@@ -77,7 +77,7 @@ If the PFX file is missing, signing is skipped.
 
 Application version is stored in `version.json`.
 
-## Web version (Netlify / Vercel)
+## Web version (Vercel)
 
 Responsive web app with SEO metadata and multi-language support:
 
@@ -88,21 +88,6 @@ Responsive web app with SEO metadata and multi-language support:
 - `public/robots.txt`
 - `public/sitemap.xml`
 - Vercel API: `api/token.js`
-- Netlify API: `netlify/functions/token.js`
-
-### Deploy to Netlify
-
-1. Push repository to GitHub.
-2. Netlify → **Add new site** → **Import from Git**.
-3. Build settings (`netlify.toml`):
-   - Publish directory: `public`
-   - Functions directory: `netlify/functions`
-4. Add environment variable:
-   - `PIXIV_CLIENT_SECRET` = your Pixiv client secret
-   - Optional legacy typo alias: `PIXV_CLIENT_SECRET`
-5. Deploy.
-
-`netlify.toml` already maps `/api/token` to `/.netlify/functions/token`.
 
 ### Deploy to Vercel
 
@@ -116,7 +101,7 @@ Responsive web app with SEO metadata and multi-language support:
    - Optional legacy typo alias: `PIXV_CLIENT_SECRET`
 5. Deploy.
 
-> Security note: for production, always set `PIXIV_CLIENT_SECRET` on the hosting platform.
+> Security note: for production, always set `PIXIV_CLIENT_SECRET` in your Vercel project environment variables.
 
 ## Download application (latest release)
 

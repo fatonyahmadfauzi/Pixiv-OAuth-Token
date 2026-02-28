@@ -17,8 +17,8 @@ const I18N = {
   en: {
     kicker: "Pixiv OAuth Toolkit",
     title: "Pixiv OAuth Web",
-    subtitle: "Toolkit to generate Pixiv OAuth tokens via CLI, GUI, and Web with secure PKCE flow and Netlify/Vercel-ready deployment.",
-    badgePkce: "PKCE Flow", badgeDeploy: "Netlify & Vercel Ready", badgeRelease: "Release Download",
+    subtitle: "Toolkit to generate Pixiv OAuth tokens via CLI, GUI, and Web with secure PKCE flow and Vercel-ready deployment.",
+    badgePkce: "PKCE Flow", badgeDeploy: "Vercel Ready", badgeRelease: "Release Download",
     overviewTitle: "Project Overview",
     overviewDesc: "This project helps exchange/refresh Pixiv OAuth tokens and ships Windows build scripts for Portable/Setup artifacts.",
     docs: "Read the docs",
@@ -36,12 +36,12 @@ const I18N = {
     downloadsTitle: "Downloads", downloadsDesc: "Download latest build directly from GitHub Releases.",
     quickCmdTitle: "Quick Command", quickCmdDesc: "Copy command for PowerShell/CMD download and pip install.",
     copyPs: "Copy PowerShell", copyCmd: "Copy CMD", copyPip: "Copy pip command",
-    errApiNotFound: "API endpoint not found (404). Deploy /api/token (Vercel) or Netlify function first.",
+    errApiNotFound: "API endpoint not found (404). Deploy /api/token on Vercel first.",
     errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
     copiedPs: "PowerShell command copied.", copiedCmd: "CMD command copied.", copiedPip: "pip command copied."
   },
   id: {
-    subtitle: "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Netlify/Vercel.",
+    subtitle: "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel.",
     overviewTitle: "Ringkasan Project", overviewDesc: "Project ini membantu exchange/refresh token Pixiv OAuth dan menyediakan script build Windows untuk artifact Portable/Setup.",
     docs: "Baca dokumentasi",
     modesTitle: "Mode Tersedia", requirementsTitle: "Kebutuhan", oauthTitle: "Konsol Token OAuth",
@@ -56,12 +56,12 @@ const I18N = {
     downloadsTitle: "Unduhan", downloadsDesc: "Unduh build terbaru langsung dari GitHub Releases.",
     quickCmdTitle: "Perintah Cepat", quickCmdDesc: "Salin command download PowerShell/CMD dan install pip.",
     copyPs: "Salin PowerShell", copyCmd: "Salin CMD", copyPip: "Salin perintah pip",
-    errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token (Vercel) atau function Netlify dulu.",
+    errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token di Vercel dulu.",
     errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy.",
     copiedPs: "Command PowerShell tersalin.", copiedCmd: "Command CMD tersalin.", copiedPip: "Command pip tersalin."
   },
   jp: {
-    subtitle: "CLI・GUI・Web向け Pixiv OAuth（PKCE）ツールキット。Netlify/Vercel にデプロイ可能。",
+    subtitle: "CLI・GUI・Web向け Pixiv OAuth（PKCE）ツールキット。Vercel にデプロイ可能。",
     overviewTitle: "プロジェクト概要", modesTitle: "利用モード", requirementsTitle: "要件", oauthTitle: "OAuth トークンコンソール",
     overviewDesc: "このプロジェクトは Pixiv OAuth トークンの取得/更新を支援し、Windows の Portable/Setup ビルドを提供します。",
     docs: "ドキュメントを読む",
@@ -353,7 +353,7 @@ function parseCode(input) {
 }
 
 function apiBase() {
-  return location.hostname.includes("netlify") ? "/.netlify/functions/token" : "/api/token";
+  return "/api/token";
 }
 
 async function callApi(payload) {
