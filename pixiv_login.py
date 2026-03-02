@@ -373,7 +373,6 @@ def _open_contact_menu(lang: str, color_on: bool) -> None:
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
-
 def show_cli_tutorial(lang: str, color_on: bool) -> None:
     print()
     print(colorize(mt("tutorial_title", lang), Ansi.BOLD + Ansi.CYAN, color_on))
