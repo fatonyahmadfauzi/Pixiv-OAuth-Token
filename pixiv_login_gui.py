@@ -510,7 +510,7 @@ class App(tk.Tk):
         dirs.append(Path(__file__).resolve().parent / "tutorial_images")
 
         # 3) PyInstaller temp extraction folder (onefile runtime)
-        meipass = getattr(sys, "_MEIPASS", None)
+        meipass = getattr(__import__("sys"), "_MEIPASS", None)
         if meipass:
             dirs.append(Path(meipass) / "tutorial_images")
 
