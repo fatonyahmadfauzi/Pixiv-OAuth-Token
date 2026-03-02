@@ -325,7 +325,7 @@ function applyLang() {
     navConsole: "navConsole",
     navDownloads: "navDownloads",
     navQuickCmd: "navQuickCmd",
-    navTutorial: "navTutorial",
+    navTutorialLabel: "navTutorial",
     tutorialTitle: "tutorialTitle",
     tutorialDesc: "tutorialDesc"
   };

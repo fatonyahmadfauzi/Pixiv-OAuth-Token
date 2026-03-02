@@ -19,6 +19,11 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .nav-links a{color:#b9c7ea;text-decoration:none;font-size:.92rem}
 .nav-links a:hover{color:#fff}
 
+.nav-tutorial-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid #3a4251;background:linear-gradient(180deg,#2b2f36,#1f232a);color:#fff !important;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:.78rem;transition:.2s ease}
+.nav-tutorial-link i{transition:transform .2s ease}
+.nav-tutorial-link:hover{border-color:#667089;background:linear-gradient(180deg,#353b45,#252a33)}
+.nav-tutorial-link:hover i{transform:translateX(5px)}
+
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
@@ -74,5 +79,37 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:16px;border-top:1px solid #2a3d69;padding-top:16px}
 .site-footer h3{margin:0 0 8px}.site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}.site-footer a{color:#bfd0f3;text-decoration:none}.site-footer a:hover{text-decoration:underline}
 
-@media (max-width:980px){.topbar-inner{gap:10px}.brand{order:1}.lang-wrap{order:2;margin-left:0}.nav-links{order:3;width:100%;justify-content:flex-start;overflow:auto;padding-bottom:4px}.info-grid,.cmd-grid,.footer-grid,.tutorial-grid{grid-template-columns:1fr}.hero{min-height:58vh}}
-@media (max-width:700px){.container{padding:12px 10px}.topbar-inner{padding:10px}.brand{font-size:1rem}.lang-wrap{min-width:140px}.lang-control{max-width:170px}.download-grid{grid-template-columns:1fr}.actions>.btn{width:100%}.hero-actions .btn{width:100%}}
+@media (max-width:980px){
+  .topbar-inner{gap:10px}
+  .brand{order:1}
+  .lang-wrap{order:2;margin-left:0}
+  .nav-links{display:flex;width:100%;justify-content:flex-start;overflow:auto;padding-bottom:4px}
+  .info-grid,.cmd-grid,.tutorial-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-grid section:last-child{grid-column:1 / -1}
+  .hero{min-height:58vh}
+}
+@media (max-width:700px){
+  .container{padding:12px 10px}
+  .topbar-inner{padding:10px}
+  .brand{font-size:1rem}
+  .lang-wrap{min-width:140px}
+  .lang-control{max-width:170px}
+  .download-grid{grid-template-columns:1fr}
+  .actions>.btn{width:100%}
+  .hero-actions .btn{width:100%}
+}
+
+/* Tutorial dedicated page */
+.tutorial-page{font-family:"Plus Jakarta Sans","Inter","Segoe UI",system-ui,sans-serif}
+.tutorial-hero h1{margin:0;font-size:clamp(2rem,4.5vw,3.3rem);letter-spacing:.01em}
+.standalone-tutorial h2{margin-top:0;font-size:clamp(1.4rem,3vw,2rem)}
+.standalone-tutorial .tutorial-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.standalone-tutorial .tutorial-item{border-radius:14px;padding:12px;background:#0a1326}
+.standalone-tutorial .tutorial-item figcaption{font-size:.95rem;letter-spacing:.01em}
+@media (max-width:980px){
+  .standalone-tutorial .tutorial-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .standalone-tutorial .tutorial-grid{grid-template-columns:1fr}
+}
