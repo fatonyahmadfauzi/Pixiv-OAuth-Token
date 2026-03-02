@@ -34,22 +34,28 @@ AUTH_TOKEN_URL = "https://oauth.secure.pixiv.net/auth/token"
 CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT"
 CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 
+REPO_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token"
+README_URL = f"{REPO_BASE_URL}/blob/master/README.md"
+RELEASES_URL = f"{REPO_BASE_URL}/releases"
+TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
+TWITTER_URL = "https://x.com/fatonyahmad89"
+DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 
 # ===== LANGUAGE =====
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
 LANG_CHOICES = [
-    ("🇬🇧 English", "en"),
-    ("🇵🇱 Polski", "pl"),
-    ("🇨🇳 中文", "zh"),
-    ("🇯🇵 日本語", "jp"),
-    ("🇩🇪 Deutsch", "de"),
-    ("🇫🇷 Français", "fr"),
-    ("🇪🇸 Español", "es"),
-    ("🇷🇺 Русский", "ru"),
-    ("🇵🇹 Português", "pt"),
-    ("🇮🇩 Indonesia", "id"),
-    ("🇰🇷 한국어", "kr"),
+    ("🇬🇧  English", "en"),
+    ("🇵🇱  Polski", "pl"),
+    ("🇨🇳  中文", "zh"),
+    ("🇯🇵  日本語", "jp"),
+    ("🇩🇪  Deutsch", "de"),
+    ("🇫🇷  Français", "fr"),
+    ("🇪🇸  Español", "es"),
+    ("🇷🇺  Русский", "ru"),
+    ("🇵🇹  Português", "pt"),
+    ("🇮🇩  Indonesia", "id"),
+    ("🇰🇷  한국어", "kr"),
 ]
 
 LANG_NAME_TO_CODE = {name: code for name, code in LANG_CHOICES}
@@ -325,6 +331,63 @@ UI = {
 }
 
 
+EXTRA_UI = {
+    "en": {
+        "docs": "Read the Docs",
+        "menu_docs": "Docs",
+        "menu_tutorial": "Tutorial",
+        "menu_resources": "Resources",
+        "menu_contact": "Contact",
+        "menu_developer": "Developer",
+        "tutorial_open": "Open Tutorial",
+        "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
+        "tutorial_header": "How to Use",
+        "tutorial_desc": "Follow this guided flow to exchange Pixiv OAuth tokens quickly.",
+        "tutorial_steps": "Step by step",
+        "tutorial_prev": "Previous",
+        "tutorial_next": "Next",
+        "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
+        "dev_info_title": "Developer",
+    },
+    "id": {
+        "docs": "Baca Dokumentasi",
+        "menu_docs": "Dokumen",
+        "menu_tutorial": "Tutorial",
+        "menu_resources": "Resource",
+        "menu_contact": "Kontak",
+        "menu_developer": "Developer",
+        "tutorial_open": "Buka Tutorial",
+        "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
+        "tutorial_header": "Cara Penggunaan",
+        "tutorial_desc": "Ikuti langkah berikut untuk tukar token Pixiv OAuth dengan cepat.",
+        "tutorial_steps": "Langkah-langkah",
+        "tutorial_prev": "Sebelumnya",
+        "tutorial_next": "Berikutnya",
+        "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder tutorial_images/.",
+        "dev_info_title": "Developer",
+    },
+}
+
+TUTORIAL_CAPTIONS = {
+    "en": [
+        "Step 1: Click Open Login Page in the app.",
+        "Step 2: Continue login on Pixiv page.",
+        "Step 3: Open browser console (Ctrl+Shift+J).",
+        "Step 4: Copy pixiv:// URL/code from console.",
+        "Step 5: Paste URL/code into the app input field.",
+        "Step 6: Click Exchange Token to finish.",
+    ],
+    "id": [
+        "Langkah 1: Klik Open Login Page di aplikasi.",
+        "Langkah 2: Lanjutkan login pada halaman Pixiv.",
+        "Langkah 3: Buka console browser (Ctrl+Shift+J).",
+        "Langkah 4: Copy URL/kode pixiv:// dari console.",
+        "Langkah 5: Paste URL/kode ke kolom input aplikasi.",
+        "Langkah 6: Klik Exchange Token untuk selesai.",
+    ],
+}
+
+
 def app_dir() -> Path:
     """Store config next to the executable when frozen (PyInstaller onefile), otherwise next to the script."""
     try:
@@ -381,11 +444,15 @@ class App(tk.Tk):
         default_code = self.cfg.get("default_lang", "en")
         if default_code not in SUPPORTED_LANGS:
             default_code = "en"
-        default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧 English")
+        default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧  English")
 
         self.code_verifier: str | None = None
         self.last_access_token: str | None = None
         self.last_refresh_token: str | None = self.cfg.get("refresh_token")
+        self.tutorial_dir = Path(__file__).resolve().parent / "tutorial_images"
+        self._tutorial_images: list[Path] = []
+        self._tutorial_index = 0
+        self._tutorial_photo = None
 
         self.lang_var = tk.StringVar(value=default_name)
         self.save_lang_var = tk.BooleanVar(value=True)
@@ -405,6 +472,10 @@ class App(tk.Tk):
         code = self.current_lang_code()
         return UI.get(code, UI["en"]).get(key, UI["en"].get(key, key))
 
+    def tx(self, key: str) -> str:
+        code = self.current_lang_code()
+        return EXTRA_UI.get(code, EXTRA_UI["en"]).get(key, EXTRA_UI["en"].get(key, key))
+
     def apply_ui_language(self):
         self.title(self.t("title"))
         self.lang_label.config(text=self.t("language"))
@@ -416,6 +487,8 @@ class App(tk.Tk):
         self.copy_access_btn.config(text=self.t("copy_access"))
         self.copy_refresh_btn.config(text=self.t("copy_refresh"))
         self.output_frame.config(text=self.t("output"))
+        self.docs_btn.config(text=self.tx("docs"))
+        self._build_menu()
 
         if self.save_lang_var.get():
             self.cfg["default_lang"] = self.current_lang_code()
@@ -428,25 +501,51 @@ class App(tk.Tk):
 
     # ---------- UI ----------
     def _build_ui(self):
-        top = ttk.Frame(self, padding=10)
-        top.pack(fill="x")
-
-        self.lang_label = ttk.Label(top, text="Language:")
-        self.lang_label.pack(side="left")
-
+        self.configure(bg="#f3f5f9")
 
         style = ttk.Style()
         try:
-            style.configure("Lang.TCombobox", font=("Segoe UI Emoji", 11))
-        except Exception:
+            style.theme_use("clam")
+        except tk.TclError:
             pass
+
+        self._build_menu()
+
+        style.configure("App.TFrame", background="#f3f5f9")
+        style.configure("Card.TFrame", background="#ffffff", relief="flat")
+        style.configure("TLabel", background="#f3f5f9", foreground="#1f2937", font=("Segoe UI", 10))
+        style.configure("Header.TLabel", background="#f3f5f9", foreground="#111827", font=("Segoe UI Semibold", 14))
+        style.configure("Sub.TLabel", background="#f3f5f9", foreground="#6b7280", font=("Segoe UI", 9))
+        style.configure("TCheckbutton", background="#ffffff", foreground="#374151", font=("Segoe UI", 10))
+        style.configure("TLabelframe", background="#ffffff", foreground="#111827", borderwidth=1, relief="solid")
+        style.configure("TLabelframe.Label", background="#ffffff", foreground="#111827", font=("Segoe UI Semibold", 10))
+        style.configure("Primary.TButton", font=("Segoe UI Semibold", 10), padding=(14, 8), foreground="#ffffff", background="#2563eb", borderwidth=0)
+        style.map("Primary.TButton", background=[("active", "#1d4ed8")])
+        style.configure("Secondary.TButton", font=("Segoe UI", 10), padding=(12, 8), foreground="#1f2937", background="#e5e7eb", borderwidth=0)
+        style.map("Secondary.TButton", background=[("active", "#d1d5db")])
+        style.configure("Lang.TCombobox", font=("Segoe UI Emoji", 10), padding=6)
+
+        root = ttk.Frame(self, style="App.TFrame", padding=14)
+        root.pack(fill="both", expand=True)
+
+        header = ttk.Frame(root, style="App.TFrame")
+        header.pack(fill="x", pady=(0, 10))
+
+        ttk.Label(header, text="Pixiv OAuth Token", style="Header.TLabel").pack(anchor="w")
+        ttk.Label(header, text="Modern login helper with quick token exchange", style="Sub.TLabel").pack(anchor="w")
+
+        top = ttk.Frame(root, style="Card.TFrame", padding=12)
+        top.pack(fill="x", pady=(0, 10))
+
+        self.lang_label = ttk.Label(top, text="Language:")
+        self.lang_label.pack(side="left")
 
         self.lang_combo = ttk.Combobox(
             top,
             style="Lang.TCombobox",
             textvariable=self.lang_var,
             values=[name for name, _ in LANG_CHOICES],
-            width=20,
+            width=22,
             state="readonly",
         )
         self.lang_combo.pack(side="left", padx=(6, 16))
@@ -455,41 +554,179 @@ class App(tk.Tk):
         self.save_lang_check = ttk.Checkbutton(top, text="Save as default", variable=self.save_lang_var, command=self.apply_ui_language)
         self.save_lang_check.pack(side="left")
 
-        self.open_login_btn = ttk.Button(top, text="Open Login Page", command=self.open_login)
+        self.open_login_btn = ttk.Button(top, text="Open Login Page", style="Primary.TButton", command=self.open_login)
         self.open_login_btn.pack(side="right")
 
-        self.refresh_btn = ttk.Button(top, text="Refresh Token", command=self.refresh_token)
+        self.docs_btn = ttk.Button(top, text="Read the Docs", style="Secondary.TButton", command=lambda: open_url(README_URL))
+        self.docs_btn.pack(side="right", padx=(0, 8))
+
+        self.refresh_btn = ttk.Button(top, text="Refresh Token", style="Secondary.TButton", command=self.refresh_token)
         self.refresh_btn.pack(side="right", padx=(0, 8))
 
-        self.paste_frame = ttk.LabelFrame(self, text="Paste URL / Code", padding=10)
-        self.paste_frame.pack(fill="x", padx=10, pady=(0, 10))
+        self.paste_frame = ttk.LabelFrame(root, text="Paste URL / Code", padding=12)
+        self.paste_frame.pack(fill="x", pady=(0, 10))
 
-        self.code_entry = ttk.Entry(self.paste_frame)
+        self.code_entry = ttk.Entry(self.paste_frame, font=("Segoe UI", 10))
         self.code_entry.pack(fill="x", expand=True)
 
         btn_row = ttk.Frame(self.paste_frame)
         btn_row.pack(fill="x", pady=(8, 0))
 
-        self.exchange_btn = ttk.Button(btn_row, text="Exchange Token", command=self.exchange_token)
+        self.exchange_btn = ttk.Button(btn_row, text="Exchange Token", style="Primary.TButton", command=self.exchange_token)
         self.exchange_btn.pack(side="right")
 
-        copy_row = ttk.Frame(self, padding=(10, 0, 10, 10))
+        copy_row = ttk.Frame(root, style="App.TFrame", padding=(0, 0, 0, 10))
         copy_row.pack(fill="x")
 
-        self.copy_access_btn = ttk.Button(copy_row, text="Copy access_token", command=self.copy_access_token)
+        self.copy_access_btn = ttk.Button(copy_row, text="Copy access_token", style="Secondary.TButton", command=self.copy_access_token)
         self.copy_access_btn.pack(side="left")
 
-        self.copy_refresh_btn = ttk.Button(copy_row, text="Copy refresh_token", command=self.copy_refresh_token)
+        self.copy_refresh_btn = ttk.Button(copy_row, text="Copy refresh_token", style="Secondary.TButton", command=self.copy_refresh_token)
         self.copy_refresh_btn.pack(side="left", padx=(8, 0))
 
-        self.output_frame = ttk.LabelFrame(self, text="Output", padding=10)
-        self.output_frame.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+        self.output_frame = ttk.LabelFrame(root, text="Output", padding=12)
+        self.output_frame.pack(fill="both", expand=True)
 
-        self.output = tk.Text(self.output_frame, wrap="word")
+        self.output = tk.Text(
+            self.output_frame,
+            wrap="word",
+            bg="#0f172a",
+            fg="#e2e8f0",
+            insertbackground="#e2e8f0",
+            relief="flat",
+            font=("Cascadia Mono", 10),
+            padx=10,
+            pady=10,
+        )
         self.output.pack(fill="both", expand=True)
 
-        self.geometry("820x600")
-        self.minsize(820, 600)
+        self.geometry("860x620")
+        self.minsize(860, 620)
+
+    def _build_menu(self):
+        menubar = tk.Menu(self)
+
+        docs_menu = tk.Menu(menubar, tearoff=0)
+        docs_menu.add_command(label=f"📘 {self.tx('docs')} (GitHub README)", command=lambda: open_url(README_URL))
+        menubar.add_cascade(label=self.tx("menu_docs"), menu=docs_menu)
+
+        tutorial_menu = tk.Menu(menubar, tearoff=0)
+        tutorial_menu.add_command(label=f"🧭 {self.tx('tutorial_open')}", command=self.show_tutorial)
+        menubar.add_cascade(label=self.tx("menu_tutorial"), menu=tutorial_menu)
+
+        resource_menu = tk.Menu(menubar, tearoff=0)
+        resource_menu.add_command(label="GitHub Repository", command=lambda: open_url(REPO_BASE_URL))
+        resource_menu.add_command(label="Latest Releases", command=lambda: open_url(RELEASES_URL))
+        menubar.add_cascade(label=self.tx("menu_resources"), menu=resource_menu)
+
+        contact_menu = tk.Menu(menubar, tearoff=0)
+        contact_menu.add_command(label="TikTok", command=lambda: open_url(TIKTOK_URL))
+        contact_menu.add_command(label="Twitter / X", command=lambda: open_url(TWITTER_URL))
+        menubar.add_cascade(label=self.tx("menu_contact"), menu=contact_menu)
+
+        developer_menu = tk.Menu(menubar, tearoff=0)
+        developer_menu.add_command(label=f"Developer: {DEVELOPER_NAME}", command=self.show_developer_info)
+        menubar.add_cascade(label=self.tx("menu_developer"), menu=developer_menu)
+
+        self.config(menu=menubar)
+
+    def show_developer_info(self):
+        messagebox.showinfo(
+            self.tx("dev_info_title"),
+            f"{DEVELOPER_NAME}\n\nGitHub: {REPO_BASE_URL}\nTikTok: {TIKTOK_URL}\nTwitter/X: {TWITTER_URL}",
+        )
+
+    def _load_tutorial_images(self):
+        self._tutorial_images = sorted(self.tutorial_dir.glob("*.png"))
+        self._tutorial_images += sorted(self.tutorial_dir.glob("*.gif"))
+
+    def _render_tutorial_image(self):
+        if not hasattr(self, "tutorial_image_label"):
+            return
+
+        if not self._tutorial_images:
+            self.tutorial_image_label.configure(image="", text=self.tx("tutorial_missing"), compound="center")
+            self.tutorial_caption_var.set(self.tx("tutorial_missing"))
+            self.prev_btn.state(["disabled"])
+            self.next_btn.state(["disabled"])
+            self.counter_var.set("0/0")
+            return
+
+        total = len(self._tutorial_images)
+        self._tutorial_index = max(0, min(self._tutorial_index, total - 1))
+        image_path = self._tutorial_images[self._tutorial_index]
+
+        try:
+            self._tutorial_photo = tk.PhotoImage(file=str(image_path))
+            self.tutorial_image_label.configure(image=self._tutorial_photo, text="")
+        except tk.TclError:
+            self.tutorial_image_label.configure(image="", text=f"Cannot open image: {image_path.name}", compound="center")
+
+        code = self.current_lang_code()
+        captions = TUTORIAL_CAPTIONS.get(code, TUTORIAL_CAPTIONS["en"])
+        caption = captions[self._tutorial_index] if self._tutorial_index < len(captions) else image_path.name
+        self.tutorial_caption_var.set(caption)
+        self.counter_var.set(f"{self._tutorial_index + 1}/{total}")
+
+        if self._tutorial_index <= 0:
+            self.prev_btn.state(["disabled"])
+        else:
+            self.prev_btn.state(["!disabled"])
+
+        if self._tutorial_index >= total - 1:
+            self.next_btn.state(["disabled"])
+        else:
+            self.next_btn.state(["!disabled"])
+
+    def _tutorial_prev(self):
+        self._tutorial_index -= 1
+        self._render_tutorial_image()
+
+    def _tutorial_next(self):
+        self._tutorial_index += 1
+        self._render_tutorial_image()
+
+    def show_tutorial(self):
+        self._load_tutorial_images()
+
+        tutorial = tk.Toplevel(self)
+        tutorial.title(self.tx("tutorial_title"))
+        tutorial.geometry("960x700")
+        tutorial.minsize(860, 620)
+        tutorial.configure(bg="#f3f5f9")
+
+        container = ttk.Frame(tutorial, style="App.TFrame", padding=16)
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text=self.tx("tutorial_header"), style="Header.TLabel").pack(anchor="w")
+        ttk.Label(container, text=self.tx("tutorial_desc"), style="Sub.TLabel").pack(anchor="w", pady=(0, 12))
+
+        card = ttk.LabelFrame(container, text=self.tx("tutorial_steps"), padding=12)
+        card.pack(fill="both", expand=True)
+
+        self.tutorial_image_label = ttk.Label(card, anchor="center")
+        self.tutorial_image_label.pack(fill="both", expand=True, pady=(0, 8))
+
+        self.tutorial_caption_var = tk.StringVar(value="")
+        ttk.Label(card, textvariable=self.tutorial_caption_var, style="TLabel").pack(anchor="w")
+
+        nav = ttk.Frame(card, style="Card.TFrame")
+        nav.pack(fill="x", pady=(10, 0))
+
+        self.prev_btn = ttk.Button(nav, text=self.tx("tutorial_prev"), style="Secondary.TButton", command=self._tutorial_prev)
+        self.prev_btn.pack(side="left")
+
+        self.counter_var = tk.StringVar(value="0/0")
+        ttk.Label(nav, textvariable=self.counter_var, style="TLabel").pack(side="left", padx=12)
+
+        self.next_btn = ttk.Button(nav, text=self.tx("tutorial_next"), style="Secondary.TButton", command=self._tutorial_next)
+        self.next_btn.pack(side="left")
+
+        ttk.Button(nav, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url(README_URL)).pack(side="right")
+
+        self._tutorial_index = 0
+        self._render_tutorial_image()
+
 
     def log(self, msg: str):
         self.output.insert("end", msg + "\n")
