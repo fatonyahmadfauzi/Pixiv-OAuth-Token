@@ -287,12 +287,24 @@ def mt(key: str, lang: str) -> str:
 
 
 def print_cli_banner(lang: str, color_on: bool) -> None:
-    title = mt("project", lang)
-    dev = f"{mt('developer', lang)}: {DEVELOPER_NAME}"
-    print(colorize("=" * 52, Ansi.CYAN, color_on))
-    print(colorize(f"  {title}", Ansi.BOLD + Ansi.GREEN, color_on))
-    print(colorize(f"  {dev}", Ansi.DIM, color_on))
-    print(colorize("=" * 52, Ansi.CYAN, color_on))
+    title_art = [
+        "   ____  _      _         ___   _   _ _____ _   _  ",
+        "  |  _ \(_)__ _(_)_ __   / _ \ / | | |_   _| | | | ",
+        "  | |_) | / _` | | '_ \ | | | || | | | | | | |_| | ",
+        "  |  __/| | (_| | | | | || |_| || | | | | | |  _  | ",
+        "  |_|   |_|\__, |_|_| |_| \___/ |_| |_| |_| |_| |_| ",
+        "            |___/                                     ",
+    ]
+
+    print(colorize("=" * 62, Ansi.CYAN, color_on))
+    for line in title_art:
+        print(colorize(line, Ansi.BOLD + Ansi.GREEN, color_on))
+
+    project_line = mt("project", lang)
+    dev_line = f"{mt('developer', lang)}: {DEVELOPER_NAME}"
+    print(colorize(f"  {project_line}", Ansi.BOLD, color_on))
+    print(colorize(f"  {dev_line}", Ansi.DIM, color_on))
+    print(colorize("=" * 62, Ansi.CYAN, color_on))
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
