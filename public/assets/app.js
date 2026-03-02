@@ -285,6 +285,33 @@ function setupLanguageMenu() {
   });
 }
 
+function setupMobileNav() {
+  const toggle = q("menuToggle");
+  const nav = q("mainNav");
+  if (!toggle || !nav) return;
+
+  const close = () => {
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+
+  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
+
+  document.addEventListener("click", (e) => {
+    if (window.innerWidth > 980) return;
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) close();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 980) close();
+  });
+}
+
 function applyLang() {
   const map = {
     kickerText: "kicker",
@@ -465,6 +492,7 @@ q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copie
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
 
   setupLanguageMenu();
+  setupMobileNav();
   applyLang();
   await hydrateReleaseAssets();
 })();
