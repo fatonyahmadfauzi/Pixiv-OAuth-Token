@@ -37,14 +37,12 @@ if errorlevel 1 (
 REM --- copy portable output ---
 if not exist dist_portable mkdir dist_portable
 del /q dist_portable\*_v*.exe 2>nul
-copy /y dist\%OUTNAME%.exe dist_portable\%OUTNAME%_v%VER%.exe >nul
 copy /y dist\%OUTNAME%.exe dist_portable\%OUTNAME%.exe >nul
 copy /y dist\%OUTNAME%.exe "dist_portable\%PORTABLE_LABEL%.exe" >nul
 
 echo.
 echo Portable built:
 echo   dist_portable\%OUTNAME%.exe
-echo   dist_portable\%OUTNAME%_v%VER%.exe
 echo   dist_portable\%PORTABLE_LABEL%.exe
 echo.
 

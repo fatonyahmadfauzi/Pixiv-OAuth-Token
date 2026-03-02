@@ -34,6 +34,14 @@ AUTH_TOKEN_URL = "https://oauth.secure.pixiv.net/auth/token"
 CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT"
 CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 
+REPO_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token"
+README_URL = f"{REPO_BASE_URL}/blob/master/README.md"
+RELEASES_URL = f"{REPO_BASE_URL}/releases"
+TUTORIAL_URL = README_URL
+TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
+TWITTER_URL = "https://x.com/fatonyahmad89"
+DEVELOPER_NAME = "Fatony Ahmad Fauzi"
+
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 
 
@@ -212,6 +220,254 @@ LANGUAGES = {
 }
 
 
+
+
+MENU_UI_EN = {
+    "project": "Pixiv OAuth Token",
+    "developer": "Developer",
+    "menu_title": "Main Menu",
+    "opt_change_lang": "Change Language",
+    "opt_tutorial": "Tutorial",
+    "opt_docs": "Read the Docs",
+    "opt_resources": "Resources",
+    "opt_contact": "Contact",
+    "opt_login": "Login",
+    "opt_developer": "Developer",
+    "opt_exit": "Exit",
+    "select_option": "Select option",
+    "invalid_option": "Invalid option.",
+    "choose_lang": "Choose language code",
+    "lang_updated": "Default language updated to",
+    "resources_title": "Resources",
+    "res_repo": "GitHub Repository",
+    "res_release": "Latest Releases",
+    "contact_title": "Contact",
+    "contact_tiktok": "TikTok",
+    "contact_twitter": "Twitter / X",
+    "back": "Back",
+    "tutorial_title": "CLI Tutorial",
+    "tutorial_desc": "Follow these steps to get Pixiv OAuth tokens directly from this CLI.",
+    "tutorial_step1": "1) Choose option [6] Login.",
+    "tutorial_step2": "2) Browser opens to Pixiv login page.",
+    "tutorial_step3": "3) After login, copy full pixiv:// URL callback.",
+    "tutorial_step4": "4) Paste URL/code in CLI prompt.",
+    "tutorial_step5": "5) CLI detects code and exchanges token.",
+    "tutorial_step6": "6) access_token and refresh_token are shown.",
+    "tutorial_example": "Example output",
+    "developer_info": "Developer Information",
+}
+
+MENU_UI_OVERRIDES = {
+    "id": {
+        "menu_title": "Menu Utama",
+        "opt_change_lang": "Ubah Bahasa",
+        "opt_tutorial": "Tutorial",
+        "opt_docs": "Baca Dokumentasi",
+        "opt_resources": "Resource",
+        "opt_contact": "Kontak",
+        "opt_login": "Login",
+        "opt_exit": "Keluar",
+        "select_option": "Pilih opsi",
+        "invalid_option": "Opsi tidak valid.",
+        "choose_lang": "Pilih kode bahasa",
+        "lang_updated": "Bahasa default diperbarui menjadi",
+        "resources_title": "Resource",
+        "res_repo": "Repositori GitHub",
+        "res_release": "Rilis Terbaru",
+        "contact_title": "Kontak",
+        "back": "Kembali",
+        "tutorial_title": "Tutorial CLI",
+        "tutorial_desc": "Ikuti langkah berikut untuk mendapatkan token Pixiv OAuth langsung dari CLI ini.",
+        "tutorial_step1": "1) Pilih menu [6] Login.",
+        "tutorial_step2": "2) Browser akan terbuka ke halaman login Pixiv.",
+        "tutorial_step3": "3) Setelah login, salin URL callback pixiv:// lengkap.",
+        "tutorial_step4": "4) Paste URL/code pada prompt CLI.",
+        "tutorial_step5": "5) CLI mendeteksi code dan menukar token.",
+        "tutorial_step6": "6) access_token dan refresh_token ditampilkan.",
+        "tutorial_example": "Contoh output",
+    },
+    "jp": {
+        "menu_title": "メインメニュー",
+        "opt_change_lang": "言語を変更",
+        "opt_tutorial": "チュートリアル",
+        "opt_docs": "ドキュメントを読む",
+        "opt_resources": "リソース",
+        "opt_contact": "連絡先",
+        "opt_login": "ログイン",
+        "opt_developer": "開発者",
+        "opt_exit": "終了",
+        "select_option": "オプションを選択",
+        "invalid_option": "無効なオプションです。",
+        "choose_lang": "言語コードを選択",
+        "back": "戻る",
+        "developer_info": "開発者情報",
+    },
+
+    "pl": {
+        "opt_change_lang": "Zmień język", "opt_tutorial": "Tutorial", "opt_docs": "Czytaj dokumentację", "opt_resources": "Zasoby", "opt_contact": "Kontakt", "opt_login": "Logowanie", "opt_developer": "Deweloper", "opt_exit": "Wyjście", "select_option": "Wybierz opcję", "invalid_option": "Nieprawidłowa opcja.", "choose_lang": "Wybierz kod języka", "back": "Wstecz", "developer_info": "Informacje o deweloperze"
+    },
+    "zh": {
+        "opt_change_lang": "更改语言", "opt_tutorial": "教程", "opt_docs": "阅读文档", "opt_resources": "资源", "opt_contact": "联系", "opt_login": "登录", "opt_developer": "开发者", "opt_exit": "退出", "select_option": "选择选项", "invalid_option": "无效选项。", "choose_lang": "选择语言代码", "back": "返回", "developer_info": "开发者信息"
+    },
+    "de": {
+        "opt_change_lang": "Sprache ändern", "opt_tutorial": "Tutorial", "opt_docs": "Dokumentation lesen", "opt_resources": "Ressourcen", "opt_contact": "Kontakt", "opt_login": "Login", "opt_developer": "Entwickler", "opt_exit": "Beenden", "select_option": "Option wählen", "invalid_option": "Ungültige Option.", "choose_lang": "Sprachcode wählen", "back": "Zurück", "developer_info": "Entwicklerinfo"
+    },
+    "fr": {
+        "opt_change_lang": "Changer la langue", "opt_tutorial": "Tutoriel", "opt_docs": "Lire la documentation", "opt_resources": "Ressources", "opt_contact": "Contact", "opt_login": "Connexion", "opt_developer": "Développeur", "opt_exit": "Quitter", "select_option": "Choisir une option", "invalid_option": "Option invalide.", "choose_lang": "Choisir le code langue", "back": "Retour", "developer_info": "Informations développeur"
+    },
+    "es": {
+        "opt_change_lang": "Cambiar idioma", "opt_tutorial": "Tutorial", "opt_docs": "Leer la documentación", "opt_resources": "Recursos", "opt_contact": "Contacto", "opt_login": "Iniciar sesión", "opt_developer": "Desarrollador", "opt_exit": "Salir", "select_option": "Seleccionar opción", "invalid_option": "Opción no válida.", "choose_lang": "Elige código de idioma", "back": "Volver", "developer_info": "Información del desarrollador"
+    },
+    "ru": {
+        "opt_change_lang": "Сменить язык", "opt_tutorial": "Туториал", "opt_docs": "Читать документацию", "opt_resources": "Ресурсы", "opt_contact": "Контакты", "opt_login": "Вход", "opt_developer": "Разработчик", "opt_exit": "Выход", "select_option": "Выберите опцию", "invalid_option": "Неверная опция.", "choose_lang": "Выберите код языка", "back": "Назад", "developer_info": "Информация о разработчике"
+    },
+    "pt": {
+        "opt_change_lang": "Mudar idioma", "opt_tutorial": "Tutorial", "opt_docs": "Ler a documentação", "opt_resources": "Recursos", "opt_contact": "Contato", "opt_login": "Login", "opt_developer": "Desenvolvedor", "opt_exit": "Sair", "select_option": "Selecione uma opção", "invalid_option": "Opção inválida.", "choose_lang": "Escolha o código de idioma", "back": "Voltar", "developer_info": "Informações do desenvolvedor"
+    },
+    "kr": {
+        "opt_change_lang": "언어 변경", "opt_tutorial": "튜토리얼", "opt_docs": "문서 읽기", "opt_resources": "리소스", "opt_contact": "연락처", "opt_login": "로그인", "opt_developer": "개발자", "opt_exit": "종료", "select_option": "옵션 선택", "invalid_option": "잘못된 옵션입니다.", "choose_lang": "언어 코드 선택", "back": "뒤로", "developer_info": "개발자 정보"
+    },
+}
+
+MENU_UI = {code: {**MENU_UI_EN, **MENU_UI_OVERRIDES.get(code, {})} for code in SUPPORTED_LANGS}
+
+
+def mt(key: str, lang: str) -> str:
+    return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
+
+
+def print_cli_banner(lang: str, color_on: bool) -> None:
+    title_art = [
+        "  ____  _      _         ____   _   _ _   _ _____ _   _ ",
+        " |  _ \(_)__ _(_)_ __   / __ \ / | | | | |_   _| | | |",
+        " | |_) | / _` | | '_ \ | |  | || | | | | | | | | |_| |",
+        " |  __/| | (_| | | | | || |__| || | | |_| | | | |  _  |",
+        " |_|   |_|\__, |_|_| |_| \____/ |_|  \___/  |_| |_| |_|",
+        "           |___/                                           ",
+    ]
+
+    print(colorize("=" * 70, Ansi.CYAN, color_on))
+    for line in title_art:
+        print(colorize(line, Ansi.BOLD + Ansi.GREEN, color_on))
+
+    print(colorize(f"  {mt('project', lang)}", Ansi.BOLD, color_on))
+    print(colorize(f"  {mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.DIM, color_on))
+    print(colorize("=" * 70, Ansi.CYAN, color_on))
+
+
+def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
+    print()
+    print(colorize(f"{mt('choose_lang', current_lang)}:", Ansi.YELLOW, color_on))
+    for code in SUPPORTED_LANGS:
+        print(f"  - {code}: {LANG_LABELS.get(code, code)}")
+    new_lang = input("> ").strip().lower()
+    if new_lang not in SUPPORTED_LANGS:
+        print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
+        return current_lang
+    set_default_lang(new_lang)
+    print(colorize(f"{mt('lang_updated', new_lang)} {new_lang}", Ansi.GREEN, color_on))
+    return new_lang
+
+
+def _open_resources_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(f"[1] {mt('res_repo', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[2] {mt('res_release', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
+        if choice == "1":
+            open_url(REPO_BASE_URL)
+        elif choice == "2":
+            open_url(RELEASES_URL)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def _open_contact_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(f"[1] {mt('contact_tiktok', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[2] {mt('contact_twitter', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
+        if choice == "1":
+            open_url(TIKTOK_URL)
+        elif choice == "2":
+            open_url(TWITTER_URL)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def show_cli_tutorial(lang: str, color_on: bool) -> None:
+    print()
+    print(colorize(mt("tutorial_title", lang), Ansi.BOLD + Ansi.CYAN, color_on))
+    print(colorize(mt("tutorial_desc", lang), Ansi.DIM, color_on))
+    print(colorize(mt("tutorial_step1", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step2", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step3", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step4", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step5", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step6", lang), Ansi.GREEN, color_on))
+
+    print()
+    print(colorize(mt("tutorial_example", lang) + ":", Ansi.YELLOW, color_on))
+    print("Opening browser for login...\n")
+    print("Paste FULL URL (pixiv://...) or paste code here:")
+    print("pixiv://account/login?code=eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw&via=login")
+    print("Detected code: eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw\n")
+    print("=== LOGIN SUCCESS ===")
+    print("access_token : uog7p1mdnJ7G3lJl30XbYQZx2otlJFwkfmfsO7gPtDU")
+    print("refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4")
+    print("expires_in   : 3600")
+
+def show_developer_info_cli(lang: str, color_on: bool) -> None:
+    print()
+    print(colorize(mt("developer_info", lang), Ansi.BOLD + Ansi.CYAN, color_on))
+    print(colorize(f"{mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.BOLD, color_on))
+    print(colorize(f"GitHub: {REPO_BASE_URL}", Ansi.BLUE, color_on))
+    print(colorize(f"TikTok: {TIKTOK_URL}", Ansi.BLUE, color_on))
+    print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
+
+
+def run_interactive_menu(lang: str, color_on: bool) -> None:
+    current_lang = lang
+    while True:
+        print()
+        print_cli_banner(current_lang, color_on)
+        print(colorize(f"[1] {mt('opt_change_lang', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[2] {mt('opt_tutorial', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[3] {mt('opt_docs', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[4] {mt('opt_resources', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[5] {mt('opt_contact', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[7] {mt('opt_developer', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
+
+        choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+
+        if choice == "1":
+            current_lang = _choose_language_interactive(current_lang, color_on)
+        elif choice == "2":
+            show_cli_tutorial(current_lang, color_on)
+        elif choice == "3":
+            open_url(README_URL)
+        elif choice == "4":
+            _open_resources_menu(current_lang, color_on)
+        elif choice == "5":
+            _open_contact_menu(current_lang, color_on)
+        elif choice == "6":
+            login(current_lang, color_on)
+        elif choice == "7":
+            show_developer_info_cli(current_lang, color_on)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
 def supported_langs_display() -> str:
     return ", ".join(f"{code} ({LANG_LABELS.get(code, code)})" for code in SUPPORTED_LANGS)
 
@@ -299,17 +555,6 @@ def detect_system_lang() -> str | None:
             mapped = map_locale_to_lang(code)
             if mapped:
                 return mapped
-
-    try:
-        loc, _enc = locale.getdefaultlocale()  # type: ignore[deprecated]
-        loc = _normalize_locale(loc)
-        if loc:
-            code = loc.split(".")[0].split("_")[0].lower()
-            mapped = map_locale_to_lang(code)
-            if mapped:
-                return mapped
-    except Exception:
-        pass
 
     try:
         loc = locale.getlocale()[0]
@@ -498,6 +743,9 @@ def main():
 
     # config
     config_parser = subparsers.add_parser("config", help="Show or set config")
+
+    # menu
+    subparsers.add_parser("menu", help="Open interactive menu")
     config_sub = config_parser.add_subparsers(dest="config_cmd")
 
     config_sub.add_parser("show", help="Show current config (default)")
@@ -541,9 +789,14 @@ def main():
             print_config(ui_lang, color_on)
             return
 
+    elif args.command == "menu":
+        lang = resolve_lang(None)
+        run_interactive_menu(lang, color_on)
+
     else:
-        parser.print_help()
-        _pause_before_exit_if_frozen()
+        # no subcommand: open interactive menu by default for better UX
+        lang = resolve_lang(None)
+        run_interactive_menu(lang, color_on)
 
 
 if __name__ == "__main__":
