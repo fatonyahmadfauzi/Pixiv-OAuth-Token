@@ -4,7 +4,7 @@ cd /d "%~dp0"
 
 REM ==========================================================
 REM build_release_zip.bat
-REM Creates: PixivOAuthRelease_vX.Y.Z.zip
+REM Creates: dist_release\PixivOAuthRelease_vX.Y.Z.zip
 REM Source priority:
 REM   1) downloads\ (if present)
 REM   2) dist_* / root fallback
@@ -13,10 +13,14 @@ REM ==========================================================
 for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
 
 set RELEASE_DIR=release
-set ZIP_NAME=PixivOAuthRelease_v%VER%.zip
+set ZIP_OUT_DIR=dist_release
+set ZIP_NAME=%ZIP_OUT_DIR%\PixivOAuthRelease_v%VER%.zip
 
 if not exist "%RELEASE_DIR%" mkdir "%RELEASE_DIR%"
+if not exist "%ZIP_OUT_DIR%" mkdir "%ZIP_OUT_DIR%"
 del /q "%RELEASE_DIR%\*" 2>nul
+del /q "%ZIP_OUT_DIR%\PixivOAuthRelease_v*.zip" 2>nul
+del /q "downloads\PixivOAuthRelease_v*.zip" 2>nul
 
 REM --- Portable (prefer downloads/) ---
 if exist "downloads\Pixiv OAuth CLi (Portable).exe" (
