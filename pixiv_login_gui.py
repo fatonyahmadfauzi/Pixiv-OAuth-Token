@@ -679,58 +679,20 @@ class App(tk.Tk):
             uniq.append(img)
         self._tutorial_images = uniq
 
-    def _render_tutorial_image(self):
-        if not hasattr(self, "tutorial_image_label"):
-            return
-
-        if not self._tutorial_images:
-            self.tutorial_image_label.configure(image="", text=self.tx("tutorial_missing"), compound="center")
-            self.tutorial_caption_var.set(self.tx("tutorial_missing"))
-            self.prev_btn.state(["disabled"])
-            self.next_btn.state(["disabled"])
-            self.counter_var.set("0/0")
-            return
-
-        total = len(self._tutorial_images)
-        self._tutorial_index = max(0, min(self._tutorial_index, total - 1))
-        image_path = self._tutorial_images[self._tutorial_index]
-
-        try:
-            self._tutorial_photo = tk.PhotoImage(file=str(image_path))
-            self.tutorial_image_label.configure(image=self._tutorial_photo, text="")
-        except tk.TclError:
-            self.tutorial_image_label.configure(image="", text=f"Cannot open image: {image_path.name}", compound="center")
-
-        code = self.current_lang_code()
-        captions = TUTORIAL_CAPTIONS.get(code, TUTORIAL_CAPTIONS["en"])
-        caption = captions[self._tutorial_index] if self._tutorial_index < len(captions) else image_path.name
-        self.tutorial_caption_var.set(caption)
-        self.counter_var.set(f"{self._tutorial_index + 1}/{total}")
-
-        if self._tutorial_index <= 0:
-            self.prev_btn.state(["disabled"])
-        else:
-            self.prev_btn.state(["!disabled"])
-
-        if self._tutorial_index >= total - 1:
-            self.next_btn.state(["disabled"])
-        else:
-            self.next_btn.state(["!disabled"])
-
-    def _tutorial_prev(self):
-        self._tutorial_index -= 1
-        self._render_tutorial_image()
-
-    def _tutorial_next(self):
-        self._tutorial_index += 1
-        self._render_tutorial_image()
+    def _scaled_tutorial_photo(self, image_path: Path, max_width: int = 860):
+        photo = tk.PhotoImage(file=str(image_path))
+        w = max(photo.width(), 1)
+        factor = max(1, (w + max_width - 1) // max_width)
+        if factor > 1:
+            photo = photo.subsample(factor, factor)
+        return photo
 
     def show_tutorial(self):
         self._load_tutorial_images()
 
         tutorial = tk.Toplevel(self)
         tutorial.title(self.tx("tutorial_title"))
-        tutorial.geometry("960x700")
+        tutorial.geometry("980x740")
         tutorial.minsize(860, 620)
         tutorial.configure(bg="#f3f5f9")
 
@@ -743,28 +705,61 @@ class App(tk.Tk):
         card = ttk.LabelFrame(container, text=self.tx("tutorial_steps"), padding=12)
         card.pack(fill="both", expand=True)
 
-        self.tutorial_image_label = ttk.Label(card, anchor="center")
-        self.tutorial_image_label.pack(fill="both", expand=True, pady=(0, 8))
+        canvas = tk.Canvas(card, bg="#ffffff", highlightthickness=0)
+        vscroll = ttk.Scrollbar(card, orient="vertical", command=canvas.yview)
+        canvas.configure(yscrollcommand=vscroll.set)
 
-        self.tutorial_caption_var = tk.StringVar(value="")
-        ttk.Label(card, textvariable=self.tutorial_caption_var, style="TLabel").pack(anchor="w")
+        vscroll.pack(side="right", fill="y")
+        canvas.pack(side="left", fill="both", expand=True)
 
-        nav = ttk.Frame(card, style="Card.TFrame")
-        nav.pack(fill="x", pady=(10, 0))
+        content = ttk.Frame(canvas, style="Card.TFrame")
+        window_id = canvas.create_window((0, 0), window=content, anchor="nw")
 
-        self.prev_btn = ttk.Button(nav, text=self.tx("tutorial_prev"), style="Secondary.TButton", command=self._tutorial_prev)
-        self.prev_btn.pack(side="left")
+        def on_content_configure(_event=None):
+            canvas.configure(scrollregion=canvas.bbox("all"))
 
-        self.counter_var = tk.StringVar(value="0/0")
-        ttk.Label(nav, textvariable=self.counter_var, style="TLabel").pack(side="left", padx=12)
+        def on_canvas_configure(event):
+            canvas.itemconfigure(window_id, width=event.width)
 
-        self.next_btn = ttk.Button(nav, text=self.tx("tutorial_next"), style="Secondary.TButton", command=self._tutorial_next)
-        self.next_btn.pack(side="left")
+        content.bind("<Configure>", on_content_configure)
+        canvas.bind("<Configure>", on_canvas_configure)
 
-        ttk.Button(nav, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url(README_URL)).pack(side="right")
+        def _on_mousewheel(event):
+            canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
-        self._tutorial_index = 0
-        self._render_tutorial_image()
+        canvas.bind_all("<MouseWheel>", _on_mousewheel)
+        tutorial.bind("<Destroy>", lambda _e: canvas.unbind_all("<MouseWheel>"))
+
+        self._tutorial_photos = []
+
+        if not self._tutorial_images:
+            ttk.Label(content, text=self.tx("tutorial_missing"), style="TLabel").pack(anchor="w", pady=8)
+        else:
+            code = self.current_lang_code()
+            captions = TUTORIAL_CAPTIONS.get(code, TUTORIAL_CAPTIONS["en"])
+
+            for i, image_path in enumerate(self._tutorial_images, start=1):
+                caption = captions[i - 1] if i - 1 < len(captions) else image_path.name
+
+                section = ttk.Frame(content, style="Card.TFrame", padding=(8, 8, 8, 16))
+                section.pack(fill="x", expand=True)
+
+                ttk.Label(section, text=f"{i}. {caption}", style="TLabelframe.Label").pack(anchor="w", pady=(0, 8))
+
+                try:
+                    photo = self._scaled_tutorial_photo(image_path)
+                    self._tutorial_photos.append(photo)
+                    img_label = ttk.Label(section, image=photo)
+                    img_label.pack(anchor="center", fill="x", expand=True)
+                except tk.TclError:
+                    ttk.Label(section, text=f"Cannot open image: {image_path.name}", style="TLabel").pack(anchor="w")
+
+                ttk.Separator(content, orient="horizontal").pack(fill="x", pady=(2, 10))
+
+        footer = ttk.Frame(container, style="App.TFrame")
+        footer.pack(fill="x", pady=(10, 0))
+        ttk.Button(footer, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url(README_URL)).pack(side="right")
+
 
 
     def log(self, msg: str):
