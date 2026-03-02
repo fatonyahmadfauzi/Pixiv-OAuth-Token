@@ -231,6 +231,7 @@ MENU_UI_EN = {
     "opt_docs": "Read the Docs",
     "opt_resources": "Resources",
     "opt_contact": "Contact",
+    "opt_login": "Login",
     "opt_exit": "Exit",
     "select_option": "Select option",
     "invalid_option": "Invalid option.",
@@ -243,6 +244,15 @@ MENU_UI_EN = {
     "contact_tiktok": "TikTok",
     "contact_twitter": "Twitter / X",
     "back": "Back",
+    "tutorial_title": "CLI Tutorial",
+    "tutorial_desc": "Follow these steps to get Pixiv OAuth tokens directly from this CLI.",
+    "tutorial_step1": "1) Choose option [6] Login.",
+    "tutorial_step2": "2) Browser opens to Pixiv login page.",
+    "tutorial_step3": "3) After login, copy full pixiv:// URL callback.",
+    "tutorial_step4": "4) Paste URL/code in CLI prompt.",
+    "tutorial_step5": "5) CLI detects code and exchanges token.",
+    "tutorial_step6": "6) access_token and refresh_token are shown.",
+    "tutorial_example": "Example output",
 }
 
 MENU_UI_OVERRIDES = {
@@ -253,6 +263,7 @@ MENU_UI_OVERRIDES = {
         "opt_docs": "Baca Dokumentasi",
         "opt_resources": "Resource",
         "opt_contact": "Kontak",
+        "opt_login": "Login",
         "opt_exit": "Keluar",
         "select_option": "Pilih opsi",
         "invalid_option": "Opsi tidak valid.",
@@ -263,6 +274,15 @@ MENU_UI_OVERRIDES = {
         "res_release": "Rilis Terbaru",
         "contact_title": "Kontak",
         "back": "Kembali",
+        "tutorial_title": "Tutorial CLI",
+        "tutorial_desc": "Ikuti langkah berikut untuk mendapatkan token Pixiv OAuth langsung dari CLI ini.",
+        "tutorial_step1": "1) Pilih menu [6] Login.",
+        "tutorial_step2": "2) Browser akan terbuka ke halaman login Pixiv.",
+        "tutorial_step3": "3) Setelah login, salin URL callback pixiv:// lengkap.",
+        "tutorial_step4": "4) Paste URL/code pada prompt CLI.",
+        "tutorial_step5": "5) CLI mendeteksi code dan menukar token.",
+        "tutorial_step6": "6) access_token dan refresh_token ditampilkan.",
+        "tutorial_example": "Contoh output",
     },
     "jp": {
         "menu_title": "メインメニュー",
@@ -271,6 +291,7 @@ MENU_UI_OVERRIDES = {
         "opt_docs": "ドキュメントを読む",
         "opt_resources": "リソース",
         "opt_contact": "連絡先",
+        "opt_login": "ログイン",
         "opt_exit": "終了",
         "select_option": "オプションを選択",
         "invalid_option": "無効なオプションです。",
@@ -352,6 +373,27 @@ def _open_contact_menu(lang: str, color_on: bool) -> None:
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
+def show_cli_tutorial(lang: str, color_on: bool) -> None:
+    print()
+    print(colorize(mt("tutorial_title", lang), Ansi.BOLD + Ansi.CYAN, color_on))
+    print(colorize(mt("tutorial_desc", lang), Ansi.DIM, color_on))
+    print(colorize(mt("tutorial_step1", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step2", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step3", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step4", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step5", lang), Ansi.GREEN, color_on))
+    print(colorize(mt("tutorial_step6", lang), Ansi.GREEN, color_on))
+
+    print()
+    print(colorize(mt("tutorial_example", lang) + ":", Ansi.YELLOW, color_on))
+    print("Opening browser for login...\n")
+    print("Paste FULL URL (pixiv://...) or paste code here:")
+    print("pixiv://account/login?code=eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw&via=login")
+    print("Detected code: eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw\n")
+    print("=== LOGIN SUCCESS ===")
+    print("access_token : uog7p1mdnJ7G3lJl30XbYQZx2otlJFwkfmfsO7gPtDU")
+    print("refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4")
+    print("expires_in   : 3600")
 
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
@@ -363,6 +405,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         print(colorize(f"[3] {mt('opt_docs', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[4] {mt('opt_resources', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[5] {mt('opt_contact', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
 
         choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
@@ -370,13 +413,15 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         if choice == "1":
             current_lang = _choose_language_interactive(current_lang, color_on)
         elif choice == "2":
-            open_url(TUTORIAL_URL)
+            show_cli_tutorial(current_lang, color_on)
         elif choice == "3":
             open_url(README_URL)
         elif choice == "4":
             _open_resources_menu(current_lang, color_on)
         elif choice == "5":
             _open_contact_menu(current_lang, color_on)
+        elif choice == "6":
+            login(current_lang, color_on)
         elif choice == "0":
             return
         else:
