@@ -299,7 +299,6 @@ function applyLang() {
     modesTitle: "modesTitle",
     requirementsTitle: "requirementsTitle",
     oauthTitle: "oauthTitle",
-    langLabel: "lang",
     openLoginBtnLabel: "open",
     openLoginBtnLabel2: "open",
     exchangeBtnLabel: "exchange",
@@ -332,7 +331,8 @@ function applyLang() {
   };
 
   Object.entries(map).forEach(([id, key]) => {
-    q(id).textContent = t(key);
+    const el = q(id);
+    if (el) el.textContent = t(key);
   });
 
   q("inputCode").placeholder = t("placeholder");
