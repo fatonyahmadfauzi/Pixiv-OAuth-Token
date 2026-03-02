@@ -330,7 +330,6 @@ UI = {
     },
 }
 
-
 EXTRA_UI_EN = {
     "app_header": "Pixiv OAuth Token",
     "app_subtitle": "Modern login helper with quick token exchange",
