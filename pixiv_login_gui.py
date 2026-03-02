@@ -39,17 +39,17 @@ CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
 LANG_CHOICES = [
-    ("🇬🇧 English", "en"),
-    ("🇵🇱 Polski", "pl"),
-    ("🇨🇳 中文", "zh"),
-    ("🇯🇵 日本語", "jp"),
-    ("🇩🇪 Deutsch", "de"),
-    ("🇫🇷 Français", "fr"),
-    ("🇪🇸 Español", "es"),
-    ("🇷🇺 Русский", "ru"),
-    ("🇵🇹 Português", "pt"),
-    ("🇮🇩 Indonesia", "id"),
-    ("🇰🇷 한국어", "kr"),
+    ("🇬🇧  English", "en"),
+    ("🇵🇱  Polski", "pl"),
+    ("🇨🇳  中文", "zh"),
+    ("🇯🇵  日本語", "jp"),
+    ("🇩🇪  Deutsch", "de"),
+    ("🇫🇷  Français", "fr"),
+    ("🇪🇸  Español", "es"),
+    ("🇷🇺  Русский", "ru"),
+    ("🇵🇹  Português", "pt"),
+    ("🇮🇩  Indonesia", "id"),
+    ("🇰🇷  한국어", "kr"),
 ]
 
 LANG_NAME_TO_CODE = {name: code for name, code in LANG_CHOICES}
@@ -428,25 +428,46 @@ class App(tk.Tk):
 
     # ---------- UI ----------
     def _build_ui(self):
-        top = ttk.Frame(self, padding=10)
-        top.pack(fill="x")
+        self.configure(bg="#f3f5f9")
+
+        style = ttk.Style()
+        style.theme_use("clam")
+
+        style.configure("App.TFrame", background="#f3f5f9")
+        style.configure("Card.TFrame", background="#ffffff", relief="flat")
+        style.configure("TLabel", background="#f3f5f9", foreground="#1f2937", font=("Segoe UI", 10))
+        style.configure("Header.TLabel", background="#f3f5f9", foreground="#111827", font=("Segoe UI Semibold", 14))
+        style.configure("Sub.TLabel", background="#f3f5f9", foreground="#6b7280", font=("Segoe UI", 9))
+        style.configure("TCheckbutton", background="#ffffff", foreground="#374151", font=("Segoe UI", 10))
+        style.configure("TLabelframe", background="#ffffff", foreground="#111827", borderwidth=1, relief="solid")
+        style.configure("TLabelframe.Label", background="#ffffff", foreground="#111827", font=("Segoe UI Semibold", 10))
+        style.configure("Primary.TButton", font=("Segoe UI Semibold", 10), padding=(14, 8), foreground="#ffffff", background="#2563eb", borderwidth=0)
+        style.map("Primary.TButton", background=[("active", "#1d4ed8")])
+        style.configure("Secondary.TButton", font=("Segoe UI", 10), padding=(12, 8), foreground="#1f2937", background="#e5e7eb", borderwidth=0)
+        style.map("Secondary.TButton", background=[("active", "#d1d5db")])
+        style.configure("Lang.TCombobox", font=("Segoe UI Emoji", 10), padding=6)
+
+        root = ttk.Frame(self, style="App.TFrame", padding=14)
+        root.pack(fill="both", expand=True)
+
+        header = ttk.Frame(root, style="App.TFrame")
+        header.pack(fill="x", pady=(0, 10))
+
+        ttk.Label(header, text="Pixiv OAuth Token", style="Header.TLabel").pack(anchor="w")
+        ttk.Label(header, text="Modern login helper with quick token exchange", style="Sub.TLabel").pack(anchor="w")
+
+        top = ttk.Frame(root, style="Card.TFrame", padding=12)
+        top.pack(fill="x", pady=(0, 10))
 
         self.lang_label = ttk.Label(top, text="Language:")
         self.lang_label.pack(side="left")
-
-
-        style = ttk.Style()
-        try:
-            style.configure("Lang.TCombobox", font=("Segoe UI Emoji", 11))
-        except Exception:
-            pass
 
         self.lang_combo = ttk.Combobox(
             top,
             style="Lang.TCombobox",
             textvariable=self.lang_var,
             values=[name for name, _ in LANG_CHOICES],
-            width=20,
+            width=22,
             state="readonly",
         )
         self.lang_combo.pack(side="left", padx=(6, 16))
@@ -455,41 +476,51 @@ class App(tk.Tk):
         self.save_lang_check = ttk.Checkbutton(top, text="Save as default", variable=self.save_lang_var, command=self.apply_ui_language)
         self.save_lang_check.pack(side="left")
 
-        self.open_login_btn = ttk.Button(top, text="Open Login Page", command=self.open_login)
+        self.open_login_btn = ttk.Button(top, text="Open Login Page", style="Primary.TButton", command=self.open_login)
         self.open_login_btn.pack(side="right")
 
-        self.refresh_btn = ttk.Button(top, text="Refresh Token", command=self.refresh_token)
+        self.refresh_btn = ttk.Button(top, text="Refresh Token", style="Secondary.TButton", command=self.refresh_token)
         self.refresh_btn.pack(side="right", padx=(0, 8))
 
-        self.paste_frame = ttk.LabelFrame(self, text="Paste URL / Code", padding=10)
-        self.paste_frame.pack(fill="x", padx=10, pady=(0, 10))
+        self.paste_frame = ttk.LabelFrame(root, text="Paste URL / Code", padding=12)
+        self.paste_frame.pack(fill="x", pady=(0, 10))
 
-        self.code_entry = ttk.Entry(self.paste_frame)
+        self.code_entry = ttk.Entry(self.paste_frame, font=("Segoe UI", 10))
         self.code_entry.pack(fill="x", expand=True)
 
         btn_row = ttk.Frame(self.paste_frame)
         btn_row.pack(fill="x", pady=(8, 0))
 
-        self.exchange_btn = ttk.Button(btn_row, text="Exchange Token", command=self.exchange_token)
+        self.exchange_btn = ttk.Button(btn_row, text="Exchange Token", style="Primary.TButton", command=self.exchange_token)
         self.exchange_btn.pack(side="right")
 
-        copy_row = ttk.Frame(self, padding=(10, 0, 10, 10))
+        copy_row = ttk.Frame(root, style="App.TFrame", padding=(0, 0, 0, 10))
         copy_row.pack(fill="x")
 
-        self.copy_access_btn = ttk.Button(copy_row, text="Copy access_token", command=self.copy_access_token)
+        self.copy_access_btn = ttk.Button(copy_row, text="Copy access_token", style="Secondary.TButton", command=self.copy_access_token)
         self.copy_access_btn.pack(side="left")
 
-        self.copy_refresh_btn = ttk.Button(copy_row, text="Copy refresh_token", command=self.copy_refresh_token)
+        self.copy_refresh_btn = ttk.Button(copy_row, text="Copy refresh_token", style="Secondary.TButton", command=self.copy_refresh_token)
         self.copy_refresh_btn.pack(side="left", padx=(8, 0))
 
-        self.output_frame = ttk.LabelFrame(self, text="Output", padding=10)
-        self.output_frame.pack(fill="both", expand=True, padx=10, pady=(0, 10))
+        self.output_frame = ttk.LabelFrame(root, text="Output", padding=12)
+        self.output_frame.pack(fill="both", expand=True)
 
-        self.output = tk.Text(self.output_frame, wrap="word")
+        self.output = tk.Text(
+            self.output_frame,
+            wrap="word",
+            bg="#0f172a",
+            fg="#e2e8f0",
+            insertbackground="#e2e8f0",
+            relief="flat",
+            font=("Cascadia Mono", 10),
+            padx=10,
+            pady=10,
+        )
         self.output.pack(fill="both", expand=True)
 
-        self.geometry("820x600")
-        self.minsize(820, 600)
+        self.geometry("860x620")
+        self.minsize(860, 620)
 
     def log(self, msg: str):
         self.output.insert("end", msg + "\n")
