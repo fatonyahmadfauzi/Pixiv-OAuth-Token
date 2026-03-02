@@ -385,7 +385,6 @@ def _open_resources_menu(lang: str, color_on: bool) -> None:
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
-
 def _open_contact_menu(lang: str, color_on: bool) -> None:
     while True:
         print()
@@ -431,7 +430,6 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print(colorize(f"GitHub: {REPO_BASE_URL}", Ansi.BLUE, color_on))
     print(colorize(f"TikTok: {TIKTOK_URL}", Ansi.BLUE, color_on))
     print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
-
 
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
