@@ -232,6 +232,7 @@ MENU_UI_EN = {
     "opt_resources": "Resources",
     "opt_contact": "Contact",
     "opt_login": "Login",
+    "opt_developer": "Developer",
     "opt_exit": "Exit",
     "select_option": "Select option",
     "invalid_option": "Invalid option.",
@@ -253,6 +254,7 @@ MENU_UI_EN = {
     "tutorial_step5": "5) CLI detects code and exchanges token.",
     "tutorial_step6": "6) access_token and refresh_token are shown.",
     "tutorial_example": "Example output",
+    "developer_info": "Developer Information",
 }
 
 MENU_UI_OVERRIDES = {
@@ -292,11 +294,38 @@ MENU_UI_OVERRIDES = {
         "opt_resources": "リソース",
         "opt_contact": "連絡先",
         "opt_login": "ログイン",
+        "opt_developer": "開発者",
         "opt_exit": "終了",
         "select_option": "オプションを選択",
         "invalid_option": "無効なオプションです。",
         "choose_lang": "言語コードを選択",
         "back": "戻る",
+        "developer_info": "開発者情報",
+    },
+
+    "pl": {
+        "opt_change_lang": "Zmień język", "opt_tutorial": "Tutorial", "opt_docs": "Czytaj dokumentację", "opt_resources": "Zasoby", "opt_contact": "Kontakt", "opt_login": "Logowanie", "opt_developer": "Deweloper", "opt_exit": "Wyjście", "select_option": "Wybierz opcję", "invalid_option": "Nieprawidłowa opcja.", "choose_lang": "Wybierz kod języka", "back": "Wstecz", "developer_info": "Informacje o deweloperze"
+    },
+    "zh": {
+        "opt_change_lang": "更改语言", "opt_tutorial": "教程", "opt_docs": "阅读文档", "opt_resources": "资源", "opt_contact": "联系", "opt_login": "登录", "opt_developer": "开发者", "opt_exit": "退出", "select_option": "选择选项", "invalid_option": "无效选项。", "choose_lang": "选择语言代码", "back": "返回", "developer_info": "开发者信息"
+    },
+    "de": {
+        "opt_change_lang": "Sprache ändern", "opt_tutorial": "Tutorial", "opt_docs": "Dokumentation lesen", "opt_resources": "Ressourcen", "opt_contact": "Kontakt", "opt_login": "Login", "opt_developer": "Entwickler", "opt_exit": "Beenden", "select_option": "Option wählen", "invalid_option": "Ungültige Option.", "choose_lang": "Sprachcode wählen", "back": "Zurück", "developer_info": "Entwicklerinfo"
+    },
+    "fr": {
+        "opt_change_lang": "Changer la langue", "opt_tutorial": "Tutoriel", "opt_docs": "Lire la documentation", "opt_resources": "Ressources", "opt_contact": "Contact", "opt_login": "Connexion", "opt_developer": "Développeur", "opt_exit": "Quitter", "select_option": "Choisir une option", "invalid_option": "Option invalide.", "choose_lang": "Choisir le code langue", "back": "Retour", "developer_info": "Informations développeur"
+    },
+    "es": {
+        "opt_change_lang": "Cambiar idioma", "opt_tutorial": "Tutorial", "opt_docs": "Leer la documentación", "opt_resources": "Recursos", "opt_contact": "Contacto", "opt_login": "Iniciar sesión", "opt_developer": "Desarrollador", "opt_exit": "Salir", "select_option": "Seleccionar opción", "invalid_option": "Opción no válida.", "choose_lang": "Elige código de idioma", "back": "Volver", "developer_info": "Información del desarrollador"
+    },
+    "ru": {
+        "opt_change_lang": "Сменить язык", "opt_tutorial": "Туториал", "opt_docs": "Читать документацию", "opt_resources": "Ресурсы", "opt_contact": "Контакты", "opt_login": "Вход", "opt_developer": "Разработчик", "opt_exit": "Выход", "select_option": "Выберите опцию", "invalid_option": "Неверная опция.", "choose_lang": "Выберите код языка", "back": "Назад", "developer_info": "Информация о разработчике"
+    },
+    "pt": {
+        "opt_change_lang": "Mudar idioma", "opt_tutorial": "Tutorial", "opt_docs": "Ler a documentação", "opt_resources": "Recursos", "opt_contact": "Contato", "opt_login": "Login", "opt_developer": "Desenvolvedor", "opt_exit": "Sair", "select_option": "Selecione uma opção", "invalid_option": "Opção inválida.", "choose_lang": "Escolha o código de idioma", "back": "Voltar", "developer_info": "Informações do desenvolvedor"
+    },
+    "kr": {
+        "opt_change_lang": "언어 변경", "opt_tutorial": "튜토리얼", "opt_docs": "문서 읽기", "opt_resources": "리소스", "opt_contact": "연락처", "opt_login": "로그인", "opt_developer": "개발자", "opt_exit": "종료", "select_option": "옵션 선택", "invalid_option": "잘못된 옵션입니다.", "choose_lang": "언어 코드 선택", "back": "뒤로", "developer_info": "개발자 정보"
     },
 }
 
@@ -395,6 +424,15 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
     print("refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4")
     print("expires_in   : 3600")
 
+def show_developer_info_cli(lang: str, color_on: bool) -> None:
+    print()
+    print(colorize(mt("developer_info", lang), Ansi.BOLD + Ansi.CYAN, color_on))
+    print(colorize(f"{mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.BOLD, color_on))
+    print(colorize(f"GitHub: {REPO_BASE_URL}", Ansi.BLUE, color_on))
+    print(colorize(f"TikTok: {TIKTOK_URL}", Ansi.BLUE, color_on))
+    print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
+
+
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
     while True:
@@ -406,6 +444,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         print(colorize(f"[4] {mt('opt_resources', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[5] {mt('opt_contact', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[7] {mt('opt_developer', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
 
         choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
@@ -422,6 +461,8 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             _open_contact_menu(current_lang, color_on)
         elif choice == "6":
             login(current_lang, color_on)
+        elif choice == "7":
+            show_developer_info_cli(current_lang, color_on)
         elif choice == "0":
             return
         else:
