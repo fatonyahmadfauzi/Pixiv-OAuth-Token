@@ -36,6 +36,8 @@ const I18N = {
     downloadsTitle: "Downloads", downloadsDesc: "Download latest build directly from GitHub Releases.",
     quickCmdTitle: "Quick Command", quickCmdDesc: "Copy command for PowerShell/CMD download and pip install.",
     copyPs: "Copy PowerShell", copyCmd: "Copy CMD", copyPip: "Copy pip command",
+    navConsole: "Console", navDownloads: "Downloads", navQuickCmd: "Quick Cmd", navTutorial: "Tutorial",
+    tutorialTitle: "Tutorial", tutorialDesc: "Fill this section with ordered screenshots to guide users from login to token exchange.",
     errApiNotFound: "API endpoint not found (404). Deploy /api/token on Vercel first.",
     errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
     copiedPs: "PowerShell command copied.", copiedCmd: "CMD command copied.", copiedPip: "pip command copied."
@@ -56,6 +58,8 @@ const I18N = {
     downloadsTitle: "Unduhan", downloadsDesc: "Unduh build terbaru langsung dari GitHub Releases.",
     quickCmdTitle: "Perintah Cepat", quickCmdDesc: "Salin command download PowerShell/CMD dan install pip.",
     copyPs: "Salin PowerShell", copyCmd: "Salin CMD", copyPip: "Salin perintah pip",
+    navConsole: "Konsol", navDownloads: "Unduhan", navQuickCmd: "Perintah Cepat", navTutorial: "Tutorial",
+    tutorialTitle: "Tutorial", tutorialDesc: "Isi bagian ini dengan screenshot berurutan untuk panduan login sampai tukar token.",
     errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token di Vercel dulu.",
     errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy.",
     copiedPs: "Command PowerShell tersalin.", copiedCmd: "Command CMD tersalin.", copiedPip: "Command pip tersalin."
@@ -297,6 +301,7 @@ function applyLang() {
     oauthTitle: "oauthTitle",
     langLabel: "lang",
     openLoginBtnLabel: "open",
+    openLoginBtnLabel2: "open",
     exchangeBtnLabel: "exchange",
     refreshBtnLabel: "refresh",
     resultTitle: "result",
@@ -317,7 +322,13 @@ function applyLang() {
     modeWeb: "modeWeb",
     reqPy: "reqPy",
     reqDeps: "reqDeps",
-    reqBuild: "reqBuild"
+    reqBuild: "reqBuild",
+    navConsole: "navConsole",
+    navDownloads: "navDownloads",
+    navQuickCmd: "navQuickCmd",
+    navTutorial: "navTutorial",
+    tutorialTitle: "tutorialTitle",
+    tutorialDesc: "tutorialDesc"
   };
 
   Object.entries(map).forEach(([id, key]) => {
