@@ -449,7 +449,7 @@ class App(tk.Tk):
         self.code_verifier: str | None = None
         self.last_access_token: str | None = None
         self.last_refresh_token: str | None = self.cfg.get("refresh_token")
-        self.tutorial_dir = Path(__file__).resolve().parent / "tutorial_images"
+        self.tutorial_dirs = self._resolve_tutorial_dirs()
         self._tutorial_images: list[Path] = []
         self._tutorial_index = 0
         self._tutorial_photo = None
@@ -500,6 +500,30 @@ class App(tk.Tk):
             save_config(self.cfg)
 
     # ---------- UI ----------
+    def _resolve_tutorial_dirs(self):
+        dirs = []
+
+        # 1) Preferred: beside executable/script (persistent app folder)
+        dirs.append(app_dir() / "tutorial_images")
+
+        # 2) Source checkout location (when running from repo)
+        dirs.append(Path(__file__).resolve().parent / "tutorial_images")
+
+        # 3) PyInstaller temp extraction folder (onefile runtime)
+        meipass = getattr(sys, "_MEIPASS", None)
+        if meipass:
+            dirs.append(Path(meipass) / "tutorial_images")
+
+        # unique order-preserving
+        uniq = []
+        seen = set()
+        for d in dirs:
+            key = str(d)
+            if key not in seen:
+                seen.add(key)
+                uniq.append(d)
+        return uniq
+
     def _build_ui(self):
         self.configure(bg="#f3f5f9")
 
@@ -637,8 +661,23 @@ class App(tk.Tk):
         )
 
     def _load_tutorial_images(self):
-        self._tutorial_images = sorted(self.tutorial_dir.glob("*.png"))
-        self._tutorial_images += sorted(self.tutorial_dir.glob("*.gif"))
+        images = []
+        for d in self.tutorial_dirs:
+            if not d.exists():
+                continue
+            images.extend(sorted(d.glob("*.png")))
+            images.extend(sorted(d.glob("*.gif")))
+
+        # unique by filename first occurrence to avoid duplicates from multiple dirs
+        seen = set()
+        uniq = []
+        for img in images:
+            k = img.name.lower()
+            if k in seen:
+                continue
+            seen.add(k)
+            uniq.append(img)
+        self._tutorial_images = uniq
 
     def _render_tutorial_image(self):
         if not hasattr(self, "tutorial_image_label"):

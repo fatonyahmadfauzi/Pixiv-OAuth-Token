@@ -20,6 +20,7 @@ if not exist "%RELEASE_DIR%" mkdir "%RELEASE_DIR%"
 if not exist "%ZIP_OUT_DIR%" mkdir "%ZIP_OUT_DIR%"
 del /q "%RELEASE_DIR%\*" 2>nul
 del /q "%ZIP_OUT_DIR%\PixivOAuthRelease_v*.zip" 2>nul
+del /q "downloads\PixivOAuthRelease_v*.zip" 2>nul
 
 REM --- Portable (prefer downloads/) ---
 if exist "downloads\Pixiv OAuth CLi (Portable).exe" (
