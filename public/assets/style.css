@@ -96,3 +96,19 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .actions>.btn{width:100%}
   .hero-actions .btn{width:100%}
 }
+
+/* Tutorial dedicated page */
+.tutorial-page{font-family:"Plus Jakarta Sans","Inter","Segoe UI",system-ui,sans-serif}
+.tutorial-hero h1{margin:0;font-size:clamp(2rem,4.5vw,3.3rem);letter-spacing:.01em}
+.standalone-tutorial h2{margin-top:0;font-size:clamp(1.4rem,3vw,2rem)}
+.standalone-tutorial .tutorial-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.standalone-tutorial .tutorial-item{border-radius:14px;padding:12px;background:#0a1326}
+.standalone-tutorial .tutorial-item figcaption{font-size:.95rem;letter-spacing:.01em}
+.tutorial-link-card .btn{width:fit-content}
+
+@media (max-width:980px){
+  .standalone-tutorial .tutorial-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:700px){
+  .standalone-tutorial .tutorial-grid{grid-template-columns:1fr}
+}
