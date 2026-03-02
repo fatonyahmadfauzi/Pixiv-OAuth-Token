@@ -34,6 +34,12 @@ AUTH_TOKEN_URL = "https://oauth.secure.pixiv.net/auth/token"
 CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT"
 CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 
+REPO_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token"
+README_URL = f"{REPO_BASE_URL}/blob/master/README.md"
+RELEASES_URL = f"{REPO_BASE_URL}/releases"
+TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
+TWITTER_URL = "https://x.com/fatonyahmad89"
+DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 
 # ===== LANGUAGE =====
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
@@ -381,7 +387,7 @@ class App(tk.Tk):
         default_code = self.cfg.get("default_lang", "en")
         if default_code not in SUPPORTED_LANGS:
             default_code = "en"
-        default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧 English")
+        default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧  English")
 
         self.code_verifier: str | None = None
         self.last_access_token: str | None = None
@@ -416,6 +422,7 @@ class App(tk.Tk):
         self.copy_access_btn.config(text=self.t("copy_access"))
         self.copy_refresh_btn.config(text=self.t("copy_refresh"))
         self.output_frame.config(text=self.t("output"))
+        self.docs_btn.config(text="Read the Docs")
 
         if self.save_lang_var.get():
             self.cfg["default_lang"] = self.current_lang_code()
@@ -431,7 +438,12 @@ class App(tk.Tk):
         self.configure(bg="#f3f5f9")
 
         style = ttk.Style()
-        style.theme_use("clam")
+        try:
+            style.theme_use("clam")
+        except tk.TclError:
+            pass
+
+        self._build_menu()
 
         style.configure("App.TFrame", background="#f3f5f9")
         style.configure("Card.TFrame", background="#ffffff", relief="flat")
@@ -479,6 +491,9 @@ class App(tk.Tk):
         self.open_login_btn = ttk.Button(top, text="Open Login Page", style="Primary.TButton", command=self.open_login)
         self.open_login_btn.pack(side="right")
 
+        self.docs_btn = ttk.Button(top, text="Read the Docs", style="Secondary.TButton", command=lambda: open_url(README_URL))
+        self.docs_btn.pack(side="right", padx=(0, 8))
+
         self.refresh_btn = ttk.Button(top, text="Refresh Token", style="Secondary.TButton", command=self.refresh_token)
         self.refresh_btn.pack(side="right", padx=(0, 8))
 
@@ -521,6 +536,83 @@ class App(tk.Tk):
 
         self.geometry("860x620")
         self.minsize(860, 620)
+
+    def _build_menu(self):
+        menubar = tk.Menu(self)
+
+        docs_menu = tk.Menu(menubar, tearoff=0)
+        docs_menu.add_command(label="📘 Read the Docs (GitHub README)", command=lambda: open_url(README_URL))
+        menubar.add_cascade(label="Docs", menu=docs_menu)
+
+        tutorial_menu = tk.Menu(menubar, tearoff=0)
+        tutorial_menu.add_command(label="🧭 Open Tutorial", command=self.show_tutorial)
+        menubar.add_cascade(label="Tutorial", menu=tutorial_menu)
+
+        resource_menu = tk.Menu(menubar, tearoff=0)
+        resource_menu.add_command(label="GitHub Repository", command=lambda: open_url(REPO_BASE_URL))
+        resource_menu.add_command(label="Latest Releases", command=lambda: open_url(RELEASES_URL))
+        menubar.add_cascade(label="Resources", menu=resource_menu)
+
+        contact_menu = tk.Menu(menubar, tearoff=0)
+        contact_menu.add_command(label="TikTok", command=lambda: open_url(TIKTOK_URL))
+        contact_menu.add_command(label="Twitter / X", command=lambda: open_url(TWITTER_URL))
+        menubar.add_cascade(label="Contact", menu=contact_menu)
+
+        developer_menu = tk.Menu(menubar, tearoff=0)
+        developer_menu.add_command(label=f"Developer: {DEVELOPER_NAME}", command=self.show_developer_info)
+        menubar.add_cascade(label="Developer", menu=developer_menu)
+
+        self.config(menu=menubar)
+
+    def show_developer_info(self):
+        messagebox.showinfo(
+            "Developer",
+            f"{DEVELOPER_NAME}\n\nGitHub: {REPO_BASE_URL}\nTikTok: {TIKTOK_URL}\nTwitter/X: {TWITTER_URL}",
+        )
+
+    def show_tutorial(self):
+        tutorial = tk.Toplevel(self)
+        tutorial.title("Tutorial - Pixiv OAuth Token GUI")
+        tutorial.geometry("760x520")
+        tutorial.minsize(700, 480)
+        tutorial.configure(bg="#f3f5f9")
+
+        container = ttk.Frame(tutorial, style="App.TFrame", padding=16)
+        container.pack(fill="both", expand=True)
+
+        ttk.Label(container, text="Tutorial Penggunaan", style="Header.TLabel").pack(anchor="w")
+        ttk.Label(container, text="Panduan cepat agar proses login dan exchange token lebih mudah.", style="Sub.TLabel").pack(anchor="w", pady=(0, 12))
+
+        card = ttk.LabelFrame(container, text="Langkah-langkah", padding=12)
+        card.pack(fill="both", expand=True)
+
+        steps = [
+            "1) Klik 'Open Login Page' untuk membuka login Pixiv.",
+            "2) Login lalu copy URL pixiv://... atau kode authorization.",
+            "3) Paste di kolom 'Paste URL / Code'.",
+            "4) Klik 'Exchange Token' untuk mendapatkan access_token dan refresh_token.",
+            "5) Gunakan tombol copy untuk menyalin token yang dibutuhkan.",
+        ]
+        for step in steps:
+            ttk.Label(card, text=f"• {step}", style="TLabel").pack(anchor="w", pady=2)
+
+        preview = tk.Frame(card, bg="#e5e7eb", height=200, bd=1, relief="solid")
+        preview.pack(fill="x", pady=(12, 8))
+        preview.pack_propagate(False)
+
+        tk.Label(
+            preview,
+            text="Screenshot tutorial akan ditambahkan di sini\n(placeholder untuk panduan visual step-by-step)",
+            bg="#e5e7eb",
+            fg="#374151",
+            font=("Segoe UI", 10),
+            justify="center",
+        ).pack(expand=True)
+
+        actions = ttk.Frame(container, style="App.TFrame")
+        actions.pack(fill="x", pady=(10, 0))
+
+        ttk.Button(actions, text="Read the Docs", style="Primary.TButton", command=lambda: open_url(README_URL)).pack(side="right")
 
     def log(self, msg: str):
         self.output.insert("end", msg + "\n")
