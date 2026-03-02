@@ -330,43 +330,71 @@ UI = {
     },
 }
 
+EXTRA_UI_EN = {
+    "app_header": "Pixiv OAuth Token",
+    "app_subtitle": "Modern login helper with quick token exchange",
+    "docs": "Read the Docs",
+    "menu_docs": "Docs",
+    "menu_tutorial": "Tutorial",
+    "menu_resources": "Resources",
+    "menu_contact": "Contact",
+    "menu_developer": "Developer",
+    "tutorial_open": "Open Tutorial",
+    "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
+    "tutorial_header": "How to Use",
+    "tutorial_desc": "Follow this guided flow to exchange Pixiv OAuth tokens quickly.",
+    "tutorial_steps": "Step by step",
+    "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
+    "dev_info_title": "Developer",
+    "repo_link": "GitHub Repository",
+    "releases_link": "Latest Releases",
+    "developer_prefix": "Developer",
+}
 
-EXTRA_UI = {
-    "en": {
-        "docs": "Read the Docs",
-        "menu_docs": "Docs",
-        "menu_tutorial": "Tutorial",
-        "menu_resources": "Resources",
-        "menu_contact": "Contact",
-        "menu_developer": "Developer",
-        "tutorial_open": "Open Tutorial",
-        "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
-        "tutorial_header": "How to Use",
-        "tutorial_desc": "Follow this guided flow to exchange Pixiv OAuth tokens quickly.",
-        "tutorial_steps": "Step by step",
-        "tutorial_prev": "Previous",
-        "tutorial_next": "Next",
-        "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
-        "dev_info_title": "Developer",
-    },
+EXTRA_UI_OVERRIDES = {
     "id": {
+        "app_subtitle": "Alat login modern untuk pertukaran token cepat",
         "docs": "Baca Dokumentasi",
         "menu_docs": "Dokumen",
-        "menu_tutorial": "Tutorial",
         "menu_resources": "Resource",
         "menu_contact": "Kontak",
         "menu_developer": "Developer",
         "tutorial_open": "Buka Tutorial",
-        "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
         "tutorial_header": "Cara Penggunaan",
-        "tutorial_desc": "Ikuti langkah berikut untuk tukar token Pixiv OAuth dengan cepat.",
+        "tutorial_desc": "Ikuti langkah berikut untuk menukar token Pixiv OAuth dengan cepat.",
         "tutorial_steps": "Langkah-langkah",
-        "tutorial_prev": "Sebelumnya",
-        "tutorial_next": "Berikutnya",
         "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder tutorial_images/.",
-        "dev_info_title": "Developer",
+        "repo_link": "Repositori GitHub",
+        "releases_link": "Rilis Terbaru",
     },
+    "jp": {
+        "app_subtitle": "クイックトークン交換のためのモダンなログインヘルパー",
+        "docs": "ドキュメントを読む",
+        "menu_docs": "ドキュメント",
+        "menu_resources": "リソース",
+        "menu_contact": "連絡先",
+        "menu_developer": "開発者",
+        "tutorial_open": "チュートリアルを開く",
+        "tutorial_header": "使い方",
+        "tutorial_desc": "このガイドに沿って Pixiv OAuth トークンを素早く取得できます。",
+        "tutorial_steps": "手順",
+        "dev_info_title": "開発者",
+        "repo_link": "GitHub リポジトリ",
+        "releases_link": "最新リリース",
+        "developer_prefix": "開発者",
+    },
+    "pl": {"menu_resources": "Zasoby", "menu_contact": "Kontakt", "menu_developer": "Deweloper", "docs": "Czytaj dokumentację", "repo_link": "Repozytorium GitHub", "releases_link": "Najnowsze wydania", "developer_prefix": "Deweloper"},
+    "zh": {"menu_resources": "资源", "menu_contact": "联系", "menu_developer": "开发者", "docs": "阅读文档", "repo_link": "GitHub 仓库", "releases_link": "最新发布", "developer_prefix": "开发者"},
+    "de": {"menu_resources": "Ressourcen", "menu_contact": "Kontakt", "menu_developer": "Entwickler", "docs": "Dokumentation lesen", "repo_link": "GitHub-Repository", "releases_link": "Neueste Releases", "developer_prefix": "Entwickler"},
+    "fr": {"menu_resources": "Ressources", "menu_contact": "Contact", "menu_developer": "Développeur", "docs": "Lire la documentation", "repo_link": "Dépôt GitHub", "releases_link": "Dernières versions", "developer_prefix": "Développeur"},
+    "es": {"menu_resources": "Recursos", "menu_contact": "Contacto", "menu_developer": "Desarrollador", "docs": "Leer la documentación", "repo_link": "Repositorio GitHub", "releases_link": "Últimas versiones", "developer_prefix": "Desarrollador"},
+    "ru": {"menu_resources": "Ресурсы", "menu_contact": "Контакты", "menu_developer": "Разработчик", "docs": "Читать документацию", "repo_link": "Репозиторий GitHub", "releases_link": "Последние релизы", "developer_prefix": "Разработчик"},
+    "pt": {"menu_resources": "Recursos", "menu_contact": "Contato", "menu_developer": "Desenvolvedor", "docs": "Ler a documentação", "repo_link": "Repositório GitHub", "releases_link": "Últimos releases", "developer_prefix": "Desenvolvedor"},
+    "kr": {"menu_resources": "리소스", "menu_contact": "연락처", "menu_developer": "개발자", "docs": "문서 읽기", "repo_link": "GitHub 저장소", "releases_link": "최신 릴리스", "developer_prefix": "개발자"},
 }
+
+EXTRA_UI = {code: {**EXTRA_UI_EN, **EXTRA_UI_OVERRIDES.get(code, {})} for code in SUPPORTED_LANGS}
+
 
 TUTORIAL_CAPTIONS = {
     "en": [
@@ -488,6 +516,8 @@ class App(tk.Tk):
         self.copy_refresh_btn.config(text=self.t("copy_refresh"))
         self.output_frame.config(text=self.t("output"))
         self.docs_btn.config(text=self.tx("docs"))
+        self.header_title_label.config(text=self.tx("app_header"))
+        self.header_subtitle_label.config(text=self.tx("app_subtitle"))
         self._build_menu()
 
         if self.save_lang_var.get():
@@ -555,8 +585,10 @@ class App(tk.Tk):
         header = ttk.Frame(root, style="App.TFrame")
         header.pack(fill="x", pady=(0, 10))
 
-        ttk.Label(header, text="Pixiv OAuth Token", style="Header.TLabel").pack(anchor="w")
-        ttk.Label(header, text="Modern login helper with quick token exchange", style="Sub.TLabel").pack(anchor="w")
+        self.header_title_label = ttk.Label(header, text=self.tx("app_header"), style="Header.TLabel")
+        self.header_title_label.pack(anchor="w")
+        self.header_subtitle_label = ttk.Label(header, text=self.tx("app_subtitle"), style="Sub.TLabel")
+        self.header_subtitle_label.pack(anchor="w")
 
         top = ttk.Frame(root, style="Card.TFrame", padding=12)
         top.pack(fill="x", pady=(0, 10))
@@ -639,8 +671,8 @@ class App(tk.Tk):
         menubar.add_cascade(label=self.tx("menu_tutorial"), menu=tutorial_menu)
 
         resource_menu = tk.Menu(menubar, tearoff=0)
-        resource_menu.add_command(label="GitHub Repository", command=lambda: open_url(REPO_BASE_URL))
-        resource_menu.add_command(label="Latest Releases", command=lambda: open_url(RELEASES_URL))
+        resource_menu.add_command(label=self.tx("repo_link"), command=lambda: open_url(REPO_BASE_URL))
+        resource_menu.add_command(label=self.tx("releases_link"), command=lambda: open_url(RELEASES_URL))
         menubar.add_cascade(label=self.tx("menu_resources"), menu=resource_menu)
 
         contact_menu = tk.Menu(menubar, tearoff=0)
@@ -649,7 +681,7 @@ class App(tk.Tk):
         menubar.add_cascade(label=self.tx("menu_contact"), menu=contact_menu)
 
         developer_menu = tk.Menu(menubar, tearoff=0)
-        developer_menu.add_command(label=f"Developer: {DEVELOPER_NAME}", command=self.show_developer_info)
+        developer_menu.add_command(label=f"{self.tx('developer_prefix')}: {DEVELOPER_NAME}", command=self.show_developer_info)
         menubar.add_cascade(label=self.tx("menu_developer"), menu=developer_menu)
 
         self.config(menu=menubar)
