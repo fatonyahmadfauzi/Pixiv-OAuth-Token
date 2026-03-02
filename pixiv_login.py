@@ -34,6 +34,14 @@ AUTH_TOKEN_URL = "https://oauth.secure.pixiv.net/auth/token"
 CLIENT_ID = "MOBrBDS8blbauoSck0ZfDbtuzpyT"
 CLIENT_SECRET = "lsACyCD94FhDUtGTXi3QzcFE2uU1hqtDaKeqrdwj"
 
+REPO_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token"
+README_URL = f"{REPO_BASE_URL}/blob/master/README.md"
+RELEASES_URL = f"{REPO_BASE_URL}/releases"
+TUTORIAL_URL = README_URL
+TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
+TWITTER_URL = "https://x.com/fatonyahmad89"
+DEVELOPER_NAME = "Fatony Ahmad Fauzi"
+
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 
 
@@ -212,6 +220,157 @@ LANGUAGES = {
 }
 
 
+
+
+MENU_UI_EN = {
+    "project": "Pixiv OAuth Token",
+    "developer": "Developer",
+    "menu_title": "Main Menu",
+    "opt_change_lang": "Change Language",
+    "opt_tutorial": "Tutorial",
+    "opt_docs": "Read the Docs",
+    "opt_resources": "Resources",
+    "opt_contact": "Contact",
+    "opt_exit": "Exit",
+    "select_option": "Select option",
+    "invalid_option": "Invalid option.",
+    "choose_lang": "Choose language code",
+    "lang_updated": "Default language updated to",
+    "resources_title": "Resources",
+    "res_repo": "GitHub Repository",
+    "res_release": "Latest Releases",
+    "contact_title": "Contact",
+    "contact_tiktok": "TikTok",
+    "contact_twitter": "Twitter / X",
+    "back": "Back",
+}
+
+MENU_UI_OVERRIDES = {
+    "id": {
+        "menu_title": "Menu Utama",
+        "opt_change_lang": "Ubah Bahasa",
+        "opt_tutorial": "Tutorial",
+        "opt_docs": "Baca Dokumentasi",
+        "opt_resources": "Resource",
+        "opt_contact": "Kontak",
+        "opt_exit": "Keluar",
+        "select_option": "Pilih opsi",
+        "invalid_option": "Opsi tidak valid.",
+        "choose_lang": "Pilih kode bahasa",
+        "lang_updated": "Bahasa default diperbarui menjadi",
+        "resources_title": "Resource",
+        "res_repo": "Repositori GitHub",
+        "res_release": "Rilis Terbaru",
+        "contact_title": "Kontak",
+        "back": "Kembali",
+    },
+    "jp": {
+        "menu_title": "メインメニュー",
+        "opt_change_lang": "言語を変更",
+        "opt_tutorial": "チュートリアル",
+        "opt_docs": "ドキュメントを読む",
+        "opt_resources": "リソース",
+        "opt_contact": "連絡先",
+        "opt_exit": "終了",
+        "select_option": "オプションを選択",
+        "invalid_option": "無効なオプションです。",
+        "choose_lang": "言語コードを選択",
+        "back": "戻る",
+    },
+}
+
+MENU_UI = {code: {**MENU_UI_EN, **MENU_UI_OVERRIDES.get(code, {})} for code in SUPPORTED_LANGS}
+
+
+def mt(key: str, lang: str) -> str:
+    return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
+
+
+def print_cli_banner(lang: str, color_on: bool) -> None:
+    title = mt("project", lang)
+    dev = f"{mt('developer', lang)}: {DEVELOPER_NAME}"
+    print(colorize("=" * 52, Ansi.CYAN, color_on))
+    print(colorize(f"  {title}", Ansi.BOLD + Ansi.GREEN, color_on))
+    print(colorize(f"  {dev}", Ansi.DIM, color_on))
+    print(colorize("=" * 52, Ansi.CYAN, color_on))
+
+
+def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
+    print()
+    print(colorize(f"{mt('choose_lang', current_lang)}:", Ansi.YELLOW, color_on))
+    for code in SUPPORTED_LANGS:
+        print(f"  - {code}: {LANG_LABELS.get(code, code)}")
+    new_lang = input("> ").strip().lower()
+    if new_lang not in SUPPORTED_LANGS:
+        print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
+        return current_lang
+    set_default_lang(new_lang)
+    print(colorize(f"{mt('lang_updated', new_lang)} {new_lang}", Ansi.GREEN, color_on))
+    return new_lang
+
+
+def _open_resources_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(f"[1] {mt('res_repo', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[2] {mt('res_release', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
+        if choice == "1":
+            open_url(REPO_BASE_URL)
+        elif choice == "2":
+            open_url(RELEASES_URL)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def _open_contact_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(f"[1] {mt('contact_tiktok', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[2] {mt('contact_twitter', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
+        if choice == "1":
+            open_url(TIKTOK_URL)
+        elif choice == "2":
+            open_url(TWITTER_URL)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def run_interactive_menu(lang: str, color_on: bool) -> None:
+    current_lang = lang
+    while True:
+        print()
+        print_cli_banner(current_lang, color_on)
+        print(colorize(f"[1] {mt('opt_change_lang', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[2] {mt('opt_tutorial', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[3] {mt('opt_docs', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[4] {mt('opt_resources', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[5] {mt('opt_contact', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
+
+        choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+
+        if choice == "1":
+            current_lang = _choose_language_interactive(current_lang, color_on)
+        elif choice == "2":
+            open_url(TUTORIAL_URL)
+        elif choice == "3":
+            open_url(README_URL)
+        elif choice == "4":
+            _open_resources_menu(current_lang, color_on)
+        elif choice == "5":
+            _open_contact_menu(current_lang, color_on)
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
 def supported_langs_display() -> str:
     return ", ".join(f"{code} ({LANG_LABELS.get(code, code)})" for code in SUPPORTED_LANGS)
 
@@ -498,6 +657,9 @@ def main():
 
     # config
     config_parser = subparsers.add_parser("config", help="Show or set config")
+
+    # menu
+    subparsers.add_parser("menu", help="Open interactive menu")
     config_sub = config_parser.add_subparsers(dest="config_cmd")
 
     config_sub.add_parser("show", help="Show current config (default)")
@@ -541,9 +703,14 @@ def main():
             print_config(ui_lang, color_on)
             return
 
+    elif args.command == "menu":
+        lang = resolve_lang(None)
+        run_interactive_menu(lang, color_on)
+
     else:
-        parser.print_help()
-        _pause_before_exit_if_frozen()
+        # no subcommand: open interactive menu by default for better UX
+        lang = resolve_lang(None)
+        run_interactive_menu(lang, color_on)
 
 
 if __name__ == "__main__":
