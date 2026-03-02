@@ -18,6 +18,7 @@ set SCRIPT=pixiv_login_gui.py
 set NAME=pixiv_login_gui
 set ICON=pixiv_login_pro.ico
 set PORTABLE_LABEL=Pixiv OAuth GUi (Portable)
+set ADD_TUTORIAL=
 
 set BUMP=none
 if not "%~1"=="" set BUMP=%~1
@@ -44,11 +45,15 @@ if exist dist rmdir /s /q dist
 if exist build rmdir /s /q build
 del /q *.spec 2>nul
 
+REM Bundle tutorial images if available
+if exist "tutorial_images" set ADD_TUTORIAL=--add-data "tutorial_images;tutorial_images"
+
 REM Build (windowed = no console)
 pyinstaller --noconfirm --onefile --windowed ^
   --name %NAME% ^
   --icon=%ICON% ^
   --version-file=version_info.txt ^
+  %ADD_TUTORIAL% ^
   %SCRIPT%
 
 if errorlevel 1 (
@@ -60,13 +65,11 @@ REM Copy outputs
 if not exist dist_gui mkdir dist_gui
 del /q dist_gui\*_v*.exe 2>nul
 copy /y dist\%NAME%.exe dist_gui\%NAME%.exe >nul
-copy /y dist\%NAME%.exe dist_gui\%NAME%_v%VER%.exe >nul
 copy /y dist\%NAME%.exe "dist_gui\%PORTABLE_LABEL%.exe" >nul
 
 echo.
 echo GUI built:
 echo   dist_gui\%NAME%.exe
-echo   dist_gui\%NAME%_v%VER%.exe
 echo   dist_gui\%PORTABLE_LABEL%.exe
 echo.
 exit /b 0
