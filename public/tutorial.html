@@ -4,42 +4,87 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="theme-color" content="#6ea2ff">
+  <meta name="theme-color" content="#0b0d12">
   <title>Pixiv OAuth Tutorial</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
-<body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">Pixiv OAuth</a>
-      <nav class="nav-links">
-        <a href="/">Home</a>
+<body class="tutorial-docs-body">
+  <header class="tutorial-docs-header">
+    <div class="tutorial-docs-inner">
+      <div class="tutorial-docs-top">
+        <a class="tutorial-docs-brand" href="/">
+          <strong>Pixiv OAuth</strong>
+          <span>TUTORIAL</span>
+        </a>
+        <nav class="tutorial-docs-actions" aria-label="Tutorial actions">
+          <a href="/"><i class="bi bi-house-door"></i> Homepage</a>
+          <a href="/#console"><i class="bi bi-terminal"></i> Console</a>
+          <a href="/#downloads"><i class="bi bi-download"></i> Downloads</a>
+        </nav>
+      </div>
+      <nav class="tutorial-docs-tabs" aria-label="Tutorial sections">
+        <a href="#start" class="active">Get Started</a>
+        <a href="#steps">Tutorial Steps</a>
+        <a href="#tips">Tips</a>
       </nav>
     </div>
   </header>
 
-  <main class="container tutorial-page">
-    <section class="card tutorial-hero">
-      <p class="kicker">Step by Step Guide</p>
-      <h1>Tutorial Pixiv OAuth</h1>
-      <p class="muted">Ikuti langkah berikut untuk login sampai exchange token. Halaman ini dipisah agar lebih fokus, clean, dan nyaman di semua device.</p>
+  <main class="tutorial-docs-main">
+    <section id="start" class="tutorial-intro">
+      <h1>Get Started with Pixiv OAuth Tutorial</h1>
+      <p>Halaman ini dibuat lebih clean seperti docs layout: fokus ke isi tutorial tanpa searchbar, dashboard, atau signup.</p>
+      <p>Ikuti langkah berurutan dari login sampai exchange token agar proses lebih mudah diikuti di desktop maupun mobile.</p>
     </section>
 
-    <section id="tutorial" class="card tutorial standalone-tutorial">
-      <h2>Tutorial</h2>
-      <p class="muted">Urutan screenshot dari login sampai token berhasil didapatkan.</p>
-      <div class="tutorial-grid">
-        <figure class="tutorial-item"><figcaption>1. Open Login Page</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_1.png" alt="Step 1" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/01-open-login-page.png')); if (figure) figure.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>2. Continue Login</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/02-continue-login.png" alt="Step 2" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/02-continue-login.png')); if (figure) figure.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>3. Open Console</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/03-open-console.png" alt="Step 3" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/03-open-console.png')); if (figure) figure.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>4. Copy pixiv URL</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/04-copy-pixiv-url.png" alt="Step 4" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/04-copy-pixiv-url.png')); if (figure) figure.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>5. Paste URL / Code</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_5.png" alt="Step 5" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/05-paste-url-code.png')); if (figure) figure.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>6. Exchange Token</figcaption><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png" alt="Step 6" onerror="const figure=this.parentElement; this.replaceWith(document.createTextNode('Add tutorial_images/06-exchange-token.png')); if (figure) figure.classList.add('missing')"></figure>
+    <section id="steps" class="tutorial-problems">
+      <h2>Tutorial Steps</h2>
+      <div class="tutorial-docs-grid">
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-box-arrow-up-right"></i></span>
+          <h3>Open Login Page</h3>
+          <p>Buka halaman login Pixiv dari console web tool.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_1.png" alt="Step 1" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/01-open-login-page.png')); if (card) card.classList.add('missing')">
+        </article>
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-person-check"></i></span>
+          <h3>Continue Login</h3>
+          <p>Lanjutkan proses login akun Pixiv hingga diarahkan ke callback.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/02-continue-login.png" alt="Step 2" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/02-continue-login.png')); if (card) card.classList.add('missing')">
+        </article>
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-window-sidebar"></i></span>
+          <h3>Open Console</h3>
+          <p>Buka devtools/console untuk mengambil URL callback pixiv.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/03-open-console.png" alt="Step 3" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/03-open-console.png')); if (card) card.classList.add('missing')">
+        </article>
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-clipboard2-check"></i></span>
+          <h3>Copy pixiv URL</h3>
+          <p>Copy URL callback yang berisi code authorization dari Pixiv.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/04-copy-pixiv-url.png" alt="Step 4" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/04-copy-pixiv-url.png')); if (card) card.classList.add('missing')">
+        </article>
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-input-cursor"></i></span>
+          <h3>Paste URL / Code</h3>
+          <p>Tempel URL callback atau code ke input pada OAuth console.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_5.png" alt="Step 5" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/05-paste-url-code.png')); if (card) card.classList.add('missing')">
+        </article>
+        <article class="tutorial-doc-card">
+          <span class="tutorial-icon"><i class="bi bi-shield-check"></i></span>
+          <h3>Exchange Token</h3>
+          <p>Klik Exchange Token lalu copy access_token / refresh_token.</p>
+          <img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png" alt="Step 6" onerror="const card=this.closest('.tutorial-doc-card'); this.replaceWith(document.createTextNode('Add tutorial_images/06-exchange-token.png')); if (card) card.classList.add('missing')">
+        </article>
       </div>
+    </section>
+
+    <section id="tips" class="tutorial-footer-note">
+      <a class="tutorial-cta-btn" href="/">Back to OAuth Console <i class="bi bi-arrow-right"></i></a>
     </section>
   </main>
 </body>

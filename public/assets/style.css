@@ -29,6 +29,7 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 
 
 
+
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
@@ -125,4 +126,50 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 }
 @media (max-width:700px){
   .standalone-tutorial .tutorial-grid{grid-template-columns:1fr}
+}
+
+/* Docs-like tutorial page (no search/dashboard/signup) */
+.tutorial-docs-body{background:#080a0f;color:#eef2ff;font-family:Inter,"Segoe UI",system-ui,sans-serif}
+.tutorial-docs-header{position:sticky;top:0;z-index:40;background:#090c12f2;border-bottom:1px solid #1d2330;backdrop-filter:blur(8px)}
+.tutorial-docs-inner{max-width:1400px;margin:0 auto;padding:0 24px}
+.tutorial-docs-top{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.tutorial-docs-brand{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
+.tutorial-docs-brand strong{font-size:1.75rem;line-height:1}
+.tutorial-docs-brand span{font-size:1.45rem;letter-spacing:.18em;color:#cfd5e7}
+.tutorial-docs-actions{display:flex;gap:18px;flex-wrap:wrap}
+.tutorial-docs-actions a{display:inline-flex;align-items:center;gap:8px;color:#c8d2ec;text-decoration:none;font-size:.95rem}
+.tutorial-docs-actions a:hover{color:#fff}
+.tutorial-docs-tabs{display:flex;gap:28px;border-top:1px solid #1b2230;padding:12px 0 10px}
+.tutorial-docs-tabs a{color:#98a5c6;text-decoration:none;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent}
+.tutorial-docs-tabs a:hover,.tutorial-docs-tabs a.active{color:#fff;border-bottom-color:#6ea2ff}
+
+.tutorial-docs-main{max-width:1400px;margin:0 auto;padding:42px 24px 60px}
+.tutorial-intro{max-width:860px;display:grid;gap:14px}
+.tutorial-intro h1{margin:0;font-size:clamp(2rem,3vw,3.25rem);line-height:1.1;letter-spacing:-.02em}
+.tutorial-intro p{margin:0;color:#afb9d1;font-size:1.15rem;line-height:1.6}
+.tutorial-problems{margin-top:44px}
+.tutorial-problems h2{margin:0 0 16px;font-size:2rem}
+.tutorial-docs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tutorial-doc-card{border:1px solid #2a3344;border-radius:16px;background:#0c1017;padding:20px;display:grid;gap:10px;align-content:start;transition:.2s ease}
+.tutorial-doc-card:hover{border-color:#3a4660;transform:translateY(-1px)}
+.tutorial-icon{color:#76a8ff;font-size:1.15rem}
+.tutorial-doc-card h3{margin:0;font-size:1.65rem;line-height:1.2;letter-spacing:-.01em}
+.tutorial-doc-card p{margin:0;color:#acb8d4;font-size:1.02rem;line-height:1.55}
+.tutorial-doc-card img{width:100%;height:auto;border-radius:12px;border:1px solid #2c374a;margin-top:6px}
+.tutorial-doc-card.missing{color:#aeb9d3}
+.tutorial-footer-note{display:flex;justify-content:center;margin-top:34px}
+
+@media (max-width:1100px){
+  .tutorial-docs-grid{grid-template-columns:1fr}
+}
+@media (max-width:800px){
+  .tutorial-docs-inner,.tutorial-docs-main{padding-left:14px;padding-right:14px}
+  .tutorial-docs-top{min-height:62px;flex-wrap:wrap;padding:10px 0}
+  .tutorial-docs-brand strong{font-size:1.4rem}
+  .tutorial-docs-brand span{font-size:1.12rem;letter-spacing:.12em}
+  .tutorial-docs-actions{width:100%;gap:12px}
+  .tutorial-docs-tabs{gap:16px;overflow:auto;white-space:nowrap}
+  .tutorial-intro p{font-size:1rem}
+  .tutorial-doc-card{padding:16px}
+  .tutorial-doc-card h3{font-size:1.35rem}
 }
