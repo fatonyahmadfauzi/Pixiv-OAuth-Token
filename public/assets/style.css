@@ -27,6 +27,7 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .nav-tutorial-link:hover i{transform:translateX(5px)}
 
 
+
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
@@ -51,11 +52,11 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;text-decoration:none;cursor:pointer;transition:.18s ease}
 .btn:hover{transform:translateY(-1px);border-color:#5a7db8}
 .btn.primary{background:linear-gradient(180deg,var(--primary),var(--primary-2));color:#fff;border-color:#7aa8ff;font-weight:700}
-.tutorial-cta-wrap{display:grid;gap:10px}
+.tutorial-cta-wrap{display:grid;gap:12px;justify-items:center;text-align:center;padding:4px 0 2px}
 .tutorial-cta-wrap .muted{margin:0}
-.tutorial-cta-btn{display:inline-flex;align-items:center;gap:10px;width:fit-content;padding:12px 22px;border-radius:999px;border:1px solid #3a4251;background:linear-gradient(180deg,#2b2f36,#1f232a);color:#fff;text-decoration:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem;transition:.2s ease}
+.tutorial-cta-btn{display:inline-flex;align-items:center;gap:10px;width:fit-content;padding:12px 24px;border-radius:999px;border:1px solid #3e4654;background:#242a33;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem;transition:.2s ease}
 .tutorial-cta-btn i{transition:transform .2s ease}
-.tutorial-cta-btn:hover{border-color:#667089;background:linear-gradient(180deg,#353b45,#252a33)}
+.tutorial-cta-btn:hover{border-color:#6d7687;background:#2c333d}
 .tutorial-cta-btn:hover i{transform:translateX(5px)}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .result-actions{margin-top:10px}
