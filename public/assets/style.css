@@ -53,6 +53,15 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .tutorial-cta-btn i{transition:transform .2s ease}
 .tutorial-cta-btn:hover{border-color:#6d7687;background:#2c333d}
 .tutorial-cta-btn:hover i{transform:translateX(5px)}
+
+.app-showcase{position:relative;overflow:hidden;padding:30px 20px;border-radius:20px;background:radial-gradient(circle at 50% 20%,#12335d55 0%,transparent 55%),#0c111b;border:1px solid #2a3344;display:grid;gap:18px}
+.showcase-head{text-align:center;max-width:860px;margin:0 auto;display:grid;gap:10px}
+.showcase-badge{justify-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:#1a2639;border:1px solid #35527a;color:#7fd0ff;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.app-showcase h2{margin:0;font-size:clamp(1.8rem,4vw,3.1rem);line-height:1.12;color:#dbe8ff;font-family:Georgia,"Times New Roman",serif}
+.showcase-video-box{border:1px solid #313d52;background:#0b1018;border-radius:16px;padding:16px;max-width:1080px;width:100%;margin:0 auto}
+.video-placeholder{min-height:280px;border:1px dashed #41506c;border-radius:12px;display:grid;place-content:center;text-align:center;gap:8px;color:#97a8c8;background:#0f1624}
+.video-placeholder i{font-size:2.1rem;color:#80bfff}
+.video-placeholder p{margin:0;font-weight:600}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .result-actions{margin-top:10px}
 
@@ -105,6 +114,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .hero-actions .btn{width:100%}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
   .tutorial-cta-btn{width:100%;justify-content:center}
+  .app-showcase{padding:22px 12px}
+  .video-placeholder{min-height:200px}
 }
 
 /* Tutorial dedicated page */
