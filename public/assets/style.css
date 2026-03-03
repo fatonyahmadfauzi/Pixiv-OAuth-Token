@@ -28,6 +28,7 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 
 
 
+
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
@@ -52,7 +53,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;text-decoration:none;cursor:pointer;transition:.18s ease}
 .btn:hover{transform:translateY(-1px);border-color:#5a7db8}
 .btn.primary{background:linear-gradient(180deg,var(--primary),var(--primary-2));color:#fff;border-color:#7aa8ff;font-weight:700}
-.tutorial-cta-wrap{display:grid;gap:12px;justify-items:center;text-align:center;padding:4px 0 2px}
+.tutorial-cta-wrap{display:grid;gap:12px;justify-items:center;text-align:center;padding:18px 0 16px;margin:10px 0 14px}
 .tutorial-cta-wrap .muted{margin:0}
 .tutorial-cta-btn{display:inline-flex;align-items:center;gap:10px;width:fit-content;padding:12px 24px;border-radius:999px;border:1px solid #3e4654;background:#242a33;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.82rem;transition:.2s ease}
 .tutorial-cta-btn i{transition:transform .2s ease}
@@ -108,6 +109,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .download-grid{grid-template-columns:1fr}
   .actions>.btn{width:100%}
   .hero-actions .btn{width:100%}
+  .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
   .tutorial-cta-btn{width:100%;justify-content:center}
 }
 
