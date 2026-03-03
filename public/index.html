@@ -26,8 +26,8 @@
       <a class="brand" href="#hero"><strong>Pixiv OAuth</strong><span>WEB</span></a>
       <nav class="nav-links">
         <a id="navConsole" href="#console">Console</a>
-        <a id="navDownloads" href="#downloads">Downloads</a>
-        <a id="navQuickCmd" href="#quickcmd">Quick Cmd</a>
+        <a id="navDownloads" href="/downloads.html">Downloads</a>
+        <a id="navQuickCmd" href="/downloads.html#quickcmd">Quick Cmd</a>
         <a id="navTutorial" href="/tutorial.html">Tutorial</a>
       </nav>
       <div class="lang-wrap">
@@ -123,39 +123,11 @@
         <i class="bi bi-arrow-right" aria-hidden="true"></i>
       </a>
     </section>
-
-    <section id="downloads" class="card">
-      <h2 id="downloadsTitle">Downloads</h2>
-      <p class="muted" id="downloadsDesc">Download the latest builds directly from GitHub Releases.</p>
-      <div class="download-grid">
-        <a id="dlCliSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlCliPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
-      </div>
+    <section class="tutorial-cta-wrap">
+      <p class="muted">Downloads & quick commands are now on a dedicated page.</p>
+      <a class="tutorial-cta-btn" href="/downloads.html"><span>Open Downloads Page</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </section>
 
-    <section id="quickcmd" class="card">
-      <h2 id="quickCmdTitle">Quick Command</h2>
-      <p class="muted" id="quickCmdDesc">Copy commands for quick download via PowerShell/CMD and install via pip.</p>
-      <div class="cmd-grid">
-        <div class="cmd-block">
-          <h3><i class="bi bi-terminal-fill" aria-hidden="true"></i> PowerShell</h3>
-          <pre id="psCmd"></pre>
-          <button class="btn" id="copyPsBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPsBtnLabel">Copy PowerShell</span></button>
-        </div>
-        <div class="cmd-block">
-          <h3><i class="bi bi-command" aria-hidden="true"></i> CMD</h3>
-          <pre id="cmdCmd"></pre>
-          <button class="btn" id="copyCmdBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyCmdBtnLabel">Copy CMD</span></button>
-        </div>
-        <div class="cmd-block">
-          <h3><i class="bi bi-filetype-py" aria-hidden="true"></i> Python / pip</h3>
-          <pre id="pipCmd"></pre>
-          <button class="btn" id="copyPipBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPipBtnLabel">Copy pip command</span></button>
-        </div>
-      </div>
-    </section>
 
   </main>
 
