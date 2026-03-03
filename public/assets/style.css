@@ -12,22 +12,12 @@
 html{scroll-behavior:smooth}
 body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 50% 20%,#1d2f57 0%,transparent 35%),linear-gradient(165deg,var(--bg),#0a1020)}
 
-.topbar{position:sticky;top:0;z-index:30;background:#060910dd;border-bottom:1px solid #1e2b47;backdrop-filter:blur(10px)}
-.topbar-inner{max-width:1200px;margin:0 auto;padding:12px 18px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px}
-.brand{color:#fff;text-decoration:none;font-weight:800;font-size:1.16rem;letter-spacing:.03em}
-.menu-toggle{display:none;border:1px solid #3a4f7b;background:#0b1428;color:#d4e2ff;border-radius:12px;min-height:42px;min-width:42px;padding:0 10px;cursor:pointer}
-.menu-toggle i{font-size:1.3rem;line-height:1}
-.nav-links{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-.nav-links a{color:#b9c7ea;text-decoration:none;font-size:.9rem;padding:8px 12px;border-radius:10px;border:1px solid transparent;transition:.18s ease}
-.nav-links a:hover{color:#fff;background:#101d38;border-color:#35507a}
-
-.nav-tutorial-link{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid #3a4251;background:linear-gradient(180deg,#2b2f36,#1f232a);color:#fff !important;font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:.78rem;transition:.2s ease}
-.nav-tutorial-link i{transition:transform .2s ease}
-.nav-tutorial-link:hover{border-color:#667089;background:linear-gradient(180deg,#353b45,#252a33)}
-.nav-tutorial-link:hover i{transform:translateX(5px)}
-
-
-
+.topbar{position:sticky;top:0;z-index:30;background:#060910dd;border-bottom:1px solid #1e2b47;backdrop-filter:blur(8px)}
+.topbar-inner{max-width:1200px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+.brand{color:#fff;text-decoration:none;font-weight:800;font-size:1.2rem;letter-spacing:.03em}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.nav-links a{color:#98a5c6;text-decoration:none;font-size:.92rem;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent;transition:.18s ease}
+.nav-links a:hover{color:#fff;border-bottom-color:#6ea2ff}
 
 
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
@@ -137,8 +127,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .tutorial-docs-brand strong{font-size:1.75rem;line-height:1}
 .tutorial-docs-brand span{font-size:1.45rem;letter-spacing:.18em;color:#cfd5e7}
 .tutorial-docs-actions{display:flex;gap:18px;flex-wrap:wrap}
-.tutorial-docs-actions a{display:inline-flex;align-items:center;gap:8px;color:#c8d2ec;text-decoration:none;font-size:.95rem}
-.tutorial-docs-actions a:hover{color:#fff}
+.tutorial-docs-actions a{display:inline-flex;align-items:center;color:#98a5c6;text-decoration:none;font-size:.92rem;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent;transition:.18s ease}
+.tutorial-docs-actions a:hover{color:#fff;border-bottom-color:#6ea2ff}
 .tutorial-docs-tabs{display:flex;gap:28px;border-top:1px solid #1b2230;padding:12px 0 10px}
 .tutorial-docs-tabs a{color:#98a5c6;text-decoration:none;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent}
 .tutorial-docs-tabs a:hover,.tutorial-docs-tabs a.active{color:#fff;border-bottom-color:#6ea2ff}
