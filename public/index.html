@@ -24,7 +24,10 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="#hero">Pixiv OAuth</a>
-      <nav class="nav-links">
+      <button type="button" id="menuToggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+      <nav class="nav-links" id="mainNav">
         <a id="navConsole" href="#console">Console</a>
         <a id="navDownloads" href="#downloads">Downloads</a>
         <a id="navQuickCmd" href="#quickcmd">Quick Cmd</a>
@@ -157,7 +160,6 @@
         </div>
       </div>
     </section>
-
 
   </main>
 
