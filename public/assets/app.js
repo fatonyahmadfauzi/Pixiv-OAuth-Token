@@ -292,31 +292,23 @@ function setupLanguageMenu() {
   });
 }
 
-function setupMobileNav() {
-  const toggle = q("menuToggle");
-  const nav = q("mainNav");
-  if (!toggle || !nav) return;
+function setupCliPreviewToggle() {
+  const preview = q("cliPreviewBox");
+  const toggle = q("cliToggleBtn");
+  if (!preview || !toggle) return;
 
-  const close = () => {
-    nav.classList.remove("open");
-    toggle.setAttribute("aria-expanded", "false");
+  let expanded = false;
+  const render = () => {
+    preview.classList.toggle("expanded", expanded);
+    toggle.textContent = expanded ? "Show Less" : "See More";
   };
 
   toggle.addEventListener("click", () => {
-    const open = nav.classList.toggle("open");
-    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    expanded = !expanded;
+    render();
   });
 
-  nav.querySelectorAll("a").forEach((link) => link.addEventListener("click", close));
-
-  document.addEventListener("click", (e) => {
-    if (window.innerWidth > 980) return;
-    if (!nav.contains(e.target) && !toggle.contains(e.target)) close();
-  });
-
-  window.addEventListener("resize", () => {
-    if (window.innerWidth > 980) close();
-  });
+  render();
 }
 
 function applyLang() {
@@ -505,7 +497,7 @@ bindClick("copyPipBtn", async () => { const el = q("pipCmd"); if (el) await copy
   document.documentElement.lang = currentLang === "jp" ? "ja" : currentLang;
 
   setupLanguageMenu();
-  setupMobileNav();
+  setupCliPreviewToggle();
   applyLang();
   await hydrateReleaseAssets();
 })();
