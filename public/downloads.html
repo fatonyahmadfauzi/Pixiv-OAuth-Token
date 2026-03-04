@@ -10,22 +10,45 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body class="tutorial-docs-body">
   <header class="tutorial-docs-header">
     <div class="tutorial-docs-inner">
       <div class="tutorial-docs-top">
-        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span>DOWNLOAD</span></a>
+        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span id="downloadsBrandTag">DOWNLOAD</span></a>
         <nav class="tutorial-docs-actions" aria-label="Page actions">
-          <a href="/">Homepage</a>
-          <a href="/tutorial.html">Tutorial</a>
-          <a href="/#console">Console</a>
+          <a id="downloadsHomeLink" href="/">Homepage</a>
+          <a id="downloadsTutorialLink" href="/tutorial.html">Tutorial</a>
+          <a id="downloadsConsoleLink" href="/#console">Console</a>
         </nav>
+        <div class="lang-wrap">
+          <div class="lang-control" id="langControl">
+            <button type="button" id="langToggle" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false">
+              <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
+              <span id="langCurrent">English</span>
+              <i class="bi bi-chevron-down" aria-hidden="true"></i>
+            </button>
+            <ul id="langMenu" class="lang-menu" role="listbox" aria-label="Language">
+              <li role="option" data-lang="en"><span class="fi fi-gb" aria-hidden="true"></span><span>English</span></li>
+              <li role="option" data-lang="pl"><span class="fi fi-pl" aria-hidden="true"></span><span>Polski</span></li>
+              <li role="option" data-lang="zh"><span class="fi fi-cn" aria-hidden="true"></span><span>中文</span></li>
+              <li role="option" data-lang="jp"><span class="fi fi-jp" aria-hidden="true"></span><span>日本語</span></li>
+              <li role="option" data-lang="de"><span class="fi fi-de" aria-hidden="true"></span><span>Deutsch</span></li>
+              <li role="option" data-lang="fr"><span class="fi fi-fr" aria-hidden="true"></span><span>Français</span></li>
+              <li role="option" data-lang="es"><span class="fi fi-es" aria-hidden="true"></span><span>Español</span></li>
+              <li role="option" data-lang="ru"><span class="fi fi-ru" aria-hidden="true"></span><span>Русский</span></li>
+              <li role="option" data-lang="pt"><span class="fi fi-pt" aria-hidden="true"></span><span>Português</span></li>
+              <li role="option" data-lang="id"><span class="fi fi-id" aria-hidden="true"></span><span>Indonesia</span></li>
+              <li role="option" data-lang="kr"><span class="fi fi-kr" aria-hidden="true"></span><span>한국어</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
       <nav class="tutorial-docs-tabs" aria-label="Sections">
-        <a href="#downloads" class="active">Downloads</a>
-        <a href="#quickcmd">Quick Command</a>
+        <a id="downloadsTabDownloads" href="#downloads" class="active">Downloads</a>
+        <a id="downloadsTabQuickCmd" href="#quickcmd">Quick Command</a>
       </nav>
     </div>
   </header>
@@ -68,28 +91,28 @@
   <footer class="tutorial-docs-footer site-footer">
     <div class="tutorial-docs-footer-inner footer-grid">
       <section class="tutorial-docs-footer-brand">
-        <h3><span>Pixiv OAuth</span><small>DOWNLOAD</small></h3>
+        <h3><span>Pixiv OAuth</span><small id="downloadsFooterTag">DOWNLOAD</small></h3>
       </section>
       <section>
-        <h3>Resources</h3>
+        <h3 id="footerResourceTitle">Resources</h3>
         <ul>
-          <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub Repository</a></li>
-          <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
-          <li><a href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
-          <li><a href="https://pyinstaller.org/" target="_blank" rel="noopener">PyInstaller</a></li>
-          <li><a href="https://vercel.com/" target="_blank" rel="noopener">Vercel</a></li>
+          <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener" id="footerGithub">GitHub Repository</a></li>
+          <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener" id="footerOAuthEndpoint">Pixiv OAuth Endpoint</a></li>
+          <li><a href="https://www.python.org/" target="_blank" rel="noopener" id="footerPython">Python 3.11+</a></li>
+          <li><a href="https://pyinstaller.org/" target="_blank" rel="noopener" id="footerPyInstaller">PyInstaller</a></li>
+          <li><a href="https://vercel.com/" target="_blank" rel="noopener" id="footerVercel">Vercel</a></li>
         </ul>
       </section>
       <section>
-        <h3>Contact</h3>
+        <h3 id="footerContactTitle">Contact</h3>
         <ul>
-          <li><a href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener">TikTok</a></li>
-          <li><a href="https://x.com/fatonyahmad89" target="_blank" rel="noopener">Twitter</a></li>
+          <li><a href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener" id="footerTikTok">TikTok</a></li>
+          <li><a href="https://x.com/fatonyahmad89" target="_blank" rel="noopener" id="footerTwitter">Twitter</a></li>
         </ul>
       </section>
       <section>
-        <h3>Developer</h3>
-        <ul><li>Fatony Ahmad Fauzi</li></ul>
+        <h3 id="footerDevTitle">Developer</h3>
+        <ul><li id="footerDeveloperName">Fatony Ahmad Fauzi</li></ul>
       </section>
     </div>
   </footer>
