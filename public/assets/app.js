@@ -292,7 +292,6 @@ function setupLanguageMenu() {
   });
 }
 
-
 function setupCliPreviewToggle() {
   const preview = q("cliPreviewBox");
   const toggle = q("cliToggleBtn");
@@ -352,7 +351,7 @@ function applyLang() {
     navConsole: "navConsole",
     navDownloads: "navDownloads",
     navQuickCmd: "navQuickCmd",
-    navTutorial: "navTutorial",
+    navTutorialLabel: "navTutorial",
     tutorialTitle: "tutorialTitle",
     tutorialDesc: "tutorialDesc"
   };
