@@ -161,6 +161,15 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .tutorial-docs-tabs a{color:#98a5c6;text-decoration:none;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent}
 .tutorial-docs-tabs a:hover,.tutorial-docs-tabs a.active{color:#fff;border-bottom-color:#6ea2ff}
 
+.tutorial-docs-actions a,.tutorial-docs-tabs a{white-space:nowrap}
+
+@media (max-width:560px){
+  .tutorial-docs-actions a{font-size:.86rem;padding-bottom:6px}
+  .tutorial-docs-tabs{gap:12px;padding:10px 0 8px}
+  .tutorial-docs-tabs a{font-size:.86rem}
+  .tutorial-docs-main{padding-top:28px}
+}
+
 .tutorial-docs-main{max-width:1400px;margin:0 auto;padding:42px 24px 60px}
 .tutorial-intro{max-width:860px;display:grid;gap:14px}
 .tutorial-intro h1{margin:0;font-size:clamp(2rem,3vw,3.25rem);line-height:1.1;letter-spacing:-.02em}
