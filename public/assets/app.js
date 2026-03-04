@@ -174,10 +174,14 @@ function repoDownloadLink(name) {
 }
 
 function setDownloadLinks(assets = {}) {
-  q("dlCliSetup").href = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
-  q("dlCliPortable").href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
-  q("dlGuiSetup").href = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
-  q("dlGuiPortable").href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
+  const cliSetup = q("dlCliSetup");
+  const cliPortable = q("dlCliPortable");
+  const guiSetup = q("dlGuiSetup");
+  const guiPortable = q("dlGuiPortable");
+  if (cliSetup) cliSetup.href = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+  if (cliPortable) cliPortable.href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
+  if (guiSetup) guiSetup.href = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
+  if (guiPortable) guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
 async function hydrateReleaseAssets() {
@@ -210,7 +214,10 @@ function setCommandBlocks(assets = {}) {
   const guiSetup = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
   const cliSetup = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
 
-  q("psCmd").textContent = `$guiPortable = "${guiPortable}"
+  const ps = q("psCmd");
+  const cmd = q("cmdCmd");
+  const pip = q("pipCmd");
+  if (ps) ps.textContent = `$guiPortable = "${guiPortable}"
 $cliPortable = "${cliPortable}"
 $guiSetup = "${guiSetup}"
 $cliSetup = "${cliSetup}"
@@ -220,19 +227,19 @@ Invoke-WebRequest $guiSetup -OutFile "Pixiv OAuth GUi Setup.exe"
 Invoke-WebRequest $cliSetup -OutFile "Pixiv OAuth CLi Setup.exe"
 `;
 
-  q("cmdCmd").textContent = `curl -L "${guiPortable}" -o "Pixiv OAuth GUi (Portable).exe"
+  if (cmd) cmd.textContent = `curl -L "${guiPortable}" -o "Pixiv OAuth GUi (Portable).exe"
 curl -L "${cliPortable}" -o "Pixiv OAuth CLi (Portable).exe"
 curl -L "${guiSetup}" -o "Pixiv OAuth GUi Setup.exe"
 curl -L "${cliSetup}" -o "Pixiv OAuth CLi Setup.exe"
 `;
 
-  q("pipCmd").textContent = `python -m pip install -r requirements.txt
+  if (pip) pip.textContent = `python -m pip install -r requirements.txt
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"`;
 }
 
 async function copyText(text, okMessage) {
   await navigator.clipboard.writeText(text);
-  output.textContent = okMessage;
+  if (output) output.textContent = okMessage;
 }
 
 function updateLangFlag() {
@@ -335,8 +342,9 @@ function applyLang() {
     if (el) el.textContent = t(key);
   });
 
-  q("inputCode").placeholder = t("placeholder");
-  output.textContent = t("ready");
+  const inputCode = q("inputCode");
+  if (inputCode) inputCode.placeholder = t("placeholder");
+  if (output) output.textContent = t("ready");
   updateLangFlag();
 }
 
@@ -367,6 +375,11 @@ function apiBase() {
   return "/api/token";
 }
 
+function bindClick(id, handler) {
+  const el = q(id);
+  if (el) el.onclick = handler;
+}
+
 async function callApi(payload) {
   const res = await fetch(apiBase(), {
     method: "POST",
@@ -389,14 +402,14 @@ async function callApi(payload) {
   return data;
 }
 
-q("openLoginBtn").onclick = async () => {
+bindClick("openLoginBtn", async () => {
   const { codeChallenge } = await createPkce();
   const url = `${LOGIN_URL}?${new URLSearchParams({ code_challenge: codeChallenge, code_challenge_method: "S256", client: "pixiv-android" })}`;
   window.open(url, "_blank", "noopener");
-  output.textContent = t("opened");
-};
+  if (output) output.textContent = t("opened");
+});
 
-q("exchangeBtn").onclick = async () => {
+bindClick("exchangeBtn", async () => {
   try {
     const code = parseCode(q("inputCode").value);
     if (!code) throw new Error(t("codeEmpty"));
@@ -412,13 +425,13 @@ q("exchangeBtn").onclick = async () => {
     });
 
     tokenState = data;
-    output.textContent = JSON.stringify(data, null, 2);
+    if (output) output.textContent = JSON.stringify(data, null, 2);
   } catch (e) {
-    output.textContent = `Error: ${e.message}`;
+    if (output) output.textContent = `Error: ${e.message}`;
   }
-};
+});
 
-q("refreshBtn").onclick = async () => {
+bindClick("refreshBtn", async () => {
   try {
     if (!tokenState.refresh_token) throw new Error(t("noRefresh"));
 
@@ -430,33 +443,33 @@ q("refreshBtn").onclick = async () => {
     });
 
     tokenState = data;
-    output.textContent = JSON.stringify(data, null, 2);
+    if (output) output.textContent = JSON.stringify(data, null, 2);
   } catch (e) {
-    output.textContent = `Error: ${e.message}`;
+    if (output) output.textContent = `Error: ${e.message}`;
   }
-};
+});
 
-q("copyAccessBtn").onclick = async () => {
+bindClick("copyAccessBtn", async () => {
   if (!tokenState.access_token) {
-    output.textContent = t("nothingAccess");
+    if (output) output.textContent = t("nothingAccess");
     return;
   }
 
   await copyText(tokenState.access_token, t("copiedAccess"));
-};
+});
 
-q("copyRefreshBtn").onclick = async () => {
+bindClick("copyRefreshBtn", async () => {
   if (!tokenState.refresh_token) {
-    output.textContent = t("nothingRefresh");
+    if (output) output.textContent = t("nothingRefresh");
     return;
   }
 
   await copyText(tokenState.refresh_token, t("copiedRefresh"));
-};
+});
 
-q("copyPsBtn").onclick = async () => copyText(q("psCmd").textContent, t("copiedPs"));
-q("copyCmdBtn").onclick = async () => copyText(q("cmdCmd").textContent, t("copiedCmd"));
-q("copyPipBtn").onclick = async () => copyText(q("pipCmd").textContent, t("copiedPip"));
+bindClick("copyPsBtn", async () => { const el = q("psCmd"); if (el) await copyText(el.textContent, t("copiedPs")); });
+bindClick("copyCmdBtn", async () => { const el = q("cmdCmd"); if (el) await copyText(el.textContent, t("copiedCmd")); });
+bindClick("copyPipBtn", async () => { const el = q("pipCmd"); if (el) await copyText(el.textContent, t("copiedPip")); });
 
 (async function init() {
   const saved = localStorage.getItem("pixiv_lang");
