@@ -58,7 +58,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .showcase-head{text-align:center;max-width:860px;margin:0 auto;display:grid;gap:10px}
 .showcase-badge{justify-self:center;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:12px;background:#1a2639;border:1px solid #35527a;color:#7fd0ff;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
 .app-showcase h2{margin:0;font-size:clamp(1.8rem,4vw,3.1rem);line-height:1.12;color:#dbe8ff;font-family:Georgia,"Times New Roman",serif}
-.showcase-video{width:min(1120px,100%);margin:0 auto;display:block;border:0;border-radius:14px;background:#000;aspect-ratio:16/9;object-fit:cover}
+.showcase-video{width:min(1120px,100%);height:auto;max-height:78vh;margin:0 auto;display:block;border:0;border-radius:14px;background:#000;object-fit:contain}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .result-actions{margin-top:10px}
 
