@@ -23,12 +23,12 @@
 <body>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="#hero">Pixiv OAuth</a>
+      <a class="brand" href="#hero"><strong>Pixiv OAuth</strong><span>WEB</span></a>
       <nav class="nav-links">
         <a id="navConsole" href="#console">Console</a>
-        <a id="navDownloads" href="#downloads">Downloads</a>
-        <a id="navQuickCmd" href="#quickcmd">Quick Cmd</a>
-        <a id="navTutorial" href="#tutorial">Tutorial</a>
+        <a id="navDownloads" href="/downloads.html">Downloads</a>
+        <a id="navQuickCmd" href="/downloads.html#quickcmd">Quick Cmd</a>
+        <a id="navTutorial" href="/tutorial.html">Tutorial</a>
       </nav>
       <div class="lang-wrap">
         <div class="lang-control" id="langControl">
@@ -116,55 +116,41 @@
       </div>
     </section>
 
-    <section id="downloads" class="card">
-      <h2 id="downloadsTitle">Downloads</h2>
-      <p class="muted" id="downloadsDesc">Download the latest builds directly from GitHub Releases.</p>
-      <div class="download-grid">
-        <a id="dlCliSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlCliPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-        <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
+
+    <section class="tutorial-cta-wrap">
+      <p class="muted">Need visual step-by-step guide?</p>
+      <a id="tutorialCtaBtn" class="tutorial-cta-btn" href="/tutorial.html">
+        <span id="tutorialCtaBtnLabel">Open Tutorial Page</span>
+        <i class="bi bi-arrow-right" aria-hidden="true"></i>
+      </a>
+    </section>
+    <section class="app-showcase card">
+      <div class="showcase-head">
+        <span class="showcase-badge"><i class="bi bi-windows" aria-hidden="true"></i> Windows App Preview</span>
+        <h2>See Pixiv OAuth Windows App in Action</h2>
+        <p class="muted">Di sini nanti kamu bisa menampilkan cuplikan video penggunaan aplikasi Windows dari proses login sampai token berhasil didapatkan.</p>
+      </div>
+      <div class="showcase-video-box">
+        <video id="windowsDemoVideo" controls playsinline preload="metadata">
+          <source src="https://proud-mode-56f2.fatonyahmadfauzi.workers.dev/" type="video/mp4">
+          Browser Anda tidak mendukung video HTML5.
+        </video>
       </div>
     </section>
 
-    <section id="quickcmd" class="card">
-      <h2 id="quickCmdTitle">Quick Command</h2>
-      <p class="muted" id="quickCmdDesc">Copy commands for quick download via PowerShell/CMD and install via pip.</p>
-      <div class="cmd-grid">
-        <div class="cmd-block">
-          <h3><i class="bi bi-terminal-fill" aria-hidden="true"></i> PowerShell</h3>
-          <pre id="psCmd"></pre>
-          <button class="btn" id="copyPsBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPsBtnLabel">Copy PowerShell</span></button>
-        </div>
-        <div class="cmd-block">
-          <h3><i class="bi bi-command" aria-hidden="true"></i> CMD</h3>
-          <pre id="cmdCmd"></pre>
-          <button class="btn" id="copyCmdBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyCmdBtnLabel">Copy CMD</span></button>
-        </div>
-        <div class="cmd-block">
-          <h3><i class="bi bi-filetype-py" aria-hidden="true"></i> Python / pip</h3>
-          <pre id="pipCmd"></pre>
-          <button class="btn" id="copyPipBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPipBtnLabel">Copy pip command</span></button>
-        </div>
-      </div>
+    <section class="tutorial-cta-wrap">
+      <p class="muted">Downloads & quick commands are now on a dedicated page.</p>
+      <a class="tutorial-cta-btn" href="/downloads.html"><span>Open Downloads Page</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </section>
 
-    <section id="tutorial" class="card tutorial">
-      <h2 id="tutorialTitle">Tutorial</h2>
-      <p class="muted" id="tutorialDesc">Fill this section with ordered screenshots to guide users from login to token exchange.</p>
-      <div class="tutorial-grid">
-        <figure class="tutorial-item"><figcaption>1. Open Login Page</figcaption><img src="/tutorial_images/step_1.png" alt="Step 1" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/01-open-login-page.png')); this.parentElement.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>2. Continue Login</figcaption><img src="/tutorial_images/02-continue-login.png" alt="Step 2" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/02-continue-login.png')); this.parentElement.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>3. Open Console</figcaption><img src="/tutorial_images/03-open-console.png" alt="Step 3" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/03-open-console.png')); this.parentElement.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>4. Copy pixiv URL</figcaption><img src="/tutorial_images/04-copy-pixiv-url.png" alt="Step 4" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/04-copy-pixiv-url.png')); this.parentElement.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>5. Paste URL / Code</figcaption><img src="/tutorial_images/step_5.png" alt="Step 5" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/05-paste-url-code.png')); this.parentElement.classList.add('missing')"></figure>
-        <figure class="tutorial-item"><figcaption>6. Exchange Token</figcaption><img src="/tutorial_images/result.png" alt="Step 6" onerror="this.replaceWith(document.createTextNode('Add tutorial_images/06-exchange-token.png')); this.parentElement.classList.add('missing')"></figure>
-      </div>
-    </section>
+
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-grid">
+  <footer class="tutorial-docs-footer site-footer">
+    <div class="tutorial-docs-footer-inner footer-grid">
+      <section class="tutorial-docs-footer-brand">
+        <h3><span>Pixiv OAuth</span><small>WEB</small></h3>
+      </section>
       <section>
         <h3 id="footerResourceTitle">Resources</h3>
         <ul>
@@ -184,7 +170,7 @@
       </section>
       <section>
         <h3 id="footerDevTitle">Developer</h3>
-        <p>Fatony Ahmad Fauzi</p>
+        <ul><li>Fatony Ahmad Fauzi</li></ul>
       </section>
     </div>
   </footer>
