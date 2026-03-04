@@ -38,6 +38,27 @@ const I18N = {
     copyPs: "Copy PowerShell", copyCmd: "Copy CMD", copyPip: "Copy pip command",
     navConsole: "Console", navDownloads: "Downloads", navQuickCmd: "Quick Cmd", navTutorial: "Tutorial",
     tutorialTitle: "Tutorial", tutorialDesc: "Fill this section with ordered screenshots to guide users from login to token exchange.",
+    tutorialCtaText: "Need visual step-by-step guide?", tutorialCtaBtnLabel: "Open Tutorial Page",
+    windowsPreviewBadge: "Windows App Preview", windowsPreviewTitle: "See Pixiv OAuth Windows App in Action",
+    windowsPreviewDesc: "Short preview of the Windows app flow from login to successful token generation.",
+    windowsVideoFallback: "Your browser does not support HTML5 video.",
+    cliPreviewBadge: "CLI Preview", cliPreviewTitle: "Preview Pixiv OAuth CLI Output",
+    cliPreviewDesc: "CLI output simulation to quickly understand login, code parsing, and token results.",
+    cliFigureLabel: "Fig. CLI — Pixiv OAuth Token Preview", cliToggleMore: "See More", cliToggleLess: "Show Less",
+    downloadsCtaText: "Downloads & quick commands are now on a dedicated page.", downloadsCtaBtnLabel: "Open Downloads Page",
+    downloadsBrandTag: "DOWNLOAD", downloadsHomeLink: "Homepage", downloadsTutorialLink: "Tutorial", downloadsConsoleLink: "Console",
+    downloadsTabDownloads: "Downloads", downloadsTabQuickCmd: "Quick Command", downloadsFooterTag: "DOWNLOAD",
+    tutorialBrandTag: "TUTORIAL", tutorialHomeLink: "Homepage", tutorialConsoleLink: "Console", tutorialDownloadsLink: "Downloads",
+    tutorialTabStart: "Get Started", tutorialTabSteps: "Tutorial Steps", tutorialTabTips: "Tips",
+    tutorialIntroTitle: "Get Started with Pixiv OAuth Tutorial", tutorialIntroDesc: "Follow each step from login to token exchange so the process is easier on desktop and mobile.",
+    tutorialStep1Title: "Open Login Page", tutorialStep1Desc: "Open the Pixiv login page from the web console tool.",
+    tutorialStep2Title: "Continue Login", tutorialStep2Desc: "Continue login until Pixiv redirects you to the callback page.",
+    tutorialStep3Title: "Open Console", tutorialStep3Desc: "Open DevTools/Console to capture the pixiv callback URL.",
+    tutorialStep4Title: "Copy pixiv URL", tutorialStep4Desc: "Copy the callback URL that contains Pixiv authorization code.",
+    tutorialStep5Title: "Paste URL / Code", tutorialStep5Desc: "Paste callback URL or code into the OAuth console input.",
+    tutorialStep6Title: "Exchange Token", tutorialStep6Desc: "Click Exchange Token, then copy access_token and refresh_token.",
+    tutorialBackToConsole: "Back to OAuth Console", tutorialFooterTag: "TUTORIAL",
+    footerGithub: "GitHub Repository", footerOAuthEndpoint: "Pixiv OAuth Endpoint", footerPython: "Python 3.11+", footerPyInstaller: "PyInstaller", footerVercel: "Vercel", footerTikTok: "TikTok", footerTwitter: "Twitter", footerDeveloperName: "Fatony Ahmad Fauzi",
     errApiNotFound: "API endpoint not found (404). Deploy /api/token on Vercel first.",
     errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
     copiedPs: "PowerShell command copied.", copiedCmd: "CMD command copied.", copiedPip: "pip command copied."
@@ -60,6 +81,27 @@ const I18N = {
     copyPs: "Salin PowerShell", copyCmd: "Salin CMD", copyPip: "Salin perintah pip",
     navConsole: "Konsol", navDownloads: "Unduhan", navQuickCmd: "Perintah Cepat", navTutorial: "Tutorial",
     tutorialTitle: "Tutorial", tutorialDesc: "Isi bagian ini dengan screenshot berurutan untuk panduan login sampai tukar token.",
+    tutorialCtaText: "Butuh panduan visual langkah demi langkah?", tutorialCtaBtnLabel: "Buka Halaman Tutorial",
+    windowsPreviewBadge: "Preview Aplikasi Windows", windowsPreviewTitle: "Lihat Aplikasi Pixiv OAuth Windows Beraksi",
+    windowsPreviewDesc: "Preview singkat alur aplikasi Windows dari login sampai token berhasil dibuat.",
+    windowsVideoFallback: "Browser Anda tidak mendukung video HTML5.",
+    cliPreviewBadge: "Preview CLI", cliPreviewTitle: "Preview Output CLI Pixiv OAuth",
+    cliPreviewDesc: "Simulasi output CLI untuk melihat proses login, pembacaan code, dan hasil token secara ringkas.",
+    cliFigureLabel: "Gambar CLI — Preview Token Pixiv OAuth", cliToggleMore: "Lihat Lebih Banyak", cliToggleLess: "Lihat Lebih Sedikit",
+    downloadsCtaText: "Unduhan & perintah cepat sekarang ada di halaman khusus.", downloadsCtaBtnLabel: "Buka Halaman Unduhan",
+    downloadsBrandTag: "UNDUH", downloadsHomeLink: "Beranda", downloadsTutorialLink: "Tutorial", downloadsConsoleLink: "Konsol",
+    downloadsTabDownloads: "Unduhan", downloadsTabQuickCmd: "Perintah Cepat", downloadsFooterTag: "UNDUH",
+    tutorialBrandTag: "TUTORIAL", tutorialHomeLink: "Beranda", tutorialConsoleLink: "Konsol", tutorialDownloadsLink: "Unduhan",
+    tutorialTabStart: "Mulai", tutorialTabSteps: "Langkah Tutorial", tutorialTabTips: "Tips",
+    tutorialIntroTitle: "Mulai Tutorial Pixiv OAuth", tutorialIntroDesc: "Ikuti langkah berurutan dari login sampai exchange token agar proses lebih mudah di desktop maupun mobile.",
+    tutorialStep1Title: "Buka Halaman Login", tutorialStep1Desc: "Buka halaman login Pixiv dari konsol web tool.",
+    tutorialStep2Title: "Lanjutkan Login", tutorialStep2Desc: "Lanjutkan login sampai Pixiv mengarahkan ke halaman callback.",
+    tutorialStep3Title: "Buka Console", tutorialStep3Desc: "Buka DevTools/Console untuk mengambil URL callback pixiv.",
+    tutorialStep4Title: "Salin URL pixiv", tutorialStep4Desc: "Salin URL callback yang berisi authorization code dari Pixiv.",
+    tutorialStep5Title: "Tempel URL / Code", tutorialStep5Desc: "Tempel URL callback atau code ke input OAuth console.",
+    tutorialStep6Title: "Tukar Token", tutorialStep6Desc: "Klik Exchange Token, lalu salin access_token dan refresh_token.",
+    tutorialBackToConsole: "Kembali ke OAuth Console", tutorialFooterTag: "TUTORIAL",
+    footerGithub: "Repository GitHub", footerOAuthEndpoint: "Endpoint OAuth Pixiv", footerPython: "Python 3.11+", footerPyInstaller: "PyInstaller", footerVercel: "Vercel", footerTikTok: "TikTok", footerTwitter: "Twitter/X", footerDeveloperName: "Fatony Ahmad Fauzi",
     errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token di Vercel dulu.",
     errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy.",
     copiedPs: "Command PowerShell tersalin.", copiedCmd: "Command CMD tersalin.", copiedPip: "Command pip tersalin."
@@ -300,7 +342,7 @@ function setupCliPreviewToggle() {
   let expanded = false;
   const render = () => {
     preview.classList.toggle("expanded", expanded);
-    toggle.textContent = expanded ? "Show Less" : "See More";
+    toggle.textContent = expanded ? t("cliToggleLess") : t("cliToggleMore");
   };
 
   toggle.addEventListener("click", () => {
@@ -353,7 +395,58 @@ function applyLang() {
     navQuickCmd: "navQuickCmd",
     navTutorialLabel: "navTutorial",
     tutorialTitle: "tutorialTitle",
-    tutorialDesc: "tutorialDesc"
+    tutorialDesc: "tutorialDesc",
+    tutorialCtaText: "tutorialCtaText",
+    tutorialCtaBtnLabel: "tutorialCtaBtnLabel",
+    windowsPreviewBadge: "windowsPreviewBadge",
+    windowsPreviewTitle: "windowsPreviewTitle",
+    windowsPreviewDesc: "windowsPreviewDesc",
+    windowsVideoFallback: "windowsVideoFallback",
+    cliPreviewBadge: "cliPreviewBadge",
+    cliPreviewTitle: "cliPreviewTitle",
+    cliPreviewDesc: "cliPreviewDesc",
+    cliFigureLabel: "cliFigureLabel",
+    downloadsCtaText: "downloadsCtaText",
+    downloadsCtaBtnLabel: "downloadsCtaBtnLabel",
+    downloadsBrandTag: "downloadsBrandTag",
+    downloadsHomeLink: "downloadsHomeLink",
+    downloadsTutorialLink: "downloadsTutorialLink",
+    downloadsConsoleLink: "downloadsConsoleLink",
+    downloadsTabDownloads: "downloadsTabDownloads",
+    downloadsTabQuickCmd: "downloadsTabQuickCmd",
+    downloadsFooterTag: "downloadsFooterTag",
+    tutorialBrandTag: "tutorialBrandTag",
+    tutorialHomeLink: "tutorialHomeLink",
+    tutorialConsoleLink: "tutorialConsoleLink",
+    tutorialDownloadsLink: "tutorialDownloadsLink",
+    tutorialTabStart: "tutorialTabStart",
+    tutorialTabSteps: "tutorialTabSteps",
+    tutorialTabTips: "tutorialTabTips",
+    tutorialIntroTitle: "tutorialIntroTitle",
+    tutorialIntroDesc: "tutorialIntroDesc",
+    tutorialStepsTitle: "tutorialTabSteps",
+    tutorialStep1Title: "tutorialStep1Title",
+    tutorialStep1Desc: "tutorialStep1Desc",
+    tutorialStep2Title: "tutorialStep2Title",
+    tutorialStep2Desc: "tutorialStep2Desc",
+    tutorialStep3Title: "tutorialStep3Title",
+    tutorialStep3Desc: "tutorialStep3Desc",
+    tutorialStep4Title: "tutorialStep4Title",
+    tutorialStep4Desc: "tutorialStep4Desc",
+    tutorialStep5Title: "tutorialStep5Title",
+    tutorialStep5Desc: "tutorialStep5Desc",
+    tutorialStep6Title: "tutorialStep6Title",
+    tutorialStep6Desc: "tutorialStep6Desc",
+    tutorialBackToConsole: "tutorialBackToConsole",
+    tutorialFooterTag: "tutorialFooterTag",
+    footerGithub: "footerGithub",
+    footerOAuthEndpoint: "footerOAuthEndpoint",
+    footerPython: "footerPython",
+    footerPyInstaller: "footerPyInstaller",
+    footerVercel: "footerVercel",
+    footerTikTok: "footerTikTok",
+    footerTwitter: "footerTwitter",
+    footerDeveloperName: "footerDeveloperName"
   };
 
   Object.entries(map).forEach(([id, key]) => {
@@ -364,6 +457,11 @@ function applyLang() {
   const inputCode = q("inputCode");
   if (inputCode) inputCode.placeholder = t("placeholder");
   if (output) output.textContent = t("ready");
+  const cliToggleBtn = q("cliToggleBtn");
+  if (cliToggleBtn) {
+    const isExpanded = q("cliPreviewBox")?.classList.contains("expanded");
+    cliToggleBtn.textContent = isExpanded ? t("cliToggleLess") : t("cliToggleMore");
+  }
   updateLangFlag();
 }
 
