@@ -38,6 +38,14 @@ const I18N = {
     copyPs: "Copy PowerShell", copyCmd: "Copy CMD", copyPip: "Copy pip command",
     navConsole: "Console", navDownloads: "Downloads", navQuickCmd: "Quick Cmd", navTutorial: "Tutorial",
     tutorialTitle: "Tutorial", tutorialDesc: "Fill this section with ordered screenshots to guide users from login to token exchange.",
+    tutorialCtaText: "Need visual step-by-step guide?", tutorialCtaBtnLabel: "Open Tutorial Page",
+    windowsPreviewBadge: "Windows App Preview", windowsPreviewTitle: "See Pixiv OAuth Windows App in Action",
+    windowsPreviewDesc: "Short preview of the Windows app flow from login to successful token generation.",
+    windowsVideoFallback: "Your browser does not support HTML5 video.",
+    cliPreviewBadge: "CLI Preview", cliPreviewTitle: "Preview Pixiv OAuth CLI Output",
+    cliPreviewDesc: "CLI output simulation to quickly understand login, code parsing, and token results.",
+    cliFigureLabel: "Fig. CLI — Pixiv OAuth Token Preview", cliToggleMore: "See More", cliToggleLess: "Show Less",
+    downloadsCtaText: "Downloads & quick commands are now on a dedicated page.", downloadsCtaBtnLabel: "Open Downloads Page",
     errApiNotFound: "API endpoint not found (404). Deploy /api/token on Vercel first.",
     errApiHtml: "Server returned HTML instead of JSON. Check deployment routes/config.",
     copiedPs: "PowerShell command copied.", copiedCmd: "CMD command copied.", copiedPip: "pip command copied."
@@ -60,6 +68,14 @@ const I18N = {
     copyPs: "Salin PowerShell", copyCmd: "Salin CMD", copyPip: "Salin perintah pip",
     navConsole: "Konsol", navDownloads: "Unduhan", navQuickCmd: "Perintah Cepat", navTutorial: "Tutorial",
     tutorialTitle: "Tutorial", tutorialDesc: "Isi bagian ini dengan screenshot berurutan untuk panduan login sampai tukar token.",
+    tutorialCtaText: "Butuh panduan visual langkah demi langkah?", tutorialCtaBtnLabel: "Buka Halaman Tutorial",
+    windowsPreviewBadge: "Preview Aplikasi Windows", windowsPreviewTitle: "Lihat Aplikasi Pixiv OAuth Windows Beraksi",
+    windowsPreviewDesc: "Preview singkat alur aplikasi Windows dari login sampai token berhasil dibuat.",
+    windowsVideoFallback: "Browser Anda tidak mendukung video HTML5.",
+    cliPreviewBadge: "Preview CLI", cliPreviewTitle: "Preview Output CLI Pixiv OAuth",
+    cliPreviewDesc: "Simulasi output CLI untuk melihat proses login, pembacaan code, dan hasil token secara ringkas.",
+    cliFigureLabel: "Gambar CLI — Preview Token Pixiv OAuth", cliToggleMore: "Lihat Lebih Banyak", cliToggleLess: "Lihat Lebih Sedikit",
+    downloadsCtaText: "Unduhan & perintah cepat sekarang ada di halaman khusus.", downloadsCtaBtnLabel: "Buka Halaman Unduhan",
     errApiNotFound: "Endpoint API tidak ditemukan (404). Deploy /api/token di Vercel dulu.",
     errApiHtml: "Server mengembalikan HTML, bukan JSON. Cek konfigurasi route/deploy.",
     copiedPs: "Command PowerShell tersalin.", copiedCmd: "Command CMD tersalin.", copiedPip: "Command pip tersalin."
@@ -300,7 +316,7 @@ function setupCliPreviewToggle() {
   let expanded = false;
   const render = () => {
     preview.classList.toggle("expanded", expanded);
-    toggle.textContent = expanded ? "Show Less" : "See More";
+    toggle.textContent = expanded ? t("cliToggleLess") : t("cliToggleMore");
   };
 
   toggle.addEventListener("click", () => {
@@ -353,7 +369,19 @@ function applyLang() {
     navQuickCmd: "navQuickCmd",
     navTutorialLabel: "navTutorial",
     tutorialTitle: "tutorialTitle",
-    tutorialDesc: "tutorialDesc"
+    tutorialDesc: "tutorialDesc",
+    tutorialCtaText: "tutorialCtaText",
+    tutorialCtaBtnLabel: "tutorialCtaBtnLabel",
+    windowsPreviewBadge: "windowsPreviewBadge",
+    windowsPreviewTitle: "windowsPreviewTitle",
+    windowsPreviewDesc: "windowsPreviewDesc",
+    windowsVideoFallback: "windowsVideoFallback",
+    cliPreviewBadge: "cliPreviewBadge",
+    cliPreviewTitle: "cliPreviewTitle",
+    cliPreviewDesc: "cliPreviewDesc",
+    cliFigureLabel: "cliFigureLabel",
+    downloadsCtaText: "downloadsCtaText",
+    downloadsCtaBtnLabel: "downloadsCtaBtnLabel"
   };
 
   Object.entries(map).forEach(([id, key]) => {
@@ -364,6 +392,11 @@ function applyLang() {
   const inputCode = q("inputCode");
   if (inputCode) inputCode.placeholder = t("placeholder");
   if (output) output.textContent = t("ready");
+  const cliToggleBtn = q("cliToggleBtn");
+  if (cliToggleBtn) {
+    const isExpanded = q("cliPreviewBox")?.classList.contains("expanded");
+    cliToggleBtn.textContent = isExpanded ? t("cliToggleLess") : t("cliToggleMore");
+  }
   updateLangFlag();
 }
 
