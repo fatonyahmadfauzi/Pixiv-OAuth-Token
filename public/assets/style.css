@@ -22,18 +22,17 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .nav-links a:hover{color:#fff;border-bottom-color:#6ea2ff}
 .menu-toggle{display:none!important}
 
-
 .container{max-width:1200px;margin:0 auto;padding:20px 16px 28px;display:grid;gap:16px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:18px;backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
-.hero{min-height:72vh;display:grid;align-content:center;gap:14px;position:relative;overflow:hidden}
+.hero{min-height:70vh;display:grid;align-content:center;gap:16px;position:relative;overflow:hidden;padding:clamp(16px,4vw,28px)}
 .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle,#8ef3ff33 0,#9f7dff14 35%,transparent 60%);pointer-events:none}
 .hero>*{position:relative;z-index:1}
 .kicker{margin:0;color:#9ec0ff;letter-spacing:.11em;text-transform:uppercase;font-weight:700;font-size:.8rem}
-.hero h1{margin:0;font-size:clamp(2rem,4vw,4rem)}
-.muted{color:var(--muted);line-height:1.5}
+.hero h1{margin:0;line-height:1.05;font-size:clamp(2rem,4vw,4rem)}
+.muted{color:var(--muted);line-height:1.6}
 .hero-badges{display:flex;flex-wrap:wrap;gap:8px}
-.badge{border:1px solid #3a4d76;background:#101d38;border-radius:999px;padding:6px 11px;font-size:.82rem}
+.badge{border:1px solid #3a4d76;background:#101d38;border-radius:999px;padding:7px 12px;font-size:.8rem}
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
@@ -44,7 +43,7 @@ textarea,pre,.btn{border:1px solid #33496f;border-radius:12px;background:#0b1428
 textarea{width:100%;min-height:120px;padding:12px;resize:vertical}
 pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:86px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:10px 14px;text-decoration:none;cursor:pointer;transition:.18s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 14px;text-decoration:none;cursor:pointer;transition:.18s ease}
 .btn:hover{transform:translateY(-1px);border-color:#5a7db8}
 .btn.primary{background:linear-gradient(180deg,var(--primary),var(--primary-2));color:#fff;border-color:#7aa8ff;font-weight:700}
 .tutorial-cta-wrap{display:grid;gap:12px;justify-items:center;text-align:center;padding:18px 0 16px;margin:10px 0 14px}
@@ -90,7 +89,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .tutorial-item img{width:100%;height:auto;border-radius:10px;border:1px solid #2a3b5a}
 .tutorial-item.missing{color:#94a5cc;align-content:center}
 
-.lang-wrap{display:grid;gap:6px;min-width:180px;margin-left:auto}
+.lang-wrap{display:grid;gap:6px;min-width:180px}
 .lang-control{position:relative;max-width:230px}
 .lang-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #3b5a96;border-radius:12px;background:linear-gradient(180deg,#122247,#0d1730);color:var(--text);padding:10px 12px;cursor:pointer}
 #langFlag{font-size:18px}
