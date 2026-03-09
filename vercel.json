@@ -14,6 +14,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/assets/favicon.ico", "destination": "/pixiv_login_pro.ico" },
     { "source": "/assets/(.*)", "destination": "/public/assets/$1" },
     { "source": "/", "destination": "/public/index.html" },
     { "source": "/(.*)", "destination": "/public/$1" }
