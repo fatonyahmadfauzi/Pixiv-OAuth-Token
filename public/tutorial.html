@@ -21,27 +21,27 @@
           <span>TUTORIAL</span>
         </a>
         <nav class="tutorial-docs-actions" aria-label="Tutorial actions">
-          <a href="/">Homepage</a>
-          <a href="/#console">Console</a>
-          <a href="/downloads.html">Downloads</a>
+          <a id="navHomepageLabel" href="/">Homepage</a>
+          <a id="navConsole" href="/#console">Console</a>
+          <a id="navDownloads" href="/downloads.html">Downloads</a>
         </nav>
       </div>
       <nav class="tutorial-docs-tabs" aria-label="Tutorial sections">
-        <a href="#start" class="active">Get Started</a>
-        <a href="#steps">Tutorial Steps</a>
-        <a href="#tips">Tips</a>
+        <a id="tutorialTabStart" href="#start" class="active">Get Started</a>
+        <a id="tutorialTabSteps" href="#steps">Tutorial Steps</a>
+        <a id="tutorialTabTips" href="#tips">Tips</a>
       </nav>
     </div>
   </header>
 
   <main class="tutorial-docs-main">
     <section id="start" class="tutorial-intro">
-      <h1>Get Started with Pixiv OAuth Tutorial</h1>
-            <p>Ikuti langkah berurutan dari login sampai exchange token agar proses lebih mudah diikuti di desktop maupun mobile.</p>
+      <h1 id="tutorialPageTitle">Get Started with Pixiv OAuth Tutorial</h1>
+            <p id="tutorialPageDesc">Ikuti langkah berurutan dari login sampai exchange token agar proses lebih mudah diikuti di desktop maupun mobile.</p>
     </section>
 
     <section id="steps" class="tutorial-problems">
-      <h2>Tutorial Steps</h2>
+      <h2 id="tutorialStepsTitle">Tutorial Steps</h2>
       <div class="tutorial-docs-grid">
         <article class="tutorial-doc-card">
           <span class="tutorial-icon"><i class="bi bi-box-arrow-up-right"></i></span>
@@ -83,7 +83,7 @@
     </section>
 
     <section id="tips" class="tutorial-footer-note">
-      <a class="tutorial-cta-btn" href="/">Back to OAuth Console <i class="bi bi-arrow-right"></i></a>
+      <a class="tutorial-cta-btn" href="/"><span id="tutorialBackBtnLabel">Back to OAuth Console</span> <i class="bi bi-arrow-right"></i></a>
     </section>
   </main>
   <footer class="tutorial-docs-footer">
@@ -92,7 +92,7 @@
         <h3><span>Pixiv OAuth</span><small>TUTORIAL</small></h3>
       </section>
       <section>
-        <h4>Resources</h4>
+        <h4 id="footerResourceTitle">Resources</h4>
         <ul>
           <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub Repository</a></li>
           <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
@@ -102,14 +102,14 @@
         </ul>
       </section>
       <section>
-        <h4>Contact</h4>
+        <h4 id="footerContactTitle">Contact</h4>
         <ul>
           <li><a href="https://www.tiktok.com/@fatonyahmadfauzi" target="_blank" rel="noopener">TikTok</a></li>
           <li><a href="https://x.com/fatonyahmad89" target="_blank" rel="noopener">Twitter</a></li>
         </ul>
       </section>
       <section>
-        <h4>Developer</h4>
+        <h4 id="footerDevTitle">Developer</h4>
         <ul>
           <li>Fatony Ahmad Fauzi</li>
         </ul>
@@ -117,5 +117,6 @@
     </div>
   </footer>
 
+  <script src="/assets/app.js"></script>
 </body>
 </html>
