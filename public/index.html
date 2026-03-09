@@ -9,13 +9,24 @@
   <meta name="description" content="Pixiv OAuth is a token helper toolkit for CLI, GUI, and Web (PKCE), with Vercel deployment support and portable/setup release options.">
   <meta name="keywords" content="pixiv oauth, pixiv token helper, oauth pkce, cli gui web, vercel">
   <meta name="author" content="Fatony Ahmad Fauzi">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Pixiv OAuth Web">
   <meta property="og:title" content="Pixiv OAuth Web | Professional Token Helper">
   <meta property="og:description" content="Generate and refresh Pixiv OAuth tokens with a modern UI, multilingual support, and serverless API support for Vercel.">
+  <meta property="og:url" content="https://pixiv-o-auth-token.vercel.app/">
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png">
+  <meta property="og:image:secure_url" content="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Pixiv OAuth Web homepage jumbotron">
+  <meta name="twitter:title" content="Pixiv OAuth Web | Professional Token Helper">
+  <meta name="twitter:description" content="Generate and refresh Pixiv OAuth tokens with a modern UI, multilingual support, and serverless API support for Vercel.">
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#6ea2ff">
+  <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
@@ -117,7 +128,7 @@
     </section>
 
     <section class="tutorial-cta-wrap">
-      <p class="muted">Need visual step-by-step guide?</p>
+      <p id="needVisualGuideText" class="muted">Need visual step-by-step guide?</p>
       <a id="tutorialCtaBtn" class="tutorial-cta-btn" href="/tutorial.html">
         <span id="tutorialCtaBtnLabel">Open Tutorial Page</span>
         <i class="bi bi-arrow-right" aria-hidden="true"></i>
@@ -125,9 +136,9 @@
     </section>
     <section class="app-showcase card">
       <div class="showcase-head">
-        <span class="showcase-badge"><i class="bi bi-windows" aria-hidden="true"></i> Windows App Preview</span>
-        <h2>See Pixiv OAuth Windows App in Action</h2>
-        <p class="muted">Preview singkat ini memperlihatkan alur aplikasi Windows dari tahap login hingga token berhasil dibuat.</p>
+        <span id="windowsPreviewBadge" class="showcase-badge"><i class="bi bi-windows" aria-hidden="true"></i> Windows App Preview</span>
+        <h2 id="windowsPreviewTitle">See Pixiv OAuth Windows App in Action</h2>
+        <p id="windowsPreviewDesc" class="muted">Preview singkat ini memperlihatkan alur aplikasi Windows dari tahap login hingga token berhasil dibuat.</p>
       </div>
       <video id="windowsDemoVideo" class="showcase-video" autoplay loop muted playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-label="Windows app preview video">
         <source src="https://proud-mode-56f2.fatonyahmadfauzi.workers.dev/" type="video/mp4">
@@ -137,12 +148,12 @@
 
     <section class="cli-showcase card">
       <div class="showcase-head">
-        <span class="showcase-badge"><i class="bi bi-terminal" aria-hidden="true"></i> CLI Preview</span>
-        <h2>Preview Pixiv OAuth CLI Output</h2>
-        <p class="muted">Simulasi output CLI untuk membantu melihat proses login, pembacaan code, dan hasil token secara ringkas.</p>
+        <span id="cliPreviewBadge" class="showcase-badge"><i class="bi bi-terminal" aria-hidden="true"></i> CLI Preview</span>
+        <h2 id="cliPreviewTitle">Preview Pixiv OAuth CLI Output</h2>
+        <p id="cliPreviewDesc" class="muted">Simulasi output CLI untuk membantu melihat proses login, pembacaan code, dan hasil token secara ringkas.</p>
       </div>
       <div class="cli-code-shell">
-        <span class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span>
+        <span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span>
         <pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-cyan">======================================================================</span>
 
 <span class="cli-green">  ____  _      _         ____   _   _ _   _ _____ _   _</span>
@@ -179,7 +190,7 @@
     </section>
 
     <section class="tutorial-cta-wrap">
-      <p class="muted">Downloads & quick commands are now on a dedicated page.</p>
+      <p id="downloadsDedicatedDesc" class="muted">Downloads & quick commands are now on a dedicated page.</p>
       <a id="downloadsCtaBtn" class="tutorial-cta-btn" href="/downloads.html"><span id="downloadsCtaBtnLabel">Open Downloads Page</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </section>
 
