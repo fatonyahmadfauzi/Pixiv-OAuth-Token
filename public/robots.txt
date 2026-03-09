@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pixiv-oauth-token.vercel.app/sitemap.xml
+Sitemap: https://pixiv-o-auth-token.vercel.app/sitemap.xml
