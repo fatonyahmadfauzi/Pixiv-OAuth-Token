@@ -66,9 +66,11 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cli-preview::after{content:"";position:absolute;left:0;right:0;bottom:0;height:86px;background:linear-gradient(180deg,transparent,#0b1018)}
 .cli-preview.expanded{max-height:2000px}
 .cli-preview.expanded::after{display:none}
-.cli-code-shell #cliToggleBtn{justify-self:center;min-width:146px}
+.cli-code-shell #cliToggleBtn{justify-self:center;min-width:0;padding-inline:20px;text-align:center}
 
 .cli-toggle-btn{position:relative;z-index:2;margin-top:2px;background:#3a424c;border-color:#525b69;color:#fff !important}
+.cli-toggle-btn span,.cli-toggle-btn{justify-content:center}
+.cli-toggle-btn{letter-spacing:.04em}
 .cli-toggle-btn:hover{background:#4a5563;border-color:#6b7686}
 .cli-preview code{display:block;white-space:pre-wrap}
 .cli-cyan{color:#3fb8ff}.cli-green{color:#00e65f}.cli-yellow{color:#f2c94c}.cli-blue{color:#38a3ff}.cli-white{color:#f0f4ff}.cli-dim{color:#9ca6bd}
