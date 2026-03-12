@@ -21,6 +21,7 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
+SetupIconFile=pixiv_oauth.ico
 UninstallDisplayIcon={app}\pixiv_login_gui.exe
 
 [Languages]

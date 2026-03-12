@@ -20,6 +20,7 @@ set SKIP_SIGN=0
 set SKIP_ZIP=0
 set SKIP_GUI=0
 set NO_PAUSE=0
+set ICON_FILE=pixiv_oauth.ico
 
 if not "%~1"=="" set BUMP=%~1
 
@@ -35,6 +36,7 @@ echo.
 echo ===== Pixiv OAuth - Build All =====
 echo Folder : %cd%
 echo Bump   : %BUMP%
+echo Icon   : %ICON_FILE%
 if %SKIP_GUI%==1 (echo GUI      : SKIP) else (echo GUI      : YES)
 if %SKIP_INST%==1 (echo Installer: SKIP) else (echo Installer: AUTO)
 if %SKIP_SIGN%==1 (echo Signing  : SKIP) else (echo Signing  : AUTO if sign_auto.bat exists)
@@ -59,6 +61,13 @@ del /q "PixivOAuthRelease_v*.zip" 2>nul
 if exist clean_build.bat (
   call clean_build.bat
 )
+
+if not exist "%ICON_FILE%" (
+  echo [ERROR] Icon file not found: %ICON_FILE%
+  exit /b 1
+)
+
+set BUILD_ICON=%ICON_FILE%
 
 REM --- Build CLI (this bumps version by default) ---
 if not exist build_portable_pro.bat (
