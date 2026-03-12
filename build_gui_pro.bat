@@ -16,7 +16,7 @@ REM ==========================================================
 
 set SCRIPT=pixiv_login_gui.py
 set NAME=pixiv_login_gui
-set ICON=pixiv_login_pro.ico
+set ICON=pixiv_oauth.ico
 set PORTABLE_LABEL=Pixiv OAuth GUi (Portable)
 set ADD_TUTORIAL=
 

@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 
 REM --- config ---
 set SCRIPT=pixiv_login.py
-set ICON=pixiv_login_pro.ico
+set ICON=pixiv_oauth.ico
 set OUTNAME=pixiv_login_plus
 set PORTABLE_LABEL=Pixiv OAuth CLi (Portable)
 

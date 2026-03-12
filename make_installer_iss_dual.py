@@ -13,6 +13,7 @@ PUBLISHER = "Fatony Ahmad Fauzi"
 EXE_CLI = r"dist_portable\pixiv_login_plus.exe"
 EXE_GUI = r"dist_gui\pixiv_login_gui.exe"
 OUT_DIR = "dist_installer"
+ICON_FILE = "pixiv_oauth.ico"
 
 # Keep a stable AppId GUID across regenerations by storing it (optional).
 GUID_FILE = Path("installer_guid.txt")
@@ -63,6 +64,7 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
+SetupIconFile={ICON_FILE}
 UninstallDisplayIcon={{app}}\\pixiv_login_gui.exe
 
 [Languages]
