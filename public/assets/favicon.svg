@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Pixiv OAuth favicon">
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="#1f5d33"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#2f8a4a" stroke-width="2"/>
+  <g fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M25 20c-5 0-9 4-9 9s4 9 9 9h4"/>
+    <path d="M39 44c5 0 9-4 9-9s-4-9-9-9h-4"/>
+    <path d="M29 25c2-2 4-3 6-3 4 0 7 3 7 7 0 2-1 4-3 6"/>
+    <path d="M35 39c-2 2-4 3-6 3-4 0-7-3-7-7 0-2 1-4 3-6"/>
+  </g>
+</svg>
