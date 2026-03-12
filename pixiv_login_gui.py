@@ -1112,17 +1112,6 @@ class App(tk.Tk):
         except Exception:
             pass
 
-    def _draw_brand_logo(self, canvas: tk.Canvas):
-        canvas.delete("all")
-        canvas.create_rectangle(0, 0, 96, 96, outline="", fill="#0f172a")
-        canvas.create_rectangle(6, 6, 90, 90, outline="#364964", width=2, fill="#122033")
-        canvas.create_polygon(48, 17, 78, 26, 78, 52, 48, 74, 18, 52, 18, 26, fill="", outline="#ff32ae", width=4, smooth=True)
-        canvas.create_polygon(48, 22, 72, 30, 72, 50, 48, 67, 24, 50, 24, 30, fill="", outline="#ffffff", width=3, smooth=True)
-        canvas.create_rectangle(34, 12, 62, 41, fill="#1f9dff", outline="#1f9dff", width=2)
-        canvas.create_text(48, 27, text="P", fill="#ffffff", font=("Segoe UI", 16, "bold"))
-        canvas.create_rectangle(45, 41, 51, 61, fill="#ffffff", outline="#ffffff")
-        canvas.create_rectangle(48, 55, 54, 71, fill="#ffffff", outline="#ffffff")
-
     # ---------- i18n ----------
     def current_lang_code(self) -> str:
         name = self.lang_var.get().strip()
@@ -1216,12 +1205,6 @@ class App(tk.Tk):
 
         header = ttk.Frame(root, style="App.TFrame")
         header.pack(fill="x", pady=(0, 10))
-
-        logo_box = ttk.Frame(header, style="Card.TFrame", padding=6)
-        logo_box.pack(side="left", padx=(0, 12))
-        self.logo_canvas = tk.Canvas(logo_box, width=96, height=96, bg="#0f172a", highlightthickness=0, bd=0)
-        self.logo_canvas.pack()
-        self._draw_brand_logo(self.logo_canvas)
 
         title_wrap = ttk.Frame(header, style="App.TFrame")
         title_wrap.pack(side="left", fill="x", expand=True)
