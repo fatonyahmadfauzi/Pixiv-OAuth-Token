@@ -1030,6 +1030,15 @@ def app_dir() -> Path:
 
 
 CONFIG_FILE = app_dir() / "pixiv_login_config.json"
+ICON_CANDIDATES = ("pixiv_login_pro.ico", "pixiv_login.ico")
+
+
+def resolve_icon_path() -> Path | None:
+    for icon_name in ICON_CANDIDATES:
+        p = app_dir() / icon_name
+        if p.exists():
+            return p
+    return None
 
 
 def load_config() -> dict:
@@ -1087,11 +1096,32 @@ class App(tk.Tk):
         self.lang_var = tk.StringVar(value=default_name)
         self.save_lang_var = tk.BooleanVar(value=True)
 
+        self._set_app_icon()
         self._build_ui()
         self.apply_ui_language()
         self._update_copy_buttons()
 
         self.log(f"Config file: {CONFIG_FILE}")
+
+    def _set_app_icon(self):
+        icon_path = resolve_icon_path()
+        if not icon_path:
+            return
+        try:
+            self.iconbitmap(str(icon_path))
+        except Exception:
+            pass
+
+    def _draw_brand_logo(self, canvas: tk.Canvas):
+        canvas.delete("all")
+        canvas.create_rectangle(0, 0, 96, 96, outline="", fill="#0f172a")
+        canvas.create_rectangle(6, 6, 90, 90, outline="#364964", width=2, fill="#122033")
+        canvas.create_polygon(48, 17, 78, 26, 78, 52, 48, 74, 18, 52, 18, 26, fill="", outline="#ff32ae", width=4, smooth=True)
+        canvas.create_polygon(48, 22, 72, 30, 72, 50, 48, 67, 24, 50, 24, 30, fill="", outline="#ffffff", width=3, smooth=True)
+        canvas.create_rectangle(34, 12, 62, 41, fill="#1f9dff", outline="#1f9dff", width=2)
+        canvas.create_text(48, 27, text="P", fill="#ffffff", font=("Segoe UI", 16, "bold"))
+        canvas.create_rectangle(45, 41, 51, 61, fill="#ffffff", outline="#ffffff")
+        canvas.create_rectangle(48, 55, 54, 71, fill="#ffffff", outline="#ffffff")
 
     # ---------- i18n ----------
     def current_lang_code(self) -> str:
@@ -1187,9 +1217,18 @@ class App(tk.Tk):
         header = ttk.Frame(root, style="App.TFrame")
         header.pack(fill="x", pady=(0, 10))
 
-        self.header_title_label = ttk.Label(header, text=self.tx("app_header"), style="Header.TLabel")
+        logo_box = ttk.Frame(header, style="Card.TFrame", padding=6)
+        logo_box.pack(side="left", padx=(0, 12))
+        self.logo_canvas = tk.Canvas(logo_box, width=96, height=96, bg="#0f172a", highlightthickness=0, bd=0)
+        self.logo_canvas.pack()
+        self._draw_brand_logo(self.logo_canvas)
+
+        title_wrap = ttk.Frame(header, style="App.TFrame")
+        title_wrap.pack(side="left", fill="x", expand=True)
+
+        self.header_title_label = ttk.Label(title_wrap, text=self.tx("app_header"), style="Header.TLabel")
         self.header_title_label.pack(anchor="w")
-        self.header_subtitle_label = ttk.Label(header, text=self.tx("app_subtitle"), style="Sub.TLabel")
+        self.header_subtitle_label = ttk.Label(title_wrap, text=self.tx("app_subtitle"), style="Sub.TLabel")
         self.header_subtitle_label.pack(anchor="w")
 
         top = ttk.Frame(root, style="Card.TFrame", padding=12)

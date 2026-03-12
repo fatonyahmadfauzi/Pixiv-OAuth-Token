@@ -17,6 +17,7 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .brand{display:inline-flex;align-items:center;gap:12px;color:#fff;text-decoration:none}
 .brand strong{font-size:1.75rem;line-height:1}
 .brand span{font-size:1.05rem;letter-spacing:.16em;color:#cfd5e7}
+
 .nav-links{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
 .nav-links a{display:inline-flex;align-items:center;color:#98a5c6;text-decoration:none;font-size:.92rem;font-weight:600;padding-bottom:8px;border-bottom:2px solid transparent;transition:.18s ease}
 .nav-links a:hover{color:#fff;border-bottom-color:#6ea2ff}
