@@ -26,6 +26,13 @@ if not "%~1"=="" set BUMP=%~1
 REM Ensure deps
 python -m pip install -r requirements.txt
 
+if not exist "%ICON%" (
+  echo [ERROR] Icon file not found: %ICON%
+  exit /b 1
+)
+python check_icon_square.py "%ICON%"
+if errorlevel 1 exit /b 1
+
 REM Optionally bump version
 if /I not "%BUMP%"=="none" (
   for /f "usebackq delims=" %%v in (`python bump_version.py %BUMP%`) do set VER=%%v

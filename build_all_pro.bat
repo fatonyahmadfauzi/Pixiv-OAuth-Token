@@ -67,6 +67,9 @@ if not exist "%ICON_FILE%" (
   exit /b 1
 )
 
+python check_icon_square.py "%ICON_FILE%"
+if errorlevel 1 exit /b 1
+
 set BUILD_ICON=%ICON_FILE%
 
 REM --- Build CLI (this bumps version by default) ---

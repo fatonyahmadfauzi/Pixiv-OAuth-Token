@@ -10,6 +10,13 @@ set PORTABLE_LABEL=Pixiv OAuth CLi (Portable)
 REM --- ensure deps ---
 python -m pip install -r requirements.txt
 
+if not exist "%ICON%" (
+  echo [ERROR] Icon file not found: %ICON%
+  exit /b 1
+)
+python check_icon_square.py "%ICON%"
+if errorlevel 1 exit /b 1
+
 REM --- clean ---
 if exist dist rmdir /s /q dist
 if exist build rmdir /s /q build
