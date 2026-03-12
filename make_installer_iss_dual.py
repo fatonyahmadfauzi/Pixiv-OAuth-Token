@@ -98,27 +98,78 @@ Name: "{{commondesktop}}\\Pixiv OAuth GUi"; Filename: "{{app}}\\pixiv_login_gui.
 Filename: "{{app}}\\pixiv_login_gui.exe"; Description: "Launch Pixiv OAuth GUi"; Flags: nowait postinstall skipifsilent; Components: gui
 Filename: "{{app}}\\pixiv_login_plus.exe"; Description: "Launch Pixiv OAuth CLi"; Flags: nowait postinstall skipifsilent; Components: cli
 
+[UninstallDelete]
+Type: filesandordirs; Name: "{{app}}"
+
 [Code]
 function NeedsAddPath(Param: string): Boolean;
 begin
   Result := (Param = 'addtopath');
 end;
 
+function HasPathEntry(PathValue, Entry: string): Boolean;
+var
+  WrappedPath: string;
+begin
+  WrappedPath := ';' + PathValue + ';';
+  Result := Pos(';' + Entry + ';', WrappedPath) > 0;
+end;
+
+function RemovePathEntry(PathValue, Entry: string): string;
+var
+  SearchFor, ReplaceWith: string;
+begin
+  SearchFor := ';' + Entry + ';';
+  ReplaceWith := ';';
+
+  Result := ';' + PathValue + ';';
+  while Pos(SearchFor, Result) > 0 do
+    StringChangeEx(Result, SearchFor, ReplaceWith, True);
+
+  if (Length(Result) > 0) and (Copy(Result, 1, 1) = ';') then
+    Delete(Result, 1, 1);
+  if (Length(Result) > 0) and (Copy(Result, Length(Result), 1) = ';') then
+    Delete(Result, Length(Result), 1);
+end;
+
+procedure RemovePathFromRegistry(RootKey: Integer);
+var
+  PathEnv, NewPath, AppPath: string;
+begin
+  if not RegQueryStringValue(RootKey, 'Environment', 'Path', PathEnv) then
+    Exit;
+
+  AppPath := ExpandConstant('{{app}}');
+  NewPath := RemovePathEntry(PathEnv, AppPath);
+
+  if NewPath <> PathEnv then
+    RegWriteStringValue(RootKey, 'Environment', 'Path', NewPath);
+end;
+
 procedure CurStepChanged(CurStep: TSetupStep);
 var
-  PathEnv, NewPath: string;
+  PathEnv, NewPath, AppPath: string;
 begin
   if (CurStep = ssPostInstall) and WizardIsTaskSelected('addtopath') then begin
     if not RegQueryStringValue(HKCU, 'Environment', 'Path', PathEnv) then
       PathEnv := '';
 
-    if Pos(ExpandConstant('{{app}}'), PathEnv) = 0 then begin
+    AppPath := ExpandConstant('{{app}}');
+    if not HasPathEntry(PathEnv, AppPath) then begin
       if (PathEnv <> '') and (Copy(PathEnv, Length(PathEnv), 1) <> ';') then
         PathEnv := PathEnv + ';';
-      NewPath := PathEnv + ExpandConstant('{{app}}');
+      NewPath := PathEnv + AppPath;
       RegWriteStringValue(HKCU, 'Environment', 'Path', NewPath);
       // PATH changes apply to new processes after install
     end;
+  end;
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usUninstall then begin
+    RemovePathFromRegistry(HKCU);
+    RemovePathFromRegistry(HKLM);
   end;
 end;
 """
