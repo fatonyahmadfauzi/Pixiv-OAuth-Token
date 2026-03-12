@@ -345,10 +345,7 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
         " |_|   |_|\__, |_|_| |_| \____/ |_|  \___/  |_| |_| |_|",
         "           |___/                                           ",
     ]
-    logo_line = "              🛡️  PIXIV OAUTH  🔑              "
-
     print(colorize("=" * 70, Ansi.CYAN, color_on))
-    print(colorize(logo_line, Ansi.MAGENTA + Ansi.BOLD, color_on))
     for line in title_art:
         print(colorize(line, Ansi.BOLD + Ansi.GREEN, color_on))
 
