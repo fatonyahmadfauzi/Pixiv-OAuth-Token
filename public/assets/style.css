@@ -39,6 +39,9 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .hero-actions .btn{min-height:50px;padding:12px 24px;border-radius:14px;font-size:clamp(1rem,.3vw + .92rem,1.12rem);font-weight:700;letter-spacing:.01em;box-shadow:0 12px 24px rgba(5,10,20,.28)}
 .hero-actions .btn.primary{background:linear-gradient(180deg,#78a9ff,#5f8fff);border-color:#8eb6ff}
 .hero-actions .btn:not(.primary){background:#081229;border-color:#3a4f79;color:#eef3ff}
+.hero-actions .btn:hover{transform:none}
+.hero-actions .btn.primary:hover{background:linear-gradient(180deg,#89b4ff,#6a98ff);border-color:#9abfff}
+.hero-actions .btn:not(.primary):hover{background:#2c333d;border-color:#6d7687}
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
 .clean-list{margin:8px 0 0;padding-left:18px;display:grid;gap:7px}
