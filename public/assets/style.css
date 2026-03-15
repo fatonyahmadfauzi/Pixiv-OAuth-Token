@@ -46,10 +46,10 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 
 .logo-marquee{position:relative;overflow:hidden;padding:10px 0 10px;display:grid;gap:14px}
 .logo-marquee-track-wrap{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
-.logo-marquee-track{display:flex;align-items:center;gap:58px;min-width:max-content;padding-right:58px;animation:marquee-left 26s linear infinite}
-.logo-item{display:inline-flex;align-items:center;justify-content:center;min-width:clamp(96px,10vw,132px);height:40px;color:#d8deea;opacity:.82;white-space:nowrap}
-.logo-item i{font-size:clamp(2rem,2.4vw,2.6rem);line-height:1}
-.logo-img{width:auto;height:clamp(1.5rem,2.1vw,2.05rem);max-width:clamp(88px,10vw,124px);object-fit:contain;filter:none;opacity:.95}
+.logo-marquee-track{display:flex;align-items:center;gap:34px;min-width:max-content;padding-right:34px;animation:marquee-left 26s linear infinite}
+.logo-item{display:inline-flex;align-items:center;justify-content:center;min-width:clamp(72px,8vw,108px);height:46px;color:#d8deea;opacity:.88;white-space:nowrap}
+.logo-item i{font-size:clamp(2.2rem,2.8vw,3rem);line-height:1}
+.logo-img{width:auto;height:clamp(1.9rem,2.5vw,2.5rem);max-width:clamp(96px,11vw,150px);object-fit:contain;filter:none;opacity:.98}
 .logo-marquee-title{margin:0;text-align:center;color:#d5deef;font-size:.86rem;letter-spacing:.13em;font-weight:700;text-transform:uppercase;opacity:.9}
 .logo-item:hover{opacity:1}
 @keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-100%)}}
@@ -143,10 +143,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .nav-links{gap:12px}
   .nav-links a{font-size:.76rem;letter-spacing:.06em}
   .download-grid{grid-template-columns:1fr}
-  .logo-item{min-width:84px;height:34px}
-  .logo-item i{font-size:1.75rem}
-  .logo-img{width:auto;height:1.45rem;max-width:84px}
-  .logo-marquee-track{gap:32px;padding-right:32px}
+  .logo-item{min-width:68px;height:38px}
+  .logo-item i{font-size:1.9rem}
+  .logo-img{width:auto;height:1.8rem;max-width:100px}
+  .logo-marquee-track{gap:24px;padding-right:24px}
   .actions>.btn,.hero-actions .btn{width:auto;min-width:148px}
   .actions,.hero-actions{justify-content:center}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
