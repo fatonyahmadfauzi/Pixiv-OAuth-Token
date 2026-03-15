@@ -35,7 +35,10 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 #subtitleText{max-width:760px;margin:0 auto}
 .hero-badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .badge{border:1px solid #3a4d76;background:#101d38;border-radius:999px;padding:7px 12px;font-size:.8rem}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;justify-content:center}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px;margin-bottom:4px;justify-content:center}
+.hero-actions .btn{min-height:50px;padding:12px 24px;border-radius:14px;font-size:clamp(1rem,.3vw + .92rem,1.12rem);font-weight:700;letter-spacing:.01em;box-shadow:0 12px 24px rgba(5,10,20,.28)}
+.hero-actions .btn.primary{background:linear-gradient(180deg,#78a9ff,#5f8fff);border-color:#8eb6ff}
+.hero-actions .btn:not(.primary){background:#081229;border-color:#3a4f79;color:#eef3ff}
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
 .clean-list{margin:8px 0 0;padding-left:18px;display:grid;gap:7px}
@@ -124,7 +127,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .lang-wrap{min-width:140px}
   .lang-control{max-width:170px}
   .download-grid{grid-template-columns:1fr}
-  .actions>.btn,.hero-actions .btn{width:auto;min-width:138px}
+  .actions>.btn,.hero-actions .btn{width:auto;min-width:148px}
   .actions,.hero-actions{justify-content:center}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
   .tutorial-cta-btn{width:fit-content;max-width:100%;justify-content:center;padding:10px 18px;letter-spacing:.06em}
