@@ -44,12 +44,12 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .hero-actions .btn:not(.primary):hover{background:#2c333d;border-color:#6d7687}
 
 
-.logo-marquee{position:relative;overflow:hidden;padding:12px 0 6px;display:grid;gap:12px}
-.logo-marquee-title{margin:0;text-align:center;color:#c8d3ec;letter-spacing:.14em;text-transform:uppercase;font-size:.74rem;font-weight:700}
-.logo-marquee-track-wrap{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0,#000 8%,#000 92%,transparent 100%)}
-.logo-marquee-track{display:flex;align-items:center;gap:12px;min-width:max-content;padding-right:12px;animation:marquee-left 28s linear infinite}
-.logo-item{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:999px;border:1px solid #2f394e;background:#0a1222;color:#d7e2fb;font-size:.9rem;font-weight:600;white-space:nowrap}
-.logo-item i{font-size:.92rem;opacity:.92}
+.logo-marquee{position:relative;overflow:hidden;padding:10px 0 8px}
+.logo-marquee-track-wrap{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.logo-marquee-track{display:flex;align-items:center;gap:36px;min-width:max-content;padding-right:36px;animation:marquee-left 24s linear infinite}
+.logo-item{display:inline-flex;align-items:center;justify-content:center;color:#d8deea;opacity:.8;white-space:nowrap}
+.logo-item i{font-size:clamp(1.85rem,2.3vw,2.5rem);line-height:1}
+.logo-item:hover{opacity:1}
 @keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-100%)}}
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
@@ -141,7 +141,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .nav-links{gap:12px}
   .nav-links a{font-size:.76rem;letter-spacing:.06em}
   .download-grid{grid-template-columns:1fr}
-  .logo-item{font-size:.82rem;padding:8px 12px}
+  .logo-item i{font-size:1.5rem}
   .actions>.btn,.hero-actions .btn{width:auto;min-width:148px}
   .actions,.hero-actions{justify-content:center}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
