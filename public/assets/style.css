@@ -237,21 +237,24 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .tutorial-doc-card h3{font-size:1.35rem}
 }
 
-.tutorial-docs-footer{margin-top:24px;background:#090b10;border-top:1px solid #1a202b}
-.tutorial-docs-footer-inner{max-width:1400px;margin:0 auto;padding:54px 24px 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:30px}
+.tutorial-docs-footer{margin-top:0;background:transparent;border-top:0;position:relative;overflow:hidden}
+.tutorial-docs-footer::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 72% 24%,#13304f55 0%,transparent 55%);pointer-events:none}
+.tutorial-docs-footer-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:56px 24px 44px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:34px}
 .tutorial-docs-footer-brand h3{margin:0;color:#fff;display:flex;align-items:center;gap:12px}
-.tutorial-docs-footer-brand span{font-size:2rem;line-height:1;font-weight:800}
-.tutorial-docs-footer-brand small{font-size:1.2rem;letter-spacing:.18em;color:#d0d7e8}
-.tutorial-docs-footer h3,.tutorial-docs-footer h4{margin:0 0 14px;font-size:1.2rem;color:#fff}
-.tutorial-docs-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
-.tutorial-docs-footer a,.tutorial-docs-footer li{color:#aeb9d3;text-decoration:none;font-size:1rem;line-height:1.45}
+.tutorial-docs-footer-brand span{font-size:2rem;line-height:1;font-weight:800;opacity:.92}
+.tutorial-docs-footer-brand small{font-size:1.05rem;letter-spacing:.22em;color:#bfc8dc}
+.tutorial-docs-footer h3,.tutorial-docs-footer h4{margin:0 0 16px;font-size:.95rem;color:#f4f7ff;letter-spacing:.08em;text-transform:uppercase}
+.tutorial-docs-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.tutorial-docs-footer a,.tutorial-docs-footer li{color:#aeb9d3;text-decoration:none;font-size:1.03rem;line-height:1.45}
 .tutorial-docs-footer a:hover{color:#fff}
+.social-links a{display:inline-flex;align-items:center;gap:8px}
+.social-links i{font-size:1rem;opacity:.9}
 
 @media (max-width:1000px){
-  .tutorial-docs-footer-inner{grid-template-columns:1fr 1fr;gap:24px}
+  .tutorial-docs-footer-inner{grid-template-columns:1fr 1fr;gap:24px;padding-top:42px}
 }
 @media (max-width:700px){
-  .tutorial-docs-footer-inner{padding:34px 14px 28px;grid-template-columns:1fr}
+  .tutorial-docs-footer-inner{padding:30px 14px 24px;grid-template-columns:1fr;gap:18px}
   .tutorial-docs-footer-brand span{font-size:1.6rem}
   .tutorial-docs-footer-brand small{font-size:1rem}
 }
