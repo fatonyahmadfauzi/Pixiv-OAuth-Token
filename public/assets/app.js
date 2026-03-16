@@ -1100,6 +1100,7 @@ function setupDownloadTabs() {
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-current', isActive ? 'page' : 'false');
       tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      tab.tabIndex = isActive ? 0 : -1;
     });
 
     panels.forEach((panel) => {
@@ -1113,6 +1114,19 @@ function setupDownloadTabs() {
     tab.addEventListener('click', (e) => {
       e.preventDefault();
       activate(tab.dataset.tabTarget);
+    });
+
+    tab.addEventListener('keydown', (e) => {
+      const currentIndex = tabs.indexOf(tab);
+      if (currentIndex < 0) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const offset = e.key === 'ArrowRight' ? 1 : -1;
+        const next = (currentIndex + offset + tabs.length) % tabs.length;
+        activate(tabs[next].dataset.tabTarget);
+        tabs[next].focus();
+      }
     });
   });
 
