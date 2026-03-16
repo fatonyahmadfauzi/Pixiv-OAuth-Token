@@ -314,8 +314,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-arch-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
 .download-arch-select{appearance:none;-webkit-appearance:none;width:100%;min-height:46px;padding:11px 42px 11px 14px;border-radius:10px;border:1px solid #2f3d61;background:#0a0e18;color:#eef3ff;font-size:.96rem;line-height:1.25;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c7d2ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .download-arch-select:focus{outline:none;border-color:#5d8dff;box-shadow:0 0 0 2px #3868d544}
-.download-action-btn{min-height:46px;padding:10px 20px;border-radius:8px;background:linear-gradient(180deg,#4f7dff,#3e6dfa);border-color:#6f93ff;color:#fff;font-weight:700;font-size:.98rem}
-.download-action-btn:hover{border-color:#89a9ff;background:linear-gradient(180deg,#5e89ff,#4c78fa);transform:none}
+.download-action-btn{min-height:40px;padding:9px 18px;border-radius:7px;border:1px solid #8cabff;background:linear-gradient(180deg,#4f82ff 0%,#3a6ff1 100%);color:#fff;font-weight:700;font-size:.95rem;line-height:1;box-shadow:inset 0 1px 0 #a9c0ff55,0 0 0 1px #2b55bf;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none}
+.download-action-btn i{font-size:.95rem;line-height:1}
+.download-action-btn:hover{border-color:#b5c8ff;background:linear-gradient(180deg,#5f90ff 0%,#4679f7 100%);transform:none}
+.download-action-btn:active{background:linear-gradient(180deg,#3e6ff0 0%,#355fd4 100%)}
 .download-tab-panels{display:grid;padding-top:6px}
 .download-tab-panel{display:none}
 .download-tab-panel.active{display:block}

@@ -1099,10 +1099,13 @@ function setupDownloadTabs() {
       const isActive = tab.dataset.tabTarget === targetId;
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-current', isActive ? 'page' : 'false');
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
     panels.forEach((panel) => {
-      panel.classList.toggle('active', panel.id === targetId);
+      const isActive = panel.id === targetId;
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
     });
   };
 
@@ -1113,7 +1116,8 @@ function setupDownloadTabs() {
     });
   });
 
-  activate('downloadTabPanel');
+  const defaultTarget = tabs.find((tab) => tab.classList.contains('active'))?.dataset.tabTarget || 'downloadTabPanel';
+  activate(defaultTarget);
 }
 
 function setupArchDownloadRows() {
