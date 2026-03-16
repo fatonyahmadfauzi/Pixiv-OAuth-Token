@@ -44,8 +44,18 @@ if %SKIP_ZIP%==1  (echo ZIP      : SKIP) else (echo ZIP      : YES)
 echo.
 
 REM --- Clean old artifacts first (avoid stacking old files) ---
-if exist dist_portable del /q dist_portable\*_v*.exe 2>nul
-if exist dist_gui del /q dist_gui\*_v*.exe 2>nul
+if exist dist_portable (
+  del /q dist_portable\*_v*.exe 2>nul
+  del /q "dist_portable\Pixiv OAuth CLi (Portable) x86.exe" 2>nul
+  del /q "dist_portable\Pixiv OAuth CLi (Portable) x64.exe" 2>nul
+  del /q "dist_portable\Pixiv OAuth CLi (Portable) ARM64.exe" 2>nul
+)
+if exist dist_gui (
+  del /q dist_gui\*_v*.exe 2>nul
+  del /q "dist_gui\Pixiv OAuth GUi (Portable) x86.exe" 2>nul
+  del /q "dist_gui\Pixiv OAuth GUi (Portable) x64.exe" 2>nul
+  del /q "dist_gui\Pixiv OAuth GUi (Portable) ARM64.exe" 2>nul
+)
 if exist dist_installer (
   del /q "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
   del /q "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2>nul
@@ -171,6 +181,10 @@ del /q "downloads\Pixiv OAuth CLi Setup_v*.exe" 2>nul
 del /q "downloads\Pixiv OAuth GUi Setup_v*.exe" 2>nul
 del /q "downloads\Pixiv OAuth CLi (Portable).exe" 2>nul
 del /q "downloads\Pixiv OAuth GUi (Portable).exe" 2>nul
+del /q "downloads\Pixiv OAuth CLi (Portable) *_latest.exe" 2>nul
+del /q "downloads\Pixiv OAuth GUi (Portable) *_latest.exe" 2>nul
+del /q "downloads\Pixiv OAuth CLi Setup *_latest.exe" 2>nul
+del /q "downloads\Pixiv OAuth GUi Setup *_latest.exe" 2>nul
 del /q "downloads\PixivOAuthRelease_v*.zip" 2>nul
 
 if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
@@ -190,12 +204,52 @@ for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.
 )
 :copied_dl_gui_inst
 
+REM --- Generate 3 architecture variants (x86/x64/ARM64) for portable and setup labels ---
+for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
+
+if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "dist_portable\Pixiv OAuth CLi (Portable) x86.exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "dist_portable\Pixiv OAuth CLi (Portable) x64.exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "dist_portable\Pixiv OAuth CLi (Portable) ARM64.exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable) x86_latest.exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable) x64_latest.exe" >nul
+  copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "downloads\Pixiv OAuth CLi (Portable) ARM64_latest.exe" >nul
+)
+
+if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" (
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "dist_gui\Pixiv OAuth GUi (Portable) x86.exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "dist_gui\Pixiv OAuth GUi (Portable) x64.exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "dist_gui\Pixiv OAuth GUi (Portable) ARM64.exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable) x86_latest.exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable) x64_latest.exe" >nul
+  copy /y "dist_gui\Pixiv OAuth GUi (Portable).exe" "downloads\Pixiv OAuth GUi (Portable) ARM64_latest.exe" >nul
+)
+
+if exist "downloads\Pixiv OAuth CLi Setup_latest.exe" (
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_x86.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_x64.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_ARM64.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup x86_latest.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup x64_latest.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup ARM64_latest.exe" >nul
+)
+
+if exist "downloads\Pixiv OAuth GUi Setup_latest.exe" (
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_x86.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_x64.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_ARM64.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup x86_latest.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup x64_latest.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup ARM64_latest.exe" >nul
+)
+
 :done
 echo.
 echo ===== DONE =====
 if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" echo CLI Portable : dist_portable\Pixiv OAuth CLi (Portable).exe
 if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" echo GUI Portable : dist_gui\Pixiv OAuth GUi (Portable).exe
 if exist dist_installer echo Installer    : dist_installer\
+echo Variants     : x86, x64, ARM64 labels generated for Portable/Setup
 echo ZIP          : dist_release\PixivOAuthRelease_vX.Y.Z.zip (not copied to downloads)
 echo.
 
