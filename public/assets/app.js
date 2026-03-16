@@ -65,7 +65,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copy pip command",
     navHomepage: "Homepage",
     navConsole: "Console",
-    navDownloads: "Download",
+    navDownloads: "Downloads",
     navQuickCmd: "Quick Cmd",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -87,7 +87,7 @@ const DISPLAY_LANGUAGES = {
     cliPreviewDesc: "CLI output simulation to show login flow, code parsing, and token result in a concise way.",
     openDownloadsPage: "Open Downloads Page",
     cliPreviewFigure: "Fig. CLI — Pixiv OAuth Token Preview",
-    downloadsDedicatedDesc: "Downloads & quick commands setup instructions.",
+    downloadsDedicatedDesc: "Downloads & quick commands are now on a dedicated page.",
     tutorialStep1Title: "Open Login Page",
     tutorialStep1Desc: "Open the Pixiv login page from the web console tool.",
     tutorialStep2Title: "Continue Login",
@@ -1099,14 +1099,10 @@ function setupDownloadTabs() {
       const isActive = tab.dataset.tabTarget === targetId;
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-current', isActive ? 'page' : 'false');
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
-      tab.tabIndex = isActive ? 0 : -1;
     });
 
     panels.forEach((panel) => {
-      const isActive = panel.id === targetId;
-      panel.classList.toggle('active', isActive);
-      panel.hidden = !isActive;
+      panel.classList.toggle('active', panel.id === targetId);
     });
   };
 
@@ -1130,8 +1126,7 @@ function setupDownloadTabs() {
     });
   });
 
-  const defaultTarget = tabs.find((tab) => tab.classList.contains('active'))?.dataset.tabTarget || 'downloadTabPanel';
-  activate(defaultTarget);
+  activate('downloadTabPanel');
 }
 
 function setupArchDownloadRows() {
@@ -1317,6 +1312,46 @@ function updateLangFlag() {
   });
 }
 
+
+function setupHomeDownloadMenu() {
+  const toggle = q("navDownloadToggle");
+  const menu = q("navDownloadMenu");
+  if (!toggle || !menu) return;
+
+  const close = () => {
+    menu.hidden = true;
+    toggle.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const open = () => {
+    const container = toggle.closest(".topbar-inner");
+    if (container) {
+      const t = toggle.getBoundingClientRect();
+      const c = container.getBoundingClientRect();
+      const left = Math.max(8, Math.round(t.left - c.left - 10));
+      menu.style.left = `${left}px`;
+    }
+
+    menu.hidden = false;
+    toggle.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (menu.hidden) open();
+    else close();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+}
 
 function setupLanguageMenu() {
   const toggle = q("langToggle");
