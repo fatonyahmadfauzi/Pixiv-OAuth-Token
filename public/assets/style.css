@@ -264,7 +264,6 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 
 /* Download page redesign (ngrok-like layout) */
 .download-showcase-body{margin:0;min-height:100vh;color:#eef2ff;font-family:Inter,"Segoe UI",system-ui,sans-serif;background:radial-gradient(circle at 50% 20%,#1d2f57 0%,transparent 35%),linear-gradient(165deg,var(--bg),#0a1020)}
-.download-showcase-header{max-width:1280px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .download-showcase-main{max-width:1280px;margin:0 auto;padding:10px 24px 54px}
 .download-showcase-hero{text-align:center;padding:28px 0 38px}
 .download-showcase-hero h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.45rem,6vw,4.15rem);font-weight:500;letter-spacing:.01em}
@@ -333,8 +332,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 }
 
 @media (max-width:620px){
-  .download-showcase-header,.download-showcase-main{padding-left:14px;padding-right:14px}
-  .download-showcase-header{flex-direction:column;align-items:flex-start}
+  .download-showcase-main{padding-left:14px;padding-right:14px}
   .download-showcase-hero{padding-top:12px}
   .download-showcase-panel{padding:16px}
   .download-showcase-panel-head{align-items:flex-start}
