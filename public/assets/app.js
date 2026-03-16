@@ -1234,12 +1234,12 @@ function setCommandBlocks(assets = {}) {
       const box = document.createElement("div");
       box.className = "cmd-command-item";
 
-      const textWrap = document.createElement("div");
-      textWrap.className = "cmd-command-text";
-
       const title = document.createElement("small");
       title.className = "cmd-command-label";
       title.textContent = item.title;
+
+      const row = document.createElement("div");
+      row.className = "cmd-command-row";
 
       const code = document.createElement("code");
       code.className = "cmd-command-code";
@@ -1248,15 +1248,16 @@ function setCommandBlocks(assets = {}) {
       const copyBtn = document.createElement("button");
       copyBtn.className = "cmd-copy-btn";
       copyBtn.type = "button";
-      copyBtn.innerHTML = '<i class="bi bi-copy" aria-hidden="true"></i><span>Salin</span>';
+      copyBtn.setAttribute("aria-label", `Copy ${item.title}`);
+      copyBtn.innerHTML = '<i class="bi bi-copy" aria-hidden="true"></i>';
       copyBtn.addEventListener("click", async () => {
         await copyText(item.value, `Command copied: ${item.title}`);
       });
 
-      textWrap.appendChild(title);
-      textWrap.appendChild(code);
-      box.appendChild(textWrap);
-      box.appendChild(copyBtn);
+      row.appendChild(code);
+      row.appendChild(copyBtn);
+      box.appendChild(title);
+      box.appendChild(row);
       root.appendChild(box);
     });
   };
