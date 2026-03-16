@@ -207,9 +207,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 }
 
 .tutorial-docs-main{max-width:1400px;margin:0 auto;padding:42px 24px 60px}
-.tutorial-intro{max-width:860px;display:grid;gap:14px}
-.tutorial-intro h1{margin:0;font-size:clamp(1.85rem,2.2vw,2.25rem);line-height:1.18;letter-spacing:-.01em}
-.tutorial-intro p{margin:0;color:#c3cbe1;font-size:.96rem;line-height:1.55;max-width:920px}
+.tutorial-intro{display:grid;gap:14px;text-align:center;justify-items:center;padding:28px 0 38px}
+.tutorial-intro h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(2.45rem,6vw,4.15rem);font-weight:500;letter-spacing:.01em;line-height:1.1}
+.tutorial-intro p{margin:12px auto 0;max-width:660px;color:#bfc8de;font-size:clamp(1rem,1.8vw,1.12rem);line-height:1.45}
 .tutorial-problems{margin-top:44px}
 .tutorial-problems h2{margin:0 0 16px;font-size:2rem}
 .tutorial-docs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
