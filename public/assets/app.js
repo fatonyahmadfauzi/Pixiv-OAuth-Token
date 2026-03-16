@@ -1289,6 +1289,7 @@ function updateLangFlag() {
   });
 }
 
+
 function setupLanguageMenu() {
   const toggle = q("langToggle");
   const menu = q("langMenu");
