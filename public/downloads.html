@@ -65,13 +65,63 @@
           <a href="#quickcmd">CMD</a>
         </div>
 
-        <p class="download-panel-desc">Pilih build Pixiv OAuth yang ingin kamu gunakan, lalu download langsung dari rilis terbaru GitHub.</p>
+        <p class="download-panel-desc download-arch-intro">Download a standalone executable with zero run time dependencies. Don’t know your architecture? <a href="https://support.microsoft.com/en-us/windows/which-version-of-windows-operating-system-am-i-running-628bec99-476a-2c13-5296-9dd081cdd808" target="_blank" rel="noopener">Help me find it.</a></p>
 
-        <div class="download-grid">
-          <a id="dlCliSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-          <a id="dlCliPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth CLi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
-          <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi Setup</span><i class="bi bi-download" aria-hidden="true"></i></a>
-          <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"><span><i class="bi bi-windows" aria-hidden="true"></i> Pixiv OAuth GUi (Portable)</span><i class="bi bi-download" aria-hidden="true"></i></a>
+        <div class="download-arch-list" aria-label="Architecture downloads">
+          <div class="download-arch-row">
+            <label for="archSelectGuiSetup">Setup GUI</label>
+            <div class="download-arch-controls">
+              <select id="archSelectGuiSetup" class="download-arch-select">
+                <option value="x64">Download for Windows (64-Bit)</option>
+                <option value="x86">Download for Windows (32-Bit)</option>
+                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+              </select>
+              <a id="btnGuiSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+            </div>
+          </div>
+
+          <div class="download-arch-row">
+            <label for="archSelectCliSetup">Setup CLI</label>
+            <div class="download-arch-controls">
+              <select id="archSelectCliSetup" class="download-arch-select">
+                <option value="x64">Download for Windows (64-Bit)</option>
+                <option value="x86">Download for Windows (32-Bit)</option>
+                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+              </select>
+              <a id="btnCliSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+            </div>
+          </div>
+
+          <div class="download-arch-row">
+            <label for="archSelectGuiPortable">Portable GUI</label>
+            <div class="download-arch-controls">
+              <select id="archSelectGuiPortable" class="download-arch-select">
+                <option value="x64">Download for Windows (64-Bit)</option>
+                <option value="x86">Download for Windows (32-Bit)</option>
+                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+              </select>
+              <a id="btnGuiPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+            </div>
+          </div>
+
+          <div class="download-arch-row">
+            <label for="archSelectCliPortable">Portable CLI</label>
+            <div class="download-arch-controls">
+              <select id="archSelectCliPortable" class="download-arch-select">
+                <option value="x64">Download for Windows (64-Bit)</option>
+                <option value="x86">Download for Windows (32-Bit)</option>
+                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+              </select>
+              <a id="btnCliPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="download-grid" aria-hidden="true" hidden>
+          <a id="dlCliSetup" class="btn download-btn" target="_blank" rel="noopener"></a>
+          <a id="dlCliPortable" class="btn download-btn" target="_blank" rel="noopener"></a>
+          <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"></a>
+          <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"></a>
         </div>
 
         <section id="quickcmd" class="quickcmd-shell">
