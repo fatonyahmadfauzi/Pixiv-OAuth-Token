@@ -43,7 +43,20 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .hero-actions .btn.primary:hover{background:linear-gradient(180deg,#89b4ff,#6a98ff);border-color:#9abfff}
 .hero-actions .btn:not(.primary):hover{background:#2c333d;border-color:#6d7687}
 
+<<<<<<< HEAD
 
+=======
+.logo-marquee{--logo-height:clamp(2.25rem,2.8vw,3rem);padding:10px 0 10px;display:grid;gap:14px}
+.logo-marquee-title{margin:0;text-align:center;color:#d5deef;font-size:.86rem;letter-spacing:.13em;font-weight:700;text-transform:uppercase;opacity:.9}
+.logo-marquee-track-wrap{display:flex;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0,#000 9%,#000 91%,transparent 100%)}
+.logo-marquee-track{display:flex;align-items:center;gap:26px;min-width:max-content;padding-right:26px;animation:marquee-left 24s linear infinite}
+.logo-item{display:inline-flex;align-items:center;justify-content:center;height:var(--logo-height);color:#d8deea;opacity:.95;white-space:nowrap;flex:0 0 auto}
+.logo-item--icon{width:var(--logo-height)}
+.logo-item i{font-size:calc(var(--logo-height) * .95);line-height:1;color:#d8deea}
+.logo-img{display:block;width:auto;height:100%;max-width:none;object-fit:contain;opacity:1}
+.logo-item:hover{opacity:1}
+@keyframes marquee-left{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+>>>>>>> origin/master
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
 .clean-list{margin:8px 0 0;padding-left:18px;display:grid;gap:7px}
@@ -134,6 +147,15 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .nav-links{gap:12px}
   .nav-links a{font-size:.76rem;letter-spacing:.06em}
   .download-grid{grid-template-columns:1fr}
+<<<<<<< HEAD
+=======
+  .logo-marquee{--logo-height:1.95rem}
+  .logo-item{height:var(--logo-height)}
+  .logo-item--icon{width:var(--logo-height)}
+  .logo-item i{font-size:calc(var(--logo-height) * .95)}
+  .logo-img{height:100%}
+  .logo-marquee-track{gap:18px;padding-right:18px}
+>>>>>>> origin/master
   .actions>.btn,.hero-actions .btn{width:auto;min-width:148px}
   .actions,.hero-actions{justify-content:center}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
