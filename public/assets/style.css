@@ -305,10 +305,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cmd-tab-intro{margin:0;color:#dbe4f8;font-size:1.02rem;line-height:1.45}
 .cmd-command-list{display:grid;gap:14px}
 .cmd-command-item{display:grid;gap:6px}
-.cmd-command-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}
+.cmd-command-row{position:relative;display:block}
 .cmd-command-label{color:#dce5fb;font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none}
-.cmd-command-code{display:block;color:#e8eeff;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.9rem;background:#0a0f1a;border:1px solid #2f3c5d;border-radius:10px;padding:12px;line-height:1.5}
-.cmd-copy-btn{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:38px;padding:0;border-radius:8px;border:1px solid #3a4d76;background:#101a30;color:#fff;cursor:pointer}
+.cmd-command-code{display:block;color:#e8eeff;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.9rem;background:#0a0f1a;border:1px solid #2f3c5d;border-radius:10px;padding:12px 56px 12px 12px;line-height:1.5}
+.cmd-copy-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border-radius:8px;border:1px solid #3a4d76;background:#101a30;color:#fff;cursor:pointer}
 .cmd-copy-btn:hover{border-color:#6b8fd0;background:#152441}
 .download-tab-panel pre{min-height:180px;background:#060a13;border-color:#24314e}
 .download-tab-panel .btn{min-height:40px;background:#101a30;border-color:#2f436d;width:fit-content}
@@ -329,7 +329,6 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .download-showcase-sidebar ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .quickcmd-shell .cmd-grid,.download-showcase-panel .download-grid{grid-template-columns:1fr}
   .download-arch-controls{grid-template-columns:1fr}
-  .cmd-command-row{grid-template-columns:1fr}
 }
 
 @media (max-width:620px){
