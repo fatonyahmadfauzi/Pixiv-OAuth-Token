@@ -1088,6 +1088,67 @@ function setDownloadLinks(assets = {}) {
   if (guiPortable) guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
+
+
+function setupDownloadTabs() {
+  const tabs = Array.from(document.querySelectorAll('.download-inline-tabs a[data-tab-target]'));
+  if (!tabs.length) return;
+
+  const panels = Array.from(document.querySelectorAll('.download-tab-panel'));
+
+  const activate = (targetId) => {
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.tabTarget === targetId;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+
+    panels.forEach((panel) => {
+      panel.classList.toggle('active', panel.id === targetId);
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      activate(tab.dataset.tabTarget);
+    });
+  });
+
+  activate('downloadTabPanel');
+}
+
+function setupArchDownloadRows() {
+  const ARCH_MAP = {
+    x86: "x86",
+    x64: "x64",
+    arm64: "ARM64"
+  };
+
+  const rows = [
+    { selectId: "archSelectGuiSetup", btnId: "btnGuiSetupArch", prefix: "Pixiv OAuth GUi Setup" },
+    { selectId: "archSelectCliSetup", btnId: "btnCliSetupArch", prefix: "Pixiv OAuth CLi Setup" },
+    { selectId: "archSelectGuiPortable", btnId: "btnGuiPortableArch", prefix: "Pixiv OAuth GUi (Portable)" },
+    { selectId: "archSelectCliPortable", btnId: "btnCliPortableArch", prefix: "Pixiv OAuth CLi (Portable)" }
+  ];
+
+  const makeLink = (prefix, arch) => repoDownloadLink(`${prefix} ${ARCH_MAP[arch]}_latest.exe`);
+
+  rows.forEach(({ selectId, btnId, prefix }) => {
+    const select = q(selectId);
+    const btn = q(btnId);
+    if (!select || !btn) return;
+
+    const apply = () => {
+      const arch = select.value || "x64";
+      btn.href = makeLink(prefix, arch);
+    };
+
+    select.addEventListener("change", apply);
+    apply();
+  });
+}
+
 async function hydrateReleaseAssets() {
   try {
     const res = await fetch(RELEASE_API, {
@@ -1469,5 +1530,7 @@ bindClick("copyPipBtn", async () => {
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
+  setupDownloadTabs();
+  setupArchDownloadRows();
   await hydrateReleaseAssets();
 })();
