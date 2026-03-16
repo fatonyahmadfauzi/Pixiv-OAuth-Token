@@ -283,8 +283,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-category-panel.active{display:block}
 .python-os-icon{background:#0b101a;border-color:#3a4459;box-shadow:0 10px 20px #0007 inset,0 8px 20px #0006}
 .python-hero-logo{width:54px;height:54px;display:block}
-.python-install-list{padding-top:4px;gap:10px}
-.python-install-list .cmd-command-item{gap:4px}
+.python-install-list{padding-top:2px;gap:8px}
+.python-install-list .cmd-command-item{gap:2px;margin:0}
+.python-install-list .cmd-command-label,.python-install-list .cmd-command-row{margin:0}
 .download-showcase-panel{background:#0e1118e6;border:1px solid #2b3245;border-radius:16px;padding:26px;box-shadow:0 18px 34px #0008}
 .download-showcase-panel-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
 .download-os-icon{width:92px;height:92px;border-radius:16px;background:#0a0d12;border:1px solid #32384a;display:grid;place-items:center}
