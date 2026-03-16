@@ -1302,6 +1302,14 @@ function setupHomeDownloadMenu() {
   };
 
   const open = () => {
+    const container = toggle.closest(".topbar-inner");
+    if (container) {
+      const t = toggle.getBoundingClientRect();
+      const c = container.getBoundingClientRect();
+      const left = Math.max(8, Math.round(t.left - c.left - 10));
+      menu.style.left = `${left}px`;
+    }
+
     menu.hidden = false;
     toggle.classList.add("open");
     toggle.setAttribute("aria-expanded", "true");
