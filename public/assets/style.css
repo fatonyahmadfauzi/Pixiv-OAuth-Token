@@ -301,6 +301,15 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-tab-panel.active{display:block}
 .download-tab-panel .cmd-block{background:#0a0f1a;border:1px solid #2f3c5d;border-radius:12px;padding:12px;display:grid;gap:8px}
 .download-tab-panel .cmd-block h4{margin:0;font-size:1rem}
+.cmd-block-list{display:grid;gap:12px}
+.cmd-block-desc{margin:0;color:#aeb9d3;font-size:.92rem}
+.cmd-command-list{display:grid;gap:10px}
+.cmd-command-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid #2f3c5d;border-radius:10px;background:#0a0f1a;padding:10px 12px}
+.cmd-command-text{display:grid;gap:6px;min-width:0}
+.cmd-command-label{color:#98a7cb;font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}
+.cmd-command-code{display:block;color:#e8eeff;white-space:nowrap;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.9rem}
+.cmd-copy-btn{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:8px 12px;border-radius:8px;border:1px solid #3a4d76;background:#101a30;color:#fff;cursor:pointer}
+.cmd-copy-btn:hover{border-color:#6b8fd0;background:#152441}
 .download-tab-panel pre{min-height:180px;background:#060a13;border-color:#24314e}
 .download-tab-panel .btn{min-height:40px;background:#101a30;border-color:#2f436d;width:fit-content}
 .download-showcase-panel .download-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -320,6 +329,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .download-showcase-sidebar ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .quickcmd-shell .cmd-grid,.download-showcase-panel .download-grid{grid-template-columns:1fr}
   .download-arch-controls{grid-template-columns:1fr}
+  .cmd-command-item{grid-template-columns:1fr}
+  .cmd-copy-btn{width:fit-content}
 }
 
 @media (max-width:620px){

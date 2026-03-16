@@ -1176,40 +1176,100 @@ async function hydrateReleaseAssets() {
 }
 
 function setCommandBlocks(assets = {}) {
-  const guiPortable = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
-  const cliPortable = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
-  const guiSetup = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
-  const cliSetup = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+  const files = {
+    guiPortable: {
+      x64: assets.guiPortableX64 || repoDownloadLink("Pixiv OAuth GUi (Portable) x64_latest.exe"),
+      x86: assets.guiPortableX86 || repoDownloadLink("Pixiv OAuth GUi (Portable) x86_latest.exe"),
+      arm64: assets.guiPortableArm64 || repoDownloadLink("Pixiv OAuth GUi (Portable) ARM64_latest.exe")
+    },
+    cliPortable: {
+      x64: assets.cliPortableX64 || repoDownloadLink("Pixiv OAuth CLi (Portable) x64_latest.exe"),
+      x86: assets.cliPortableX86 || repoDownloadLink("Pixiv OAuth CLi (Portable) x86_latest.exe"),
+      arm64: assets.cliPortableArm64 || repoDownloadLink("Pixiv OAuth CLi (Portable) ARM64_latest.exe")
+    },
+    guiSetup: {
+      x64: assets.guiSetupX64 || repoDownloadLink("Pixiv OAuth GUi Setup x64_latest.exe"),
+      x86: assets.guiSetupX86 || repoDownloadLink("Pixiv OAuth GUi Setup x86_latest.exe"),
+      arm64: assets.guiSetupArm64 || repoDownloadLink("Pixiv OAuth GUi Setup ARM64_latest.exe")
+    },
+    cliSetup: {
+      x64: assets.cliSetupX64 || repoDownloadLink("Pixiv OAuth CLi Setup x64_latest.exe"),
+      x86: assets.cliSetupX86 || repoDownloadLink("Pixiv OAuth CLi Setup x86_latest.exe"),
+      arm64: assets.cliSetupArm64 || repoDownloadLink("Pixiv OAuth CLi Setup ARM64_latest.exe")
+    }
+  };
+
+  const labels = [
+    ["guiPortable", "GUi Portable"],
+    ["cliPortable", "CLi Portable"],
+    ["guiSetup", "GUi Setup"],
+    ["cliSetup", "CLi Setup"]
+  ];
+
+  const archOrder = [["x64", "64-Bit"], ["x86", "32-Bit"], ["arm64", "ARM 64-Bit"]];
+
+  const psCommands = [];
+  const cmdCommands = [];
+
+  labels.forEach(([key, name]) => {
+    archOrder.forEach(([arch, archLabel]) => {
+      const url = files[key][arch];
+      psCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `Invoke-WebRequest "${url}" -OutFile "Pixiv OAuth ${name} (${archLabel}).exe"`
+      });
+      cmdCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `curl -L "${url}" -o "Pixiv OAuth ${name} (${archLabel}).exe"`
+      });
+    });
+  });
+
+  const renderList = (containerId, commands) => {
+    const root = q(containerId);
+    if (!root) return;
+    root.innerHTML = "";
+
+    commands.forEach((item) => {
+      const box = document.createElement("div");
+      box.className = "cmd-command-item";
+
+      const textWrap = document.createElement("div");
+      textWrap.className = "cmd-command-text";
+
+      const title = document.createElement("small");
+      title.className = "cmd-command-label";
+      title.textContent = item.title;
+
+      const code = document.createElement("code");
+      code.className = "cmd-command-code";
+      code.textContent = item.value;
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "cmd-copy-btn";
+      copyBtn.type = "button";
+      copyBtn.innerHTML = '<i class="bi bi-copy" aria-hidden="true"></i><span>Salin</span>';
+      copyBtn.addEventListener("click", async () => {
+        await copyText(item.value, `Command copied: ${item.title}`);
+      });
+
+      textWrap.appendChild(title);
+      textWrap.appendChild(code);
+      box.appendChild(textWrap);
+      box.appendChild(copyBtn);
+      root.appendChild(box);
+    });
+  };
+
+  renderList("psCmdList", psCommands);
+  renderList("cmdCmdList", cmdCommands);
 
   const ps = q("psCmd");
   const cmd = q("cmdCmd");
-  const pip = q("pipCmd");
-
-  if (ps) {
-    ps.textContent = `$guiPortable = "${guiPortable}"
-$cliPortable = "${cliPortable}"
-$guiSetup = "${guiSetup}"
-$cliSetup = "${cliSetup}"
-Invoke-WebRequest $guiPortable -OutFile "Pixiv OAuth GUi (Portable).exe"
-Invoke-WebRequest $cliPortable -OutFile "Pixiv OAuth CLi (Portable).exe"
-Invoke-WebRequest $guiSetup -OutFile "Pixiv OAuth GUi Setup.exe"
-Invoke-WebRequest $cliSetup -OutFile "Pixiv OAuth CLi Setup.exe"
-`;
-  }
-
-  if (cmd) {
-    cmd.textContent = `curl -L "${guiPortable}" -o "Pixiv OAuth GUi (Portable).exe"
-curl -L "${cliPortable}" -o "Pixiv OAuth CLi (Portable).exe"
-curl -L "${guiSetup}" -o "Pixiv OAuth GUi Setup.exe"
-curl -L "${cliSetup}" -o "Pixiv OAuth CLi Setup.exe"
-`;
-  }
-
-  if (pip) {
-    pip.textContent = `python -m pip install -r requirements.txt
-python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"`;
-  }
+  if (ps) ps.textContent = psCommands.map((x) => x.value).join("\n");
+  if (cmd) cmd.textContent = cmdCommands.map((x) => x.value).join("\n");
 }
+
 
 async function copyText(text, okMessage) {
   await navigator.clipboard.writeText(text);
