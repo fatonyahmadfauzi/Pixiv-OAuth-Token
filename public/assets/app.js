@@ -1111,6 +1111,19 @@ function setupDownloadTabs() {
       e.preventDefault();
       activate(tab.dataset.tabTarget);
     });
+
+    tab.addEventListener('keydown', (e) => {
+      const currentIndex = tabs.indexOf(tab);
+      if (currentIndex < 0) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const offset = e.key === 'ArrowRight' ? 1 : -1;
+        const next = (currentIndex + offset + tabs.length) % tabs.length;
+        activate(tabs[next].dataset.tabTarget);
+        tabs[next].focus();
+      }
+    });
   });
 
   activate('downloadTabPanel');
@@ -1148,10 +1161,21 @@ function setupArchDownloadRows() {
 }
 
 async function hydrateReleaseAssets() {
+  // Always render fallback links/commands first so tabs are never empty,
+  // then replace with release-resolved assets when available.
+  setDownloadLinks();
+  setCommandBlocks();
+
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     const res = await fetch(RELEASE_API, {
-      headers: { Accept: "application/vnd.github+json" }
+      headers: { Accept: "application/vnd.github+json" },
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
     if (!res.ok) throw new Error("release api unavailable");
 
     const release = await res.json();
@@ -1170,8 +1194,7 @@ async function hydrateReleaseAssets() {
     setDownloadLinks(resolved);
     setCommandBlocks(resolved);
   } catch {
-    setDownloadLinks();
-    setCommandBlocks();
+    // Fallback already rendered above.
   }
 }
 

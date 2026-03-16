@@ -292,9 +292,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-showcase-panel h2{margin:8px 0 0;font-size:2.15rem;line-height:1.12}
 .download-installation-title{margin:10px 0 18px;font-size:1.75rem;font-weight:700;letter-spacing:-.01em}
 .download-inline-tabs{display:flex;gap:26px;border-bottom:1px solid #2c3447;overflow:auto;margin-bottom:24px;padding-bottom:14px}
-.download-inline-tabs a{color:#9ca8c6;text-decoration:none;padding-bottom:10px;border-bottom:2px solid transparent;white-space:nowrap;font-size:1rem;font-weight:500}
+.download-inline-tabs a{color:#9ca8c6;text-decoration:none;padding-bottom:10px;border-bottom:2px solid transparent;white-space:nowrap;font-size:1rem;font-weight:500;transition:color .18s ease,border-color .18s ease}
 .download-inline-tabs a.active{color:#74a2ff;border-bottom-color:#74a2ff}
-.download-inline-tabs a:hover{color:#fff;border-bottom-color:transparent}
+.download-inline-tabs a:not(.active):hover{color:#fff;border-bottom-color:transparent}
 .download-panel-desc{margin:0 0 16px;color:#c3cbe1}
 .download-arch-intro{font-size:.96rem;max-width:920px;line-height:1.55;margin-bottom:18px}
 .download-arch-intro a{color:#66a2ff;text-decoration:none}
