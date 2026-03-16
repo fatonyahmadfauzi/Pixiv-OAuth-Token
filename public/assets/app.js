@@ -429,7 +429,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "pip-Befehl kopieren",
     navHomepage: "Startseite",
     navConsole: "Konsole",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Schnellbefehl",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -793,7 +793,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copiar comando pip",
     navHomepage: "Início",
     navConsole: "Console",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Comando rápido",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -1099,13 +1099,10 @@ function setupDownloadTabs() {
       const isActive = tab.dataset.tabTarget === targetId;
       tab.classList.toggle('active', isActive);
       tab.setAttribute('aria-current', isActive ? 'page' : 'false');
-      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
     });
 
     panels.forEach((panel) => {
-      const isActive = panel.id === targetId;
-      panel.classList.toggle('active', isActive);
-      panel.hidden = !isActive;
+      panel.classList.toggle('active', panel.id === targetId);
     });
   };
 
@@ -1116,8 +1113,7 @@ function setupDownloadTabs() {
     });
   });
 
-  const defaultTarget = tabs.find((tab) => tab.classList.contains('active'))?.dataset.tabTarget || 'downloadTabPanel';
-  activate(defaultTarget);
+  activate('downloadTabPanel');
 }
 
 function setupArchDownloadRows() {
@@ -1591,7 +1587,6 @@ bindClick("copyPipBtn", async () => {
 
   document.documentElement.lang = DISPLAY_LANG;
 
-  setupHomeDownloadMenu();
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
