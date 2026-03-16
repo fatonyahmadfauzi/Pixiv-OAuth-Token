@@ -166,7 +166,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .hero{gap:12px;min-height:auto}
   .hero-badges{gap:6px}
   .badge{font-size:.74rem;padding:6px 10px}
-  .nav-links a{font-size:.74rem}
+  .nav-links a,.nav-download-toggle{font-size:.74rem}
+  .nav-download-menu{left:14px!important;width:calc(100% - 28px);padding:12px}
+  .nav-download-grid{grid-template-columns:1fr;gap:12px}
   .btn{width:auto;max-width:100%}
   .info-grid,.download-grid,.cmd-grid,.tutorial-grid{gap:10px}
   .card{border-radius:14px}
