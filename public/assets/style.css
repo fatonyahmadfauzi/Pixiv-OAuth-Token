@@ -192,7 +192,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .tutorial-docs-brand span{font-size:1.45rem;letter-spacing:.18em;color:#cfd5e7}
 .tutorial-docs-actions{display:flex;gap:18px;flex-wrap:nowrap;white-space:nowrap;overflow:auto;scrollbar-width:thin}
 .tutorial-docs-actions a{display:inline-flex;align-items:center;color:#9aa6bf;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;border-bottom:2px solid transparent;transition:.18s ease}
-.tutorial-docs-actions a:hover{color:#fff;border-bottom-color:#6d7687}
+.tutorial-docs-actions a:hover{color:#fff;border-bottom-color:transparent}
 .tutorial-docs-tabs{display:flex;gap:20px;border-top:0;padding:2px 0 8px;overflow:auto;white-space:nowrap;scrollbar-width:thin}
 .tutorial-docs-tabs a{color:#9aa6bf;text-decoration:none;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;border-bottom:2px solid transparent}
 .tutorial-docs-tabs a:hover,.tutorial-docs-tabs a.active{color:#fff;border-bottom-color:#6d7687}
@@ -208,8 +208,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 
 .tutorial-docs-main{max-width:1400px;margin:0 auto;padding:42px 24px 60px}
 .tutorial-intro{max-width:860px;display:grid;gap:14px}
-.tutorial-intro h1{margin:0;font-size:clamp(2rem,3vw,3.25rem);line-height:1.1;letter-spacing:-.02em}
-.tutorial-intro p{margin:0;color:#afb9d1;font-size:1.15rem;line-height:1.6}
+.tutorial-intro h1{margin:0;font-size:clamp(1.85rem,2.2vw,2.25rem);line-height:1.18;letter-spacing:-.01em}
+.tutorial-intro p{margin:0;color:#c3cbe1;font-size:.96rem;line-height:1.55;max-width:920px}
 .tutorial-problems{margin-top:44px}
 .tutorial-problems h2{margin:0 0 16px;font-size:2rem}
 .tutorial-docs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
@@ -284,7 +284,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-installation-title{margin:10px 0 18px;font-size:1.75rem;font-weight:700;letter-spacing:-.01em}
 .download-inline-tabs{display:flex;gap:26px;border-bottom:1px solid #2c3447;overflow:auto;margin-bottom:24px;padding-bottom:14px}
 .download-inline-tabs a{color:#9ca8c6;text-decoration:none;padding-bottom:10px;border-bottom:2px solid transparent;white-space:nowrap;font-size:1rem;font-weight:500}
-.download-inline-tabs a.active,.download-inline-tabs a:hover{color:#74a2ff;border-bottom-color:#74a2ff}
+.download-inline-tabs a.active{color:#74a2ff;border-bottom-color:#74a2ff}
+.download-inline-tabs a:hover{color:#fff;border-bottom-color:transparent}
 .download-panel-desc{margin:0 0 16px;color:#c3cbe1}
 .download-arch-intro{font-size:.96rem;max-width:920px;line-height:1.55;margin-bottom:18px}
 .download-arch-intro a{color:#66a2ff;text-decoration:none}
