@@ -65,7 +65,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copy pip command",
     navHomepage: "Homepage",
     navConsole: "Console",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Quick Cmd",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -87,7 +87,7 @@ const DISPLAY_LANGUAGES = {
     cliPreviewDesc: "CLI output simulation to show login flow, code parsing, and token result in a concise way.",
     openDownloadsPage: "Open Downloads Page",
     cliPreviewFigure: "Fig. CLI — Pixiv OAuth Token Preview",
-    downloadsDedicatedDesc: "Downloads & quick commands are now on a dedicated page.",
+    downloadsDedicatedDesc: "Downloads & quick commands setup instructions.",
     tutorialStep1Title: "Open Login Page",
     tutorialStep1Desc: "Open the Pixiv login page from the web console tool.",
     tutorialStep2Title: "Continue Login",
@@ -1286,47 +1286,6 @@ function updateLangFlag() {
 
   document.querySelectorAll("#langMenu li").forEach((li) => {
     li.classList.toggle("active", li.dataset.lang === DISPLAY_LANG);
-  });
-}
-
-
-function setupHomeDownloadMenu() {
-  const toggle = q("navDownloadToggle");
-  const menu = q("navDownloadMenu");
-  if (!toggle || !menu) return;
-
-  const close = () => {
-    menu.hidden = true;
-    toggle.classList.remove("open");
-    toggle.setAttribute("aria-expanded", "false");
-  };
-
-  const open = () => {
-    const container = toggle.closest(".topbar-inner");
-    if (container) {
-      const t = toggle.getBoundingClientRect();
-      const c = container.getBoundingClientRect();
-      const left = Math.max(8, Math.round(t.left - c.left - 10));
-      menu.style.left = `${left}px`;
-    }
-
-    menu.hidden = false;
-    toggle.classList.add("open");
-    toggle.setAttribute("aria-expanded", "true");
-  };
-
-  toggle.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (menu.hidden) open();
-    else close();
-  });
-
-  document.addEventListener("click", (e) => {
-    if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") close();
   });
 }
 
