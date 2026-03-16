@@ -65,7 +65,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copy pip command",
     navHomepage: "Homepage",
     navConsole: "Console",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Quick Cmd",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -87,7 +87,7 @@ const DISPLAY_LANGUAGES = {
     cliPreviewDesc: "CLI output simulation to show login flow, code parsing, and token result in a concise way.",
     openDownloadsPage: "Open Downloads Page",
     cliPreviewFigure: "Fig. CLI — Pixiv OAuth Token Preview",
-    downloadsDedicatedDesc: "Downloads & quick commands are now on a dedicated page.",
+    downloadsDedicatedDesc: "Downloads & quick commands setup instructions.",
     tutorialStep1Title: "Open Login Page",
     tutorialStep1Desc: "Open the Pixiv login page from the web console tool.",
     tutorialStep2Title: "Continue Login",
@@ -1088,6 +1088,71 @@ function setDownloadLinks(assets = {}) {
   if (guiPortable) guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
+
+
+function setupDownloadTabs() {
+  const tabs = Array.from(document.querySelectorAll('.download-inline-tabs a[data-tab-target]'));
+  if (!tabs.length) return;
+
+  const panels = Array.from(document.querySelectorAll('.download-tab-panel'));
+
+  const activate = (targetId) => {
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.tabTarget === targetId;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-current', isActive ? 'page' : 'false');
+      tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    panels.forEach((panel) => {
+      const isActive = panel.id === targetId;
+      panel.classList.toggle('active', isActive);
+      panel.hidden = !isActive;
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      activate(tab.dataset.tabTarget);
+    });
+  });
+
+  const defaultTarget = tabs.find((tab) => tab.classList.contains('active'))?.dataset.tabTarget || 'downloadTabPanel';
+  activate(defaultTarget);
+}
+
+function setupArchDownloadRows() {
+  const ARCH_MAP = {
+    x86: "x86",
+    x64: "x64",
+    arm64: "ARM64"
+  };
+
+  const rows = [
+    { selectId: "archSelectGuiSetup", btnId: "btnGuiSetupArch", prefix: "Pixiv OAuth GUi Setup" },
+    { selectId: "archSelectCliSetup", btnId: "btnCliSetupArch", prefix: "Pixiv OAuth CLi Setup" },
+    { selectId: "archSelectGuiPortable", btnId: "btnGuiPortableArch", prefix: "Pixiv OAuth GUi (Portable)" },
+    { selectId: "archSelectCliPortable", btnId: "btnCliPortableArch", prefix: "Pixiv OAuth CLi (Portable)" }
+  ];
+
+  const makeLink = (prefix, arch) => repoDownloadLink(`${prefix} ${ARCH_MAP[arch]}_latest.exe`);
+
+  rows.forEach(({ selectId, btnId, prefix }) => {
+    const select = q(selectId);
+    const btn = q(btnId);
+    if (!select || !btn) return;
+
+    const apply = () => {
+      const arch = select.value || "x64";
+      btn.href = makeLink(prefix, arch);
+    };
+
+    select.addEventListener("change", apply);
+    apply();
+  });
+}
+
 async function hydrateReleaseAssets() {
   try {
     const res = await fetch(RELEASE_API, {
@@ -1117,40 +1182,101 @@ async function hydrateReleaseAssets() {
 }
 
 function setCommandBlocks(assets = {}) {
-  const guiPortable = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
-  const cliPortable = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
-  const guiSetup = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
-  const cliSetup = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+  const files = {
+    guiPortable: {
+      x64: assets.guiPortableX64 || repoDownloadLink("Pixiv OAuth GUi (Portable) x64_latest.exe"),
+      x86: assets.guiPortableX86 || repoDownloadLink("Pixiv OAuth GUi (Portable) x86_latest.exe"),
+      arm64: assets.guiPortableArm64 || repoDownloadLink("Pixiv OAuth GUi (Portable) ARM64_latest.exe")
+    },
+    cliPortable: {
+      x64: assets.cliPortableX64 || repoDownloadLink("Pixiv OAuth CLi (Portable) x64_latest.exe"),
+      x86: assets.cliPortableX86 || repoDownloadLink("Pixiv OAuth CLi (Portable) x86_latest.exe"),
+      arm64: assets.cliPortableArm64 || repoDownloadLink("Pixiv OAuth CLi (Portable) ARM64_latest.exe")
+    },
+    guiSetup: {
+      x64: assets.guiSetupX64 || repoDownloadLink("Pixiv OAuth GUi Setup x64_latest.exe"),
+      x86: assets.guiSetupX86 || repoDownloadLink("Pixiv OAuth GUi Setup x86_latest.exe"),
+      arm64: assets.guiSetupArm64 || repoDownloadLink("Pixiv OAuth GUi Setup ARM64_latest.exe")
+    },
+    cliSetup: {
+      x64: assets.cliSetupX64 || repoDownloadLink("Pixiv OAuth CLi Setup x64_latest.exe"),
+      x86: assets.cliSetupX86 || repoDownloadLink("Pixiv OAuth CLi Setup x86_latest.exe"),
+      arm64: assets.cliSetupArm64 || repoDownloadLink("Pixiv OAuth CLi Setup ARM64_latest.exe")
+    }
+  };
+
+  const labels = [
+    ["guiPortable", "Portable GUI"],
+    ["cliPortable", "Portable CLI"],
+    ["guiSetup", "Setup GUI"],
+    ["cliSetup", "Setup CLI"]
+  ];
+
+  const archOrder = [["x64", "64-Bit"], ["x86", "32-Bit"], ["arm64", "ARM 64-Bit"]];
+
+  const psCommands = [];
+  const cmdCommands = [];
+
+  labels.forEach(([key, name]) => {
+    archOrder.forEach(([arch, archLabel]) => {
+      const url = files[key][arch];
+      psCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `Invoke-WebRequest "${url}" -OutFile "Pixiv OAuth ${name} (${archLabel}).exe"`
+      });
+      cmdCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `curl -L "${url}" -o "Pixiv OAuth ${name} (${archLabel}).exe"`
+      });
+    });
+  });
+
+  const renderList = (containerId, commands) => {
+    const root = q(containerId);
+    if (!root) return;
+    root.innerHTML = "";
+
+    commands.forEach((item) => {
+      const box = document.createElement("div");
+      box.className = "cmd-command-item";
+
+      const title = document.createElement("small");
+      title.className = "cmd-command-label";
+      title.textContent = item.title;
+
+      const row = document.createElement("div");
+      row.className = "cmd-command-row";
+
+      const code = document.createElement("code");
+      code.className = "cmd-command-code";
+      code.textContent = item.value;
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "cmd-copy-btn";
+      copyBtn.type = "button";
+      copyBtn.setAttribute("aria-label", `Copy ${item.title}`);
+      copyBtn.innerHTML = '<i class="bi bi-copy" aria-hidden="true"></i>';
+      copyBtn.addEventListener("click", async () => {
+        await copyText(item.value, `Command copied: ${item.title}`);
+      });
+
+      row.appendChild(code);
+      row.appendChild(copyBtn);
+      box.appendChild(title);
+      box.appendChild(row);
+      root.appendChild(box);
+    });
+  };
+
+  renderList("psCmdList", psCommands);
+  renderList("cmdCmdList", cmdCommands);
 
   const ps = q("psCmd");
   const cmd = q("cmdCmd");
-  const pip = q("pipCmd");
-
-  if (ps) {
-    ps.textContent = `$guiPortable = "${guiPortable}"
-$cliPortable = "${cliPortable}"
-$guiSetup = "${guiSetup}"
-$cliSetup = "${cliSetup}"
-Invoke-WebRequest $guiPortable -OutFile "Pixiv OAuth GUi (Portable).exe"
-Invoke-WebRequest $cliPortable -OutFile "Pixiv OAuth CLi (Portable).exe"
-Invoke-WebRequest $guiSetup -OutFile "Pixiv OAuth GUi Setup.exe"
-Invoke-WebRequest $cliSetup -OutFile "Pixiv OAuth CLi Setup.exe"
-`;
-  }
-
-  if (cmd) {
-    cmd.textContent = `curl -L "${guiPortable}" -o "Pixiv OAuth GUi (Portable).exe"
-curl -L "${cliPortable}" -o "Pixiv OAuth CLi (Portable).exe"
-curl -L "${guiSetup}" -o "Pixiv OAuth GUi Setup.exe"
-curl -L "${cliSetup}" -o "Pixiv OAuth CLi Setup.exe"
-`;
-  }
-
-  if (pip) {
-    pip.textContent = `python -m pip install -r requirements.txt
-python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"`;
-  }
+  if (ps) ps.textContent = psCommands.map((x) => x.value).join("\n");
+  if (cmd) cmd.textContent = cmdCommands.map((x) => x.value).join("\n");
 }
+
 
 async function copyText(text, okMessage) {
   await navigator.clipboard.writeText(text);
@@ -1168,6 +1294,7 @@ function updateLangFlag() {
     li.classList.toggle("active", li.dataset.lang === DISPLAY_LANG);
   });
 }
+
 
 function setupLanguageMenu() {
   const toggle = q("langToggle");
@@ -1469,5 +1596,7 @@ bindClick("copyPipBtn", async () => {
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
+  setupDownloadTabs();
+  setupArchDownloadRows();
   await hydrateReleaseAssets();
 })();
