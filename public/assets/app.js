@@ -1088,8 +1088,6 @@ function setDownloadLinks(assets = {}) {
   if (guiPortable) guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
-
-
 function setupDownloadTabs() {
   const tabs = Array.from(document.querySelectorAll('.download-inline-tabs a[data-tab-target]'));
   if (!tabs.length) return;
@@ -1290,7 +1288,6 @@ function updateLangFlag() {
     li.classList.toggle("active", li.dataset.lang === DISPLAY_LANG);
   });
 }
-
 
 function setupLanguageMenu() {
   const toggle = q("langToggle");
@@ -1589,6 +1586,7 @@ bindClick("copyPipBtn", async () => {
 
   document.documentElement.lang = DISPLAY_LANG;
 
+  setupHomeDownloadMenu();
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
