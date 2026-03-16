@@ -1289,6 +1289,39 @@ function updateLangFlag() {
   });
 }
 
+
+function setupHomeDownloadMenu() {
+  const toggle = q("navDownloadToggle");
+  const menu = q("navDownloadMenu");
+  if (!toggle || !menu) return;
+
+  const close = () => {
+    menu.hidden = true;
+    toggle.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const open = () => {
+    menu.hidden = false;
+    toggle.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (menu.hidden) open();
+    else close();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+}
+
 function setupLanguageMenu() {
   const toggle = q("langToggle");
   const menu = q("langMenu");
@@ -1586,6 +1619,7 @@ bindClick("copyPipBtn", async () => {
 
   document.documentElement.lang = DISPLAY_LANG;
 
+  setupHomeDownloadMenu();
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
