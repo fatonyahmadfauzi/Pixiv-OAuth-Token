@@ -46,10 +46,11 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 
 .logo-marquee{--logo-height:clamp(2.1rem,2.8vw,3.1rem);padding:10px 0 10px;display:grid;gap:14px}
 .logo-marquee-title{margin:0;text-align:center;color:#d5deef;font-size:.82rem;letter-spacing:.12em;font-weight:700;text-transform:uppercase;opacity:.85}
-.logo-strip{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,22px);flex-wrap:wrap;padding:10px 14px;border-radius:14px;border:1px solid #2f3b57;background:linear-gradient(180deg,#0b1326,#0a1120)}
-.logo-item{display:inline-flex;align-items:center;justify-content:center;height:var(--logo-height);opacity:.92;white-space:nowrap}
-.logo-img{display:block;width:auto;height:var(--logo-height);max-width:none;object-fit:contain;opacity:1}
-.logo-divider{color:#7f8ba5;font-size:1.15rem;line-height:1;opacity:.75;user-select:none}
+.logo-strip{display:flex;align-items:center;justify-content:center;gap:clamp(10px,1.6vw,16px);flex-wrap:wrap;padding:10px 14px;border-radius:14px;border:1px solid #2f3b57;background:linear-gradient(180deg,#0b1326,#0a1120)}
+.logo-item{display:inline-flex;align-items:center;justify-content:center;width:clamp(86px,8vw,122px);height:var(--logo-height);opacity:.94;white-space:nowrap}
+.logo-item--icon{width:clamp(52px,5vw,68px)}
+.logo-item i{font-size:calc(var(--logo-height) * .9);line-height:1;color:#d8deea}
+.logo-img{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;opacity:1}
 .logo-item:hover{opacity:1;transform:translateY(-1px)}
 
 .info-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:14px}
@@ -142,10 +143,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .nav-links a{font-size:.76rem;letter-spacing:.06em}
   .download-grid{grid-template-columns:1fr}
   .logo-marquee{--logo-height:1.95rem}
-  .logo-item{height:var(--logo-height)}
-  .logo-img{height:var(--logo-height)}
-  .logo-strip{gap:12px;padding:8px 10px}
-  .logo-divider{font-size:.95rem}
+  .logo-item{width:clamp(78px,26vw,108px);height:var(--logo-height)}
+  .logo-item--icon{width:clamp(44px,16vw,56px)}
+  .logo-strip{gap:10px;padding:8px 10px}
   .actions>.btn,.hero-actions .btn{width:auto;min-width:148px}
   .actions,.hero-actions{justify-content:center}
   .tutorial-cta-wrap{padding:14px 0 12px;margin:6px 0 10px}
