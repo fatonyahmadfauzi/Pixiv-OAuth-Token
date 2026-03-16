@@ -19,16 +19,8 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .brand span{font-size:1.05rem;letter-spacing:.16em;color:#cfd5e7}
 
 .nav-links{display:flex;gap:18px;flex-wrap:nowrap;align-items:center;white-space:nowrap}
-.nav-links a,.nav-download-toggle{display:inline-flex;align-items:center;gap:6px;color:#9aa6bf;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;border-bottom:2px solid transparent;transition:.18s ease;background:none;border-left:0;border-right:0;border-top:0;cursor:pointer}
-.nav-links a:hover,.nav-download-toggle:hover{color:#fff;border-bottom-color:transparent}
-.nav-download-toggle i{font-size:.72rem;transition:transform .18s ease}
-.nav-download-toggle.open i{transform:rotate(180deg)}
-.nav-download-menu{position:absolute;left:0;top:calc(100% + 4px);z-index:60;width:min(700px,calc(100% - 24px));background:#121316;border:1px solid #30333d;border-radius:12px;padding:12px 14px;box-shadow:0 16px 28px #0007}
-.nav-download-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.nav-download-grid h3{margin:0 0 8px;color:#c2ccdf;font-size:.76rem;letter-spacing:.11em}
-.nav-menu-item{display:flex;align-items:center;gap:10px;border:1px solid #343a48;border-radius:10px;background:#0c1018;color:#e9efff;text-decoration:none;padding:9px 11px;font-weight:600}
-.nav-menu-item:hover{border-color:#5f88d9}
-.nav-menu-icon{width:28px;height:28px;border:1px solid #3a4358;border-radius:8px;display:grid;place-items:center}
+.nav-links a{display:inline-flex;align-items:center;gap:6px;color:#9aa6bf;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;border-bottom:2px solid transparent;transition:.18s ease}
+.nav-links a:hover{color:#fff;border-bottom-color:transparent}
 .menu-toggle{display:none!important}
 
 .container{max-width:1200px;margin:0 auto;padding:clamp(14px,2.6vw,24px) clamp(10px,2.2vw,18px) clamp(18px,2.8vw,34px);display:grid;gap:clamp(12px,1.8vw,18px)}
@@ -157,9 +149,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .hero{gap:12px;min-height:auto}
   .hero-badges{gap:6px}
   .badge{font-size:.74rem;padding:6px 10px}
-  .nav-links a,.nav-download-toggle{font-size:.74rem}
-  .nav-download-menu{left:14px!important;width:calc(100% - 28px);padding:12px}
-  .nav-download-grid{grid-template-columns:1fr;gap:12px}
+  .nav-links a{font-size:.74rem}
   .btn{width:auto;max-width:100%}
   .info-grid,.download-grid,.cmd-grid,.tutorial-grid{gap:10px}
   .card{border-radius:14px}

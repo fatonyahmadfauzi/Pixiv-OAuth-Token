@@ -429,7 +429,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "pip-Befehl kopieren",
     navHomepage: "Startseite",
     navConsole: "Konsole",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Schnellbefehl",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -793,7 +793,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copiar comando pip",
     navHomepage: "Início",
     navConsole: "Console",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Comando rápido",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -1650,7 +1650,6 @@ bindClick("copyPipBtn", async () => {
 
   document.documentElement.lang = DISPLAY_LANG;
 
-  setupHomeDownloadMenu();
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
