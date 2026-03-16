@@ -65,7 +65,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copy pip command",
     navHomepage: "Homepage",
     navConsole: "Console",
-    navDownloads: "Downloads",
+    navDownloads: "Download",
     navQuickCmd: "Quick Cmd",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
