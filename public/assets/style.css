@@ -281,28 +281,29 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .windows-logo-svg{width:42px;height:42px;display:block}
 .download-tag{display:inline-block;background:#2a303d;border:1px solid #3b4455;color:#dce4f7;padding:2px 8px;border-radius:7px;font-size:.75rem}
 .download-showcase-panel h2{margin:8px 0 0;font-size:2.6rem;line-height:1.1}
-.download-inline-tabs{display:flex;gap:22px;border-bottom:1px solid #2c3447;padding-bottom:12px;margin:12px 0 16px;overflow:auto}
+.download-installation-title{margin:18px 0 14px;font-size:2rem;font-weight:700;letter-spacing:-.01em}
+.download-inline-tabs{display:flex;gap:22px;border-bottom:1px solid #2c3447;overflow:auto;margin-bottom:22px;padding-bottom:14px}
 .download-inline-tabs a{color:#9ca8c6;text-decoration:none;padding-bottom:10px;border-bottom:2px solid transparent;white-space:nowrap}
 .download-inline-tabs a.active,.download-inline-tabs a:hover{color:#74a2ff;border-bottom-color:#74a2ff}
 .download-panel-desc{margin:0 0 16px;color:#c3cbe1}
 .download-arch-intro{font-size:1.02rem;max-width:920px;line-height:1.45;margin-bottom:16px}
 .download-arch-intro a{color:#66a2ff;text-decoration:none}
 .download-arch-intro a:hover{text-decoration:underline}
-.download-arch-list{display:grid;gap:10px;margin-bottom:10px}
-.download-arch-row{display:grid;gap:8px}
+.download-arch-list{display:grid;gap:14px;margin-bottom:14px}
+.download-arch-row{display:grid;gap:10px}
 .download-arch-row label{font-size:.95rem;font-weight:600;color:#dce5fb}
 .download-arch-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
 .download-arch-select{appearance:none;-webkit-appearance:none;width:100%;min-height:44px;padding:10px 42px 10px 14px;border-radius:10px;border:1px solid #2f3d61;background:#0a0e18;color:#eef3ff;font-size:1rem;line-height:1.2;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c7d2ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .download-arch-select:focus{outline:none;border-color:#5d8dff;box-shadow:0 0 0 2px #3868d544}
 .download-action-btn{min-height:44px;padding:10px 20px;border-radius:8px;background:linear-gradient(180deg,#4f7dff,#3e6dfa);border-color:#6f93ff;color:#fff;font-weight:700}
 .download-action-btn:hover{border-color:#89a9ff;background:linear-gradient(180deg,#5e89ff,#4c78fa);transform:none}
-.download-tab-panels{display:grid}
+.download-tab-panels{display:grid;padding-top:6px}
 .download-tab-panel{display:none}
 .download-tab-panel.active{display:block}
 .download-tab-panel .cmd-block{background:transparent;border:0;padding:0;display:grid;gap:10px}
 .cmd-block-list{display:grid;gap:12px}
 .cmd-tab-intro{margin:0;color:#dbe4f8;font-size:1.02rem;line-height:1.45}
-.cmd-command-list{display:grid;gap:12px}
+.cmd-command-list{display:grid;gap:14px}
 .cmd-command-item{display:grid;gap:6px}
 .cmd-command-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:start}
 .cmd-command-label{color:#dce5fb;font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none}
