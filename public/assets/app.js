@@ -1295,6 +1295,47 @@ function setCommandBlocks(assets = {}) {
 }
 
 
+
+function setupDownloadCategorySwitch() {
+  const items = Array.from(document.querySelectorAll('[data-download-panel]'));
+  const panels = Array.from(document.querySelectorAll('.download-category-panel'));
+  if (!items.length || !panels.length) return;
+
+  const activatePanel = (panelId) => {
+    items.forEach((item) => {
+      const active = item.dataset.downloadPanel === panelId;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    panels.forEach((panel) => {
+      const active = panel.id === panelId;
+      panel.classList.toggle('active', active);
+      panel.hidden = !active;
+    });
+  };
+
+  items.forEach((item) => {
+    item.addEventListener('click', () => activatePanel(item.dataset.downloadPanel));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activatePanel(item.dataset.downloadPanel);
+      }
+    });
+  });
+}
+
+function setupCommandCopyButtons() {
+  document.querySelectorAll('[data-copy-text]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy-text') || '';
+      if (!text) return;
+      await copyText(text, 'Command copied.');
+    });
+  });
+}
+
 async function copyText(text, okMessage) {
   await navigator.clipboard.writeText(text);
   if (output) output.textContent = okMessage;
@@ -1653,7 +1694,9 @@ bindClick("copyPipBtn", async () => {
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
+  setupDownloadCategorySwitch();
   setupDownloadTabs();
   setupArchDownloadRows();
+  setupCommandCopyButtons();
   await hydrateReleaseAssets();
 })();
