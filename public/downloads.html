@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="shortcut icon" href="/assets/favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="shortcut icon" href="assets/favicon.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body class="download-showcase-body">
   <header class="tutorial-docs-header">
@@ -65,14 +65,14 @@
 
         <h3 class="download-installation-title">Installation</h3>
 
-        <div class="download-inline-tabs" aria-label="Installation options">
-          <a href="#" class="active" data-tab-target="downloadTabPanel" aria-current="page">Download</a>
-          <a href="#" data-tab-target="powershellTabPanel">PowerShell</a>
-          <a href="#" data-tab-target="cmdTabPanel">CMD</a>
+        <div class="download-inline-tabs" role="tablist" aria-label="Installation options">
+          <a href="#" role="tab" class="active" data-tab-target="downloadTabPanel" aria-current="page" aria-selected="true">Download</a>
+          <a href="#" role="tab" data-tab-target="powershellTabPanel" aria-selected="false">PowerShell</a>
+          <a href="#" role="tab" data-tab-target="cmdTabPanel" aria-selected="false">CMD</a>
         </div>
 
         <div class="download-tab-panels">
-          <section id="downloadTabPanel" class="download-tab-panel active">
+          <section id="downloadTabPanel" role="tabpanel" class="download-tab-panel active">
             <p class="download-panel-desc download-arch-intro">Download a standalone executable with zero run time dependencies. Don’t know your architecture? <a href="https://support.microsoft.com/en-us/windows/which-version-of-windows-operating-system-am-i-running-628bec99-476a-2c13-5296-9dd081cdd808" target="_blank" rel="noopener">Help me find it.</a></p>
 
             <div class="download-arch-list" aria-label="Architecture downloads">
@@ -126,14 +126,14 @@
             </div>
           </section>
 
-          <section id="powershellTabPanel" class="download-tab-panel">
+          <section id="powershellTabPanel" role="tabpanel" class="download-tab-panel">
             <div class="cmd-block cmd-block-list">
               <p class="cmd-tab-intro">Install via PowerShell with the following command:</p>
               <div id="psCmdList" class="cmd-command-list" aria-live="polite"></div>
             </div>
           </section>
 
-          <section id="cmdTabPanel" class="download-tab-panel">
+          <section id="cmdTabPanel" role="tabpanel" class="download-tab-panel">
             <div class="cmd-block cmd-block-list">
               <p class="cmd-tab-intro">Install via CMD with the following command:</p>
               <div id="cmdCmdList" class="cmd-command-list" aria-live="polite"></div>
@@ -174,6 +174,6 @@
     </div>
   </footer>
 
-  <script src="/assets/app.js"></script>
+  <script src="assets/app.js"></script>
 </body>
 </html>

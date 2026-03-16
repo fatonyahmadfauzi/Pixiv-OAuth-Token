@@ -65,7 +65,7 @@ const DISPLAY_LANGUAGES = {
     copyPip: "Copy pip command",
     navHomepage: "Homepage",
     navConsole: "Console",
-    navDownloads: "Download",
+    navDownloads: "Downloads",
     navQuickCmd: "Quick Cmd",
     navTutorial: "Tutorial",
     tutorialTitle: "Tutorial",
@@ -87,7 +87,7 @@ const DISPLAY_LANGUAGES = {
     cliPreviewDesc: "CLI output simulation to show login flow, code parsing, and token result in a concise way.",
     openDownloadsPage: "Open Downloads Page",
     cliPreviewFigure: "Fig. CLI — Pixiv OAuth Token Preview",
-    downloadsDedicatedDesc: "Downloads & quick commands setup instructions.",
+    downloadsDedicatedDesc: "Downloads & quick commands are now on a dedicated page.",
     tutorialStep1Title: "Open Login Page",
     tutorialStep1Desc: "Open the Pixiv login page from the web console tool.",
     tutorialStep2Title: "Continue Login",
@@ -1111,6 +1111,19 @@ function setupDownloadTabs() {
       e.preventDefault();
       activate(tab.dataset.tabTarget);
     });
+
+    tab.addEventListener('keydown', (e) => {
+      const currentIndex = tabs.indexOf(tab);
+      if (currentIndex < 0) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const offset = e.key === 'ArrowRight' ? 1 : -1;
+        const next = (currentIndex + offset + tabs.length) % tabs.length;
+        activate(tabs[next].dataset.tabTarget);
+        tabs[next].focus();
+      }
+    });
   });
 
   activate('downloadTabPanel');
@@ -1148,10 +1161,21 @@ function setupArchDownloadRows() {
 }
 
 async function hydrateReleaseAssets() {
+  // Always render fallback links/commands first so tabs are never empty,
+  // then replace with release-resolved assets when available.
+  setDownloadLinks();
+  setCommandBlocks();
+
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000);
+
     const res = await fetch(RELEASE_API, {
-      headers: { Accept: "application/vnd.github+json" }
+      headers: { Accept: "application/vnd.github+json" },
+      signal: controller.signal
     });
+
+    clearTimeout(timeoutId);
     if (!res.ok) throw new Error("release api unavailable");
 
     const release = await res.json();
@@ -1170,8 +1194,7 @@ async function hydrateReleaseAssets() {
     setDownloadLinks(resolved);
     setCommandBlocks(resolved);
   } catch {
-    setDownloadLinks();
-    setCommandBlocks();
+    // Fallback already rendered above.
   }
 }
 
@@ -1289,6 +1312,46 @@ function updateLangFlag() {
   });
 }
 
+
+function setupHomeDownloadMenu() {
+  const toggle = q("navDownloadToggle");
+  const menu = q("navDownloadMenu");
+  if (!toggle || !menu) return;
+
+  const close = () => {
+    menu.hidden = true;
+    toggle.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+  };
+
+  const open = () => {
+    const container = toggle.closest(".topbar-inner");
+    if (container) {
+      const t = toggle.getBoundingClientRect();
+      const c = container.getBoundingClientRect();
+      const left = Math.max(8, Math.round(t.left - c.left - 10));
+      menu.style.left = `${left}px`;
+    }
+
+    menu.hidden = false;
+    toggle.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+  };
+
+  toggle.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (menu.hidden) open();
+    else close();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!toggle.contains(e.target) && !menu.contains(e.target)) close();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") close();
+  });
+}
 
 function setupLanguageMenu() {
   const toggle = q("langToggle");
