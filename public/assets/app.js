@@ -1088,6 +1088,33 @@ function setDownloadLinks(assets = {}) {
   if (guiPortable) guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
+function setupDownloadTabs() {
+  const tabs = Array.from(document.querySelectorAll('.download-inline-tabs a[data-tab-target]'));
+  if (!tabs.length) return;
+
+  const panels = Array.from(document.querySelectorAll('.download-tab-panel'));
+
+  const activate = (targetId) => {
+    tabs.forEach((tab) => {
+      const isActive = tab.dataset.tabTarget === targetId;
+      tab.classList.toggle('active', isActive);
+      tab.setAttribute('aria-current', isActive ? 'page' : 'false');
+    });
+
+    panels.forEach((panel) => {
+      panel.classList.toggle('active', panel.id === targetId);
+    });
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+      e.preventDefault();
+      activate(tab.dataset.tabTarget);
+    });
+  });
+
+  activate('downloadTabPanel');
+}
 
 function setupArchDownloadRows() {
   const ARCH_MAP = {
@@ -1501,6 +1528,7 @@ bindClick("copyPipBtn", async () => {
   setupLanguageMenu();
   setupCliPreviewToggle();
   applyLang();
+  setupDownloadTabs();
   setupArchDownloadRows();
   await hydrateReleaseAssets();
 })();

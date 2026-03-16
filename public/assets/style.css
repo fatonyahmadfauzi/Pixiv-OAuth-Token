@@ -283,7 +283,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-showcase-panel h2{margin:8px 0 0;font-size:2.6rem;line-height:1.1}
 .download-inline-tabs{display:flex;gap:22px;border-bottom:1px solid #2c3447;padding-bottom:12px;margin:12px 0 16px;overflow:auto}
 .download-inline-tabs a{color:#9ca8c6;text-decoration:none;padding-bottom:10px;border-bottom:2px solid transparent;white-space:nowrap}
-.download-inline-tabs a[aria-current="true"],.download-inline-tabs a:hover{color:#74a2ff;border-bottom-color:#74a2ff}
+.download-inline-tabs a.active,.download-inline-tabs a:hover{color:#74a2ff;border-bottom-color:#74a2ff}
 .download-panel-desc{margin:0 0 16px;color:#c3cbe1}
 .download-arch-intro{font-size:1.02rem;max-width:920px;line-height:1.45;margin-bottom:16px}
 .download-arch-intro a{color:#66a2ff;text-decoration:none}
@@ -296,6 +296,13 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-arch-select:focus{outline:none;border-color:#5d8dff;box-shadow:0 0 0 2px #3868d544}
 .download-action-btn{min-height:44px;padding:10px 20px;border-radius:8px;background:linear-gradient(180deg,#4f7dff,#3e6dfa);border-color:#6f93ff;color:#fff;font-weight:700}
 .download-action-btn:hover{border-color:#89a9ff;background:linear-gradient(180deg,#5e89ff,#4c78fa);transform:none}
+.download-tab-panels{display:grid}
+.download-tab-panel{display:none}
+.download-tab-panel.active{display:block}
+.download-tab-panel .cmd-block{background:#0a0f1a;border:1px solid #2f3c5d;border-radius:12px;padding:12px;display:grid;gap:8px}
+.download-tab-panel .cmd-block h4{margin:0;font-size:1rem}
+.download-tab-panel pre{min-height:180px;background:#060a13;border-color:#24314e}
+.download-tab-panel .btn{min-height:40px;background:#101a30;border-color:#2f436d;width:fit-content}
 .download-showcase-panel .download-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .download-showcase-panel .download-btn{background:#0b101d;border-color:#2e3c5e;justify-content:space-between}
 .quickcmd-shell{margin-top:18px;padding-top:14px;border-top:1px solid #2c3447}

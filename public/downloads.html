@@ -60,61 +60,81 @@
         </div>
 
         <div class="download-inline-tabs" aria-label="Installation options">
-          <a href="#" aria-current="true">Download</a>
-          <a href="#quickcmd">PowerShell</a>
-          <a href="#quickcmd">CMD</a>
+          <a href="#" class="active" data-tab-target="downloadTabPanel" aria-current="page">Download</a>
+          <a href="#" data-tab-target="powershellTabPanel">PowerShell</a>
+          <a href="#" data-tab-target="cmdTabPanel">CMD</a>
         </div>
 
-        <p class="download-panel-desc download-arch-intro">Download a standalone executable with zero run time dependencies. Don’t know your architecture? <a href="https://support.microsoft.com/en-us/windows/which-version-of-windows-operating-system-am-i-running-628bec99-476a-2c13-5296-9dd081cdd808" target="_blank" rel="noopener">Help me find it.</a></p>
+        <div class="download-tab-panels">
+          <section id="downloadTabPanel" class="download-tab-panel active">
+            <p class="download-panel-desc download-arch-intro">Download a standalone executable with zero run time dependencies. Don’t know your architecture? <a href="https://support.microsoft.com/en-us/windows/which-version-of-windows-operating-system-am-i-running-628bec99-476a-2c13-5296-9dd081cdd808" target="_blank" rel="noopener">Help me find it.</a></p>
 
-        <div class="download-arch-list" aria-label="Architecture downloads">
-          <div class="download-arch-row">
-            <label for="archSelectGuiSetup">Setup GUI</label>
-            <div class="download-arch-controls">
-              <select id="archSelectGuiSetup" class="download-arch-select">
-                <option value="x64">Download for Windows (64-Bit)</option>
-                <option value="x86">Download for Windows (32-Bit)</option>
-                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
-              </select>
-              <a id="btnGuiSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
-            </div>
-          </div>
+            <div class="download-arch-list" aria-label="Architecture downloads">
+              <div class="download-arch-row">
+                <label for="archSelectGuiSetup">Setup GUI</label>
+                <div class="download-arch-controls">
+                  <select id="archSelectGuiSetup" class="download-arch-select">
+                    <option value="x64">Download for Windows (64-Bit)</option>
+                    <option value="x86">Download for Windows (32-Bit)</option>
+                    <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+                  </select>
+                  <a id="btnGuiSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+                </div>
+              </div>
 
-          <div class="download-arch-row">
-            <label for="archSelectCliSetup">Setup CLI</label>
-            <div class="download-arch-controls">
-              <select id="archSelectCliSetup" class="download-arch-select">
-                <option value="x64">Download for Windows (64-Bit)</option>
-                <option value="x86">Download for Windows (32-Bit)</option>
-                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
-              </select>
-              <a id="btnCliSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
-            </div>
-          </div>
+              <div class="download-arch-row">
+                <label for="archSelectCliSetup">Setup CLI</label>
+                <div class="download-arch-controls">
+                  <select id="archSelectCliSetup" class="download-arch-select">
+                    <option value="x64">Download for Windows (64-Bit)</option>
+                    <option value="x86">Download for Windows (32-Bit)</option>
+                    <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+                  </select>
+                  <a id="btnCliSetupArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+                </div>
+              </div>
 
-          <div class="download-arch-row">
-            <label for="archSelectGuiPortable">Portable GUI</label>
-            <div class="download-arch-controls">
-              <select id="archSelectGuiPortable" class="download-arch-select">
-                <option value="x64">Download for Windows (64-Bit)</option>
-                <option value="x86">Download for Windows (32-Bit)</option>
-                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
-              </select>
-              <a id="btnGuiPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
-            </div>
-          </div>
+              <div class="download-arch-row">
+                <label for="archSelectGuiPortable">Portable GUI</label>
+                <div class="download-arch-controls">
+                  <select id="archSelectGuiPortable" class="download-arch-select">
+                    <option value="x64">Download for Windows (64-Bit)</option>
+                    <option value="x86">Download for Windows (32-Bit)</option>
+                    <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+                  </select>
+                  <a id="btnGuiPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+                </div>
+              </div>
 
-          <div class="download-arch-row">
-            <label for="archSelectCliPortable">Portable CLI</label>
-            <div class="download-arch-controls">
-              <select id="archSelectCliPortable" class="download-arch-select">
-                <option value="x64">Download for Windows (64-Bit)</option>
-                <option value="x86">Download for Windows (32-Bit)</option>
-                <option value="arm64">Download for Windows (ARM 64-Bit)</option>
-              </select>
-              <a id="btnCliPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+              <div class="download-arch-row">
+                <label for="archSelectCliPortable">Portable CLI</label>
+                <div class="download-arch-controls">
+                  <select id="archSelectCliPortable" class="download-arch-select">
+                    <option value="x64">Download for Windows (64-Bit)</option>
+                    <option value="x86">Download for Windows (32-Bit)</option>
+                    <option value="arm64">Download for Windows (ARM 64-Bit)</option>
+                  </select>
+                  <a id="btnCliPortableArch" class="btn download-action-btn" target="_blank" rel="noopener"><i class="bi bi-download" aria-hidden="true"></i>Download</a>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
+
+          <section id="powershellTabPanel" class="download-tab-panel">
+            <div class="cmd-block">
+              <h4><i class="bi bi-terminal-fill" aria-hidden="true"></i> PowerShell</h4>
+              <pre id="psCmd"></pre>
+              <button class="btn" id="copyPsBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPsBtnLabel">Copy PowerShell</span></button>
+            </div>
+          </section>
+
+          <section id="cmdTabPanel" class="download-tab-panel">
+            <div class="cmd-block">
+              <h4><i class="bi bi-command" aria-hidden="true"></i> CMD</h4>
+              <pre id="cmdCmd"></pre>
+              <button class="btn" id="copyCmdBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyCmdBtnLabel">Copy CMD</span></button>
+            </div>
+          </section>
         </div>
 
         <div class="download-grid" aria-hidden="true" hidden>
@@ -123,23 +143,6 @@
           <a id="dlGuiSetup" class="btn download-btn" target="_blank" rel="noopener"></a>
           <a id="dlGuiPortable" class="btn download-btn" target="_blank" rel="noopener"></a>
         </div>
-
-        <section id="quickcmd" class="quickcmd-shell">
-          <h3 id="quickCmdTitle">Quick Command</h3>
-          <p id="quickCmdDesc" class="muted">Copy commands for quick download via PowerShell/CMD and install via pip.</p>
-          <div class="cmd-grid">
-            <div class="cmd-block">
-              <h4><i class="bi bi-terminal-fill" aria-hidden="true"></i> PowerShell</h4>
-              <pre id="psCmd"></pre>
-              <button class="btn" id="copyPsBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyPsBtnLabel">Copy PowerShell</span></button>
-            </div>
-            <div class="cmd-block">
-              <h4><i class="bi bi-command" aria-hidden="true"></i> CMD</h4>
-              <pre id="cmdCmd"></pre>
-              <button class="btn" id="copyCmdBtn"><i class="bi bi-clipboard" aria-hidden="true"></i><span id="copyCmdBtnLabel">Copy CMD</span></button>
-            </div>
-          </div>
-        </section>
       </article>
     </section>
   </main>
