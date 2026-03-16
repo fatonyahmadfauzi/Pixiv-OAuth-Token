@@ -276,9 +276,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-showcase-sidebar li.active{background:linear-gradient(90deg,#3f67f5,#4d77fb);color:#fff}
 .download-showcase-sidebar li:hover{background:linear-gradient(90deg,#1a1d24,#242933);color:#f2f6ff}
 .download-showcase-sidebar li.active:hover{background:linear-gradient(90deg,#3f67f5,#4d77fb);color:#fff}
-.download-showcase-sidebar li i{font-size:16px;line-height:1;width:16px;text-align:center;flex:0 0 16px}
-.python-logo{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;color:currentColor;opacity:1;flex:0 0 16px}
-.python-logo svg{width:16px;height:16px;display:block}
+.windows-sidebar-logo,.python-logo{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;color:currentColor;opacity:1;flex:0 0 18px}
+.windows-sidebar-logo svg,.python-logo svg{width:18px;height:18px;display:block}
 .download-showcase-panel{background:#0e1118e6;border:1px solid #2b3245;border-radius:16px;padding:26px;box-shadow:0 18px 34px #0008}
 .download-showcase-panel-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
 .download-os-icon{width:92px;height:92px;border-radius:16px;background:#0a0d12;border:1px solid #32384a;display:grid;place-items:center}
