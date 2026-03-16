@@ -1200,10 +1200,10 @@ function setCommandBlocks(assets = {}) {
   };
 
   const labels = [
-    ["guiPortable", "GUi Portable"],
-    ["cliPortable", "CLi Portable"],
-    ["guiSetup", "GUi Setup"],
-    ["cliSetup", "CLi Setup"]
+    ["guiPortable", "Portable GUI"],
+    ["cliPortable", "Portable CLI"],
+    ["guiSetup", "Setup GUI"],
+    ["cliSetup", "Setup CLI"]
   ];
 
   const archOrder = [["x64", "64-Bit"], ["x86", "32-Bit"], ["arm64", "ARM 64-Bit"]];
