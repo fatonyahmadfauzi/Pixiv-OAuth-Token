@@ -1683,6 +1683,32 @@ bindClick("copyPipBtn", async () => {
   if (el) await copyText(el.textContent, t("copiedPip"));
 });
 
+function setupMobileSidebar() {
+  const menuToggle = document.getElementById("menuToggle");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
+  const navLinksContainer = document.querySelector(".nav-links") || document.querySelector(".tutorial-docs-actions");
+
+  if (menuToggle && sidebarOverlay && navLinksContainer) {
+    function toggleSidebar() {
+      navLinksContainer.classList.toggle("open");
+      sidebarOverlay.classList.toggle("active");
+      document.body.style.overflow = sidebarOverlay.classList.contains("active") ? "hidden" : "";
+    }
+
+    menuToggle.addEventListener("click", toggleSidebar);
+    sidebarOverlay.addEventListener("click", toggleSidebar);
+
+    const links = navLinksContainer.querySelectorAll("a");
+    links.forEach(link => {
+      link.addEventListener("click", () => {
+        navLinksContainer.classList.remove("open");
+        sidebarOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+      });
+    });
+  }
+}
+
 (async function init() {
   const saved = localStorage.getItem("pixiv_lang");
   if (saved && LANG_ORDER.includes(saved)) {
@@ -1692,6 +1718,7 @@ bindClick("copyPipBtn", async () => {
   document.documentElement.lang = DISPLAY_LANG;
 
   setupLanguageMenu();
+  setupMobileSidebar();
   setupCliPreviewToggle();
   applyLang();
   setupDownloadCategorySwitch();
