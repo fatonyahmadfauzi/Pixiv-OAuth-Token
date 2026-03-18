@@ -304,8 +304,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-arch-list{display:grid;gap:16px;margin-bottom:16px}
 .download-arch-row{display:grid;gap:10px}
 .download-arch-row label{font-size:1rem;font-weight:600;color:#dce5fb}
-.download-arch-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
-.download-arch-select{appearance:none;-webkit-appearance:none;width:100%;min-height:46px;padding:11px 42px 11px 14px;border-radius:10px;border:1px solid #2f3d61;background:#0a0e18;color:#eef3ff;font-size:.96rem;line-height:1.25;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c7d2ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.download-arch-controls{display:flex;flex-direction:row;gap:12px;align-items:center}
+.download-arch-select{appearance:none;-webkit-appearance:none;flex:1;min-width:0;min-height:46px;padding:11px 42px 11px 14px;border-radius:10px;border:1px solid #2f3d61;background:#0a0e18;color:#eef3ff;font-size:.96rem;line-height:1.25;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23c7d2ef' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .download-arch-select:focus{outline:none;border-color:#5d8dff;box-shadow:0 0 0 2px #3868d544}
 .download-action-btn{min-height:46px;padding:10px 20px;border-radius:8px;background:linear-gradient(180deg,#4f7dff,#3e6dfa);border-color:#6f93ff;color:#fff;font-weight:700;font-size:.98rem}
 .download-action-btn:hover{border-color:#89a9ff;background:linear-gradient(180deg,#5e89ff,#4c78fa);transform:none}
@@ -319,7 +319,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cmd-command-item{display:grid;gap:6px}
 .cmd-command-row{position:relative;display:block}
 .cmd-command-label{color:#dce5fb;font-size:.95rem;font-weight:600;letter-spacing:0;text-transform:none}
-.cmd-command-code{display:block;color:#e8eeff;white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.9rem;background:#0a0f1a;border:1px solid #2f3c5d;border-radius:10px;padding:12px 56px 12px 12px;line-height:1.5}
+.cmd-command-code{display:block;color:#e8eeff;white-space:nowrap;overflow-x:auto;overflow-y:hidden;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:.9rem;background:#0a0f1a;border:1px solid #2f3c5d;border-radius:10px;padding:12px 56px 12px 12px;line-height:1.5}
 .cmd-copy-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;padding:0;border-radius:8px;border:1px solid #3a4d76;background:#101a30;color:#fff;cursor:pointer}
 .cmd-copy-btn:hover{border-color:#6b8fd0;background:#152441}
 .download-tab-panel pre{min-height:180px;background:#060a13;border-color:#24314e}
@@ -340,7 +340,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .download-showcase-sidebar{padding:0}
   .download-showcase-sidebar ul{grid-template-columns:repeat(2,minmax(0,1fr))}
   .quickcmd-shell .cmd-grid,.download-showcase-panel .download-grid{grid-template-columns:1fr}
-  .download-arch-controls{grid-template-columns:1fr}
+  .download-arch-controls{flex-direction:row}
 }
 
 
