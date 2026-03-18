@@ -1712,6 +1712,26 @@ function setupMobileSidebar() {
   }
 }
 
+function setupMobilePlatformDropdown() {
+  const select = document.getElementById("mobilePlatformSelect");
+  if (!select) return;
+
+  select.addEventListener("change", () => {
+    const targetId = select.value;
+    const panels = document.querySelectorAll(".download-category-panel");
+    const sidebarItems = document.querySelectorAll(".download-showcase-sidebar li");
+
+    panels.forEach(p => {
+      p.hidden = p.id !== targetId;
+      p.classList.toggle("active", p.id === targetId);
+    });
+    sidebarItems.forEach(li => {
+      li.classList.toggle("active", li.dataset.downloadPanel === targetId);
+      li.setAttribute("aria-pressed", li.dataset.downloadPanel === targetId ? "true" : "false");
+    });
+  });
+}
+
 (async function init() {
   const saved = localStorage.getItem("pixiv_lang");
   if (saved && LANG_ORDER.includes(saved)) {
@@ -1722,6 +1742,7 @@ function setupMobileSidebar() {
 
   setupLanguageMenu();
   setupMobileSidebar();
+  setupMobilePlatformDropdown();
   setupCliPreviewToggle();
   applyLang();
   setupDownloadCategorySwitch();

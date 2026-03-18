@@ -343,6 +343,38 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .download-arch-controls{grid-template-columns:1fr}
 }
 
+
+/* ─── Mobile Platform Selector (hidden on desktop) ─── */
+.mobile-platform-select-wrap {
+  display: none;
+  padding: 0 14px 20px;
+}
+.mobile-platform-label {
+  display: block; font-size: .9rem; color: #9aa6bf; margin-bottom: 10px;
+}
+.mobile-platform-select-outer {
+  position: relative;
+}
+.mobile-platform-select {
+  width: 100%; appearance: none; -webkit-appearance: none;
+  background: #0a0e18; border: 2px solid #3f5fd4; border-radius: 10px;
+  color: #eef3ff; font-size: 1rem; padding: 14px 48px 14px 16px;
+  font-family: inherit; cursor: pointer;
+}
+.mobile-platform-select:focus { outline: none; border-color: #5d8dff; }
+.mobile-select-chevron {
+  position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+  color: #9aa6bf; pointer-events: none; font-size: 1.1rem;
+}
+
+@media (max-width:800px){
+  .mobile-platform-select-wrap { display: block; }
+  .download-showcase-sidebar { display: none; }
+  .download-showcase-layout { grid-template-columns: 1fr !important; }
+  .download-showcase-hero h1 { font-size: clamp(2.6rem, 9vw, 4rem); font-weight: 700; }
+  .download-showcase-hero { padding: 32px 0 12px; }
+}
+
 @media (max-width:620px){
   .download-showcase-main{padding-left:14px;padding-right:14px}
   .download-showcase-hero{padding-top:12px}
