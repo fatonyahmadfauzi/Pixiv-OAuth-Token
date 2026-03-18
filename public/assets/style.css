@@ -362,11 +362,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 /* Sidebar Header (Hidden on Desktop) */
 .sidebar-header { display: none; }
 
-/* Sidebar Header (Hidden on Desktop) */
-.sidebar-header { display: none; }
-
 /* Mobile Sidebar Styling */
 @media (max-width: 800px) {
+  .lang-wrap { display: none !important; }
+
   .menu-toggle { display: inline-flex; margin: 0; }
 
   .sidebar-header {
@@ -396,27 +395,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   }
   
   .nav-links > a:not(.sidebar-brand), .tutorial-docs-actions > a:not(.sidebar-brand) {
-    width: 100%; border-bottom: none; padding: 12px 0; font-size: 1rem; font-weight: 600;
+    width: 100%; border-bottom: none; padding: 12px 0 12px 24px; font-size: 1rem; font-weight: 600;
     color: #eef3ff; display: flex; align-items: center; justify-content: flex-start; text-transform: capitalize; letter-spacing: 0; transition: color 0.2s ease;
   }
   .nav-links > a:not(.sidebar-brand):hover, .tutorial-docs-actions > a:not(.sidebar-brand):hover {
     color: #fff; background: transparent; text-decoration: none;
-  }
-  
-  .nav-links .lang-wrap {
-    margin-left: 0;
-    margin-top: 16px;
-    width: 100%;
-    max-width: 100%;
-  }
-  .nav-links .lang-control {
-    max-width: 100%;
-  }
-  .nav-links .lang-toggle {
-    background: #1a2235;
-    border-color: #2a3655;
-    font-size: 0.95rem;
-    padding: 12px 14px;
-    border-radius: 12px;
   }
 }
