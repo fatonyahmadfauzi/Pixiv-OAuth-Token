@@ -368,21 +368,23 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 
   .sidebar-header {
     display: flex; justify-content: space-between; align-items: center;
-    width: 100%; padding-bottom: 32px; border-bottom: none;
+    width: 100%; padding-bottom: 24px; border-bottom: none;
   }
   .sidebar-brand {
-    font-size: 1.7rem; color: #fff; text-decoration: none; font-weight: 800; letter-spacing: -0.01em; display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none;
   }
-  .sidebar-brand strong { font-size: inherit; }
+  .sidebar-brand strong { font-size: 1.4rem; line-height: 1; }
+  .sidebar-brand span { font-size: 1.12rem; letter-spacing: .12em; color: #cfd5e7; }
+  
   .close-sidebar {
-    background: transparent; border: none; color: #fff; font-size: 1.8rem; cursor: pointer; padding: 0; opacity: 0.85; transition: opacity 0.2s; display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; border: none; color: #fff; font-size: 1.4rem; cursor: pointer; padding: 0; opacity: 0.85; transition: opacity 0.2s; display: inline-flex; align-items: center; justify-content: center;
   }
   .close-sidebar:hover { opacity: 1; }
 
   .nav-links, .tutorial-docs-actions {
     position: fixed; top: 0; left: 0; right: 0; bottom: 0; width: 100%; max-width: 100%;
     background: #060910; border-left: none; z-index: 100;
-    flex-direction: column; align-items: flex-start; gap: 0; padding: 24px clamp(20px, 6vw, 32px);
+    flex-direction: column; align-items: flex-start; gap: 0; padding: 20px clamp(16px, 5vw, 24px);
     transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: none; overflow-y: auto; height: 100vh!important; margin: 0;
   }
@@ -391,19 +393,10 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   }
   
   .nav-links > a:not(.sidebar-brand), .tutorial-docs-actions > a:not(.sidebar-brand) {
-    width: 100%; border-bottom: none; padding: 20px 0; font-size: 1.25rem; font-weight: 600;
-    color: #eef3ff; display: flex; align-items: center; justify-content: space-between; text-transform: capitalize; letter-spacing: 0; transition: color 0.2s ease;
+    width: 100%; border-bottom: none; padding: 12px 0; font-size: 1rem; font-weight: 600;
+    color: #eef3ff; display: flex; align-items: center; justify-content: flex-start; text-transform: capitalize; letter-spacing: 0; transition: color 0.2s ease;
   }
   .nav-links > a:not(.sidebar-brand):hover, .tutorial-docs-actions > a:not(.sidebar-brand):hover {
     color: #fff; background: transparent; text-decoration: none;
-  }
-  
-  .nav-links > a:not(.sidebar-brand)::after, .tutorial-docs-actions > a:not(.sidebar-brand)::after {
-    content: "\F285"; /* chevron-right from bootstrap icons */
-    font-family: bootstrap-icons; margin-left: auto; color: #eef3ff; font-size: 1.3rem; opacity: 0.9;
-    transition: transform 0.2s;
-  }
-  .nav-links > a:not(.sidebar-brand):hover::after, .tutorial-docs-actions > a:not(.sidebar-brand):hover::after {
-    transform: translateX(4px);
   }
 }
