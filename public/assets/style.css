@@ -114,7 +114,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .legacy-site-footer h3{margin:0 0 8px}.legacy-site-footer ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}.legacy-site-footer a{color:#bfd0f3;text-decoration:none}.legacy-site-footer a:hover{text-decoration:underline}
 
 @media (max-width:980px){
-  .topbar-inner{min-height:72px;padding:14px 14px 8px;gap:14px}
+  .topbar-inner{min-height:72px;padding:20px 24px;gap:0}
   .brand strong{font-size:1.35rem}
   .brand span{font-size:.92rem;letter-spacing:.12em}
   .nav-links{gap:14px;overflow:auto;scrollbar-width:thin}
@@ -124,7 +124,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 }
 @media (max-width:700px){
   .container{padding:12px 10px}
-  .topbar-inner{padding:14px 14px 8px;min-height:72px;gap:10px}
+  .topbar-inner{padding:20px 24px;min-height:72px;gap:0}
   .brand strong{font-size:1.15rem}
   .brand span{font-size:.8rem}
   .lang-wrap{min-width:132px}
@@ -362,9 +362,12 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 /* Sidebar Header (Hidden on Desktop) */
 .sidebar-header { display: none; }
 
+/* Sidebar Header (Hidden on Desktop) */
+.sidebar-header { display: none; }
+
 /* Mobile Sidebar Styling */
 @media (max-width: 800px) {
-  .menu-toggle { display: inline-flex; }
+  .menu-toggle { display: inline-flex; margin: 0; }
 
   .sidebar-header {
     display: flex; justify-content: space-between; align-items: center;
@@ -393,10 +396,27 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   }
   
   .nav-links > a:not(.sidebar-brand), .tutorial-docs-actions > a:not(.sidebar-brand) {
-    width: 100%; border-bottom: none; padding: 18px 0 18px 16px; font-size: 1rem; font-weight: 600;
+    width: 100%; border-bottom: none; padding: 12px 0; font-size: 1rem; font-weight: 600;
     color: #eef3ff; display: flex; align-items: center; justify-content: flex-start; text-transform: capitalize; letter-spacing: 0; transition: color 0.2s ease;
   }
   .nav-links > a:not(.sidebar-brand):hover, .tutorial-docs-actions > a:not(.sidebar-brand):hover {
     color: #fff; background: transparent; text-decoration: none;
+  }
+  
+  .nav-links .lang-wrap {
+    margin-left: 0;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+  .nav-links .lang-control {
+    max-width: 100%;
+  }
+  .nav-links .lang-toggle {
+    background: #1a2235;
+    border-color: #2a3655;
+    font-size: 0.95rem;
+    padding: 12px 14px;
+    border-radius: 12px;
   }
 }
