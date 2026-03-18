@@ -1697,8 +1697,11 @@ function setupMobileSidebar() {
 
     menuToggle.addEventListener("click", toggleSidebar);
     sidebarOverlay.addEventListener("click", toggleSidebar);
+    
+    const closeBtns = navLinksContainer.querySelectorAll(".close-sidebar");
+    closeBtns.forEach(btn => btn.addEventListener("click", toggleSidebar));
 
-    const links = navLinksContainer.querySelectorAll("a");
+    const links = navLinksContainer.querySelectorAll("a:not(.sidebar-brand)");
     links.forEach(link => {
       link.addEventListener("click", () => {
         navLinksContainer.classList.remove("open");
