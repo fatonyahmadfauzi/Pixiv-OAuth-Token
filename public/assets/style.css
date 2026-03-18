@@ -21,8 +21,8 @@ body{margin:0;color:var(--text);font-family:Inter,"Segoe UI",system-ui,sans-seri
 .nav-links{display:flex;gap:18px;flex-wrap:nowrap;align-items:center;white-space:nowrap}
 .nav-links a{display:inline-flex;align-items:center;gap:6px;color:#9aa6bf;text-decoration:none;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:8px 0;border-bottom:2px solid transparent;transition:.18s ease}
 .nav-links a:hover{color:#fff;border-bottom-color:transparent}
-.menu-toggle{display:none;background:transparent;border:1px solid #3e4654;color:#fff;font-size:1.4rem;padding:4px 10px;border-radius:8px;cursor:pointer;transition:.2s ease;margin-left:auto}
-.menu-toggle:hover{background:#2c333d;border-color:#6d7687}
+.menu-toggle{display:none;background:transparent;border:none;color:#fff;font-size:1.8rem;padding:0;cursor:pointer;transition:.2s ease;margin-left:auto}
+.menu-toggle:hover{color:#b3c5ef}
 .container{max-width:1200px;margin:0 auto;padding:clamp(14px,2.6vw,24px) clamp(10px,2.2vw,18px) clamp(18px,2.8vw,34px);display:grid;gap:clamp(12px,1.8vw,18px)}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:clamp(14px,2.1vw,20px);backdrop-filter:blur(10px);box-shadow:0 16px 30px #02061266}
 
@@ -393,7 +393,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   }
   
   .nav-links > a:not(.sidebar-brand), .tutorial-docs-actions > a:not(.sidebar-brand) {
-    width: 100%; border-bottom: none; padding: 12px 0; font-size: 1rem; font-weight: 600;
+    width: 100%; border-bottom: none; padding: 18px 0 18px 16px; font-size: 1rem; font-weight: 600;
     color: #eef3ff; display: flex; align-items: center; justify-content: flex-start; text-transform: capitalize; letter-spacing: 0; transition: color 0.2s ease;
   }
   .nav-links > a:not(.sidebar-brand):hover, .tutorial-docs-actions > a:not(.sidebar-brand):hover {
