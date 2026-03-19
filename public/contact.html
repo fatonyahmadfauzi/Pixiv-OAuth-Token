@@ -5,33 +5,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="theme-color" content="#0b0d12">
-  <title>Pixiv OAuth – Documentation</title>
-  <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/documentation">
+  <title>Pixiv OAuth – Contact</title>
+  <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/contact">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
   <link rel="shortcut icon" href="/assets/favicon.svg">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
-  <!-- highlight.js theme -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
   <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body class="download-showcase-body">
   <header class="tutorial-docs-header">
     <div class="tutorial-docs-inner">
       <div class="tutorial-docs-top">
-        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span>DOCS</span></a>
+        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span>CONTACT</span></a>
         <nav class="tutorial-docs-actions" aria-label="Page actions">
           <div class="sidebar-header">
             <a class="sidebar-brand" href="/"><strong>Pixiv OAuth</strong></a>
             <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
           </div>
           <a href="/">Homepage</a>
-          <a href="/#console">Console</a>
-          <a href="/tutorial">Tutorial</a>
           <a href="/downloads">Download</a>
+          <a href="/tutorial">Tutorial</a>
+          <a href="/documentation">Documentation</a>
         </nav>
         <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
           <i class="bi bi-list" aria-hidden="true"></i>
@@ -41,39 +38,57 @@
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
   </header>
 
-  <main class="gh-doc-main">
-    <!-- TOC Sidebar -->
-    <aside class="gh-doc-toc" id="docToc" aria-label="Table of contents">
-      <div class="gh-doc-toc-label">On this page</div>
-      <nav id="tocNav" aria-label="Page sections"></nav>
-      <div class="gh-doc-toc-footer">
-        <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/README.md" target="_blank" rel="noopener" class="gh-doc-edit-link">
-          <i class="bi bi-pencil" aria-hidden="true"></i> Edit on GitHub
-        </a>
-      </div>
-    </aside>
+  <main class="download-showcase-main">
+    <section class="download-showcase-hero">
+      <h1>Contact Us</h1>
+      <p>Have questions, suggestions, or need help? Send us a message.</p>
+    </section>
 
-    <!-- Content area -->
-    <div class="gh-doc-content-wrap">
-      <section class="download-showcase-hero gh-doc-hero">
-        <h1>Documentation</h1>
-        <p>Auto-fetched from <code>README.md</code> on the <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub repository</a>.</p>
-      </section>
-
-      <!-- Skeleton -->
-      <div id="docSkeleton" class="gh-doc-skeleton-wrap">
-        <div class="gh-doc-skeleton-line sk-w-60"></div>
-        <div class="gh-doc-skeleton-line sk-w-90"></div>
-        <div class="gh-doc-skeleton-line sk-w-75"></div>
-        <div class="gh-doc-skeleton-line sk-block"></div>
-        <div class="gh-doc-skeleton-line sk-w-40 sk-mt"></div>
-        <div class="gh-doc-skeleton-line sk-w-95"></div>
-        <div class="gh-doc-skeleton-line sk-w-70"></div>
+    <div class="contact-form-container">
+      <div id="contactSuccess" class="gh-discussions-notice" style="display: none; justify-content: center; text-align: center; border-color: #3fb950;">
+        <div style="display: grid; gap: 10px; justify-items: center;">
+          <i class="bi bi-check-circle-fill" style="font-size: 2.5rem; color: #3fb950;"></i>
+          <h3 class="gh-discussions-title" style="margin: 0;">Message Sent Successfully!</h3>
+          <p class="gh-discussions-desc" style="margin: 0;">Thank you for contacting us. We will get back to you shortly.</p>
+        </div>
       </div>
 
-      <!-- Rendered markdown -->
-      <article id="docBody" class="gh-doc-body" hidden></article>
+      <form id="contactForm" action="https://formsubmit.co/fatonyahmadfauzi@gmail.com" method="POST" enctype="multipart/form-data" class="gh-issue-card" style="display: grid; gap: 20px;">
+        <input type="hidden" name="_subject" value="New Contact Message from Pixiv OAuth Web">
+        <input type="hidden" name="_next" value="https://pixiv-o-auth-token.vercel.app/contact?success=true">
+        <input type="hidden" name="_captcha" value="true">
 
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" name="First Name" class="gh-input" required placeholder="John">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name <span class="required">*</span></label>
+            <input type="text" id="lastName" name="Last Name" class="gh-input" required placeholder="Doe">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address <span class="required">*</span></label>
+          <input type="email" id="email" name="Email" class="gh-input" required placeholder="john.doe@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="attachment">Attachment (Optional)</label>
+          <input type="file" id="attachment" name="Attachment" class="gh-file-input" accept="image/*,.pdf,.zip,.log,.txt">
+          <small class="form-hint">Max file size according to email limits.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span class="required">*</span></label>
+          <textarea id="message" name="Message" class="gh-input" rows="6" required placeholder="How can we help you?"></textarea>
+        </div>
+
+        <button type="submit" class="btn primary gh-new-issue-btn" style="margin-top: 10px;">
+          <i class="bi bi-send" aria-hidden="true"></i> Send Message
+        </button>
+      </form>
     </div>
   </main>
 
@@ -122,10 +137,16 @@
     </div>
   </footer>
 
-  <!-- marked.js + highlight.js -->
-  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
   <script src="/assets/app.js"></script>
-  <script src="/assets/docs.js"></script>
+  <script>
+    // Handle form success redirect message
+    if (window.location.search.includes('success=true')) {
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('contactSuccess').style.display = 'flex';
+      
+      // Clean URL silently
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  </script>
 </body>
 </html>
