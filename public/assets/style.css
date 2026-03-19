@@ -662,3 +662,37 @@ textarea.gh-input{resize:vertical;min-height:120px}
 @media (max-width:540px){
   .form-row{grid-template-columns:1fr}
 }
+
+
+/* ═══════════════════════════════════════════════
+   FLOATING BANTUAN WIDGET
+═══════════════════════════════════════════════ */
+.hw-container{position:fixed;bottom:24px;right:24px;z-index:9999;font-family:Inter,sans-serif}
+.hw-btn{background:#323232;color:#fff;border:1px solid #4a5a73;border-radius:30px;padding:12px 20px;font-size:1rem;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer;box-shadow:0 6px 16px rgba(0,0,0,0.4);transition:transform .2s ease, background .2s ease}
+.hw-btn:hover{background:#404040;transform:translateY(-2px)}
+.hw-btn i{font-size:1.2rem}
+
+.hw-box{position:absolute;bottom:0;right:0;width:340px;background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.3);overflow:hidden;transform-origin:bottom right;transition:transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity .3s ease;opacity:0;transform:scale(0.8);pointer-events:none}
+.hw-box.show{opacity:1;transform:scale(1);pointer-events:auto;bottom:60px}
+
+.hw-header{background:#5e89ff;color:#fff;padding:18px 20px;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:1.05rem}
+.hw-close{background:transparent;border:none;color:#fff;font-size:1.8rem;cursor:pointer;line-height:0;padding:0;transition:.2s}
+.hw-close:hover{opacity:.8}
+
+.hw-form{padding:20px;display:grid;gap:18px;background:#fff}
+.hw-group{display:grid;gap:6px;text-align:left}
+.hw-group label{font-size:.85rem;font-weight:600;color:#354052}
+.hw-input{width:100%;box-sizing:border-box;background:#fff;border:1px solid #d0d7e5;border-radius:6px;padding:10px 12px;color:#2c374a;font-size:.9rem;font-family:inherit;transition:.2s ease}
+.hw-input:focus{outline:none;border-color:#5e89ff;box-shadow:0 0 0 3px rgba(94,138,255,0.15)}
+textarea.hw-input{resize:none;height:80px}
+
+.hw-file-wrap{font-size:.85rem;color:#5e89ff;cursor:pointer;display:flex;align-items:center;gap:6px;margin-top:4px}
+.hw-file-wrap input[type="file"]{display:none}
+.hw-file-wrap i{font-size:1.1rem}
+
+.hw-submit{background:#5e89ff;color:#fff;border:none;border-radius:6px;padding:10px 16px;font-size:.95rem;font-weight:700;cursor:pointer;justify-self:end;transition:.2s ease}
+.hw-submit:hover{background:#4a6ddb}
+
+@media (max-width:768px){
+  .hw-container{display:none !important}
+}
