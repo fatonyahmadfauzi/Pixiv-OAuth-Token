@@ -39,9 +39,9 @@ const SITE_FOOTER_HTML = `
         </div>
       </div>
       <div class="footer-brand-block">
-        <span class="footer-ghost-text">Pixiv OAuth</span>
+        <span class="footer-ghost-text" data-i18n="footerBrandText">Pixiv OAuth</span>
       </div>
-      <p class="footer-copyright">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
+      <p class="footer-copyright" data-i18n="footerCopyright">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
     </div>
 `;
 const foot = document.getElementById('mainFooter') || document.querySelector('.site-footer');

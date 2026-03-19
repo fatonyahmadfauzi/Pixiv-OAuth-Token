@@ -224,6 +224,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "License",
+    footerContactLink: "Contact Us",
+    footerContactTitle: "Social",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi",
     footerDonateLink: "Support / Donate",
     supportPageTitle: "Support / Donate",
     supportPageDescHtml: "Thank you for supporting this project! Scan the QRIS code below to donate.",
@@ -502,6 +508,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Licencja",
+    footerContactLink: "Skontaktuj się z nami",
+    footerContactTitle: "Media Społecznościowe",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Stworzone przez Fatony Ahmad Fauzi",
     footerDonateLink: "Wsparcie / Dotacje",
     supportPageTitle: "Wsparcie / Dotacje",
     supportPageDescHtml: "Dziękujemy za wsparcie tego projektu! Zeskanuj poniższy kod QRIS, aby przekazać darowiznę.",
@@ -780,6 +792,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "许可证",
+    footerContactLink: "联系我们",
+    footerContactTitle: "社交媒体",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · 由 Fatony Ahmad Fauzi 构建",
     footerDonateLink: "支持 / 捐赠",
     supportPageTitle: "支持 / 捐赠",
     supportPageDescHtml: "感谢您支持此项目！扫描下方 QRIS 二维码进行捐赠。",
@@ -1058,6 +1076,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "ライセンス",
+    footerContactLink: "お問い合わせ",
+    footerContactTitle: "ソーシャル",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi",
     footerDonateLink: "サポート / 寄付",
     supportPageTitle: "サポート / 寄付",
     supportPageDescHtml: "このプロジェクトをご支援いただきありがとうございます！以下の QRIS コードをスキャンして寄付してください。",
@@ -1336,6 +1360,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Lizenz",
+    footerContactLink: "Kontaktiere uns",
+    footerContactTitle: "Sozial",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Erstellt von Fatony Ahmad Fauzi",
     footerDonateLink: "Unterstützen / Spenden",
     supportPageTitle: "Unterstützen / Spenden",
     supportPageDescHtml: "Vielen Dank für die Unterstützung dieses Projekts! Scannen Sie den folgenden QRIS-Code, um zu spenden.",
@@ -1614,6 +1644,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Licence",
+    footerContactLink: "Contactez-nous",
+    footerContactTitle: "Réseaux Sociaux",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Créé par Fatony Ahmad Fauzi",
     footerDonateLink: "Soutien / Faire un don",
     supportPageTitle: "Soutien / Faire un don",
     supportPageDescHtml: "Merci de soutenir ce projet ! Scannez le code QRIS ci-dessous pour faire un don.",
@@ -1892,6 +1928,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Licencia",
+    footerContactLink: "Contáctenos",
+    footerContactTitle: "Social",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Creado por Fatony Ahmad Fauzi",
     footerDonateLink: "Apoyo / Donar",
     supportPageTitle: "Apoyo / Donar",
     supportPageDescHtml: "¡Gracias por apoyar este proyecto! Escanea el código QRIS a continuación para donar.",
@@ -2170,6 +2212,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Лицензия",
+    footerContactLink: "Связаться с нами",
+    footerContactTitle: "Социальные сети",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Создано Fatony Ahmad Fauzi",
     footerDonateLink: "Поддержка / Пожертвовать",
     supportPageTitle: "Поддержка / Пожертвовать",
     supportPageDescHtml: "Спасибо за поддержку этого проекта! Отсканируйте код QRIS ниже, чтобы сделать пожертвование.",
@@ -2448,6 +2496,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Licença",
+    footerContactLink: "Contate-nos",
+    footerContactTitle: "Social",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Criado por Fatony Ahmad Fauzi",
     footerDonateLink: "Apoio / Doar",
     supportPageTitle: "Apoio / Doar",
     supportPageDescHtml: "Obrigado por apoiar este projeto! Escaneie o código QRIS abaixo para doar.",
@@ -2726,6 +2780,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "Lisensi",
+    footerContactLink: "Hubungi Kami",
+    footerContactTitle: "Sosial",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Dibuat oleh Fatony Ahmad Fauzi",
     footerDonateLink: "Dukungan / Donasi",
     supportPageTitle: "Dukungan / Donasi",
     supportPageDescHtml: "Terima kasih telah mendukung proyek ini! Pindai kode QRIS di bawah ini untuk berdonasi.",
@@ -3004,6 +3064,12 @@ const DISPLAY_LANGUAGES = {
 
     
     
+    
+    footerLicenseLink: "라이선스",
+    footerContactLink: "문의하기",
+    footerContactTitle: "소셜",
+    footerBrandText: "Pixiv OAuth",
+    footerCopyright: "© 2025 Pixiv OAuth Web · Fatony Ahmad Fauzi 제작",
     footerDonateLink: "지원 / 기부",
     supportPageTitle: "지원 / 기부",
     supportPageDescHtml: "이 프로젝트를 지원해 주셔서 감사합니다! 기부하려면 아래 QRIS 코드를 스캔하세요.",
@@ -3664,6 +3730,12 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    footerLicenseLink: "footerLicenseLink",
+    footerContactLink: "footerContactLink",
+    footerContactTitle: "footerContactTitle",
+    footerBrandText: "footerBrandText",
+    footerCopyright: "footerCopyright",
+
     footerDonateLink: "footerDonateLink",
     supportPageTitle: "supportPageTitle",
     supportPageDescHtml: "supportPageDescHtml",
@@ -3742,6 +3814,12 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    footerLicenseLink: "footerLicenseLink",
+    footerContactLink: "footerContactLink",
+    footerContactTitle: "footerContactTitle",
+    footerBrandText: "footerBrandText",
+    footerCopyright: "footerCopyright",
+
     footerDonateLink: "footerDonateLink",
     supportPageTitle: "supportPageTitle",
     supportPageDescHtml: "supportPageDescHtml",
