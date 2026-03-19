@@ -9,10 +9,21 @@ var REPO = 'fatonyahmadfauzi/Pixiv-OAuth-Token';
 async function loadRepoStats() {
   var statsEl = document.getElementById('repoStats');
   try {
-    var params = new URLSearchParams({ path: 'repos/' + REPO });
-    var res = await fetch('/api/github?' + params);
-    if (!res.ok) throw new Error();
-    var r = await res.json();
+    var r;
+
+    // Try proxy first (Vercel with PAT)
+    try {
+      var proxyParams = new URLSearchParams({ path: 'repos/' + REPO });
+      var proxyRes = await fetch('/api/github?' + proxyParams);
+      if (!proxyRes.ok) throw new Error('proxy HTTP ' + proxyRes.status);
+      r = await proxyRes.json();
+    } catch (proxyErr) {
+      // Fallback: direct GitHub API
+      console.info('[discussions.js] Proxy unavailable, using direct GitHub API:', proxyErr.message);
+      var directRes = await fetch('https://api.github.com/repos/' + REPO);
+      if (!directRes.ok) throw new Error('GitHub API HTTP ' + directRes.status);
+      r = await directRes.json();
+    }
     statsEl.innerHTML = [
       '<div class="gh-stat-card">',
         '<i class="bi bi-star c-blue" aria-hidden="true"></i>',

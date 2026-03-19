@@ -94,10 +94,23 @@ async function loadIssues(state) {
   if (cache[state]) { renderList(cache[state], state); return; }
 
   try {
-    var params = new URLSearchParams({ path: 'repos/' + REPO + '/issues', state: state, per_page: 30 });
-    var res = await fetch(API_BASE + '?' + params);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    var data = await res.json();
+    var data;
+
+    // Try proxy first (Vercel serverless with PAT = 5000 req/hr)
+    try {
+      var proxyParams = new URLSearchParams({ path: 'repos/' + REPO + '/issues', state: state, per_page: 30 });
+      var proxyRes = await fetch('/api/github?' + proxyParams);
+      if (!proxyRes.ok) throw new Error('proxy HTTP ' + proxyRes.status);
+      data = await proxyRes.json();
+    } catch (proxyErr) {
+      // Fallback: direct GitHub API (60 req/hr unauthenticated — fine for local dev)
+      console.info('[issues.js] Proxy unavailable, falling back to direct GitHub API:', proxyErr.message);
+      var directParams = new URLSearchParams({ state: state, per_page: 30 });
+      var directRes = await fetch('https://api.github.com/repos/' + REPO + '/issues?' + directParams);
+      if (!directRes.ok) throw new Error('GitHub API HTTP ' + directRes.status);
+      data = await directRes.json();
+    }
+
     cache[state] = data;
     renderList(data, state);
   } catch (e) {
