@@ -48,6 +48,71 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
 
+  <!-- Structured Data: ItemList for Google Sitelinks -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://pixiv-o-auth-token.vercel.app/downloads",
+        "url": "https://pixiv-o-auth-token.vercel.app/downloads",
+        "name": "Pixiv OAuth – Downloads",
+        "description": "Download the latest Pixiv OAuth builds for Windows or set up the Python SDK.",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pixiv-o-auth-token.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "Downloads", "item": "https://pixiv-o-auth-token.vercel.app/downloads" }
+          ]
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "Pixiv OAuth Download Options",
+        "description": "Download Pixiv OAuth for Windows or install the Python SDK.",
+        "url": "https://pixiv-o-auth-token.vercel.app/downloads",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Download for Windows",
+            "description": "Download the Windows portable executable or setup installer for Pixiv OAuth. Supports x64, x86, and ARM64 architectures.",
+            "url": "https://pixiv-o-auth-token.vercel.app/downloads#windowsPanel"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Download for Python",
+            "description": "Install the Pixiv OAuth Python SDK by cloning the repository and running pip install.",
+            "url": "https://pixiv-o-auth-token.vercel.app/downloads#pythonPanel"
+          }
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Pixiv OAuth Token Helper",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Windows",
+        "url": "https://pixiv-o-auth-token.vercel.app/downloads",
+        "downloadUrl": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest",
+        "softwareVersion": "latest",
+        "author": {
+          "@type": "Person",
+          "name": "Fatony Ahmad Fauzi",
+          "url": "https://github.com/fatonyahmadfauzi"
+        },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "Pixiv OAuth Token Helper for Windows — generate and refresh Pixiv tokens via GUI, CLI, or Web. Portable and setup versions available."
+      }
+    ]
+  }
+  </script>
+
 </head>
 <body class="download-showcase-body">
   <header class="tutorial-docs-header">

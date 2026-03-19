@@ -4146,10 +4146,223 @@ function setupMobilePlatformDropdown() {
   });
 }
 
+const PAGE_META_I18N = {
+  "/": {
+    "en": {"title": "Pixiv OAuth Web | Professional Token Helper", "desc": "Generate and refresh Pixiv OAuth tokens with a modern UI, multilingual support, and serverless API support for Vercel.", "keywords": "pixiv oauth, pixiv token helper, oauth pkce, cli gui web, vercel, python oauth", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth Web | Profesjonalne Narzędzie do Tokenów", "desc": "Generuj i odświeżaj tokeny Pixiv OAuth z nowoczesnym interfejsem, wielojęzycznym wsparciem i bezserwerowym API Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth Web | 专业令牌助手", "desc": "使用现代界面、多语言支持和Vercel无服务器API支持生成和刷新Pixiv OAuth令牌。", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth 中文", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth Web | プロフェッショナル トークン ツール", "desc": "モダンなUIと多言語対応でPixiv OAuthトークンを生成・更新。VercelのサーバーレスAPIをサポート。", "keywords": "pixiv oauth, pixiv トークン, oauth pkce, cli gui web, vercel, python oauth 日本語", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth Web | Professioneller Token-Helfer", "desc": "Generieren und aktualisieren Sie Pixiv-OAuth-Token mit einer modernen UI, Mehrsprachigkeit und serverloser Vercel-API.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth Web | Outil de Token Professionnel", "desc": "Générez et actualisez des tokens Pixiv OAuth avec une interface moderne, un support multilingue et l'API serverless Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth Web | Asistente de Token Profesional", "desc": "Genere y actualice tokens OAuth de Pixiv con una interfaz moderna, soporte multilingüe y API serverless en Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth Web | Профессиональный помощник по токенам", "desc": "Создавайте и обновляйте токены Pixiv OAuth через современный UI с мультиязычной поддержкой и serverless API Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth Web | Assistente de Token Profissional", "desc": "Gere e atualize tokens OAuth da Pixiv com interface moderna, suporte multilíngue e API serverless para Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth Web | Alat Bantu Token Profesional", "desc": "Buat dan perbarui token Pixiv OAuth dengan antarmuka modern, dukungan multibahasa, dan API serverless untuk Vercel.", "keywords": "pixiv oauth, pixiv token, oauth pkce, cli gui web, vercel, python oauth indonesia", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth Web | 프로페셔널 토큰 도우미", "desc": "현대적인 UI와 다국어 지원 및 Vercel 서버리스 API로 Pixiv OAuth 토큰을 생성 및 새로 고침하세요.", "keywords": "pixiv oauth, pixiv 토큰, oauth pkce, cli gui web, vercel, python oauth 한국어", "locale": "ko_KR"},
+  },
+  "/downloads": {
+    "en": {"title": "Pixiv OAuth – Downloads", "desc": "Download the latest Pixiv OAuth builds for Windows (Portable & Setup) or install the Python SDK.", "keywords": "pixiv oauth download, windows app, portable exe, setup installer, python sdk", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Pobieranie", "desc": "Pobierz najnowsze wersje Pixiv OAuth dla Windows (Portable & Setup) lub zainstaluj SDK Python.", "keywords": "pixiv oauth pobierz, aplikacja windows, python sdk, polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 下载", "desc": "下载适用于Windows的最新Pixiv OAuth构建版本（便携版和安装版）或安装Python SDK。", "keywords": "pixiv oauth 下载, windows 应用, python sdk", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – ダウンロード", "desc": "Windows向けの最新Pixiv OAuthビルド（ポータブル＆セットアップ）またはPython SDKをダウンロードしてください。", "keywords": "pixiv oauth ダウンロード, windows アプリ, python sdk", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Downloads", "desc": "Laden Sie die neuesten Pixiv-OAuth-Builds für Windows (Portable & Setup) herunter oder installieren Sie das Python SDK.", "keywords": "pixiv oauth download, windows app, python sdk, deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Téléchargements", "desc": "Téléchargez les dernières versions Pixiv OAuth pour Windows (Portable & Setup) ou installez le SDK Python.", "keywords": "pixiv oauth télécharger, application windows, python sdk, français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Descargas", "desc": "Descargue las últimas versiones de Pixiv OAuth para Windows (Portable & Setup) o instale el SDK de Python.", "keywords": "pixiv oauth descargar, aplicación windows, python sdk, español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Загрузки", "desc": "Скачайте последние сборки Pixiv OAuth для Windows (Portable & Setup) или установите Python SDK.", "keywords": "pixiv oauth скачать, приложение windows, python sdk, русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Downloads", "desc": "Baixe as últimas versões para Windows (Portátil e Instalador) do Pixiv OAuth ou instale o SDK Python.", "keywords": "pixiv oauth download, app windows, python sdk, português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Unduhan", "desc": "Unduh build terbaru Pixiv OAuth untuk Windows (Portable & Setup) atau instal Python SDK.", "keywords": "pixiv oauth unduhan, aplikasi windows, exe portable, python sdk", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 다운로드", "desc": "Windows용 최신 Pixiv OAuth 빌드(포터블 및 설치 버전) 또는 Python SDK를 다운로드하세요.", "keywords": "pixiv oauth 다운로드, 윈도우 앱, python sdk", "locale": "ko_KR"},
+  },
+  "/documentation": {
+    "en": {"title": "Pixiv OAuth – Documentation", "desc": "Full project documentation for Pixiv OAuth covering installation, CLI/GUI/Web usage, and deployment.", "keywords": "pixiv oauth docs, documentation, setup guide, api, python", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Dokumentacja", "desc": "Pełna dokumentacja projektu Pixiv OAuth obejmująca instalację, użycie CLI/GUI/Web i wdrożenie.", "keywords": "pixiv oauth dokumentacja, przewodnik, api, python polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 文档", "desc": "Pixiv OAuth 完整项目文档，涵盖安装、CLI/GUI/Web 使用方法和部署。", "keywords": "pixiv oauth 文档, 安装指南, api, python", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – ドキュメント", "desc": "Pixiv OAuthプロジェクトのドキュメント。インストール、CLI/GUI/Webの使い方、デプロイを網羅。", "keywords": "pixiv oauth ドキュメント, セットアップ, api, python", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Dokumentation", "desc": "Vollständige Projektdokumentation für Pixiv OAuth mit Installation, CLI/GUI/Web-Nutzung und Deployment.", "keywords": "pixiv oauth dokumentation, anleitung, api, python deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Documentation", "desc": "Documentation complète du projet Pixiv OAuth couvrant l'installation, l'utilisation CLI/GUI/Web et le déploiement.", "keywords": "pixiv oauth documentation, guide, api, python français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Documentación", "desc": "Documentación completa del proyecto Pixiv OAuth con instalación, uso de CLI/GUI/Web y despliegue.", "keywords": "pixiv oauth documentación, guía, api, python español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Документация", "desc": "Полная документация по проекту Pixiv OAuth: установка, CLI/GUI/Web, развёртывание.", "keywords": "pixiv oauth документация, руководство, api, python русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Documentação", "desc": "Documentação completa do projeto Pixiv OAuth cobrindo instalação, uso CLI/GUI/Web e implantação.", "keywords": "pixiv oauth documentação, guia, api, python português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Dokumentasi", "desc": "Dokumentasi lengkap proyek Pixiv OAuth mencakup instalasi, penggunaan CLI/GUI/Web, dan deployment.", "keywords": "pixiv oauth dokumentasi, panduan, api, python indonesia", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 문서", "desc": "설치, CLI/GUI/Web 사용법 및 배포를 포함한 Pixiv OAuth 프로젝트 전체 문서.", "keywords": "pixiv oauth 문서, 설정 가이드, api, python", "locale": "ko_KR"},
+  },
+  "/contact": {
+    "en": {"title": "Pixiv OAuth – Contact Us", "desc": "Contact the Pixiv OAuth developer. Send questions, bug reports, or suggestions.", "keywords": "pixiv oauth contact, developer contact, support", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Skontaktuj się z nami", "desc": "Skontaktuj się z programistą Pixiv OAuth. Wyślij pytania, raporty błędów lub sugestie.", "keywords": "pixiv oauth kontakt, programista, wsparcie", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 联系我们", "desc": "联系Pixiv OAuth开发者。发送问题、错误报告或建议。", "keywords": "pixiv oauth 联系, 开发者联系, 支持", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – お問い合わせ", "desc": "Pixiv OAuth開発者にご連絡ください。質問、バグ報告、ご提案をお送りください。", "keywords": "pixiv oauth お問い合わせ, 開発者連絡, サポート", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Kontakt", "desc": "Kontaktieren Sie den Pixiv-OAuth-Entwickler mit Fragen, Fehlerberichten oder Vorschlägen.", "keywords": "pixiv oauth kontakt, entwickler, support deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Contactez-nous", "desc": "Contactez le développeur Pixiv OAuth. Envoyez des questions, rapports de bugs ou suggestions.", "keywords": "pixiv oauth contact, développeur, support français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Contáctenos", "desc": "Contacte al desarrollador de Pixiv OAuth. Envíe preguntas, informes de errores o sugerencias.", "keywords": "pixiv oauth contacto, desarrollador, soporte español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Связаться с нами", "desc": "Свяжитесь с разработчиком Pixiv OAuth. Отправьте вопросы, отчёты об ошибках или предложения.", "keywords": "pixiv oauth контакт, разработчик, поддержка", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Contate-nos", "desc": "Contate o desenvolvedor do Pixiv OAuth. Envie perguntas, relatórios de bugs ou sugestões.", "keywords": "pixiv oauth contato, desenvolvedor, suporte português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Hubungi Kami", "desc": "Hubungi pengembang Pixiv OAuth. Kirim pertanyaan, laporan bug, atau saran.", "keywords": "pixiv oauth hubungi, kontak pengembang, dukungan", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 문의하기", "desc": "Pixiv OAuth 개발자에게 연락하세요. 질문, 버그 신고 또는 제안을 보내세요.", "keywords": "픽시브 oauth 문의, 개발자 연락, 지원", "locale": "ko_KR"},
+  },
+  "/support": {
+    "en": {"title": "Pixiv OAuth – Support / Donate", "desc": "Support the Pixiv OAuth project by donating via QRIS scan. Your support keeps the project alive.", "keywords": "pixiv oauth donate, support, qris, donasi", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Wsparcie / Darowizna", "desc": "Wesprzyj projekt Pixiv OAuth skanując kod QRIS. Twoje wsparcie utrzymuje projekt przy życiu.", "keywords": "pixiv oauth darowizna, wsparcie, qris", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 支持 / 捐赠", "desc": "通过扫描QRIS支持Pixiv OAuth项目。您的支持使项目得以持续。", "keywords": "pixiv oauth 捐赠, 支持, qris", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – サポート / 寄付", "desc": "QRISスキャンでPixiv OAuthプロジェクトを支援してください。あなたのサポートが力になります。", "keywords": "pixiv oauth 寄付, サポート, qris", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Unterstützung / Spenden", "desc": "Unterstützen Sie das Pixiv-OAuth-Projekt per QRIS-Scan. Ihre Unterstützung hält das Projekt am Leben.", "keywords": "pixiv oauth spenden, unterstützung, qris", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Soutien / Don", "desc": "Soutenez le projet Pixiv OAuth en scannant le code QRIS. Votre soutien maintient le projet en vie.", "keywords": "pixiv oauth don, soutien, qris français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Apoyo / Donación", "desc": "Apoya el proyecto Pixiv OAuth escaneando el código QRIS. Tu apoyo mantiene el proyecto vivo.", "keywords": "pixiv oauth donación, apoyo, qris español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Поддержка / Пожертвование", "desc": "Поддержите проект Pixiv OAuth сканированием QRIS. Ваша поддержка помогает проекту развиваться.", "keywords": "pixiv oauth пожертвование, поддержка, qris", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Suporte / Doação", "desc": "Apoie o projeto Pixiv OAuth doando via QRIS. Seu apoio mantém o projeto ativo.", "keywords": "pixiv oauth doação, suporte, qris português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Dukung / Donasi", "desc": "Dukung proyek Pixiv OAuth dengan berdonasi via scan QRIS. Dukungan Anda sangat berarti.", "keywords": "pixiv oauth donasi, dukungan, qris", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 지원 / 기부", "desc": "QRIS 스캔으로 Pixiv OAuth 프로젝트를 지원하세요. 여러분의 지원이 큰 힘이 됩니다.", "keywords": "픽시브 oauth 기부, 지원, qris", "locale": "ko_KR"},
+  },
+  "/issues": {
+    "en": {"title": "Pixiv OAuth – Issues", "desc": "Browse open and closed issues for Pixiv OAuth on GitHub, or submit a new one.", "keywords": "pixiv oauth issues, bug report, github issues", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Problemy", "desc": "Przeglądaj otwarte i zamknięte problemy Pixiv OAuth na GitHub lub zgłoś nowy.", "keywords": "pixiv oauth problemy, raport błędu, github polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 问题", "desc": "在GitHub上查看Pixiv OAuth的开放和关闭的问题，或提交新问题。", "keywords": "pixiv oauth 问题, bug 报告, github", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – イシュー", "desc": "GitHubでPixiv OAuthのオープン・クローズドイシューを確認するか、新しいイシューを提出してください。", "keywords": "pixiv oauth イシュー, バグ報告, github", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Issues", "desc": "Durchsuchen Sie offene und geschlossene Issues für Pixiv OAuth auf GitHub oder reichen Sie ein neues ein.", "keywords": "pixiv oauth issues, fehlerbericht, github deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Issues", "desc": "Parcourez les issues ouvertes et fermées de Pixiv OAuth sur GitHub, ou soumettez-en une nouvelle.", "keywords": "pixiv oauth issues, rapport de bug, github français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Problemas", "desc": "Explore los problemas abiertos y cerrados de Pixiv OAuth en GitHub, o envíe uno nuevo.", "keywords": "pixiv oauth problemas, informe de error, github español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Задачи", "desc": "Просматривайте открытые и закрытые задачи Pixiv OAuth на GitHub или создавайте новые.", "keywords": "pixiv oauth задачи, баг-репорт, github русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Problemas", "desc": "Navegue pelos problemas abertos e fechados do Pixiv OAuth no GitHub ou envie um novo.", "keywords": "pixiv oauth problemas, relatório de bug, github português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Isu", "desc": "Lihat isu terbuka dan tertutup untuk Pixiv OAuth di GitHub, atau kirim isu baru.", "keywords": "pixiv oauth isu, laporan bug, github", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 이슈", "desc": "GitHub에서 Pixiv OAuth의 열린 및 닫힌 이슈를 탐색하거나 새 이슈를 제출하세요.", "keywords": "pixiv oauth 이슈, 버그 신고, github", "locale": "ko_KR"},
+  },
+  "/discussions": {
+    "en": {"title": "Pixiv OAuth – Discussions", "desc": "Join the Pixiv OAuth community on GitHub Discussions. Ask questions, share ideas, and connect.", "keywords": "pixiv oauth discussions, community, github", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Dyskusje", "desc": "Dołącz do społeczności Pixiv OAuth na GitHub Discussions. Zadawaj pytania i dziel się pomysłami.", "keywords": "pixiv oauth dyskusje, społeczność, github polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 讨论", "desc": "加入GitHub Discussions上的Pixiv OAuth社区。提问、分享想法并建立联系。", "keywords": "pixiv oauth 讨论, 社区, github", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – ディスカッション", "desc": "GitHub DiscussionsでPixiv OAuthコミュニティに参加しましょう。質問やアイデアを共有してください。", "keywords": "pixiv oauth ディスカッション, コミュニティ, github", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Diskussionen", "desc": "Treten Sie der Pixiv-OAuth-Community auf GitHub Discussions bei. Fragen stellen, Ideen teilen.", "keywords": "pixiv oauth diskussionen, community, github deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Discussions", "desc": "Rejoignez la communauté Pixiv OAuth sur GitHub Discussions. Posez des questions et partagez des idées.", "keywords": "pixiv oauth discussions, communauté, github français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Discusiones", "desc": "Únase a la comunidad Pixiv OAuth en GitHub Discussions. Haga preguntas y comparta ideas.", "keywords": "pixiv oauth discusiones, comunidad, github español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Обсуждения", "desc": "Присоединяйтесь к сообществу Pixiv OAuth на GitHub Discussions. Задавайте вопросы и делитесь идеями.", "keywords": "pixiv oauth обсуждения, сообщество, github русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Discussões", "desc": "Junte-se à comunidade Pixiv OAuth no GitHub Discussions. Faça perguntas e compartilhe ideias.", "keywords": "pixiv oauth discussões, comunidade, github português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Diskusi", "desc": "Bergabunglah dengan komunitas Pixiv OAuth di GitHub Discussions. Ajukan pertanyaan dan bagikan ide.", "keywords": "pixiv oauth diskusi, komunitas, github indonesia", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 토론", "desc": "GitHub Discussions에서 Pixiv OAuth 커뮤니티에 참여하세요. 질문하고 아이디어를 공유하세요.", "keywords": "pixiv oauth 토론, 커뮤니티, github", "locale": "ko_KR"},
+  },
+  "/tutorial": {
+    "en": {"title": "Pixiv OAuth – Tutorial", "desc": "Step-by-step tutorial to generate Pixiv OAuth tokens via CLI, GUI, or Web.", "keywords": "pixiv oauth tutorial, guide, setup, token generation", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Samouczek", "desc": "Samouczek krok po kroku do generowania tokenów Pixiv OAuth przez CLI, GUI lub Web.", "keywords": "pixiv oauth samouczek, przewodnik, token polski", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 教程", "desc": "通过CLI、GUI或Web生成Pixiv OAuth令牌的分步教程。", "keywords": "pixiv oauth 教程, 指南, 令牌生成", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – チュートリアル", "desc": "CLI、GUI、またはWebでPixiv OAuthトークンを生成するためのステップバイステップチュートリアル。", "keywords": "pixiv oauth チュートリアル, ガイド, トークン生成", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Tutorial", "desc": "Schritt-für-Schritt-Tutorial zur Generierung von Pixiv-OAuth-Token über CLI, GUI oder Web.", "keywords": "pixiv oauth tutorial, anleitung, token deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Tutoriel", "desc": "Tutoriel étape par étape pour générer des tokens Pixiv OAuth via CLI, GUI ou Web.", "keywords": "pixiv oauth tutoriel, guide, token français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Tutorial", "desc": "Tutorial paso a paso para generar tokens OAuth de Pixiv a través de CLI, GUI o Web.", "keywords": "pixiv oauth tutorial, guía, token español", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Руководство", "desc": "Пошаговое руководство по генерации токенов Pixiv OAuth через CLI, GUI или Web.", "keywords": "pixiv oauth руководство, гайд, токен русский", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Tutorial", "desc": "Tutorial passo a passo para gerar tokens OAuth da Pixiv via CLI, GUI ou Web.", "keywords": "pixiv oauth tutorial, guia, token português", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Tutorial", "desc": "Tutorial langkah demi langkah untuk membuat token Pixiv OAuth via CLI, GUI, atau Web.", "keywords": "pixiv oauth tutorial, panduan, token indonesia", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 튜토리얼", "desc": "CLI, GUI 또는 Web을 통해 Pixiv OAuth 토큰을 생성하는 단계별 튜토리얼.", "keywords": "pixiv oauth 튜토리얼, 가이드, 토큰 생성", "locale": "ko_KR"},
+  },
+  "/license": {
+    "en": {"title": "Pixiv OAuth – License", "desc": "Pixiv OAuth is open-source software released under the MIT License.", "keywords": "pixiv oauth license, mit license, open source", "locale": "en_US"},
+    "pl": {"title": "Pixiv OAuth – Licencja", "desc": "Pixiv OAuth to oprogramowanie open source wydane na licencji MIT.", "keywords": "pixiv oauth licencja, mit, open source", "locale": "pl_PL"},
+    "zh": {"title": "Pixiv OAuth – 许可证", "desc": "Pixiv OAuth 是在MIT许可下发布的开源软件。", "keywords": "pixiv oauth 许可证, mit 开源", "locale": "zh_CN"},
+    "jp": {"title": "Pixiv OAuth – ライセンス", "desc": "Pixiv OAuthはMITライセンスの下でリリースされたオープンソースソフトウェアです。", "keywords": "pixiv oauth ライセンス, mit, オープンソース", "locale": "ja_JP"},
+    "de": {"title": "Pixiv OAuth – Lizenz", "desc": "Pixiv OAuth ist Open-Source-Software unter der MIT-Lizenz.", "keywords": "pixiv oauth lizenz, mit, open source deutsch", "locale": "de_DE"},
+    "fr": {"title": "Pixiv OAuth – Licence", "desc": "Pixiv OAuth est un logiciel open source sous licence MIT.", "keywords": "pixiv oauth licence, mit, open source français", "locale": "fr_FR"},
+    "es": {"title": "Pixiv OAuth – Licencia", "desc": "Pixiv OAuth es software de código abierto bajo la licencia MIT.", "keywords": "pixiv oauth licencia, mit, código abierto", "locale": "es_ES"},
+    "ru": {"title": "Pixiv OAuth – Лицензия", "desc": "Pixiv OAuth — программное обеспечение с открытым исходным кодом под лицензией MIT.", "keywords": "pixiv oauth лицензия, mit, открытый код", "locale": "ru_RU"},
+    "pt": {"title": "Pixiv OAuth – Licença", "desc": "Pixiv OAuth é software de código aberto lançado sob a Licença MIT.", "keywords": "pixiv oauth licença, mit, código aberto", "locale": "pt_BR"},
+    "id": {"title": "Pixiv OAuth – Lisensi", "desc": "Pixiv OAuth adalah perangkat lunak sumber terbuka yang dirilis di bawah Lisensi MIT.", "keywords": "pixiv oauth lisensi, mit, open source indonesia", "locale": "id_ID"},
+    "kr": {"title": "Pixiv OAuth – 라이선스", "desc": "Pixiv OAuth는 MIT 라이선스로 출시된 오픈 소스 소프트웨어입니다.", "keywords": "pixiv oauth 라이선스, mit, 오픈소스", "locale": "ko_KR"},
+  },
+};
+
+function updateMetaTags() {
+  const path = window.location.pathname.replace(/\.html$/, '') || '/';
+  const pageMeta = PAGE_META_I18N[path] || PAGE_META_I18N['/'];
+  const meta = pageMeta[DISPLAY_LANG] || pageMeta['en'];
+  if (!meta) return;
+
+  // Update <title>
+  document.title = meta.title;
+
+  const setMeta = (sel, val) => {
+    const el = document.querySelector(sel);
+    if (el) el.setAttribute('content', val);
+  };
+
+  // SEO metas
+  setMeta('meta[name="description"]', meta.desc);
+  setMeta('meta[name="keywords"]', meta.keywords);
+
+  // Open Graph
+  setMeta('meta[property="og:title"]', meta.title);
+  setMeta('meta[property="og:description"]', meta.desc);
+  setMeta('meta[property="og:locale"]', meta.locale);
+
+  // Twitter/X
+  setMeta('meta[name="twitter:title"]', meta.title);
+  setMeta('meta[name="twitter:description"]', meta.desc);
+
+  // html lang attribute
+  document.documentElement.lang = meta.locale.split('_')[0];
+}
+
+
+function injectHreflang() {
+  const DOMAIN = 'https://pixiv-o-auth-token.vercel.app';
+  const path = window.location.pathname.replace(/\.html$/, '') || '/';
+  const hreflangs = [
+    { lang: 'en', locale: 'en' },
+    { lang: 'id', locale: 'id' },
+    { lang: 'ja', locale: 'ja' },
+    { lang: 'zh', locale: 'zh' },
+    { lang: 'ko', locale: 'ko' },
+    { lang: 'de', locale: 'de' },
+    { lang: 'fr', locale: 'fr' },
+    { lang: 'es', locale: 'es' },
+    { lang: 'ru', locale: 'ru' },
+    { lang: 'pt', locale: 'pt' },
+    { lang: 'pl', locale: 'pl' },
+    { lang: 'x-default', locale: 'en' },
+  ];
+
+  // Remove existing hreflang links if any
+  document.querySelectorAll('link[rel="alternate"][hreflang]').forEach(el => el.remove());
+
+  hreflangs.forEach(({ lang, locale }) => {
+    const link = document.createElement('link');
+    link.rel = 'alternate';
+    link.hreflang = lang;
+    link.href = DOMAIN + path;
+    document.head.appendChild(link);
+  });
+}
+
+
 (async function init() {
   const saved = localStorage.getItem("pixiv_lang");
+
   if (saved && LANG_ORDER.includes(saved)) {
+    // User previously chose a language — respect it
     setDisplayLanguage(saved);
+  } else {
+    // No manual preference — auto-detect from browser/OS locale
+    const LOCALE_MAP = {
+      'id': 'id', 'in': 'id',                  // Indonesian
+      'ja': 'jp', 'jp': 'jp',                  // Japanese
+      'zh': 'zh', 'zh-cn': 'zh', 'zh-tw': 'zh', 'zh-sg': 'zh', // Chinese
+      'ko': 'kr', 'kr': 'kr',                  // Korean
+      'de': 'de',                               // German
+      'fr': 'fr',                               // French
+      'es': 'es',                               // Spanish
+      'pt': 'pt', 'pt-br': 'pt', 'pt-pt': 'pt', // Portuguese
+      'ru': 'ru',                               // Russian
+      'pl': 'pl',                               // Polish
+      'en': 'en',                               // English (default)
+    };
+    // navigator.languages is an array like ['id-ID', 'en-US'], pick first
+    const browserLangs = Array.from(navigator.languages || [navigator.language || 'en']);
+    let detected = 'en';
+    for (const locale of browserLangs) {
+      const lower = locale.toLowerCase();
+      // Try full match first (e.g. 'zh-cn'), then just prefix (e.g. 'zh')
+      const full = LOCALE_MAP[lower];
+      const prefix = LOCALE_MAP[lower.split('-')[0]];
+      if (full) { detected = full; break; }
+      if (prefix) { detected = prefix; break; }
+    }
+    setDisplayLanguage(detected);
+    // Do NOT save to localStorage here so the user can still freely change manually
   }
 
   document.documentElement.lang = DISPLAY_LANG;
