@@ -11,11 +11,11 @@ var cache = {};
 
 function timeAgo(dateStr) {
   var diff = (Date.now() - new Date(dateStr)) / 1000;
-  if (diff < 60)      return 'just now';
-  if (diff < 3600)    return Math.floor(diff / 60) + 'm ago';
-  if (diff < 86400)   return Math.floor(diff / 3600) + 'h ago';
-  if (diff < 2592000) return Math.floor(diff / 86400) + 'd ago';
-  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  if (diff < 60)      return t('timeJustNow');
+  if (diff < 3600)    return t('timeMinsAgo', {count: Math.floor(diff / 60)});
+  if (diff < 86400)   return t('timeHoursAgo', {count: Math.floor(diff / 3600)});
+  if (diff < 2592000) return t('timeDaysAgo', {count: Math.floor(diff / 86400)});
+  return new Date(dateStr).toLocaleDateString(DISPLAY_LANG === 'en' ? 'en-US' : DISPLAY_LANG, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 function renderIssue(issue) {
