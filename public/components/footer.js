@@ -27,7 +27,7 @@ const SITE_FOOTER_HTML = `
             <li><a href="/issues" id="footerIssueLink">Report an Issue</a></li>
             <li><a href="/discussions" id="footerDiscussLink">Discussions</a></li>
             <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener" id="footerDevLink">Fatony Ahmad Fauzi</a></li>
-            <li><a href="https://teer.id/fatonyahmadfauzi" target="_blank" rel="noopener" id="footerDonateLink">Support / Donate</a></li>
+            <li><a href="/support" id="footerDonateLink" data-i18n="footerDonateLink">Support / Donate</a></li>
           </ul>
         </section>
       </div>

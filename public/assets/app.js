@@ -223,6 +223,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Support / Donate",
+    supportPageTitle: "Support / Donate",
+    supportPageDescHtml: "Thank you for supporting this project! Scan the QRIS code below to donate.",
+    supportScanInstruction: "Scan with your supported e-wallet or banking app.",
     docsTocLabel: "On this page",
     docsEditBtn: "Edit on GitHub",
     docsAutoFetchHtml: "Auto-fetched from {file} on the <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub repository</a>.",
@@ -496,6 +501,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Wsparcie / Dotacje",
+    supportPageTitle: "Wsparcie / Dotacje",
+    supportPageDescHtml: "Dziękujemy za wsparcie tego projektu! Zeskanuj poniższy kod QRIS, aby przekazać darowiznę.",
+    supportScanInstruction: "Zeskanuj za pomocą obsługiwanego portfela elektronicznego lub aplikacji bankowej.",
     docsTocLabel: "Na tej stronie",
     docsEditBtn: "Edytuj na GitHubie",
     docsAutoFetchHtml: "Automatycznie pobrane z pliku {file} w <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repozytorium GitHub</a>.",
@@ -769,6 +779,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "支持 / 捐赠",
+    supportPageTitle: "支持 / 捐赠",
+    supportPageDescHtml: "感谢您支持此项目！扫描下方 QRIS 二维码进行捐赠。",
+    supportScanInstruction: "使用受支持的电子钱包或银行应用程序扫描。",
     docsTocLabel: "在这个页面上",
     docsEditBtn: "在 GitHub 上编辑",
     docsAutoFetchHtml: "从 <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub 存储库</a> 中的 {file} 自动获取。",
@@ -1042,6 +1057,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "サポート / 寄付",
+    supportPageTitle: "サポート / 寄付",
+    supportPageDescHtml: "このプロジェクトをご支援いただきありがとうございます！以下の QRIS コードをスキャンして寄付してください。",
+    supportScanInstruction: "対応している電子マネーまたは銀行アプリでスキャンしてください。",
     docsTocLabel: "このページの内容",
     docsEditBtn: "GitHubで編集する",
     docsAutoFetchHtml: "<a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub リポジトリ</a> の {file} から自動取得されました。",
@@ -1315,6 +1335,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Unterstützen / Spenden",
+    supportPageTitle: "Unterstützen / Spenden",
+    supportPageDescHtml: "Vielen Dank für die Unterstützung dieses Projekts! Scannen Sie den folgenden QRIS-Code, um zu spenden.",
+    supportScanInstruction: "Scannen Sie mit Ihrer unterstützten E-Wallet oder Banking-App.",
     docsTocLabel: "Auf dieser Seite",
     docsEditBtn: "Auf GitHub bearbeiten",
     docsAutoFetchHtml: "Automatisch aus der {file} des <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub-Repositorys</a> geladen.",
@@ -1588,6 +1613,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Soutien / Faire un don",
+    supportPageTitle: "Soutien / Faire un don",
+    supportPageDescHtml: "Merci de soutenir ce projet ! Scannez le code QRIS ci-dessous pour faire un don.",
+    supportScanInstruction: "Scannez avec votre portefeuille électronique ou votre application bancaire compatible.",
     docsTocLabel: "Sur cette page",
     docsEditBtn: "Modifier sur GitHub",
     docsAutoFetchHtml: "Récupéré automatiquement depuis {file} sur le <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">dépôt GitHub</a>.",
@@ -1861,6 +1891,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Apoyo / Donar",
+    supportPageTitle: "Apoyo / Donar",
+    supportPageDescHtml: "¡Gracias por apoyar este proyecto! Escanea el código QRIS a continuación para donar.",
+    supportScanInstruction: "Escanea con tu billetera electrónica o aplicación bancaria compatible.",
     docsTocLabel: "En esta página",
     docsEditBtn: "Editar en GitHub",
     docsAutoFetchHtml: "Obtenido automáticamente de {file} en el <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositorio de GitHub</a>.",
@@ -2134,6 +2169,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Поддержка / Пожертвовать",
+    supportPageTitle: "Поддержка / Пожертвовать",
+    supportPageDescHtml: "Спасибо за поддержку этого проекта! Отсканируйте код QRIS ниже, чтобы сделать пожертвование.",
+    supportScanInstruction: "Отсканируйте с помощью поддерживаемого электронного кошелька или банковского приложения.",
     docsTocLabel: "На этой странице",
     docsEditBtn: "Редактировать на GitHub",
     docsAutoFetchHtml: "Автоматически загружено из {file} в <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">репозитории GitHub</a>.",
@@ -2407,6 +2447,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "Apoio / Doar",
+    supportPageTitle: "Apoio / Doar",
+    supportPageDescHtml: "Obrigado por apoiar este projeto! Escaneie o código QRIS abaixo para doar.",
+    supportScanInstruction: "Escaneie com sua carteira digital ou aplicativo bancário compatível.",
     docsTocLabel: "Nesta página",
     docsEditBtn: "Editar no GitHub",
     docsAutoFetchHtml: "Obtido automaticamente de {file} no <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositório do GitHub</a>.",
@@ -2680,6 +2725,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Kembali Sebelumnya",
 
     
+    
+    footerDonateLink: "Dukungan / Donasi",
+    supportPageTitle: "Dukungan / Donasi",
+    supportPageDescHtml: "Terima kasih telah mendukung proyek ini! Pindai kode QRIS di bawah ini untuk berdonasi.",
+    supportScanInstruction: "Pindai menggunakan aplikasi e-wallet atau bank digital yang mendukung QRIS.",
     docsTocLabel: "Di halaman ini",
     docsEditBtn: "Edit di GitHub",
     docsAutoFetchHtml: "Diambil otomatis dari {file} pada <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositori GitHub</a>.",
@@ -2953,6 +3003,11 @@ const DISPLAY_LANGUAGES = {
     notFoundBackPrev: "Go Back",
 
     
+    
+    footerDonateLink: "지원 / 기부",
+    supportPageTitle: "지원 / 기부",
+    supportPageDescHtml: "이 프로젝트를 지원해 주셔서 감사합니다! 기부하려면 아래 QRIS 코드를 스캔하세요.",
+    supportScanInstruction: "지원되는 전자 지갑이나 뱅킹 앱으로 스캔하세요.",
     docsTocLabel: "이 페이지에서",
     docsEditBtn: "GitHub에서 편집하기",
     docsAutoFetchHtml: "<a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub 리포지토리</a>의 {file}에서 자동 가져옴.",
@@ -3609,6 +3664,11 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    footerDonateLink: "footerDonateLink",
+    supportPageTitle: "supportPageTitle",
+    supportPageDescHtml: "supportPageDescHtml",
+    supportScanInstruction: "supportScanInstruction",
+
     docsTocLabel: "docsTocLabel",
     docsEditBtn: "docsEditBtn",
     docsAutoFetchHtml: "docsAutoFetchHtml",
@@ -3682,6 +3742,11 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    footerDonateLink: "footerDonateLink",
+    supportPageTitle: "supportPageTitle",
+    supportPageDescHtml: "supportPageDescHtml",
+    supportScanInstruction: "supportScanInstruction",
+
     docsTocLabel: "docsTocLabel",
     docsEditBtn: "docsEditBtn",
     docsAutoFetchHtml: "docsAutoFetchHtml",
