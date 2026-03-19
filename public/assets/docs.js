@@ -53,6 +53,7 @@ function buildTOC() {
 }
 
 async function loadDocs() {
+  var skeleton = document.getElementById('docSkeleton');
   var body = document.getElementById('docBody');
 
   try {
@@ -60,9 +61,10 @@ async function loadDocs() {
     if (!res.ok) throw new Error('HTTP ' + res.status);
     var md = await res.text();
 
-    // Parse markdown → HTML (highlight option removed in marked v12)
+    // Parse markdown → HTML
     body.innerHTML = marked.parse(md);
-    body.hidden     = false;
+    if (skeleton) skeleton.hidden = true;
+    body.hidden = false;
 
     buildTOC();
 
