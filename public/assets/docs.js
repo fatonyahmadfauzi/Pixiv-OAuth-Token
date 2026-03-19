@@ -2,41 +2,35 @@
  * docs.js — Documentation page logic
  * Loads README.md from GitHub, renders with marked.js + highlight.js,
  * and builds a sidebar Table of Contents.
+ *
+ * NOTE: marked v12 removed the `highlight` option from setOptions.
+ * Code highlighting is now done post-render via hljs.highlightElement().
  */
 
-const RAW_README = 'https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md';
+var RAW_README = 'https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md';
 
-// Configure marked with highlight.js
-marked.setOptions({
-  highlight: function(code, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      return hljs.highlight(code, { language: lang }).value;
-    }
-    return hljs.highlightAuto(code).value;
-  },
-  breaks: true,
-  gfm: true,
-});
+// marked v12 API — use marked.use() instead of setOptions({ highlight })
+marked.use({ gfm: true, breaks: true });
 
 function buildTOC() {
-  const body = document.getElementById('docBody');
-  const nav  = document.getElementById('tocNav');
+  var body = document.getElementById('docBody');
+  var nav  = document.getElementById('tocNav');
   if (!body || !nav) return;
 
-  const headings = body.querySelectorAll('h2, h3');
+  var headings = body.querySelectorAll('h2, h3');
   if (!headings.length) return;
 
   nav.innerHTML = Array.from(headings).map(function(h) {
-    const text = h.textContent;
-    const id   = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-    h.id = id;
-    const indent = h.tagName === 'H3' ? 'gh-toc-h3' : '';
+    var text   = h.textContent;
+    var id     = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+    h.id       = id;
+    var indent = h.tagName === 'H3' ? 'gh-toc-h3' : '';
     return '<a href="#' + id + '" class="gh-toc-link ' + indent + '">' + text + '</a>';
   }).join('');
 
   // Highlight active TOC link on scroll
-  const links    = nav.querySelectorAll('.gh-toc-link');
-  const observer = new IntersectionObserver(function(entries) {
+  var links    = nav.querySelectorAll('.gh-toc-link');
+  var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (entry.isIntersecting) {
         links.forEach(function(l) { l.classList.remove('active'); });
@@ -50,25 +44,30 @@ function buildTOC() {
 }
 
 async function loadDocs() {
-  const skeleton = document.getElementById('docSkeleton');
-  const body     = document.getElementById('docBody');
-  const error    = document.getElementById('docError');
+  var skeleton = document.getElementById('docSkeleton');
+  var body     = document.getElementById('docBody');
+  var error    = document.getElementById('docError');
 
   try {
-    const res = await fetch(RAW_README);
+    var res = await fetch(RAW_README);
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const md = await res.text();
+    var md = await res.text();
+
+    // Parse markdown → HTML (highlight option removed in marked v12)
     body.innerHTML = marked.parse(md);
     skeleton.hidden = true;
-    body.hidden = false;
+    body.hidden     = false;
+
     buildTOC();
-    // Apply highlight.js to all code blocks
+
+    // Apply highlight.js post-render (after DOM is populated)
     body.querySelectorAll('pre code').forEach(function(el) {
       hljs.highlightElement(el);
     });
   } catch (e) {
-    skeleton.hidden = true;
-    error.hidden = false;
+    console.error('[docs.js] Failed to load README:', e);
+    if (skeleton) skeleton.hidden = true;
+    if (error)    error.hidden    = false;
   }
 }
 
