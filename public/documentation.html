@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#0b0d12">
+  <title>Pixiv OAuth – Documentation</title>
+  <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/documentation.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="shortcut icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+  <!-- highlight.js theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/github-dark.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="download-showcase-body">
+  <header class="tutorial-docs-header">
+    <div class="tutorial-docs-inner">
+      <div class="tutorial-docs-top">
+        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span>DOCS</span></a>
+        <nav class="tutorial-docs-actions" aria-label="Page actions">
+          <div class="sidebar-header">
+            <a class="sidebar-brand" href="/"><strong>Pixiv OAuth</strong></a>
+            <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+          </div>
+          <a href="/">Homepage</a>
+          <a href="/#console">Console</a>
+          <a href="/tutorial.html">Tutorial</a>
+          <a href="/downloads.html">Download</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  </header>
+
+  <main class="gh-doc-main">
+    <!-- TOC Sidebar -->
+    <aside class="gh-doc-toc" id="docToc" aria-label="Table of contents">
+      <div class="gh-doc-toc-label">On this page</div>
+      <nav id="tocNav" aria-label="Page sections"></nav>
+      <div class="gh-doc-toc-footer">
+        <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/README.md" target="_blank" rel="noopener" class="gh-doc-edit-link">
+          <i class="bi bi-pencil" aria-hidden="true"></i> Edit on GitHub
+        </a>
+      </div>
+    </aside>
+
+    <!-- Content area -->
+    <div class="gh-doc-content-wrap">
+      <section class="download-showcase-hero gh-doc-hero">
+        <h1>Documentation</h1>
+        <p>Auto-fetched from <code>README.md</code> on the <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">GitHub repository</a>.</p>
+      </section>
+
+      <!-- Skeleton -->
+      <div id="docSkeleton" class="gh-doc-skeleton-wrap">
+        <div class="gh-doc-skeleton-line" style="width:60%"></div>
+        <div class="gh-doc-skeleton-line" style="width:90%"></div>
+        <div class="gh-doc-skeleton-line" style="width:75%"></div>
+        <div class="gh-doc-skeleton-line" style="width:85%;height:80px;border-radius:10px;margin-top:20px"></div>
+        <div class="gh-doc-skeleton-line" style="width:40%;margin-top:20px"></div>
+        <div class="gh-doc-skeleton-line" style="width:95%"></div>
+        <div class="gh-doc-skeleton-line" style="width:70%"></div>
+      </div>
+
+      <!-- Rendered markdown -->
+      <article id="docBody" class="gh-doc-body" hidden></article>
+
+      <!-- Error -->
+      <div id="docError" class="gh-error-state" hidden>
+        <i class="bi bi-exclamation-triangle"></i>
+        <p>Failed to load documentation. Check your connection or view it directly on GitHub.</p>
+        <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/README.md" target="_blank" rel="noopener" class="btn gh-fallback-btn">
+          <i class="bi bi-github" aria-hidden="true"></i> View README on GitHub
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="tutorial-docs-footer site-footer">
+    <div class="footer-inner">
+      <div class="footer-columns">
+        <section class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/downloads.html">Downloads</a></li>
+            <li><a href="/tutorial.html">Tutorial</a></li>
+            <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">Source Code</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h4>Resources &amp; Docs</h4>
+          <ul>
+            <li><a href="/documentation.html">Documentation</a></li>
+            <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
+            <li><a href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
+            <li><a href="https://vercel.com/" target="_blank" rel="noopener">Deployed on Vercel</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="/issues.html">Report an Issue</a></li>
+            <li><a href="/discussions.html">Discussions</a></li>
+            <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener">Fatony Ahmad Fauzi</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="footer-social-section">
+        <h4>Social</h4>
+        <div class="footer-social-icons">
+          <a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-brand-block"><span class="footer-ghost-text">Pixiv OAuth</span></div>
+      <p class="footer-copyright">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
+    </div>
+  </footer>
+
+  <!-- marked.js + highlight.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
+  <script src="/assets/app.js"></script>
+  <script>
+    const RAW_README = 'https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md';
+
+    // Configure marked with highlight.js
+    marked.setOptions({
+      highlight: (code, lang) => {
+        if (lang && hljs.getLanguage(lang)) {
+          return hljs.highlight(code, { language: lang }).value;
+        }
+        return hljs.highlightAuto(code).value;
+      },
+      breaks: true,
+      gfm: true,
+    });
+
+    function buildTOC(html) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = html;
+      const headings = tmp.querySelectorAll('h2, h3');
+      if (!headings.length) return;
+
+      const nav = document.getElementById('tocNav');
+      nav.innerHTML = Array.from(headings).map(h => {
+        const text = h.textContent;
+        const id = text.toLowerCase().replace(/[^\w\s-]/g,'').replace(/\s+/g,'-');
+        h.id = id;
+        const indent = h.tagName === 'H3' ? 'gh-toc-h3' : '';
+        return `<a href="#${id}" class="gh-toc-link ${indent}">${text}</a>`;
+      }).join('');
+
+      // Sync headings back with IDs
+      const bodyHeadings = document.querySelectorAll('#docBody h2, #docBody h3');
+      headings.forEach((h, i) => {
+        if (bodyHeadings[i]) bodyHeadings[i].id = h.id;
+      });
+
+      // Highlight active TOC link on scroll
+      const links = nav.querySelectorAll('.gh-toc-link');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            links.forEach(l => l.classList.remove('active'));
+            const active = nav.querySelector(`a[href="#${entry.target.id}"]`);
+            if (active) active.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-10% 0px -80% 0px' });
+
+      document.querySelectorAll('#docBody h2, #docBody h3').forEach(el => observer.observe(el));
+    }
+
+    async function loadDocs() {
+      const skeleton = document.getElementById('docSkeleton');
+      const body = document.getElementById('docBody');
+      const error = document.getElementById('docError');
+
+      try {
+        const res = await fetch(RAW_README);
+        if (!res.ok) throw new Error();
+        const md = await res.text();
+        body.innerHTML = marked.parse(md);
+        skeleton.hidden = true;
+        body.hidden = false;
+        buildTOC(body.innerHTML);
+        // Apply highlight.js to all code blocks
+        body.querySelectorAll('pre code').forEach(el => hljs.highlightElement(el));
+      } catch {
+        skeleton.hidden = true;
+        error.hidden = false;
+      }
+    }
+
+    loadDocs();
+  </script>
+</body>
+</html>

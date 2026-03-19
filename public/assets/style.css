@@ -491,3 +491,146 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
     color: #fff; background: transparent; text-decoration: none;
   }
 }
+
+/* ═══════════════════════════════════════════════
+   GITHUB PAGES — SHARED
+═══════════════════════════════════════════════ */
+.gh-error-state{display:grid;gap:14px;justify-items:center;text-align:center;padding:56px 24px;color:#8a98b8}
+.gh-error-state i{font-size:2.8rem;color:#e2715a;opacity:.8}
+.gh-error-state p{margin:0;font-size:1.02rem;max-width:480px}
+.gh-fallback-btn{background:#111a2d;border-color:#3a4f79;color:#eef3ff;width:fit-content}
+.gh-skeleton-wrap{display:grid;gap:14px;padding:0}
+.gh-issue-skeleton{height:80px;border-radius:14px;background:linear-gradient(90deg,#0d1321 25%,#16213a 50%,#0d1321 75%);background-size:200% 100%;animation:gh-shimmer 1.4s infinite}
+@keyframes gh-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* ═══════════════════════════════════════════════
+   ISSUES PAGE
+═══════════════════════════════════════════════ */
+.gh-toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.gh-tabs{display:flex;gap:4px;background:#0c1117;border:1px solid #2a3344;border-radius:10px;padding:4px}
+.gh-tab{display:inline-flex;align-items:center;gap:7px;padding:8px 18px;border-radius:7px;border:none;background:transparent;color:#8a98b8;cursor:pointer;font-size:.9rem;font-weight:600;transition:.18s ease;font-family:inherit}
+.gh-tab.active{background:#1a2540;color:#eef3ff}
+.gh-tab:hover:not(.active){color:#c8d4ef}
+.gh-tab i{font-size:.8rem}
+.gh-new-issue-btn{background:linear-gradient(180deg,#4f7dff,#3258dd);border-color:#4a6ddb;color:#fff;font-weight:700;border-radius:10px;padding:10px 20px;font-size:.9rem}
+.gh-new-issue-btn:hover{background:linear-gradient(180deg,#5e89ff,#3a62e8)}
+.gh-issue-list{display:grid;gap:0}
+.gh-issue-list > div{border:1px solid #2a3344;border-radius:14px;overflow:hidden}
+.gh-issue-card{display:flex;gap:14px;padding:16px 20px;border-bottom:1px solid #1e2a3d;background:#0c1017;transition:background .18s}
+.gh-issue-card:last-child{border-bottom:none}
+.gh-issue-card:hover{background:#0f1520}
+.gh-issue-icon{flex-shrink:0;padding-top:3px;font-size:1.1rem}
+.gh-issue-content{flex:1;min-width:0;display:grid;gap:6px}
+.gh-issue-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gh-issue-title{color:#dce5fb;font-size:1rem;font-weight:600;text-decoration:none;line-height:1.4}
+.gh-issue-title:hover{color:#fff;text-decoration:underline}
+.gh-issue-pr-badge{font-size:.72rem;font-weight:700;background:#2d1f4e;color:#a371f7;border:1px solid #4a2e8a;border-radius:5px;padding:1px 6px;flex-shrink:0}
+.gh-issue-meta{font-size:.83rem;color:#637089;display:flex;flex-wrap:wrap;gap:6px}
+.gh-issue-author{color:#8a98b8;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.gh-issue-author:hover{color:#fff}
+.gh-issue-avatar{border-radius:50%;vertical-align:middle}
+.gh-issue-labels{display:flex;flex-wrap:wrap;gap:6px}
+.gh-issue-label{font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:12px;border:1px solid transparent}
+.gh-issue-body{margin:0;font-size:.85rem;color:#5e6f8a;line-height:1.5;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical}
+.gh-issue-aside{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:8px;padding-top:2px}
+.gh-issue-comments{display:inline-flex;align-items:center;gap:5px;font-size:.83rem;color:#637089}
+.gh-section-divider{padding:10px 20px;background:#080d14;border-bottom:1px solid #1e2a3d;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#4a5a7a}
+.gh-empty-state{display:grid;gap:12px;justify-items:center;text-align:center;padding:56px 24px;color:#637089}
+.gh-empty-state i{font-size:3rem;opacity:.5}
+.gh-empty-state p{margin:0;font-size:1rem}
+
+/* ═══════════════════════════════════════════════
+   DISCUSSIONS PAGE
+═══════════════════════════════════════════════ */
+.gh-stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.gh-stat-card{background:#0c1017;border:1px solid #2a3344;border-radius:14px;padding:20px;display:grid;gap:6px;text-align:center;transition:.18s ease}
+.gh-stat-card:hover{border-color:#3a4660;transform:translateY(-2px)}
+.gh-stat-card i{font-size:1.4rem;color:#76a8ff;justify-self:center}
+.gh-stat-value{font-size:1.8rem;font-weight:800;color:#dce5fb;line-height:1}
+.gh-stat-label{font-size:.82rem;color:#637089;font-weight:600;letter-spacing:.04em}
+.gh-stat-skeleton{height:108px;background:linear-gradient(90deg,#0d1321 25%,#16213a 50%,#0d1321 75%);background-size:200% 100%;animation:gh-shimmer 1.4s infinite}
+.gh-discussions-notice{display:flex;gap:24px;background:#0c1017;border:1px solid #2a3344;border-radius:16px;padding:28px 32px;margin-bottom:28px;align-items:flex-start}
+.gh-discussions-icon{flex-shrink:0;width:56px;height:56px;border-radius:14px;background:#12213d;border:1px solid #2a3d6a;display:grid;place-items:center;font-size:1.6rem;color:#76a8ff}
+.gh-discussions-title{margin:0 0 10px;font-size:1.3rem;font-weight:700;color:#dce5fb}
+.gh-discussions-desc{margin:0 0 18px;color:#8a98b8;font-size:.96rem;line-height:1.55;max-width:600px}
+.gh-discussions-actions{display:flex;gap:10px;flex-wrap:wrap}
+.gh-discussions-cta{background:linear-gradient(180deg,#4f7dff,#3258dd);border-color:#4a6ddb;color:#fff;font-weight:700;border-radius:10px}
+.gh-discussions-cta:hover{background:linear-gradient(180deg,#5e89ff,#3a62e8)}
+.gh-discussions-secondary{background:#111a2d;border-color:#2f436d;color:#c8d4ef;border-radius:10px}
+.gh-discussions-secondary:hover{background:#1a2845;border-color:#5a76ad}
+.gh-quicklinks-title{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#637089;margin-bottom:12px}
+.gh-quicklinks{display:grid;gap:10px}
+.gh-quicklink-card{display:flex;align-items:center;gap:16px;background:#0c1017;border:1px solid #2a3344;border-radius:14px;padding:18px 22px;text-decoration:none;color:#dce5fb;transition:.18s ease}
+.gh-quicklink-card:hover{border-color:#3a4660;background:#0f1520;transform:translateY(-1px)}
+.gh-quicklink-card > i:first-child{font-size:1.3rem;color:#76a8ff;flex-shrink:0;width:24px;text-align:center}
+.gh-quicklink-card > div{flex:1;display:grid;gap:3px}
+.gh-quicklink-card strong{font-size:1rem;font-weight:700}
+.gh-quicklink-card span{font-size:.87rem;color:#637089}
+.gh-quicklink-arrow{font-size:1rem;color:#3a4f79;transition:transform .18s ease}
+.gh-quicklink-card:hover .gh-quicklink-arrow{transform:translateX(4px);color:#76a8ff}
+@media (max-width:680px){
+  .gh-stat-grid{grid-template-columns:repeat(2,1fr)}
+  .gh-discussions-notice{flex-direction:column;gap:16px;padding:22px}
+  .gh-discussions-icon{width:44px;height:44px;font-size:1.2rem}
+}
+@media (max-width:420px){
+  .gh-stat-grid{grid-template-columns:1fr 1fr}
+  .gh-discussions-actions{flex-direction:column}
+  .gh-discussions-actions .btn{width:100%;justify-content:center}
+}
+
+/* ═══════════════════════════════════════════════
+   DOCUMENTATION PAGE
+═══════════════════════════════════════════════ */
+.gh-doc-main{max-width:1280px;margin:0 auto;padding:10px 24px 60px;display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+.gh-doc-hero{margin-bottom:28px}
+.gh-doc-hero p a{color:#66a2ff;text-decoration:none}
+.gh-doc-hero p a:hover{text-decoration:underline}
+.gh-doc-hero code{background:#121c30;border:1px solid #2a3655;border-radius:5px;padding:2px 6px;font-size:.9em;color:#e8eeff}
+.gh-doc-toc{position:sticky;top:24px;padding:20px 0;max-height:calc(100vh - 48px);overflow-y:auto;scrollbar-width:thin}
+.gh-doc-toc-label{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#637089;margin-bottom:12px;padding:0 4px}
+.gh-toc-link{display:block;padding:5px 8px;border-radius:7px;font-size:.88rem;color:#8a98b8;text-decoration:none;transition:.15s ease;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gh-toc-link:hover{color:#dce5fb;background:#0c1219}
+.gh-toc-link.active{color:#76a8ff;background:#0e1829;border-left-color:#76a8ff}
+.gh-toc-h3{padding-left:20px;font-size:.83rem}
+.gh-doc-toc-footer{margin-top:20px;padding-top:14px;border-top:1px solid #1e2a3d}
+.gh-doc-edit-link{display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:#637089;text-decoration:none;transition:.15s ease}
+.gh-doc-edit-link:hover{color:#dce5fb}
+.gh-doc-skeleton-wrap{display:grid;gap:14px;padding:4px 0}
+.gh-doc-skeleton-line{height:18px;border-radius:6px;background:linear-gradient(90deg,#0d1321 25%,#16213a 50%,#0d1321 75%);background-size:200% 100%;animation:gh-shimmer 1.4s infinite}
+
+/* Markdown rendered body */
+.gh-doc-body{color:#ccd3e8;line-height:1.72;font-size:1rem}
+.gh-doc-body h1{display:none} /* README title already shown in hero */
+.gh-doc-body h2{margin:2rem 0 .85rem;font-size:1.55rem;font-weight:700;color:#dce5fb;padding-bottom:10px;border-bottom:1px solid #1e2a3d}
+.gh-doc-body h3{margin:1.6rem 0 .7rem;font-size:1.2rem;font-weight:700;color:#c8d4ef}
+.gh-doc-body h4{margin:1.3rem 0 .6rem;font-size:1.05rem;font-weight:600;color:#b8c8e8}
+.gh-doc-body p{margin:0 0 1rem}
+.gh-doc-body a{color:#66a2ff;text-decoration:none}
+.gh-doc-body a:hover{text-decoration:underline}
+.gh-doc-body ul,.gh-doc-body ol{margin:0 0 1rem;padding-left:1.5rem;display:grid;gap:4px}
+.gh-doc-body li{line-height:1.65}
+.gh-doc-body strong{color:#dce5fb;font-weight:700}
+.gh-doc-body code{background:#0a0f1a;border:1px solid #2a3655;border-radius:5px;padding:2px 6px;font-size:.88em;color:#e8eeff;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+.gh-doc-body pre{background:#060a13;border:1px solid #1e2a3d;border-radius:12px;padding:18px;overflow-x:auto;margin:0 0 1.2rem}
+.gh-doc-body pre code{background:transparent;border:none;padding:0;font-size:.9rem;color:inherit}
+.gh-doc-body blockquote{margin:0 0 1rem;padding:12px 16px;border-left:3px solid #3a4f79;background:#0a1020;border-radius:0 8px 8px 0;color:#8a98b8}
+.gh-doc-body blockquote p{margin:0}
+.gh-doc-body table{width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem}
+.gh-doc-body th{background:#0c1219;padding:10px 14px;text-align:left;font-weight:700;color:#a8b8d8;border-bottom:2px solid #2a3344}
+.gh-doc-body td{padding:9px 14px;border-bottom:1px solid #1a2438;color:#b8c8e0}
+.gh-doc-body tr:hover td{background:#0a0f18}
+.gh-doc-body hr{border:none;border-top:1px solid #1e2a3d;margin:1.5rem 0}
+.gh-doc-body img{max-width:100%;border-radius:10px;border:1px solid #2a3344}
+
+@media (max-width:980px){
+  .gh-doc-main{grid-template-columns:1fr;gap:0}
+  .gh-doc-toc{display:none}
+}
+@media (max-width:620px){
+  .gh-doc-main{padding-left:14px;padding-right:14px}
+  .gh-toolbar{flex-direction:column;align-items:stretch}
+  .gh-tabs{justify-content:center}
+  .gh-new-issue-btn{width:100%;justify-content:center}
+}
+

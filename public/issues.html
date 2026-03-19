@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#0b0d12">
+  <title>Pixiv OAuth – Report an Issue</title>
+  <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/issues.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="shortcut icon" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body class="download-showcase-body">
+  <header class="tutorial-docs-header">
+    <div class="tutorial-docs-inner">
+      <div class="tutorial-docs-top">
+        <a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span>ISSUES</span></a>
+        <nav class="tutorial-docs-actions" aria-label="Page actions">
+          <div class="sidebar-header">
+            <a class="sidebar-brand" href="/"><strong>Pixiv OAuth</strong></a>
+            <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+          </div>
+          <a href="/">Homepage</a>
+          <a href="/#console">Console</a>
+          <a href="/tutorial.html">Tutorial</a>
+          <a href="/downloads.html">Download</a>
+        </nav>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <i class="bi bi-list" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  </header>
+
+  <main class="download-showcase-main">
+    <section class="download-showcase-hero">
+      <h1>Report an Issue</h1>
+      <p>Browse open issues or submit a new one directly on GitHub.</p>
+    </section>
+
+    <!-- Toolbar -->
+    <div class="gh-toolbar">
+      <div class="gh-tabs" role="tablist">
+        <button id="tabOpen" class="gh-tab active" role="tab" aria-selected="true" data-state="open">
+          <i class="bi bi-circle-fill" aria-hidden="true"></i>
+          <span id="openCountLabel">Open</span>
+        </button>
+        <button id="tabClosed" class="gh-tab" role="tab" aria-selected="false" data-state="closed">
+          <i class="bi bi-check-circle" aria-hidden="true"></i>
+          <span id="closedCountLabel">Closed</span>
+        </button>
+      </div>
+      <a id="newIssueBtn" class="btn gh-new-issue-btn" href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues/new" target="_blank" rel="noopener">
+        <i class="bi bi-plus-lg" aria-hidden="true"></i> New Issue
+      </a>
+    </div>
+
+    <!-- Issue list -->
+    <div id="issueList" class="gh-issue-list" aria-live="polite" aria-label="Issue list">
+      <!-- Skeleton loading -->
+      <div class="gh-skeleton-wrap" id="skeletonWrap">
+        <div class="gh-issue-skeleton"></div>
+        <div class="gh-issue-skeleton"></div>
+        <div class="gh-issue-skeleton"></div>
+        <div class="gh-issue-skeleton"></div>
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="emptyState" class="gh-empty-state" hidden>
+      <i class="bi bi-check2-circle"></i>
+      <p id="emptyStateText">No issues found.</p>
+    </div>
+
+    <!-- Error state -->
+    <div id="errorState" class="gh-error-state" hidden>
+      <i class="bi bi-exclamation-triangle"></i>
+      <p id="errorStateText">Failed to load issues. GitHub API rate limit may be exceeded.</p>
+      <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues" target="_blank" rel="noopener" class="btn gh-fallback-btn">
+        <i class="bi bi-github" aria-hidden="true"></i> View on GitHub
+      </a>
+    </div>
+  </main>
+
+  <footer class="tutorial-docs-footer site-footer">
+    <div class="footer-inner">
+      <div class="footer-columns">
+        <section class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/downloads.html">Downloads</a></li>
+            <li><a href="/tutorial.html">Tutorial</a></li>
+            <li><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token" target="_blank" rel="noopener">Source Code</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h4>Resources &amp; Docs</h4>
+          <ul>
+            <li><a href="/documentation.html">Documentation</a></li>
+            <li><a href="https://oauth.secure.pixiv.net/auth/token" target="_blank" rel="noopener">Pixiv OAuth Endpoint</a></li>
+            <li><a href="https://www.python.org/" target="_blank" rel="noopener">Python 3.11+</a></li>
+            <li><a href="https://vercel.com/" target="_blank" rel="noopener">Deployed on Vercel</a></li>
+          </ul>
+        </section>
+        <section class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="/issues.html">Report an Issue</a></li>
+            <li><a href="/discussions.html">Discussions</a></li>
+            <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener">Fatony Ahmad Fauzi</a></li>
+          </ul>
+        </section>
+      </div>
+      <div class="footer-social-section">
+        <h4>Social</h4>
+        <div class="footer-social-icons">
+          <a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-brand-block"><span class="footer-ghost-text">Pixiv OAuth</span></div>
+      <p class="footer-copyright">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
+    </div>
+  </footer>
+
+  <script src="/assets/app.js"></script>
+  <script>
+    const REPO = 'fatonyahmadfauzi/Pixiv-OAuth-Token';
+    const API  = `https://api.github.com/repos/${REPO}/issues`;
+    let currentState = 'open';
+    let cache = {};
+
+    function timeAgo(dateStr) {
+      const diff = (Date.now() - new Date(dateStr)) / 1000;
+      if (diff < 60) return 'just now';
+      if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+      if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+      if (diff < 2592000) return `${Math.floor(diff/86400)}d ago`;
+      return new Date(dateStr).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    }
+
+    function labelColor(hex) {
+      const r = parseInt(hex.slice(0,2),16), g = parseInt(hex.slice(2,4),16), b = parseInt(hex.slice(4,6),16);
+      const lum = (0.299*r + 0.587*g + 0.114*b) / 255;
+      return lum > 0.5 ? '#000' : '#fff';
+    }
+
+    function renderIssue(issue) {
+      const isPR = !!issue.pull_request;
+      const icon = isPR
+        ? `<i class="bi bi-git" style="color:#a371f7" aria-hidden="true"></i>`
+        : (issue.state === 'open'
+          ? `<i class="bi bi-circle" style="color:#3fb950" aria-hidden="true"></i>`
+          : `<i class="bi bi-check-circle" style="color:#986ee2" aria-hidden="true"></i>`);
+      const labels = (issue.labels || []).map(l =>
+        `<span class="gh-issue-label" style="background:#${l.color}22;color:#${l.color};border-color:#${l.color}44">${l.name}</span>`
+      ).join('');
+      const body = issue.body ? issue.body.replace(/\n/g,' ').slice(0,140) + (issue.body.length > 140 ? '…' : '') : '';
+      return `
+        <article class="gh-issue-card" role="listitem">
+          <div class="gh-issue-icon">${icon}</div>
+          <div class="gh-issue-content">
+            <div class="gh-issue-top">
+              <a class="gh-issue-title" href="${issue.html_url}" target="_blank" rel="noopener">${issue.title}</a>
+              ${isPR ? '<span class="gh-issue-pr-badge">PR</span>' : ''}
+            </div>
+            <div class="gh-issue-meta">
+              <span>#${issue.number}</span>
+              <span>opened ${timeAgo(issue.created_at)} by
+                <a class="gh-issue-author" href="${issue.user.html_url}" target="_blank" rel="noopener">
+                  <img class="gh-issue-avatar" src="${issue.user.avatar_url}&s=20" width="16" height="16" alt="${issue.user.login}">
+                  ${issue.user.login}
+                </a>
+              </span>
+            </div>
+            ${labels ? `<div class="gh-issue-labels">${labels}</div>` : ''}
+            ${body ? `<p class="gh-issue-body">${body}</p>` : ''}
+          </div>
+          <div class="gh-issue-aside">
+            ${issue.comments > 0 ? `<span class="gh-issue-comments" title="${issue.comments} comments"><i class="bi bi-chat" aria-hidden="true"></i>${issue.comments}</span>` : ''}
+          </div>
+        </article>`;
+    }
+
+    async function loadIssues(state) {
+      const list = document.getElementById('issueList');
+      const skeleton = document.getElementById('skeletonWrap');
+      const empty = document.getElementById('emptyState');
+      const error = document.getElementById('errorState');
+
+      empty.hidden = true; error.hidden = true;
+
+      if (!skeleton) {
+        list.innerHTML = '<div class="gh-skeleton-wrap" id="skeletonWrap">' + '<div class="gh-issue-skeleton"></div>'.repeat(4) + '</div>';
+      } else {
+        skeleton.hidden = false;
+      }
+
+      if (cache[state]) {
+        renderList(cache[state], state);
+        return;
+      }
+
+      try {
+        const res = await fetch(`${API}?state=${state}&per_page=30&type=issues`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        cache[state] = data;
+        renderList(data, state);
+      } catch(e) {
+        document.getElementById('skeletonWrap')?.remove();
+        error.hidden = false;
+      }
+    }
+
+    function renderList(data, state) {
+      const list = document.getElementById('issueList');
+      const empty = document.getElementById('emptyState');
+      document.getElementById('skeletonWrap')?.remove();
+
+      // Filter out pull requests for pure issues
+      const issues = data.filter(i => !i.pull_request);
+      const prs    = data.filter(i => !!i.pull_request);
+
+      const openLabel  = document.getElementById('openCountLabel');
+      const closedLabel = document.getElementById('closedCountLabel');
+
+      if (state === 'open') {
+        openLabel.textContent   = `${issues.length} Open`;
+      } else {
+        closedLabel.textContent = `${issues.length} Closed`;
+      }
+
+      if (issues.length === 0 && prs.length === 0) {
+        empty.hidden = false;
+        document.getElementById('emptyStateText').textContent = state === 'open'
+          ? 'No open issues. Great job! 🎉'
+          : 'No closed issues yet.';
+        list.innerHTML = '';
+        return;
+      }
+
+      let html = '<div role="list">';
+      if (issues.length) {
+        html += issues.map(renderIssue).join('');
+      }
+      if (prs.length) {
+        html += `<div class="gh-section-divider"><span>Pull Requests (${prs.length})</span></div>`;
+        html += prs.map(renderIssue).join('');
+      }
+      html += '</div>';
+      list.innerHTML = html;
+    }
+
+    // Tab switching
+    document.getElementById('tabOpen').addEventListener('click', () => {
+      document.getElementById('tabOpen').classList.add('active');
+      document.getElementById('tabClosed').classList.remove('active');
+      document.getElementById('tabOpen').setAttribute('aria-selected', 'true');
+      document.getElementById('tabClosed').setAttribute('aria-selected', 'false');
+      currentState = 'open';
+      loadIssues('open');
+    });
+    document.getElementById('tabClosed').addEventListener('click', () => {
+      document.getElementById('tabClosed').classList.add('active');
+      document.getElementById('tabOpen').classList.remove('active');
+      document.getElementById('tabClosed').setAttribute('aria-selected', 'true');
+      document.getElementById('tabOpen').setAttribute('aria-selected', 'false');
+      currentState = 'closed';
+      loadIssues('closed');
+    });
+
+    loadIssues('open');
+  </script>
+</body>
+</html>
