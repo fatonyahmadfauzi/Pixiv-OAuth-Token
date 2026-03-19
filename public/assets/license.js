@@ -19,7 +19,7 @@ async function loadLicense() {
 
   } catch (e) {
     if (skeleton) skeleton.remove();
-    body.innerHTML = '<div class="gh-error-state"><i class="bi bi-exclamation-triangle"></i><p>Failed to load License. Please check GitHub directly.</p><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/LICENSE" target="_blank" rel="noopener" class="btn gh-fallback-btn">View on GitHub</a></div>';
+    body.innerHTML = '<div class="gh-error-state"><i class="bi bi-exclamation-triangle"></i><p>' + t('licenseErrorMsg') + '</p><a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/blob/master/LICENSE" target="_blank" rel="noopener" class="btn gh-fallback-btn">' + t('licenseViewBtn') + '</a></div>';
     body.hidden = false;
   }
 }

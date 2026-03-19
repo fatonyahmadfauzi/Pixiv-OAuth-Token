@@ -222,6 +222,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "On this page",
+    docsEditBtn: "Edit on GitHub",
+    docsAutoFetchHtml: "Auto-fetched from {file} on the <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub repository</a>.",
+    licenseErrorMsg: "Failed to load License. Please check GitHub directly.",
+    licenseViewBtn: "View on GitHub",
     dlMinReqWinTitle: "Minimum Requirements",
     dlMinReqWin1: "Windows 10 or later (64-bit or ARM64)",
     dlMinReqWin2: "x64, x86, or ARM64 architecture",
@@ -489,6 +495,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "Na tej stronie",
+    docsEditBtn: "Edytuj na GitHubie",
+    docsAutoFetchHtml: "Automatycznie pobrane z pliku {file} w <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repozytorium GitHub</a>.",
+    licenseErrorMsg: "Nie udało się załadować licencji. Sprawdź bezpośrednio na GitHubie.",
+    licenseViewBtn: "Zobacz na GitHubie",
     dlMinReqWinTitle: "Minimalne wymagania",
     dlMinReqWin1: "Windows 10 lub nowszy (64-bit lub ARM64)",
     dlMinReqWin2: "Architektura x64, x86 lub ARM64",
@@ -756,6 +768,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "在这个页面上",
+    docsEditBtn: "在 GitHub 上编辑",
+    docsAutoFetchHtml: "从 <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub 存储库</a> 中的 {file} 自动获取。",
+    licenseErrorMsg: "无法加载许可证。请直接在 GitHub 上检查。",
+    licenseViewBtn: "在 GitHub 上查看",
     dlMinReqWinTitle: "最低要求",
     dlMinReqWin1: "Windows 10或更高版本（64位或ARM64）",
     dlMinReqWin2: "x64、x86或ARM64架构",
@@ -1023,6 +1041,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "このページの内容",
+    docsEditBtn: "GitHubで編集する",
+    docsAutoFetchHtml: "<a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub リポジトリ</a> の {file} から自動取得されました。",
+    licenseErrorMsg: "ライセンスの読み込みに失敗しました。GitHubで直接確認してください。",
+    licenseViewBtn: "GitHubで見る",
     dlMinReqWinTitle: "最小システム要件",
     dlMinReqWin1: "Windows 10以降（64ビットまたはARM64）",
     dlMinReqWin2: "x64、x86、またはARM64アーキテクチャ",
@@ -1290,6 +1314,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "Auf dieser Seite",
+    docsEditBtn: "Auf GitHub bearbeiten",
+    docsAutoFetchHtml: "Automatisch aus der {file} des <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub-Repositorys</a> geladen.",
+    licenseErrorMsg: "Lizenz konnte nicht geladen werden. Bitte direkt auf GitHub überprüfen.",
+    licenseViewBtn: "Auf GitHub ansehen",
     dlMinReqWinTitle: "Mindestanforderungen",
     dlMinReqWin1: "Windows 10 oder neuer (64-Bit oder ARM64)",
     dlMinReqWin2: "x64-, x86- oder ARM64-Architektur",
@@ -1557,6 +1587,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "Sur cette page",
+    docsEditBtn: "Modifier sur GitHub",
+    docsAutoFetchHtml: "Récupéré automatiquement depuis {file} sur le <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">dépôt GitHub</a>.",
+    licenseErrorMsg: "Échec du chargement de la licence. Veuillez vérifier directement sur GitHub.",
+    licenseViewBtn: "Voir sur GitHub",
     dlMinReqWinTitle: "Configuration minimale requise",
     dlMinReqWin1: "Windows 10 ou version ultérieure (64 bits ou ARM64)",
     dlMinReqWin2: "Architecture x64, x86 ou ARM64",
@@ -1824,6 +1860,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "En esta página",
+    docsEditBtn: "Editar en GitHub",
+    docsAutoFetchHtml: "Obtenido automáticamente de {file} en el <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositorio de GitHub</a>.",
+    licenseErrorMsg: "Error al cargar la licencia. Por favor, compruébelo directamente en GitHub.",
+    licenseViewBtn: "Ver en GitHub",
     dlMinReqWinTitle: "Requisitos mínimos",
     dlMinReqWin1: "Windows 10 o posterior (64 bits o ARM64)",
     dlMinReqWin2: "Arquitectura x64, x86 o ARM64",
@@ -2091,6 +2133,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "На этой странице",
+    docsEditBtn: "Редактировать на GitHub",
+    docsAutoFetchHtml: "Автоматически загружено из {file} в <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">репозитории GitHub</a>.",
+    licenseErrorMsg: "Не удалось загрузить лицензию. Пожалуйста, проверьте прямо на GitHub.",
+    licenseViewBtn: "Посмотреть на GitHub",
     dlMinReqWinTitle: "Минимальные требования",
     dlMinReqWin1: "Windows 10 или новее (64-разрядная или ARM64)",
     dlMinReqWin2: "Архитектура x64, x86 или ARM64",
@@ -2358,6 +2406,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "Nesta página",
+    docsEditBtn: "Editar no GitHub",
+    docsAutoFetchHtml: "Obtido automaticamente de {file} no <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositório do GitHub</a>.",
+    licenseErrorMsg: "Falha ao carregar a licença. Por favor, verifique diretamente no GitHub.",
+    licenseViewBtn: "Ver no GitHub",
     dlMinReqWinTitle: "Requisitos mínimos",
     dlMinReqWin1: "Windows 10 ou posterior (64 bits ou ARM64)",
     dlMinReqWin2: "Arquitetura x64, x86 ou ARM64",
@@ -2625,6 +2679,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Kembali ke Beranda",
     notFoundBackPrev: "Kembali Sebelumnya",
 
+    
+    docsTocLabel: "Di halaman ini",
+    docsEditBtn: "Edit di GitHub",
+    docsAutoFetchHtml: "Diambil otomatis dari {file} pada <a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">repositori GitHub</a>.",
+    licenseErrorMsg: "Gagal memuat Lisensi. Silakan periksa langsung di GitHub.",
+    licenseViewBtn: "Lihat di GitHub",
     dlMinReqWinTitle: "Persyaratan Minimum",
     dlMinReqWin1: "Windows 10 atau terbaru (64-bit atau ARM64)",
     dlMinReqWin2: "Arsitektur x64, x86, atau ARM64",
@@ -2892,6 +2952,12 @@ const DISPLAY_LANGUAGES = {
     notFoundBackHome: "Back to Homepage",
     notFoundBackPrev: "Go Back",
 
+    
+    docsTocLabel: "이 페이지에서",
+    docsEditBtn: "GitHub에서 편집하기",
+    docsAutoFetchHtml: "<a href=\"https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token\" target=\"_blank\" rel=\"noopener\">GitHub 리포지토리</a>의 {file}에서 자동 가져옴.",
+    licenseErrorMsg: "라이선스를 로드하지 못했습니다. GitHub에서 직접 확인해 주세요.",
+    licenseViewBtn: "GitHub에서 보기",
     dlMinReqWinTitle: "최소 요구 사항",
     dlMinReqWin1: "Windows 10 이상 (64비트 또는 ARM64)",
     dlMinReqWin2: "x64, x86 또는 ARM64 아키텍처",
@@ -3543,6 +3609,12 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    docsTocLabel: "docsTocLabel",
+    docsEditBtn: "docsEditBtn",
+    docsAutoFetchHtml: "docsAutoFetchHtml",
+    licenseErrorMsg: "licenseErrorMsg",
+    licenseViewBtn: "licenseViewBtn",
+
 
     dlMinReqWinTitle: "dlMinReqWinTitle",
     dlMinReqWin1: "dlMinReqWin1",
@@ -3610,6 +3682,12 @@ function applyLang() {
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
     notFoundBackPrev: "notFoundBackPrev",
+    docsTocLabel: "docsTocLabel",
+    docsEditBtn: "docsEditBtn",
+    docsAutoFetchHtml: "docsAutoFetchHtml",
+    licenseErrorMsg: "licenseErrorMsg",
+    licenseViewBtn: "licenseViewBtn",
+
 
     dlInstallPy: "dlInstallPy",
     dlPyClone: "dlPyClone",
@@ -3645,6 +3723,14 @@ function applyLang() {
     const translated = t(key);
     if (!translated || translated === key) return;
     el.placeholder = translated;
+  });
+
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-html");
+    const file = el.getAttribute("data-file") || "README.md";
+    const translated = t(key, { file: `<code>${file}</code>` });
+    if (!translated || translated === key) return;
+    el.innerHTML = translated;
   });
 
   const inputCode = q("inputCode");
