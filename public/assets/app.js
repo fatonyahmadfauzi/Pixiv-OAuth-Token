@@ -3614,11 +3614,14 @@ const hwHTML = `
         <textarea name="Pesan" class="hw-input" required></textarea>
       </div>
       <div class="hw-group">
-        <label class="hw-file-wrap" for="hwFile">
+        <label class="hw-file-wrap">
           <span data-i18n="hwAttachment">Attachment</span>
-          <div><i class="bi bi-paperclip"></i> <span data-i18n="hwAttachHint">Add up to 5 files</span></div>
         </label>
-        <input type="file" id="hwFile" name="attachment" accept="image/*,.pdf,.zip,.log,.txt" multiple>
+        <input type="file" id="hwFile" name="attachment" accept="image/*,.pdf,.zip,.log,.txt" multiple style="display:none;">
+        <div style="display:flex;align-items:center;gap:8px;margin-top:4px;">
+          <button type="button" id="hwFileBtn" class="btn gh-btn" style="font-size:0.85rem;padding:4px 10px;"><i class="bi bi-paperclip"></i> <span data-i18n="contactChooseFile">Choose file</span></button>
+          <span id="hwFileText" class="custom-file-text" data-i18n="contactNoFile">No file chosen</span>
+        </div>
       </div>
       <button type="submit" class="hw-submit" data-i18n="hwSubmit">Send</button>
     </form>
@@ -3647,4 +3650,24 @@ if (hwBtn && hwBox && hwClose) {
     hwBtn.style.opacity = '1';
     hwBtn.style.pointerEvents = 'auto';
   });
+
+  // Custom file button for help widget
+  const hwFileBtn = document.getElementById('hwFileBtn');
+  const hwFile = document.getElementById('hwFile');
+  const hwFileText = document.getElementById('hwFileText');
+
+  if (hwFileBtn && hwFile && hwFileText) {
+    hwFileBtn.addEventListener('click', () => hwFile.click());
+
+    hwFile.addEventListener('change', () => {
+      if (hwFile.files.length > 0) {
+        const names = Array.from(hwFile.files).map(f => f.name).join(', ');
+        hwFileText.textContent = names;
+        hwFileText.removeAttribute('data-i18n');
+      } else {
+        hwFileText.setAttribute('data-i18n', 'contactNoFile');
+        hwFileText.textContent = t('contactNoFile');
+      }
+    });
+  }
 }
