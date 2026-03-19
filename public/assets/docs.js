@@ -53,8 +53,7 @@ function buildTOC() {
 }
 
 async function loadDocs() {
-  var skeleton = document.getElementById('docSkeleton');
-  var body     = document.getElementById('docBody');
+  var body = document.getElementById('docBody');
 
   try {
     var res = await fetch(RAW_README);
@@ -63,7 +62,6 @@ async function loadDocs() {
 
     // Parse markdown → HTML (highlight option removed in marked v12)
     body.innerHTML = marked.parse(md);
-    skeleton.hidden = true;
     body.hidden     = false;
 
     buildTOC();
@@ -74,7 +72,6 @@ async function loadDocs() {
     });
   } catch (e) {
     console.error('[docs.js] Failed to load README:', e);
-    if (skeleton) skeleton.hidden = true;
   }
 }
 
