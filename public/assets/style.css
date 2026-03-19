@@ -331,6 +331,11 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .download-tab-panel .btn{min-height:40px;background:#101a30;border-color:#2f436d;width:fit-content}
 .download-showcase-panel .download-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .download-showcase-panel .download-btn{background:#0b101d;border-color:#2e3c5e;justify-content:space-between}
+.min-req-section{margin-top:28px;padding-top:20px;border-top:1px solid #2c3447}
+.min-req-title{margin:0 0 14px;font-size:1.05rem;font-weight:700;color:#dce5fb;letter-spacing:-.01em}
+.min-req-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.min-req-list li{display:flex;align-items:center;gap:10px;color:#a8b4ce;font-size:.97rem;line-height:1.5}
+.min-req-list li i{color:#5aad82;font-size:1.05rem;flex-shrink:0}
 .quickcmd-shell{margin-top:18px;padding-top:14px;border-top:1px solid #2c3447}
 .quickcmd-shell h3{margin:0 0 4px;font-size:1.45rem}
 .quickcmd-shell .muted{margin:0 0 10px;color:#a9b3cc}
