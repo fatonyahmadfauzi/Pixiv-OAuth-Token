@@ -3004,6 +3004,21 @@ function applyLang() {
     if (el) el.textContent = t(key);
   });
 
+  // Translate all elements that use data-i18n attribute (e.g. contact form labels, button spans)
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const key = el.getAttribute("data-i18n");
+    const translated = t(key);
+    if (!translated || translated === key) return;
+    // If the element has child elements (e.g. <span class="required">*</span>),
+    // update only the first text node to avoid wiping child elements.
+    const firstTextNode = Array.from(el.childNodes).find((n) => n.nodeType === Node.TEXT_NODE);
+    if (firstTextNode) {
+      firstTextNode.textContent = translated + " ";
+    } else {
+      el.textContent = translated;
+    }
+  });
+
   const inputCode = q("inputCode");
   if (inputCode) inputCode.placeholder = t("placeholder");
   if (output) output.textContent = t("ready");
