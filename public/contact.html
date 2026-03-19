@@ -138,15 +138,6 @@
   </footer>
 
   <script src="/assets/app.js"></script>
-  <script>
-    // Handle form success redirect message
-    if (window.location.search.includes('success=true')) {
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('contactSuccess').style.display = 'flex';
-      
-      // Clean URL silently
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
-  </script>
+  <script src="/assets/contact.js"></script>
 </body>
 </html>
