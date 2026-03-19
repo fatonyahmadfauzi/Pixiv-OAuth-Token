@@ -14,6 +14,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const JavaScriptObfuscator = require('javascript-obfuscator');
 
 const FILES = [
   'public/assets/app.js',
@@ -62,15 +63,22 @@ FILES.forEach(f => {
   const before = fs.statSync(f).size;
   totalBefore += before;
 
-  // 2. Minify with terser
-  //    --compress: remove dead code, reduce expressions
-  //    --mangle:   rename variables/functions to short names (obfuscation)
-  //    --module:   treat as ES module
+  // 2. Obfuscate with javascript-obfuscator (extreme sandi rumput mode)
   try {
-    execSync(
-      `npx terser "${f}" --compress passes=2,drop_console=false --mangle --output "${f}" --ecma 2020`,
-      { stdio: 'pipe' }
-    );
+    const code = fs.readFileSync(f, 'utf8');
+    const obfuscationResult = JavaScriptObfuscator.obfuscate(code, {
+      compact: true,
+      controlFlowFlattening: true,
+      controlFlowFlatteningThreshold: 1.0,
+      deadCodeInjection: true,
+      deadCodeInjectionThreshold: 0.4,
+      numbersToExpressions: true,
+      simplify: true,
+      stringArrayShuffle: true,
+      splitStrings: true,
+      stringArrayThreshold: 1.0
+    });
+    fs.writeFileSync(f, obfuscationResult.getObfuscatedCode(), 'utf8');
 
     const after = fs.statSync(f).size;
     totalAfter += after;
