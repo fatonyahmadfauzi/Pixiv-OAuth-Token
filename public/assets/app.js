@@ -2186,3 +2186,61 @@ function setupMobilePlatformDropdown() {
   setupCommandCopyButtons();
   await hydrateReleaseAssets();
 })();
+
+// ---------------------- FLOATING BANTUAN WIDGET ----------------------
+const hwHTML = `
+<div class="hw-container">
+  <button id="hwBtn" class="hw-btn"><i class="bi bi-question-circle-fill"></i> Bantuan</button>
+  <div id="hwBox" class="hw-box">
+    <div class="hw-header">
+      Tinggalkan pesan untuk kami
+      <button id="hwClose" class="hw-close" aria-label="Close widget"><i class="bi bi-dash"></i></button>
+    </div>
+    <form class="hw-form" action="https://formsubmit.co/fatonyahmadfauzi@gmail.com" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="_subject" value="Pesan Bantuan dari Pixiv OAuth Web">
+      <input type="hidden" name="_next" value="https://pixiv-o-auth-token.vercel.app/contact?success=true">
+      <input type="hidden" name="_captcha" value="true">
+      <input type="hidden" name="_template" value="box">
+
+      <div class="hw-group">
+        <label>Nama Anda</label>
+        <input type="text" name="Nama_Anda" class="hw-input" required>
+      </div>
+      <div class="hw-group">
+        <label>Alamat email</label>
+        <input type="email" name="email" class="hw-input" required>
+      </div>
+      <div class="hw-group">
+        <label>Ada yang bisa kami bantu?</label>
+        <textarea name="Pesan" class="hw-input" required></textarea>
+      </div>
+      <div class="hw-group">
+        <label class="hw-file-wrap" for="hwFile"><span>Lampiran</span> <div><i class="bi bi-paperclip"></i> Tambahkan hingga 5 file</div></label>
+        <input type="file" id="hwFile" name="attachment" accept="image/*,.pdf,.zip,.log,.txt" multiple>
+      </div>
+      <button type="submit" class="hw-submit">Kirim</button>
+    </form>
+  </div>
+</div>
+`;
+
+document.body.insertAdjacentHTML('beforeend', hwHTML);
+
+const hwBtn = document.getElementById('hwBtn');
+const hwBox = document.getElementById('hwBox');
+const hwClose = document.getElementById('hwClose');
+
+if (hwBtn && hwBox && hwClose) {
+  hwBtn.addEventListener('click', () => {
+    hwBox.classList.add('show');
+    hwBtn.style.opacity = '0';
+    hwBtn.style.pointerEvents = 'none';
+  });
+
+  hwClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    hwBox.classList.remove('show');
+    hwBtn.style.opacity = '1';
+    hwBtn.style.pointerEvents = 'auto';
+  });
+}
