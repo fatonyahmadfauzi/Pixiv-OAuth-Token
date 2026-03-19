@@ -159,6 +159,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Max file size according to email limits.",
     contactMessage: "Message",
     contactSendBtn: "Send Message",
+    hwBtn: "Help",
+    hwHeader: "Leave us a message",
+    hwName: "Your Name",
+    hwEmail: "Email address",
+    hwMessage: "How can we help you?",
+    hwAttachment: "Attachment",
+    hwAttachHint: "Add up to 5 files",
+    hwSubmit: "Send",
     contactChooseFile: "Choose file",
     contactNoFile: "No file chosen",
     contactPlaceholderEmail: "john.doe@example.com",
@@ -212,6 +220,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Max file size according to email limits.",
     contactMessage: "Message",
     contactSendBtn: "Send Message",
+    hwBtn: "Help",
+    hwHeader: "Leave us a message",
+    hwName: "Your Name",
+    hwEmail: "Email address",
+    hwMessage: "How can we help you?",
+    hwAttachment: "Attachment",
+    hwAttachHint: "Add up to 5 files",
+    hwSubmit: "Send",
     contactChooseFile: "Choose file",
     contactNoFile: "No file chosen",
     contactPlaceholderEmail: "john.doe@example.com",
@@ -382,6 +398,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maks. rozmiar pliku zgodnie z limitami e-mail.",
     contactMessage: "Wiadomość",
     contactSendBtn: "Wyślij Wiadomość",
+    hwBtn: "Pomoc",
+    hwHeader: "Zostaw nam wiadomość",
+    hwName: "Twoje imię",
+    hwEmail: "Adres e-mail",
+    hwMessage: "W czym możemy pomóc?",
+    hwAttachment: "Załącznik",
+    hwAttachHint: "Dodaj do 5 plików",
+    hwSubmit: "Wyślij",
     contactChooseFile: "Wybierz plik",
     contactNoFile: "Nie wybrano pliku",
     contactPlaceholderEmail: "jan.kowalski@example.com",
@@ -435,6 +459,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maks. rozmiar pliku zgodnie z limitami e-mail.",
     contactMessage: "Wiadomość",
     contactSendBtn: "Wyślij Wiadomość",
+    hwBtn: "Pomoc",
+    hwHeader: "Zostaw nam wiadomość",
+    hwName: "Twoje imię",
+    hwEmail: "Adres e-mail",
+    hwMessage: "W czym możemy pomóc?",
+    hwAttachment: "Załącznik",
+    hwAttachHint: "Dodaj do 5 plików",
+    hwSubmit: "Wyślij",
     contactChooseFile: "Wybierz plik",
     contactNoFile: "Nie wybrano pliku",
     contactPlaceholderEmail: "jan.kowalski@example.com",
@@ -605,6 +637,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "文件大小不得超过邮件限制。",
     contactMessage: "消息",
     contactSendBtn: "发送消息",
+    hwBtn: "帮助",
+    hwHeader: "给我们留言",
+    hwName: "您的名字",
+    hwEmail: "电子邮件地址",
+    hwMessage: "我们能帮您什么？",
+    hwAttachment: "附件",
+    hwAttachHint: "最多添加5个文件",
+    hwSubmit: "发送",
     contactChooseFile: "选择文件",
     contactNoFile: "未选择任何文件",
     contactPlaceholderEmail: "zhang.san@example.com",
@@ -658,6 +698,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "文件大小不得超过邮件限制。",
     contactMessage: "消息",
     contactSendBtn: "发送消息",
+    hwBtn: "帮助",
+    hwHeader: "给我们留言",
+    hwName: "您的名字",
+    hwEmail: "电子邮件地址",
+    hwMessage: "我们能帮您什么？",
+    hwAttachment: "附件",
+    hwAttachHint: "最多添加5个文件",
+    hwSubmit: "发送",
     contactChooseFile: "选择文件",
     contactNoFile: "未选择任何文件",
     contactPlaceholderEmail: "zhang.san@example.com",
@@ -828,6 +876,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "ファイルサイズはメールの制限に従います。",
     contactMessage: "メッセージ",
     contactSendBtn: "メッセージを送る",
+    hwBtn: "ヘルプ",
+    hwHeader: "メッセージを残す",
+    hwName: "お名前",
+    hwEmail: "メールアドレス",
+    hwMessage: "どのようなご用件でしょうか？",
+    hwAttachment: "添付ファイル",
+    hwAttachHint: "最大5ファイルまで追加",
+    hwSubmit: "送信",
     contactChooseFile: "ファイルを選択",
     contactNoFile: "ファイルが選択されていません",
     contactPlaceholderEmail: "taro.yamada@example.com",
@@ -881,6 +937,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "ファイルサイズはメールの制限に従います。",
     contactMessage: "メッセージ",
     contactSendBtn: "メッセージを送る",
+    hwBtn: "ヘルプ",
+    hwHeader: "メッセージを残す",
+    hwName: "お名前",
+    hwEmail: "メールアドレス",
+    hwMessage: "どのようなご用件でしょうか？",
+    hwAttachment: "添付ファイル",
+    hwAttachHint: "最大5ファイルまで追加",
+    hwSubmit: "送信",
     contactChooseFile: "ファイルを選択",
     contactNoFile: "ファイルが選択されていません",
     contactPlaceholderEmail: "taro.yamada@example.com",
@@ -1051,6 +1115,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maximale Dateigröße gemäß E-Mail-Limits.",
     contactMessage: "Nachricht",
     contactSendBtn: "Nachricht senden",
+    hwBtn: "Hilfe",
+    hwHeader: "Hinterlassen Sie uns eine Nachricht",
+    hwName: "Ihr Name",
+    hwEmail: "E-Mail-Adresse",
+    hwMessage: "Wie können wir Ihnen helfen?",
+    hwAttachment: "Anhang",
+    hwAttachHint: "Bis zu 5 Dateien hinzufügen",
+    hwSubmit: "Senden",
     contactChooseFile: "Datei auswählen",
     contactNoFile: "Keine Datei ausgewählt",
     contactPlaceholderEmail: "max.mustermann@example.com",
@@ -1104,6 +1176,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maximale Dateigröße gemäß E-Mail-Limits.",
     contactMessage: "Nachricht",
     contactSendBtn: "Nachricht senden",
+    hwBtn: "Hilfe",
+    hwHeader: "Hinterlassen Sie uns eine Nachricht",
+    hwName: "Ihr Name",
+    hwEmail: "E-Mail-Adresse",
+    hwMessage: "Wie können wir Ihnen helfen?",
+    hwAttachment: "Anhang",
+    hwAttachHint: "Bis zu 5 Dateien hinzufügen",
+    hwSubmit: "Senden",
     contactChooseFile: "Datei auswählen",
     contactNoFile: "Keine Datei ausgewählt",
     contactPlaceholderEmail: "max.mustermann@example.com",
@@ -1274,6 +1354,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Taille max selon les limites e-mail.",
     contactMessage: "Message",
     contactSendBtn: "Envoyer le message",
+    hwBtn: "Aide",
+    hwHeader: "Laissez-nous un message",
+    hwName: "Votre nom",
+    hwEmail: "Adresse e-mail",
+    hwMessage: "Comment pouvons-nous vous aider ?",
+    hwAttachment: "Pièce jointe",
+    hwAttachHint: "Ajouter jusqu'à 5 fichiers",
+    hwSubmit: "Envoyer",
     contactChooseFile: "Choisir un fichier",
     contactNoFile: "Aucun fichier choisi",
     contactPlaceholderEmail: "jean.dupont@example.com",
@@ -1327,6 +1415,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Taille max selon les limites e-mail.",
     contactMessage: "Message",
     contactSendBtn: "Envoyer le message",
+    hwBtn: "Aide",
+    hwHeader: "Laissez-nous un message",
+    hwName: "Votre nom",
+    hwEmail: "Adresse e-mail",
+    hwMessage: "Comment pouvons-nous vous aider ?",
+    hwAttachment: "Pièce jointe",
+    hwAttachHint: "Ajouter jusqu'à 5 fichiers",
+    hwSubmit: "Envoyer",
     contactChooseFile: "Choisir un fichier",
     contactNoFile: "Aucun fichier choisi",
     contactPlaceholderEmail: "jean.dupont@example.com",
@@ -1497,6 +1593,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamaño máx. según los límites del correo.",
     contactMessage: "Mensaje",
     contactSendBtn: "Enviar mensaje",
+    hwBtn: "Ayuda",
+    hwHeader: "Déjanos un mensaje",
+    hwName: "Tu Nombre",
+    hwEmail: "Correo electrónico",
+    hwMessage: "¿Cómo podemos ayudarte?",
+    hwAttachment: "Adjunto",
+    hwAttachHint: "Añadir hasta 5 archivos",
+    hwSubmit: "Enviar",
     contactChooseFile: "Elegir archivo",
     contactNoFile: "No se ha seleccionado archivo",
     contactPlaceholderEmail: "juan.perez@example.com",
@@ -1550,6 +1654,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamaño máx. según los límites del correo.",
     contactMessage: "Mensaje",
     contactSendBtn: "Enviar mensaje",
+    hwBtn: "Ayuda",
+    hwHeader: "Déjanos un mensaje",
+    hwName: "Tu Nombre",
+    hwEmail: "Correo electrónico",
+    hwMessage: "¿Cómo podemos ayudarte?",
+    hwAttachment: "Adjunto",
+    hwAttachHint: "Añadir hasta 5 archivos",
+    hwSubmit: "Enviar",
     contactChooseFile: "Elegir archivo",
     contactNoFile: "No se ha seleccionado archivo",
     contactPlaceholderEmail: "juan.perez@example.com",
@@ -1720,6 +1832,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Макс. размер файла согласно ограничениям почты.",
     contactMessage: "Сообщение",
     contactSendBtn: "Отправить сообщение",
+    hwBtn: "Помощь",
+    hwHeader: "Оставьте нам сообщение",
+    hwName: "Ваше имя",
+    hwEmail: "Адрес электронной почты",
+    hwMessage: "Чем мы можем помочь?",
+    hwAttachment: "Вложение",
+    hwAttachHint: "Добавить до 5 файлов",
+    hwSubmit: "Отправить",
     contactChooseFile: "Выберите файл",
     contactNoFile: "Файл не выбран",
     contactPlaceholderEmail: "ivan.ivanov@example.com",
@@ -1773,6 +1893,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Макс. размер файла согласно ограничениям почты.",
     contactMessage: "Сообщение",
     contactSendBtn: "Отправить сообщение",
+    hwBtn: "Помощь",
+    hwHeader: "Оставьте нам сообщение",
+    hwName: "Ваше имя",
+    hwEmail: "Адрес электронной почты",
+    hwMessage: "Чем мы можем помочь?",
+    hwAttachment: "Вложение",
+    hwAttachHint: "Добавить до 5 файлов",
+    hwSubmit: "Отправить",
     contactChooseFile: "Выберите файл",
     contactNoFile: "Файл не выбран",
     contactPlaceholderEmail: "ivan.ivanov@example.com",
@@ -1943,6 +2071,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamanho máx. conforme limites de e-mail.",
     contactMessage: "Mensagem",
     contactSendBtn: "Enviar mensagem",
+    hwBtn: "Ajuda",
+    hwHeader: "Deixe-nos uma mensagem",
+    hwName: "Seu Nome",
+    hwEmail: "Endereço de e-mail",
+    hwMessage: "Como podemos ajudar?",
+    hwAttachment: "Anexo",
+    hwAttachHint: "Adicionar até 5 arquivos",
+    hwSubmit: "Enviar",
     contactChooseFile: "Escolher arquivo",
     contactNoFile: "Nenhum arquivo escolhido",
     contactPlaceholderEmail: "joao.silva@example.com",
@@ -1996,6 +2132,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamanho máx. conforme limites de e-mail.",
     contactMessage: "Mensagem",
     contactSendBtn: "Enviar mensagem",
+    hwBtn: "Ajuda",
+    hwHeader: "Deixe-nos uma mensagem",
+    hwName: "Seu Nome",
+    hwEmail: "Endereço de e-mail",
+    hwMessage: "Como podemos ajudar?",
+    hwAttachment: "Anexo",
+    hwAttachHint: "Adicionar até 5 arquivos",
+    hwSubmit: "Enviar",
     contactChooseFile: "Escolher arquivo",
     contactNoFile: "Nenhum arquivo escolhido",
     contactPlaceholderEmail: "joao.silva@example.com",
@@ -2166,6 +2310,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Ukuran file maks sesuai batas email.",
     contactMessage: "Pesan",
     contactSendBtn: "Kirim Pesan",
+    hwBtn: "Bantuan",
+    hwHeader: "Tinggalkan pesan untuk kami",
+    hwName: "Nama Anda",
+    hwEmail: "Alamat email",
+    hwMessage: "Ada yang bisa kami bantu?",
+    hwAttachment: "Lampiran",
+    hwAttachHint: "Tambahkan hingga 5 file",
+    hwSubmit: "Kirim",
     contactChooseFile: "Pilih file",
     contactNoFile: "Tidak ada file yang dipilih",
     contactPlaceholderEmail: "budi.santoso@example.com",
@@ -2219,6 +2371,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Ukuran file maks sesuai batas email.",
     contactMessage: "Pesan",
     contactSendBtn: "Kirim Pesan",
+    hwBtn: "Bantuan",
+    hwHeader: "Tinggalkan pesan untuk kami",
+    hwName: "Nama Anda",
+    hwEmail: "Alamat email",
+    hwMessage: "Ada yang bisa kami bantu?",
+    hwAttachment: "Lampiran",
+    hwAttachHint: "Tambahkan hingga 5 file",
+    hwSubmit: "Kirim",
     contactChooseFile: "Pilih file",
     contactNoFile: "Tidak ada file yang dipilih",
     contactPlaceholderEmail: "budi.santoso@example.com",
@@ -2389,6 +2549,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "파일 크기는 이메일 제한에 따릅니다.",
     contactMessage: "메시지",
     contactSendBtn: "메시지 전송",
+    hwBtn: "도움말",
+    hwHeader: "메시지를 남겨주세요",
+    hwName: "이름",
+    hwEmail: "이메일 주소",
+    hwMessage: "무엇을 도와드릴까요?",
+    hwAttachment: "첨부 파일",
+    hwAttachHint: "최대 5개의 파일 추가",
+    hwSubmit: "전송",
     contactChooseFile: "파일 선택",
     contactNoFile: "선택된 파일 없음",
     contactPlaceholderEmail: "hong.gildong@example.com",
@@ -2442,6 +2610,14 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "파일 크기는 이메일 제한에 따릅니다.",
     contactMessage: "메시지",
     contactSendBtn: "메시지 전송",
+    hwBtn: "도움말",
+    hwHeader: "메시지를 남겨주세요",
+    hwName: "이름",
+    hwEmail: "이메일 주소",
+    hwMessage: "무엇을 도와드릴까요?",
+    hwAttachment: "첨부 파일",
+    hwAttachHint: "최대 5개의 파일 추가",
+    hwSubmit: "전송",
     contactChooseFile: "파일 선택",
     contactNoFile: "선택된 파일 없음",
     contactPlaceholderEmail: "hong.gildong@example.com",
@@ -3410,13 +3586,13 @@ function setupMobilePlatformDropdown() {
   await hydrateReleaseAssets();
 })();
 
-// ---------------------- FLOATING BANTUAN WIDGET ----------------------
+// ---------------------- FLOATING HELP WIDGET ----------------------
 const hwHTML = `
 <div class="hw-container">
-  <button id="hwBtn" class="hw-btn"><i class="bi bi-question-circle-fill"></i> Bantuan</button>
+  <button id="hwBtn" class="hw-btn"><i class="bi bi-question-circle-fill"></i> <span data-i18n="hwBtn">Help</span></button>
   <div id="hwBox" class="hw-box">
     <div class="hw-header">
-      Tinggalkan pesan untuk kami
+      <span data-i18n="hwHeader">Leave us a message</span>
       <button id="hwClose" class="hw-close" aria-label="Close widget"><i class="bi bi-dash"></i></button>
     </div>
     <form class="hw-form" action="https://formsubmit.co/fatonyahmadfauzi@gmail.com" method="POST" enctype="multipart/form-data">
@@ -3426,28 +3602,33 @@ const hwHTML = `
       <input type="hidden" name="_template" value="box">
 
       <div class="hw-group">
-        <label>Nama Anda</label>
+        <label data-i18n="hwName">Your Name</label>
         <input type="text" name="Nama_Anda" class="hw-input" required>
       </div>
       <div class="hw-group">
-        <label>Alamat email</label>
+        <label data-i18n="hwEmail">Email address</label>
         <input type="email" name="email" class="hw-input" required>
       </div>
       <div class="hw-group">
-        <label>Ada yang bisa kami bantu?</label>
+        <label data-i18n="hwMessage">How can we help you?</label>
         <textarea name="Pesan" class="hw-input" required></textarea>
       </div>
       <div class="hw-group">
-        <label class="hw-file-wrap" for="hwFile"><span>Lampiran</span> <div><i class="bi bi-paperclip"></i> Tambahkan hingga 5 file</div></label>
+        <label class="hw-file-wrap" for="hwFile">
+          <span data-i18n="hwAttachment">Attachment</span>
+          <div><i class="bi bi-paperclip"></i> <span data-i18n="hwAttachHint">Add up to 5 files</span></div>
+        </label>
         <input type="file" id="hwFile" name="attachment" accept="image/*,.pdf,.zip,.log,.txt" multiple>
       </div>
-      <button type="submit" class="hw-submit">Kirim</button>
+      <button type="submit" class="hw-submit" data-i18n="hwSubmit">Send</button>
     </form>
   </div>
 </div>
 `;
 
 document.body.insertAdjacentHTML('beforeend', hwHTML);
+// Translate the newly-inserted widget immediately
+applyLang();
 
 const hwBtn = document.getElementById('hwBtn');
 const hwBox = document.getElementById('hwBox');
