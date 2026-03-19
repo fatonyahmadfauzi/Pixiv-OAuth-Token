@@ -598,6 +598,13 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .gh-doc-edit-link:hover{color:#dce5fb}
 .gh-doc-skeleton-wrap{display:grid;gap:14px;padding:4px 0}
 .gh-doc-skeleton-line{height:18px;border-radius:6px;background:linear-gradient(90deg,#0d1321 25%,#16213a 50%,#0d1321 75%);background-size:200% 100%;animation:gh-shimmer 1.4s infinite}
+/* Skeleton width modifiers (replace inline style to comply with CSP) */
+.sk-w-40{width:40%}.sk-w-60{width:60%}.sk-w-70{width:70%}
+.sk-w-75{width:75%}.sk-w-90{width:90%}.sk-w-95{width:95%}
+.sk-block{width:85%;height:80px;border-radius:10px}
+.sk-mt{margin-top:20px}
+/* Status icon color helpers (replace inline color style to comply with CSP) */
+.c-open{color:#3fb950}.c-closed{color:#986ee2}.c-pr{color:#a371f7}.c-blue{color:#76a8ff}
 
 /* Markdown rendered body */
 .gh-doc-body{color:#ccd3e8;line-height:1.72;font-size:1rem}

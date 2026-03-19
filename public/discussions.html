@@ -156,43 +156,6 @@
   </footer>
 
   <script src="/assets/app.js"></script>
-  <script>
-    const REPO = 'fatonyahmadfauzi/Pixiv-OAuth-Token';
-
-    async function loadRepoStats() {
-      const statsEl = document.getElementById('repoStats');
-      try {
-        const params = new URLSearchParams({ path: `repos/${REPO}` });
-        const res = await fetch(`/api/github?${params}`);
-        if (!res.ok) throw new Error();
-        const r = await res.json();
-        statsEl.innerHTML = `
-          <div class="gh-stat-card">
-            <i class="bi bi-star" aria-hidden="true"></i>
-            <div class="gh-stat-value">${r.stargazers_count.toLocaleString()}</div>
-            <div class="gh-stat-label">Stars</div>
-          </div>
-          <div class="gh-stat-card">
-            <i class="bi bi-diagram-2" aria-hidden="true"></i>
-            <div class="gh-stat-value">${r.forks_count.toLocaleString()}</div>
-            <div class="gh-stat-label">Forks</div>
-          </div>
-          <div class="gh-stat-card">
-            <i class="bi bi-eye" aria-hidden="true"></i>
-            <div class="gh-stat-value">${r.subscribers_count ?? r.watchers_count}</div>
-            <div class="gh-stat-label">Watchers</div>
-          </div>
-          <div class="gh-stat-card">
-            <i class="bi bi-circle" style="color:#3fb950" aria-hidden="true"></i>
-            <div class="gh-stat-value">${r.open_issues_count.toLocaleString()}</div>
-            <div class="gh-stat-label">Open Issues</div>
-          </div>`;
-      } catch {
-        statsEl.innerHTML = '';
-      }
-    }
-
-    loadRepoStats();
-  </script>
+  <script src="/assets/discussions.js"></script>
 </body>
 </html>
