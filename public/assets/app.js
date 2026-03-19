@@ -3,7 +3,7 @@ const REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback
 const LOGIN_URL = "https://app-api.pixiv.net/web/v1/login";
 const REPO_BASE = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token";
 const RELEASE_BASE = `${REPO_BASE}/releases/latest/download`;
-const RELEASE_API = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
+const RELEASE_API = "/api/github?path=repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
 const DOWNLOADS_BASE = `${REPO_BASE}/raw/HEAD/downloads`;
 
 let codeVerifier = "";
