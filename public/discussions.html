@@ -162,7 +162,8 @@
     async function loadRepoStats() {
       const statsEl = document.getElementById('repoStats');
       try {
-        const res = await fetch(`https://api.github.com/repos/${REPO}`);
+        const params = new URLSearchParams({ path: `repos/${REPO}` });
+        const res = await fetch(`/api/github?${params}`);
         if (!res.ok) throw new Error();
         const r = await res.json();
         statsEl.innerHTML = `
