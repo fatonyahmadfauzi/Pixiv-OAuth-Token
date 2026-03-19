@@ -77,7 +77,11 @@
 
         <div class="form-group">
           <label for="attachment" data-i18n="contactAttachment">Attachment (Optional)</label>
-          <input type="file" id="attachment" name="attachment" class="gh-file-input" accept="image/*,.pdf,.zip,.log,.txt">
+          <div class="custom-file-wrapper">
+            <input type="file" id="attachment" name="attachment" class="gh-file-input" accept="image/*,.pdf,.zip,.log,.txt" style="display: none;">
+            <button type="button" id="customFileBtn" class="btn gh-btn"><i class="bi bi-paperclip"></i> <span data-i18n="contactChooseFile">Choose file</span></button>
+            <span id="customFileText" class="custom-file-text" data-i18n="contactNoFile">No file chosen</span>
+          </div>
           <small class="form-hint" data-i18n="contactFileLimit">Max file size according to email limits.</small>
         </div>
 

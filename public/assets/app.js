@@ -159,6 +159,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Max file size according to email limits.",
     contactMessage: "Message",
     contactSendBtn: "Send Message",
+    contactChooseFile: "Choose file",
+    contactNoFile: "No file chosen",
+    contactPlaceholderEmail: "john.doe@example.com",
+    contactPlaceholderMessage: "How can we help you?",
     reportPageTitle: "Report an Issue",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussions",
@@ -180,7 +184,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Page Not Found",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Minimum Requirements",
     dlMinReqWin1: "Windows 10 or later (64-bit or ARM64)",
     dlMinReqWin2: "x64, x86, or ARM64 architecture",
@@ -207,6 +212,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Max file size according to email limits.",
     contactMessage: "Message",
     contactSendBtn: "Send Message",
+    contactChooseFile: "Choose file",
+    contactNoFile: "No file chosen",
+    contactPlaceholderEmail: "john.doe@example.com",
+    contactPlaceholderMessage: "How can we help you?",
     reportPageTitle: "Report an Issue",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussions",
@@ -373,6 +382,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maks. rozmiar pliku zgodnie z limitami e-mail.",
     contactMessage: "Wiadomość",
     contactSendBtn: "Wyślij Wiadomość",
+    contactChooseFile: "Wybierz plik",
+    contactNoFile: "Nie wybrano pliku",
+    contactPlaceholderEmail: "jan.kowalski@example.com",
+    contactPlaceholderMessage: "W czym możemy pomóc?",
     reportPageTitle: "Zgłoś problem",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Dyskusje",
@@ -394,7 +407,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Strona nie znaleziona",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Minimalne wymagania",
     dlMinReqWin1: "Windows 10 lub nowszy (64-bit lub ARM64)",
     dlMinReqWin2: "Architektura x64, x86 lub ARM64",
@@ -421,6 +435,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maks. rozmiar pliku zgodnie z limitami e-mail.",
     contactMessage: "Wiadomość",
     contactSendBtn: "Wyślij Wiadomość",
+    contactChooseFile: "Wybierz plik",
+    contactNoFile: "Nie wybrano pliku",
+    contactPlaceholderEmail: "jan.kowalski@example.com",
+    contactPlaceholderMessage: "W czym możemy pomóc?",
     reportPageTitle: "Zgłoś problem",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Dyskusje",
@@ -587,6 +605,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "文件大小不得超过邮件限制。",
     contactMessage: "消息",
     contactSendBtn: "发送消息",
+    contactChooseFile: "选择文件",
+    contactNoFile: "未选择任何文件",
+    contactPlaceholderEmail: "zhang.san@example.com",
+    contactPlaceholderMessage: "我们能帮您什么？",
     reportPageTitle: "报告问题",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "讨论区",
@@ -608,7 +630,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "页面未找到",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "最低要求",
     dlMinReqWin1: "Windows 10或更高版本（64位或ARM64）",
     dlMinReqWin2: "x64、x86或ARM64架构",
@@ -635,6 +658,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "文件大小不得超过邮件限制。",
     contactMessage: "消息",
     contactSendBtn: "发送消息",
+    contactChooseFile: "选择文件",
+    contactNoFile: "未选择任何文件",
+    contactPlaceholderEmail: "zhang.san@example.com",
+    contactPlaceholderMessage: "我们能帮您什么？",
     reportPageTitle: "报告问题",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "讨论区",
@@ -801,6 +828,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "ファイルサイズはメールの制限に従います。",
     contactMessage: "メッセージ",
     contactSendBtn: "メッセージを送る",
+    contactChooseFile: "ファイルを選択",
+    contactNoFile: "ファイルが選択されていません",
+    contactPlaceholderEmail: "taro.yamada@example.com",
+    contactPlaceholderMessage: "どのようなご用件でしょうか？",
     reportPageTitle: "問題を報告",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "ディスカッション",
@@ -822,7 +853,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "ページが見つかりません",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "最小システム要件",
     dlMinReqWin1: "Windows 10以降（64ビットまたはARM64）",
     dlMinReqWin2: "x64、x86、またはARM64アーキテクチャ",
@@ -849,6 +881,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "ファイルサイズはメールの制限に従います。",
     contactMessage: "メッセージ",
     contactSendBtn: "メッセージを送る",
+    contactChooseFile: "ファイルを選択",
+    contactNoFile: "ファイルが選択されていません",
+    contactPlaceholderEmail: "taro.yamada@example.com",
+    contactPlaceholderMessage: "どのようなご用件でしょうか？",
     reportPageTitle: "問題を報告",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "ディスカッション",
@@ -1015,6 +1051,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maximale Dateigröße gemäß E-Mail-Limits.",
     contactMessage: "Nachricht",
     contactSendBtn: "Nachricht senden",
+    contactChooseFile: "Datei auswählen",
+    contactNoFile: "Keine Datei ausgewählt",
+    contactPlaceholderEmail: "max.mustermann@example.com",
+    contactPlaceholderMessage: "Wie können wir Ihnen helfen?",
     reportPageTitle: "Problem melden",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Diskussionen",
@@ -1036,7 +1076,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Seite nicht gefunden",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Mindestanforderungen",
     dlMinReqWin1: "Windows 10 oder neuer (64-Bit oder ARM64)",
     dlMinReqWin2: "x64-, x86- oder ARM64-Architektur",
@@ -1063,6 +1104,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Maximale Dateigröße gemäß E-Mail-Limits.",
     contactMessage: "Nachricht",
     contactSendBtn: "Nachricht senden",
+    contactChooseFile: "Datei auswählen",
+    contactNoFile: "Keine Datei ausgewählt",
+    contactPlaceholderEmail: "max.mustermann@example.com",
+    contactPlaceholderMessage: "Wie können wir Ihnen helfen?",
     reportPageTitle: "Problem melden",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Diskussionen",
@@ -1229,6 +1274,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Taille max selon les limites e-mail.",
     contactMessage: "Message",
     contactSendBtn: "Envoyer le message",
+    contactChooseFile: "Choisir un fichier",
+    contactNoFile: "Aucun fichier choisi",
+    contactPlaceholderEmail: "jean.dupont@example.com",
+    contactPlaceholderMessage: "Comment pouvons-nous vous aider ?",
     reportPageTitle: "Signaler un problème",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussions",
@@ -1250,7 +1299,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Page introuvable",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Configuration minimale requise",
     dlMinReqWin1: "Windows 10 ou version ultérieure (64 bits ou ARM64)",
     dlMinReqWin2: "Architecture x64, x86 ou ARM64",
@@ -1277,6 +1327,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Taille max selon les limites e-mail.",
     contactMessage: "Message",
     contactSendBtn: "Envoyer le message",
+    contactChooseFile: "Choisir un fichier",
+    contactNoFile: "Aucun fichier choisi",
+    contactPlaceholderEmail: "jean.dupont@example.com",
+    contactPlaceholderMessage: "Comment pouvons-nous vous aider ?",
     reportPageTitle: "Signaler un problème",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussions",
@@ -1443,6 +1497,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamaño máx. según los límites del correo.",
     contactMessage: "Mensaje",
     contactSendBtn: "Enviar mensaje",
+    contactChooseFile: "Elegir archivo",
+    contactNoFile: "No se ha seleccionado archivo",
+    contactPlaceholderEmail: "juan.perez@example.com",
+    contactPlaceholderMessage: "¿Cómo podemos ayudarte?",
     reportPageTitle: "Reportar problema",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discusiones",
@@ -1464,7 +1522,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Página no encontrada",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Requisitos mínimos",
     dlMinReqWin1: "Windows 10 o posterior (64 bits o ARM64)",
     dlMinReqWin2: "Arquitectura x64, x86 o ARM64",
@@ -1491,6 +1550,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamaño máx. según los límites del correo.",
     contactMessage: "Mensaje",
     contactSendBtn: "Enviar mensaje",
+    contactChooseFile: "Elegir archivo",
+    contactNoFile: "No se ha seleccionado archivo",
+    contactPlaceholderEmail: "juan.perez@example.com",
+    contactPlaceholderMessage: "¿Cómo podemos ayudarte?",
     reportPageTitle: "Reportar problema",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discusiones",
@@ -1657,6 +1720,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Макс. размер файла согласно ограничениям почты.",
     contactMessage: "Сообщение",
     contactSendBtn: "Отправить сообщение",
+    contactChooseFile: "Выберите файл",
+    contactNoFile: "Файл не выбран",
+    contactPlaceholderEmail: "ivan.ivanov@example.com",
+    contactPlaceholderMessage: "Чем мы можем помочь?",
     reportPageTitle: "Сообщить о проблеме",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Обсуждения",
@@ -1678,7 +1745,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Страница не найдена",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Минимальные требования",
     dlMinReqWin1: "Windows 10 или новее (64-разрядная или ARM64)",
     dlMinReqWin2: "Архитектура x64, x86 или ARM64",
@@ -1705,6 +1773,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Макс. размер файла согласно ограничениям почты.",
     contactMessage: "Сообщение",
     contactSendBtn: "Отправить сообщение",
+    contactChooseFile: "Выберите файл",
+    contactNoFile: "Файл не выбран",
+    contactPlaceholderEmail: "ivan.ivanov@example.com",
+    contactPlaceholderMessage: "Чем мы можем помочь?",
     reportPageTitle: "Сообщить о проблеме",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Обсуждения",
@@ -1871,6 +1943,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamanho máx. conforme limites de e-mail.",
     contactMessage: "Mensagem",
     contactSendBtn: "Enviar mensagem",
+    contactChooseFile: "Escolher arquivo",
+    contactNoFile: "Nenhum arquivo escolhido",
+    contactPlaceholderEmail: "joao.silva@example.com",
+    contactPlaceholderMessage: "Como podemos ajudar?",
     reportPageTitle: "Reportar problema",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussões",
@@ -1892,7 +1968,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Página não encontrada",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "Requisitos mínimos",
     dlMinReqWin1: "Windows 10 ou posterior (64 bits ou ARM64)",
     dlMinReqWin2: "Arquitetura x64, x86 ou ARM64",
@@ -1919,6 +1996,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Tamanho máx. conforme limites de e-mail.",
     contactMessage: "Mensagem",
     contactSendBtn: "Enviar mensagem",
+    contactChooseFile: "Escolher arquivo",
+    contactNoFile: "Nenhum arquivo escolhido",
+    contactPlaceholderEmail: "joao.silva@example.com",
+    contactPlaceholderMessage: "Como podemos ajudar?",
     reportPageTitle: "Reportar problema",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "Discussões",
@@ -2085,6 +2166,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Ukuran file maks sesuai batas email.",
     contactMessage: "Pesan",
     contactSendBtn: "Kirim Pesan",
+    contactChooseFile: "Pilih file",
+    contactNoFile: "Tidak ada file yang dipilih",
+    contactPlaceholderEmail: "budi.santoso@example.com",
+    contactPlaceholderMessage: "Ada yang bisa kami bantu?",
     reportPageTitle: "Laporkan Masalah",
     reportPageDesc: "Jelajahi masalah terbuka atau kirimkan yang baru langsung di GitHub.",
     discussPageTitle: "Diskusi",
@@ -2106,7 +2191,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "Halaman Tidak Ditemukan",
     notFoundDesc: "Halaman tidak ada atau dipindahkan.",
     notFoundBackHome: "Kembali ke Beranda",
-    notFoundBackPrev: "Kembali Sebelumnya",
+    notFoundBackPrev: "Kembali Sebelumnya",
+
     dlMinReqWinTitle: "Persyaratan Minimum",
     dlMinReqWin1: "Windows 10 atau terbaru (64-bit atau ARM64)",
     dlMinReqWin2: "Arsitektur x64, x86, atau ARM64",
@@ -2133,6 +2219,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "Ukuran file maks sesuai batas email.",
     contactMessage: "Pesan",
     contactSendBtn: "Kirim Pesan",
+    contactChooseFile: "Pilih file",
+    contactNoFile: "Tidak ada file yang dipilih",
+    contactPlaceholderEmail: "budi.santoso@example.com",
+    contactPlaceholderMessage: "Ada yang bisa kami bantu?",
     reportPageTitle: "Laporkan Masalah",
     reportPageDesc: "Jelajahi masalah terbuka atau kirimkan yang baru langsung di GitHub.",
     discussPageTitle: "Diskusi",
@@ -2299,6 +2389,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "파일 크기는 이메일 제한에 따릅니다.",
     contactMessage: "메시지",
     contactSendBtn: "메시지 전송",
+    contactChooseFile: "파일 선택",
+    contactNoFile: "선택된 파일 없음",
+    contactPlaceholderEmail: "hong.gildong@example.com",
+    contactPlaceholderMessage: "무엇을 도와드릴까요?",
     reportPageTitle: "문제 신고",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "토론",
@@ -2320,7 +2414,8 @@ const DISPLAY_LANGUAGES = {
     notFoundSubtitle: "페이지를 찾을 수 없음",
     notFoundDesc: "The page you are looking for does not exist or has been moved.",
     notFoundBackHome: "Back to Homepage",
-    notFoundBackPrev: "Go Back",
+    notFoundBackPrev: "Go Back",
+
     dlMinReqWinTitle: "최소 요구 사항",
     dlMinReqWin1: "Windows 10 이상 (64비트 또는 ARM64)",
     dlMinReqWin2: "x64, x86 또는 ARM64 아키텍처",
@@ -2347,6 +2442,10 @@ const DISPLAY_LANGUAGES = {
     contactFileLimit: "파일 크기는 이메일 제한에 따릅니다.",
     contactMessage: "메시지",
     contactSendBtn: "메시지 전송",
+    contactChooseFile: "파일 선택",
+    contactNoFile: "선택된 파일 없음",
+    contactPlaceholderEmail: "hong.gildong@example.com",
+    contactPlaceholderMessage: "무엇을 도와드릴까요?",
     reportPageTitle: "문제 신고",
     reportPageDesc: "Browse open issues or submit a new one directly on GitHub.",
     discussPageTitle: "토론",
@@ -2941,7 +3040,8 @@ function applyLang() {
     notFoundSubtitle: "notFoundSubtitle",
     notFoundDesc: "notFoundDesc",
     notFoundBackHome: "notFoundBackHome",
-    notFoundBackPrev: "notFoundBackPrev",
+    notFoundBackPrev: "notFoundBackPrev",
+
     dlMinReqWinTitle: "dlMinReqWinTitle",
     dlMinReqWin1: "dlMinReqWin1",
     dlMinReqWin2: "dlMinReqWin2",
@@ -3017,6 +3117,14 @@ function applyLang() {
     } else {
       el.textContent = translated;
     }
+  });
+
+  // Translate placeholders for inputs (e.g., email, message)
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    const translated = t(key);
+    if (!translated || translated === key) return;
+    el.placeholder = translated;
   });
 
   const inputCode = q("inputCode");
@@ -3206,6 +3314,61 @@ function setupMobileSidebar() {
   }
 }
 
+function setupCustomFileInput() {
+  const fileInput = document.getElementById("attachment");
+  const customBtn = document.getElementById("customFileBtn");
+  const customText = document.getElementById("customFileText");
+
+  if (fileInput && customBtn && customText) {
+    customBtn.addEventListener("click", () => fileInput.click());
+    
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length > 0) {
+        // If files selected, show names.
+        const fileNames = Array.from(fileInput.files).map(f => f.name).join(", ");
+        customText.textContent = fileNames;
+        customText.removeAttribute("data-i18n"); // Remove translation so it doesn't get overwritten on language change
+      } else {
+        // Revert to translated empty state
+        customText.setAttribute("data-i18n", "contactNoFile");
+        customText.textContent = t("contactNoFile");
+      }
+    });
+
+    // Inject styles for it
+    const style = document.createElement("style");
+    style.textContent = `
+      .custom-file-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+      }
+      .custom-file-btn {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        background-color: var(--gh-btn-bg);
+        border: 1px solid var(--gh-btn-border);
+        color: var(--gh-fg);
+        border-radius: 6px;
+      }
+      .custom-file-btn:hover {
+        background-color: var(--gh-btn-hover-bg);
+      }
+      .custom-file-text {
+        color: var(--gh-fg-muted);
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+}
+
 function setupMobilePlatformDropdown() {
   const select = document.getElementById("mobilePlatformSelect");
   if (!select) return;
@@ -3243,6 +3406,7 @@ function setupMobilePlatformDropdown() {
   setupDownloadTabs();
   setupArchDownloadRows();
   setupCommandCopyButtons();
+  setupCustomFileInput();
   await hydrateReleaseAssets();
 })();
 
