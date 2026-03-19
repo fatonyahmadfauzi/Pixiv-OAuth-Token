@@ -57,6 +57,7 @@
         <input type="hidden" name="_subject" value="New Contact Message from Pixiv OAuth Web">
         <input type="hidden" name="_next" value="https://pixiv-o-auth-token.vercel.app/contact?success=true">
         <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="box">
 
         <div class="form-row">
           <div class="form-group">
@@ -76,7 +77,7 @@
 
         <div class="form-group">
           <label for="attachment">Attachment (Optional)</label>
-          <input type="file" id="attachment" name="Attachment" class="gh-file-input" accept="image/*,.pdf,.zip,.log,.txt">
+          <input type="file" id="attachment" name="attachment" class="gh-file-input" accept="image/*,.pdf,.zip,.log,.txt">
           <small class="form-hint">Max file size according to email limits.</small>
         </div>
 
