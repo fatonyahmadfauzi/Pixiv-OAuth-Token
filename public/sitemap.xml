@@ -6,12 +6,27 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pixiv-o-auth-token.vercel.app/tutorial.html</loc>
+    <loc>https://pixiv-o-auth-token.vercel.app/tutorial</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://pixiv-o-auth-token.vercel.app/downloads.html</loc>
+    <loc>https://pixiv-o-auth-token.vercel.app/downloads</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pixiv-o-auth-token.vercel.app/documentation</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pixiv-o-auth-token.vercel.app/issues</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://pixiv-o-auth-token.vercel.app/discussions</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

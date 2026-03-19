@@ -13,6 +13,7 @@
       ]
     }
   ],
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/assets/favicon.ico", "destination": "/pixiv_login_pro.ico" },
     { "source": "/assets/(.*)", "destination": "/public/assets/$1" },
