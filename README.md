@@ -79,27 +79,31 @@ Application version is stored in `version.json`.
 
 ## Web version (Vercel)
 
-Responsive web app with SEO metadata and multi-language support:
+A highly optimized, responsive web app featuring dynamic multi-language support (11 languages with auto-detection) and comprehensive SEO metadata.
 
-- `public/index.html`
-- `public/assets/style.css`
-- `public/assets/app.js`
-- `public/assets/schema.js` (JSON-LD structured data)
-- `public/robots.txt`
-- `public/sitemap.xml`
-- Vercel API: `api/token.js`
+### Key Web Features
+- **Extensive Pages**: Homepage, Downloads, Tutorial, Contact, Issues & PRs, Discussions Tracker, Documentation Markdown viewer, and Support/Donate integration.
+- **Advanced SEO**: Auto-injected localized `<meta>` tags, extensive JSON-LD structured data (Sitelinks, SoftwareApplication, etc.), automated `hreflang` generation, `robots.txt`, and `sitemap.xml`.
+- **Security & Performance**: Automatic JavaScript obfuscation (extreme mangling), HTML/CSS minification (via `node build_minify.js`), and clean `XSS` prevention via `escapeHTML`.
+- **GitHub API Proxy**: Serverless Vercel endpoints (`/api/github`) proxy GitHub API requests using a Personal Access Token (`GITHUB_PAT`) to completely bypass public rate limits.
 
 ### Deploy to Vercel
 
 1. Push repository to GitHub.
 2. Vercel → **Add New...** → **Project** → import this repo.
-3. `vercel.json` already configures:
+3. Set your Environment Variables in Vercel:
+   - `PIXIV_CLIENT_SECRET`: Your Pixiv OAuth client secret.
+   - `GITHUB_PAT`: Optional but highly recommended (Your GitHub Personal Access Token to avoid rate limits on repo issues & releases).
+4. `vercel.json` already configures:
+   - Clean URLs (stripping `.html`)
    - Static hosting from `public/`
-   - Serverless API at `/api/token`
-4. Add environment variable:
-   - `PIXIV_CLIENT_SECRET`
-   - Optional legacy typo alias: `PIXV_CLIENT_SECRET`
+   - Serverless APIs at `/api/*`
+   - Built-in Custom 404 page routing
+   - Far-future caching via Edge Cache headers.
 5. Deploy.
+
+> [!IMPORTANT]
+> If you make changes to HTML, CSS, or JS, remember to run `node build_minify.js` before deploying to automatically obfuscate the code and compress assets.
 
 > Security note: for production, always set `PIXIV_CLIENT_SECRET` in your Vercel project environment variables.
 
