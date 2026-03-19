@@ -106,7 +106,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "CMD command copied.",
     copiedPip: "pip command copied.",
     showMore: "See More",
-    showLess: "Show Less"
+    showLess: "Show Less",
     footerProductTitle: "Product",
     footerHomeLink: "Homepage",
     footerDownloadLink: "Downloads",
@@ -233,7 +233,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Polecenie CMD skopiowane.",
     copiedPip: "Polecenie pip skopiowane.",
     showMore: "Pokaż więcej",
-    showLess: "Pokaż mniej"
+    showLess: "Pokaż mniej",
     footerProductTitle: "Produkt",
     footerHomeLink: "Strona główna",
     footerDownloadLink: "Pobieranie",
@@ -360,7 +360,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "CMD 命令已复制。",
     copiedPip: "pip 命令已复制。",
     showMore: "查看更多",
-    showLess: "收起"
+    showLess: "收起",
     footerProductTitle: "产品",
     footerHomeLink: "主页",
     footerDownloadLink: "下载",
@@ -487,7 +487,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "CMD コマンドをコピーしました。",
     copiedPip: "pip コマンドをコピーしました。",
     showMore: "もっと見る",
-    showLess: "閉じる"
+    showLess: "閉じる",
     footerProductTitle: "製品",
     footerHomeLink: "ホームページ",
     footerDownloadLink: "ダウンロード",
@@ -614,7 +614,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "CMD-Befehl kopiert.",
     copiedPip: "pip-Befehl kopiert.",
     showMore: "Mehr anzeigen",
-    showLess: "Weniger anzeigen"
+    showLess: "Weniger anzeigen",
     footerProductTitle: "Produkt",
     footerHomeLink: "Startseite",
     footerDownloadLink: "Downloads",
@@ -741,7 +741,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Commande CMD copiée.",
     copiedPip: "Commande pip copiée.",
     showMore: "Voir plus",
-    showLess: "Voir moins"
+    showLess: "Voir moins",
     footerProductTitle: "Produit",
     footerHomeLink: "Page d'accueil",
     footerDownloadLink: "Téléchargements",
@@ -868,7 +868,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Comando CMD copiado.",
     copiedPip: "Comando pip copiado.",
     showMore: "Ver más",
-    showLess: "Ver menos"
+    showLess: "Ver menos",
     footerProductTitle: "Producto",
     footerHomeLink: "Inicio",
     footerDownloadLink: "Descargas",
@@ -995,7 +995,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Команда CMD скопирована.",
     copiedPip: "Команда pip скопирована.",
     showMore: "Показать больше",
-    showLess: "Показать меньше"
+    showLess: "Показать меньше",
     footerProductTitle: "Продукт",
     footerHomeLink: "Главная",
     footerDownloadLink: "Загрузки",
@@ -1122,7 +1122,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Comando CMD copiado.",
     copiedPip: "Comando pip copiado.",
     showMore: "Ver mais",
-    showLess: "Ver menos"
+    showLess: "Ver menos",
     footerProductTitle: "Produto",
     footerHomeLink: "Página Inicial",
     footerDownloadLink: "Downloads",
@@ -1249,7 +1249,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "Perintah CMD tersalin.",
     copiedPip: "Perintah pip tersalin.",
     showMore: "Lihat Selengkapnya",
-    showLess: "Tampilkan Sedikit"
+    showLess: "Tampilkan Sedikit",
     footerProductTitle: "Produk",
     footerHomeLink: "Beranda",
     footerDownloadLink: "Unduhan",
@@ -1376,7 +1376,7 @@ const DISPLAY_LANGUAGES = {
     copiedCmd: "CMD 명령이 복사되었습니다.",
     copiedPip: "pip 명령이 복사되었습니다.",
     showMore: "더 보기",
-    showLess: "접기"
+    showLess: "접기",
     footerProductTitle: "제품",
     footerHomeLink: "홈",
     footerDownloadLink: "다운로드",
@@ -1800,7 +1800,8 @@ function setupLanguageMenu() {
     toggle.setAttribute("aria-expanded", "false");
   };
 
-  toggle.addEventListener("click", () => {
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation();
     const isOpen = menu.classList.toggle("open");
     toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
   });
