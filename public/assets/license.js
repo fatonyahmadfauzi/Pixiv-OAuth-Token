@@ -11,7 +11,7 @@ async function loadLicense() {
 
     // Render plain text inside a pre block for formatting preservation
     body.innerHTML = '<pre style="background:transparent;border:none;padding:0;overflow-x:auto;"><code>' + 
-      text.replace(/</g, '&lt;').replace(/>/g, '&gt;') + 
+      escapeHTML(text) + 
       '</code></pre>';
       
     if (skeleton) skeleton.remove();

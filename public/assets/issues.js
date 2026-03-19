@@ -27,11 +27,11 @@ function renderIssue(issue) {
 
   var labels = (issue.labels || []).map(function(l) {
     // Use data attributes for custom colors, applied via JS classList
-    return '<span class="gh-issue-label gh-label-custom" data-bg="#' + l.color + '">' + l.name + '</span>';
+    return '<span class="gh-issue-label gh-label-custom" data-bg="#' + escapeHTML(l.color) + '">' + escapeHTML(l.name) + '</span>';
   }).join('');
 
   var body = issue.body
-    ? issue.body.replace(/\n/g, ' ').slice(0, 140) + (issue.body.length > 140 ? '…' : '')
+    ? escapeHTML(issue.body.replace(/\n/g, ' ').slice(0, 140)) + (issue.body.length > 140 ? '…' : '')
     : '';
 
   return [
@@ -39,15 +39,15 @@ function renderIssue(issue) {
       '<div class="gh-issue-icon"><i class="' + iconClass + '" aria-hidden="true"></i></div>',
       '<div class="gh-issue-content">',
         '<div class="gh-issue-top">',
-          '<a class="gh-issue-title" href="' + issue.html_url + '" target="_blank" rel="noopener">' + issue.title + '</a>',
+          '<a class="gh-issue-title" href="' + escapeHTML(issue.html_url) + '" target="_blank" rel="noopener">' + escapeHTML(issue.title) + '</a>',
           isPR ? '<span class="gh-issue-pr-badge">PR</span>' : '',
         '</div>',
         '<div class="gh-issue-meta">',
-          '<span>#' + issue.number + '</span>',
-          '<span>' + t('issueOpenedBy', {time: timeAgo(issue.created_at)}) + ' ',
-            '<a class="gh-issue-author" href="' + issue.user.html_url + '" target="_blank" rel="noopener">',
-              '<img class="gh-issue-avatar" src="' + issue.user.avatar_url + '&s=20" width="16" height="16" alt="' + issue.user.login + '">',
-              issue.user.login,
+          '<span>#' + escapeHTML(String(issue.number)) + '</span>',
+          '<span>' + t('issueOpenedBy', {time: escapeHTML(timeAgo(issue.created_at))}) + ' ',
+            '<a class="gh-issue-author" href="' + escapeHTML(issue.user.html_url) + '" target="_blank" rel="noopener">',
+              '<img class="gh-issue-avatar" src="' + escapeHTML(issue.user.avatar_url) + '&s=20" width="16" height="16" alt="' + escapeHTML(issue.user.login) + '">',
+              escapeHTML(issue.user.login),
             '</a>',
           '</span>',
         '</div>',
@@ -56,7 +56,7 @@ function renderIssue(issue) {
       '</div>',
       '<div class="gh-issue-aside">',
         issue.comments > 0
-          ? '<span class="gh-issue-comments" title="' + t('issueComments', {count: issue.comments}) + '"><i class="bi bi-chat" aria-hidden="true"></i>' + issue.comments + '</span>'
+          ? '<span class="gh-issue-comments" title="' + escapeHTML(t('issueComments', {count: issue.comments})) + '"><i class="bi bi-chat" aria-hidden="true"></i>' + escapeHTML(String(issue.comments)) + '</span>'
           : '',
       '</div>',
     '</article>'

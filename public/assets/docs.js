@@ -34,7 +34,7 @@ function buildTOC() {
     var id     = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
     h.id       = id;
     var indent = h.tagName === 'H3' ? 'gh-toc-h3' : '';
-    return '<a href="#' + id + '" class="gh-toc-link ' + indent + '">' + text + '</a>';
+    return '<a href="#' + escapeHTML(id) + '" class="gh-toc-link ' + indent + '">' + escapeHTML(text) + '</a>';
   }).join('');
 
   // Highlight active TOC link on scroll

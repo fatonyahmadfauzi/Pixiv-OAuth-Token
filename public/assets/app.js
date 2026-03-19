@@ -12,6 +12,14 @@ let tokenState = { access_token: "", refresh_token: "" };
 const q = (id) => document.getElementById(id);
 const output = q("output");
 
+// Basic HTML Escaper for XSS Prevention
+window.escapeHTML = function(str) {
+  if (typeof str !== "string") return "";
+  return str.replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  }[tag]));
+};
+
 // ---------------------- DISPLAY LANGUAGE SETTINGS ----------------------
 
 const LANG_ORDER = ["en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr"];
