@@ -44,7 +44,7 @@ function renderIssue(issue) {
         '</div>',
         '<div class="gh-issue-meta">',
           '<span>#' + issue.number + '</span>',
-          '<span>opened ' + timeAgo(issue.created_at) + ' by',
+          '<span>' + t('issueOpenedBy', {time: timeAgo(issue.created_at)}) + ' ',
             '<a class="gh-issue-author" href="' + issue.user.html_url + '" target="_blank" rel="noopener">',
               '<img class="gh-issue-avatar" src="' + issue.user.avatar_url + '&s=20" width="16" height="16" alt="' + issue.user.login + '">',
               issue.user.login,
@@ -56,7 +56,7 @@ function renderIssue(issue) {
       '</div>',
       '<div class="gh-issue-aside">',
         issue.comments > 0
-          ? '<span class="gh-issue-comments" title="' + issue.comments + ' comments"><i class="bi bi-chat" aria-hidden="true"></i>' + issue.comments + '</span>'
+          ? '<span class="gh-issue-comments" title="' + t('issueComments', {count: issue.comments}) + '"><i class="bi bi-chat" aria-hidden="true"></i>' + issue.comments + '</span>'
           : '',
       '</div>',
     '</article>'
@@ -116,14 +116,14 @@ function renderList(data, state) {
 
   var openLabel   = document.getElementById('openCountLabel');
   var closedLabel = document.getElementById('closedCountLabel');
-  if (state === 'open')   openLabel.textContent   = issues.length + ' Open';
-  else                    closedLabel.textContent = issues.length + ' Closed';
+  if (state === 'open')   openLabel.textContent   = t('issueCountOpen', {count: issues.length});
+  else                    closedLabel.textContent = t('issueCountClosed', {count: issues.length});
 
   if (!issues.length && !prs.length) {
     empty.hidden = false;
     document.getElementById('emptyStateText').textContent = state === 'open'
-      ? 'No open issues. Great job! 🎉'
-      : 'No closed issues yet.';
+      ? t('issueEmptyOpen')
+      : t('issueEmptyClosed');
     list.innerHTML = '';
     return;
   }
@@ -131,7 +131,7 @@ function renderList(data, state) {
   var html = '<div role="list">';
   if (issues.length) html += issues.map(renderIssue).join('');
   if (prs.length) {
-    html += '<div class="gh-section-divider"><span>Pull Requests (' + prs.length + ')</span></div>';
+    html += '<div class="gh-section-divider"><span>' + t('issuePrSection', {count: prs.length}) + '</span></div>';
     html += prs.map(renderIssue).join('');
   }
   html += '</div>';
