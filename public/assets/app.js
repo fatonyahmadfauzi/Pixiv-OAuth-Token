@@ -1557,11 +1557,14 @@ function setupArchDownloadRows() {
 }
 
 async function hydrateReleaseAssets() {
-  // Always render fallback links/commands first so tabs are never empty,
-  // then replace with release-resolved assets when available.
+  // Always render fallback links/commands first so tabs are never empty.
+  // The fetch(RELEASE_API) code has been disabled to prevent 404 errors 
+  // since the repository does not have any GitHub Releases yet. 
+  // Just use the fallback download URLs instead.
   setDownloadLinks();
   setCommandBlocks();
 
+  /*
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 5000);
@@ -1592,6 +1595,7 @@ async function hydrateReleaseAssets() {
   } catch {
     // Fallback already rendered above.
   }
+  */
 }
 
 function setCommandBlocks(assets = {}) {

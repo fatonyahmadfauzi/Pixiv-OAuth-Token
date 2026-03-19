@@ -78,10 +78,8 @@ async function loadIssues(state) {
   var list     = document.getElementById('issueList');
   var skeleton = document.getElementById('skeletonWrap');
   var empty    = document.getElementById('emptyState');
-  var error    = document.getElementById('errorState');
 
   empty.hidden = true;
-  error.hidden = true;
 
   if (!skeleton) {
     list.innerHTML = '<div class="gh-skeleton-wrap" id="skeletonWrap">'
@@ -104,7 +102,6 @@ async function loadIssues(state) {
   } catch (e) {
     var sw = document.getElementById('skeletonWrap');
     if (sw) sw.remove();
-    error.hidden = false;
   }
 }
 

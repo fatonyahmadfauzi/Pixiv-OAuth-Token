@@ -55,7 +55,6 @@ function buildTOC() {
 async function loadDocs() {
   var skeleton = document.getElementById('docSkeleton');
   var body     = document.getElementById('docBody');
-  var error    = document.getElementById('docError');
 
   try {
     var res = await fetch(RAW_README);
@@ -76,7 +75,6 @@ async function loadDocs() {
   } catch (e) {
     console.error('[docs.js] Failed to load README:', e);
     if (skeleton) skeleton.hidden = true;
-    if (error)    error.hidden    = false;
   }
 }
 
