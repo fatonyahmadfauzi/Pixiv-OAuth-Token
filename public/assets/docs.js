@@ -12,6 +12,15 @@ var RAW_README = 'https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth
 // marked v12 API — use marked.use() instead of setOptions({ highlight })
 marked.use({ gfm: true, breaks: true });
 
+// Suppress hljs warnings for unknown languages (bat, powershell, etc.)
+if (typeof hljs !== 'undefined') {
+  hljs.configure({ ignoreUnescapedHTML: true });
+  // Register common aliases that readme files use
+  ['bat','cmd','powershell','ps1','ps','text','plain'].forEach(function(lang) {
+    try { hljs.registerAliases(lang, { languageName: 'plaintext' }); } catch(e) {}
+  });
+}
+
 function buildTOC() {
   var body = document.getElementById('docBody');
   var nav  = document.getElementById('tocNav');
