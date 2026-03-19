@@ -63,7 +63,7 @@ async function loadDocs() {
 
     // Parse markdown → HTML
     body.innerHTML = marked.parse(md);
-    if (skeleton) skeleton.hidden = true;
+    if (skeleton) skeleton.remove();
     body.hidden = false;
 
     buildTOC();
@@ -74,6 +74,7 @@ async function loadDocs() {
     });
   } catch (e) {
     console.error('[docs.js] Failed to load README:', e);
+    if (skeleton) skeleton.remove();
   }
 }
 
