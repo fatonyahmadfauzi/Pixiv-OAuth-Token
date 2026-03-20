@@ -334,10 +334,10 @@ EXTRA_UI_EN = {
     "app_header": "Pixiv OAuth Token",
     "app_subtitle": "Modern login helper with quick token exchange",
     "docs": "Read the Docs",
-    "menu_docs": "Docs",
     "menu_tutorial": "Tutorial",
-    "menu_resources": "Resources",
-    "menu_contact": "Contact",
+    "menu_resources_docs": "Resources & Docs",
+    "menu_support": "Support",
+    "menu_social": "Social",
     "menu_developer": "Developer",
     "tutorial_open": "Open Tutorial",
     "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
@@ -346,8 +346,18 @@ EXTRA_UI_EN = {
     "tutorial_steps": "Step by step",
     "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
     "dev_info_title": "Developer",
-    "repo_link": "GitHub Repository",
-    "releases_link": "Latest Releases",
+    "res_docs_documentation": "Documentation",
+    "res_docs_license": "License",
+    "res_docs_pixiv": "Pixiv OAuth Endpoint",
+    "res_docs_python": "Python 3.11+",
+    "res_docs_vercel": "Deployed on Vercel",
+    "sup_contact": "Contact Us",
+    "sup_report": "Report an Issue",
+    "sup_discussions": "Discussions",
+    "sup_fatony": "Fatony Ahmad Fauzi",
+    "sup_donate": "Support / Donate",
+    "social_github": "GitHub",
+    "social_linkedin": "LinkedIn",
     "developer_prefix": "Developer",
 }
 
@@ -355,42 +365,215 @@ EXTRA_UI_OVERRIDES = {
     "id": {
         "app_subtitle": "Alat login modern untuk pertukaran token cepat",
         "docs": "Baca Dokumentasi",
-        "menu_docs": "Dokumen",
-        "menu_resources": "Resource",
-        "menu_contact": "Kontak",
+        "menu_resources_docs": "Resource & Dokumen",
+        "menu_support": "Dukungan",
+        "menu_social": "Media Sosial",
         "menu_developer": "Developer",
         "tutorial_open": "Buka Tutorial",
         "tutorial_header": "Cara Penggunaan",
         "tutorial_desc": "Ikuti langkah berikut untuk menukar token Pixiv OAuth dengan cepat.",
         "tutorial_steps": "Langkah-langkah",
         "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder tutorial_images/.",
-        "repo_link": "Repositori GitHub",
-        "releases_link": "Rilis Terbaru",
+        "res_docs_documentation": "Dokumentasi",
+        "res_docs_license": "Lisensi",
+        "res_docs_pixiv": "Endpoint Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Deployed on Vercel",
+        "sup_contact": "Hubungi Kami",
+        "sup_report": "Laporkan Masalah",
+        "sup_discussions": "Diskusi",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Dukung / Donasi",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Developer",
     },
     "jp": {
         "app_subtitle": "クイックトークン交換のためのモダンなログインヘルパー",
         "docs": "ドキュメントを読む",
-        "menu_docs": "ドキュメント",
-        "menu_resources": "リソース",
-        "menu_contact": "連絡先",
+        "menu_resources_docs": "リソース & ドキュメント",
+        "menu_support": "サポート",
+        "menu_social": "ソーシャル",
         "menu_developer": "開発者",
         "tutorial_open": "チュートリアルを開く",
         "tutorial_header": "使い方",
         "tutorial_desc": "このガイドに沿って Pixiv OAuth トークンを素早く取得できます。",
         "tutorial_steps": "手順",
         "dev_info_title": "開発者",
-        "repo_link": "GitHub リポジトリ",
-        "releases_link": "最新リリース",
+        "res_docs_documentation": "ドキュメント",
+        "res_docs_license": "ライセンス",
+        "res_docs_pixiv": "Pixiv OAuth エンドポイント",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Vercel にデプロイ",
+        "sup_contact": "お問い合わせ",
+        "sup_report": "問題を報告",
+        "sup_discussions": "ディスカッション",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "サポート / 寄付",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
         "developer_prefix": "開発者",
     },
-    "pl": {"menu_resources": "Zasoby", "menu_contact": "Kontakt", "menu_developer": "Deweloper", "docs": "Czytaj dokumentację", "repo_link": "Repozytorium GitHub", "releases_link": "Najnowsze wydania", "developer_prefix": "Deweloper"},
-    "zh": {"menu_resources": "资源", "menu_contact": "联系", "menu_developer": "开发者", "docs": "阅读文档", "repo_link": "GitHub 仓库", "releases_link": "最新发布", "developer_prefix": "开发者"},
-    "de": {"menu_resources": "Ressourcen", "menu_contact": "Kontakt", "menu_developer": "Entwickler", "docs": "Dokumentation lesen", "repo_link": "GitHub-Repository", "releases_link": "Neueste Releases", "developer_prefix": "Entwickler"},
-    "fr": {"menu_resources": "Ressources", "menu_contact": "Contact", "menu_developer": "Développeur", "docs": "Lire la documentation", "repo_link": "Dépôt GitHub", "releases_link": "Dernières versions", "developer_prefix": "Développeur"},
-    "es": {"menu_resources": "Recursos", "menu_contact": "Contacto", "menu_developer": "Desarrollador", "docs": "Leer la documentación", "repo_link": "Repositorio GitHub", "releases_link": "Últimas versiones", "developer_prefix": "Desarrollador"},
-    "ru": {"menu_resources": "Ресурсы", "menu_contact": "Контакты", "menu_developer": "Разработчик", "docs": "Читать документацию", "repo_link": "Репозиторий GitHub", "releases_link": "Последние релизы", "developer_prefix": "Разработчик"},
-    "pt": {"menu_resources": "Recursos", "menu_contact": "Contato", "menu_developer": "Desenvolvedor", "docs": "Ler a documentação", "repo_link": "Repositório GitHub", "releases_link": "Últimos releases", "developer_prefix": "Desenvolvedor"},
-    "kr": {"menu_resources": "리소스", "menu_contact": "연락처", "menu_developer": "개발자", "docs": "문서 읽기", "repo_link": "GitHub 저장소", "releases_link": "최신 릴리스", "developer_prefix": "개발자"},
+    "pl": {
+        "menu_resources_docs": "Zasoby & Dokumentacja",
+        "menu_support": "Wsparcie",
+        "menu_social": "Media społeczne",
+        "menu_developer": "Deweloper",
+        "docs": "Czytaj dokumentację",
+        "res_docs_documentation": "Dokumentacja",
+        "res_docs_license": "Licencja",
+        "res_docs_pixiv": "Punkt końcowy Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Wdrożone na Vercel",
+        "sup_contact": "Skontaktuj się z nami",
+        "sup_report": "Zgłoś problem",
+        "sup_discussions": "Dyskusje",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Wspomóż / Podaruj",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Deweloper"
+    },
+    "zh": {
+        "menu_resources_docs": "资源 & 文档",
+        "menu_support": "支持",
+        "menu_social": "社交媒体",
+        "menu_developer": "开发者",
+        "docs": "阅读文档",
+        "res_docs_documentation": "文档",
+        "res_docs_license": "许可证",
+        "res_docs_pixiv": "Pixiv OAuth 端点",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "部署在 Vercel 上",
+        "sup_contact": "联系我们",
+        "sup_report": "报告问题",
+        "sup_discussions": "讨论",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "支持 / 捐赠",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "开发者"
+    },
+    "de": {
+        "menu_resources_docs": "Ressourcen & Dokumentation",
+        "menu_support": "Support",
+        "menu_social": "Soziale Medien",
+        "menu_developer": "Entwickler",
+        "docs": "Dokumentation lesen",
+        "res_docs_documentation": "Dokumentation",
+        "res_docs_license": "Lizenz",
+        "res_docs_pixiv": "Pixiv OAuth Endpunkt",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Auf Vercel bereitgestellt",
+        "sup_contact": "Kontaktieren Sie uns",
+        "sup_report": "Problem melden",
+        "sup_discussions": "Diskussionen",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Unterstützung / Spende",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Entwickler"
+    },
+    "fr": {
+        "menu_resources_docs": "Ressources & Documentation",
+        "menu_support": "Support",
+        "menu_social": "Réseaux sociaux",
+        "menu_developer": "Développeur",
+        "docs": "Lire la documentation",
+        "res_docs_documentation": "Documentation",
+        "res_docs_license": "Licence",
+        "res_docs_pixiv": "Point de terminaison Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Déployé sur Vercel",
+        "sup_contact": "Nous contacter",
+        "sup_report": "Signaler un problème",
+        "sup_discussions": "Discussions",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Support / Donation",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Développeur"
+    },
+    "es": {
+        "menu_resources_docs": "Recursos & Documentación",
+        "menu_support": "Soporte",
+        "menu_social": "Redes sociales",
+        "menu_developer": "Desarrollador",
+        "docs": "Leer la documentación",
+        "res_docs_documentation": "Documentación",
+        "res_docs_license": "Licencia",
+        "res_docs_pixiv": "Endpoint de Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Implementado en Vercel",
+        "sup_contact": "Contáctenos",
+        "sup_report": "Reportar un problema",
+        "sup_discussions": "Discusiones",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Apoyo / Donación",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Desarrollador"
+    },
+    "ru": {
+        "menu_resources_docs": "Ресурсы & Документация",
+        "menu_support": "Поддержка",
+        "menu_social": "Социальные сети",
+        "menu_developer": "Разработчик",
+        "docs": "Читать документацию",
+        "res_docs_documentation": "Документация",
+        "res_docs_license": "Лицензия",
+        "res_docs_pixiv": "Endpoint Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Развернуто на Vercel",
+        "sup_contact": "Свяжитесь с нами",
+        "sup_report": "Сообщить об ошибке",
+        "sup_discussions": "Обсуждения",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Поддержка / Пожертвование",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Разработчик"
+    },
+    "pt": {
+        "menu_resources_docs": "Recursos & Documentação",
+        "menu_support": "Suporte",
+        "menu_social": "Redes sociais",
+        "menu_developer": "Desenvolvedor",
+        "docs": "Ler a documentação",
+        "res_docs_documentation": "Documentação",
+        "res_docs_license": "Licença",
+        "res_docs_pixiv": "Endpoint Pixiv OAuth",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Implantado no Vercel",
+        "sup_contact": "Contate-nos",
+        "sup_report": "Relatar um problema",
+        "sup_discussions": "Discussões",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Suporte / Doação",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "Desenvolvedor"
+    },
+    "kr": {
+        "menu_resources_docs": "리소스 & 문서",
+        "menu_support": "지원",
+        "menu_social": "소셜 미디어",
+        "menu_developer": "개발자",
+        "docs": "문서 읽기",
+        "res_docs_documentation": "문서",
+        "res_docs_license": "라이센스",
+        "res_docs_pixiv": "Pixiv OAuth 엔드포인트",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Vercel에 배포됨",
+        "sup_contact": "문의하기",
+        "sup_report": "문제 보고",
+        "sup_discussions": "토론",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "지원 / 기부",
+        "social_github": "GitHub",
+        "social_linkedin": "LinkedIn",
+        "developer_prefix": "개발자"
+    },
 }
 
 EXTRA_UI = {code: {**EXTRA_UI_EN, **EXTRA_UI_OVERRIDES.get(code, {})} for code in SUPPORTED_LANGS}
@@ -420,10 +603,10 @@ EXTRA_UI_EN = {
     "app_header": "Pixiv OAuth Token",
     "app_subtitle": "Modern login helper with quick token exchange",
     "docs": "Read the Docs",
-    "menu_docs": "Docs",
     "menu_tutorial": "Tutorial",
-    "menu_resources": "Resources",
-    "menu_contact": "Contact",
+    "menu_resources_docs": "Resources & Docs",
+    "menu_support": "Support",
+    "menu_social": "Social",
     "menu_developer": "Developer",
     "tutorial_open": "Open Tutorial",
     "tutorial_title": "Tutorial - Pixiv OAuth Token GUI",
@@ -432,8 +615,18 @@ EXTRA_UI_EN = {
     "tutorial_steps": "Step by step",
     "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
     "dev_info_title": "Developer",
-    "repo_link": "GitHub Repository",
-    "releases_link": "Latest Releases",
+    "res_docs_documentation": "Documentation",
+    "res_docs_license": "License",
+    "res_docs_pixiv": "Pixiv OAuth Endpoint",
+    "res_docs_python": "Python 3.11+",
+    "res_docs_vercel": "Deployed on Vercel",
+    "sup_contact": "Contact Us",
+    "sup_report": "Report an Issue",
+    "sup_discussions": "Discussions",
+    "sup_fatony": "Fatony Ahmad Fauzi",
+    "sup_donate": "Support / Donate",
+    "social_github": "GitHub",
+    "social_linkedin": "LinkedIn",
     "developer_prefix": "Developer",
 }
 
@@ -1286,23 +1479,30 @@ class App(tk.Tk):
     def _build_menu(self):
         menubar = tk.Menu(self)
 
-        docs_menu = tk.Menu(menubar, tearoff=0)
-        docs_menu.add_command(label=f"📘 {self.tx('docs')} (GitHub README)", command=lambda: open_url(README_URL))
-        menubar.add_cascade(label=self.tx("menu_docs"), menu=docs_menu)
-
         tutorial_menu = tk.Menu(menubar, tearoff=0)
         tutorial_menu.add_command(label=f"🧭 {self.tx('tutorial_open')}", command=self.show_tutorial)
         menubar.add_cascade(label=self.tx("menu_tutorial"), menu=tutorial_menu)
 
-        resource_menu = tk.Menu(menubar, tearoff=0)
-        resource_menu.add_command(label=self.tx("repo_link"), command=lambda: open_url(REPO_BASE_URL))
-        resource_menu.add_command(label=self.tx("releases_link"), command=lambda: open_url(RELEASES_URL))
-        menubar.add_cascade(label=self.tx("menu_resources"), menu=resource_menu)
+        resources_menu = tk.Menu(menubar, tearoff=0)
+        resources_menu.add_command(label=f"📄 {self.tx('res_docs_documentation')}", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/documentation"))
+        resources_menu.add_command(label=f"📋 {self.tx('res_docs_license')}", command=lambda: open_url("https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/LICENSE"))
+        resources_menu.add_command(label=f"🔐 {self.tx('res_docs_pixiv')}", command=lambda: open_url("https://oauth.secure.pixiv.net/auth/token"))
+        resources_menu.add_command(label=f"🐍 {self.tx('res_docs_python')}", command=lambda: open_url("https://www.python.org"))
+        resources_menu.add_command(label=f"☁️ {self.tx('res_docs_vercel')}", command=lambda: open_url("https://vercel.com"))
+        menubar.add_cascade(label=self.tx("menu_resources_docs"), menu=resources_menu)
 
-        contact_menu = tk.Menu(menubar, tearoff=0)
-        contact_menu.add_command(label="TikTok", command=lambda: open_url(TIKTOK_URL))
-        contact_menu.add_command(label="Twitter / X", command=lambda: open_url(TWITTER_URL))
-        menubar.add_cascade(label=self.tx("menu_contact"), menu=contact_menu)
+        support_menu = tk.Menu(menubar, tearoff=0)
+        support_menu.add_command(label=f"📧 {self.tx('sup_contact')}", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/contact"))
+        support_menu.add_command(label=f"🐛 {self.tx('sup_report')}", command=lambda: open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues"))
+        support_menu.add_command(label=f"💬 {self.tx('sup_discussions')}", command=lambda: open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/discussions"))
+        support_menu.add_command(label=f"👤 {self.tx('sup_fatony')}", command=lambda: open_url("https://github.com/fatonyahmadfauzi"))
+        support_menu.add_command(label=f"❤️ {self.tx('sup_donate')}", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/support"))
+        menubar.add_cascade(label=self.tx("menu_support"), menu=support_menu)
+
+        social_menu = tk.Menu(menubar, tearoff=0)
+        social_menu.add_command(label=f"🌐 {self.tx('social_github')}", command=lambda: open_url("https://github.com/fatonyahmadfauzi"))
+        social_menu.add_command(label=f"💼 {self.tx('social_linkedin')}", command=lambda: open_url("https://www.linkedin.com/in/fatonyahmadfauzi"))
+        menubar.add_cascade(label=self.tx("menu_social"), menu=social_menu)
 
         developer_menu = tk.Menu(menubar, tearoff=0)
         developer_menu.add_command(label=f"{self.tx('developer_prefix')}: {DEVELOPER_NAME}", command=self.show_developer_info)

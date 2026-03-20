@@ -30,7 +30,7 @@ for /f "usebackq delims=" %%v in (`python bump_version.py %BUMP%`) do set VER=%%
 python generate_version_info.py
 
 REM --- build portable ---
-pyinstaller --noconfirm --onefile ^
+python -m PyInstaller --noconfirm --onefile ^
   --name %OUTNAME% ^
   --icon=%ICON% ^
   --version-file=version_info.txt ^

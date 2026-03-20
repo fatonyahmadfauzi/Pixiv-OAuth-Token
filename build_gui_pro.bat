@@ -23,6 +23,10 @@ set ADD_TUTORIAL=
 set BUMP=none
 if not "%~1"=="" set BUMP=%~1
 
+REM Set TCL/TK environment for Python 3.14+
+set TCL_LIBRARY=C:\Users\faton\AppData\Local\Python\pythoncore-3.14-64\tcl\tcl8.6
+set TK_LIBRARY=C:\Users\faton\AppData\Local\Python\pythoncore-3.14-64\tcl\tk8.6
+
 REM Ensure deps
 python -m pip install -r requirements.txt
 
@@ -56,7 +60,7 @@ REM Bundle tutorial images if available
 if exist "tutorial_images" set ADD_TUTORIAL=--add-data "tutorial_images;tutorial_images"
 
 REM Build (windowed = no console)
-pyinstaller --noconfirm --onefile --windowed ^
+python -m PyInstaller --noconfirm --onefile --windowed ^
   --name %NAME% ^
   --icon=%ICON% ^
   --version-file=version_info.txt ^

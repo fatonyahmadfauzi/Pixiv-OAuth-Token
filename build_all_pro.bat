@@ -127,6 +127,8 @@ if exist make_installer_iss_dual.py (
 set ISCC_PATH=
 if exist "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" set ISCC_PATH=C:\Program Files (x86)\Inno Setup 6\ISCC.exe
 if exist "C:\Program Files\Inno Setup 6\ISCC.exe" set ISCC_PATH=C:\Program Files\Inno Setup 6\ISCC.exe
+if exist "C:\Program Files (x86)\Inno Setup 7\ISCC.exe" set ISCC_PATH=C:\Program Files (x86)\Inno Setup 7\ISCC.exe
+if exist "C:\Program Files\Inno Setup 7\ISCC.exe" set ISCC_PATH=C:\Program Files\Inno Setup 7\ISCC.exe
 if "%ISCC_PATH%"=="" (
   where ISCC.exe >nul 2>nul
   if not errorlevel 1 set ISCC_PATH=ISCC.exe
