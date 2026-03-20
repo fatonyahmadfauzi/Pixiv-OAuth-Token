@@ -1,5 +1,8 @@
 # Pixiv OAuth Token
 
+> 🌐 Available in other languages: [Polski](docs/lang/README-PL.md) | [中文](docs/lang/README-ZH.md) | [日本語](docs/lang/README-JP.md) | [Deutsch](docs/lang/README-DE.md) | [Français](docs/lang/README-FR.md) | [Español](docs/lang/README-ES.md) | [Русский](docs/lang/README-RU.md) | [Português](docs/lang/README-PT.md) | [Bahasa Indonesia](docs/lang/README-ID.md) | [한국어](docs/lang/README-KR.md)
+
+
 A toolkit to generate Pixiv OAuth tokens in three modes:
 
 - CLI (`pixiv_login.py`)
