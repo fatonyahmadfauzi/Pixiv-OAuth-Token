@@ -228,26 +228,32 @@ MENU_UI_EN = {
     "menu_title": "Main Menu",
     "opt_change_lang": "Change Language",
     "opt_tutorial": "Tutorial",
-    "opt_docs": "Read the Docs",
-    "opt_resources": "Resources",
-    "opt_contact": "Contact",
+    "opt_resources_docs": "Resources & Docs",
+    "opt_support": "Support",
     "opt_login": "Login",
-    "opt_developer": "Developer",
     "opt_exit": "Exit",
     "select_option": "Select option",
     "invalid_option": "Invalid option.",
     "choose_lang": "Choose language code",
     "lang_updated": "Default language updated to",
-    "resources_title": "Resources",
-    "res_repo": "GitHub Repository",
-    "res_release": "Latest Releases",
-    "contact_title": "Contact",
-    "contact_tiktok": "TikTok",
-    "contact_twitter": "Twitter / X",
+    "resources_docs_title": "Resources & Docs",
+    "res_docs_documentation": "Documentation",
+    "res_docs_license": "License",
+    "res_docs_pixiv": "Pixiv OAuth Endpoint",
+    "res_docs_python": "Python 3.11+",
+    "res_docs_vercel": "Deployed on Vercel",
+    "support_title": "Support",
+    "sup_contact": "Contact Us",
+    "sup_report": "Report an Issue",
+    "sup_discussions": "Discussions",
+    "sup_fatony": "Fatony Ahmad Fauzi",
+    "sup_donate": "Support / Donate",
+    "sup_github": "GitHub",
+    "sup_linkedin": "LinkedIn",
     "back": "Back",
     "tutorial_title": "CLI Tutorial",
     "tutorial_desc": "Follow these steps to get Pixiv OAuth tokens directly from this CLI.",
-    "tutorial_step1": "1) Choose option [6] Login.",
+    "tutorial_step1": "1) Choose option [5] Login.",
     "tutorial_step2": "2) Browser opens to Pixiv login page.",
     "tutorial_step3": "3) After login, copy full pixiv:// URL callback.",
     "tutorial_step4": "4) Paste URL/code in CLI prompt.",
@@ -262,23 +268,32 @@ MENU_UI_OVERRIDES = {
         "menu_title": "Menu Utama",
         "opt_change_lang": "Ubah Bahasa",
         "opt_tutorial": "Tutorial",
-        "opt_docs": "Baca Dokumentasi",
-        "opt_resources": "Resource",
-        "opt_contact": "Kontak",
+        "opt_resources_docs": "Sumber Daya & Dokumentasi",
+        "opt_support": "Dukungan",
         "opt_login": "Login",
         "opt_exit": "Keluar",
         "select_option": "Pilih opsi",
         "invalid_option": "Opsi tidak valid.",
         "choose_lang": "Pilih kode bahasa",
         "lang_updated": "Bahasa default diperbarui menjadi",
-        "resources_title": "Resource",
-        "res_repo": "Repositori GitHub",
-        "res_release": "Rilis Terbaru",
-        "contact_title": "Kontak",
+        "resources_docs_title": "Sumber Daya & Dokumentasi",
+        "res_docs_documentation": "Dokumentasi",
+        "res_docs_license": "Lisensi",
+        "res_docs_pixiv": "Endpoint OAuth Pixiv",
+        "res_docs_python": "Python 3.11+",
+        "res_docs_vercel": "Dijalankan di Vercel",
+        "support_title": "Dukungan",
+        "sup_contact": "Hubungi Kami",
+        "sup_report": "Laporkan Masalah",
+        "sup_discussions": "Diskusi",
+        "sup_fatony": "Fatony Ahmad Fauzi",
+        "sup_donate": "Dukungan / Donasi",
+        "sup_github": "GitHub",
+        "sup_linkedin": "LinkedIn",
         "back": "Kembali",
         "tutorial_title": "Tutorial CLI",
         "tutorial_desc": "Ikuti langkah berikut untuk mendapatkan token Pixiv OAuth langsung dari CLI ini.",
-        "tutorial_step1": "1) Pilih menu [6] Login.",
+        "tutorial_step1": "1) Pilih opsi [5] Login.",
         "tutorial_step2": "2) Browser akan terbuka ke halaman login Pixiv.",
         "tutorial_step3": "3) Setelah login, salin URL callback pixiv:// lengkap.",
         "tutorial_step4": "4) Paste URL/code pada prompt CLI.",
@@ -368,6 +383,64 @@ def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
     return new_lang
 
 
+def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(mt("resources_docs_title", lang), Ansi.BOLD + Ansi.BLUE, color_on))
+        print(colorize(f"  [a] {mt('res_docs_documentation', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [b] {mt('res_docs_license', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [c] {mt('res_docs_pixiv', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [d] {mt('res_docs_python', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [e] {mt('res_docs_vercel', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip().lower()
+        if choice == "a":
+            open_url("https://pixiv-o-auth-token.vercel.app/documentation")
+        elif choice == "b":
+            open_url("https://pixiv-o-auth-token.vercel.app/license")
+        elif choice == "c":
+            open_url("https://oauth.secure.pixiv.net/auth/token")
+        elif choice == "d":
+            open_url("https://www.python.org/")
+        elif choice == "e":
+            open_url("https://vercel.com/")
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+def _open_support_menu(lang: str, color_on: bool) -> None:
+    while True:
+        print()
+        print(colorize(mt("support_title", lang), Ansi.BOLD + Ansi.BLUE, color_on))
+        print(colorize(f"  [a] {mt('sup_contact', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [b] {mt('sup_report', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [c] {mt('sup_discussions', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [d] {mt('sup_fatony', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [e] {mt('sup_donate', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [f] {mt('sup_github', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"  [g] {mt('sup_linkedin', lang)}", Ansi.BLUE, color_on))
+        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
+        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip().lower()
+        if choice == "a":
+            open_url("https://pixiv-o-auth-token.vercel.app/contact")
+        elif choice == "b":
+            open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues")
+        elif choice == "c":
+            open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/discussions")
+        elif choice == "d":
+            open_url("https://github.com/fatonyahmadfauzi")
+        elif choice == "e":
+            open_url("https://pixiv-o-auth-token.vercel.app/support")
+        elif choice == "f":
+            open_url("https://github.com/fatonyahmadfauzi")
+        elif choice == "g":
+            open_url("https://www.linkedin.com/in/fatonyahmadfauzi")
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
 def _open_resources_menu(lang: str, color_on: bool) -> None:
     while True:
         print()
@@ -437,11 +510,9 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         print_cli_banner(current_lang, color_on)
         print(colorize(f"[1] {mt('opt_change_lang', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[2] {mt('opt_tutorial', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[3] {mt('opt_docs', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[4] {mt('opt_resources', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[5] {mt('opt_contact', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[7] {mt('opt_developer', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[3] {mt('opt_resources_docs', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[4] {mt('opt_support', current_lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[5] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
 
         choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
@@ -451,15 +522,11 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         elif choice == "2":
             show_cli_tutorial(current_lang, color_on)
         elif choice == "3":
-            open_url(README_URL)
+            _open_resources_docs_menu(current_lang, color_on)
         elif choice == "4":
-            _open_resources_menu(current_lang, color_on)
+            _open_support_menu(current_lang, color_on)
         elif choice == "5":
-            _open_contact_menu(current_lang, color_on)
-        elif choice == "6":
             login(current_lang, color_on)
-        elif choice == "7":
-            show_developer_info_cli(current_lang, color_on)
         elif choice == "0":
             return
         else:
