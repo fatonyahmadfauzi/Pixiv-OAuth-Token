@@ -1,0 +1,1 @@
+if(window.location.search.includes("success=true")){var cf=document.getElementById("contactForm"),cs=document.getElementById("contactSuccess");cf&&cs&&(cf.style.display="none",cs.style.display="flex"),window.history.replaceState({},document.title,window.location.pathname)}
