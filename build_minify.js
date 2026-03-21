@@ -105,8 +105,11 @@ if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
           removeComments: true,
           minifyJS: true,
           minifyCSS: true,
-          removeRedundantAttributes: true,
-          removeEmptyAttributes: true
+          removeRedundantAttributes: false, // Changed to false
+          removeEmptyAttributes: true,
+          removeScriptTypeAttributes: true, // Added
+          removeStyleLinkTypeAttributes: true, // Added
+          useShortDoctype: true // Added
         });
       }
 
