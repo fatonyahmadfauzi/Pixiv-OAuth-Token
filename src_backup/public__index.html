@@ -40,12 +40,11 @@
   <meta name="apple-mobile-web-app-title" content="Pixiv OAuth">
   <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/">
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="alternate icon" type="image/x-icon" href="/assets/favicon.svg">
-  <link rel="shortcut icon" href="/assets/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css">
   <link rel="stylesheet" href="/assets/style.css">
@@ -235,10 +234,10 @@
   </main>
 
   <footer class="tutorial-docs-footer site-footer" id="mainFooter"></footer>
-  <script src="/components/footer.js"></script>
+  <script defer src="/components/footer.js"></script>
 
-  <script src="/assets/schema.js"></script>
-  <script src="/assets/app.js"></script>
+  <script defer src="/assets/schema.js"></script>
+  <script defer src="/assets/app.js"></script>
 </body>
 
 </html>
