@@ -23,9 +23,9 @@ set ADD_TUTORIAL=
 set BUMP=none
 if not "%~1"=="" set BUMP=%~1
 
-REM Set TCL/TK environment for Python 3.14+
-set TCL_LIBRARY=C:\Users\faton\AppData\Local\Python\pythoncore-3.14-64\tcl\tcl8.6
-set TK_LIBRARY=C:\Users\faton\AppData\Local\Python\pythoncore-3.14-64\tcl\tk8.6
+REM Set TCL/TK environment for Python 3.11
+set TCL_LIBRARY=C:\Users\faton\AppData\Local\Programs\Python\Python311\tcl\tcl8.6
+set TK_LIBRARY=C:\Users\faton\AppData\Local\Programs\Python\Python311\tcl\tk8.6
 
 REM Ensure deps
 python -m pip install -r requirements.txt
@@ -64,6 +64,9 @@ python -m PyInstaller --noconfirm --onefile --windowed ^
   --name %NAME% ^
   --icon=%ICON% ^
   --version-file=version_info.txt ^
+  --hidden-import tkinter ^
+  --hidden-import tkinter.ttk ^
+  --hidden-import _tkinter ^
   %ADD_TUTORIAL% ^
   %SCRIPT%
 

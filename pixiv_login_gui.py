@@ -818,7 +818,7 @@ class App(tk.Tk):
         self.open_login_btn = ttk.Button(top, text="Open Login Page", style="Primary.TButton", command=self.open_login)
         self.open_login_btn.pack(side="right")
 
-        self.docs_btn = ttk.Button(top, text="Read the Docs", style="Secondary.TButton", command=lambda: open_url(README_URL))
+        self.docs_btn = ttk.Button(top, text="Read the Docs", style="Secondary.TButton", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/documentation"))
         self.docs_btn.pack(side="right", padx=(0, 8))
 
         self.refresh_btn = ttk.Button(top, text="Refresh Token", style="Secondary.TButton", command=self.refresh_token)
@@ -996,7 +996,7 @@ class App(tk.Tk):
 
         footer = ttk.Frame(container, style="App.TFrame")
         footer.pack(fill="x", pady=(10, 0))
-        ttk.Button(footer, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url(README_URL)).pack(side="right")
+        ttk.Button(footer, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/documentation")).pack(side="right")
 
 
 
