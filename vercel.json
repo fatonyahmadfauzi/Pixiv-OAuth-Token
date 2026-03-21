@@ -2,13 +2,13 @@
   "version": 2,
   "headers": [
     {
-      "source": "/assets/(.*\\.(js|css|png|svg|woff2|woff|ico|jpg|jpeg|webp|gif))",
+      "source": "/assets/:path*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/components/(.*\\.js)",
+      "source": "/components/:path*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
