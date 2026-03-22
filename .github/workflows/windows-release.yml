@@ -1,14 +1,19 @@
-name: Windows Release Build
+name: Windows Auto Release
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - "v*.*.*"  # Trigger automation whenever you push a version tag like v1.0.6
 
 jobs:
-  build:
+  build_and_release:
+    name: Build & Publish Release
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -16,37 +21,28 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install deps
+      - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Build portable (no bump)
-        shell: pwsh
-        run: |
-          cmd /c build_portable_pro.bat none
+          pip install -r app\requirements.txt
 
       - name: Install Inno Setup
         shell: pwsh
         run: |
           choco install innosetup -y
 
-      - name: Generate .iss + Build installer
+      - name: Build All Applications
         shell: pwsh
         run: |
-          python make_installer_iss.py
-          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "pixiv_login_installer.iss"
+          cmd /c "scripts\build_all_pro.bat none nopause"
 
-      - name: Build ZIP release
-        shell: pwsh
-        run: |
-          cmd /c build_release_zip.bat
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Publish to GitHub Releases
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: windows-release
-          path: |
-            dist_portable\*
-            dist_installer\*
-            *.zip
+          files: |
+            dist_release/PixivOAuthRelease_*.zip
+            dist_portable/*.exe
+            dist_gui/*.exe
+            dist_installer/*.exe
+          generate_release_notes: true

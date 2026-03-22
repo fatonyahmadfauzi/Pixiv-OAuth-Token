@@ -13,13 +13,16 @@ PUBLISHER = "Fatony Ahmad Fauzi"
 EXE_CLI = r"dist_portable\pixiv_login_plus.exe"
 EXE_GUI = r"dist_gui\pixiv_login_gui.exe"
 OUT_DIR = "dist_installer"
-ICON_FILE = "pixiv_oauth.ico"
+ICON_FILE = r"app\pixiv_oauth.ico"
 
 # Keep a stable AppId GUID across regenerations by storing it (optional).
-GUID_FILE = Path("installer_guid.txt")
+GUID_FILE = Path(__file__).parent / "installer_guid.txt"
 
 def load_version() -> str:
-    p = Path("version.json")
+    # version.json is at project root, so checking CWD or parent is useful
+    p = Path(__file__).parent.parent / "version.json"
+    if not p.exists():
+        p = Path("version.json")
     if not p.exists():
         return "1.0.0"
     try:
@@ -51,6 +54,7 @@ def main():
 #define ExeGUI "{EXE_GUI}"
 
 [Setup]
+SourceDir=..
 AppId={{{{{appid}}}}}
 AppName={{#ProductName}}
 AppVersion={{#ProductVersion}}
@@ -174,8 +178,9 @@ begin
 end;
 """
 
-    Path("pixiv_login_installer_dual.iss").write_text(iss, encoding="utf-8")
-    print("Wrote pixiv_login_installer_dual.iss (version:", ver, "AppId:", appid + ")")
+    out_path = Path(__file__).parent / "pixiv_login_installer_dual.iss"
+    out_path.write_text(iss, encoding="utf-8")
+    print("Wrote", out_path.name, "(version:", ver, "AppId:", appid + ")")
 
 if __name__ == "__main__":
     main()

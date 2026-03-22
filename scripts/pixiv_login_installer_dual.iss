@@ -2,13 +2,14 @@
 ; Do not edit manually unless you know what you're doing.
 
 #define ProductName "Pixiv OAuth"
-#define ProductVersion "1.0.38"
+#define ProductVersion "1.0.2"
 #define Publisher "Fatony Ahmad Fauzi"
 #define ExeCLI "dist_portable\pixiv_login_plus.exe"
 #define ExeGUI "dist_gui\pixiv_login_gui.exe"
 
 [Setup]
-AppId={{6DAF3DDD-BDF0-47B1-A0F4-D8E3D77A955A}}
+SourceDir=..
+AppId={{11C8C1B6-D648-44E8-B9D1-7161D53D2C9E}}
 AppName={#ProductName}
 AppVersion={#ProductVersion}
 AppPublisher={#Publisher}
@@ -21,7 +22,7 @@ Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
-SetupIconFile=pixiv_oauth.ico
+SetupIconFile=app\pixiv_oauth.ico
 UninstallDisplayIcon={app}\pixiv_login_gui.exe
 
 [Languages]

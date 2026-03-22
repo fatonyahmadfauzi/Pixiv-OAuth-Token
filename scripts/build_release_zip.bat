@@ -65,7 +65,13 @@ if exist "downloads\Pixiv OAuth GUi Setup_latest.exe" (
 :copied_gui_inst
 
 if exist "version.json" copy /y "version.json" "%RELEASE_DIR%\version.json" >nul
-if exist "README.md" copy /y "README.md" "%RELEASE_DIR%\README.md" >nul
+if exist "README.md" (
+  if exist "scripts\clean_readme_for_release.py" (
+    python scripts\clean_readme_for_release.py "README.md" "%RELEASE_DIR%\README.md"
+  ) else (
+    copy /y "README.md" "%RELEASE_DIR%\README.md" >nul
+  )
+)
 if exist "CHANGELOG.md" copy /y "CHANGELOG.md" "%RELEASE_DIR%\CHANGELOG.md" >nul
 if exist "SECURITY.md" copy /y "SECURITY.md" "%RELEASE_DIR%\SECURITY.md" >nul
 if exist "LICENSE.txt" copy /y "LICENSE.txt" "%RELEASE_DIR%\LICENSE.txt" >nul

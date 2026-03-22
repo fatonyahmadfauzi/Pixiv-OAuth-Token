@@ -65,8 +65,9 @@ build_all_pro.bat patch noinst nosign
 
 - Portable CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
 - Portable GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
-- Installer CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe`
-- Installer GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe`
+- Unified Installer: `dist_installer\PixivLoginSetup_v<version>.exe` (Installs both CLI + GUI)
+- Installer CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Copy of unified installer)
+- Installer GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Copy of unified installer)
 - Release ZIP: `PixivOAuthRelease_v<version>.zip`
 - Auto-synced folder: `downloads/` (latest portable/setup + release ZIP)
 
@@ -213,6 +214,11 @@ Or install directly from GitHub:
 ```bash
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
+
+## 🧾 Changelog
+
+See all notable changes for each version in the [CHANGELOG.md](CHANGELOG.md) file.  
+📦 You can also view release notes directly on the [GitHub Releases page](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
 ## License
 

@@ -109,19 +109,21 @@ if errorlevel 1 (
 REM --- Build installer (optional) ---
 if %SKIP_INST%==1 goto after_inst
 
+if exist scripts\make_installer_iss_dual.py (
+  python scripts\make_installer_iss_dual.py
+) else if exist make_installer_iss.py (
+  python make_installer_iss.py
+)
+
 set ISS_FILE=
 if exist scripts\pixiv_login_installer_dual.iss set ISS_FILE=scripts\pixiv_login_installer_dual.iss
+if "%ISS_FILE%"=="" if exist pixiv_login_installer_dual.iss set ISS_FILE=pixiv_login_installer_dual.iss
+if "%ISS_FILE%"=="" if exist scripts\pixiv_login_installer.iss set ISS_FILE=scripts\pixiv_login_installer.iss
 if "%ISS_FILE%"=="" if exist pixiv_login_installer.iss set ISS_FILE=pixiv_login_installer.iss
 
 if "%ISS_FILE%"=="" (
   echo [WARN] No .iss installer script found. Skipping installer.
   goto after_inst
-)
-
-if exist scripts\make_installer_iss_dual.py (
-  python scripts\make_installer_iss_dual.py
-) else if exist make_installer_iss.py (
-  python make_installer_iss.py
 )
 
 set ISCC_PATH=
