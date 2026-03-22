@@ -26,6 +26,12 @@ import requests
 
 
 # ===== CONFIG =====
+DEBUG_MODE = False
+
+def debug_print(msg: str, color_on: bool = True):
+    if DEBUG_MODE:
+        print(f"\033[35m[DEBUG] {msg}\033[0m" if color_on else f"[DEBUG] {msg}")
+
 USER_AGENT = "PixivAndroidApp/5.0.234 (Android 11; Pixel 5)"
 REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback"
 LOGIN_URL = "https://app-api.pixiv.net/web/v1/login"
@@ -263,6 +269,10 @@ MENU_UI_EN = {
     "tutorial_step6": "6) access_token and refresh_token are shown.",
     "tutorial_example": "Example output",
     "developer_info": "Developer Information",
+    "opt_debug": "Toggle Debug Mode",
+    "debug_enabled": "Debug mode is now ENABLED.",
+    "debug_disabled": "Debug mode is now DISABLED.",
+    "debug_current": "Current"
 }
 
 MENU_UI_OVERRIDES = {
@@ -305,6 +315,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_token dan refresh_token ditampilkan.",
         "tutorial_example": "Contoh output",
         "developer_info": "Informasi Pengembang",
+        "opt_debug": "Alihkan Mode Debug",
+        "debug_enabled": "Mode debug sekarang DIAKTIFKAN.",
+        "debug_disabled": "Mode debug sekarang DINONAKTIFKAN.",
+        "debug_current": "Saat ini"
     },
     "jp": {
         "menu_title": "メインメニュー",
@@ -345,6 +359,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_tokenおよびrefresh_tokenが表示されます。",
         "tutorial_example": "出力例",
         "developer_info": "開発者情報",
+        "opt_debug": "デバッグモードの切り替え",
+        "debug_enabled": "デバッグモードが【有効】になりました。",
+        "debug_disabled": "デバッグモードが【無効】になりました。",
+        "debug_current": "現在"
     },
     "pl": {
         "menu_title": "Menu główne",
@@ -385,6 +403,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) Wyświetlane są access_token i refresh_token.",
         "tutorial_example": "Przykład wyniku",
         "developer_info": "Informacje o deweloperze",
+        "opt_debug": "Przełącz tryb debugowania",
+        "debug_enabled": "Tryb debugowania jest teraz WŁĄCZONY.",
+        "debug_disabled": "Tryb debugowania jest teraz WYŁĄCZONY.",
+        "debug_current": "Obecny"
     },
     "zh": {
         "menu_title": "主菜单",
@@ -425,6 +447,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) 显示access_token和refresh_token。",
         "tutorial_example": "输出示例",
         "developer_info": "开发者信息",
+        "opt_debug": "切换调试模式",
+        "debug_enabled": "调试模式现在已启用。",
+        "debug_disabled": "调试模式现在已禁用。",
+        "debug_current": "当前"
     },
     "de": {
         "menu_title": "Hauptmenü",
@@ -465,6 +491,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_token und refresh_token werden angezeigt.",
         "tutorial_example": "Ausgabebeispiel",
         "developer_info": "Entwicklerinformationen",
+        "opt_debug": "Debug-Modus umschalten",
+        "debug_enabled": "Debug-Modus ist jetzt AKTIVIERT.",
+        "debug_disabled": "Debug-Modus ist jetzt DEAKTIVIERT.",
+        "debug_current": "Aktuell"
     },
     "fr": {
         "menu_title": "Menu principal",
@@ -505,6 +535,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_token et refresh_token sont affichés.",
         "tutorial_example": "Exemple de sortie",
         "developer_info": "Informations sur le développeur",
+        "opt_debug": "Basculer le mode débogage",
+        "debug_enabled": "Le mode débogage est maintenant ACTIVÉ.",
+        "debug_disabled": "Le mode débogage est maintenant DÉSACTIVÉ.",
+        "debug_current": "Actuel"
     },
     "es": {
         "menu_title": "Menú principal",
@@ -545,6 +579,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) Se muestran access_token y refresh_token.",
         "tutorial_example": "Salida de ejemplo",
         "developer_info": "Información del desarrollador",
+        "opt_debug": "Alternar Modo Depuración",
+        "debug_enabled": "El modo de depuración ahora está ACTIVADO.",
+        "debug_disabled": "El modo de depuración ahora está DESACTIVADO.",
+        "debug_current": "Actual"
     },
     "ru": {
         "menu_title": "Главное меню",
@@ -585,6 +623,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) Отображаются access_token и refresh_token.",
         "tutorial_example": "Пример вывода",
         "developer_info": "Информация о разработчике",
+        "opt_debug": "Переключить режим отладки",
+        "debug_enabled": "Режим отладки теперь ВКЛЮЧЕН.",
+        "debug_disabled": "Режим отладки теперь ВЫКЛЮЧЕН.",
+        "debug_current": "Текущий"
     },
     "pt": {
         "menu_title": "Menu principal",
@@ -625,6 +667,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_token e refresh_token são exibidos.",
         "tutorial_example": "Exemplo de saída",
         "developer_info": "Informações do desenvolvedor",
+        "opt_debug": "Alternar Modo de Depuração",
+        "debug_enabled": "O modo de depuração agora está ATIVADO.",
+        "debug_disabled": "O modo de depuração agora está DESATIVADO.",
+        "debug_current": "Atual"
     },
     "kr": {
         "menu_title": "메인 메뉴",
@@ -665,6 +711,10 @@ MENU_UI_OVERRIDES = {
         "tutorial_step6": "6) access_token 및 refresh_token이 표시됩니다.",
         "tutorial_example": "출력 예시",
         "developer_info": "개발자 정보",
+        "opt_debug": "디버그 모드 전환",
+        "debug_enabled": "디버그 모드가 이제 활성화되었습니다.",
+        "debug_disabled": "디버그 모드가 이제 비활성화되었습니다.",
+        "debug_current": "현재"
     },
 }
 
@@ -839,6 +889,7 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
 
 def run_interactive_menu(lang: str, color_on: bool) -> None:
+    global DEBUG_MODE
     current_lang = lang
     while True:
         print()
@@ -849,11 +900,22 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         print(colorize(f"[4] {mt('opt_support', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[5] {mt('opt_social', current_lang)}", Ansi.GREEN, color_on))
         print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
+        debug_status = "ON" if DEBUG_MODE else "OFF"
+        print(colorize(f"[7] {mt('opt_debug', current_lang)} ({mt('debug_current', current_lang)}: {debug_status})", Ansi.MAGENTA, color_on))
         print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
 
         choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+        debug_print(f"User selected main menu option: {choice}")
 
-        if choice == "1":
+        if choice == "7":
+            DEBUG_MODE = not DEBUG_MODE
+            print(colorize(mt("debug_enabled", current_lang) if DEBUG_MODE else mt("debug_disabled", current_lang), Ansi.GREEN if DEBUG_MODE else Ansi.RED, color_on))
+            try:
+                input("\nPress Enter to continue...")
+            except Exception:
+                pass
+            continue
+        elif choice == "1":
             current_lang = _choose_language_interactive(current_lang, color_on)
         elif choice == "2":
             show_cli_tutorial(current_lang, color_on)
@@ -912,17 +974,20 @@ def colorize(text: str, color: str, enabled: bool) -> str:
 def load_config() -> dict:
     try:
         if CONFIG_FILE.exists():
-            return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        pass
+            debug_print(f"Loaded config from {CONFIG_FILE}"); return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+    except Exception as e:
+        debug_print(f"Failed to load config: {e}")
     return {}
 
 
 def save_config(cfg: dict) -> None:
+    debug_print(f"Saving config: {cfg}")
     CONFIG_FILE.write_text(json.dumps(cfg, indent=2, ensure_ascii=False), encoding="utf-8")
+    debug_print(f"Config successfully written to disk")
 
 
 def set_default_lang(lang: str) -> None:
+    debug_print(f"Setting default lang to: {lang}")
     cfg = load_config()
     cfg["default_lang"] = lang
     save_config(cfg)
@@ -931,6 +996,7 @@ def set_default_lang(lang: str) -> None:
 def get_default_lang_from_config() -> str | None:
     cfg = load_config()
     lang = cfg.get("default_lang")
+    debug_print(f"Reading default lang from config: {lang}")
     if isinstance(lang, str) and lang in SUPPORTED_LANGS:
         return lang
     return None
@@ -938,6 +1004,7 @@ def get_default_lang_from_config() -> str | None:
 
 # ===== SYSTEM LANGUAGE DETECTION =====
 def _normalize_locale(loc: str | None) -> str | None:
+    debug_print(f"Normalizing locale: {loc}")
     if not loc:
         return None
     # Examples: "id_ID", "en_US", "ja_JP", "zh_CN", "pt_BR"
@@ -949,6 +1016,7 @@ def _normalize_locale(loc: str | None) -> str | None:
 
 
 def detect_system_lang() -> str | None:
+    debug_print("Detecting system language...")
     # Try environment first
     for key in ("LC_ALL", "LC_MESSAGES", "LANG"):
         v = _normalize_locale(os.environ.get(key))
@@ -991,12 +1059,14 @@ def map_locale_to_lang(two_letter: str) -> str | None:
         "pl": "pl",
     }
     lang = mapping.get(two_letter.lower())
+    debug_print(f"Mapping OS locale {two_letter} to {lang}")
     if lang in SUPPORTED_LANGS:
         return lang
     return None
 
 
 def resolve_lang(explicit_lang: str | None) -> str:
+    debug_print(f"Resolving language (explicit={explicit_lang})...")
     if explicit_lang and explicit_lang in SUPPORTED_LANGS:
         return explicit_lang
     cfg_lang = get_default_lang_from_config()
@@ -1010,18 +1080,22 @@ def resolve_lang(explicit_lang: str | None) -> str:
 
 # ===== PKCE =====
 def s256(data: bytes) -> str:
+    debug_print("Hashing and encoding PKCE challenge via SHA-256")
     return urlsafe_b64encode(sha256(data).digest()).rstrip(b"=").decode("ascii")
 
 
 def oauth_pkce(transform):
     code_verifier = token_urlsafe(32)
     code_challenge = transform(code_verifier.encode("ascii"))
+    debug_print(f"Generated PKCE verifier: {code_verifier[:5]}... challenge: {code_challenge[:5]}...")
     return code_verifier, code_challenge
 
 
 # ===== PRINT TOKEN =====
 def print_auth_token_response(response, lang: str, color_on: bool):
     L = get_lang(lang)
+    debug_print(f"Response Status: {response.status_code}")
+    debug_print(f"Raw Response Body: {response.text}")
     data = response.json()
 
     if "access_token" not in data:
@@ -1048,24 +1122,29 @@ def login(lang: str, color_on: bool):
     }
 
     login_url = f"{LOGIN_URL}?{urlencode(login_params)}"
+    debug_print(f"Generated Login URL: {login_url}")
 
     print(colorize(L["open_browser"], Ansi.CYAN, color_on))
     open_url(login_url)
 
     raw_input_value = input("\n" + colorize(L["paste_url"], Ansi.YELLOW, color_on) + "\n").strip()
+    debug_print(f"User inputted raw value: {raw_input_value}")
 
     try:
         if raw_input_value.startswith("pixiv://"):
             parsed = urlparse(raw_input_value)
             code = parse_qs(parsed.query)["code"][0]
+            debug_print(f"Parsed code from pixiv:// URL: {code}")
         else:
             code = raw_input_value
-    except Exception:
+    except Exception as e:
+        debug_print(f"Failed to parse pixiv code: {e}")
         print(colorize(L["invalid_code"], Ansi.RED, color_on))
         return
 
     print(colorize(L["code_detected"], Ansi.BLUE, color_on), code)
 
+    debug_print(f"Sending POST request to {AUTH_TOKEN_URL} for token exchange")
     response = requests.post(
         AUTH_TOKEN_URL,
         data={
@@ -1086,6 +1165,9 @@ def login(lang: str, color_on: bool):
 
 # ===== REFRESH FLOW =====
 def refresh(refresh_token: str, lang: str, color_on: bool):
+    debug_print("User selected refresh flow...")
+    debug_print(f"Refresh Token used: {refresh_token[:10]}...")
+    debug_print(f"Sending POST request to {AUTH_TOKEN_URL} for token exchange")
     response = requests.post(
         AUTH_TOKEN_URL,
         data={
@@ -1157,6 +1239,8 @@ def main():
 
     args = parser.parse_args()
     color_on = _supports_color(args.no_color)
+    debug_print(f"Parsed arguments: {args}", color_on)
+    debug_print(f"Command selected: {args.command}", color_on)
 
     if args.command == "login":
         lang = resolve_lang(args.lang)
