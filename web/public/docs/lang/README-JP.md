@@ -1,7 +1,7 @@
 # Pixiv OAuth Token
 
 
-> 🌐 他の言語でも利用可能: [English](../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+> 🌐 他の言語でも利用可能: [English](../../README.md)
 
 ---
 Pixiv OAuth トークンを 3 つのモードで生成するツールキット:
@@ -86,10 +86,10 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 動的多言語サポート (自動検出付き 11 言語) と包括的な SEO メタデータを備えた、高度に最適化された応答性の高い Web アプリです。
 
 ### 主要な Web 機能
-- **豊富なページ**: ホームページ、ダウンロード、チュートリアル、連絡先、問題と PR、ディスカッション トラッカー、ドキュメント マークダウン ビューア、およびサポート/寄付の統合。
+- **豊富なページ**: ホームページ、ダウンロード、チュートリアル、連絡先、問題と PR、ディスカッション トラッカー、ドキュメント Markdown ビューア、およびサポート/寄付の統合。
 - **高度な SEO**: 自動挿入されたローカライズされた `<meta>` タグ、広範な JSON-LD 構造化データ (サイトリンク、ソフトウェア アプリケーションなど)、自動 `hreflang` 生成、`robots.txt`、および `sitemap.xml`。
 - **セキュリティとパフォーマンス**: JavaScript の自動難読化 (極端なマングリング)、HTML/CSS の縮小 (`node build_minify.js` 経由)、および `escapeHTML` 経由のクリーンな `XSS` 防止。
-- **GitHub API プロキシ**: サーバーレス Vercel エンドポイント (`/api/github`) は、パーソナル アクセス トークン (`GITHUB_PAT`) を使用して GitHub API リクエストをプロキシし、公開レート制限を完全にバイパスします。
+- **GitHub API プロキシ**: サーバーレス Vercel エンドポイント (`/api/github`) プロキシ GitHub API リクエストは、パーソナル アクセス トークン (`GITHUB_PAT`) を使用してパブリック レート制限を完全にバイパスします。
 
 ### Vercel にデプロイする
 
@@ -97,7 +97,7 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 2. Vercel → **新規追加...** → **プロジェクト** → このリポジトリをインポートします。
 3. Vercel で環境変数を設定します。
 - `PIXIV_CLIENT_SECRET`: Pixiv OAuth クライアント シークレット。
-- `GITHUB_PAT`: オプションですが強くお勧めします (リポジトリの問題とリリースのレート制限を回避するための GitHub パーソナル アクセス トークン)。
+- `GITHUB_PAT`: オプションですが強く推奨されます (リポジトリの問題とリリースのレート制限を回避するための GitHub パーソナル アクセス トークン)。
 4. `vercel.json` はすでに以下を構成しています。
 - クリーンな URL (`.html` の除去)
 - `public/` からの静的ホスティング

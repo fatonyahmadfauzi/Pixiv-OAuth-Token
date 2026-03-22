@@ -1,14 +1,14 @@
 @echo off
 setlocal enabledelayedexpansion
-cd /d "%~dp0"
+cd /d "%~dp0\.."
 
 REM ==========================================================
 REM build_all_pro.bat
 REM 1-click build for:
-REM   - CLI portable (build_portable_pro.bat)   -> dist_portable\
-REM   - GUI portable (build_gui_pro.bat)        -> dist_gui\
+REM   - CLI portable (scripts\build_portable_pro.bat)   -> dist_portable\
+REM   - GUI portable (scripts\build_gui_pro.bat)        -> dist_gui\
 REM   - Installer (optional)                    -> dist_installer\
-REM   - Release ZIP (build_release_zip.bat)     -> PixivOAuthRelease_vX.Y.Z.zip
+REM   - Release ZIP (scripts\build_release_zip.bat)     -> PixivOAuthRelease_vX.Y.Z.zip
 REM
 REM Usage:
 REM   build_all_pro.bat [patch|minor|major|none] [noinst] [nosign] [nozip] [nogui] [nopause]
@@ -20,7 +20,7 @@ set SKIP_SIGN=0
 set SKIP_ZIP=0
 set SKIP_GUI=0
 set NO_PAUSE=0
-set ICON_FILE=pixiv_oauth.ico
+set ICON_FILE=app\pixiv_oauth.ico
 
 if not "%~1"=="" set BUMP=%~1
 
@@ -39,7 +39,7 @@ echo Bump   : %BUMP%
 echo Icon   : %ICON_FILE%
 if %SKIP_GUI%==1 (echo GUI      : SKIP) else (echo GUI      : YES)
 if %SKIP_INST%==1 (echo Installer: SKIP) else (echo Installer: AUTO)
-if %SKIP_SIGN%==1 (echo Signing  : SKIP) else (echo Signing  : AUTO if sign_auto.bat exists)
+if %SKIP_SIGN%==1 (echo Signing  : SKIP) else (echo Signing  : AUTO if scripts\sign_auto.bat exists)
 if %SKIP_ZIP%==1  (echo ZIP      : SKIP) else (echo ZIP      : YES)
 echo.
 
@@ -68,8 +68,8 @@ if exist downloads (
 if exist dist_release del /q "dist_release\PixivOAuthRelease_v*.zip" 2>nul
 del /q "PixivOAuthRelease_v*.zip" 2>nul
 
-if exist clean_build.bat (
-  call clean_build.bat
+if exist scripts\clean_build.bat (
+  call scripts\clean_build.bat
 )
 
 if not exist "%ICON_FILE%" (
@@ -77,17 +77,17 @@ if not exist "%ICON_FILE%" (
   exit /b 1
 )
 
-python check_icon_square.py "%ICON_FILE%"
+python scripts\check_icon_square.py "%ICON_FILE%"
 if errorlevel 1 exit /b 1
 
 set BUILD_ICON=%ICON_FILE%
 
 REM --- Build CLI (this bumps version by default) ---
-if not exist build_portable_pro.bat (
-  echo [ERROR] build_portable_pro.bat not found.
+if not exist scripts\build_portable_pro.bat (
+  echo [ERROR] scripts\build_portable_pro.bat not found.
   exit /b 1
 )
-call build_portable_pro.bat %BUMP%
+call scripts\build_portable_pro.bat %BUMP%
 if errorlevel 1 (
   echo [ERROR] CLI build failed.
   exit /b 1
@@ -95,11 +95,11 @@ if errorlevel 1 (
 
 REM --- Build GUI (keep version consistent; do NOT bump here) ---
 if %SKIP_GUI%==1 goto after_gui
-if not exist build_gui_pro.bat (
-  echo [ERROR] build_gui_pro.bat not found.
+if not exist scripts\build_gui_pro.bat (
+  echo [ERROR] scripts\build_gui_pro.bat not found.
   exit /b 1
 )
-call build_gui_pro.bat none
+call scripts\build_gui_pro.bat none
 if errorlevel 1 (
   echo [ERROR] GUI build failed.
   exit /b 1
@@ -110,7 +110,7 @@ REM --- Build installer (optional) ---
 if %SKIP_INST%==1 goto after_inst
 
 set ISS_FILE=
-if exist pixiv_login_installer_dual.iss set ISS_FILE=pixiv_login_installer_dual.iss
+if exist scripts\pixiv_login_installer_dual.iss set ISS_FILE=scripts\pixiv_login_installer_dual.iss
 if "%ISS_FILE%"=="" if exist pixiv_login_installer.iss set ISS_FILE=pixiv_login_installer.iss
 
 if "%ISS_FILE%"=="" (
@@ -118,8 +118,8 @@ if "%ISS_FILE%"=="" (
   goto after_inst
 )
 
-if exist make_installer_iss_dual.py (
-  python make_installer_iss_dual.py
+if exist scripts\make_installer_iss_dual.py (
+  python scripts\make_installer_iss_dual.py
 ) else if exist make_installer_iss.py (
   python make_installer_iss.py
 )
@@ -159,19 +159,19 @@ if exist "dist_installer\PixivLoginSetup_v!VER!.exe" (
 
 REM --- Signing (optional) ---
 if %SKIP_SIGN%==1 goto after_sign
-if exist sign_auto.bat (
-  call sign_auto.bat
+if exist scripts\sign_auto.bat (
+  call scripts\sign_auto.bat
 ) else (
-  echo [WARN] sign_auto.bat not found. Skipping signing.
+  echo [WARN] scripts\sign_auto.bat not found. Skipping signing.
 )
 :after_sign
 
 REM --- Release ZIP ---
 if %SKIP_ZIP%==1 goto after_zip
-if exist build_release_zip.bat (
-  call build_release_zip.bat
+if exist scripts\build_release_zip.bat (
+  call scripts\build_release_zip.bat
 ) else (
-  echo [WARN] build_release_zip.bat not found. Skipping ZIP.
+  echo [WARN] scripts\build_release_zip.bat not found. Skipping ZIP.
 )
 
 :after_zip

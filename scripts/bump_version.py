@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import json, os, sys, re
 
-VERSION_FILE = os.path.join(os.path.dirname(__file__), "version.json")
+VERSION_FILE = os.path.join(os.path.dirname(__file__), "..", "version.json")
 
 def parse(v: str):
     m = re.match(r"^(\d+)\.(\d+)\.(\d+)$", v.strip())
@@ -12,10 +12,12 @@ def parse(v: str):
 def main():
     bump = sys.argv[1].lower() if len(sys.argv) >= 2 else "patch"
 
-    data = {"version": "1.0.0"}
+    data: dict = {"version": "1.0.0"}
     if os.path.exists(VERSION_FILE):
         with open(VERSION_FILE, "r", encoding="utf-8") as f:
-            data = json.load(f)
+            loaded = json.load(f)
+            if isinstance(loaded, dict):
+                data.update(loaded)
 
     major, minor, patch = parse(data.get("version", "1.0.0"))
 

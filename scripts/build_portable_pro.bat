@@ -1,20 +1,21 @@
 @echo off
 setlocal enabledelayedexpansion
+cd /d "%~dp0\.."
 
 REM --- config ---
-set SCRIPT=pixiv_login.py
-set ICON=pixiv_oauth.ico
+set SCRIPT=app\pixiv_login.py
+set ICON=app\pixiv_oauth.ico
 set OUTNAME=pixiv_login_plus
 set PORTABLE_LABEL=Pixiv OAuth CLi (Portable)
 
 REM --- ensure deps ---
-python -m pip install -r requirements.txt
+python -m pip install -r app\requirements.txt
 
 if not exist "%ICON%" (
   echo [ERROR] Icon file not found: %ICON%
   exit /b 1
 )
-python check_icon_square.py "%ICON%"
+python scripts\check_icon_square.py "%ICON%"
 if errorlevel 1 exit /b 1
 
 REM --- clean ---
@@ -22,12 +23,12 @@ if exist dist rmdir /s /q dist
 if exist build rmdir /s /q build
 del /q *.spec 2>nul
 
-REM --- bump version (patch by default). Usage: build_portable_pro.bat minor|major|patch|none ---
+REM --- bump version (patch by default). Usage: scripts\build_portable_pro.bat minor|major|patch|none ---
 set BUMP=patch
 if not "%~1"=="" set BUMP=%~1
 
-for /f "usebackq delims=" %%v in (`python bump_version.py %BUMP%`) do set VER=%%v
-python generate_version_info.py
+for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VER=%%v
+python scripts\generate_version_info.py
 
 REM --- build portable ---
 python -m PyInstaller --noconfirm --onefile ^

@@ -2,8 +2,8 @@
 import json, os
 
 ROOT = os.path.dirname(__file__)
-VERSION_FILE = os.path.join(ROOT, "version.json")
-OUT_FILE = os.path.join(ROOT, "version_info.txt")
+VERSION_FILE = os.path.join(ROOT, "..", "version.json")
+OUT_FILE = os.path.join(ROOT, "..", "version_info.txt")
 
 # Edit these if you want:
 COMPANY = "Fatony Ahmad Fauzi Dev"
@@ -13,8 +13,10 @@ INTERNAL = "pixiv_login_plus"
 ORIGINAL = "pixiv_login_plus.exe"
 
 def ver_tuple(v: str):
-    parts = (v.split(".") + ["0","0","0","0"])[:4]
-    return tuple(int(x) for x in parts)
+    parts = v.split(".")
+    while len(parts) < 4:
+        parts.append("0")
+    return tuple(int(parts[i]) for i in range(4))
 
 def main():
     with open(VERSION_FILE, "r", encoding="utf-8") as f:

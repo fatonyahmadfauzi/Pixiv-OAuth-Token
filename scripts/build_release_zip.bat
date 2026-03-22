@@ -1,9 +1,9 @@
 @echo off
 setlocal enabledelayedexpansion
-cd /d "%~dp0"
+cd /d "%~dp0\.."
 
 REM ==========================================================
-REM build_release_zip.bat
+REM scripts\build_release_zip.bat
 REM Creates: dist_release\PixivOAuthRelease_vX.Y.Z.zip
 REM Source priority:
 REM   1) downloads\ (if present)

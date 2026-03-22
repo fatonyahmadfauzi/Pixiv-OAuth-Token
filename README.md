@@ -1,23 +1,24 @@
 # Pixiv OAuth Token
 
-> 🌐 Available in other languages: [Polski](docs/lang/README-PL.md) | [中文](docs/lang/README-ZH.md) | [日本語](docs/lang/README-JP.md) | [Deutsch](docs/lang/README-DE.md) | [Français](docs/lang/README-FR.md) | [Español](docs/lang/README-ES.md) | [Русский](docs/lang/README-RU.md) | [Português](docs/lang/README-PT.md) | [Bahasa Indonesia](docs/lang/README-ID.md) | [한국어](docs/lang/README-KR.md)
+> 🌐 Available in other languages: [日本語](public/docs/lang/README-JP.md)
 
 
 A toolkit to generate Pixiv OAuth tokens in three modes:
 
-- CLI (`pixiv_login.py`)
-- GUI (`pixiv_login_gui.py`)
-- Web app (`public/` + serverless API)
+- CLI (`app/pixiv_login.py`)
+- GUI (`app/pixiv_login_gui.py`)
+- Web app (`web/public/` + serverless API)
 
 ## Requirements
 
 - Python 3.11+
 - Windows (required for `.bat` build scripts and Inno Setup installer)
-- Python dependencies from `requirements.txt`
+- Python dependencies from `app/requirements.txt`
 
 ## Run from source
 
 ```bash
+cd app
 python -m pip install -r requirements.txt
 python pixiv_login.py
 ```
@@ -25,6 +26,7 @@ python pixiv_login.py
 Run GUI:
 
 ```bash
+cd app
 python pixiv_login_gui.py
 ```
 
@@ -33,6 +35,7 @@ python pixiv_login_gui.py
 ### Build all artifacts (CLI + GUI + Installer + ZIP)
 
 ```bat
+cd scripts
 build_all_pro.bat patch
 ```
 
@@ -54,6 +57,7 @@ Optional flags:
 Example:
 
 ```bat
+cd scripts
 build_all_pro.bat patch noinst nosign
 ```
 
@@ -68,7 +72,7 @@ build_all_pro.bat patch noinst nosign
 
 ## Signing
 
-Edit `sign_auto.bat`:
+Edit `scripts/sign_auto.bat`:
 
 - `PFX_PATH`
 - `PFX_PASS`
@@ -87,7 +91,7 @@ A highly optimized, responsive web app featuring dynamic multi-language support 
 ### Key Web Features
 - **Extensive Pages**: Homepage, Downloads, Tutorial, Contact, Issues & PRs, Discussions Tracker, Documentation Markdown viewer, and Support/Donate integration.
 - **Advanced SEO**: Auto-injected localized `<meta>` tags, extensive JSON-LD structured data (Sitelinks, SoftwareApplication, etc.), automated `hreflang` generation, `robots.txt`, and `sitemap.xml`.
-- **Security & Performance**: Automatic JavaScript obfuscation (extreme mangling), HTML/CSS minification (via `node build_minify.js`), and clean `XSS` prevention via `escapeHTML`.
+- **Security & Performance**: Automatic JavaScript obfuscation (extreme mangling), HTML/CSS minification (via `cd web && node build_minify.js`), and clean `XSS` prevention via `escapeHTML`.
 - **GitHub API Proxy**: Serverless Vercel endpoints (`/api/github`) proxy GitHub API requests using a Personal Access Token (`GITHUB_PAT`) to completely bypass public rate limits.
 
 ### Deploy to Vercel
@@ -106,7 +110,7 @@ A highly optimized, responsive web app featuring dynamic multi-language support 
 5. Deploy.
 
 > [!IMPORTANT]
-> If you make changes to HTML, CSS, or JS, remember to run `node build_minify.js` before deploying to automatically obfuscate the code and compress assets.
+> If you make changes to HTML, CSS, or JS, remember to run `cd web && node build_minify.js` before deploying to automatically obfuscate the code and compress assets.
 
 > Security note: for production, always set `PIXIV_CLIENT_SECRET` in your Vercel project environment variables.
 
@@ -200,6 +204,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 ## Python install
 
 ```bash
+cd app
 python -m pip install -r requirements.txt
 ```
 

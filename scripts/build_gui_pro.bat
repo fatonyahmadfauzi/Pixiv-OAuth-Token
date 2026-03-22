@@ -1,22 +1,22 @@
 @echo off
 setlocal enabledelayedexpansion
-cd /d "%~dp0"
+cd /d "%~dp0\.."
 
 REM ==========================================================
-REM build_gui_pro.bat
+REM scripts\build_gui_pro.bat
 REM Build GUI exe (Tkinter) with:
 REM  - icon
-REM  - Windows version-info (from version.json via generate_version_info.py)
+REM  - Windows version-info (from version.json via scripts\generate_version_info.py)
 REM  - output copied to dist_gui\ (also a versioned copy)
 REM
 REM Usage:
-REM   build_gui_pro.bat [patch|minor|major|none]
+REM   scripts\build_gui_pro.bat [patch|minor|major|none]
 REM     - If none: do NOT bump version (keeps current version.json)
 REM ==========================================================
 
-set SCRIPT=pixiv_login_gui.py
+set SCRIPT=app\pixiv_login_gui.py
 set NAME=pixiv_login_gui
-set ICON=pixiv_oauth.ico
+set ICON=app\pixiv_oauth.ico
 set PORTABLE_LABEL=Pixiv OAuth GUi (Portable)
 set ADD_TUTORIAL=
 
@@ -28,26 +28,26 @@ set TCL_LIBRARY=C:\Users\faton\AppData\Local\Programs\Python\Python311\tcl\tcl8.
 set TK_LIBRARY=C:\Users\faton\AppData\Local\Programs\Python\Python311\tcl\tk8.6
 
 REM Ensure deps
-python -m pip install -r requirements.txt
+python -m pip install -r app\requirements.txt
 
 if not exist "%ICON%" (
   echo [ERROR] Icon file not found: %ICON%
   exit /b 1
 )
-python check_icon_square.py "%ICON%"
+python scripts\check_icon_square.py "%ICON%"
 if errorlevel 1 exit /b 1
 
 REM Optionally bump version
 if /I not "%BUMP%"=="none" (
-  for /f "usebackq delims=" %%v in (`python bump_version.py %BUMP%`) do set VER=%%v
+  for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VER=%%v
 ) else (
   for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
 )
 
 REM Generate version_info.txt for PyInstaller
-python generate_version_info.py
+python scripts\generate_version_info.py
 if errorlevel 1 (
-  echo [ERROR] generate_version_info.py failed.
+  echo [ERROR] scripts\generate_version_info.py failed.
   exit /b 1
 )
 
