@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [1.0.2] - 2026-03-23 
+### ✨ Added
+- **Debug Console (GUI)**
+  A dedicated `⚙ Debug` button in the top-right corner of the GUI header opens a dark-themed terminal console that logs every application event in real-time. Events captured include: app startup, language changes, all button clicks (Open Login, Exchange Token, Refresh Token, Copy access/refresh token, Tutorial), HTTP request states (sending/success/failed), PKCE flow steps, clipboard operations, config writes, and warnings. All debug messages are fully localized in all 11 supported languages. The console supports live-streaming of new messages while open, pre-population of historical logs from session start, a **Copy All** button, and a **Clear** button.
+
 ## [1.0.1] - 2026-03-22
 ### ✨ Added
 - **Smart README Cleaner for Releases**

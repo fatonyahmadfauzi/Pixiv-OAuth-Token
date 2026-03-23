@@ -30,6 +30,17 @@ cd app
 python pixiv_login_gui.py
 ```
 
+### GUI Features
+
+| Feature | Description |
+|---|---|
+| **Multi-language** | 11 languages — auto-detected from config, switchable live via dropdown |
+| **⚙ Debug Console** | Button in top-right header; opens a dark terminal logging **all** events (button clicks, language changes, HTTP requests, PKCE steps, clipboard, config saves, warnings) in real-time and in the current language |
+| **Token Exchange** | Paste pixiv:// URL or raw code → exchange for access + refresh token |
+| **Refresh Token** | One-click refresh using saved refresh_token from config |
+| **Copy Tokens** | Copy access_token / refresh_token to clipboard instantly |
+| **Tutorial** | Step-by-step image guide built into the app |
+
 ## Build
 
 ### Build all artifacts (CLI + GUI + Installer + ZIP)

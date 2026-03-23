@@ -87,6 +87,29 @@ UI = {
         "refresh_no_token": "No refresh_token found in config yet. Do login first.",
         "parse_fail": "Failed to parse code.",
         "net_fail": "Network/API error.",
+        "dbg_app_start": "[APP] Application started",
+        "dbg_lang_changed": "[LANG] Language changed to: {}",
+        "dbg_lang_saved": "[CONFIG] Default language saved: {}",
+        "dbg_open_login": "[BTN] Open Login Page clicked",
+        "dbg_browser_open": "[BROWSER] Login URL opened in browser",
+        "dbg_exchange_click": "[BTN] Exchange Token clicked",
+        "dbg_code_parsed": "[PKCE] Code parsed successfully",
+        "dbg_token_request": "[HTTP] Sending token exchange request...",
+        "dbg_token_success": "[HTTP] Token exchange SUCCESS",
+        "dbg_token_fail": "[HTTP] Token exchange FAILED",
+        "dbg_refresh_click": "[BTN] Refresh Token clicked",
+        "dbg_refresh_request": "[HTTP] Sending token refresh request...",
+        "dbg_refresh_success": "[HTTP] Token refresh SUCCESS",
+        "dbg_refresh_fail": "[HTTP] Token refresh FAILED",
+        "dbg_copy_access": "[BTN] Copy access_token clicked",
+        "dbg_copy_refresh": "[BTN] Copy refresh_token clicked",
+        "dbg_copied_ok": "[CLIPBOARD] Copied to clipboard: {}",
+        "dbg_tutorial_open": "[BTN] Tutorial opened",
+        "dbg_debug_open": "[DEBUG] Debug Console opened",
+        "dbg_config_saved": "[CONFIG] Config saved to: {}",
+        "dbg_no_rt": "[WARN] No refresh_token in config",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier not set",
+        "dbg_no_input": "[WARN] Input field is empty",
     },
     "id": {
         "title": "Pixiv Login (GUI)",
@@ -111,6 +134,29 @@ UI = {
         "refresh_no_token": "Belum ada refresh_token di config. Login dulu.",
         "parse_fail": "Gagal membaca kode.",
         "net_fail": "Error jaringan/API.",
+        "dbg_app_start": "[APP] Aplikasi dimulai",
+        "dbg_lang_changed": "[BAHASA] Bahasa diubah ke: {}",
+        "dbg_lang_saved": "[CONFIG] Bahasa default disimpan: {}",
+        "dbg_open_login": "[BTN] Tombol Buka Halaman Login diklik",
+        "dbg_browser_open": "[BROWSER] URL login dibuka di browser",
+        "dbg_exchange_click": "[BTN] Tombol Tukar Token diklik",
+        "dbg_code_parsed": "[PKCE] Kode berhasil diurai",
+        "dbg_token_request": "[HTTP] Mengirim permintaan tukar token...",
+        "dbg_token_success": "[HTTP] Tukar token BERHASIL",
+        "dbg_token_fail": "[HTTP] Tukar token GAGAL",
+        "dbg_refresh_click": "[BTN] Tombol Refresh Token diklik",
+        "dbg_refresh_request": "[HTTP] Mengirim permintaan refresh token...",
+        "dbg_refresh_success": "[HTTP] Refresh token BERHASIL",
+        "dbg_refresh_fail": "[HTTP] Refresh token GAGAL",
+        "dbg_copy_access": "[BTN] Salin access_token diklik",
+        "dbg_copy_refresh": "[BTN] Salin refresh_token diklik",
+        "dbg_copied_ok": "[CLIPBOARD] Disalin ke clipboard: {}",
+        "dbg_tutorial_open": "[BTN] Tutorial dibuka",
+        "dbg_debug_open": "[DEBUG] Debug Console dibuka",
+        "dbg_config_saved": "[CONFIG] Config disimpan ke: {}",
+        "dbg_no_rt": "[WARN] Tidak ada refresh_token di config",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier belum di-set",
+        "dbg_no_input": "[WARN] Kolom input kosong",
     },
     "pl": {
         "title": "Pixiv Login (GUI)",
@@ -135,6 +181,29 @@ UI = {
         "refresh_no_token": "Brak refresh_token w konfiguracji. Najpierw zaloguj.",
         "parse_fail": "Nie udało się odczytać kodu.",
         "net_fail": "Błąd sieci/API.",
+        "dbg_app_start": "[APP] Aplikacja uruchomiona",
+        "dbg_lang_changed": "[JĘZYK] Język zmieniony na: {}",
+        "dbg_lang_saved": "[CONFIG] Domyślny język zapisany: {}",
+        "dbg_open_login": "[BTN] Kliknięto Otwórz logowanie",
+        "dbg_browser_open": "[BROWSER] URL logowania otwarto w przeglądarce",
+        "dbg_exchange_click": "[BTN] Kliknięto Wymień token",
+        "dbg_code_parsed": "[PKCE] Kod odczytano pomyślnie",
+        "dbg_token_request": "[HTTP] Wysyłanie żądania wymiany tokenu...",
+        "dbg_token_success": "[HTTP] Wymiana tokenu SUKCES",
+        "dbg_token_fail": "[HTTP] Wymiana tokenu BŁĄD",
+        "dbg_refresh_click": "[BTN] Kliknięto Odśwież token",
+        "dbg_refresh_request": "[HTTP] Wysyłanie żądania odświeżenia tokenu...",
+        "dbg_refresh_success": "[HTTP] Odświeżenie tokenu SUKCES",
+        "dbg_refresh_fail": "[HTTP] Odświeżenie tokenu BŁĄD",
+        "dbg_copy_access": "[BTN] Kliknięto Kopiuj access_token",
+        "dbg_copy_refresh": "[BTN] Kliknięto Kopiuj refresh_token",
+        "dbg_copied_ok": "[CLIPBOARD] Skopiowano do schowka: {}",
+        "dbg_tutorial_open": "[BTN] Otwarto tutorial",
+        "dbg_debug_open": "[DEBUG] Otwarto Debug Console",
+        "dbg_config_saved": "[CONFIG] Config zapisano do: {}",
+        "dbg_no_rt": "[WARN] Brak refresh_token w konfiguracji",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier nie ustawiony",
+        "dbg_no_input": "[WARN] Pole wejściowe jest puste",
     },
     "jp": {
         "title": "Pixiv ログイン (GUI)",
@@ -159,6 +228,29 @@ UI = {
         "refresh_no_token": "設定に refresh_token がありません。先にログインしてください。",
         "parse_fail": "コードの解析に失敗しました。",
         "net_fail": "ネットワーク/API エラー。",
+        "dbg_app_start": "[APP] アプリ起動",
+        "dbg_lang_changed": "[言語] 言語変更: {}",
+        "dbg_lang_saved": "[CONFIG] デフォルト言語保存: {}",
+        "dbg_open_login": "[BTN] ログインページを開くをクリック",
+        "dbg_browser_open": "[BROWSER] ブラウザでログインURLを開きました",
+        "dbg_exchange_click": "[BTN] トークン取得をクリック",
+        "dbg_code_parsed": "[PKCE] コード解析成功",
+        "dbg_token_request": "[HTTP] トークン交換リクエスト送信中...",
+        "dbg_token_success": "[HTTP] トークン交換 成功",
+        "dbg_token_fail": "[HTTP] トークン交換 失敗",
+        "dbg_refresh_click": "[BTN] トークン更新をクリック",
+        "dbg_refresh_request": "[HTTP] トークン更新リクエスト送信中...",
+        "dbg_refresh_success": "[HTTP] トークン更新 成功",
+        "dbg_refresh_fail": "[HTTP] トークン更新 失敗",
+        "dbg_copy_access": "[BTN] access_tokenをコピーをクリック",
+        "dbg_copy_refresh": "[BTN] refresh_tokenをコピーをクリック",
+        "dbg_copied_ok": "[CLIPBOARD] クリップボードにコピー: {}",
+        "dbg_tutorial_open": "[BTN] チュートリアルを開きました",
+        "dbg_debug_open": "[DEBUG] デバッグコンソールを開きました",
+        "dbg_config_saved": "[CONFIG] Configを保存しました: {}",
+        "dbg_no_rt": "[WARN] configにrefresh_tokenがありません",
+        "dbg_no_pkce": "[WARN] PKCE code_verifierが未設定",
+        "dbg_no_input": "[WARN] 入力欄が空です",
     },
     "zh": {
         "title": "Pixiv 登录 (GUI)",
@@ -183,6 +275,29 @@ UI = {
         "refresh_no_token": "配置中没有 refresh_token，请先登录。",
         "parse_fail": "解析代码失败。",
         "net_fail": "网络/API 错误。",
+        "dbg_app_start": "[APP] 应用已启动",
+        "dbg_lang_changed": "[语言] 语言已切换: {}",
+        "dbg_lang_saved": "[CONFIG] 已保存默认语言: {}",
+        "dbg_open_login": "[BTN] 点击了打开登录页面",
+        "dbg_browser_open": "[BROWSER] 已在浏览器中打开登录URL",
+        "dbg_exchange_click": "[BTN] 点击了兑换Token",
+        "dbg_code_parsed": "[PKCE] 代码解析成功",
+        "dbg_token_request": "[HTTP] 正在发送兑换令牌请求...",
+        "dbg_token_success": "[HTTP] 令牌兑换成功",
+        "dbg_token_fail": "[HTTP] 令牌兑换失败",
+        "dbg_refresh_click": "[BTN] 点击了刷新Token",
+        "dbg_refresh_request": "[HTTP] 正在发送刷新令牌请求...",
+        "dbg_refresh_success": "[HTTP] 令牌刷新成功",
+        "dbg_refresh_fail": "[HTTP] 令牌刷新失败",
+        "dbg_copy_access": "[BTN] 点击了复制access_token",
+        "dbg_copy_refresh": "[BTN] 点击了复制refresh_token",
+        "dbg_copied_ok": "[CLIPBOARD] 已复制到剪贴板: {}",
+        "dbg_tutorial_open": "[BTN] 已打开教程",
+        "dbg_debug_open": "[DEBUG] 已打开调试控制台",
+        "dbg_config_saved": "[CONFIG] 配置已保存至: {}",
+        "dbg_no_rt": "[WARN] 配置中无refresh_token",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier未设置",
+        "dbg_no_input": "[WARN] 输入框为空",
     },
     "de": {
         "title": "Pixiv Login (GUI)",
@@ -207,6 +322,29 @@ UI = {
         "refresh_no_token": "Kein refresh_token in der Konfiguration. Bitte zuerst Login.",
         "parse_fail": "Code konnte nicht gelesen werden.",
         "net_fail": "Netzwerk/API-Fehler.",
+        "dbg_app_start": "[APP] Anwendung gestartet",
+        "dbg_lang_changed": "[SPRACHE] Sprache geändert auf: {}",
+        "dbg_lang_saved": "[CONFIG] Standardsprache gespeichert: {}",
+        "dbg_open_login": "[BTN] Login-Seite öffnen geklickt",
+        "dbg_browser_open": "[BROWSER] Login-URL im Browser geöffnet",
+        "dbg_exchange_click": "[BTN] Token abrufen geklickt",
+        "dbg_code_parsed": "[PKCE] Code erfolgreich gelesen",
+        "dbg_token_request": "[HTTP] Token-Anfrage wird gesendet...",
+        "dbg_token_success": "[HTTP] Token-Austausch ERFOLGREICH",
+        "dbg_token_fail": "[HTTP] Token-Austausch FEHLGESCHLAGEN",
+        "dbg_refresh_click": "[BTN] Token aktualisieren geklickt",
+        "dbg_refresh_request": "[HTTP] Token-Aktualisierungsanfrage wird gesendet...",
+        "dbg_refresh_success": "[HTTP] Token-Aktualisierung ERFOLGREICH",
+        "dbg_refresh_fail": "[HTTP] Token-Aktualisierung FEHLGESCHLAGEN",
+        "dbg_copy_access": "[BTN] access_token kopieren geklickt",
+        "dbg_copy_refresh": "[BTN] refresh_token kopieren geklickt",
+        "dbg_copied_ok": "[CLIPBOARD] In Zwischenablage kopiert: {}",
+        "dbg_tutorial_open": "[BTN] Tutorial geöffnet",
+        "dbg_debug_open": "[DEBUG] Debug-Konsole geöffnet",
+        "dbg_config_saved": "[CONFIG] Config gespeichert unter: {}",
+        "dbg_no_rt": "[WARN] Kein refresh_token in der Konfiguration",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier nicht gesetzt",
+        "dbg_no_input": "[WARN] Eingabefeld ist leer",
     },
     "fr": {
         "title": "Pixiv Login (GUI)",
@@ -231,6 +369,29 @@ UI = {
         "refresh_no_token": "Aucun refresh_token dans la config. Faites d’abord login.",
         "parse_fail": "Échec de lecture du code.",
         "net_fail": "Erreur réseau/API.",
+        "dbg_app_start": "[APP] Application démarrée",
+        "dbg_lang_changed": "[LANGUE] Langue changée en: {}",
+        "dbg_lang_saved": "[CONFIG] Langue par défaut enregistrée: {}",
+        "dbg_open_login": "[BTN] Ouvrir la page de connexion cliqué",
+        "dbg_browser_open": "[BROWSER] URL de connexion ouverte dans le navigateur",
+        "dbg_exchange_click": "[BTN] Échanger le token cliqué",
+        "dbg_code_parsed": "[PKCE] Code lu avec succès",
+        "dbg_token_request": "[HTTP] Envoi de la requête d'échange de token...",
+        "dbg_token_success": "[HTTP] Échange de token RÉUSSI",
+        "dbg_token_fail": "[HTTP] Échange de token ÉCHOUÉ",
+        "dbg_refresh_click": "[BTN] Rafraîchir le token cliqué",
+        "dbg_refresh_request": "[HTTP] Envoi de la requête de rafraîchissement...",
+        "dbg_refresh_success": "[HTTP] Rafraîchissement du token RÉUSSI",
+        "dbg_refresh_fail": "[HTTP] Rafraîchissement du token ÉCHOUÉ",
+        "dbg_copy_access": "[BTN] Copier access_token cliqué",
+        "dbg_copy_refresh": "[BTN] Copier refresh_token cliqué",
+        "dbg_copied_ok": "[CLIPBOARD] Copié dans le presse-papiers: {}",
+        "dbg_tutorial_open": "[BTN] Tutoriel ouvert",
+        "dbg_debug_open": "[DEBUG] Console de débogage ouverte",
+        "dbg_config_saved": "[CONFIG] Config enregistrée dans: {}",
+        "dbg_no_rt": "[WARN] Pas de refresh_token dans la config",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier non défini",
+        "dbg_no_input": "[WARN] Champ de saisie vide",
     },
     "es": {
         "title": "Pixiv Login (GUI)",
@@ -255,6 +416,29 @@ UI = {
         "refresh_no_token": "No hay refresh_token en la configuración. Inicia sesión primero.",
         "parse_fail": "No se pudo leer el código.",
         "net_fail": "Error de red/API.",
+        "dbg_app_start": "[APP] Aplicación iniciada",
+        "dbg_lang_changed": "[IDIOMA] Idioma cambiado a: {}",
+        "dbg_lang_saved": "[CONFIG] Idioma predeterminado guardado: {}",
+        "dbg_open_login": "[BTN] Abrir página de inicio pulsado",
+        "dbg_browser_open": "[BROWSER] URL de inicio de sesión abierta en el navegador",
+        "dbg_exchange_click": "[BTN] Canjear token pulsado",
+        "dbg_code_parsed": "[PKCE] Código leído correctamente",
+        "dbg_token_request": "[HTTP] Enviando solicitud de canje de token...",
+        "dbg_token_success": "[HTTP] Canje de token EXITOSO",
+        "dbg_token_fail": "[HTTP] Canje de token FALLIDO",
+        "dbg_refresh_click": "[BTN] Actualizar token pulsado",
+        "dbg_refresh_request": "[HTTP] Enviando solicitud de actualización de token...",
+        "dbg_refresh_success": "[HTTP] Actualización de token EXITOSA",
+        "dbg_refresh_fail": "[HTTP] Actualización de token FALLIDA",
+        "dbg_copy_access": "[BTN] Copiar access_token pulsado",
+        "dbg_copy_refresh": "[BTN] Copiar refresh_token pulsado",
+        "dbg_copied_ok": "[CLIPBOARD] Copiado al portapapeles: {}",
+        "dbg_tutorial_open": "[BTN] Tutorial abierto",
+        "dbg_debug_open": "[DEBUG] Consola de depuración abierta",
+        "dbg_config_saved": "[CONFIG] Config guardado en: {}",
+        "dbg_no_rt": "[WARN] No hay refresh_token en la configuración",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier no establecido",
+        "dbg_no_input": "[WARN] Campo de entrada vacío",
     },
     "ru": {
         "title": "Pixiv Login (GUI)",
@@ -279,6 +463,29 @@ UI = {
         "refresh_no_token": "В конфиге нет refresh_token. Сначала войдите.",
         "parse_fail": "Не удалось разобрать код.",
         "net_fail": "Ошибка сети/API.",
+        "dbg_app_start": "[APP] Приложение запущено",
+        "dbg_lang_changed": "[ЯЗЫК] Язык изменён на: {}",
+        "dbg_lang_saved": "[CONFIG] Язык по умолчанию сохранён: {}",
+        "dbg_open_login": "[BTN] Нажато «Открыть страницу входа»",
+        "dbg_browser_open": "[BROWSER] URL входа открыт в браузере",
+        "dbg_exchange_click": "[BTN] Нажато «Получить токен»",
+        "dbg_code_parsed": "[PKCE] Код успешно разобран",
+        "dbg_token_request": "[HTTP] Отправка запроса обмена токена...",
+        "dbg_token_success": "[HTTP] Обмен токена УСПЕШНО",
+        "dbg_token_fail": "[HTTP] Обмен токена НЕУДАЧНО",
+        "dbg_refresh_click": "[BTN] Нажато «Обновить токен»",
+        "dbg_refresh_request": "[HTTP] Отправка запроса обновления токена...",
+        "dbg_refresh_success": "[HTTP] Обновление токена УСПЕШНО",
+        "dbg_refresh_fail": "[HTTP] Обновление токена НЕУДАЧНО",
+        "dbg_copy_access": "[BTN] Нажато «Копировать access_token»",
+        "dbg_copy_refresh": "[BTN] Нажато «Копировать refresh_token»",
+        "dbg_copied_ok": "[CLIPBOARD] Скопировано в буфер: {}",
+        "dbg_tutorial_open": "[BTN] Руководство открыто",
+        "dbg_debug_open": "[DEBUG] Консоль отладки открыта",
+        "dbg_config_saved": "[CONFIG] Config сохранён в: {}",
+        "dbg_no_rt": "[WARN] В конфиге нет refresh_token",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier не задан",
+        "dbg_no_input": "[WARN] Поле ввода пусто",
     },
     "pt": {
         "title": "Pixiv Login (GUI)",
@@ -303,6 +510,29 @@ UI = {
         "refresh_no_token": "Sem refresh_token no config. Faça login primeiro.",
         "parse_fail": "Falha ao ler o código.",
         "net_fail": "Erro de rede/API.",
+        "dbg_app_start": "[APP] Aplicativo iniciado",
+        "dbg_lang_changed": "[IDIOMA] Idioma alterado para: {}",
+        "dbg_lang_saved": "[CONFIG] Idioma padrão salvo: {}",
+        "dbg_open_login": "[BTN] Abrir página de login clicado",
+        "dbg_browser_open": "[BROWSER] URL de login aberta no navegador",
+        "dbg_exchange_click": "[BTN] Trocar token clicado",
+        "dbg_code_parsed": "[PKCE] Código lido com sucesso",
+        "dbg_token_request": "[HTTP] Enviando solicitação de troca de token...",
+        "dbg_token_success": "[HTTP] Troca de token BEM-SUCEDIDA",
+        "dbg_token_fail": "[HTTP] Troca de token FALHOU",
+        "dbg_refresh_click": "[BTN] Atualizar token clicado",
+        "dbg_refresh_request": "[HTTP] Enviando solicitação de atualização de token...",
+        "dbg_refresh_success": "[HTTP] Atualização de token BEM-SUCEDIDA",
+        "dbg_refresh_fail": "[HTTP] Atualização de token FALHOU",
+        "dbg_copy_access": "[BTN] Copiar access_token clicado",
+        "dbg_copy_refresh": "[BTN] Copiar refresh_token clicado",
+        "dbg_copied_ok": "[CLIPBOARD] Copiado para a área de transferência: {}",
+        "dbg_tutorial_open": "[BTN] Tutorial aberto",
+        "dbg_debug_open": "[DEBUG] Console de depuração aberta",
+        "dbg_config_saved": "[CONFIG] Config salvo em: {}",
+        "dbg_no_rt": "[WARN] Sem refresh_token no config",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier não definido",
+        "dbg_no_input": "[WARN] Campo de entrada vazio",
     },
     "kr": {
         "title": "Pixiv 로그인 (GUI)",
@@ -327,6 +557,29 @@ UI = {
         "refresh_no_token": "설정에 refresh_token 이 없습니다. 먼저 로그인하세요.",
         "parse_fail": "코드 파싱에 실패했습니다.",
         "net_fail": "네트워크/API 오류.",
+        "dbg_app_start": "[APP] 애플리케이션 시작됨",
+        "dbg_lang_changed": "[언어] 언어 변경: {}",
+        "dbg_lang_saved": "[CONFIG] 기본 언어 저장됨: {}",
+        "dbg_open_login": "[BTN] 로그인 페이지 열기 클릭됨",
+        "dbg_browser_open": "[BROWSER] 브라우저에서 로그인 URL 열림",
+        "dbg_exchange_click": "[BTN] 토큰 받기 클릭됨",
+        "dbg_code_parsed": "[PKCE] 코드 성공적으로 읽힐",
+        "dbg_token_request": "[HTTP] 토큰 교환 요청 전송 중...",
+        "dbg_token_success": "[HTTP] 토큰 교환 성공",
+        "dbg_token_fail": "[HTTP] 토큰 교환 실패",
+        "dbg_refresh_click": "[BTN] 토큰 새로고침 클릭됨",
+        "dbg_refresh_request": "[HTTP] 토큰 갱신 요청 전송 중...",
+        "dbg_refresh_success": "[HTTP] 토큰 갱신 성공",
+        "dbg_refresh_fail": "[HTTP] 토큰 갱신 실패",
+        "dbg_copy_access": "[BTN] access_token 복사 클릭됨",
+        "dbg_copy_refresh": "[BTN] refresh_token 복사 클릭됨",
+        "dbg_copied_ok": "[CLIPBOARD] 클립보드에 복사됨: {}",
+        "dbg_tutorial_open": "[BTN] 튜토리얼 열림",
+        "dbg_debug_open": "[DEBUG] 디버그 콘솔 열림",
+        "dbg_config_saved": "[CONFIG] Config 저장됨: {}",
+        "dbg_no_rt": "[WARN] 설정에 refresh_token 없음",
+        "dbg_no_pkce": "[WARN] PKCE code_verifier 미설정",
+        "dbg_no_input": "[WARN] 입력 입력란이 비어 있음",
     },
 }
 
@@ -674,6 +927,11 @@ class App(tk.Tk):
         self._tutorial_index = 0
         self._tutorial_photo = None
 
+        # Debug
+        self._debug_log: list[str] = []
+        self._debug_window: tk.Toplevel | None = None
+        self._debug_text: tk.Text | None = None
+
         self.lang_var = tk.StringVar(value=default_name)
         self.save_lang_var = tk.BooleanVar(value=True)
 
@@ -683,6 +941,8 @@ class App(tk.Tk):
         self._update_copy_buttons()
 
         self.log(f"Config file: {CONFIG_FILE}")
+        self.debug(self.t("dbg_app_start"))
+        self.debug(self.t("dbg_config_saved").format(CONFIG_FILE))
 
     def _set_app_icon(self):
         icon_path = resolve_icon_path()
@@ -707,6 +967,8 @@ class App(tk.Tk):
         return EXTRA_UI.get(code, EXTRA_UI["en"]).get(key, EXTRA_UI["en"].get(key, key))
 
     def apply_ui_language(self):
+        code = self.current_lang_code()
+        lang_name = LANG_CODE_TO_NAME.get(code, code)
         self.title(self.t("title"))
         self.lang_label.config(text=self.t("language"))
         self.save_lang_check.config(text=self.t("save_default"))
@@ -722,9 +984,12 @@ class App(tk.Tk):
         self.header_subtitle_label.config(text=self.tx("app_subtitle"))
         self._build_menu()
 
+        self.debug(self.t("dbg_lang_changed").format(lang_name))
+
         if self.save_lang_var.get():
-            self.cfg["default_lang"] = self.current_lang_code()
+            self.cfg["default_lang"] = code
             save_config(self.cfg)
+            self.debug(self.t("dbg_lang_saved").format(code))
 
     def _set_default_lang_if_needed(self):
         if self.save_lang_var.get():
@@ -767,6 +1032,16 @@ class App(tk.Tk):
 
         self._build_menu()
 
+        style.configure(
+            "Debug.TButton",
+            font=("Segoe UI", 9, "bold"),
+            padding=(10, 5),
+            foreground="#94a3b8",
+            background="#1e293b",
+            borderwidth=0,
+        )
+        style.map("Debug.TButton", background=[("active", "#334155")])
+
         style.configure("App.TFrame", background="#f3f5f9")
         style.configure("Card.TFrame", background="#ffffff", relief="flat")
         style.configure("TLabel", background="#f3f5f9", foreground="#1f2937", font=("Segoe UI", 10))
@@ -794,6 +1069,14 @@ class App(tk.Tk):
         self.header_title_label.pack(anchor="w")
         self.header_subtitle_label = ttk.Label(title_wrap, text=self.tx("app_subtitle"), style="Sub.TLabel")
         self.header_subtitle_label.pack(anchor="w")
+
+        self.debug_btn = ttk.Button(
+            header,
+            text="⚙ Debug",
+            style="Debug.TButton",
+            command=self.show_debug_window,
+        )
+        self.debug_btn.pack(side="right", padx=(8, 0))
 
         top = ttk.Frame(root, style="Card.TFrame", padding=12)
         top.pack(fill="x", pady=(0, 10))
@@ -926,6 +1209,7 @@ class App(tk.Tk):
         return photo
 
     def show_tutorial(self):
+        self.debug(self.t("dbg_tutorial_open"))
         self._load_tutorial_images()
 
         tutorial = tk.Toplevel(self)
@@ -1003,6 +1287,125 @@ class App(tk.Tk):
     def log(self, msg: str):
         self.output.insert("end", msg + "\n")
         self.output.see("end")
+        # Also feed to debug buffer & live debug window
+        self._debug_log.append(msg)
+        if self._debug_window and self._debug_text:
+            try:
+                self._debug_text.configure(state="normal")
+                self._debug_text.insert("end", msg + "\n")
+                self._debug_text.see("end")
+                self._debug_text.configure(state="disabled")
+            except tk.TclError:
+                pass
+
+    def debug(self, msg: str):
+        """Write to debug console ONLY (not the main output box)."""
+        self._debug_log.append(msg)
+        if self._debug_window and self._debug_text:
+            try:
+                self._debug_text.configure(state="normal")
+                self._debug_text.insert("end", msg + "\n")
+                self._debug_text.see("end")
+                self._debug_text.configure(state="disabled")
+            except tk.TclError:
+                pass
+
+    # ---------- Debug Window ----------
+    def show_debug_window(self):
+        # If already open, bring to front
+        if self._debug_window and self._debug_window.winfo_exists():
+            self._debug_window.lift()
+            self._debug_window.focus_force()
+            return
+
+        win = tk.Toplevel(self)
+        win.title("Debug Console")
+        win.geometry("900x500")
+        win.minsize(600, 300)
+        win.configure(bg="#0f172a")
+        self._debug_window = win
+
+        # ---- top bar ----
+        bar = tk.Frame(win, bg="#1e293b", pady=6, padx=10)
+        bar.pack(fill="x", side="top")
+
+        tk.Label(
+            bar,
+            text="⚙  Debug Console",
+            bg="#1e293b",
+            fg="#e2e8f0",
+            font=("Segoe UI Semibold", 10),
+        ).pack(side="left")
+
+        def copy_all():
+            try:
+                content = self._debug_text.get("1.0", "end")
+                self.clipboard_clear()
+                self.clipboard_append(content)
+                self.update()
+            except Exception:
+                pass
+
+        def clear_debug():
+            try:
+                self._debug_text.configure(state="normal")
+                self._debug_text.delete("1.0", "end")
+                self._debug_text.configure(state="disabled")
+                self._debug_log.clear()
+            except Exception:
+                pass
+
+        btn_cfg = dict(bg="#334155", fg="#e2e8f0", relief="flat",
+                       font=("Segoe UI", 9), padx=10, pady=3,
+                       cursor="hand2", activebackground="#475569",
+                       activeforeground="#ffffff")
+
+        tk.Button(bar, text="Copy All", command=copy_all, **btn_cfg).pack(side="right", padx=(4, 0))
+        tk.Button(bar, text="Clear", command=clear_debug, **btn_cfg).pack(side="right")
+
+        # ---- terminal area ----
+        frame = tk.Frame(win, bg="#0f172a")
+        frame.pack(fill="both", expand=True, padx=0, pady=0)
+
+        scrollbar = ttk.Scrollbar(frame, orient="vertical")
+        scrollbar.pack(side="right", fill="y")
+
+        text = tk.Text(
+            frame,
+            wrap="word",
+            bg="#0f172a",
+            fg="#94a3b8",
+            insertbackground="#94a3b8",
+            selectbackground="#1e40af",
+            relief="flat",
+            font=("Cascadia Mono", 9),
+            padx=14,
+            pady=10,
+            yscrollcommand=scrollbar.set,
+            state="normal",
+            borderwidth=0,
+        )
+        text.pack(side="left", fill="both", expand=True)
+        scrollbar.config(command=text.yview)
+        self._debug_text = text
+
+        # Pre-populate with buffered history
+        if self._debug_log:
+            text.insert("1.0", "\n".join(self._debug_log) + "\n")
+        text.see("end")
+        text.configure(state="disabled")
+
+        # Colour tags for keywords
+        text.tag_config("err",  foreground="#f87171")
+        text.tag_config("ok",   foreground="#34d399")
+        text.tag_config("info", foreground="#60a5fa")
+
+        def on_close():
+            self._debug_window = None
+            self._debug_text = None
+            win.destroy()
+
+        win.protocol("WM_DELETE_WINDOW", on_close)
 
     def _update_copy_buttons(self):
         self.copy_access_btn.state(["!disabled"] if self.last_access_token else ["disabled"])
@@ -1018,19 +1421,26 @@ class App(tk.Tk):
             messagebox.showerror("Clipboard Error", str(e))
 
     def copy_access_token(self):
+        self.debug(self.t("dbg_copy_access"))
         if not self.last_access_token:
+            self.debug("[WARN] No access_token available")
             messagebox.showinfo("Copy", self.t("no_access"))
             return
+        self.debug(self.t("dbg_copied_ok").format("access_token"))
         self._copy_to_clipboard(self.last_access_token, "copied_access")
 
     def copy_refresh_token(self):
+        self.debug(self.t("dbg_copy_refresh"))
         if not self.last_refresh_token:
+            self.debug("[WARN] No refresh_token available")
             messagebox.showinfo("Copy", self.t("no_refresh"))
             return
+        self.debug(self.t("dbg_copied_ok").format("refresh_token"))
         self._copy_to_clipboard(self.last_refresh_token, "copied_refresh")
 
     # ---------- Actions ----------
     def open_login(self):
+        self.debug(self.t("dbg_open_login"))
         self._set_default_lang_if_needed()
 
         self.code_verifier, code_challenge = oauth_pkce()
@@ -1042,22 +1452,27 @@ class App(tk.Tk):
         }
         login_url = f"{LOGIN_URL}?{urlencode(login_params)}"
         self.log("Opening browser for login...")
+        self.debug(self.t("dbg_browser_open"))
         open_url(login_url)
 
         messagebox.showinfo(self.t("next_step_title"), self.t("next_step_body"))
 
     def exchange_token(self):
+        self.debug(self.t("dbg_exchange_click"))
         if not self.code_verifier:
+            self.debug(self.t("dbg_no_pkce"))
             messagebox.showwarning("PKCE", self.t("pkce_warn"))
             return
 
         raw = self.code_entry.get().strip()
         if not raw:
+            self.debug(self.t("dbg_no_input"))
             messagebox.showwarning("Input", self.t("input_warn"))
             return
 
         try:
             code = extract_code(raw)
+            self.debug(self.t("dbg_code_parsed"))
         except Exception:
             messagebox.showerror("Error", self.t("parse_fail"))
             return
@@ -1065,6 +1480,7 @@ class App(tk.Tk):
         self._set_default_lang_if_needed()
 
         def worker():
+            self.after(0, lambda: self.debug(self.t("dbg_token_request")))
             try:
                 resp = requests.post(
                     AUTH_TOKEN_URL,
@@ -1083,14 +1499,17 @@ class App(tk.Tk):
                 data = resp.json()
             except Exception as e:
                 self.after(0, lambda: self.log(f"[ERROR] {self.t('net_fail')} {e}"))
+                self.after(0, lambda: self.debug(self.t("dbg_token_fail")))
                 return
 
             def ui():
                 if "access_token" not in data:
+                    self.debug(self.t("dbg_token_fail"))
                     self.log("ERROR RESPONSE:")
                     self.log(json.dumps(data, indent=2, ensure_ascii=False))
                     return
 
+                self.debug(self.t("dbg_token_success"))
                 self.last_access_token = data.get("access_token")
                 self.last_refresh_token = data.get("refresh_token")
                 self._update_copy_buttons()
@@ -1102,19 +1521,23 @@ class App(tk.Tk):
 
                 self.cfg["refresh_token"] = self.last_refresh_token
                 save_config(self.cfg)
+                self.debug(self.t("dbg_config_saved").format(CONFIG_FILE))
 
             self.after(0, ui)
 
         threading.Thread(target=worker, daemon=True).start()
 
     def refresh_token(self):
+        self.debug(self.t("dbg_refresh_click"))
         self.cfg = load_config()
         rt = self.cfg.get("refresh_token")
         if not rt:
+            self.debug(self.t("dbg_no_rt"))
             messagebox.showinfo("Refresh", self.t("refresh_no_token"))
             return
 
         def worker():
+            self.after(0, lambda: self.debug(self.t("dbg_refresh_request")))
             try:
                 resp = requests.post(
                     AUTH_TOKEN_URL,
@@ -1131,14 +1554,17 @@ class App(tk.Tk):
                 data = resp.json()
             except Exception as e:
                 self.after(0, lambda: self.log(f"[ERROR] {self.t('net_fail')} {e}"))
+                self.after(0, lambda: self.debug(self.t("dbg_refresh_fail")))
                 return
 
             def ui():
                 if "access_token" not in data:
+                    self.debug(self.t("dbg_refresh_fail"))
                     self.log("ERROR RESPONSE:")
                     self.log(json.dumps(data, indent=2, ensure_ascii=False))
                     return
 
+                self.debug(self.t("dbg_refresh_success"))
                 self.last_access_token = data.get("access_token")
                 self.last_refresh_token = data.get("refresh_token")
                 self._update_copy_buttons()
@@ -1150,6 +1576,7 @@ class App(tk.Tk):
 
                 self.cfg["refresh_token"] = self.last_refresh_token
                 save_config(self.cfg)
+                self.debug(self.t("dbg_config_saved").format(CONFIG_FILE))
 
             self.after(0, ui)
 
