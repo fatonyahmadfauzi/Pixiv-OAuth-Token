@@ -36,6 +36,7 @@ except ImportError:
 
 # ===== CONFIG =====
 DEBUG_MODE = False
+MENU_CONSOLE_WIDTH = 90
 
 def debug_print(msg: str, color_on: bool = True):
     if DEBUG_MODE:
@@ -738,6 +739,14 @@ def _rich_available() -> bool:
     return all(component is not None for component in (box, Align, Console, Panel, Text))
 
 
+def _menu_console() -> Console:
+    return Console(width=MENU_CONSOLE_WIDTH)
+
+
+def _clear_menu_screen(console: Console) -> None:
+    console.clear(home=True)
+
+
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
     debug_status = "ON" if DEBUG_MODE else "OFF"
     return [
@@ -753,13 +762,13 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
 
 
 def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
-    console = Console(width=90)
-    console.clear()
+    console = _menu_console()
+    _clear_menu_screen(console)
     body = Text()
     for key, label in options:
         style = "dim" if key == "0" else "cyan"
         body.append(f"[{key}] {label}\n" if key != options[-1][0] else f"[{key}] {label}", style=style)
-    console.print(Panel(body, title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=False))
+    console.print(Panel(body, title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
     return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
 
 
@@ -776,8 +785,8 @@ def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, 
 
 
 def _render_rich_main_menu(lang: str) -> None:
-    console = Console(width=90)
-    console.clear()
+    console = _menu_console()
+    _clear_menu_screen(console)
 
     header_text = Text()
     header_text.append(f"🔐 {mt('project', lang)}\n", style="bold green")
@@ -957,10 +966,9 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
     use_rich_menu = _rich_available()
     while True:
-        print()
         if use_rich_menu:
             _render_rich_main_menu(current_lang)
-            choice = Console(width=90).input(
+            choice = _menu_console().input(
                 "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
             ).strip()
         else:
