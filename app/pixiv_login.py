@@ -24,6 +24,15 @@ import os
 import locale
 import requests
 
+try:
+    from rich import box
+    from rich.align import Align
+    from rich.console import Console
+    from rich.panel import Panel
+    from rich.text import Text
+except ImportError:
+    box = Align = Console = Panel = Text = None
+
 
 # ===== CONFIG =====
 DEBUG_MODE = False
@@ -725,6 +734,55 @@ def mt(key: str, lang: str) -> str:
     return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
 
 
+def _rich_available() -> bool:
+    return all(component is not None for component in (box, Align, Console, Panel, Text))
+
+
+def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
+    debug_status = "ON" if DEBUG_MODE else "OFF"
+    return [
+        ("1", mt("opt_change_lang", lang), "green"),
+        ("2", mt("opt_tutorial", lang), "green"),
+        ("3", mt("opt_resources_docs", lang), "green"),
+        ("4", mt("opt_support", lang), "green"),
+        ("5", mt("opt_social", lang), "green"),
+        ("6", mt("opt_login", lang), "green"),
+        ("7", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
+        ("0", mt("opt_exit", lang), "white"),
+    ]
+
+
+def _render_rich_main_menu(lang: str) -> None:
+    console = Console(width=90)
+    console.clear()
+
+    header_text = Text()
+    header_text.append(f"🔐 {mt('project', lang)}\n", style="bold green")
+    header_text.append(f"{mt('developer', lang)}: {DEVELOPER_NAME}", style="green")
+    console.print(Panel(Align.center(header_text), border_style="cyan", box=box.SQUARE, expand=True))
+
+    status_text = Text()
+    status_text.append("✅ ", style="bold green")
+    status_text.append(f"Project path: {Path(__file__).resolve().parent}\n", style="white")
+    status_text.append("🌐 ", style="yellow")
+    status_text.append(f"Default language: {LANG_LABELS.get(lang, lang)}\n", style="white")
+    status_text.append("🐞 ", style="magenta")
+    status_text.append(f"Debug mode: {'ON' if DEBUG_MODE else 'OFF'}", style="white")
+    console.print(Panel(status_text, title="Current Status", title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+
+    files_text = Text()
+    files_text.append("✅ ", style="bold green")
+    files_text.append(f"Config: {CONFIG_FILE.name}\n", style="white")
+    files_text.append("✅ ", style="bold green")
+    files_text.append("OAuth flow: PKCE enabled", style="white")
+    console.print(Panel(files_text, title="Source Files", title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+
+    menu_text = Text()
+    for key, label, style in _build_menu_options(lang):
+        menu_text.append(f"[{key}] {label}\n" if key != "0" else f"[{key}] {label}", style=style)
+    console.print(Panel(menu_text, title=mt("menu_title", lang), title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+
+
 def print_cli_banner(lang: str, color_on: bool) -> None:
     title_art = [
         r"  ____  _      _         ____   _   _ _   _ _____ _   _ ",
@@ -891,20 +949,24 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     global DEBUG_MODE
     current_lang = lang
+    use_rich_menu = _rich_available()
     while True:
         print()
-        print_cli_banner(current_lang, color_on)
-        print(colorize(f"[1] {mt('opt_change_lang', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[2] {mt('opt_tutorial', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[3] {mt('opt_resources_docs', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[4] {mt('opt_support', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[5] {mt('opt_social', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
-        debug_status = "ON" if DEBUG_MODE else "OFF"
-        print(colorize(f"[7] {mt('opt_debug', current_lang)} ({mt('debug_current', current_lang)}: {debug_status})", Ansi.MAGENTA, color_on))
-        print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
-
-        choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+        if use_rich_menu:
+            _render_rich_main_menu(current_lang)
+            choice = Console(width=90).input(
+                "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
+            ).strip()
+        else:
+            print_cli_banner(current_lang, color_on)
+            for key, label, style in _build_menu_options(current_lang):
+                ansi_style = {
+                    "green": Ansi.GREEN,
+                    "magenta": Ansi.MAGENTA,
+                    "white": Ansi.DIM,
+                }.get(style, Ansi.GREEN)
+                print(colorize(f"[{key}] {label}", ansi_style, color_on))
+            choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"User selected main menu option: {choice}")
 
         if choice == "7":
@@ -931,6 +993,8 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             return
         else:
             print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
+
+
 def supported_langs_display() -> str:
     return ", ".join(f"{code} ({LANG_LABELS.get(code, code)})" for code in SUPPORTED_LANGS)
 
