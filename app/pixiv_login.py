@@ -307,7 +307,27 @@ MENU_UI_EN = {
     "opt_debug": "Toggle Debug Mode",
     "debug_enabled": "Debug mode is now ENABLED.",
     "debug_disabled": "Debug mode is now DISABLED.",
-    "debug_current": "Current"
+    "debug_current": "Current",
+    "debug_title": "Debug",
+    "debug_copy": "Copy debug",
+    "debug_clear": "Clear debug",
+    "debug_exit": "Exit",
+    "debug_copied": "Debug copied.",
+    "debug_copy_failed": "Failed to copy debug.",
+    "debug_cleared": "Debug logs cleared.",
+    "debug_empty": "(no debug logs yet)",
+    "version_title": "Version",
+    "version_check_update": "Check update",
+    "version_update_now": "Update now",
+    "version_later": "Later",
+    "version_new_badge": "New Version Available",
+    "version_current": "Current version",
+    "version_latest_available": "Latest version available",
+    "version_latest": "Current version is already latest.",
+    "version_no_internet_check": "No internet connection. Cannot check update.",
+    "version_no_internet_update": "No internet connection. Update canceled.",
+    "version_update_success": "Updated successfully. Current version",
+    "version_update_failed": "Update failed. Please try again."
 }
 
 MENU_UI_OVERRIDES = {
@@ -353,7 +373,27 @@ MENU_UI_OVERRIDES = {
         "opt_debug": "Alihkan Mode Debug",
         "debug_enabled": "Mode debug sekarang DIAKTIFKAN.",
         "debug_disabled": "Mode debug sekarang DINONAKTIFKAN.",
-        "debug_current": "Saat ini"
+        "debug_current": "Saat ini",
+        "debug_title": "Debug",
+        "debug_copy": "Salin debug",
+        "debug_clear": "Hapus debug",
+        "debug_exit": "Keluar",
+        "debug_copied": "Debug berhasil disalin.",
+        "debug_copy_failed": "Gagal menyalin debug.",
+        "debug_cleared": "Log debug berhasil dihapus.",
+        "debug_empty": "(belum ada log debug)",
+        "version_title": "Versi",
+        "version_check_update": "Cek update",
+        "version_update_now": "Perbarui sekarang",
+        "version_later": "Nanti",
+        "version_new_badge": "Tersedia Versi Baru",
+        "version_current": "Versi saat ini",
+        "version_latest_available": "Versi terbaru tersedia",
+        "version_latest": "Versi saat ini sudah terbaru.",
+        "version_no_internet_check": "Tidak ada internet. Tidak bisa cek update.",
+        "version_no_internet_update": "Tidak ada internet. Update dibatalkan.",
+        "version_update_success": "Berhasil diperbarui. Versi saat ini",
+        "version_update_failed": "Update gagal. Silakan coba lagi."
     },
     "jp": {
         "menu_title": "メインメニュー",
@@ -787,7 +827,7 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
         ("6", mt("opt_login", lang), "green"),
         ("7", mt("opt_changelog", lang), "green"),
         ("8", version_label, "green"),
-        ("9", "Debug", "magenta"),
+        ("9", mt("debug_title", lang), "magenta"),
         ("0", mt("opt_exit", lang), "white"),
     ]
 
@@ -1021,14 +1061,14 @@ def _open_changelog() -> None:
 
 def _open_debug_menu(lang: str, color_on: bool) -> None:
     while True:
-        recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else ["(no debug logs yet)"]
+        recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else [mt("debug_empty", lang)]
         console = Console()
         _clear_menu_screen()
-        debug_lines = [*recent_logs, "", "[1] Copy debug", "[2] Clear debug", "[0] Exit"]
+        debug_lines = [*recent_logs, "", f"[1] {mt('debug_copy', lang)}", f"[2] {mt('debug_clear', lang)}", f"[0] {mt('debug_exit', lang)}"]
         console.print(
             Panel(
                 "\n".join(debug_lines),
-                title="Debug",
+                title=mt("debug_title", lang),
                 title_align="left",
                 border_style="cyan",
                 box=box.SQUARE,
@@ -1037,12 +1077,16 @@ def _open_debug_menu(lang: str, color_on: bool) -> None:
         )
         choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
         if choice == "1":
-            payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else "(no debug logs yet)"
+            payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else mt("debug_empty", lang)
             ok = _copy_to_clipboard(payload)
-            _render_rich_text_panel("Debug", ["Debug copied." if ok else "Failed to copy debug."], "Enter to continue")
+            _render_rich_text_panel(
+                mt("debug_title", lang),
+                [mt("debug_copied", lang) if ok else mt("debug_copy_failed", lang)],
+                "Enter to continue",
+            )
         elif choice == "2":
             DEBUG_LOGS.clear()
-            _render_rich_text_panel("Debug", ["Debug logs cleared."], "Enter to continue")
+            _render_rich_text_panel(mt("debug_title", lang), [mt("debug_cleared", lang)], "Enter to continue")
         elif choice == "0":
             return
         else:
@@ -1119,7 +1163,7 @@ def _self_update(target_version: str, target_code: str) -> bool:
         set_current_app_identity(target_version, target_code)
         return True
     except requests.RequestException:
-        _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
+        _render_rich_text_panel(mt("version_title", "en"), [mt("version_no_internet_update", "en")], "Enter to continue")
     except Exception as exc:
         _render_rich_text_panel("Update", [f"Update failed: {exc}"], "Enter to continue")
     return False
@@ -1133,19 +1177,19 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         latest = _fetch_latest_release_tag_cached()
         latest_code = _get_latest_release_code_cached()
         has_update = bool(latest and (latest != current_version or (latest_code and latest_code != current_code)))
-        check_label = "Check update"
+        check_label = mt("version_check_update", lang)
         if has_update and latest:
-            check_label = f"Check update (Tersedia Versi Baru {latest})"
+            check_label = f"{mt('version_check_update', lang)} ({mt('version_new_badge', lang)} {latest})"
         console = _menu_console()
         _clear_menu_screen()
         lines = [
-            f"Current version: {current_version}",
+            f"{mt('version_current', lang)}: {current_version}",
             "",
             f"[1] {check_label}",
             f"[0] {mt('back', lang)}",
         ]
         console.print(
-            Panel("\n".join(lines), title="Version", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+            Panel("\n".join(lines), title=mt("version_title", lang), title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
         )
         choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
         debug_print(f"Version menu choice: {choice}", color_on)
@@ -1157,24 +1201,24 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
             current_code = get_current_app_code()
             debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
             if not latest:
-                _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
+                _render_rich_text_panel(mt("version_title", lang), [mt("version_no_internet_check", lang)], "Enter to continue")
             elif latest == current_version and (not latest_code or latest_code == current_code):
                 _render_rich_text_panel(
-                    "Version",
+                    mt("version_title", lang),
                     [
-                        f"Current version: {current_version}",
-                        f"Current version {current_version} sudah terbaru.",
+                        f"{mt('version_current', lang)}: {current_version}",
+                        f"{mt('version_current', lang)} {current_version} {mt('version_latest', lang)}",
                     ],
                     "Enter to continue",
                 )
             else:
                 decision = _render_rich_combined_panel(
-                    "Version",
+                    mt("version_title", lang),
                     [
-                        f"Current version: {current_version}",
-                        f"Versi terbaru tersedia: {latest}",
+                        f"{mt('version_current', lang)}: {current_version}",
+                        f"{mt('version_latest_available', lang)}: {latest}",
                     ],
-                    [("1", "Update now"), ("2", "Later")],
+                    [("1", mt("version_update_now", lang)), ("2", mt("version_later", lang))],
                     mt("select_option", lang),
                 )
                 debug_print(f"Update decision choice: {decision}", color_on)
@@ -1183,14 +1227,14 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     debug_print(f"Self-update execution result: {success}", color_on)
                     if success:
                         _render_rich_text_panel(
-                            "Update",
+                            mt("version_title", lang),
                             [
-                                f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}.",
+                                f"{mt('version_update_success', lang)} {get_current_app_version()}.",
                             ],
                             "Enter to continue",
                         )
                     else:
-                        _render_rich_text_panel("Update", ["Update gagal. Silakan coba lagi."], "Enter to continue")
+                        _render_rich_text_panel(mt("version_title", lang), [mt("version_update_failed", lang)], "Enter to continue")
         elif choice == "0":
             return
         else:
