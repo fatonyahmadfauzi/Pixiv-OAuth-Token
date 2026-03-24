@@ -78,9 +78,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cli-showcase{position:relative;overflow:hidden;padding:clamp(18px,3vw,32px) clamp(12px,2.2vw,22px);border-radius:20px;background:radial-gradient(circle at 50% 22%,#12335d55 0%,transparent 56%),#0c111b;border:1px solid #2a3344;display:grid;gap:18px}
 .cli-code-shell{position:relative;border:1px solid #313d52;background:#0b1018;border-radius:16px;padding:clamp(18px,2.6vw,24px) clamp(10px,2vw,16px) clamp(14px,2vw,18px);max-width:1080px;width:100%;margin:0 auto;display:grid;gap:14px}
 .cli-fig{position:absolute;left:50%;transform:translateX(-50%);top:-14px;white-space:nowrap;padding:4px 10px;border-radius:6px;border:1px solid #3a455f;background:#0a0f17;color:#b8c4df;font-style:italic}
-.cli-preview{margin:0;background:transparent;border:0;padding:0;max-height:300px;overflow:hidden;position:relative;font-family:Consolas,Monaco,monospace;color:#e4ecff;line-height:1.45}
+.cli-preview{margin:0;background:transparent;border:0;padding:0;max-height:300px;overflow-x:auto;overflow-y:hidden;position:relative;font-family:Consolas,Monaco,monospace;color:#e4ecff;line-height:1.45}
 .cli-preview::after{content:"";position:absolute;left:0;right:0;bottom:0;height:86px;background:linear-gradient(180deg,transparent,#0b1018)}
-.cli-preview.expanded{max-height:2000px}
+.cli-preview.expanded{max-height:2000px;overflow-y:auto}
 .cli-preview.expanded::after{display:none}
 .cli-code-shell #cliToggleBtn{justify-self:center;min-width:0;padding-inline:20px;text-align:center}
 
@@ -88,7 +88,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cli-toggle-btn span,.cli-toggle-btn{justify-content:center}
 .cli-toggle-btn{letter-spacing:.04em}
 .cli-toggle-btn:hover{background:#4a5563;border-color:#6b7686}
-.cli-preview code{display:block;white-space:pre-wrap}
+.cli-preview code{display:block;white-space:pre;min-width:max-content}
 .cli-cyan{color:#3fb8ff}.cli-green{color:#00e65f}.cli-yellow{color:#f2c94c}.cli-blue{color:#38a3ff}.cli-white{color:#f0f4ff}.cli-dim{color:#9ca6bd}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .result-actions{margin-top:10px}
@@ -150,7 +150,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .cli-showcase{padding:22px 12px}
   .cli-code-shell{padding:20px 10px 14px}
   .cli-fig{font-size:.8rem;top:-12px}
-  .cli-preview{font-size:.82rem;max-height:240px}
+  .cli-preview{font-size:.82rem;max-height:240px;overflow-x:auto}
 }
 
 @media (max-width:560px){
