@@ -58,9 +58,10 @@ TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 APP_VERSION = "v1.0.0"
+APP_BUILD_CODE = "REL-LOCAL"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
-UPDATE_CACHE = {"latest": None, "checked_at": 0.0}
+UPDATE_CACHE = {"latest": None, "latest_code": None, "checked_at": 0.0}
 
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
@@ -757,8 +758,9 @@ def _clear_menu_screen() -> None:
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
     debug_status = "ON" if DEBUG_MODE else "OFF"
     latest = _fetch_latest_release_tag_cached()
+    latest_code = _get_latest_release_code_cached()
     version_label = mt("opt_version", lang)
-    if latest and latest != get_current_app_version():
+    if latest and (latest != get_current_app_version() or (latest_code and latest_code != get_current_app_code())):
         version_label = f"{version_label} (Tersedia Versi Baru {latest})"
     return [
         ("1", mt("opt_change_lang", lang), "green"),
@@ -991,27 +993,41 @@ def _open_changelog() -> None:
     open_url("https://pixiv-o-auth-token.vercel.app/changelog")
 
 
-def _fetch_latest_release_tag() -> str | None:
+def _fetch_latest_release_meta() -> tuple[str | None, str | None]:
     try:
         response = requests.get(GITHUB_API_LATEST_RELEASE, timeout=15)
         response.raise_for_status()
-        tag = str(response.json().get("tag_name", "")).strip()
-        return tag or None
+        payload = response.json()
+        tag = str(payload.get("tag_name", "")).strip() or None
+        release_id = payload.get("id")
+        code = f"REL-{release_id}" if release_id else None
+        return tag, code
     except Exception:
-        return None
+        return None, None
+
+
+def _fetch_latest_release_tag() -> str | None:
+    tag, _ = _fetch_latest_release_meta()
+    return tag
 
 
 def _fetch_latest_release_tag_cached(force: bool = False) -> str | None:
     now = time.time()
     if not force and UPDATE_CACHE["checked_at"] and now - float(UPDATE_CACHE["checked_at"]) < 300:
         return UPDATE_CACHE["latest"]
-    latest = _fetch_latest_release_tag()
+    latest, latest_code = _fetch_latest_release_meta()
     UPDATE_CACHE["latest"] = latest
+    UPDATE_CACHE["latest_code"] = latest_code
     UPDATE_CACHE["checked_at"] = now
     return latest
 
 
-def _self_update(target_version: str) -> bool:
+def _get_latest_release_code_cached(force: bool = False) -> str | None:
+    _fetch_latest_release_tag_cached(force=force)
+    return UPDATE_CACHE["latest_code"]
+
+
+def _self_update(target_version: str, target_code: str) -> bool:
     console = _menu_console()
     _clear_menu_screen()
     console.print(
@@ -1044,7 +1060,7 @@ def _self_update(target_version: str) -> bool:
                 check=False,
             )
             progress.update(install_task, completed=100)
-        set_current_app_version(target_version)
+        set_current_app_identity(target_version, target_code)
         return True
     except requests.RequestException:
         _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
@@ -1056,8 +1072,10 @@ def _self_update(target_version: str) -> bool:
 def _open_version_menu(lang: str, color_on: bool) -> None:
     while True:
         current_version = get_current_app_version()
+        current_code = get_current_app_code()
         latest = _fetch_latest_release_tag_cached()
-        has_update = bool(latest and latest != current_version)
+        latest_code = _get_latest_release_code_cached()
+        has_update = bool(latest and (latest != current_version or (latest_code and latest_code != current_code)))
         check_label = "Check update"
         if has_update and latest:
             check_label = f"Check update (Tersedia Versi Baru {latest})"
@@ -1065,6 +1083,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         _clear_menu_screen()
         lines = [
             f"Current version: {current_version}",
+            f"Build code: {current_code}",
             "",
             f"[1] {check_label}",
             f"[0] {mt('back', lang)}",
@@ -1076,28 +1095,42 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
 
         if choice == "1":
             latest = _fetch_latest_release_tag_cached(force=True)
+            latest_code = _get_latest_release_code_cached(force=True)
             current_version = get_current_app_version()
+            current_code = get_current_app_code()
             if not latest:
                 _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
-            elif latest == current_version:
+            elif latest == current_version and (not latest_code or latest_code == current_code):
                 _render_rich_text_panel(
                     "Version",
-                    [f"Current version: {current_version}", f"Current version {current_version} sudah terbaru."],
+                    [
+                        f"Current version: {current_version}",
+                        f"Build code: {current_code}",
+                        f"Current version {current_version} sudah terbaru.",
+                    ],
                     "Enter to continue",
                 )
             else:
                 decision = _render_rich_combined_panel(
                     "Version",
-                    [f"Current version: {current_version}", f"Versi terbaru tersedia: {latest}"],
+                    [
+                        f"Current version: {current_version}",
+                        f"Build code: {current_code}",
+                        f"Versi terbaru tersedia: {latest}",
+                        f"Release code terbaru: {latest_code or '-'}",
+                    ],
                     [("1", "Update now"), ("2", "Later")],
                     mt("select_option", lang),
                 )
                 if decision == "1":
-                    success = _self_update(latest)
+                    success = _self_update(latest, latest_code or APP_BUILD_CODE)
                     if success:
                         _render_rich_text_panel(
                             "Update",
-                            [f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}."],
+                            [
+                                f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}.",
+                                f"Build code saat ini: {get_current_app_code()}",
+                            ],
                             "Enter to continue",
                         )
                     else:
@@ -1215,7 +1248,12 @@ def get_current_app_version() -> str:
         if VERSION_FILE.exists():
             raw = VERSION_FILE.read_text(encoding="utf-8").strip()
             if raw:
-                return raw
+                if raw.startswith("{"):
+                    data = json.loads(raw)
+                    version = data.get("version")
+                    if isinstance(version, str) and version.strip():
+                        return version.strip()
+                return raw.split("|")[0].strip()
     except Exception:
         pass
 
@@ -1226,14 +1264,42 @@ def get_current_app_version() -> str:
     return APP_VERSION
 
 
-def set_current_app_version(version: str) -> None:
+def get_current_app_code() -> str:
     try:
-        VERSION_FILE.write_text(version.strip(), encoding="utf-8")
+        if VERSION_FILE.exists():
+            raw = VERSION_FILE.read_text(encoding="utf-8").strip()
+            if raw:
+                if raw.startswith("{"):
+                    data = json.loads(raw)
+                    code = data.get("build_code")
+                    if isinstance(code, str) and code.strip():
+                        return code.strip()
+                parts = raw.split("|", 1)
+                if len(parts) == 2 and parts[1].strip():
+                    return parts[1].strip()
     except Exception:
         pass
 
     cfg = load_config()
-    cfg["app_version"] = version
+    code = cfg.get("app_build_code")
+    if isinstance(code, str) and code.strip():
+        return code.strip()
+    return APP_BUILD_CODE
+
+
+def set_current_app_identity(version: str, build_code: str) -> None:
+    identity = {
+        "version": version.strip(),
+        "build_code": build_code.strip(),
+    }
+    try:
+        VERSION_FILE.write_text(json.dumps(identity, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+
+    cfg = load_config()
+    cfg["app_version"] = identity["version"]
+    cfg["app_build_code"] = identity["build_code"]
     save_config(cfg)
 
 
