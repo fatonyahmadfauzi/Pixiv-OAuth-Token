@@ -36,11 +36,15 @@ from rich.text import Text
 
 # ===== CONFIG =====
 DEBUG_MODE = False
+DEBUG_LOGS: list[str] = []
+DEBUG_MAX_LINES = 1000
 MENU_CONSOLE_WIDTH = 90
 
 def debug_print(msg: str, color_on: bool = True):
-    if DEBUG_MODE:
-        print(f"\033[35m[DEBUG] {msg}\033[0m" if color_on else f"[DEBUG] {msg}")
+    stamp = time.strftime("%Y-%m-%d %H:%M:%S")
+    DEBUG_LOGS.append(f"{stamp} | {msg}")
+    if len(DEBUG_LOGS) > DEBUG_MAX_LINES:
+        del DEBUG_LOGS[:-DEBUG_MAX_LINES]
 
 USER_AGENT = "PixivAndroidApp/5.0.234 (Android 11; Pixel 5)"
 REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback"
@@ -82,6 +86,19 @@ LANG_LABELS = {
     "pt": "🇵🇹 Português",
     "id": "🇮🇩 Indonesia",
     "kr": "🇰🇷 한국어",
+}
+LANG_NAMES = {
+    "en": "English",
+    "pl": "Polski",
+    "zh": "中文",
+    "jp": "日本語",
+    "de": "Deutsch",
+    "fr": "Français",
+    "es": "Español",
+    "ru": "Русский",
+    "pt": "Português",
+    "id": "Indonesia",
+    "kr": "한국어",
 }
 
 LANGUAGES = {
@@ -756,7 +773,6 @@ def _clear_menu_screen() -> None:
 
 
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
-    debug_status = "ON" if DEBUG_MODE else "OFF"
     latest = _fetch_latest_release_tag_cached()
     latest_code = _get_latest_release_code_cached()
     version_label = mt("opt_version", lang)
@@ -771,7 +787,7 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
         ("6", mt("opt_login", lang), "green"),
         ("7", mt("opt_changelog", lang), "green"),
         ("8", version_label, "green"),
-        ("9", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
+        ("9", "Debug", "magenta"),
         ("0", mt("opt_exit", lang), "white"),
     ]
 
@@ -851,7 +867,7 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
     debug_print(f"Opening language selector (current={current_lang})", color_on)
-    lines = [f" {LANG_LABELS.get(code, code)}" for code in SUPPORTED_LANGS]
+    lines = [f"[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
     prompt = mt("choose_lang", current_lang) + " (empty to cancel)"
     new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
@@ -1003,6 +1019,28 @@ def _open_changelog() -> None:
     open_url("https://pixiv-o-auth-token.vercel.app/changelog")
 
 
+def _open_debug_menu(lang: str, color_on: bool) -> None:
+    while True:
+        recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else ["(no debug logs yet)"]
+        choice = _render_rich_combined_panel(
+            "Debug",
+            recent_logs,
+            [("1", "Copy debug"), ("2", "Clear debug"), ("0", "Exit")],
+            mt("select_option", lang),
+        ).strip()
+        if choice == "1":
+            payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else "(no debug logs yet)"
+            ok = _copy_to_clipboard(payload)
+            _render_rich_text_panel("Debug", ["Debug copied." if ok else "Failed to copy debug."], "Enter to continue")
+        elif choice == "2":
+            DEBUG_LOGS.clear()
+            _render_rich_text_panel("Debug", ["Debug logs cleared."], "Enter to continue")
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
 def _fetch_latest_release_meta() -> tuple[str | None, str | None]:
     try:
         response = requests.get(GITHUB_API_LATEST_RELEASE, timeout=15)
@@ -1094,7 +1132,6 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         _clear_menu_screen()
         lines = [
             f"Current version: {current_version}",
-            f"Build code: {current_code}",
             "",
             f"[1] {check_label}",
             f"[0] {mt('back', lang)}",
@@ -1118,7 +1155,6 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     "Version",
                     [
                         f"Current version: {current_version}",
-                        f"Build code: {current_code}",
                         f"Current version {current_version} sudah terbaru.",
                     ],
                     "Enter to continue",
@@ -1128,9 +1164,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     "Version",
                     [
                         f"Current version: {current_version}",
-                        f"Build code: {current_code}",
                         f"Versi terbaru tersedia: {latest}",
-                        f"Release code terbaru: {latest_code or '-'}",
                     ],
                     [("1", "Update now"), ("2", "Later")],
                     mt("select_option", lang),
@@ -1144,7 +1178,6 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                             "Update",
                             [
                                 f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}.",
-                                f"Build code saat ini: {get_current_app_code()}",
                             ],
                             "Enter to continue",
                         )
@@ -1165,7 +1198,6 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
 
 def run_interactive_menu(lang: str, color_on: bool) -> None:
-    global DEBUG_MODE
     current_lang = lang
     use_rich_menu = _rich_available()
     while True:
@@ -1188,12 +1220,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         debug_print(f"User selected main menu option: {choice}")
 
         if choice == "9":
-            DEBUG_MODE = not DEBUG_MODE
-            print(colorize(mt("debug_enabled", current_lang) if DEBUG_MODE else mt("debug_disabled", current_lang), Ansi.GREEN if DEBUG_MODE else Ansi.RED, color_on))
-            try:
-                input("\nPress Enter to continue...")
-            except Exception:
-                pass
+            _open_debug_menu(current_lang, color_on)
             continue
         elif choice == "1":
             current_lang = _choose_language_interactive(current_lang, color_on)
