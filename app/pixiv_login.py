@@ -978,7 +978,7 @@ def _fetch_latest_release_tag() -> str | None:
         return None
 
 
-def _self_update() -> bool:
+def _self_update(target_version: str) -> bool:
     console = _menu_console()
     _clear_menu_screen()
     console.print(
@@ -1011,6 +1011,7 @@ def _self_update() -> bool:
                 check=False,
             )
             progress.update(install_task, completed=100)
+        set_current_app_version(target_version)
         return True
     except requests.RequestException:
         _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
@@ -1022,26 +1023,26 @@ def _self_update() -> bool:
 def _open_version_menu(lang: str, color_on: bool) -> None:
     while True:
         options = [
-            ("1", f"Current version: {APP_VERSION}"),
+            ("1", f"Current version: {get_current_app_version()}"),
             ("2", "Check update"),
             ("3", "Update now"),
             ("0", mt("back", lang)),
         ]
         choice = _render_rich_option_panel("Version", options, mt("select_option", lang)).strip()
         if choice == "1":
-            _render_rich_text_panel("Version", [f"Current version: {APP_VERSION}"], "Enter to continue")
+            _render_rich_text_panel("Version", [f"Current version: {get_current_app_version()}"], "Enter to continue")
         elif choice == "2":
             latest = _fetch_latest_release_tag()
             if not latest:
                 _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
-            elif latest == APP_VERSION:
+            elif latest == get_current_app_version():
                 _render_rich_text_panel(
-                    "Version", [f"Current version {APP_VERSION} sudah terbaru."], "Enter to continue"
+                    "Version", [f"Current version {get_current_app_version()} sudah terbaru."], "Enter to continue"
                 )
             else:
                 _render_rich_text_panel(
                     "Version",
-                    [f"Versi terbaru tersedia: {latest}", f"Versi saat ini: {APP_VERSION}"],
+                    [f"Versi terbaru tersedia: {latest}", f"Versi saat ini: {get_current_app_version()}"],
                     "Enter to continue",
                 )
         elif choice == "3":
@@ -1049,14 +1050,14 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
             if not latest:
                 _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
                 continue
-            if latest == APP_VERSION:
-                _render_rich_text_panel("Update", [f"Versi saat ini {APP_VERSION} sudah terbaru."], "Enter to continue")
+            if latest == get_current_app_version():
+                _render_rich_text_panel("Update", [f"Versi saat ini {get_current_app_version()} sudah terbaru."], "Enter to continue")
                 continue
-            success = _self_update()
+            success = _self_update(latest)
             if success:
                 _render_rich_text_panel(
                     "Update",
-                    [f"Berhasil diperbarui. Versi saat ini {latest}."],
+                    [f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}."],
                     "Enter to continue",
                 )
             else:
@@ -1169,6 +1170,20 @@ def colorize(text: str, color: str, enabled: bool) -> str:
 
 
 # ===== CONFIG FILE =====
+def get_current_app_version() -> str:
+    cfg = load_config()
+    v = cfg.get("app_version")
+    if isinstance(v, str) and v.strip():
+        return v.strip()
+    return APP_VERSION
+
+
+def set_current_app_version(version: str) -> None:
+    cfg = load_config()
+    cfg["app_version"] = version
+    save_config(cfg)
+
+
 def load_config() -> dict:
     try:
         if CONFIG_FILE.exists():
