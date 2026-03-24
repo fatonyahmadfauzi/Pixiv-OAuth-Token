@@ -867,7 +867,7 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
     debug_print(f"Opening language selector (current={current_lang})", color_on)
-    lines = [f"[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
+    lines = [f"\\[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
     prompt = mt("choose_lang", current_lang) + " (empty to cancel)"
     new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
@@ -1022,12 +1022,20 @@ def _open_changelog() -> None:
 def _open_debug_menu(lang: str, color_on: bool) -> None:
     while True:
         recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else ["(no debug logs yet)"]
-        choice = _render_rich_combined_panel(
-            "Debug",
-            recent_logs,
-            [("1", "Copy debug"), ("2", "Clear debug"), ("0", "Exit")],
-            mt("select_option", lang),
-        ).strip()
+        console = Console()
+        _clear_menu_screen()
+        debug_lines = [*recent_logs, "", "[1] Copy debug", "[2] Clear debug", "[0] Exit"]
+        console.print(
+            Panel(
+                "\n".join(debug_lines),
+                title="Debug",
+                title_align="left",
+                border_style="cyan",
+                box=box.SQUARE,
+                expand=True,
+            )
+        )
+        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
         if choice == "1":
             payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else "(no debug logs yet)"
             ok = _copy_to_clipboard(payload)
