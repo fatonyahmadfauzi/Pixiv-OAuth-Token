@@ -114,6 +114,7 @@ APP_VERSION = "v1.0.2"
 APP_BUILD_CODE = "REL-LOCAL"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
+LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 UPDATE_CACHE = {"latest": None, "latest_code": None, "checked_at": 0.0}
 
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
@@ -1508,12 +1509,36 @@ def _open_debug_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 
+def _normalize_version_tag(version: str | None) -> str | None:
+    if not version:
+        return None
+    v = str(version).strip()
+    if not v:
+        return None
+    return v if v.startswith("v") else f"v{v}"
+
+
+def _fetch_latest_manifest_meta() -> tuple[str | None, str | None]:
+    try:
+        response = requests.get(LATEST_MANIFEST_URL, timeout=15)
+        response.raise_for_status()
+        payload = response.json()
+        tag = _normalize_version_tag(payload.get("version"))
+        code = str(payload.get("build_code", "")).strip() or None
+        return tag, code
+    except Exception:
+        return None, None
+
+
 def _fetch_latest_release_meta() -> tuple[str | None, str | None]:
+    manifest_tag, manifest_code = _fetch_latest_manifest_meta()
+    if manifest_tag:
+        return manifest_tag, manifest_code
     try:
         response = requests.get(GITHUB_API_LATEST_RELEASE, timeout=15)
         response.raise_for_status()
         payload = response.json()
-        tag = str(payload.get("tag_name", "")).strip() or None
+        tag = _normalize_version_tag(payload.get("tag_name"))
         release_id = payload.get("id")
         code = f"REL-{release_id}" if release_id else None
         return tag, code

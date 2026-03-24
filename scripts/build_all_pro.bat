@@ -180,6 +180,10 @@ if exist scripts\build_release_zip.bat (
 
 :after_zip
 
+if exist scripts\generate_latest_manifest.py (
+  python scripts\generate_latest_manifest.py
+)
+
 REM --- Sync ONLY latest artifacts into downloads (4 files total) ---
 if not exist downloads mkdir downloads
 

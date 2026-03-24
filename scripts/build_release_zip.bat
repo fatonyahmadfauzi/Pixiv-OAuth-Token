@@ -23,6 +23,10 @@ del /q "%RELEASE_DIR%\*" 2>nul
 del /q "%ZIP_OUT_DIR%\PixivOAuthRelease_v*.zip" 2>nul
 del /q "downloads\PixivOAuthRelease_v*.zip" 2>nul
 
+if exist "scripts\generate_latest_manifest.py" (
+  python scripts\generate_latest_manifest.py
+)
+
 REM --- Portable (prefer downloads/) ---
 if exist "downloads\Pixiv OAuth CLi (Portable).exe" (
   copy /y "downloads\Pixiv OAuth CLi (Portable).exe" "%RELEASE_DIR%\Pixiv OAuth CLi (Portable).exe" >nul
@@ -66,6 +70,7 @@ if exist "downloads\Pixiv OAuth GUi Setup_latest.exe" (
 :copied_gui_inst
 
 if exist "version.json" copy /y "version.json" "%RELEASE_DIR%\version.json" >nul
+if exist "latest.json" copy /y "latest.json" "%RELEASE_DIR%\latest.json" >nul
 if exist "README.md" (
   if exist "scripts\clean_readme_for_release.py" (
     python scripts\clean_readme_for_release.py "README.md" "%RELEASE_DIR%\README.md"

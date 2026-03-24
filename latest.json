@@ -1,0 +1,29 @@
+{
+  "version": "1.0.2",
+  "build_code": "REL-LOCAL",
+  "published_at": null,
+  "notes_url": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest",
+  "assets": {
+    "cli_portable": {
+      "x86": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20(Portable)%20x86_latest.exe",
+      "x64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20(Portable)%20x64_latest.exe",
+      "arm64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20(Portable)%20ARM64_latest.exe"
+    },
+    "gui_portable": {
+      "x86": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20(Portable)%20x86_latest.exe",
+      "x64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20(Portable)%20x64_latest.exe",
+      "arm64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20(Portable)%20ARM64_latest.exe"
+    },
+    "cli_setup": {
+      "x86": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20Setup%20x86_latest.exe",
+      "x64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20Setup%20x64_latest.exe",
+      "arm64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20CLi%20Setup%20ARM64_latest.exe"
+    },
+    "gui_setup": {
+      "x86": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20Setup%20x86_latest.exe",
+      "x64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20Setup%20x64_latest.exe",
+      "arm64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20Setup%20ARM64_latest.exe"
+    },
+    "release_zip": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/PixivOAuthRelease_v1.0.2_REL-LOCAL.zip"
+  }
+}
