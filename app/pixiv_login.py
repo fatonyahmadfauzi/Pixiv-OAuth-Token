@@ -816,9 +816,12 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
-    lines = [f"[{code}] {LANG_LABELS.get(code, code)}" for code in SUPPORTED_LANGS]
-    new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, mt("choose_lang", current_lang))
+    lines = [f" {LANG_LABELS.get(code, code)}" for code in SUPPORTED_LANGS]
+    prompt = mt("choose_lang", current_lang) + " (empty to cancel)"
+    new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
+    if new_lang == "":
+        return current_lang
     if new_lang not in SUPPORTED_LANGS:
         print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
         return current_lang
@@ -949,7 +952,7 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
         "refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4",
         "expires_in   : 3600",
     ]
-    _render_rich_text_panel(mt("tutorial_title", lang), lines, "Back")
+    _render_rich_text_panel(mt("tutorial_title", lang), lines, "Enter to main menu")
 
 def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print()
@@ -1003,6 +1006,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         elif choice == "6":
             login(current_lang, color_on)
         elif choice == "0":
+            print("Exiting...")
             return
         else:
             print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
