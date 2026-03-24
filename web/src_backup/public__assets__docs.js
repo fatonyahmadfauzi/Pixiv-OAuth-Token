@@ -1,10 +1,28 @@
-function getReadmeUrl() {
-  const lang = document.documentElement.lang || "en";
-  if (lang === "en") {
+function getReadmeUrl(lang) {
+  if (!lang || lang === "en") {
     return "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md";
-  } else {
-    return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/README-${lang.toUpperCase()}.md`;
   }
+  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/README-${lang.toUpperCase()}.md`;
+}
+
+async function fetchReadmeWithFallback() {
+  const selectedLang = (document.documentElement.lang || "en").toLowerCase();
+  const candidates = selectedLang === "en" ? ["en"] : [selectedLang, "en"];
+
+  let lastError = null;
+  for (const lang of candidates) {
+    try {
+      const response = await fetch(getReadmeUrl(lang));
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const markdown = await response.text();
+      return { markdown, lang };
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError || new Error("Failed to fetch README fallback chain");
 }
 
 function buildTOC() {
@@ -40,9 +58,8 @@ async function loadDocs() {
     t.hidden = true;
     t.innerHTML = '';
 
-    var r = await fetch(getReadmeUrl());
-    if (!r.ok) throw new Error("HTTP " + r.status);
-    var a = await r.text();
+    var readmeResult = await fetchReadmeWithFallback();
+    var a = readmeResult.markdown;
     
     t.innerHTML = marked.parse(a);
     if (e) e.style.display = 'none';

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import json, os, sys, re
+from datetime import datetime, timezone
 
 VERSION_FILE = os.path.join(os.path.dirname(__file__), "..", "version.json")
 
@@ -12,7 +13,7 @@ def parse(v: str):
 def main():
     bump = sys.argv[1].lower() if len(sys.argv) >= 2 else "patch"
 
-    data: dict = {"version": "1.0.0"}
+    data: dict = {"version": "1.0.0", "build_code": "REL-LOCAL"}
     if os.path.exists(VERSION_FILE):
         with open(VERSION_FILE, "r", encoding="utf-8") as f:
             loaded = json.load(f)
@@ -33,10 +34,15 @@ def main():
         raise SystemExit("Usage: python bump_version.py [major|minor|patch|none]")
 
     data["version"] = f"{major}.{minor}.{patch}"
+    if bump != "none":
+        data["build_code"] = "REL-" + datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
+    elif not data.get("build_code"):
+        data["build_code"] = "REL-LOCAL"
+
     with open(VERSION_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
-    print(data["version"])
+    print(f"{data['version']}|{data['build_code']}")
 
 if __name__ == "__main__":
     main()
