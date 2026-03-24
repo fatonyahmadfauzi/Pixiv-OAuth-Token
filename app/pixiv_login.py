@@ -747,6 +747,10 @@ def _clear_menu_screen(console: Console) -> None:
     console.clear(home=True)
 
 
+def _clear_terminal_screen() -> None:
+    print("[2J[H", end="")
+
+
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
     debug_status = "ON" if DEBUG_MODE else "OFF"
     return [
@@ -776,7 +780,7 @@ def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, 
     if _rich_available():
         return _render_rich_option_panel(title, options, mt("select_option", lang))
 
-    print()
+    _clear_terminal_screen()
     print(colorize(title, Ansi.BOLD + Ansi.BLUE, color_on))
     for key, label in options:
         style = Ansi.DIM if key == "0" else Ansi.BLUE
@@ -972,6 +976,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
                 "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
             ).strip()
         else:
+            _clear_terminal_screen()
             print_cli_banner(current_lang, color_on)
             for key, label, style in _build_menu_options(current_lang):
                 ansi_style = {
