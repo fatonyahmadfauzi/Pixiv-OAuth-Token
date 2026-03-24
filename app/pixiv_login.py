@@ -1223,12 +1223,17 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
             refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
             if refreshed:
                 tokens.update(refreshed)
+                _render_rich_text_panel("Login Actions", ["Refresh token success."], "Enter to continue")
+            else:
+                _render_rich_text_panel("Login Actions", ["Refresh token failed."], "Enter to continue")
         elif choice == "2":
             ok = _copy_to_clipboard(tokens.get("access_token", ""))
-            print("Access token copied." if ok else "Failed to copy access token.")
+            msg = "Access token copied." if ok else "Failed to copy access token."
+            _render_rich_text_panel("Login Actions", [msg], "Enter to continue")
         elif choice == "3":
             ok = _copy_to_clipboard(tokens.get("refresh_token", ""))
-            print("Refresh token copied." if ok else "Failed to copy refresh token.")
+            msg = "Refresh token copied." if ok else "Failed to copy refresh token."
+            _render_rich_text_panel("Login Actions", [msg], "Enter to continue")
         elif choice == "0":
             print(colorize("Exiting...", Ansi.GREEN, color_on))
             return
