@@ -631,9 +631,9 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .gh-doc-body pre code{background:transparent;border:none;padding:0;font-size:.9rem;color:inherit}
 .gh-doc-body blockquote{margin:0 0 1rem;padding:12px 16px;border-left:3px solid #3a4f79;background:#0a1020;border-radius:0 8px 8px 0;color:#8a98b8}
 .gh-doc-body blockquote p{margin:0}
-.gh-doc-body table{display:block;overflow-x:auto;width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem;white-space:nowrap}
-.gh-doc-body th{background:#0c1219;padding:10px 14px;text-align:left;font-weight:700;color:#a8b8d8;border-bottom:2px solid #2a3344}
-.gh-doc-body td{padding:9px 14px;border-bottom:1px solid #1a2438;color:#b8c8e0}
+.gh-doc-body table{display:table;width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem;table-layout:fixed}
+.gh-doc-body th{background:#0c1219;padding:10px 14px;text-align:left;font-weight:700;color:#a8b8d8;border-bottom:2px solid #2a3344;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+.gh-doc-body td{padding:9px 14px;border-bottom:1px solid #1a2438;color:#b8c8e0;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
 .gh-doc-body tr:hover td{background:#0a0f18}
 .gh-doc-body hr{border:none;border-top:1px solid #1e2a3d;margin:1.5rem 0}
 .gh-doc-body img{max-width:100%;border-radius:10px;border:1px solid #2a3344}
