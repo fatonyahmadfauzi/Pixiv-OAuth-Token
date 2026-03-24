@@ -795,6 +795,22 @@ def _render_rich_text_panel(title: str, lines: list[str], prompt: str | None = N
     return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
 
 
+def _render_rich_combined_panel(
+    title: str,
+    lines: list[str],
+    options: list[tuple[str, str]],
+    prompt: str,
+) -> str:
+    console = _menu_console()
+    _clear_menu_screen()
+    body_lines = [*lines, ""]
+    body_lines.extend([f"[{key}] {label}" for key, label in options])
+    console.print(
+        Panel("\n".join(body_lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+    )
+    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+
+
 def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
     return _render_rich_option_panel(title, options, mt("select_option", lang))
 
@@ -1070,12 +1086,12 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     "Enter to continue",
                 )
             else:
-                _render_rich_text_panel(
+                decision = _render_rich_combined_panel(
                     "Version",
                     [f"Current version: {current_version}", f"Versi terbaru tersedia: {latest}"],
-                    "Enter to continue",
+                    [("1", "Update now"), ("2", "Later")],
+                    mt("select_option", lang),
                 )
-                decision = _render_rich_option_panel("Version", [("1", "Update now"), ("2", "Later")], mt("select_option", lang)).strip()
                 if decision == "1":
                     success = _self_update(latest)
                     if success:
