@@ -1309,7 +1309,7 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
     global DEBUG_LANG
     debug_print(_dbg_msg("open_language_selector", lang=current_lang), color_on)
-    lines = [f"\\[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
+    lines = [f"[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
     prompt = f"{mt('choose_lang', current_lang)} ({CANCEL_HINT.get(current_lang, CANCEL_HINT['en'])})"
     new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
