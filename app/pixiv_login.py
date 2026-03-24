@@ -29,6 +29,7 @@ from rich import box
 from rich.align import Align
 from rich.console import Console
 from rich.panel import Panel
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.text import Text
 
 
@@ -55,6 +56,9 @@ TUTORIAL_URL = README_URL
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
+APP_VERSION = "v1.0.0"
+GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
+RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
 
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 
@@ -246,6 +250,8 @@ MENU_UI_EN = {
     "opt_support": "Support",
     "opt_social": "Social",
     "opt_login": "Login",
+    "opt_changelog": "Changelog",
+    "opt_version": "Version",
     "opt_exit": "Exit",
     "select_option": "Select option",
     "invalid_option": "Invalid option.",
@@ -754,7 +760,9 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
         ("4", mt("opt_support", lang), "green"),
         ("5", mt("opt_social", lang), "green"),
         ("6", mt("opt_login", lang), "green"),
-        ("7", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
+        ("7", mt("opt_changelog", lang), "green"),
+        ("8", mt("opt_version", lang), "green"),
+        ("9", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
         ("0", mt("opt_exit", lang), "white"),
     ]
 
@@ -955,6 +963,110 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
     ]
     _render_rich_text_panel(mt("tutorial_title", lang), lines, "Enter to main menu")
 
+
+def _open_changelog() -> None:
+    open_url("https://pixiv-o-auth-token.vercel.app/changelog")
+
+
+def _fetch_latest_release_tag() -> str | None:
+    try:
+        response = requests.get(GITHUB_API_LATEST_RELEASE, timeout=15)
+        response.raise_for_status()
+        tag = str(response.json().get("tag_name", "")).strip()
+        return tag or None
+    except Exception:
+        return None
+
+
+def _self_update() -> bool:
+    console = _menu_console()
+    _clear_menu_screen()
+    console.print(
+        Panel(
+            "Downloading latest update and installing requirements...",
+            title="Update",
+            title_align="left",
+            border_style="cyan",
+            box=box.SQUARE,
+            expand=True,
+        )
+    )
+    try:
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("{task.description}"),
+            BarColumn(),
+            TextColumn("{task.percentage:>3.0f}%"),
+            console=console,
+        ) as progress:
+            download_task = progress.add_task("Download latest app", total=100)
+            response = requests.get(RAW_MAIN_PY_URL, timeout=30)
+            response.raise_for_status()
+            progress.update(download_task, completed=100)
+
+            install_task = progress.add_task("Install dependencies", total=100)
+            Path(__file__).write_text(response.text, encoding="utf-8")
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", "-r", str(Path(__file__).with_name("requirements.txt"))],
+                check=False,
+            )
+            progress.update(install_task, completed=100)
+        return True
+    except requests.RequestException:
+        _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
+    except Exception as exc:
+        _render_rich_text_panel("Update", [f"Update failed: {exc}"], "Enter to continue")
+    return False
+
+
+def _open_version_menu(lang: str, color_on: bool) -> None:
+    while True:
+        options = [
+            ("1", f"Current version: {APP_VERSION}"),
+            ("2", "Check update"),
+            ("3", "Update now"),
+            ("0", mt("back", lang)),
+        ]
+        choice = _render_rich_option_panel("Version", options, mt("select_option", lang)).strip()
+        if choice == "1":
+            _render_rich_text_panel("Version", [f"Current version: {APP_VERSION}"], "Enter to continue")
+        elif choice == "2":
+            latest = _fetch_latest_release_tag()
+            if not latest:
+                _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
+            elif latest == APP_VERSION:
+                _render_rich_text_panel(
+                    "Version", [f"Current version {APP_VERSION} sudah terbaru."], "Enter to continue"
+                )
+            else:
+                _render_rich_text_panel(
+                    "Version",
+                    [f"Versi terbaru tersedia: {latest}", f"Versi saat ini: {APP_VERSION}"],
+                    "Enter to continue",
+                )
+        elif choice == "3":
+            latest = _fetch_latest_release_tag()
+            if not latest:
+                _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
+                continue
+            if latest == APP_VERSION:
+                _render_rich_text_panel("Update", [f"Versi saat ini {APP_VERSION} sudah terbaru."], "Enter to continue")
+                continue
+            success = _self_update()
+            if success:
+                _render_rich_text_panel(
+                    "Update",
+                    [f"Berhasil diperbarui. Versi saat ini {latest}."],
+                    "Enter to continue",
+                )
+            else:
+                _render_rich_text_panel("Update", ["Update gagal. Silakan coba lagi."], "Enter to continue")
+        elif choice == "0":
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
 def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print()
     print(colorize(mt("developer_info", lang), Ansi.BOLD + Ansi.CYAN, color_on))
@@ -986,7 +1098,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"User selected main menu option: {choice}")
 
-        if choice == "7":
+        if choice == "9":
             DEBUG_MODE = not DEBUG_MODE
             print(colorize(mt("debug_enabled", current_lang) if DEBUG_MODE else mt("debug_disabled", current_lang), Ansi.GREEN if DEBUG_MODE else Ansi.RED, color_on))
             try:
@@ -1006,6 +1118,10 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             _open_social_menu(current_lang, color_on)
         elif choice == "6":
             login(current_lang, color_on)
+        elif choice == "7":
+            _open_changelog()
+        elif choice == "8":
+            _open_version_menu(current_lang, color_on)
         elif choice == "0":
             print(colorize("Exiting...", Ansi.GREEN, color_on))
             return
