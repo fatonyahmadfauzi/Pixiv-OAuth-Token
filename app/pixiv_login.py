@@ -63,6 +63,7 @@ RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAut
 UPDATE_CACHE = {"latest": None, "checked_at": 0.0}
 
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
+VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
 
 
 # ===== LANGUAGE CONFIG =====
@@ -1202,6 +1203,14 @@ def colorize(text: str, color: str, enabled: bool) -> str:
 
 # ===== CONFIG FILE =====
 def get_current_app_version() -> str:
+    try:
+        if VERSION_FILE.exists():
+            raw = VERSION_FILE.read_text(encoding="utf-8").strip()
+            if raw:
+                return raw
+    except Exception:
+        pass
+
     cfg = load_config()
     v = cfg.get("app_version")
     if isinstance(v, str) and v.strip():
@@ -1210,6 +1219,11 @@ def get_current_app_version() -> str:
 
 
 def set_current_app_version(version: str) -> None:
+    try:
+        VERSION_FILE.write_text(version.strip(), encoding="utf-8")
+    except Exception:
+        pass
+
     cfg = load_config()
     cfg["app_version"] = version
     save_config(cfg)
