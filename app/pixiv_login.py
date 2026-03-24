@@ -768,6 +768,17 @@ def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt
     return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
 
 
+def _render_rich_text_panel(title: str, lines: list[str], prompt: str | None = None) -> str | None:
+    console = _menu_console()
+    _clear_menu_screen()
+    console.print(
+        Panel("\n".join(lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+    )
+    if prompt is None:
+        return None
+    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+
+
 def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
     return _render_rich_option_panel(title, options, mt("select_option", lang))
 
@@ -805,11 +816,9 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
-    print()
-    print(colorize(f"{mt('choose_lang', current_lang)}:", Ansi.YELLOW, color_on))
-    for code in SUPPORTED_LANGS:
-        print(f"  - {code}: {LANG_LABELS.get(code, code)}")
-    new_lang = input("> ").strip().lower()
+    lines = [f"[{code}] {LANG_LABELS.get(code, code)}" for code in SUPPORTED_LANGS]
+    new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, mt("choose_lang", current_lang))
+    new_lang = (new_lang or "").strip().lower()
     if new_lang not in SUPPORTED_LANGS:
         print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
         return current_lang
@@ -920,26 +929,27 @@ def _open_contact_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def show_cli_tutorial(lang: str, color_on: bool) -> None:
-    print()
-    print(colorize(mt("tutorial_title", lang), Ansi.BOLD + Ansi.CYAN, color_on))
-    print(colorize(mt("tutorial_desc", lang), Ansi.DIM, color_on))
-    print(colorize(mt("tutorial_step1", lang), Ansi.GREEN, color_on))
-    print(colorize(mt("tutorial_step2", lang), Ansi.GREEN, color_on))
-    print(colorize(mt("tutorial_step3", lang), Ansi.GREEN, color_on))
-    print(colorize(mt("tutorial_step4", lang), Ansi.GREEN, color_on))
-    print(colorize(mt("tutorial_step5", lang), Ansi.GREEN, color_on))
-    print(colorize(mt("tutorial_step6", lang), Ansi.GREEN, color_on))
-
-    print()
-    print(colorize(mt("tutorial_example", lang) + ":", Ansi.YELLOW, color_on))
-    print("Opening browser for login...\n")
-    print("Paste FULL URL (pixiv://...) or paste code here:")
-    print("pixiv://account/login?code=eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw&via=login")
-    print("Detected code: eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw\n")
-    print("=== LOGIN SUCCESS ===")
-    print("access_token : uog7p1mdnJ7G3lJl30XbYQZx2otlJFwkfmfsO7gPtDU")
-    print("refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4")
-    print("expires_in   : 3600")
+    lines = [
+        mt("tutorial_desc", lang),
+        "",
+        mt("tutorial_step1", lang),
+        mt("tutorial_step2", lang),
+        mt("tutorial_step3", lang),
+        mt("tutorial_step4", lang),
+        mt("tutorial_step5", lang),
+        mt("tutorial_step6", lang),
+        "",
+        mt("tutorial_example", lang) + ":",
+        "Opening browser for login...",
+        "Paste FULL URL (pixiv://...) or paste code here:",
+        "pixiv://account/login?code=eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw&via=login",
+        "Detected code: eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw",
+        "=== LOGIN SUCCESS ===",
+        "access_token : uog7p1mdnJ7G3lJl30XbYQZx2otlJFwkfmfsO7gPtDU",
+        "refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4",
+        "expires_in   : 3600",
+    ]
+    _render_rich_text_panel(mt("tutorial_title", lang), lines, "Back")
 
 def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print()
@@ -1191,10 +1201,14 @@ def login(lang: str, color_on: bool):
     login_url = f"{LOGIN_URL}?{urlencode(login_params)}"
     debug_print(f"Generated Login URL: {login_url}")
 
-    print(colorize(L["open_browser"], Ansi.CYAN, color_on))
     open_url(login_url)
 
-    raw_input_value = input("\n" + colorize(L["paste_url"], Ansi.YELLOW, color_on) + "\n").strip()
+    raw_input_value = _render_rich_text_panel(
+        mt("opt_login", lang),
+        [L["open_browser"], "", L["paste_url"]],
+        mt("select_option", lang),
+    )
+    raw_input_value = (raw_input_value or "").strip()
     debug_print(f"User inputted raw value: {raw_input_value}")
 
     try:
