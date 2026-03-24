@@ -24,14 +24,11 @@ import os
 import locale
 import requests
 
-try:
-    from rich import box
-    from rich.align import Align
-    from rich.console import Console
-    from rich.panel import Panel
-    from rich.text import Text
-except ImportError:
-    box = Align = Console = Panel = Text = None
+from rich import box
+from rich.align import Align
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
 
 
 # ===== CONFIG =====
@@ -735,20 +732,12 @@ def mt(key: str, lang: str) -> str:
     return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
 
 
-def _rich_available() -> bool:
-    return all(component is not None for component in (box, Align, Console, Panel, Text))
-
-
 def _menu_console() -> Console:
     return Console(width=MENU_CONSOLE_WIDTH)
 
 
-def _clear_menu_screen(console: Console) -> None:
-    console.clear(home=True)
-
-
-def _clear_terminal_screen() -> None:
-    print("[2J[H", end="")
+def _clear_menu_screen() -> None:
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
@@ -767,30 +756,21 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
 
 def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
     console = _menu_console()
-    _clear_menu_screen(console)
-    body = Text()
-    for key, label in options:
-        style = "dim" if key == "0" else "cyan"
-        body.append(f"[{key}] {label}\n" if key != options[-1][0] else f"[{key}] {label}", style=style)
-    console.print(Panel(body, title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+    _clear_menu_screen()
+    lines = [f"[{key}] {label}" for key, label in options]
+    console.print(
+        Panel("\n".join(lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+    )
     return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
 
 
 def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
-    if _rich_available():
-        return _render_rich_option_panel(title, options, mt("select_option", lang))
-
-    _clear_terminal_screen()
-    print(colorize(title, Ansi.BOLD + Ansi.BLUE, color_on))
-    for key, label in options:
-        style = Ansi.DIM if key == "0" else Ansi.BLUE
-        print(colorize(f"  [{key}] {label}", style, color_on))
-    return input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
+    return _render_rich_option_panel(title, options, mt("select_option", lang))
 
 
 def _render_rich_main_menu(lang: str) -> None:
     console = _menu_console()
-    _clear_menu_screen(console)
+    _clear_menu_screen()
 
     header_text = Text()
     header_text.append(f"🔐 {mt('project', lang)}\n", style="bold green")
@@ -970,22 +950,10 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
     use_rich_menu = _rich_available()
     while True:
-        if use_rich_menu:
-            _render_rich_main_menu(current_lang)
-            choice = _menu_console().input(
-                "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
-            ).strip()
-        else:
-            _clear_terminal_screen()
-            print_cli_banner(current_lang, color_on)
-            for key, label, style in _build_menu_options(current_lang):
-                ansi_style = {
-                    "green": Ansi.GREEN,
-                    "magenta": Ansi.MAGENTA,
-                    "white": Ansi.DIM,
-                }.get(style, Ansi.GREEN)
-                print(colorize(f"[{key}] {label}", ansi_style, color_on))
-            choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+        _render_rich_main_menu(current_lang)
+        choice = _menu_console().input(
+            "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
+        ).strip()
         debug_print(f"User selected main menu option: {choice}")
 
         if choice == "7":
