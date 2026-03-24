@@ -10,11 +10,12 @@ REM   1) downloads\ (if present)
 REM   2) dist_* / root fallback
 REM ==========================================================
 
-for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
+for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
 
 set RELEASE_DIR=release
 set ZIP_OUT_DIR=dist_release
-set ZIP_NAME=%ZIP_OUT_DIR%\PixivOAuthRelease_v%VER%.zip
+set ZIP_NAME=%ZIP_OUT_DIR%\PixivOAuthRelease_v%VER%_%BCODE%.zip
 
 if not exist "%RELEASE_DIR%" mkdir "%RELEASE_DIR%"
 if not exist "%ZIP_OUT_DIR%" mkdir "%ZIP_OUT_DIR%"
@@ -37,7 +38,7 @@ if exist "downloads\Pixiv OAuth GUi (Portable).exe" (
 
 REM --- Installer (prefer downloads/latest alias) ---
 if exist "downloads\Pixiv OAuth CLi Setup_latest.exe" (
-  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "%RELEASE_DIR%\Pixiv OAuth CLi Setup_v%VER%.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "%RELEASE_DIR%\Pixiv OAuth CLi Setup_v%VER%_%BCODE%.exe" >nul
 ) else (
   for /f "delims=" %%f in ('dir /b /o:-d "downloads\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
     copy /y "downloads\%%f" "%RELEASE_DIR%\%%f" >nul
@@ -51,7 +52,7 @@ if exist "downloads\Pixiv OAuth CLi Setup_latest.exe" (
 :copied_cli_inst
 
 if exist "downloads\Pixiv OAuth GUi Setup_latest.exe" (
-  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "%RELEASE_DIR%\Pixiv OAuth GUi Setup_v%VER%.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "%RELEASE_DIR%\Pixiv OAuth GUi Setup_v%VER%_%BCODE%.exe" >nul
 ) else (
   for /f "delims=" %%f in ('dir /b /o:-d "downloads\Pixiv OAuth GUi Setup_v*.exe" 2^>nul') do (
     copy /y "downloads\%%f" "%RELEASE_DIR%\%%f" >nul
