@@ -616,12 +616,12 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .c-open{color:#3fb950}.c-closed{color:#986ee2}.c-pr{color:#a371f7}.c-blue{color:#76a8ff}
 
 /* Markdown rendered body */
-.gh-doc-body{color:#ccd3e8;line-height:1.72;font-size:1rem;min-width:0;overflow-x:hidden}
+.gh-doc-body{color:#ccd3e8;line-height:1.72;font-size:clamp(.92rem,.25vw + .86rem,1rem);min-width:0;overflow-x:hidden}
 .gh-doc-body>*{max-width:100%}
 .gh-doc-body h1{display:none} /* README title already shown in hero */
-.gh-doc-body h2{margin:2rem 0 .85rem;font-size:1.55rem;font-weight:700;color:#dce5fb;padding-bottom:10px;border-bottom:1px solid #1e2a3d}
-.gh-doc-body h3{margin:1.6rem 0 .7rem;font-size:1.2rem;font-weight:700;color:#c8d4ef}
-.gh-doc-body h4{margin:1.3rem 0 .6rem;font-size:1.05rem;font-weight:600;color:#b8c8e8}
+.gh-doc-body h2{margin:2rem 0 .85rem;font-size:clamp(1.2rem,1.8vw,1.55rem);font-weight:700;color:#dce5fb;padding-bottom:10px;border-bottom:1px solid #1e2a3d}
+.gh-doc-body h3{margin:1.6rem 0 .7rem;font-size:clamp(1.05rem,1.3vw,1.2rem);font-weight:700;color:#c8d4ef}
+.gh-doc-body h4{margin:1.3rem 0 .6rem;font-size:clamp(.98rem,1vw,1.05rem);font-weight:600;color:#b8c8e8}
 .gh-doc-body p{margin:0 0 1rem}
 .gh-doc-body a{color:#66a2ff;text-decoration:none;word-break:break-word;overflow-wrap:anywhere}
 .gh-doc-body a:hover{text-decoration:underline}
@@ -629,11 +629,11 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .gh-doc-body li{line-height:1.65}
 .gh-doc-body strong{color:#dce5fb;font-weight:700}
 .gh-doc-body code{background:#0a0f1a;border:1px solid #2a3655;border-radius:5px;padding:2px 6px;font-size:.88em;color:#e8eeff;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;word-break:break-word;overflow-wrap:anywhere}
-.gh-doc-body pre{background:#060a13;border:1px solid #1e2a3d;border-radius:12px;padding:18px;overflow-x:auto;max-width:100%;margin:0 0 1.2rem;-webkit-overflow-scrolling:touch}
-.gh-doc-body pre code{background:transparent;border:none;padding:0;font-size:.9rem;color:inherit;display:block;min-width:max-content;white-space:pre}
+.gh-doc-body pre{background:#060a13;border:1px solid #1e2a3d;border-radius:12px;padding:18px;overflow-x:hidden;max-width:100%;margin:0 0 1.2rem}
+.gh-doc-body pre code{background:transparent;border:none;padding:0;font-size:.9rem;color:inherit;display:block;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
 .gh-doc-body blockquote{margin:0 0 1rem;padding:12px 16px;border-left:3px solid #3a4f79;background:#0a1020;border-radius:0 8px 8px 0;color:#8a98b8}
 .gh-doc-body blockquote p{margin:0}
-.gh-doc-body table{display:block;overflow-x:auto;max-width:100%;width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem;table-layout:fixed}
+.gh-doc-body table{display:block;overflow-x:hidden;max-width:100%;width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:.92rem;table-layout:fixed}
 .gh-doc-body th{background:#0c1219;padding:10px 14px;text-align:left;font-weight:700;color:#a8b8d8;border-bottom:2px solid #2a3344;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
 .gh-doc-body td{padding:9px 14px;border-bottom:1px solid #1a2438;color:#b8c8e0;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
 .gh-doc-body tr:hover td{background:#0a0f18}
