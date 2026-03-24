@@ -39,6 +39,55 @@ DEBUG_MODE = False
 DEBUG_LOGS: list[str] = []
 DEBUG_MAX_LINES = 1000
 MENU_CONSOLE_WIDTH = 90
+DEBUG_LANG = "en"
+
+DEBUG_MSGS = {
+    "en": {
+        "parsed_arguments": "Parsed arguments: {args}",
+        "command_selected": "Command selected: {command}",
+        "resolving_language": "Resolving language (explicit={explicit})...",
+        "loaded_config": "Loaded config from {path}",
+        "read_default_lang": "Reading default lang from config: {lang}",
+        "menu_option_selected": "User selected main menu option: {choice}",
+        "open_language_selector": "Opening language selector (current={lang})",
+        "language_selector_input": "Language selector input: '{value}'",
+        "language_change_canceled": "Language change canceled by user",
+        "language_updated": "Language updated to: {lang}",
+    },
+    "jp": {
+        "parsed_arguments": "引数を解析しました: {args}",
+        "command_selected": "選択されたコマンド: {command}",
+        "resolving_language": "言語を解決中 (explicit={explicit})...",
+        "loaded_config": "設定を読み込みました: {path}",
+        "read_default_lang": "設定のデフォルト言語を読み込みました: {lang}",
+        "menu_option_selected": "メインメニューで選択されたオプション: {choice}",
+        "open_language_selector": "言語選択を開いています (current={lang})",
+        "language_selector_input": "言語選択の入力: '{value}'",
+        "language_change_canceled": "ユーザーが言語変更をキャンセルしました",
+        "language_updated": "言語が更新されました: {lang}",
+    },
+}
+
+CANCEL_HINT = {
+    "en": "empty to cancel",
+    "id": "kosongkan untuk batal",
+    "jp": "空欄でキャンセル",
+    "pl": "puste aby anulować",
+    "zh": "留空以取消",
+    "de": "leer zum Abbrechen",
+    "fr": "laisser vide pour annuler",
+    "es": "vacío para cancelar",
+    "ru": "пусто для отмены",
+    "pt": "vazio para cancelar",
+    "kr": "비워두면 취소",
+}
+
+def _dbg_msg(key: str, **kwargs) -> str:
+    template = DEBUG_MSGS.get(DEBUG_LANG, {}).get(key) or DEBUG_MSGS["en"].get(key, key)
+    try:
+        return template.format(**kwargs)
+    except Exception:
+        return template
 
 def debug_print(msg: str, color_on: bool = True):
     stamp = time.strftime("%Y-%m-%d %H:%M:%S")
@@ -1180,7 +1229,7 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
     latest_code = _get_latest_release_code_cached()
     version_label = mt("opt_version", lang)
     if latest and (latest != get_current_app_version() or (latest_code and latest_code != get_current_app_code())):
-        version_label = f"{version_label} (Tersedia Versi Baru {latest})"
+        version_label = f"{version_label} ({mt('version_new_badge', lang)} {latest})"
     return [
         ("1", mt("opt_change_lang", lang), "green"),
         ("2", mt("opt_tutorial", lang), "green"),
@@ -1269,22 +1318,24 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
-    debug_print(f"Opening language selector (current={current_lang})", color_on)
+    global DEBUG_LANG
+    debug_print(_dbg_msg("open_language_selector", lang=current_lang), color_on)
     lines = [f"\\[{code}] {LANG_NAMES.get(code, LANG_LABELS.get(code, code))}" for code in SUPPORTED_LANGS]
-    prompt = mt("choose_lang", current_lang) + " (empty to cancel)"
+    prompt = f"{mt('choose_lang', current_lang)} ({CANCEL_HINT.get(current_lang, CANCEL_HINT['en'])})"
     new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
-    debug_print(f"Language selector input: '{new_lang}'", color_on)
+    debug_print(_dbg_msg("language_selector_input", value=new_lang), color_on)
     if new_lang == "":
-        debug_print("Language change canceled by user", color_on)
+        debug_print(_dbg_msg("language_change_canceled"), color_on)
         return current_lang
     if new_lang not in SUPPORTED_LANGS:
         print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
         debug_print(f"Invalid language selection: {new_lang}", color_on)
         return current_lang
     set_default_lang(new_lang)
+    DEBUG_LANG = new_lang
     print(colorize(f"{mt('lang_updated', new_lang)} {new_lang}", Ansi.GREEN, color_on))
-    debug_print(f"Language updated to: {new_lang}", color_on)
+    debug_print(_dbg_msg("language_updated", lang=new_lang), color_on)
     return new_lang
 
 
@@ -1633,7 +1684,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
                 }.get(style, Ansi.GREEN)
                 print(colorize(f"[{key}] {label}", ansi_style, color_on))
             choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
-        debug_print(f"User selected main menu option: {choice}")
+        debug_print(_dbg_msg("menu_option_selected", choice=choice))
 
         if choice == "9":
             _open_debug_menu(current_lang, color_on)
@@ -1764,7 +1815,7 @@ def set_current_app_identity(version: str, build_code: str) -> None:
 def load_config() -> dict:
     try:
         if CONFIG_FILE.exists():
-            debug_print(f"Loaded config from {CONFIG_FILE}"); return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
+            debug_print(_dbg_msg("loaded_config", path=CONFIG_FILE)); return json.loads(CONFIG_FILE.read_text(encoding="utf-8"))
     except Exception as e:
         debug_print(f"Failed to load config: {e}")
     return {}
@@ -1786,7 +1837,7 @@ def set_default_lang(lang: str) -> None:
 def get_default_lang_from_config() -> str | None:
     cfg = load_config()
     lang = cfg.get("default_lang")
-    debug_print(f"Reading default lang from config: {lang}")
+    debug_print(_dbg_msg("read_default_lang", lang=lang))
     if isinstance(lang, str) and lang in SUPPORTED_LANGS:
         return lang
     return None
@@ -1856,15 +1907,20 @@ def map_locale_to_lang(two_letter: str) -> str | None:
 
 
 def resolve_lang(explicit_lang: str | None) -> str:
-    debug_print(f"Resolving language (explicit={explicit_lang})...")
+    global DEBUG_LANG
+    debug_print(_dbg_msg("resolving_language", explicit=explicit_lang))
     if explicit_lang and explicit_lang in SUPPORTED_LANGS:
+        DEBUG_LANG = explicit_lang
         return explicit_lang
     cfg_lang = get_default_lang_from_config()
     if cfg_lang:
+        DEBUG_LANG = cfg_lang
         return cfg_lang
     sys_lang = detect_system_lang()
     if sys_lang:
+        DEBUG_LANG = sys_lang
         return sys_lang
+    DEBUG_LANG = DEFAULT_LANG
     return DEFAULT_LANG
 
 
@@ -2116,8 +2172,8 @@ def main():
 
     args = parser.parse_args()
     color_on = _supports_color(args.no_color)
-    debug_print(f"Parsed arguments: {args}", color_on)
-    debug_print(f"Command selected: {args.command}", color_on)
+    debug_print(_dbg_msg("parsed_arguments", args=args), color_on)
+    debug_print(_dbg_msg("command_selected", command=args.command), color_on)
 
     if args.command == "login":
         lang = resolve_lang(args.lang)
