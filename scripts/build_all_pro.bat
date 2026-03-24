@@ -149,12 +149,14 @@ if errorlevel 1 (
   exit /b 1
 )
 
-for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
-if exist "dist_installer\PixivLoginSetup_v!VER!.exe" (
+for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
+for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\PixivLoginSetup_v*.exe" 2^>nul') do set LATEST_SETUP_RAW=%%f
+if defined LATEST_SETUP_RAW (
   del /q "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
   del /q "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2>nul
-  copy /y "dist_installer\PixivLoginSetup_v!VER!.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!.exe" >nul
-  copy /y "dist_installer\PixivLoginSetup_v!VER!.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!.exe" >nul
+  copy /y "dist_installer\!LATEST_SETUP_RAW!" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_!BCODE!.exe" >nul
+  copy /y "dist_installer\!LATEST_SETUP_RAW!" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_!BCODE!.exe" >nul
 )
 
 :after_inst
@@ -177,6 +179,10 @@ if exist scripts\build_release_zip.bat (
 )
 
 :after_zip
+
+if exist scripts\generate_latest_manifest.py (
+  python scripts\generate_latest_manifest.py
+)
 
 REM --- Sync ONLY latest artifacts into downloads (4 files total) ---
 if not exist downloads mkdir downloads
@@ -209,7 +215,8 @@ for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.
 :copied_dl_gui_inst
 
 REM --- Generate 3 architecture variants (x86/x64/ARM64) for portable and setup labels ---
-for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
+for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
 
 if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
   copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "dist_portable\Pixiv OAuth CLi (Portable) x86.exe" >nul
@@ -230,18 +237,18 @@ if exist "dist_gui\Pixiv OAuth GUi (Portable).exe" (
 )
 
 if exist "downloads\Pixiv OAuth CLi Setup_latest.exe" (
-  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_x86.exe" >nul
-  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_x64.exe" >nul
-  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_ARM64.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_!BCODE!_x86.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_!BCODE!_x64.exe" >nul
+  copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "dist_installer\Pixiv OAuth CLi Setup_v!VER!_!BCODE!_ARM64.exe" >nul
   copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup x86_latest.exe" >nul
   copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup x64_latest.exe" >nul
   copy /y "downloads\Pixiv OAuth CLi Setup_latest.exe" "downloads\Pixiv OAuth CLi Setup ARM64_latest.exe" >nul
 )
 
 if exist "downloads\Pixiv OAuth GUi Setup_latest.exe" (
-  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_x86.exe" >nul
-  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_x64.exe" >nul
-  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_ARM64.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_!BCODE!_x86.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_!BCODE!_x64.exe" >nul
+  copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "dist_installer\Pixiv OAuth GUi Setup_v!VER!_!BCODE!_ARM64.exe" >nul
   copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup x86_latest.exe" >nul
   copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup x64_latest.exe" >nul
   copy /y "downloads\Pixiv OAuth GUi Setup_latest.exe" "downloads\Pixiv OAuth GUi Setup ARM64_latest.exe" >nul
