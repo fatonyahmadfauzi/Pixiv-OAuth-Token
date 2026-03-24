@@ -850,17 +850,22 @@ def print_cli_banner(lang: str, color_on: bool) -> None:
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
+    debug_print(f"Opening language selector (current={current_lang})", color_on)
     lines = [f" {LANG_LABELS.get(code, code)}" for code in SUPPORTED_LANGS]
     prompt = mt("choose_lang", current_lang) + " (empty to cancel)"
     new_lang = _render_rich_text_panel(mt("opt_change_lang", current_lang), lines, prompt)
     new_lang = (new_lang or "").strip().lower()
+    debug_print(f"Language selector input: '{new_lang}'", color_on)
     if new_lang == "":
+        debug_print("Language change canceled by user", color_on)
         return current_lang
     if new_lang not in SUPPORTED_LANGS:
         print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
+        debug_print(f"Invalid language selection: {new_lang}", color_on)
         return current_lang
     set_default_lang(new_lang)
     print(colorize(f"{mt('lang_updated', new_lang)} {new_lang}", Ansi.GREEN, color_on))
+    debug_print(f"Language updated to: {new_lang}", color_on)
     return new_lang
 
 
@@ -875,6 +880,7 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
     ]
     while True:
         choice = _choose_boxed_option(mt("resources_docs_title", lang), options, lang, color_on).lower()
+        debug_print(f"Resources menu choice: {choice}", color_on)
         if choice == "1":
             open_url("https://pixiv-o-auth-token.vercel.app/documentation")
         elif choice == "2":
@@ -901,6 +907,7 @@ def _open_support_menu(lang: str, color_on: bool) -> None:
     ]
     while True:
         choice = _choose_boxed_option(mt("support_title", lang), options, lang, color_on).lower()
+        debug_print(f"Support menu choice: {choice}", color_on)
         if choice == "1":
             open_url("https://pixiv-o-auth-token.vercel.app/contact")
         elif choice == "2":
@@ -924,6 +931,7 @@ def _open_social_menu(lang: str, color_on: bool) -> None:
     ]
     while True:
         choice = _choose_boxed_option(mt("social_title", lang), options, lang, color_on).lower()
+        debug_print(f"Social menu choice: {choice}", color_on)
         if choice == "1":
             open_url("https://github.com/fatonyahmadfauzi")
         elif choice == "2":
@@ -966,6 +974,7 @@ def _open_contact_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def show_cli_tutorial(lang: str, color_on: bool) -> None:
+    debug_print(f"Showing tutorial panel (lang={lang})", color_on)
     lines = [
         mt("tutorial_desc", lang),
         "",
@@ -990,6 +999,7 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
 
 
 def _open_changelog() -> None:
+    debug_print("Opening changelog URL")
     open_url("https://pixiv-o-auth-token.vercel.app/changelog")
 
 
@@ -1070,6 +1080,7 @@ def _self_update(target_version: str, target_code: str) -> bool:
 
 
 def _open_version_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"Opening version menu (lang={lang})", color_on)
     while True:
         current_version = get_current_app_version()
         current_code = get_current_app_code()
@@ -1092,12 +1103,14 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
             Panel("\n".join(lines), title="Version", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
         )
         choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+        debug_print(f"Version menu choice: {choice}", color_on)
 
         if choice == "1":
             latest = _fetch_latest_release_tag_cached(force=True)
             latest_code = _get_latest_release_code_cached(force=True)
             current_version = get_current_app_version()
             current_code = get_current_app_code()
+            debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
             if not latest:
                 _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
             elif latest == current_version and (not latest_code or latest_code == current_code):
@@ -1122,8 +1135,10 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     [("1", "Update now"), ("2", "Later")],
                     mt("select_option", lang),
                 )
+                debug_print(f"Update decision choice: {decision}", color_on)
                 if decision == "1":
                     success = _self_update(latest, latest_code or APP_BUILD_CODE)
+                    debug_print(f"Self-update execution result: {success}", color_on)
                     if success:
                         _render_rich_text_panel(
                             "Update",
@@ -1468,6 +1483,7 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
             Panel("\n".join(lines), title="Login Actions", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
         )
         choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+        debug_print(f"Post-login actions choice: {choice}", color_on)
 
         if choice == "1":
             refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
