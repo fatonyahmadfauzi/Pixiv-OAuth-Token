@@ -23,6 +23,7 @@ import json
 import os
 import locale
 import subprocess
+import time
 import requests
 
 from rich import box
@@ -59,6 +60,7 @@ DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 APP_VERSION = "v1.0.0"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
+UPDATE_CACHE = {"latest": None, "checked_at": 0.0}
 
 CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
 
@@ -753,6 +755,10 @@ def _clear_menu_screen() -> None:
 
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
     debug_status = "ON" if DEBUG_MODE else "OFF"
+    latest = _fetch_latest_release_tag_cached()
+    version_label = mt("opt_version", lang)
+    if latest and latest != get_current_app_version():
+        version_label = f"{version_label} (Tersedia Versi Baru {latest})"
     return [
         ("1", mt("opt_change_lang", lang), "green"),
         ("2", mt("opt_tutorial", lang), "green"),
@@ -761,7 +767,7 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
         ("5", mt("opt_social", lang), "green"),
         ("6", mt("opt_login", lang), "green"),
         ("7", mt("opt_changelog", lang), "green"),
-        ("8", mt("opt_version", lang), "green"),
+        ("8", version_label, "green"),
         ("9", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
         ("0", mt("opt_exit", lang), "white"),
     ]
@@ -978,6 +984,16 @@ def _fetch_latest_release_tag() -> str | None:
         return None
 
 
+def _fetch_latest_release_tag_cached(force: bool = False) -> str | None:
+    now = time.time()
+    if not force and UPDATE_CACHE["checked_at"] and now - float(UPDATE_CACHE["checked_at"]) < 300:
+        return UPDATE_CACHE["latest"]
+    latest = _fetch_latest_release_tag()
+    UPDATE_CACHE["latest"] = latest
+    UPDATE_CACHE["checked_at"] = now
+    return latest
+
+
 def _self_update(target_version: str) -> bool:
     console = _menu_console()
     _clear_menu_screen()
@@ -1022,37 +1038,52 @@ def _self_update(target_version: str) -> bool:
 
 def _open_version_menu(lang: str, color_on: bool) -> None:
     while True:
-        options = [
-            ("1", f"Current version: {get_current_app_version()}"),
-            ("2", "Check update"),
-            ("3", "Update now"),
-            ("0", mt("back", lang)),
-        ]
+        current_version = get_current_app_version()
+        latest = _fetch_latest_release_tag_cached()
+        has_update = bool(latest and latest != current_version)
+        check_label = "Check update"
+        if has_update and latest:
+            check_label = f"Check update (Tersedia Versi Baru {latest})"
+        options = [("1", check_label)]
+        if has_update:
+            options.append(("2", "Update now"))
+        options.append(("0", mt("back", lang)))
+
         choice = _render_rich_option_panel("Version", options, mt("select_option", lang)).strip()
+
         if choice == "1":
-            _render_rich_text_panel("Version", [f"Current version: {get_current_app_version()}"], "Enter to continue")
-        elif choice == "2":
-            latest = _fetch_latest_release_tag()
+            latest = _fetch_latest_release_tag_cached(force=True)
+            current_version = get_current_app_version()
             if not latest:
                 _render_rich_text_panel("Version", ["No internet connection. Cannot check update."], "Enter to continue")
-            elif latest == get_current_app_version():
+            elif latest == current_version:
                 _render_rich_text_panel(
-                    "Version", [f"Current version {get_current_app_version()} sudah terbaru."], "Enter to continue"
+                    "Version",
+                    [f"Current version: {current_version}", f"Current version {current_version} sudah terbaru."],
+                    "Enter to continue",
                 )
             else:
                 _render_rich_text_panel(
                     "Version",
-                    [f"Versi terbaru tersedia: {latest}", f"Versi saat ini: {get_current_app_version()}"],
+                    [f"Current version: {current_version}", f"Versi terbaru tersedia: {latest}"],
                     "Enter to continue",
                 )
-        elif choice == "3":
-            latest = _fetch_latest_release_tag()
-            if not latest:
-                _render_rich_text_panel("Update", ["No internet connection. Update canceled."], "Enter to continue")
-                continue
-            if latest == get_current_app_version():
-                _render_rich_text_panel("Update", [f"Versi saat ini {get_current_app_version()} sudah terbaru."], "Enter to continue")
-                continue
+                decision = _render_rich_option_panel(
+                    "Update Available",
+                    [("1", "Update now"), ("2", "Later")],
+                    mt("select_option", lang),
+                ).strip()
+                if decision == "1":
+                    success = _self_update(latest)
+                    if success:
+                        _render_rich_text_panel(
+                            "Update",
+                            [f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}."],
+                            "Enter to continue",
+                        )
+                    else:
+                        _render_rich_text_panel("Update", ["Update gagal. Silakan coba lagi."], "Enter to continue")
+        elif choice == "2" and has_update and latest:
             success = _self_update(latest)
             if success:
                 _render_rich_text_panel(
