@@ -88,7 +88,7 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .cli-toggle-btn span,.cli-toggle-btn{justify-content:center}
 .cli-toggle-btn{letter-spacing:.04em}
 .cli-toggle-btn:hover{background:#4a5563;border-color:#6b7686}
-.cli-preview code{display:block;white-space:pre;min-width:max-content}
+.cli-preview code{display:block;white-space:pre;min-width:max-content;width:max-content;margin:0 auto}
 .cli-cyan{color:#3fb8ff}.cli-green{color:#00e65f}.cli-yellow{color:#f2c94c}.cli-blue{color:#38a3ff}.cli-white{color:#f0f4ff}.cli-dim{color:#9ca6bd}
 .actions{display:flex;gap:10px;flex-wrap:wrap}
 .result-actions{margin-top:10px}
