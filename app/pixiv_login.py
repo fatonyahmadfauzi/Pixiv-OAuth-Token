@@ -1190,15 +1190,35 @@ def _copy_to_clipboard(value: str) -> bool:
         return False
 
 
-def _post_login_actions(tokens: dict, lang: str, color_on: bool) -> None:
+def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: str = "") -> None:
+    L = get_lang(lang)
     while True:
-        options = [
-            ("1", "Refresh token"),
-            ("2", "Copy access token"),
-            ("3", "Copy refresh token"),
-            ("0", "Exit"),
+        console = _menu_console()
+        _clear_menu_screen()
+        lines = [
+            L["open_browser"],
+            L["paste_url"],
         ]
-        choice = _render_rich_option_panel("Login Actions", options, mt("select_option", lang)).strip()
+        if detected_code:
+            lines.append(f"{L['code_detected']} {detected_code}")
+        lines.extend(
+            [
+                L["login_success"],
+                f"access_token : {tokens.get('access_token', '')}",
+                f"refresh_token: {tokens.get('refresh_token', '')}",
+                f"expires_in   : {tokens.get('expires_in', 0)}",
+                "",
+                "[1] Refresh token",
+                "[2] Copy access token",
+                "[3] Copy refresh token",
+                "[0] Exit",
+            ]
+        )
+        console.print(
+            Panel("\n".join(lines), title="Login Actions", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+        )
+        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+
         if choice == "1":
             refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
             if refreshed:
@@ -1296,7 +1316,7 @@ def login(lang: str, color_on: bool):
     tokens = print_auth_token_response(response, lang, color_on)
     if not tokens:
         return
-    _post_login_actions(tokens, lang, color_on)
+    _post_login_actions(tokens, lang, color_on, code)
 
 
 # ===== REFRESH FLOW =====
