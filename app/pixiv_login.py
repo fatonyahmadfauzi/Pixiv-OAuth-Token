@@ -327,7 +327,22 @@ MENU_UI_EN = {
     "version_no_internet_check": "No internet connection. Cannot check update.",
     "version_no_internet_update": "No internet connection. Update canceled.",
     "version_update_success": "Updated successfully. Current version",
-    "version_update_failed": "Update failed. Please try again."
+    "version_update_failed": "Update failed. Please try again.",
+    "enter_main_menu": "Enter to main menu",
+    "enter_continue": "Enter to continue",
+    "login_paste_prompt": "Paste link/code (Enter to cancel)",
+    "login_canceled": "Login canceled.",
+    "login_actions_title": "Login Actions",
+    "login_action_refresh": "Refresh token",
+    "login_action_copy_access": "Copy access token",
+    "login_action_copy_refresh": "Copy refresh token",
+    "login_action_refresh_success": "Refresh token success.",
+    "login_action_refresh_failed": "Refresh token failed.",
+    "login_action_access_copied": "Access token copied.",
+    "login_action_access_copy_failed": "Failed to copy access token.",
+    "login_action_refresh_copied": "Refresh token copied.",
+    "login_action_refresh_copy_failed": "Failed to copy refresh token.",
+    "exiting": "Exiting..."
 }
 
 MENU_UI_OVERRIDES = {
@@ -393,7 +408,22 @@ MENU_UI_OVERRIDES = {
         "version_no_internet_check": "Tidak ada internet. Tidak bisa cek update.",
         "version_no_internet_update": "Tidak ada internet. Update dibatalkan.",
         "version_update_success": "Berhasil diperbarui. Versi saat ini",
-        "version_update_failed": "Update gagal. Silakan coba lagi."
+        "version_update_failed": "Update gagal. Silakan coba lagi.",
+        "enter_main_menu": "Enter untuk ke menu utama",
+        "enter_continue": "Enter untuk lanjut",
+        "login_paste_prompt": "Tempel link/code (Enter untuk batal)",
+        "login_canceled": "Login dibatalkan.",
+        "login_actions_title": "Aksi Login",
+        "login_action_refresh": "Refresh token",
+        "login_action_copy_access": "Salin access token",
+        "login_action_copy_refresh": "Salin refresh token",
+        "login_action_refresh_success": "Refresh token berhasil.",
+        "login_action_refresh_failed": "Refresh token gagal.",
+        "login_action_access_copied": "Access token berhasil disalin.",
+        "login_action_access_copy_failed": "Gagal menyalin access token.",
+        "login_action_refresh_copied": "Refresh token berhasil disalin.",
+        "login_action_refresh_copy_failed": "Gagal menyalin refresh token.",
+        "exiting": "Keluar..."
     },
     "jp": {
         "menu_title": "メインメニュー",
@@ -1031,6 +1061,7 @@ def _open_contact_menu(lang: str, color_on: bool) -> None:
 
 def show_cli_tutorial(lang: str, color_on: bool) -> None:
     debug_print(f"Showing tutorial panel (lang={lang})", color_on)
+    L = get_lang(lang)
     lines = [
         mt("tutorial_desc", lang),
         "",
@@ -1042,16 +1073,16 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
         mt("tutorial_step6", lang),
         "",
         mt("tutorial_example", lang) + ":",
-        "Opening browser for login...",
-        "Paste FULL URL (pixiv://...) or paste code here:",
+        L["open_browser"],
+        L["paste_url"],
         "pixiv://account/login?code=eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw&via=login",
-        "Detected code: eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw",
-        "=== LOGIN SUCCESS ===",
+        f"{L['code_detected']} eltWz8pQgT-D0foeIPzhHN_y6CwptwjXk8kJ0yzowvw",
+        L["login_success"],
         "access_token : uog7p1mdnJ7G3lJl30XbYQZx2otlJFwkfmfsO7gPtDU",
         "refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4",
         "expires_in   : 3600",
     ]
-    _render_rich_text_panel(mt("tutorial_title", lang), lines, "Enter to main menu")
+    _render_rich_text_panel(mt("tutorial_title", lang), lines, mt("enter_main_menu", lang))
 
 
 def _open_changelog() -> None:
@@ -1082,11 +1113,11 @@ def _open_debug_menu(lang: str, color_on: bool) -> None:
             _render_rich_text_panel(
                 mt("debug_title", lang),
                 [mt("debug_copied", lang) if ok else mt("debug_copy_failed", lang)],
-                "Enter to continue",
+                mt("enter_continue", lang),
             )
         elif choice == "2":
             DEBUG_LOGS.clear()
-            _render_rich_text_panel(mt("debug_title", lang), [mt("debug_cleared", lang)], "Enter to continue")
+            _render_rich_text_panel(mt("debug_title", lang), [mt("debug_cleared", lang)], mt("enter_continue", lang))
         elif choice == "0":
             return
         else:
@@ -1163,9 +1194,9 @@ def _self_update(target_version: str, target_code: str) -> bool:
         set_current_app_identity(target_version, target_code)
         return True
     except requests.RequestException:
-        _render_rich_text_panel(mt("version_title", "en"), [mt("version_no_internet_update", "en")], "Enter to continue")
+        _render_rich_text_panel(mt("version_title", "en"), [mt("version_no_internet_update", "en")], mt("enter_continue", "en"))
     except Exception as exc:
-        _render_rich_text_panel("Update", [f"Update failed: {exc}"], "Enter to continue")
+        _render_rich_text_panel(mt("version_title", "en"), [f"{mt('version_update_failed', 'en')}: {exc}"], mt("enter_continue", "en"))
     return False
 
 
@@ -1201,7 +1232,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
             current_code = get_current_app_code()
             debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
             if not latest:
-                _render_rich_text_panel(mt("version_title", lang), [mt("version_no_internet_check", lang)], "Enter to continue")
+                _render_rich_text_panel(mt("version_title", lang), [mt("version_no_internet_check", lang)], mt("enter_continue", lang))
             elif latest == current_version and (not latest_code or latest_code == current_code):
                 _render_rich_text_panel(
                     mt("version_title", lang),
@@ -1209,7 +1240,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                         f"{mt('version_current', lang)}: {current_version}",
                         f"{mt('version_current', lang)} {current_version} {mt('version_latest', lang)}",
                     ],
-                    "Enter to continue",
+                    mt("enter_continue", lang),
                 )
             else:
                 decision = _render_rich_combined_panel(
@@ -1231,10 +1262,10 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                             [
                                 f"{mt('version_update_success', lang)} {get_current_app_version()}.",
                             ],
-                            "Enter to continue",
+                            mt("enter_continue", lang),
                         )
                     else:
-                        _render_rich_text_panel(mt("version_title", lang), [mt("version_update_failed", lang)], "Enter to continue")
+                        _render_rich_text_panel(mt("version_title", lang), [mt("version_update_failed", lang)], mt("enter_continue", lang))
         elif choice == "0":
             return
         else:
@@ -1291,7 +1322,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         elif choice == "8":
             _open_version_menu(current_lang, color_on)
         elif choice == "0":
-            print(colorize("Exiting...", Ansi.GREEN, color_on))
+            print(colorize(mt("exiting", current_lang), Ansi.GREEN, color_on))
             return
         else:
             print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
@@ -1552,14 +1583,21 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
                 f"refresh_token: {tokens.get('refresh_token', '')}",
                 f"expires_in   : {tokens.get('expires_in', 0)}",
                 "",
-                "[1] Refresh token",
-                "[2] Copy access token",
-                "[3] Copy refresh token",
-                "[0] Exit",
+                f"[1] {mt('login_action_refresh', lang)}",
+                f"[2] {mt('login_action_copy_access', lang)}",
+                f"[3] {mt('login_action_copy_refresh', lang)}",
+                f"[0] {mt('debug_exit', lang)}",
             ]
         )
         console.print(
-            Panel("\n".join(lines), title="Login Actions", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+            Panel(
+                "\n".join(lines),
+                title=mt("login_actions_title", lang),
+                title_align="left",
+                border_style="cyan",
+                box=box.SQUARE,
+                expand=True,
+            )
         )
         choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
         debug_print(f"Post-login actions choice: {choice}", color_on)
@@ -1568,19 +1606,19 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
             refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
             if refreshed:
                 tokens.update(refreshed)
-                _render_rich_text_panel("Login Actions", ["Refresh token success."], "Enter to continue")
+                _render_rich_text_panel(mt("login_actions_title", lang), [mt("login_action_refresh_success", lang)], mt("enter_continue", lang))
             else:
-                _render_rich_text_panel("Login Actions", ["Refresh token failed."], "Enter to continue")
+                _render_rich_text_panel(mt("login_actions_title", lang), [mt("login_action_refresh_failed", lang)], mt("enter_continue", lang))
         elif choice == "2":
             ok = _copy_to_clipboard(tokens.get("access_token", ""))
-            msg = "Access token copied." if ok else "Failed to copy access token."
-            _render_rich_text_panel("Login Actions", [msg], "Enter to continue")
+            msg = mt("login_action_access_copied", lang) if ok else mt("login_action_access_copy_failed", lang)
+            _render_rich_text_panel(mt("login_actions_title", lang), [msg], mt("enter_continue", lang))
         elif choice == "3":
             ok = _copy_to_clipboard(tokens.get("refresh_token", ""))
-            msg = "Refresh token copied." if ok else "Failed to copy refresh token."
-            _render_rich_text_panel("Login Actions", [msg], "Enter to continue")
+            msg = mt("login_action_refresh_copied", lang) if ok else mt("login_action_refresh_copy_failed", lang)
+            _render_rich_text_panel(mt("login_actions_title", lang), [msg], mt("enter_continue", lang))
         elif choice == "0":
-            print(colorize("Exiting...", Ansi.GREEN, color_on))
+            print(colorize(mt("exiting", lang), Ansi.GREEN, color_on))
             return
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
@@ -1625,11 +1663,11 @@ def login(lang: str, color_on: bool):
     raw_input_value = _render_rich_text_panel(
         mt("opt_login", lang),
         [L["open_browser"], "", L["paste_url"]],
-        "Paste link/code (Enter to cancel)",
+        mt("login_paste_prompt", lang),
     )
     raw_input_value = (raw_input_value or "").strip()
     if raw_input_value == "":
-        print(colorize("Login canceled.", Ansi.YELLOW, color_on))
+        print(colorize(mt("login_canceled", lang), Ansi.YELLOW, color_on))
         return
     debug_print(f"User inputted raw value: {raw_input_value}")
 
