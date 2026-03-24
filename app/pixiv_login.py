@@ -1214,7 +1214,7 @@ def mt(key: str, lang: str) -> str:
 
 
 def _rich_available() -> bool:
-    return True
+    return False
 
 
 def _menu_console() -> Console:
@@ -1246,24 +1246,20 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
 
 
 def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
-    console = _menu_console()
     _clear_menu_screen()
+    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
     lines = [f"[{key}] {label}" for key, label in options]
-    console.print(
-        Panel("\n".join(lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
-    )
-    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+    print("\n".join(lines))
+    return input(colorize(f"\n[+] {prompt}: ", Ansi.YELLOW, True)).strip()
 
 
 def _render_rich_text_panel(title: str, lines: list[str], prompt: str | None = None) -> str | None:
-    console = _menu_console()
     _clear_menu_screen()
-    console.print(
-        Panel("\n".join(lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
-    )
+    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
+    print("\n".join(lines))
     if prompt is None:
         return None
-    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+    return input(colorize(f"\n[+] {prompt}: ", Ansi.YELLOW, True)).strip()
 
 
 def _render_rich_combined_panel(
@@ -1272,14 +1268,12 @@ def _render_rich_combined_panel(
     options: list[tuple[str, str]],
     prompt: str,
 ) -> str:
-    console = _menu_console()
     _clear_menu_screen()
     body_lines = [*lines, ""]
     body_lines.extend([f"[{key}] {label}" for key, label in options])
-    console.print(
-        Panel("\n".join(body_lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
-    )
-    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
+    print("\n".join(body_lines))
+    return input(colorize(f"\n[+] {prompt}: ", Ansi.YELLOW, True)).strip()
 
 
 def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
@@ -1287,18 +1281,12 @@ def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, 
 
 
 def _render_rich_main_menu(lang: str) -> None:
-    console = _menu_console()
     _clear_menu_screen()
-
-    header_text = Text()
-    header_text.append(f"🔐 {mt('project', lang)}\n", style="bold green")
-    header_text.append(f"{mt('developer', lang)}: {DEVELOPER_NAME}", style="green")
-    console.print(Panel(Align.center(header_text), border_style="cyan", box=box.SQUARE, expand=True))
-
-    menu_text = Text()
+    print_cli_banner(lang, True)
+    print(colorize(f"=== {mt('menu_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, True))
     for key, label, style in _build_menu_options(lang):
-        menu_text.append(f"[{key}] {label}\n" if key != "0" else f"[{key}] {label}", style=style)
-    console.print(Panel(menu_text, title=mt("menu_title", lang), title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+        ansi_style = {"green": Ansi.GREEN, "magenta": Ansi.MAGENTA, "white": Ansi.DIM}.get(style, Ansi.GREEN)
+        print(colorize(f"[{key}] {label}", ansi_style, True))
 
 def print_cli_banner(lang: str, color_on: bool) -> None:
     title_art = [
@@ -1478,20 +1466,11 @@ def _open_changelog() -> None:
 def _open_debug_menu(lang: str, color_on: bool) -> None:
     while True:
         recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else [mt("debug_empty", lang)]
-        console = Console()
         _clear_menu_screen()
+        print(colorize(f"=== {mt('debug_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
         debug_lines = [*recent_logs, "", f"[1] {mt('debug_copy', lang)}", f"[2] {mt('debug_clear', lang)}", f"[0] {mt('debug_exit', lang)}"]
-        console.print(
-            Panel(
-                "\n".join(debug_lines),
-                title=mt("debug_title", lang),
-                title_align="left",
-                border_style="cyan",
-                box=box.SQUARE,
-                expand=True,
-            )
-        )
-        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+        print("\n".join(debug_lines))
+        choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         if choice == "1":
             payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else mt("debug_empty", lang)
             ok = _copy_to_clipboard(payload)
@@ -1568,38 +1547,18 @@ def _get_latest_release_code_cached(force: bool = False) -> str | None:
 
 
 def _self_update(target_version: str, target_code: str) -> bool:
-    console = _menu_console()
     _clear_menu_screen()
-    console.print(
-        Panel(
-            "Downloading latest update and installing requirements...",
-            title="Update",
-            title_align="left",
-            border_style="cyan",
-            box=box.SQUARE,
-            expand=True,
-        )
-    )
+    print(colorize("Downloading latest update and installing requirements...", Ansi.CYAN, True))
     try:
-        with Progress(
-            SpinnerColumn(),
-            TextColumn("{task.description}"),
-            BarColumn(),
-            TextColumn("{task.percentage:>3.0f}%"),
-            console=console,
-        ) as progress:
-            download_task = progress.add_task("Download latest app", total=100)
-            response = requests.get(RAW_MAIN_PY_URL, timeout=30)
-            response.raise_for_status()
-            progress.update(download_task, completed=100)
-
-            install_task = progress.add_task("Install dependencies", total=100)
-            Path(__file__).write_text(response.text, encoding="utf-8")
-            subprocess.run(
-                [sys.executable, "-m", "pip", "install", "-r", str(Path(__file__).with_name("requirements.txt"))],
-                check=False,
-            )
-            progress.update(install_task, completed=100)
+        print(" - Download latest app...")
+        response = requests.get(RAW_MAIN_PY_URL, timeout=30)
+        response.raise_for_status()
+        print(" - Install dependencies...")
+        Path(__file__).write_text(response.text, encoding="utf-8")
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "-r", str(Path(__file__).with_name("requirements.txt"))],
+            check=False,
+        )
         set_current_app_identity(target_version, target_code)
         return True
     except requests.RequestException:
@@ -1620,18 +1579,16 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         check_label = mt("version_check_update", lang)
         if has_update and latest:
             check_label = f"{mt('version_check_update', lang)} ({mt('version_new_badge', lang)} {latest})"
-        console = _menu_console()
         _clear_menu_screen()
+        print(colorize(f"=== {mt('version_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
         lines = [
             f"{mt('version_current', lang)}: {current_version}",
             "",
             f"[1] {check_label}",
             f"[0] {mt('back', lang)}",
         ]
-        console.print(
-            Panel("\n".join(lines), title=mt("version_title", lang), title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
-        )
-        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+        print("\n".join(lines))
+        choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"Version menu choice: {choice}", color_on)
 
         if choice == "1":
@@ -1982,7 +1939,6 @@ def _copy_to_clipboard(value: str) -> bool:
 def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: str = "") -> None:
     L = get_lang(lang)
     while True:
-        console = _menu_console()
         _clear_menu_screen()
         lines = [
             L["open_browser"],
@@ -2003,17 +1959,9 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
                 f"[0] {mt('debug_exit', lang)}",
             ]
         )
-        console.print(
-            Panel(
-                "\n".join(lines),
-                title=mt("login_actions_title", lang),
-                title_align="left",
-                border_style="cyan",
-                box=box.SQUARE,
-                expand=True,
-            )
-        )
-        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
+        print(colorize(f"=== {mt('login_actions_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
+        print("\n".join(lines))
+        choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"Post-login actions choice: {choice}", color_on)
 
         if choice == "1":
