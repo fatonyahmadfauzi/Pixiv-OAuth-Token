@@ -1007,7 +1007,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         elif choice == "6":
             login(current_lang, color_on)
         elif choice == "0":
-            print("Exiting...")
+            print(colorize("Exiting...", Ansi.GREEN, color_on))
             return
         else:
             print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
@@ -1210,7 +1210,7 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool) -> None:
             ok = _copy_to_clipboard(tokens.get("refresh_token", ""))
             print("Refresh token copied." if ok else "Failed to copy refresh token.")
         elif choice == "0":
-            print("Exiting...")
+            print(colorize("Exiting...", Ansi.GREEN, color_on))
             return
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
@@ -1255,9 +1255,12 @@ def login(lang: str, color_on: bool):
     raw_input_value = _render_rich_text_panel(
         mt("opt_login", lang),
         [L["open_browser"], "", L["paste_url"]],
-        mt("select_option", lang),
+        "Paste link/code (Enter to cancel)",
     )
     raw_input_value = (raw_input_value or "").strip()
+    if raw_input_value == "":
+        print(colorize("Login canceled.", Ansi.YELLOW, color_on))
+        return
     debug_print(f"User inputted raw value: {raw_input_value}")
 
     try:
