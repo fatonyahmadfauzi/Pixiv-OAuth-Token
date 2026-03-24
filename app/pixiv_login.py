@@ -948,6 +948,7 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     global DEBUG_MODE
     current_lang = lang
+    use_rich_menu = _rich_available()
     while True:
         _render_rich_main_menu(current_lang)
         choice = _menu_console().input(
