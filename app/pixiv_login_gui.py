@@ -40,7 +40,8 @@ RELEASES_URL = f"{REPO_BASE_URL}/releases"
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-
+APP_VERSION = "v1.0.2"
+APP_BUILD_CODE = "REL-LOCAL"
 # ===== LANGUAGE =====
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
