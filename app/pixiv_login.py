@@ -24,9 +24,16 @@ import os
 import locale
 import requests
 
+from rich import box
+from rich.align import Align
+from rich.console import Console
+from rich.panel import Panel
+from rich.text import Text
+
 
 # ===== CONFIG =====
 DEBUG_MODE = False
+MENU_CONSOLE_WIDTH = 90
 
 def debug_print(msg: str, color_on: bool = True):
     if DEBUG_MODE:
@@ -725,6 +732,56 @@ def mt(key: str, lang: str) -> str:
     return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
 
 
+def _menu_console() -> Console:
+    return Console(width=MENU_CONSOLE_WIDTH)
+
+
+def _clear_menu_screen() -> None:
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
+    debug_status = "ON" if DEBUG_MODE else "OFF"
+    return [
+        ("1", mt("opt_change_lang", lang), "green"),
+        ("2", mt("opt_tutorial", lang), "green"),
+        ("3", mt("opt_resources_docs", lang), "green"),
+        ("4", mt("opt_support", lang), "green"),
+        ("5", mt("opt_social", lang), "green"),
+        ("6", mt("opt_login", lang), "green"),
+        ("7", f"{mt('opt_debug', lang)} ({mt('debug_current', lang)}: {debug_status})", "magenta"),
+        ("0", mt("opt_exit", lang), "white"),
+    ]
+
+
+def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
+    console = _menu_console()
+    _clear_menu_screen()
+    lines = [f"[{key}] {label}" for key, label in options]
+    console.print(
+        Panel("\n".join(lines), title=title, title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+    )
+    return console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + prompt + ":[/bold yellow] ").strip()
+
+
+def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
+    return _render_rich_option_panel(title, options, mt("select_option", lang))
+
+
+def _render_rich_main_menu(lang: str) -> None:
+    console = _menu_console()
+    _clear_menu_screen()
+
+    header_text = Text()
+    header_text.append(f"🔐 {mt('project', lang)}\n", style="bold green")
+    header_text.append(f"{mt('developer', lang)}: {DEVELOPER_NAME}", style="green")
+    console.print(Panel(Align.center(header_text), border_style="cyan", box=box.SQUARE, expand=True))
+
+    menu_text = Text()
+    for key, label, style in _build_menu_options(lang):
+        menu_text.append(f"[{key}] {label}\n" if key != "0" else f"[{key}] {label}", style=style)
+    console.print(Panel(menu_text, title=mt("menu_title", lang), title_align="left", border_style="cyan", box=box.SQUARE, expand=True))
+
 def print_cli_banner(lang: str, color_on: bool) -> None:
     title_art = [
         r"  ____  _      _         ____   _   _ _   _ _____ _   _ ",
@@ -758,25 +815,25 @@ def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
 
 
 def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
+    options = [
+        ("1", mt("res_docs_documentation", lang)),
+        ("2", mt("res_docs_license", lang)),
+        ("3", mt("res_docs_pixiv", lang)),
+        ("4", mt("res_docs_python", lang)),
+        ("5", mt("res_docs_vercel", lang)),
+        ("0", mt("back", lang)),
+    ]
     while True:
-        print()
-        print(colorize(mt("resources_docs_title", lang), Ansi.BOLD + Ansi.BLUE, color_on))
-        print(colorize(f"  [a] {mt('res_docs_documentation', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [b] {mt('res_docs_license', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [c] {mt('res_docs_pixiv', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [d] {mt('res_docs_python', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [e] {mt('res_docs_vercel', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
-        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip().lower()
-        if choice == "a":
+        choice = _choose_boxed_option(mt("resources_docs_title", lang), options, lang, color_on).lower()
+        if choice == "1":
             open_url("https://pixiv-o-auth-token.vercel.app/documentation")
-        elif choice == "b":
+        elif choice == "2":
             open_url("https://pixiv-o-auth-token.vercel.app/license")
-        elif choice == "c":
+        elif choice == "3":
             open_url("https://oauth.secure.pixiv.net/auth/token")
-        elif choice == "d":
+        elif choice == "4":
             open_url("https://www.python.org/")
-        elif choice == "e":
+        elif choice == "5":
             open_url("https://vercel.com/")
         elif choice == "0":
             return
@@ -784,25 +841,25 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def _open_support_menu(lang: str, color_on: bool) -> None:
+    options = [
+        ("1", mt("sup_contact", lang)),
+        ("2", mt("sup_report", lang)),
+        ("3", mt("sup_discussions", lang)),
+        ("4", mt("sup_fatony", lang)),
+        ("5", mt("sup_donate", lang)),
+        ("0", mt("back", lang)),
+    ]
     while True:
-        print()
-        print(colorize(mt("support_title", lang), Ansi.BOLD + Ansi.BLUE, color_on))
-        print(colorize(f"  [a] {mt('sup_contact', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [b] {mt('sup_report', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [c] {mt('sup_discussions', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [d] {mt('sup_fatony', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [e] {mt('sup_donate', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
-        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip().lower()
-        if choice == "a":
+        choice = _choose_boxed_option(mt("support_title", lang), options, lang, color_on).lower()
+        if choice == "1":
             open_url("https://pixiv-o-auth-token.vercel.app/contact")
-        elif choice == "b":
+        elif choice == "2":
             open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues")
-        elif choice == "c":
+        elif choice == "3":
             open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/discussions")
-        elif choice == "d":
+        elif choice == "4":
             open_url("https://github.com/fatonyahmadfauzi")
-        elif choice == "e":
+        elif choice == "5":
             open_url("https://pixiv-o-auth-token.vercel.app/support")
         elif choice == "0":
             return
@@ -810,16 +867,16 @@ def _open_support_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def _open_social_menu(lang: str, color_on: bool) -> None:
+    options = [
+        ("1", mt("social_github", lang)),
+        ("2", mt("social_linkedin", lang)),
+        ("0", mt("back", lang)),
+    ]
     while True:
-        print()
-        print(colorize(mt("social_title", lang), Ansi.BOLD + Ansi.BLUE, color_on))
-        print(colorize(f"  [a] {mt('social_github', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"  [b] {mt('social_linkedin', lang)}", Ansi.BLUE, color_on))
-        print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
-        choice = input(colorize(f"[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip().lower()
-        if choice == "a":
+        choice = _choose_boxed_option(mt("social_title", lang), options, lang, color_on).lower()
+        if choice == "1":
             open_url("https://github.com/fatonyahmadfauzi")
-        elif choice == "b":
+        elif choice == "2":
             open_url("https://www.linkedin.com/in/fatonyahmadfauzi")
         elif choice == "0":
             return
@@ -892,19 +949,10 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
     global DEBUG_MODE
     current_lang = lang
     while True:
-        print()
-        print_cli_banner(current_lang, color_on)
-        print(colorize(f"[1] {mt('opt_change_lang', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[2] {mt('opt_tutorial', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[3] {mt('opt_resources_docs', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[4] {mt('opt_support', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[5] {mt('opt_social', current_lang)}", Ansi.GREEN, color_on))
-        print(colorize(f"[6] {mt('opt_login', current_lang)}", Ansi.GREEN, color_on))
-        debug_status = "ON" if DEBUG_MODE else "OFF"
-        print(colorize(f"[7] {mt('opt_debug', current_lang)} ({mt('debug_current', current_lang)}: {debug_status})", Ansi.MAGENTA, color_on))
-        print(colorize(f"[0] {mt('opt_exit', current_lang)}", Ansi.DIM, color_on))
-
-        choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
+        _render_rich_main_menu(current_lang)
+        choice = _menu_console().input(
+            "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
+        ).strip()
         debug_print(f"User selected main menu option: {choice}")
 
         if choice == "7":
@@ -931,6 +979,8 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             return
         else:
             print(colorize(mt("invalid_option", current_lang), Ansi.RED, color_on))
+
+
 def supported_langs_display() -> str:
     return ", ".join(f"{code} ({LANG_LABELS.get(code, code)})" for code in SUPPORTED_LANGS)
 
