@@ -732,6 +732,10 @@ def mt(key: str, lang: str) -> str:
     return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
 
 
+def _rich_available() -> bool:
+    return True
+
+
 def _menu_console() -> Console:
     return Console(width=MENU_CONSOLE_WIDTH)
 
@@ -950,10 +954,22 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
     use_rich_menu = _rich_available()
     while True:
-        _render_rich_main_menu(current_lang)
-        choice = _menu_console().input(
-            "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
-        ).strip()
+        if use_rich_menu:
+            _render_rich_main_menu(current_lang)
+            choice = _menu_console().input(
+                "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
+            ).strip()
+        else:
+            _clear_menu_screen()
+            print_cli_banner(current_lang, color_on)
+            for key, label, style in _build_menu_options(current_lang):
+                ansi_style = {
+                    "green": Ansi.GREEN,
+                    "magenta": Ansi.MAGENTA,
+                    "white": Ansi.DIM,
+                }.get(style, Ansi.GREEN)
+                print(colorize(f"[{key}] {label}", ansi_style, color_on))
+            choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"User selected main menu option: {choice}")
 
         if choice == "7":
