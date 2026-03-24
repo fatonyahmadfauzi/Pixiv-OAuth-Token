@@ -22,6 +22,7 @@ from pathlib import Path
 import json
 import os
 import locale
+import subprocess
 import requests
 
 from rich import box
@@ -1172,8 +1173,51 @@ def oauth_pkce(transform):
     return code_verifier, code_challenge
 
 
+# ===== CLIPBOARD =====
+def _copy_to_clipboard(value: str) -> bool:
+    if not value:
+        return False
+    try:
+        if os.name == "nt":
+            proc = subprocess.run(["clip"], input=value, text=True, check=False)
+            return proc.returncode == 0
+        if sys.platform == "darwin":
+            proc = subprocess.run(["pbcopy"], input=value, text=True, check=False)
+            return proc.returncode == 0
+        proc = subprocess.run(["xclip", "-selection", "clipboard"], input=value, text=True, check=False)
+        return proc.returncode == 0
+    except Exception:
+        return False
+
+
+def _post_login_actions(tokens: dict, lang: str, color_on: bool) -> None:
+    while True:
+        options = [
+            ("1", "Refresh token"),
+            ("2", "Copy access token"),
+            ("3", "Copy refresh token"),
+            ("0", "Exit"),
+        ]
+        choice = _render_rich_option_panel("Login Actions", options, mt("select_option", lang)).strip()
+        if choice == "1":
+            refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
+            if refreshed:
+                tokens.update(refreshed)
+        elif choice == "2":
+            ok = _copy_to_clipboard(tokens.get("access_token", ""))
+            print("Access token copied." if ok else "Failed to copy access token.")
+        elif choice == "3":
+            ok = _copy_to_clipboard(tokens.get("refresh_token", ""))
+            print("Refresh token copied." if ok else "Failed to copy refresh token.")
+        elif choice == "0":
+            print("Exiting...")
+            return
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
 # ===== PRINT TOKEN =====
-def print_auth_token_response(response, lang: str, color_on: bool):
+def print_auth_token_response(response, lang: str, color_on: bool) -> dict | None:
     L = get_lang(lang)
     debug_print(f"Response Status: {response.status_code}")
     debug_print(f"Raw Response Body: {response.text}")
@@ -1182,12 +1226,13 @@ def print_auth_token_response(response, lang: str, color_on: bool):
     if "access_token" not in data:
         print("\n" + colorize(L["error_response"], Ansi.RED + Ansi.BOLD, color_on))
         pprint(data)
-        exit(1)
+        return None
 
     print("\n" + colorize(L["login_success"], Ansi.GREEN + Ansi.BOLD, color_on))
     print(colorize("access_token :", Ansi.BOLD, color_on), data["access_token"])
     print(colorize("refresh_token:", Ansi.BOLD, color_on), data["refresh_token"])
     print(colorize("expires_in   :", Ansi.BOLD, color_on), data.get("expires_in", 0))
+    return data
 
 
 # ===== LOGIN FLOW =====
@@ -1245,7 +1290,10 @@ def login(lang: str, color_on: bool):
         timeout=30,
     )
 
-    print_auth_token_response(response, lang, color_on)
+    tokens = print_auth_token_response(response, lang, color_on)
+    if not tokens:
+        return
+    _post_login_actions(tokens, lang, color_on)
 
 
 # ===== REFRESH FLOW =====
@@ -1266,7 +1314,7 @@ def refresh(refresh_token: str, lang: str, color_on: bool):
         timeout=30,
     )
 
-    print_auth_token_response(response, lang, color_on)
+    return print_auth_token_response(response, lang, color_on)
 
 
 def print_config(lang: str, color_on: bool):
