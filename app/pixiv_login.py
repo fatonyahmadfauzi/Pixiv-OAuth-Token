@@ -1045,12 +1045,18 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         check_label = "Check update"
         if has_update and latest:
             check_label = f"Check update (Tersedia Versi Baru {latest})"
-        options = [("1", check_label)]
-        if has_update:
-            options.append(("2", "Update now"))
-        options.append(("0", mt("back", lang)))
-
-        choice = _render_rich_option_panel("Version", options, mt("select_option", lang)).strip()
+        console = _menu_console()
+        _clear_menu_screen()
+        lines = [
+            f"Current version: {current_version}",
+            "",
+            f"[1] {check_label}",
+            f"[0] {mt('back', lang)}",
+        ]
+        console.print(
+            Panel("\n".join(lines), title="Version", title_align="left", border_style="cyan", box=box.SQUARE, expand=True)
+        )
+        choice = console.input("\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", lang) + ":[/bold yellow] ").strip()
 
         if choice == "1":
             latest = _fetch_latest_release_tag_cached(force=True)
@@ -1069,11 +1075,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                     [f"Current version: {current_version}", f"Versi terbaru tersedia: {latest}"],
                     "Enter to continue",
                 )
-                decision = _render_rich_option_panel(
-                    "Update Available",
-                    [("1", "Update now"), ("2", "Later")],
-                    mt("select_option", lang),
-                ).strip()
+                decision = _render_rich_option_panel("Version", [("1", "Update now"), ("2", "Later")], mt("select_option", lang)).strip()
                 if decision == "1":
                     success = _self_update(latest)
                     if success:
@@ -1084,16 +1086,6 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
                         )
                     else:
                         _render_rich_text_panel("Update", ["Update gagal. Silakan coba lagi."], "Enter to continue")
-        elif choice == "2" and has_update and latest:
-            success = _self_update(latest)
-            if success:
-                _render_rich_text_panel(
-                    "Update",
-                    [f"Berhasil diperbarui. Versi saat ini {get_current_app_version()}."],
-                    "Enter to continue",
-                )
-            else:
-                _render_rich_text_panel("Update", ["Update gagal. Silakan coba lagi."], "Enter to continue")
         elif choice == "0":
             return
         else:
