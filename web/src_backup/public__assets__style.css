@@ -636,6 +636,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
 .gh-doc-body table{display:table;max-width:100%;width:100%;border-collapse:collapse;margin:0 0 1.2rem;font-size:clamp(.84rem,.3vw + .78rem,.92rem);table-layout:fixed}
 .gh-doc-body th{background:#0c1219;padding:10px 14px;text-align:left;font-weight:700;color:#a8b8d8;border-bottom:2px solid #2a3344;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word;line-height:1.4}
 .gh-doc-body td{padding:9px 14px;border-bottom:1px solid #1a2438;color:#b8c8e0;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:break-word;line-height:1.45}
+.gh-doc-body th:first-child,.gh-doc-body td:first-child{width:22%}
+.gh-doc-body th:last-child,.gh-doc-body td:last-child{width:78%}
 .gh-doc-body tr:hover td{background:#0a0f18}
 .gh-doc-body hr{border:none;border-top:1px solid #1e2a3d;margin:1.5rem 0}
 .gh-doc-body img{max-width:100%;border-radius:10px;border:1px solid #2a3344}
@@ -657,6 +659,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .gh-doc-body h3{font-size:1.08rem}
   .gh-doc-body pre{padding:14px}
   .gh-doc-body table{font-size:.82rem}
+  .gh-doc-body th:first-child,.gh-doc-body td:first-child{width:30%}
+  .gh-doc-body th:last-child,.gh-doc-body td:last-child{width:70%}
   .gh-doc-body th,.gh-doc-body td{padding:8px 8px}
 }
 
