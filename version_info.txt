@@ -18,6 +18,7 @@ VSVersionInfo(
           [StringStruct('CompanyName', 'Fatony Ahmad Fauzi Dev'),
            StringStruct('FileDescription', 'Pixiv OAuth Login Tool'),
            StringStruct('FileVersion', '1.0.2'),
+           StringStruct('SpecialBuild', 'REL-LOCAL'),
            StringStruct('InternalName', 'pixiv_login_plus'),
            StringStruct('OriginalFilename', 'pixiv_login_plus.exe'),
            StringStruct('ProductName', 'Pixiv Login CLI'),
