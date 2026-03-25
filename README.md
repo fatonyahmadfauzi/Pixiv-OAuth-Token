@@ -94,7 +94,14 @@ If the PFX file is missing, signing is skipped.
 
 ## Versioning
 
-Application version is stored in `version.json`.
+Application version/build identity is stored in `version.json`.
+
+- `version`: semantic version (`X.Y.Z`)
+- `build_code`: unique build identifier
+
+Default non-release fallback is now `BUILD-UNKNOWN` (instead of `REL-LOCAL`), while release bumps generate unix-style build codes via `scripts/bump_version.py`:
+
+- `REL-U<unix_ms>`
 
 ## Web version (Vercel)
 

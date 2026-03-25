@@ -18,17 +18,18 @@ ICON_FILE = r"app\pixiv_oauth.ico"
 # Keep a stable AppId GUID across regenerations by storing it (optional).
 GUID_FILE = Path(__file__).parent / "installer_guid.txt"
 
-def load_version() -> str:
+def load_identity() -> tuple[str, str]:
     # version.json is at project root, so checking CWD or parent is useful
     p = Path(__file__).parent.parent / "version.json"
     if not p.exists():
         p = Path("version.json")
     if not p.exists():
-        return "1.0.0"
+        return "1.0.0", "BUILD-UNKNOWN"
     try:
-        return json.loads(p.read_text(encoding="utf-8")).get("version", "1.0.0")
+        raw = json.loads(p.read_text(encoding="utf-8"))
+        return str(raw.get("version", "1.0.0")), str(raw.get("build_code", "BUILD-UNKNOWN"))
     except Exception:
-        return "1.0.0"
+        return "1.0.0", "BUILD-UNKNOWN"
 
 def load_or_create_guid() -> str:
     if GUID_FILE.exists():
@@ -40,7 +41,7 @@ def load_or_create_guid() -> str:
     return g
 
 def main():
-    ver = load_version()
+    ver, build_code = load_identity()
     appid = load_or_create_guid()
 
     iss = f"""\
@@ -49,6 +50,7 @@ def main():
 
 #define ProductName "{PRODUCT_NAME}"
 #define ProductVersion "{ver}"
+#define BuildCode "{build_code}"
 #define Publisher "{PUBLISHER}"
 #define ExeCLI "{EXE_CLI}"
 #define ExeGUI "{EXE_GUI}"
@@ -63,7 +65,7 @@ DefaultDirName={{autopf}}\\{{#ProductName}}
 DefaultGroupName={{#ProductName}}
 DisableProgramGroupPage=yes
 OutputDir={OUT_DIR}
-OutputBaseFilename=PixivLoginSetup_v{{#ProductVersion}}
+OutputBaseFilename=PixivLoginSetup_v{{#ProductVersion}}_{{#BuildCode}}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
@@ -180,7 +182,7 @@ end;
 
     out_path = Path(__file__).parent / "pixiv_login_installer_dual.iss"
     out_path.write_text(iss, encoding="utf-8")
-    print("Wrote", out_path.name, "(version:", ver, "AppId:", appid + ")")
+    print("Wrote", out_path.name, "(version:", ver, "build:", build_code, "AppId:", appid + ")")
 
 if __name__ == "__main__":
     main()

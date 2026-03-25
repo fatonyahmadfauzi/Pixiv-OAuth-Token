@@ -3,6 +3,7 @@
 
 #define ProductName "Pixiv OAuth"
 #define ProductVersion "1.0.2"
+#define BuildCode "BUILD-UNKNOWN"
 #define Publisher "Fatony Ahmad Fauzi"
 #define ExeCLI "dist_portable\pixiv_login_plus.exe"
 #define ExeGUI "dist_gui\pixiv_login_gui.exe"
@@ -17,7 +18,7 @@ DefaultDirName={autopf}\{#ProductName}
 DefaultGroupName={#ProductName}
 DisableProgramGroupPage=yes
 OutputDir=dist_installer
-OutputBaseFilename=PixivLoginSetup_v{#ProductVersion}
+OutputBaseFilename=PixivLoginSetup_v{#ProductVersion}_{#BuildCode}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
