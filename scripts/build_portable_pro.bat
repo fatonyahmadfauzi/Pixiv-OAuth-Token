@@ -27,7 +27,12 @@ REM --- bump version (patch by default). Usage: scripts\build_portable_pro.bat m
 set BUMP=patch
 if not "%~1"=="" set BUMP=%~1
 
-for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VER=%%v
+for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VERLINE=%%v
+for /f "tokens=1,2 delims=|" %%a in ("%VERLINE%") do (
+  set VER=%%a
+  set BUILD_CODE=%%b
+)
+python scripts\sync_app_identity.py
 python scripts\generate_version_info.py
 
 REM --- build portable ---
