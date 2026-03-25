@@ -35,7 +35,9 @@ def main():
 
     data["version"] = f"{major}.{minor}.{patch}"
     if bump != "none":
-        data["build_code"] = "REL-" + datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
+        now_utc = datetime.now(timezone.utc)
+        unix_ms = int(now_utc.timestamp() * 1000)
+        data["build_code"] = f"REL-U{unix_ms}"
     elif not data.get("build_code"):
         data["build_code"] = "REL-LOCAL"
 
