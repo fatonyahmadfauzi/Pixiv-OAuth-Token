@@ -150,7 +150,8 @@ pre{white-space:pre-wrap;word-break:break-word;margin:0;padding:12px;min-height:
   .cli-showcase{padding:22px 12px}
   .cli-code-shell{padding:20px 10px 14px}
   .cli-fig{font-size:.8rem;top:-12px}
-  .cli-preview{font-size:.82rem;max-height:240px;overflow-x:auto}
+  .cli-preview{font-size:clamp(.62rem,2.4vw,.78rem);line-height:1.35;max-height:240px;overflow-x:hidden}
+  .cli-preview code{white-space:pre-wrap;min-width:0;width:100%;margin:0;overflow-wrap:anywhere;word-break:break-word}
 }
 
 @media (max-width:560px){
