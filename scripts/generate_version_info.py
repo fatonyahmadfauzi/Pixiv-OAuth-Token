@@ -20,7 +20,9 @@ def ver_tuple(v: str):
 
 def main():
     with open(VERSION_FILE, "r", encoding="utf-8") as f:
-        v = json.load(f)["version"]
+        data = json.load(f)
+        v = data["version"]
+        build_code = data.get("build_code", "BUILD-UNKNOWN")
 
     fv = ver_tuple(v)
     filevers = f"({fv[0]},{fv[1]},{fv[2]},0)"
@@ -47,6 +49,7 @@ def main():
         "          [StringStruct('CompanyName', '" + COMPANY + "'),\n"
         "           StringStruct('FileDescription', '" + DESCRIPTION + "'),\n"
         "           StringStruct('FileVersion', '" + v + "'),\n"
+        "           StringStruct('SpecialBuild', '" + build_code + "'),\n"
         "           StringStruct('InternalName', '" + INTERNAL + "'),\n"
         "           StringStruct('OriginalFilename', '" + ORIGINAL + "'),\n"
         "           StringStruct('ProductName', '" + PRODUCT + "'),\n"
