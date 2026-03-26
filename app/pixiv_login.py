@@ -110,7 +110,7 @@ TUTORIAL_URL = README_URL
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.2"
+APP_VERSION = "v1.0.3"
 APP_BUILD_CODE = "BUILD-UNKNOWN"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
@@ -1289,21 +1289,9 @@ def _render_rich_main_menu(lang: str) -> None:
         print(colorize(f"[{key}] {label}", ansi_style, True))
 
 def print_cli_banner(lang: str, color_on: bool) -> None:
-    title_art = [
-        r"  ____  _      _         ____   _   _ _   _ _____ _   _ ",
-        r" |  _ \(_)__ _(_)_ __   / __ \ / | | | | |_   _| | | |",
-        r" | |_) | / _` | | '_ \ | |  | || | | | | | | | | |_| |",
-        r" |  __/| | (_| | | | | || |__| || | | |_| | | | |  _  |",
-        r" |_|   |_|\__, |_|_| |_| \____/ |_|  \___/  |_| |_| |_|",
-        r"           |___/                                           ",
-    ]
-    print(colorize("=" * 70, Ansi.CYAN, color_on))
-    for line in title_art:
-        print(colorize(line, Ansi.BOLD + Ansi.GREEN, color_on))
-
     print(colorize(f"  {mt('project', lang)}", Ansi.BOLD, color_on))
     print(colorize(f"  {mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.DIM, color_on))
-    print(colorize("=" * 70, Ansi.CYAN, color_on))
+    print()
 
 
 def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
@@ -1497,6 +1485,21 @@ def _normalize_version_tag(version: str | None) -> str | None:
     return v if v.startswith("v") else f"v{v}"
 
 
+def _version_key(version: str | None) -> tuple[int, ...]:
+    if not version:
+        return (0, 0, 0)
+    cleaned = str(version).strip().lstrip("vV")
+    parts: list[int] = []
+    for token in cleaned.split("."):
+        try:
+            parts.append(int(token))
+        except ValueError:
+            parts.append(0)
+    while len(parts) < 3:
+        parts.append(0)
+    return tuple(parts[:3])
+
+
 def _fetch_latest_manifest_meta() -> tuple[str | None, str | None]:
     try:
         response = requests.get(LATEST_MANIFEST_URL, timeout=15)
@@ -1575,7 +1578,9 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         current_code = get_current_app_code()
         latest = _fetch_latest_release_tag_cached()
         latest_code = _get_latest_release_code_cached()
-        has_update = bool(latest and (latest != current_version or (latest_code and latest_code != current_code)))
+        has_update = bool(latest and _version_key(latest) > _version_key(current_version))
+        if not has_update and latest and _version_key(latest) == _version_key(current_version):
+            has_update = bool(latest_code and latest_code != current_code)
         check_label = mt("version_check_update", lang)
         if has_update and latest:
             check_label = f"{mt('version_check_update', lang)} ({mt('version_new_badge', lang)} {latest})"
@@ -1599,7 +1604,16 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
             debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
             if not latest:
                 _render_rich_text_panel(mt("version_title", lang), [mt("version_no_internet_check", lang)], mt("enter_continue", lang))
-            elif latest == current_version and (not latest_code or latest_code == current_code):
+            elif _version_key(latest) < _version_key(current_version):
+                _render_rich_text_panel(
+                    mt("version_title", lang),
+                    [
+                        f"{mt('version_current', lang)}: {current_version}",
+                        f"{mt('version_latest_available', lang)}: {latest}",
+                    ],
+                    mt("enter_continue", lang),
+                )
+            elif _version_key(latest) == _version_key(current_version) and (not latest_code or latest_code == current_code):
                 _render_rich_text_panel(
                     mt("version_title", lang),
                     [

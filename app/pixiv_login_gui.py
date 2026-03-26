@@ -43,7 +43,7 @@ RELEASES_URL = f"{REPO_BASE_URL}/releases"
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.2"
+APP_VERSION = "v1.0.3"
 APP_BUILD_CODE = "BUILD-UNKNOWN"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
@@ -1556,8 +1556,10 @@ class App(tk.Tk):
         bat = current_exe.with_name("pixiv_gui_updater.bat")
         bat.write_text(
             "@echo off\n"
-            "timeout /t 1 /nobreak >nul\n"
-            f"copy /y \"{new_exe}\" \"{current_exe}\" >nul\n"
+            "timeout /t 2 /nobreak >nul\n"
+            f"if exist \"{current_exe}.old\" del /f /q \"{current_exe}.old\" >nul 2>nul\n"
+            f"move /y \"{current_exe}\" \"{current_exe}.old\" >nul\n"
+            f"move /y \"{new_exe}\" \"{current_exe}\" >nul\n"
             f"start \"\" \"{current_exe}\"\n"
             "del \"%~f0\"\n",
             encoding="utf-8",
