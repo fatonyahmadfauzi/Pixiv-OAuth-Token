@@ -1,18 +1,22 @@
-function getReadmeUrl(lang) {
+function getDocUrl(fileName, lang) {
+  const safeFile = (fileName || "README.md").trim();
   if (!lang || lang === "en") {
-    return "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md";
+    return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/${safeFile}`;
   }
-  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/README-${lang.toUpperCase()}.md`;
+  const dotIndex = safeFile.lastIndexOf(".");
+  const base = dotIndex === -1 ? safeFile : safeFile.slice(0, dotIndex);
+  const ext = dotIndex === -1 ? "" : safeFile.slice(dotIndex);
+  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/${base}-${lang.toUpperCase()}${ext}`;
 }
 
-async function fetchReadmeWithFallback() {
+async function fetchDocWithFallback(fileName) {
   const selectedLang = (document.documentElement.lang || "en").toLowerCase();
   const candidates = selectedLang === "en" ? ["en"] : [selectedLang, "en"];
 
   let lastError = null;
   for (const lang of candidates) {
     try {
-      const response = await fetch(getReadmeUrl(lang));
+      const response = await fetch(getDocUrl(fileName, lang));
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -53,12 +57,14 @@ function buildTOC() {
 async function loadDocs() {
   var e = document.getElementById("docSkeleton");
   var t = document.getElementById("docBody");
+  var fileHint = document.querySelector("[data-file]");
+  var fileName = fileHint ? fileHint.getAttribute("data-file") || "README.md" : "README.md";
   try {
     if (e) e.style.display = '';
     t.hidden = true;
     t.innerHTML = '';
 
-    var readmeResult = await fetchReadmeWithFallback();
+    var readmeResult = await fetchDocWithFallback(fileName);
     var a = readmeResult.markdown;
     
     t.innerHTML = marked.parse(a);
