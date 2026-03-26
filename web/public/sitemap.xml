@@ -21,6 +21,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://pixiv-o-auth-token.vercel.app/changelog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://pixiv-o-auth-token.vercel.app/issues</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

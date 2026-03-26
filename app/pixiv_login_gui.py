@@ -12,9 +12,12 @@ Pixiv Login GUI (Tkinter) - FINAL (Extended i18n)
 from __future__ import annotations
 
 import json
+import subprocess
 import threading
 import tkinter as tk
 from tkinter import ttk, messagebox
+import sys
+import tempfile
 from pathlib import Path
 from base64 import urlsafe_b64encode
 from hashlib import sha256
@@ -40,7 +43,14 @@ RELEASES_URL = f"{REPO_BASE_URL}/releases"
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-
+APP_VERSION = "v1.0.3"
+APP_BUILD_CODE = "BUILD-UNKNOWN"
+LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
+GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
+DOWNLOADS_RAW_BASE = f"{REPO_BASE_URL}/raw/HEAD/downloads"
+PORTABLE_LATEST_URL = f"{DOWNLOADS_RAW_BASE}/Pixiv%20OAuth%20GUi%20(Portable)_latest.exe"
+SETUP_LATEST_URL = f"{DOWNLOADS_RAW_BASE}/Pixiv%20OAuth%20GUi%20Setup_latest.exe"
+VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
 # ===== LANGUAGE =====
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
@@ -587,6 +597,20 @@ EXTRA_UI_EN = {
     "app_header": "Pixiv OAuth Token",
     "app_subtitle": "Modern login helper with quick token exchange",
     "docs": "Read the Docs",
+    "menu_changelog": "Changelog",
+    "menu_version": "Version",
+    "version_current": "Current Version",
+    "version_check_now": "Check Version",
+    "version_title": "Version Information",
+    "version_latest": "Latest Version",
+    "version_up_to_date": "You are using the latest version.",
+    "version_update_available": "A newer version is available.",
+    "version_check_failed": "Could not check the latest version.",
+    "version_btn_update": "Update",
+    "version_btn_later": "Later",
+    "version_updating": "Updating application...",
+    "version_update_done": "Update started. The app will close if replacement is required.",
+    "version_update_failed": "Automatic update failed",
     "menu_tutorial": "Tutorial",
     "menu_resources_docs": "Resources & Docs",
     "menu_support": "Support",
@@ -618,6 +642,20 @@ EXTRA_UI_OVERRIDES = {
     "id": {
         "app_subtitle": "Alat login modern untuk pertukaran token cepat",
         "docs": "Baca Dokumentasi",
+        "menu_changelog": "Changelog",
+        "menu_version": "Versi",
+        "version_current": "Versi Saat Ini",
+        "version_check_now": "Cek Versi",
+        "version_title": "Informasi Versi",
+        "version_latest": "Versi Terbaru",
+        "version_up_to_date": "Kamu sudah memakai versi terbaru.",
+        "version_update_available": "Ada versi terbaru tersedia.",
+        "version_check_failed": "Gagal mengecek versi terbaru.",
+        "version_btn_update": "Update",
+        "version_btn_later": "Nanti",
+        "version_updating": "Sedang memperbarui aplikasi...",
+        "version_update_done": "Proses update dimulai. Aplikasi akan ditutup jika perlu penggantian file.",
+        "version_update_failed": "Update otomatis gagal",
         "menu_resources_docs": "Resource & Dokumen",
         "menu_support": "Dukungan",
         "menu_social": "Media Sosial",
@@ -909,6 +947,109 @@ def extract_code(raw: str) -> str:
     return raw
 
 
+def _normalize_version_tag(version: str | None) -> str | None:
+    if not version:
+        return None
+    value = str(version).strip()
+    if not value:
+        return None
+    return value if value.startswith("v") else f"v{value}"
+
+
+def _version_key(version: str | None) -> tuple[int, ...]:
+    if not version:
+        return (0, 0, 0)
+    cleaned = str(version).strip().lstrip("vV")
+    parts = []
+    for token in cleaned.split("."):
+        try:
+            parts.append(int(token))
+        except ValueError:
+            parts.append(0)
+    while len(parts) < 3:
+        parts.append(0)
+    return tuple(parts[:3])
+
+
+def get_current_app_version(cfg: dict | None = None) -> str:
+    try:
+        if VERSION_FILE.exists():
+            raw = VERSION_FILE.read_text(encoding="utf-8").strip()
+            if raw:
+                if raw.startswith("{"):
+                    payload = json.loads(raw)
+                    version = payload.get("version")
+                    if isinstance(version, str) and version.strip():
+                        return _normalize_version_tag(version) or APP_VERSION
+                return _normalize_version_tag(raw.split("|")[0].strip()) or APP_VERSION
+    except Exception:
+        pass
+    source_cfg = cfg or load_config()
+    from_cfg = source_cfg.get("app_version")
+    if isinstance(from_cfg, str) and from_cfg.strip():
+        return _normalize_version_tag(from_cfg.strip()) or APP_VERSION
+    return APP_VERSION
+
+
+def get_current_app_code(cfg: dict | None = None) -> str:
+    try:
+        if VERSION_FILE.exists():
+            raw = VERSION_FILE.read_text(encoding="utf-8").strip()
+            if raw:
+                if raw.startswith("{"):
+                    payload = json.loads(raw)
+                    code = payload.get("build_code")
+                    if isinstance(code, str) and code.strip():
+                        return code.strip()
+                parts = raw.split("|", 1)
+                if len(parts) == 2 and parts[1].strip():
+                    return parts[1].strip()
+    except Exception:
+        pass
+    source_cfg = cfg or load_config()
+    from_cfg = source_cfg.get("app_build_code")
+    if isinstance(from_cfg, str) and from_cfg.strip():
+        return from_cfg.strip()
+    return APP_BUILD_CODE
+
+
+def set_current_app_identity(version: str, build_code: str) -> None:
+    normalized = _normalize_version_tag(version) or APP_VERSION
+    identity = {"version": normalized, "build_code": build_code.strip() or APP_BUILD_CODE}
+    try:
+        VERSION_FILE.write_text(json.dumps(identity, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+    cfg = load_config()
+    cfg["app_version"] = identity["version"]
+    cfg["app_build_code"] = identity["build_code"]
+    save_config(cfg)
+
+
+def fetch_latest_release_meta() -> tuple[str | None, str | None]:
+    try:
+        resp = requests.get(LATEST_MANIFEST_URL, timeout=12)
+        resp.raise_for_status()
+        payload = resp.json()
+        tag = _normalize_version_tag(payload.get("version"))
+        code = str(payload.get("build_code", "")).strip() or None
+        if tag:
+            return tag, code
+    except Exception:
+        pass
+
+    try:
+        resp = requests.get(GITHUB_API_LATEST_RELEASE, timeout=12)
+        resp.raise_for_status()
+        payload = resp.json()
+        tag = _normalize_version_tag(payload.get("tag_name"))
+        release_id = payload.get("id")
+        code = f"REL-{release_id}" if release_id else None
+        return tag, code
+    except Exception:
+        return None, None
+
+
 class App(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -931,6 +1072,7 @@ class App(tk.Tk):
         self._debug_log: list[str] = []
         self._debug_window: tk.Toplevel | None = None
         self._debug_text: tk.Text | None = None
+        self._version_check_in_progress = False
 
         self.lang_var = tk.StringVar(value=default_name)
         self.save_lang_var = tk.BooleanVar(value=True)
@@ -943,6 +1085,7 @@ class App(tk.Tk):
         self.log(f"Config file: {CONFIG_FILE}")
         self.debug(self.t("dbg_app_start"))
         self.debug(self.t("dbg_config_saved").format(CONFIG_FILE))
+        self.after(1300, self.auto_check_updates)
 
     def _set_app_icon(self):
         icon_path = resolve_icon_path()
@@ -1150,7 +1293,19 @@ class App(tk.Tk):
     def _build_menu(self):
         menubar = tk.Menu(self)
 
+        menubar.add_command(label=self.tx("menu_changelog"), command=lambda: open_url(RELEASES_URL))
         menubar.add_command(label=self.tx("menu_tutorial"), command=self.show_tutorial)
+
+        version_menu = tk.Menu(menubar, tearoff=0)
+        current_version = get_current_app_version(self.cfg)
+        current_label = f"{self.tx('version_current')}: {current_version}"
+        version_menu.add_command(
+            label=current_label,
+            state="disabled",
+        )
+        version_menu.add_separator()
+        version_menu.add_command(label=self.tx("version_check_now"), command=lambda: self.check_version(manual=True))
+        menubar.add_cascade(label=self.tx("menu_version"), menu=version_menu)
 
         resources_menu = tk.Menu(menubar, tearoff=0)
         resources_menu.add_command(label=self.tx('res_docs_documentation'), command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/documentation"))
@@ -1282,6 +1437,134 @@ class App(tk.Tk):
         footer.pack(fill="x", pady=(10, 0))
         ttk.Button(footer, text=self.tx("docs"), style="Primary.TButton", command=lambda: open_url("https://pixiv-o-auth-token.vercel.app/documentation")).pack(side="right")
 
+    # ---------- Version / Update ----------
+    def auto_check_updates(self):
+        self.check_version(manual=False)
+
+    def check_version(self, manual: bool = False):
+        if self._version_check_in_progress:
+            return
+        self._version_check_in_progress = True
+
+        current_version = get_current_app_version(self.cfg)
+        current_code = get_current_app_code(self.cfg)
+
+        def worker():
+            latest_version, latest_code = fetch_latest_release_meta()
+
+            def done():
+                self._version_check_in_progress = False
+                if not latest_version:
+                    if manual:
+                        messagebox.showwarning(self.tx("version_title"), self.tx("version_check_failed"))
+                    return
+
+                has_update = _version_key(latest_version) > _version_key(current_version)
+                if not has_update and latest_code and latest_code != current_code:
+                    has_update = True
+
+                if has_update:
+                    self.show_update_popup(current_version, current_code, latest_version, latest_code or APP_BUILD_CODE)
+                elif manual:
+                    current_line = f"{self.tx('version_current')}: {current_version}"
+                    latest_line = f"{self.tx('version_latest')}: {latest_version}"
+                    messagebox.showinfo(
+                        self.tx("version_title"),
+                        f"{current_line}\n"
+                        f"{latest_line}\n\n"
+                        f"{self.tx('version_up_to_date')}",
+                    )
+
+            self.after(0, done)
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def show_update_popup(self, current_version: str, current_code: str, latest_version: str, latest_code: str):
+        popup = tk.Toplevel(self)
+        popup.title(self.tx("version_title"))
+        popup.geometry("460x230")
+        popup.resizable(False, False)
+        popup.transient(self)
+        popup.grab_set()
+
+        current_line = f"{self.tx('version_current')}: {current_version}"
+        latest_line = f"{self.tx('version_latest')}: {latest_version}"
+
+        body = ttk.Frame(popup, padding=14)
+        body.pack(fill="both", expand=True)
+        ttk.Label(body, text=self.tx("version_update_available"), style="Header.TLabel").pack(anchor="w", pady=(0, 10))
+        ttk.Label(
+            body,
+            text=f"{current_line}\n{latest_line}",
+            style="TLabel",
+            justify="left",
+        ).pack(anchor="w")
+
+        btn_row = ttk.Frame(body)
+        btn_row.pack(side="bottom", fill="x", pady=(16, 0))
+
+        def later():
+            popup.destroy()
+
+        def do_update():
+            popup.destroy()
+            self.start_update_flow(latest_version, latest_code)
+
+        ttk.Button(btn_row, text=self.tx("version_btn_later"), style="Secondary.TButton", command=later).pack(side="right")
+        ttk.Button(btn_row, text=self.tx("version_btn_update"), style="Primary.TButton", command=do_update).pack(side="right", padx=(0, 8))
+
+    def start_update_flow(self, latest_version: str, latest_code: str):
+        self.log(self.tx("version_updating"))
+
+        def worker():
+            try:
+                is_frozen = bool(getattr(sys, "frozen", False))
+                if not is_frozen:
+                    open_url(RELEASES_URL)
+                    self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))
+                    return
+
+                exe_path = Path(sys.executable).resolve()
+                is_setup = "program files" in str(exe_path).lower() or "setup" in exe_path.name.lower()
+                if is_setup:
+                    setup_file = Path(tempfile.gettempdir()) / "pixiv_gui_setup_latest.exe"
+                    self._download_to_file(SETUP_LATEST_URL, setup_file)
+                    subprocess.Popen([str(setup_file), "/SP-", "/VERYSILENT", "/NORESTART"], shell=False)
+                    self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))
+                    return
+
+                new_exe = exe_path.with_name(exe_path.stem + "_new.exe")
+                self._download_to_file(PORTABLE_LATEST_URL, new_exe)
+                self._replace_exe_with_updater(exe_path, new_exe)
+                set_current_app_identity(latest_version, latest_code)
+                self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))
+                self.after(350, self.destroy)
+            except Exception as exc:
+                self.after(0, lambda: messagebox.showerror(self.tx("version_title"), f"{self.tx('version_update_failed')}: {exc}"))
+
+        threading.Thread(target=worker, daemon=True).start()
+
+    def _download_to_file(self, url: str, target: Path):
+        resp = requests.get(url, timeout=40, stream=True)
+        resp.raise_for_status()
+        with target.open("wb") as fh:
+            for chunk in resp.iter_content(chunk_size=1024 * 128):
+                if chunk:
+                    fh.write(chunk)
+
+    def _replace_exe_with_updater(self, current_exe: Path, new_exe: Path):
+        bat = current_exe.with_name("pixiv_gui_updater.bat")
+        bat.write_text(
+            "@echo off\n"
+            "timeout /t 2 /nobreak >nul\n"
+            f"if exist \"{current_exe}.old\" del /f /q \"{current_exe}.old\" >nul 2>nul\n"
+            f"move /y \"{current_exe}\" \"{current_exe}.old\" >nul\n"
+            f"move /y \"{new_exe}\" \"{current_exe}\" >nul\n"
+            f"start \"\" \"{current_exe}\"\n"
+            "del \"%~f0\"\n",
+            encoding="utf-8",
+        )
+        subprocess.Popen(["cmd", "/c", str(bat)], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
 
 
     def log(self, msg: str):
