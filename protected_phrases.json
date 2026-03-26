@@ -1,0 +1,21 @@
+{
+  "protected_phrases": [
+    "MIT\\s+License(?:\\s*©)?(?:\\s*\\d{4})?",
+    "https?:\\/\\/\\S+",
+    "\\(LICENSE\\)",
+    "\\(\\.\\./\\.\\./LICENSE\\)",
+    "\\*\\*1\\.85\\.0\\*\\*",
+    "\\*\\*Windows\\*\\*",
+    "\\*\\*macOS\\*\\*",
+    "\\*\\*Linux\\*\\*",
+    "\\*\\*Windows,\\s*macOS\\s*et\\s*Linux\\*\\*",
+    "Visual Studio Code",
+    "VS Code",
+    "Google Translate",
+    "API",
+    "GitHub",
+    "README\\.md",
+    "CHANGELOG\\.md",
+    "Markdown"
+  ]
+}
