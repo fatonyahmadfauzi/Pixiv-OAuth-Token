@@ -971,13 +971,6 @@ def _version_key(version: str | None) -> tuple[int, ...]:
     return tuple(parts[:3])
 
 
-def _display_build_code(code: str | None) -> str:
-    value = (code or "").strip()
-    if not value or value.upper() in {"BUILD-UNKNOWN", "REL-LOCAL", "UNKNOWN", "-"}:
-        return ""
-    return value
-
-
 def get_current_app_version(cfg: dict | None = None) -> str:
     try:
         if VERSION_FILE.exists():
@@ -1305,10 +1298,7 @@ class App(tk.Tk):
 
         version_menu = tk.Menu(menubar, tearoff=0)
         current_version = get_current_app_version(self.cfg)
-        current_code = _display_build_code(get_current_app_code(self.cfg))
         current_label = f"{self.tx('version_current')}: {current_version}"
-        if current_code:
-            current_label += f" ({current_code})"
         version_menu.add_command(
             label=current_label,
             state="disabled",
@@ -1476,14 +1466,8 @@ class App(tk.Tk):
                 if has_update:
                     self.show_update_popup(current_version, current_code, latest_version, latest_code or APP_BUILD_CODE)
                 elif manual:
-                    current_code_text = _display_build_code(current_code)
-                    latest_code_text = _display_build_code(latest_code)
                     current_line = f"{self.tx('version_current')}: {current_version}"
                     latest_line = f"{self.tx('version_latest')}: {latest_version}"
-                    if current_code_text:
-                        current_line += f" ({current_code_text})"
-                    if latest_code_text:
-                        latest_line += f" ({latest_code_text})"
                     messagebox.showinfo(
                         self.tx("version_title"),
                         f"{current_line}\n"
@@ -1503,14 +1487,8 @@ class App(tk.Tk):
         popup.transient(self)
         popup.grab_set()
 
-        current_code_text = _display_build_code(current_code)
-        latest_code_text = _display_build_code(latest_code)
         current_line = f"{self.tx('version_current')}: {current_version}"
         latest_line = f"{self.tx('version_latest')}: {latest_version}"
-        if current_code_text:
-            current_line += f" ({current_code_text})"
-        if latest_code_text:
-            latest_line += f" ({latest_code_text})"
 
         body = ttk.Frame(popup, padding=14)
         body.pack(fill="both", expand=True)
