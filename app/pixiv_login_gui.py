@@ -624,6 +624,7 @@ EXTRA_UI_EN = {
     "tutorial_desc": "Follow this guided flow to exchange Pixiv OAuth tokens quickly.",
     "tutorial_steps": "Step by step",
     "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
+    "tutorial_image_open_error": "Cannot open image: {file}",
     "dev_info_title": "Developer",
     "res_docs_documentation": "Documentation",
     "res_docs_license": "License",
@@ -638,6 +639,13 @@ EXTRA_UI_EN = {
     "social_github": "GitHub",
     "social_linkedin": "LinkedIn",
     "developer_prefix": "Developer",
+    "debug_button": "⚙ Debug",
+    "debug_console_title": "Debug Console",
+    "debug_console_header": "⚙  Debug Console",
+    "debug_copy_all": "Copy All",
+    "debug_clear": "Clear",
+    "debug_copied": "Debug copied.",
+    "debug_cleared": "Debug logs cleared.",
 }
 
 EXTRA_UI_OVERRIDES = {
@@ -645,6 +653,7 @@ EXTRA_UI_OVERRIDES = {
         "app_subtitle": "Alat login modern untuk pertukaran token cepat",
         "docs": "Baca Dokumentasi",
         "menu_changelog": "Changelog",
+        "menu_tutorial": "Tutorial",
         "menu_version": "Versi",
         "version_current": "Versi Saat Ini",
         "version_check_now": "Cek Versi",
@@ -667,6 +676,7 @@ EXTRA_UI_OVERRIDES = {
         "tutorial_desc": "Ikuti langkah berikut untuk menukar token Pixiv OAuth dengan cepat.",
         "tutorial_steps": "Langkah-langkah",
         "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder tutorial_images/.",
+        "tutorial_image_open_error": "Gagal membuka gambar: {file}",
         "res_docs_documentation": "Dokumentasi",
         "res_docs_license": "Lisensi",
         "res_docs_pixiv": "Endpoint Pixiv OAuth",
@@ -680,10 +690,32 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Developer",
+        "debug_button": "⚙ Debug",
+        "debug_console_title": "Konsol Debug",
+        "debug_console_header": "⚙  Konsol Debug",
+        "debug_copy_all": "Salin Semua",
+        "debug_clear": "Bersihkan",
+        "debug_copied": "Log debug disalin.",
+        "debug_cleared": "Log debug dibersihkan.",
     },
     "jp": {
         "app_subtitle": "クイックトークン交換のためのモダンなログインヘルパー",
         "docs": "ドキュメントを読む",
+        "menu_tutorial": "チュートリアル",
+        "menu_changelog": "チェンジログ",
+        "menu_version": "バージョン",
+        "version_current": "現在のバージョン",
+        "version_check_now": "バージョン確認",
+        "version_title": "バージョン情報",
+        "version_latest": "最新バージョン",
+        "version_up_to_date": "現在、最新バージョンを使用しています。",
+        "version_update_available": "新しいバージョンが利用可能です。",
+        "version_check_failed": "最新バージョンの確認に失敗しました。",
+        "version_btn_update": "アップデート",
+        "version_btn_later": "後で",
+        "version_updating": "アプリケーションを更新中...",
+        "version_update_done": "アップデートを開始しました。置き換えが必要な場合、アプリは終了します。",
+        "version_update_failed": "自動アップデートに失敗しました",
         "menu_resources_docs": "リソース & ドキュメント",
         "menu_support": "サポート",
         "menu_social": "ソーシャル",
@@ -692,6 +724,8 @@ EXTRA_UI_OVERRIDES = {
         "tutorial_header": "使い方",
         "tutorial_desc": "このガイドに沿って Pixiv OAuth トークンを素早く取得できます。",
         "tutorial_steps": "手順",
+        "tutorial_missing": "チュートリアル画像が見つかりません。tutorial_images/ に連番PNGを配置してください。",
+        "tutorial_image_open_error": "画像を開けません: {file}",
         "dev_info_title": "開発者",
         "res_docs_documentation": "ドキュメント",
         "res_docs_license": "ライセンス",
@@ -706,8 +740,30 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "開発者",
+        "debug_button": "⚙ デバッグ",
+        "debug_console_title": "デバッグコンソール",
+        "debug_console_header": "⚙  デバッグコンソール",
+        "debug_copy_all": "すべてコピー",
+        "debug_clear": "クリア",
+        "debug_copied": "デバッグログをコピーしました。",
+        "debug_cleared": "デバッグログをクリアしました。",
     },
     "pl": {
+        "menu_tutorial": "Samouczek",
+        "menu_changelog": "Dziennik zmian",
+        "menu_version": "Wersja",
+        "version_current": "Aktualna wersja",
+        "version_check_now": "Sprawdź wersję",
+        "version_title": "Informacje o wersji",
+        "version_latest": "Najnowsza wersja",
+        "version_up_to_date": "Używasz najnowszej wersji.",
+        "version_update_available": "Dostępna jest nowsza wersja.",
+        "version_check_failed": "Nie udało się sprawdzić najnowszej wersji.",
+        "version_btn_update": "Aktualizuj",
+        "version_btn_later": "Później",
+        "version_updating": "Trwa aktualizacja aplikacji...",
+        "version_update_done": "Aktualizacja została rozpoczęta. Aplikacja zamknie się, jeśli wymagane będzie podmienienie plików.",
+        "version_update_failed": "Automatyczna aktualizacja nie powiodła się",
         "menu_resources_docs": "Zasoby & Dokumentacja",
         "menu_support": "Wsparcie",
         "menu_social": "Media społeczne",
@@ -726,8 +782,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Deweloper"
+        ,"debug_button": "⚙ Debug"
+        ,"debug_console_title": "Konsola debugowania"
+        ,"debug_console_header": "⚙  Konsola debugowania"
+        ,"debug_copy_all": "Kopiuj wszystko"
+        ,"debug_clear": "Wyczyść"
     },
     "zh": {
+        "menu_tutorial": "教程",
+        "menu_changelog": "更新日志",
+        "menu_version": "版本",
+        "version_current": "当前版本",
+        "version_check_now": "检查版本",
+        "version_title": "版本信息",
+        "version_latest": "最新版本",
+        "version_up_to_date": "你正在使用最新版本。",
+        "version_update_available": "有可用的新版本。",
+        "version_check_failed": "无法检查最新版本。",
+        "version_btn_update": "更新",
+        "version_btn_later": "稍后",
+        "version_updating": "正在更新应用程序...",
+        "version_update_done": "更新已开始。如需替换文件，应用将自动关闭。",
+        "version_update_failed": "自动更新失败",
         "menu_resources_docs": "资源 & 文档",
         "menu_support": "支持",
         "menu_social": "社交媒体",
@@ -746,8 +822,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "开发者"
+        ,"debug_button": "⚙ 调试"
+        ,"debug_console_title": "调试控制台"
+        ,"debug_console_header": "⚙  调试控制台"
+        ,"debug_copy_all": "全部复制"
+        ,"debug_clear": "清除"
     },
     "de": {
+        "menu_tutorial": "Tutorial",
+        "menu_changelog": "Änderungsprotokoll",
+        "menu_version": "Version",
+        "version_current": "Aktuelle Version",
+        "version_check_now": "Version prüfen",
+        "version_title": "Versionsinformationen",
+        "version_latest": "Neueste Version",
+        "version_up_to_date": "Sie verwenden die neueste Version.",
+        "version_update_available": "Eine neuere Version ist verfügbar.",
+        "version_check_failed": "Die neueste Version konnte nicht geprüft werden.",
+        "version_btn_update": "Aktualisieren",
+        "version_btn_later": "Später",
+        "version_updating": "Anwendung wird aktualisiert...",
+        "version_update_done": "Update gestartet. Die App wird geschlossen, wenn ein Austausch erforderlich ist.",
+        "version_update_failed": "Automatisches Update fehlgeschlagen",
         "menu_resources_docs": "Ressourcen & Dokumentation",
         "menu_support": "Support",
         "menu_social": "Soziale Medien",
@@ -766,8 +862,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Entwickler"
+        ,"debug_button": "⚙ Debug"
+        ,"debug_console_title": "Debug-Konsole"
+        ,"debug_console_header": "⚙  Debug-Konsole"
+        ,"debug_copy_all": "Alles kopieren"
+        ,"debug_clear": "Leeren"
     },
     "fr": {
+        "menu_tutorial": "Tutoriel",
+        "menu_changelog": "Journal des modifications",
+        "menu_version": "Version",
+        "version_current": "Version actuelle",
+        "version_check_now": "Vérifier la version",
+        "version_title": "Informations de version",
+        "version_latest": "Dernière version",
+        "version_up_to_date": "Vous utilisez la dernière version.",
+        "version_update_available": "Une nouvelle version est disponible.",
+        "version_check_failed": "Impossible de vérifier la dernière version.",
+        "version_btn_update": "Mettre à jour",
+        "version_btn_later": "Plus tard",
+        "version_updating": "Mise à jour de l'application...",
+        "version_update_done": "Mise à jour lancée. L'application se fermera si un remplacement est nécessaire.",
+        "version_update_failed": "Échec de la mise à jour automatique",
         "menu_resources_docs": "Ressources & Documentation",
         "menu_support": "Support",
         "menu_social": "Réseaux sociaux",
@@ -786,8 +902,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Développeur"
+        ,"debug_button": "⚙ Debug"
+        ,"debug_console_title": "Console de débogage"
+        ,"debug_console_header": "⚙  Console de débogage"
+        ,"debug_copy_all": "Tout copier"
+        ,"debug_clear": "Effacer"
     },
     "es": {
+        "menu_tutorial": "Tutorial",
+        "menu_changelog": "Registro de cambios",
+        "menu_version": "Versión",
+        "version_current": "Versión actual",
+        "version_check_now": "Comprobar versión",
+        "version_title": "Información de versión",
+        "version_latest": "Última versión",
+        "version_up_to_date": "Estás usando la versión más reciente.",
+        "version_update_available": "Hay una versión más nueva disponible.",
+        "version_check_failed": "No se pudo comprobar la última versión.",
+        "version_btn_update": "Actualizar",
+        "version_btn_later": "Más tarde",
+        "version_updating": "Actualizando la aplicación...",
+        "version_update_done": "La actualización ha comenzado. La app se cerrará si es necesario reemplazar archivos.",
+        "version_update_failed": "Error en la actualización automática",
         "menu_resources_docs": "Recursos & Documentación",
         "menu_support": "Soporte",
         "menu_social": "Redes sociales",
@@ -806,8 +942,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Desarrollador"
+        ,"debug_button": "⚙ Debug"
+        ,"debug_console_title": "Consola de depuración"
+        ,"debug_console_header": "⚙  Consola de depuración"
+        ,"debug_copy_all": "Copiar todo"
+        ,"debug_clear": "Limpiar"
     },
     "ru": {
+        "menu_tutorial": "Руководство",
+        "menu_changelog": "История изменений",
+        "menu_version": "Версия",
+        "version_current": "Текущая версия",
+        "version_check_now": "Проверить версию",
+        "version_title": "Информация о версии",
+        "version_latest": "Последняя версия",
+        "version_up_to_date": "Вы используете последнюю версию.",
+        "version_update_available": "Доступна более новая версия.",
+        "version_check_failed": "Не удалось проверить последнюю версию.",
+        "version_btn_update": "Обновить",
+        "version_btn_later": "Позже",
+        "version_updating": "Обновление приложения...",
+        "version_update_done": "Обновление запущено. Приложение закроется, если потребуется замена файлов.",
+        "version_update_failed": "Автообновление не удалось",
         "menu_resources_docs": "Ресурсы & Документация",
         "menu_support": "Поддержка",
         "menu_social": "Социальные сети",
@@ -826,8 +982,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Разработчик"
+        ,"debug_button": "⚙ Отладка"
+        ,"debug_console_title": "Консоль отладки"
+        ,"debug_console_header": "⚙  Консоль отладки"
+        ,"debug_copy_all": "Копировать всё"
+        ,"debug_clear": "Очистить"
     },
     "pt": {
+        "menu_tutorial": "Tutorial",
+        "menu_changelog": "Registro de alterações",
+        "menu_version": "Versão",
+        "version_current": "Versão atual",
+        "version_check_now": "Verificar versão",
+        "version_title": "Informações da versão",
+        "version_latest": "Versão mais recente",
+        "version_up_to_date": "Você está usando a versão mais recente.",
+        "version_update_available": "Há uma versão mais nova disponível.",
+        "version_check_failed": "Não foi possível verificar a versão mais recente.",
+        "version_btn_update": "Atualizar",
+        "version_btn_later": "Depois",
+        "version_updating": "Atualizando o aplicativo...",
+        "version_update_done": "A atualização foi iniciada. O app será fechado se for necessário substituir arquivos.",
+        "version_update_failed": "Falha na atualização automática",
         "menu_resources_docs": "Recursos & Documentação",
         "menu_support": "Suporte",
         "menu_social": "Redes sociais",
@@ -846,8 +1022,28 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "Desenvolvedor"
+        ,"debug_button": "⚙ Debug"
+        ,"debug_console_title": "Console de depuração"
+        ,"debug_console_header": "⚙  Console de depuração"
+        ,"debug_copy_all": "Copiar tudo"
+        ,"debug_clear": "Limpar"
     },
     "kr": {
+        "menu_tutorial": "튜토리얼",
+        "menu_changelog": "변경 사항",
+        "menu_version": "버전",
+        "version_current": "현재 버전",
+        "version_check_now": "버전 확인",
+        "version_title": "버전 정보",
+        "version_latest": "최신 버전",
+        "version_up_to_date": "최신 버전을 사용 중입니다.",
+        "version_update_available": "새 버전을 사용할 수 있습니다.",
+        "version_check_failed": "최신 버전 확인에 실패했습니다.",
+        "version_btn_update": "업데이트",
+        "version_btn_later": "나중에",
+        "version_updating": "애플리케이션 업데이트 중...",
+        "version_update_done": "업데이트를 시작했습니다. 교체가 필요하면 앱이 종료됩니다.",
+        "version_update_failed": "자동 업데이트 실패",
         "menu_resources_docs": "리소스 & 문서",
         "menu_support": "지원",
         "menu_social": "소셜 미디어",
@@ -866,6 +1062,11 @@ EXTRA_UI_OVERRIDES = {
         "social_github": "GitHub",
         "social_linkedin": "LinkedIn",
         "developer_prefix": "개발자"
+        ,"debug_button": "⚙ 디버그"
+        ,"debug_console_title": "디버그 콘솔"
+        ,"debug_console_header": "⚙  디버그 콘솔"
+        ,"debug_copy_all": "전체 복사"
+        ,"debug_clear": "지우기"
     },
 }
 
@@ -888,6 +1089,78 @@ TUTORIAL_CAPTIONS = {
         "Langkah 4: Copy URL/kode pixiv:// dari console.",
         "Langkah 5: Paste URL/kode ke kolom input aplikasi.",
         "Langkah 6: Klik Exchange Token untuk selesai.",
+    ],
+    "jp": [
+        "手順 1: アプリでログインページを開くをクリック。",
+        "手順 2: Pixivページでログインを続行。",
+        "手順 3: ブラウザのコンソールを開く (Ctrl+Shift+J)。",
+        "手順 4: コンソールから pixiv:// URL/コードをコピー。",
+        "手順 5: URL/コードをアプリ入力欄に貼り付け。",
+        "手順 6: トークン交換をクリックして完了。",
+    ],
+    "pl": [
+        "Krok 1: Kliknij Otwórz stronę logowania w aplikacji.",
+        "Krok 2: Kontynuuj logowanie na stronie Pixiv.",
+        "Krok 3: Otwórz konsolę przeglądarki (Ctrl+Shift+J).",
+        "Krok 4: Skopiuj pixiv:// URL/kod z konsoli.",
+        "Krok 5: Wklej URL/kod do pola aplikacji.",
+        "Krok 6: Kliknij Wymień token, aby zakończyć.",
+    ],
+    "zh": [
+        "步骤 1：在应用中点击打开登录页面。",
+        "步骤 2：在 Pixiv 页面继续登录。",
+        "步骤 3：打开浏览器控制台（Ctrl+Shift+J）。",
+        "步骤 4：从控制台复制 pixiv:// URL/代码。",
+        "步骤 5：将 URL/代码粘贴到应用输入框。",
+        "步骤 6：点击兑换令牌完成流程。",
+    ],
+    "de": [
+        "Schritt 1: In der App auf Login-Seite öffnen klicken.",
+        "Schritt 2: Anmeldung auf der Pixiv-Seite fortsetzen.",
+        "Schritt 3: Browser-Konsole öffnen (Ctrl+Shift+J).",
+        "Schritt 4: pixiv:// URL/Code aus der Konsole kopieren.",
+        "Schritt 5: URL/Code in das App-Eingabefeld einfügen.",
+        "Schritt 6: Auf Token austauschen klicken.",
+    ],
+    "fr": [
+        "Étape 1 : Cliquez sur Ouvrir la page de connexion dans l'application.",
+        "Étape 2 : Continuez la connexion sur la page Pixiv.",
+        "Étape 3 : Ouvrez la console du navigateur (Ctrl+Shift+J).",
+        "Étape 4 : Copiez l'URL/code pixiv:// depuis la console.",
+        "Étape 5 : Collez l'URL/code dans le champ de l'application.",
+        "Étape 6 : Cliquez sur Échanger le token pour terminer.",
+    ],
+    "es": [
+        "Paso 1: Haz clic en Abrir página de inicio de sesión en la app.",
+        "Paso 2: Continúa el inicio de sesión en la página de Pixiv.",
+        "Paso 3: Abre la consola del navegador (Ctrl+Shift+J).",
+        "Paso 4: Copia la URL/código pixiv:// desde la consola.",
+        "Paso 5: Pega la URL/código en el campo de la app.",
+        "Paso 6: Haz clic en Intercambiar token para finalizar.",
+    ],
+    "ru": [
+        "Шаг 1: Нажмите Открыть страницу входа в приложении.",
+        "Шаг 2: Продолжите вход на странице Pixiv.",
+        "Шаг 3: Откройте консоль браузера (Ctrl+Shift+J).",
+        "Шаг 4: Скопируйте pixiv:// URL/код из консоли.",
+        "Шаг 5: Вставьте URL/код в поле приложения.",
+        "Шаг 6: Нажмите Обменять токен для завершения.",
+    ],
+    "pt": [
+        "Passo 1: Clique em Abrir página de login no aplicativo.",
+        "Passo 2: Continue o login na página do Pixiv.",
+        "Passo 3: Abra o console do navegador (Ctrl+Shift+J).",
+        "Passo 4: Copie a URL/código pixiv:// do console.",
+        "Passo 5: Cole a URL/código no campo do app.",
+        "Passo 6: Clique em Trocar token para concluir.",
+    ],
+    "kr": [
+        "단계 1: 앱에서 로그인 페이지 열기를 클릭하세요.",
+        "단계 2: Pixiv 페이지에서 로그인을 계속하세요.",
+        "단계 3: 브라우저 콘솔을 여세요 (Ctrl+Shift+J).",
+        "단계 4: 콘솔에서 pixiv:// URL/코드를 복사하세요.",
+        "단계 5: URL/코드를 앱 입력칸에 붙여넣으세요.",
+        "단계 6: 토큰 받기를 클릭해 완료하세요.",
     ],
 }
 
@@ -1127,6 +1400,7 @@ class App(tk.Tk):
         self.docs_btn.config(text=self.tx("docs"))
         self.header_title_label.config(text=self.tx("app_header"))
         self.header_subtitle_label.config(text=self.tx("app_subtitle"))
+        self.debug_btn.config(text=self.tx("debug_button"))
         self._build_menu()
 
         self.debug(self.t("dbg_lang_changed").format(lang_name))
@@ -1217,7 +1491,7 @@ class App(tk.Tk):
 
         self.debug_btn = ttk.Button(
             header,
-            text="⚙ Debug",
+            text=self.tx("debug_button"),
             style="Debug.TButton",
             command=self.show_debug_window,
         )
@@ -1431,7 +1705,11 @@ class App(tk.Tk):
                     img_label = ttk.Label(section, image=photo)
                     img_label.pack(anchor="center", fill="x", expand=True)
                 except tk.TclError:
-                    ttk.Label(section, text=f"Cannot open image: {image_path.name}", style="TLabel").pack(anchor="w")
+                    ttk.Label(
+                        section,
+                        text=self.tx("tutorial_image_open_error").format(file=image_path.name),
+                        style="TLabel",
+                    ).pack(anchor="w")
 
                 ttk.Separator(content, orient="horizontal").pack(fill="x", pady=(2, 10))
 
@@ -1607,7 +1885,7 @@ class App(tk.Tk):
             return
 
         win = tk.Toplevel(self)
-        win.title("Debug Console")
+        win.title(self.tx("debug_console_title"))
         win.geometry("900x500")
         win.minsize(600, 300)
         win.configure(bg="#0f172a")
@@ -1619,7 +1897,7 @@ class App(tk.Tk):
 
         tk.Label(
             bar,
-            text="⚙  Debug Console",
+            text=self.tx("debug_console_header"),
             bg="#1e293b",
             fg="#e2e8f0",
             font=("Segoe UI Semibold", 10),
@@ -1631,13 +1909,13 @@ class App(tk.Tk):
                 self.clipboard_clear()
                 self.clipboard_append(content)
                 self.update()
-                self.debug("Debug copied.")
+                self.debug(self.tx("debug_copied"))
             except Exception:
                 pass
 
         def clear_debug():
             try:
-                self.debug("Debug logs cleared.")
+                self.debug(self.tx("debug_cleared"))
                 self._debug_text.configure(state="normal")
                 self._debug_text.delete("1.0", "end")
                 # Re-insert the single 'cleared' entry
@@ -1655,8 +1933,8 @@ class App(tk.Tk):
                        cursor="hand2", activebackground="#475569",
                        activeforeground="#ffffff")
 
-        tk.Button(bar, text="Copy All", command=copy_all, **btn_cfg).pack(side="right", padx=(4, 0))
-        tk.Button(bar, text="Clear", command=clear_debug, **btn_cfg).pack(side="right")
+        tk.Button(bar, text=self.tx("debug_copy_all"), command=copy_all, **btn_cfg).pack(side="right", padx=(4, 0))
+        tk.Button(bar, text=self.tx("debug_clear"), command=clear_debug, **btn_cfg).pack(side="right")
 
         # ---- terminal area ----
         frame = tk.Frame(win, bg="#0f172a")
