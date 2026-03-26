@@ -177,9 +177,10 @@
         <p id="cliPreviewDesc" class="muted">Simulasi output CLI untuk membantu melihat proses login, pembacaan code,
           dan hasil token secara ringkas.</p>
       </div>
-      <div class="cli-code-shell">
-        <span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span>
-        <pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-white">Pixiv OAuth Token</span>
+      <div class="cli-showcase-layout">
+        <div class="cli-code-shell">
+          <span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span>
+          <pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-white">Pixiv OAuth Token</span>
 <span class="cli-white">Developer: Fatony Ahmad Fauzi</span>
 
 <span class="cli-green">[1] Change Language</span>
@@ -194,7 +195,13 @@
 <span class="cli-white">[0] Exit</span>
 
 <span class="cli-yellow">[+] Select option: </span><span class="cli-white">|</span></code></pre>
-        <button id="cliToggleBtn" class="tutorial-cta-btn cli-toggle-btn" type="button">See More</button>
+          <button id="cliToggleBtn" class="tutorial-cta-btn cli-toggle-btn" type="button">See More</button>
+        </div>
+
+        <aside class="cli-flow-card" aria-label="Login flow animation">
+          <div class="cli-flow-head">Flow: [6] Login → Login Actions</div>
+          <pre id="cliFlowAnim" class="cli-flow-console"></pre>
+        </aside>
       </div>
     </section>
 
@@ -211,6 +218,46 @@
 
   <script defer src="/assets/schema.js"></script>
   <script defer src="/assets/app.js"></script>
+  <script>
+    (function () {
+      const flowEl = document.getElementById("cliFlowAnim");
+      if (!flowEl) return;
+      const lines = [
+        "=== Login Actions ===",
+        "Opening browser for login...",
+        "Paste FULL URL (pixiv://...) or paste code here:",
+        "Detected code: AaA4wDVHzIYZQDWl7PV2HqiYYOeLLf5t8kQtcUq9X1Q",
+        "=== LOGIN SUCCESS ===",
+        "access_token : F3BsGg2o6Mn_ftcxgm7e9vYHValnE5aAEll2ePm06Yc",
+        "refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4",
+        "expires_in   : 3600",
+        "",
+        "[1] Refresh token",
+        "[2] Copy access token",
+        "[3] Copy refresh token",
+        "[0] Exit",
+        "",
+        "[+] Select option:"
+      ];
+      const fullText = lines.join("\\n");
+      let index = 0;
+      const typingSpeed = 22;
+      const holdDelay = 1400;
+      function typeLoop() {
+        flowEl.textContent = fullText.slice(0, index) + (index < fullText.length ? "▌" : "");
+        if (index < fullText.length) {
+          index += 1;
+          setTimeout(typeLoop, typingSpeed);
+          return;
+        }
+        setTimeout(function () {
+          index = 0;
+          typeLoop();
+        }, holdDelay);
+      }
+      typeLoop();
+    })();
+  </script>
 </body>
 
 </html>

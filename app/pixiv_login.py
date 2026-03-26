@@ -1289,8 +1289,8 @@ def _render_rich_main_menu(lang: str) -> None:
         print(colorize(f"[{key}] {label}", ansi_style, True))
 
 def print_cli_banner(lang: str, color_on: bool) -> None:
-    print(colorize(f"  {mt('project', lang)}", Ansi.BOLD, color_on))
-    print(colorize(f"  {mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.DIM, color_on))
+    print(colorize(f"{mt('project', lang)}", Ansi.BOLD, color_on))
+    print(colorize(f"{mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.DIM, color_on))
     print()
 
 
