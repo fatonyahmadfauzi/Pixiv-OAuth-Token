@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated build-code generation to unix-style `REL-U<unix_ms>` on version bumps (`patch/minor/major`).
 
 ---
+## [1.0.3] - 2026-03-26 
+### ✨ Changed
+- Replaced default local build label from `REL-LOCAL` to `BUILD-UNKNOWN` across runtime/version tooling and generated manifests.
+- GUI now includes a **Changelog** top-menu action and a **Version** dropdown with explicit version check entry.
+- Added automatic startup version check in GUI with update popup actions (**Update** / **Later**), plus update flow handling for frozen setup/portable distributions.
+- Updated build-code generation to unix-style `REL-U<unix_ms>` on version bumps (`patch/minor/major`).
 
 ## [1.0.2] - 2026-03-23 
 ### ✨ Added
