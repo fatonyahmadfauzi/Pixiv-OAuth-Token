@@ -6,12 +6,15 @@ function getDocUrl(fileName, lang) {
   const dotIndex = safeFile.lastIndexOf(".");
   const base = dotIndex === -1 ? safeFile : safeFile.slice(0, dotIndex);
   const ext = dotIndex === -1 ? "" : safeFile.slice(dotIndex);
-  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/${base}-${lang.toUpperCase()}${ext}`;
+  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/web/public/docs/lang/${base}-${lang.toUpperCase()}${ext}`;
 }
 
 async function fetchDocWithFallback(fileName) {
   const selectedLang = (document.documentElement.lang || "en").toLowerCase();
-  const candidates = selectedLang === "en" ? ["en"] : [selectedLang, "en"];
+  const primaryLang = selectedLang.split("-")[0];
+  const candidates = selectedLang === "en"
+    ? ["en"]
+    : Array.from(new Set([selectedLang, primaryLang, "en"]));
 
   let lastError = null;
   for (const lang of candidates) {
