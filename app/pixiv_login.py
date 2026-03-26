@@ -156,7 +156,7 @@ LANGUAGES = {
         "open_browser": "Opening browser for login...",
         "paste_url": "Paste FULL URL (pixiv://...) or paste code here:",
         "code_detected": "Detected code:",
-        "login_success": "=== LOGIN SUCCESS ===",
+        "login_success": "LOGIN SUCCESS",
         "error_response": "ERROR RESPONSE:",
         "invalid_code": "Failed to read code from input.",
         "config_title": "=== CONFIG ===",
@@ -170,7 +170,7 @@ LANGUAGES = {
         "open_browser": "Membuka browser untuk login...",
         "paste_url": "Paste FULL URL (pixiv://...) atau langsung code di sini:",
         "code_detected": "Code terdeteksi:",
-        "login_success": "=== LOGIN BERHASIL ===",
+        "login_success": "LOGIN BERHASIL",
         "error_response": "ERROR RESPONSE:",
         "invalid_code": "Gagal membaca code dari input.",
         "config_title": "=== KONFIG ===",
@@ -184,7 +184,7 @@ LANGUAGES = {
         "open_browser": "ログイン用ブラウザを開いています...",
         "paste_url": "FULL URL (pixiv://...) またはコードを貼り付けてください:",
         "code_detected": "検出されたコード:",
-        "login_success": "=== ログイン成功 ===",
+        "login_success": "ログイン成功",
         "error_response": "エラーレスポンス:",
         "invalid_code": "コードの読み取りに失敗しました。",
         "config_title": "=== 設定 ===",
@@ -198,7 +198,7 @@ LANGUAGES = {
         "open_browser": "Browser wird für Login geöffnet...",
         "paste_url": "FULL URL (pixiv://...) oder Code hier einfügen:",
         "code_detected": "Erkannter Code:",
-        "login_success": "=== LOGIN ERFOLGREICH ===",
+        "login_success": "LOGIN ERFOLGREICH",
         "error_response": "FEHLERANTWORT:",
         "invalid_code": "Code konnte nicht gelesen werden.",
         "config_title": "=== KONFIGURATION ===",
@@ -212,7 +212,7 @@ LANGUAGES = {
         "open_browser": "Ouverture du navigateur pour la connexion...",
         "paste_url": "Collez l'URL complète (pixiv://...) ou le code ici:",
         "code_detected": "Code détecté:",
-        "login_success": "=== CONNEXION RÉUSSIE ===",
+        "login_success": "CONNEXION RÉUSSIE",
         "error_response": "RÉPONSE D'ERREUR:",
         "invalid_code": "Impossible de lire le code.",
         "config_title": "=== CONFIG ===",
@@ -226,7 +226,7 @@ LANGUAGES = {
         "open_browser": "Abriendo navegador para iniciar sesión...",
         "paste_url": "Pega la URL completa (pixiv://...) o el código aquí:",
         "code_detected": "Código detectado:",
-        "login_success": "=== INICIO DE SESIÓN EXITOSO ===",
+        "login_success": "INICIO DE SESIÓN EXITOSO",
         "error_response": "RESPUESTA DE ERROR:",
         "invalid_code": "No se pudo leer el código.",
         "config_title": "=== CONFIG ===",
@@ -240,7 +240,7 @@ LANGUAGES = {
         "open_browser": "Открытие браузера для входа...",
         "paste_url": "Вставьте полный URL (pixiv://...) или код здесь:",
         "code_detected": "Обнаружен код:",
-        "login_success": "=== ВХОД УСПЕШЕН ===",
+        "login_success": "ВХОД УСПЕШЕН",
         "error_response": "ОШИБКА:",
         "invalid_code": "Не удалось прочитать код.",
         "config_title": "=== КОНФИГ ===",
@@ -254,7 +254,7 @@ LANGUAGES = {
         "open_browser": "Abrindo navegador para login...",
         "paste_url": "Cole a URL completa (pixiv://...) ou o código aqui:",
         "code_detected": "Código detectado:",
-        "login_success": "=== LOGIN BEM-SUCEDIDO ===",
+        "login_success": "LOGIN BEM-SUCEDIDO",
         "error_response": "RESPOSTA DE ERRO:",
         "invalid_code": "Falha ao ler o código.",
         "config_title": "=== CONFIG ===",
@@ -268,7 +268,7 @@ LANGUAGES = {
         "open_browser": "Otwieranie przeglądarki do logowania...",
         "paste_url": "Wklej pełny URL (pixiv://...) lub kod tutaj:",
         "code_detected": "Wykryty kod:",
-        "login_success": "=== LOGOWANIE UDANE ===",
+        "login_success": "LOGOWANIE UDANE",
         "error_response": "ODPOWIEDŹ BŁĘDU:",
         "invalid_code": "Nie udało się odczytać kodu.",
         "config_title": "=== KONFIG ===",
@@ -282,7 +282,7 @@ LANGUAGES = {
         "open_browser": "로그인을 위해 브라우저를 여는 중...",
         "paste_url": "FULL URL (pixiv://...) 또는 코드를 입력하세요:",
         "code_detected": "감지된 코드:",
-        "login_success": "=== 로그인 성공 ===",
+        "login_success": "로그인 성공",
         "error_response": "오류 응답:",
         "invalid_code": "코드를 읽지 못했습니다.",
         "config_title": "=== 설정 ===",
@@ -296,7 +296,7 @@ LANGUAGES = {
         "open_browser": "正在打开浏览器进行登录...",
         "paste_url": "粘贴完整URL (pixiv://...) 或直接输入代码:",
         "code_detected": "检测到的代码:",
-        "login_success": "=== 登录成功 ===",
+        "login_success": "登录成功",
         "error_response": "错误响应:",
         "invalid_code": "无法读取代码。",
         "config_title": "=== 配置 ===",
@@ -1238,24 +1238,26 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
         ("4", mt("opt_support", lang), "green"),
         ("5", mt("opt_social", lang), "green"),
         ("6", mt("opt_login", lang), "green"),
-        ("7", mt("opt_changelog", lang), "green"),
-        ("8", version_label, "green"),
-        ("9", mt("debug_title", lang), "magenta"),
+        ("7", version_label, "green"),
+        ("8", mt("debug_title", lang), "magenta"),
         ("0", mt("opt_exit", lang), "white"),
     ]
 
 
 def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
     _clear_menu_screen()
-    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
-    lines = [f"[{key}] {label}" for key, label in options]
-    print("\n".join(lines))
+    print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
+    print()
+    for key, label in options:
+        color = Ansi.DIM if key == "0" else Ansi.GREEN
+        print(colorize(f"[{key}] {label}", color, True))
     return input(colorize(f"\n[+] {prompt}: ", Ansi.YELLOW, True)).strip()
 
 
 def _render_rich_text_panel(title: str, lines: list[str], prompt: str | None = None) -> str | None:
     _clear_menu_screen()
-    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
+    print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
+    print()
     print("\n".join(lines))
     if prompt is None:
         return None
@@ -1269,10 +1271,14 @@ def _render_rich_combined_panel(
     prompt: str,
 ) -> str:
     _clear_menu_screen()
-    body_lines = [*lines, ""]
-    body_lines.extend([f"[{key}] {label}" for key, label in options])
-    print(colorize(f"=== {title} ===", Ansi.CYAN + Ansi.BOLD, True))
-    print("\n".join(body_lines))
+    print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
+    print()
+    if lines:
+        print("\n".join(lines))
+        print()
+    for key, label in options:
+        color = Ansi.DIM if key == "0" else Ansi.GREEN
+        print(colorize(f"[{key}] {label}", color, True))
     return input(colorize(f"\n[+] {prompt}: ", Ansi.YELLOW, True)).strip()
 
 
@@ -1283,7 +1289,8 @@ def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, 
 def _render_rich_main_menu(lang: str) -> None:
     _clear_menu_screen()
     print_cli_banner(lang, True)
-    print(colorize(f"=== {mt('menu_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, True))
+    print(colorize(mt('menu_title', lang), Ansi.CYAN + Ansi.BOLD, True))
+    print()
     for key, label, style in _build_menu_options(lang):
         ansi_style = {"green": Ansi.GREEN, "magenta": Ansi.MAGENTA, "white": Ansi.DIM}.get(style, Ansi.GREEN)
         print(colorize(f"[{key}] {label}", ansi_style, True))
@@ -1323,6 +1330,7 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
         ("3", mt("res_docs_pixiv", lang)),
         ("4", mt("res_docs_python", lang)),
         ("5", mt("res_docs_vercel", lang)),
+        ("6", mt("opt_changelog", lang)),
         ("0", mt("back", lang)),
     ]
     while True:
@@ -1338,6 +1346,8 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
             open_url("https://www.python.org/")
         elif choice == "5":
             open_url("https://vercel.com/")
+        elif choice == "6":
+            _open_changelog()
         elif choice == "0":
             return
         else:
@@ -1455,21 +1465,22 @@ def _open_debug_menu(lang: str, color_on: bool) -> None:
     while True:
         recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else [mt("debug_empty", lang)]
         _clear_menu_screen()
-        print(colorize(f"=== {mt('debug_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
-        debug_lines = [*recent_logs, "", f"[1] {mt('debug_copy', lang)}", f"[2] {mt('debug_clear', lang)}", f"[0] {mt('debug_exit', lang)}"]
-        print("\n".join(debug_lines))
+        print(colorize(mt("debug_title", lang), Ansi.CYAN + Ansi.BOLD, color_on))
+        print()
+        print("\n".join(recent_logs))
+        print()
+        print(colorize(f"[1] {mt('debug_copy', lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[2] {mt('debug_clear', lang)}", Ansi.GREEN, color_on))
+        print(colorize(f"[0] {mt('debug_exit', lang)}", Ansi.DIM, color_on))
         choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         if choice == "1":
             payload = "\n".join(DEBUG_LOGS) if DEBUG_LOGS else mt("debug_empty", lang)
             ok = _copy_to_clipboard(payload)
-            _render_rich_text_panel(
-                mt("debug_title", lang),
-                [mt("debug_copied", lang) if ok else mt("debug_copy_failed", lang)],
-                mt("enter_continue", lang),
-            )
+            msg = mt("debug_copied", lang) if ok else mt("debug_copy_failed", lang)
+            debug_print(msg, color_on)
         elif choice == "2":
             DEBUG_LOGS.clear()
-            _render_rich_text_panel(mt("debug_title", lang), [mt("debug_cleared", lang)], mt("enter_continue", lang))
+            debug_print(mt("debug_cleared", lang), color_on)
         elif choice == "0":
             return
         else:
@@ -1573,6 +1584,8 @@ def _self_update(target_version: str, target_code: str) -> bool:
 
 def _open_version_menu(lang: str, color_on: bool) -> None:
     debug_print(f"Opening version menu (lang={lang})", color_on)
+    status_line: str = ""
+    checked: bool = False
     while True:
         current_version = get_current_app_version()
         current_code = get_current_app_code()
@@ -1581,75 +1594,62 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
         has_update = bool(latest and _version_key(latest) > _version_key(current_version))
         if not has_update and latest and _version_key(latest) == _version_key(current_version):
             has_update = bool(latest_code and latest_code != current_code)
-        check_label = mt("version_check_update", lang)
-        if has_update and latest:
-            check_label = f"{mt('version_check_update', lang)} ({mt('version_new_badge', lang)} {latest})"
+
         _clear_menu_screen()
-        print(colorize(f"=== {mt('version_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
-        lines = [
-            f"{mt('version_current', lang)}: {current_version}",
-            "",
-            f"[1] {check_label}",
-            f"[0] {mt('back', lang)}",
-        ]
-        print("\n".join(lines))
+        print(colorize(mt("version_title", lang), Ansi.CYAN + Ansi.BOLD, color_on))
+        print()
+        print(f"{mt('version_current', lang)}: {current_version}", end="")
+        if status_line:
+            print(f"  {status_line}", end="")
+        print()
+        print()
+
+        if checked:
+            input(colorize("[+] Ok: ", Ansi.YELLOW, color_on))
+            return
+
+        if has_update and latest:
+            print(colorize(f"[1] {mt('version_update_now', lang)} ({mt('version_new_badge', lang)} {latest})", Ansi.GREEN, color_on))
+            print(colorize(f"[0] {mt('version_later', lang)}", Ansi.DIM, color_on))
+        else:
+            print(colorize(f"[1] {mt('version_check_update', lang)}", Ansi.GREEN, color_on))
+            print(colorize(f"[0] {mt('back', lang)}", Ansi.DIM, color_on))
         choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"Version menu choice: {choice}", color_on)
 
         if choice == "1":
-            latest = _fetch_latest_release_tag_cached(force=True)
-            latest_code = _get_latest_release_code_cached(force=True)
-            current_version = get_current_app_version()
-            current_code = get_current_app_code()
-            debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
-            if not latest:
-                _render_rich_text_panel(mt("version_title", lang), [mt("version_no_internet_check", lang)], mt("enter_continue", lang))
-            elif _version_key(latest) < _version_key(current_version):
-                _render_rich_text_panel(
-                    mt("version_title", lang),
-                    [
-                        f"{mt('version_current', lang)}: {current_version}",
-                        f"{mt('version_latest_available', lang)}: {latest}",
-                    ],
-                    mt("enter_continue", lang),
-                )
-            elif _version_key(latest) == _version_key(current_version) and (not latest_code or latest_code == current_code):
-                _render_rich_text_panel(
-                    mt("version_title", lang),
-                    [
-                        f"{mt('version_current', lang)}: {current_version}",
-                        f"{mt('version_current', lang)} {current_version} {mt('version_latest', lang)}",
-                    ],
-                    mt("enter_continue", lang),
-                )
+            if has_update and latest:
+                # Do the update immediately
+                success = _self_update(latest, latest_code or APP_BUILD_CODE)
+                debug_print(f"Self-update execution result: {success}", color_on)
+                if success:
+                    status_line = f"{mt('version_update_success', lang)} {get_current_app_version()}."
+                else:
+                    status_line = mt("version_update_failed", lang)
+                checked = True
             else:
-                decision = _render_rich_combined_panel(
-                    mt("version_title", lang),
-                    [
-                        f"{mt('version_current', lang)}: {current_version}",
-                        f"{mt('version_latest_available', lang)}: {latest}",
-                    ],
-                    [("1", mt("version_update_now", lang)), ("2", mt("version_later", lang))],
-                    mt("select_option", lang),
-                )
-                debug_print(f"Update decision choice: {decision}", color_on)
-                if decision == "1":
-                    success = _self_update(latest, latest_code or APP_BUILD_CODE)
-                    debug_print(f"Self-update execution result: {success}", color_on)
-                    if success:
-                        _render_rich_text_panel(
-                            mt("version_title", lang),
-                            [
-                                f"{mt('version_update_success', lang)} {get_current_app_version()}.",
-                            ],
-                            mt("enter_continue", lang),
-                        )
-                    else:
-                        _render_rich_text_panel(mt("version_title", lang), [mt("version_update_failed", lang)], mt("enter_continue", lang))
+                latest = _fetch_latest_release_tag_cached(force=True)
+                latest_code = _get_latest_release_code_cached(force=True)
+                current_version = get_current_app_version()
+                current_code = get_current_app_code()
+                debug_print(f"Version check result -> current={current_version}/{current_code}, latest={latest}/{latest_code}", color_on)
+                if not latest:
+                    status_line = mt("version_no_internet_check", lang)
+                    checked = True
+                elif _version_key(latest) <= _version_key(current_version) and (not latest_code or latest_code == current_code):
+                    status_line = mt("version_latest", lang)
+                    checked = True
+                elif _version_key(latest) < _version_key(current_version):
+                    status_line = f"{mt('version_latest_available', lang)}: {latest}"
+                    checked = True
+                else:
+                    # Update now available — loop will redraw with Update/Later
+                    pass
         elif choice == "0":
             return
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
 
 
 def show_developer_info_cli(lang: str, color_on: bool) -> None:
@@ -1682,7 +1682,7 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
             choice = input(colorize(f"\n[+] {mt('select_option', current_lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(_dbg_msg("menu_option_selected", choice=choice))
 
-        if choice == "9":
+        if choice == "8":
             _open_debug_menu(current_lang, color_on)
             continue
         elif choice == "1":
@@ -1698,8 +1698,6 @@ def run_interactive_menu(lang: str, color_on: bool) -> None:
         elif choice == "6":
             login(current_lang, color_on)
         elif choice == "7":
-            _open_changelog()
-        elif choice == "8":
             _open_version_menu(current_lang, color_on)
         elif choice == "0":
             print(colorize(mt("exiting", current_lang), Ansi.GREEN, color_on))
@@ -1952,29 +1950,40 @@ def _copy_to_clipboard(value: str) -> bool:
 
 def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: str = "") -> None:
     L = get_lang(lang)
+    status_msg: str = ""
+    status_opt: str = ""  # "1", "2", or "3"
     while True:
         _clear_menu_screen()
-        lines = [
-            L["open_browser"],
-            L["paste_url"],
-        ]
+        print(colorize(mt("login_actions_title", lang), Ansi.CYAN + Ansi.BOLD, color_on))
+        print()
+        print(L["open_browser"])
+        print(L["paste_url"])
         if detected_code:
-            lines.append(f"{L['code_detected']} {detected_code}")
-        lines.extend(
-            [
-                L["login_success"],
-                f"access_token : {tokens.get('access_token', '')}",
-                f"refresh_token: {tokens.get('refresh_token', '')}",
-                f"expires_in   : {tokens.get('expires_in', 0)}",
-                "",
-                f"[1] {mt('login_action_refresh', lang)}",
-                f"[2] {mt('login_action_copy_access', lang)}",
-                f"[3] {mt('login_action_copy_refresh', lang)}",
-                f"[0] {mt('debug_exit', lang)}",
-            ]
-        )
-        print(colorize(f"=== {mt('login_actions_title', lang)} ===", Ansi.CYAN + Ansi.BOLD, color_on))
-        print("\n".join(lines))
+            print(f"{L['code_detected']} {detected_code}")
+        print(colorize(mt("login_success", lang), Ansi.GREEN + Ansi.BOLD, color_on))
+        print(f"access_token : {tokens.get('access_token', '')}")
+        print(f"refresh_token: {tokens.get('refresh_token', '')}")
+        print(f"expires_in   : {tokens.get('expires_in', 0)}")
+        print()
+
+        def _opt_line(num: str, label: str) -> str:
+            base = f"[{num}] {label}"
+            if status_opt == num and status_msg:
+                return base + colorize(f"  ({status_msg})", Ansi.DIM, color_on)
+            return base
+
+        print(colorize(_opt_line("1", mt("login_action_refresh", lang)), Ansi.GREEN, color_on))
+        print(colorize(_opt_line("2", mt("login_action_copy_access", lang)), Ansi.GREEN, color_on))
+        print(colorize(_opt_line("3", mt("login_action_copy_refresh", lang)), Ansi.GREEN, color_on))
+        print(colorize(f"[0] {mt('debug_exit', lang)}", Ansi.DIM, color_on))
+
+        if status_msg:
+            # Auto-clear after 2 seconds without waiting for input
+            time.sleep(2)
+            status_msg = ""
+            status_opt = ""
+            continue
+
         choice = input(colorize(f"\n[+] {mt('select_option', lang)}: ", Ansi.YELLOW, color_on)).strip()
         debug_print(f"Post-login actions choice: {choice}", color_on)
 
@@ -1982,17 +1991,18 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
             refreshed = refresh(tokens.get("refresh_token", ""), lang, color_on)
             if refreshed:
                 tokens.update(refreshed)
-                _render_rich_text_panel(mt("login_actions_title", lang), [mt("login_action_refresh_success", lang)], mt("enter_continue", lang))
+                status_msg = mt("login_action_refresh_success", lang)
             else:
-                _render_rich_text_panel(mt("login_actions_title", lang), [mt("login_action_refresh_failed", lang)], mt("enter_continue", lang))
+                status_msg = mt("login_action_refresh_failed", lang)
+            status_opt = "1"
         elif choice == "2":
             ok = _copy_to_clipboard(tokens.get("access_token", ""))
-            msg = mt("login_action_access_copied", lang) if ok else mt("login_action_access_copy_failed", lang)
-            _render_rich_text_panel(mt("login_actions_title", lang), [msg], mt("enter_continue", lang))
+            status_msg = mt("login_action_access_copied", lang) if ok else mt("login_action_access_copy_failed", lang)
+            status_opt = "2"
         elif choice == "3":
             ok = _copy_to_clipboard(tokens.get("refresh_token", ""))
-            msg = mt("login_action_refresh_copied", lang) if ok else mt("login_action_refresh_copy_failed", lang)
-            _render_rich_text_panel(mt("login_actions_title", lang), [msg], mt("enter_continue", lang))
+            status_msg = mt("login_action_refresh_copied", lang) if ok else mt("login_action_refresh_copy_failed", lang)
+            status_opt = "3"
         elif choice == "0":
             print(colorize(mt("exiting", lang), Ansi.GREEN, color_on))
             return
@@ -2012,7 +2022,9 @@ def print_auth_token_response(response, lang: str, color_on: bool) -> dict | Non
         pprint(data)
         return None
 
-    print("\n" + colorize(L["login_success"], Ansi.GREEN + Ansi.BOLD, color_on))
+    print()
+    print(colorize(mt("login_success", lang), Ansi.GREEN + Ansi.BOLD, color_on))
+    print()
     print(colorize("access_token :", Ansi.BOLD, color_on), data["access_token"])
     print(colorize("refresh_token:", Ansi.BOLD, color_on), data["refresh_token"])
     print(colorize("expires_in   :", Ansi.BOLD, color_on), data.get("expires_in", 0))

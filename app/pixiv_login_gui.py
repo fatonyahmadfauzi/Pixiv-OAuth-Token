@@ -12,6 +12,8 @@ Pixiv Login GUI (Tkinter) - FINAL (Extended i18n)
 from __future__ import annotations
 
 import json
+import re
+import datetime
 import subprocess
 import threading
 import tkinter as tk
@@ -55,17 +57,17 @@ VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
 LANG_CHOICES = [
-    ("🇬🇧  English", "en"),
-    ("🇵🇱  Polski", "pl"),
-    ("🇨🇳  中文", "zh"),
-    ("🇯🇵  日本語", "jp"),
-    ("🇩🇪  Deutsch", "de"),
-    ("🇫🇷  Français", "fr"),
-    ("🇪🇸  Español", "es"),
-    ("🇷🇺  Русский", "ru"),
-    ("🇵🇹  Português", "pt"),
-    ("🇮🇩  Indonesia", "id"),
-    ("🇰🇷  한국어", "kr"),
+    ("English", "en"),
+    ("Polski", "pl"),
+    ("中文", "zh"),
+    ("日本語", "jp"),
+    ("Deutsch", "de"),
+    ("Français", "fr"),
+    ("Español", "es"),
+    ("Русский", "ru"),
+    ("Português", "pt"),
+    ("Indonesia", "id"),
+    ("한국어", "kr"),
 ]
 
 LANG_NAME_TO_CODE = {name: code for name, code in LANG_CHOICES}
@@ -1082,7 +1084,7 @@ class App(tk.Tk):
         self.apply_ui_language()
         self._update_copy_buttons()
 
-        self.log(f"Config file: {CONFIG_FILE}")
+        self.debug(f"Config file: {CONFIG_FILE}")
         self.debug(self.t("dbg_app_start"))
         self.debug(self.t("dbg_config_saved").format(CONFIG_FILE))
         self.after(1300, self.auto_check_updates)
@@ -1293,7 +1295,6 @@ class App(tk.Tk):
     def _build_menu(self):
         menubar = tk.Menu(self)
 
-        menubar.add_command(label=self.tx("menu_changelog"), command=lambda: open_url(RELEASES_URL))
         menubar.add_command(label=self.tx("menu_tutorial"), command=self.show_tutorial)
 
         version_menu = tk.Menu(menubar, tearoff=0)
@@ -1313,6 +1314,7 @@ class App(tk.Tk):
         resources_menu.add_command(label=self.tx('res_docs_pixiv'), command=lambda: open_url("https://oauth.secure.pixiv.net/auth/token"))
         resources_menu.add_command(label=self.tx('res_docs_python'), command=lambda: open_url("https://www.python.org"))
         resources_menu.add_command(label=self.tx('res_docs_vercel'), command=lambda: open_url("https://vercel.com"))
+        resources_menu.add_command(label=self.tx('menu_changelog'), command=lambda: open_url(RELEASES_URL))
         menubar.add_cascade(label=self.tx("menu_resources_docs"), menu=resources_menu)
 
         support_menu = tk.Menu(menubar, tearoff=0)
@@ -1583,11 +1585,14 @@ class App(tk.Tk):
 
     def debug(self, msg: str):
         """Write to debug console ONLY (not the main output box)."""
-        self._debug_log.append(msg)
+        clean = re.sub(r'^\[[A-Z /]+\]\s*', '', msg)
+        stamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        entry = f"{stamp} | {clean}"
+        self._debug_log.append(entry)
         if self._debug_window and self._debug_text:
             try:
                 self._debug_text.configure(state="normal")
-                self._debug_text.insert("end", msg + "\n")
+                self._debug_text.insert("end", entry + "\n")
                 self._debug_text.see("end")
                 self._debug_text.configure(state="disabled")
             except tk.TclError:
@@ -1626,15 +1631,22 @@ class App(tk.Tk):
                 self.clipboard_clear()
                 self.clipboard_append(content)
                 self.update()
+                self.debug("Debug copied.")
             except Exception:
                 pass
 
         def clear_debug():
             try:
+                self.debug("Debug logs cleared.")
                 self._debug_text.configure(state="normal")
                 self._debug_text.delete("1.0", "end")
-                self._debug_text.configure(state="disabled")
+                # Re-insert the single 'cleared' entry
+                if self._debug_log:
+                    self._debug_text.insert("end", self._debug_log[-1] + "\n")
+                kept = self._debug_log[-1:]
                 self._debug_log.clear()
+                self._debug_log.extend(kept)
+                self._debug_text.configure(state="disabled")
             except Exception:
                 pass
 
