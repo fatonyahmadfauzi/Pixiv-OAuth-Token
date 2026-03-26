@@ -1,24 +1,25 @@
 # Pixiv OAuth Token
 
 
-> 🌐 他の言語でも利用可能: [English](../../README.md)
+> 🌐 他の言語でも利用可能: [English](../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 Pixiv OAuth トークンを 3 つのモードで生成するツールキット:
 
-- CLI (`pixiv_login.py`)
-- GUI (`pixiv_login_gui.py`)
-- Web アプリ (`public/` + サーバーレス API)
+- CLI (`app/pixiv_login.py`)
+- GUI (`app/pixiv_login_gui.py`)
+- Web アプリ (`web/public/` + サーバーレス API)
 
 ＃＃ 要件
 
 - Python 3.11+
 - Windows (`.bat` ビルド スクリプトと Inno Setup インストーラーに必要)
-- `requirements.txt` からの Python 依存関係
+- `app/requirements.txt` からの Python 依存関係
 
 ## ソースから実行
 
 ```bash
+cd app
 python -m pip install -r requirements.txt
 python pixiv_login.py
 ```
@@ -26,14 +27,27 @@ python pixiv_login.py
 GUI を実行します。
 
 ```bash
+cd app
 python pixiv_login_gui.py
 ```
+
+### GUI の機能
+
+|特集 |説明 |
+|---|---|
+| **多言語** | 11 言語 — 設定から自動検出、ドロップダウン経由でライブで切り替え可能 |
+| **⚙ デバッグ コンソール** |右上のヘッダーのボタン。 **すべて**のイベント (ボタンのクリック、言語の変更、HTTP リクエスト、PKCE ステップ、クリップボード、設定の保存、警告) をリアルタイムで現在の言語でログに記録するダーク ターミナルを開きます。
+| **トークン交換**​​ | pixiv:// URL または生コードを貼り付け → アクセス + リフレッシュトークンと交換 |
+| **リフレッシュトークン** |設定から保存したrefresh_tokenを使用してワンクリックで更新 |
+| **トークンをコピー** | access_token /fresh_token を即座にクリップボードにコピーします |
+| **チュートリアル** |アプリに組み込まれたステップバイステップの画像ガイド |
 
 ＃＃ 建てる
 
 ### すべてのアーティファクトをビルドする (CLI + GUI + インストーラー + ZIP)
 
 ```bat
+cd scripts
 build_all_pro.bat patch
 ```
 
@@ -55,6 +69,7 @@ build_all_pro.bat patch
 例：
 
 ```bat
+cd scripts
 build_all_pro.bat patch noinst nosign
 ```
 
@@ -62,14 +77,15 @@ build_all_pro.bat patch noinst nosign
 
 - ポータブル CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
 - ポータブル GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
-- インストーラー CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe`
-- インストーラー GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe`
+- 統合インストーラー: `dist_installer\PixivLoginSetup_v<version>.exe` (CLI + GUI の両方をインストールします)
+- インストーラー CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (統合インストーラーのコピー)
+- インストーラー GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (統合インストーラーのコピー)
 - リリース ZIP: `PixivOAuthRelease_v<version>.zip`
 - 自動同期フォルダー: `downloads/` (最新のポータブル/セットアップ + リリース ZIP)
 
 ## 署名
 
-`sign_auto.bat`を編集:
+`scripts/sign_auto.bat`を編集:
 
 - `PFX_PATH`
 - `PFX_PASS`
@@ -79,7 +95,14 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 
 ## バージョン管理
 
-アプリケーションのバージョンは `version.json` に保存されます。
+アプリケーションのバージョン/ビルド ID は `version.json` に保存されます。
+
+- `version`: セマンティック バージョン (`X.Y.Z`)
+- `build_code`: 一意のビルド識別子
+
+デフォルトの非リリース フォールバックは (`REL-LOCAL` ではなく) `BUILD-UNKNOWN` になりましたが、リリース バンプでは `scripts/bump_version.py` 経由で Unix スタイルのビルド コードが生成されます。
+
+- `REL-U<unix_ms>`
 
 ## Web版（Vercel）
 
@@ -88,7 +111,7 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 ### 主要な Web 機能
 - **豊富なページ**: ホームページ、ダウンロード、チュートリアル、連絡先、問題と PR、ディスカッション トラッカー、ドキュメント Markdown ビューア、およびサポート/寄付の統合。
 - **高度な SEO**: 自動挿入されたローカライズされた `<meta>` タグ、広範な JSON-LD 構造化データ (サイトリンク、ソフトウェア アプリケーションなど)、自動 `hreflang` 生成、`robots.txt`、および `sitemap.xml`。
-- **セキュリティとパフォーマンス**: JavaScript の自動難読化 (極端なマングリング)、HTML/CSS の縮小 (`node build_minify.js` 経由)、および `escapeHTML` 経由のクリーンな `XSS` 防止。
+- **セキュリティとパフォーマンス**: JavaScript の自動難読化 (極端なマングリング)、HTML/CSS の縮小 (`cd web && node build_minify.js` 経由)、および `escapeHTML` 経由のクリーンな `XSS` 防止。
 - **GitHub API プロキシ**: サーバーレス Vercel エンドポイント (`/api/github`) プロキシ GitHub API リクエストは、パーソナル アクセス トークン (`GITHUB_PAT`) を使用してパブリック レート制限を完全にバイパスします。
 
 ### Vercel にデプロイする
@@ -107,7 +130,7 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 5. デプロイします。
 
 > [!重要]
-> HTML、CSS、または JS に変更を加える場合は、コードを自動的に難読化し、アセットを圧縮するために、展開する前に必ず `node build_minify.js` を実行してください。
+> HTML、CSS、または JS に変更を加える場合は、コードを自動的に難読化し、アセットを圧縮するために、展開する前に必ず `cd web && node build_minify.js` を実行してください。
 
 > セキュリティ上の注意: 運用環境では、Vercel プロジェクトの環境変数に常に `PIXIV_CLIENT_SECRET` を設定してください。
 
@@ -201,6 +224,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 ## Python のインストール
 
 ```bash
+cd app
 python -m pip install -r requirements.txt
 ```
 
@@ -209,6 +233,11 @@ python -m pip install -r requirements.txt
 ```bash
 python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git"
 ```
+
+## 🧾 変更履歴
+
+[変更履歴](CHANGELOG-JP.md) ファイル内の各バージョンの注目すべき変更点をすべて参照してください。
+📦 [GitHub リリース ページ](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases). でリリース ノートを直接表示することもできます。
 
 ## ライセンス
 
