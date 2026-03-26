@@ -14,10 +14,10 @@ RUNTIME_VERSION_FILE = ROOT / "app" / "pixiv_login_version.txt"
 
 def _load_identity() -> tuple[str, str]:
     if not VERSION_JSON.exists():
-        return "1.0.0", "REL-LOCAL"
+        return "1.0.0", "BUILD-UNKNOWN"
     data = json.loads(VERSION_JSON.read_text(encoding="utf-8"))
     version = str(data.get("version", "1.0.0")).strip()
-    build_code = str(data.get("build_code", "REL-LOCAL")).strip() or "REL-LOCAL"
+    build_code = str(data.get("build_code", "BUILD-UNKNOWN")).strip() or "BUILD-UNKNOWN"
     return version, build_code
 
 

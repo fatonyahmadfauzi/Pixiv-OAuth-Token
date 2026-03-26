@@ -13,7 +13,7 @@ def parse(v: str):
 def main():
     bump = sys.argv[1].lower() if len(sys.argv) >= 2 else "patch"
 
-    data: dict = {"version": "1.0.0", "build_code": "REL-LOCAL"}
+    data: dict = {"version": "1.0.0", "build_code": "BUILD-UNKNOWN"}
     if os.path.exists(VERSION_FILE):
         with open(VERSION_FILE, "r", encoding="utf-8") as f:
             loaded = json.load(f)
@@ -39,7 +39,7 @@ def main():
         unix_ms = int(now_utc.timestamp() * 1000)
         data["build_code"] = f"REL-U{unix_ms}"
     elif not data.get("build_code"):
-        data["build_code"] = "REL-LOCAL"
+        data["build_code"] = "BUILD-UNKNOWN"
 
     with open(VERSION_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)

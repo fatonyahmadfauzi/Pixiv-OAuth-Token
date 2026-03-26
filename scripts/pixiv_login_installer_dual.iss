@@ -3,7 +3,7 @@
 
 #define ProductName "Pixiv OAuth"
 #define ProductVersion "1.0.2"
-#define BuildCode "REL-LOCAL"
+#define BuildCode "BUILD-UNKNOWN"
 #define Publisher "Fatony Ahmad Fauzi"
 #define ExeCLI "dist_portable\pixiv_login_plus.exe"
 #define ExeGUI "dist_gui\pixiv_login_gui.exe"

@@ -14,7 +14,7 @@ DOWNLOAD = f"{REPO}/releases/latest/download"
 def main() -> None:
     payload = json.loads(VERSION_JSON.read_text(encoding="utf-8"))
     version = str(payload.get("version", "1.0.0")).strip()
-    build_code = str(payload.get("build_code", "REL-LOCAL")).strip() or "REL-LOCAL"
+    build_code = str(payload.get("build_code", "BUILD-UNKNOWN")).strip() or "BUILD-UNKNOWN"
 
     manifest = {
         "version": version,

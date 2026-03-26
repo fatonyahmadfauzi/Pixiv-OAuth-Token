@@ -11,7 +11,7 @@ REM   2) dist_* / root fallback
 REM ==========================================================
 
 for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
-for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','BUILD-UNKNOWN'))"`) do set BCODE=%%b
 
 set RELEASE_DIR=release
 set ZIP_OUT_DIR=dist_release

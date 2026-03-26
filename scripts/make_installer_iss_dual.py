@@ -24,12 +24,12 @@ def load_identity() -> tuple[str, str]:
     if not p.exists():
         p = Path("version.json")
     if not p.exists():
-        return "1.0.0", "REL-LOCAL"
+        return "1.0.0", "BUILD-UNKNOWN"
     try:
         raw = json.loads(p.read_text(encoding="utf-8"))
-        return str(raw.get("version", "1.0.0")), str(raw.get("build_code", "REL-LOCAL"))
+        return str(raw.get("version", "1.0.0")), str(raw.get("build_code", "BUILD-UNKNOWN"))
     except Exception:
-        return "1.0.0", "REL-LOCAL"
+        return "1.0.0", "BUILD-UNKNOWN"
 
 def load_or_create_guid() -> str:
     if GUID_FILE.exists():

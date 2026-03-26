@@ -150,7 +150,7 @@ if errorlevel 1 (
 )
 
 for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
-for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','BUILD-UNKNOWN'))"`) do set BCODE=%%b
 for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\PixivLoginSetup_v*.exe" 2^>nul') do set LATEST_SETUP_RAW=%%f
 if defined LATEST_SETUP_RAW (
   del /q "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
@@ -216,7 +216,7 @@ for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.
 
 REM --- Generate 3 architecture variants (x86/x64/ARM64) for portable and setup labels ---
 for /f "usebackq delims=" %%v in (`python -c "import json;d=json.load(open('version.json'));print(d.get('version','0.0.0'))"`) do set VER=%%v
-for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','REL-LOCAL'))"`) do set BCODE=%%b
+for /f "usebackq delims=" %%b in (`python -c "import json;d=json.load(open('version.json'));print(d.get('build_code','BUILD-UNKNOWN'))"`) do set BCODE=%%b
 
 if exist "dist_portable\Pixiv OAuth CLi (Portable).exe" (
   copy /y "dist_portable\Pixiv OAuth CLi (Portable).exe" "dist_portable\Pixiv OAuth CLi (Portable) x86.exe" >nul

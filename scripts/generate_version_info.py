@@ -22,7 +22,7 @@ def main():
     with open(VERSION_FILE, "r", encoding="utf-8") as f:
         data = json.load(f)
         v = data["version"]
-        build_code = data.get("build_code", "REL-LOCAL")
+        build_code = data.get("build_code", "BUILD-UNKNOWN")
 
     fv = ver_tuple(v)
     filevers = f"({fv[0]},{fv[1]},{fv[2]},0)"

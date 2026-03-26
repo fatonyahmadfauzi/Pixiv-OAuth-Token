@@ -44,7 +44,7 @@ TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 APP_VERSION = "v1.0.2"
-APP_BUILD_CODE = "REL-LOCAL"
+APP_BUILD_CODE = "BUILD-UNKNOWN"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 DOWNLOADS_RAW_BASE = f"{REPO_BASE_URL}/raw/HEAD/downloads"
@@ -642,6 +642,20 @@ EXTRA_UI_OVERRIDES = {
     "id": {
         "app_subtitle": "Alat login modern untuk pertukaran token cepat",
         "docs": "Baca Dokumentasi",
+        "menu_changelog": "Changelog",
+        "menu_version": "Versi",
+        "version_current": "Versi Saat Ini",
+        "version_check_now": "Cek Versi",
+        "version_title": "Informasi Versi",
+        "version_latest": "Versi Terbaru",
+        "version_up_to_date": "Kamu sudah memakai versi terbaru.",
+        "version_update_available": "Ada versi terbaru tersedia.",
+        "version_check_failed": "Gagal mengecek versi terbaru.",
+        "version_btn_update": "Update",
+        "version_btn_later": "Nanti",
+        "version_updating": "Sedang memperbarui aplikasi...",
+        "version_update_done": "Proses update dimulai. Aplikasi akan ditutup jika perlu penggantian file.",
+        "version_update_failed": "Update otomatis gagal",
         "menu_resources_docs": "Resource & Dokumen",
         "menu_support": "Dukungan",
         "menu_social": "Media Sosial",
@@ -1283,8 +1297,10 @@ class App(tk.Tk):
         menubar.add_command(label=self.tx("menu_tutorial"), command=self.show_tutorial)
 
         version_menu = tk.Menu(menubar, tearoff=0)
+        current_version = get_current_app_version(self.cfg)
+        current_label = f"{self.tx('version_current')}: {current_version}"
         version_menu.add_command(
-            label=f"{self.tx('version_current')}: {get_current_app_version(self.cfg)} ({get_current_app_code(self.cfg)})",
+            label=current_label,
             state="disabled",
         )
         version_menu.add_separator()
@@ -1450,10 +1466,12 @@ class App(tk.Tk):
                 if has_update:
                     self.show_update_popup(current_version, current_code, latest_version, latest_code or APP_BUILD_CODE)
                 elif manual:
+                    current_line = f"{self.tx('version_current')}: {current_version}"
+                    latest_line = f"{self.tx('version_latest')}: {latest_version}"
                     messagebox.showinfo(
                         self.tx("version_title"),
-                        f"{self.tx('version_current')}: {current_version} ({current_code})\n"
-                        f"{self.tx('version_latest')}: {latest_version} ({latest_code or '-'})\n\n"
+                        f"{current_line}\n"
+                        f"{latest_line}\n\n"
                         f"{self.tx('version_up_to_date')}",
                     )
 
@@ -1469,13 +1487,15 @@ class App(tk.Tk):
         popup.transient(self)
         popup.grab_set()
 
+        current_line = f"{self.tx('version_current')}: {current_version}"
+        latest_line = f"{self.tx('version_latest')}: {latest_version}"
+
         body = ttk.Frame(popup, padding=14)
         body.pack(fill="both", expand=True)
         ttk.Label(body, text=self.tx("version_update_available"), style="Header.TLabel").pack(anchor="w", pady=(0, 10))
         ttk.Label(
             body,
-            text=f"{self.tx('version_current')}: {current_version} ({current_code})\n"
-                 f"{self.tx('version_latest')}: {latest_version} ({latest_code})",
+            text=f"{current_line}\n{latest_line}",
             style="TLabel",
             justify="left",
         ).pack(anchor="w")
