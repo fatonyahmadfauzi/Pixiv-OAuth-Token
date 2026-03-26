@@ -1,10 +1,32 @@
-function getReadmeUrl() {
-  const lang = document.documentElement.lang || "en";
-  if (lang === "en") {
-    return "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/README.md";
-  } else {
-    return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/README-${lang.toUpperCase()}.md`;
+function getDocUrl(fileName, lang) {
+  const safeFile = (fileName || "README.md").trim();
+  if (!lang || lang === "en") {
+    return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/${safeFile}`;
   }
+  const dotIndex = safeFile.lastIndexOf(".");
+  const base = dotIndex === -1 ? safeFile : safeFile.slice(0, dotIndex);
+  const ext = dotIndex === -1 ? "" : safeFile.slice(dotIndex);
+  return `https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/public/docs/lang/${base}-${lang.toUpperCase()}${ext}`;
+}
+
+async function fetchDocWithFallback(fileName) {
+  const selectedLang = (document.documentElement.lang || "en").toLowerCase();
+  const candidates = selectedLang === "en" ? ["en"] : [selectedLang, "en"];
+
+  let lastError = null;
+  for (const lang of candidates) {
+    try {
+      const response = await fetch(getDocUrl(fileName, lang));
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const markdown = await response.text();
+      return { markdown, lang };
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError || new Error("Failed to fetch README fallback chain");
 }
 
 function buildTOC() {
@@ -35,14 +57,15 @@ function buildTOC() {
 async function loadDocs() {
   var e = document.getElementById("docSkeleton");
   var t = document.getElementById("docBody");
+  var fileHint = document.querySelector("[data-file]");
+  var fileName = fileHint ? fileHint.getAttribute("data-file") || "README.md" : "README.md";
   try {
     if (e) e.style.display = '';
     t.hidden = true;
     t.innerHTML = '';
 
-    var r = await fetch(getReadmeUrl());
-    if (!r.ok) throw new Error("HTTP " + r.status);
-    var a = await r.text();
+    var readmeResult = await fetchDocWithFallback(fileName);
+    var a = readmeResult.markdown;
     
     t.innerHTML = marked.parse(a);
     if (e) e.style.display = 'none';

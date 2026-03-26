@@ -39,10 +39,16 @@ if errorlevel 1 exit /b 1
 
 REM Optionally bump version
 if /I not "%BUMP%"=="none" (
-  for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VER=%%v
+  for /f "usebackq delims=" %%v in (`python scripts\bump_version.py %BUMP%`) do set VERLINE=%%v
+  for /f "tokens=1,2 delims=|" %%a in ("%VERLINE%") do (
+    set VER=%%a
+    set BUILD_CODE=%%b
+  )
 ) else (
   for /f "usebackq delims=" %%v in (`python -c "import json;print(json.load(open('version.json'))['version'])"`) do set VER=%%v
 )
+
+python scripts\sync_app_identity.py
 
 REM Generate version_info.txt for PyInstaller
 python scripts\generate_version_info.py
