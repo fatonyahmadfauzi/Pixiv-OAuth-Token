@@ -177,28 +177,35 @@
         <p id="cliPreviewDesc" class="muted">Simulasi output CLI untuk membantu melihat proses login, pembacaan code,
           dan hasil token secara ringkas.</p>
       </div>
-      <div class="cli-code-shell">
-        <span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span>
-        <div class="cli-console-split">
-          <pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-white">Pixiv OAuth Token</span>
+      <div class="cli-code-shell"><span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span><div class="cli-console-split"><pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-white">Pixiv OAuth Token</span>
 <span class="cli-dim">Developer: Fatony Ahmad Fauzi</span>
-
 
 <span class="cli-green">[1] Change Language</span>
 <span class="cli-green">[2] Tutorial</span>
 <span class="cli-green">[3] Resources & Docs</span>
 <span class="cli-green">[4] Support</span>
 <span class="cli-green">[5] Social</span>
-<span class="cli-green">[6] Login</span>
+<span class="cli-green">[6] <span class="cli-login-source">Login<span class="cli-login-source-dot" aria-hidden="true"></span></span></span>
 <span class="cli-green">[7] Version</span>
 <span class="cli-magenta">[8] Debug</span>
 <span class="cli-dim">[0] Exit</span>
 
-<span class="cli-yellow">[+] Select option: </span><span class="cli-white">|</span></code></pre>
-          <pre id="cliFlowAnim" class="cli-flow-console" aria-label="Login flow animation"></pre>
-        </div>
-        <button id="cliToggleBtn" class="tutorial-cta-btn cli-toggle-btn" type="button">See More</button>
-      </div>
+<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-6"></span><span class="cli-white blink-cursor">|</span></code></pre><pre id="cliFlowAnim" class="cli-flow-console" aria-label="Login flow animation"><code><span class="cli-cyan"><span class="cli-login-target"><span class="cli-login-target-dot" aria-hidden="true"></span>Login Actions</span></span>
+
+<span class="cli-white">Opening browser for login...</span>
+<span class="cli-white">Paste FULL URL (pixiv://...) or paste code here:</span>
+<span class="cli-white">Detected code: aGf8aKXrwcuUDHay6Z-mFjG3hErnIttYjRIbiKb9pZM</span>
+<span class="cli-green">login_success</span>
+<span class="cli-white">access_token : <span class="anim-token"></span></span>
+<span class="cli-white">refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4</span>
+<span class="cli-white">expires_in   : 3600</span>
+
+<span class="cli-green">[1] Refresh token<span class="cli-notif notif-1">&nbsp;&nbsp;(Refresh token success.)</span></span>
+<span class="cli-green">[2] Copy access token<span class="cli-notif notif-2">&nbsp;&nbsp;(Access token copied.)</span></span>
+<span class="cli-green">[3] Copy refresh token<span class="cli-notif notif-3">&nbsp;&nbsp;(Refresh token copied.)</span></span>
+<span class="cli-dim">[0] Exit</span>
+
+<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-options"></span><span class="cli-white blink-cursor">|</span></code></pre></div><svg class="cli-flow-svg" aria-hidden="true"><path id="cliFlowPathGlow" class="cli-flow-path-glow"></path><path id="cliFlowPath" class="cli-flow-path"></path></svg></div>
     </section>
 
     <section class="tutorial-cta-wrap">
@@ -214,46 +221,7 @@
 
   <script defer src="/assets/schema.js"></script>
   <script defer src="/assets/app.js"></script>
-  <script>
-    (function () {
-      const flowEl = document.getElementById("cliFlowAnim");
-      if (!flowEl) return;
-      const lines = [
-        "=== Login Actions ===",
-        "Opening browser for login...",
-        "Paste FULL URL (pixiv://...) or paste code here:",
-        "Detected code: AaA4wDVHzIYZQDWl7PV2HqiYYOeLLf5t8kQtcUq9X1Q",
-        "=== LOGIN SUCCESS ===",
-        "access_token : F3BsGg2o6Mn_ftcxgm7e9vYHValnE5aAEll2ePm06Yc",
-        "refresh_token: zF6DNiG2tvSQgnd3AkTeI6ZaVxbNf1jqU3cQX5MkyI4",
-        "expires_in   : 3600",
-        "",
-        "[1] Refresh token",
-        "[2] Copy access token",
-        "[3] Copy refresh token",
-        "[0] Exit",
-        "",
-        "[+] Select option:"
-      ];
-      const fullText = lines.join("\\n");
-      let index = 0;
-      const typingSpeed = 22;
-      const holdDelay = 1400;
-      function typeLoop() {
-        flowEl.textContent = fullText.slice(0, index) + (index < fullText.length ? "▌" : "");
-        if (index < fullText.length) {
-          index += 1;
-          setTimeout(typeLoop, typingSpeed);
-          return;
-        }
-        setTimeout(function () {
-          index = 0;
-          typeLoop();
-        }, holdDelay);
-      }
-      typeLoop();
-    })();
-  </script>
+  <script defer src="/assets/cli-flow.js"></script>
 </body>
 
 </html>
