@@ -53,14 +53,15 @@
 
   <main class="main-content" style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px;">
     <div class="gh-error-state" style="text-align: center; background: transparent; border: none;">
-      <h1 style="font-size: clamp(6rem, 15vw, 10rem); font-weight: 800; color: #76a8ff; margin: 0; line-height: 1; text-shadow: 0 0 40px rgba(118, 168, 255, 0.2);">404</h1>
-      <h2 style="font-size: clamp(1.8rem, 5vw, 2.8rem); margin-top: 1rem; color: #dce5fb; font-weight: 700; letter-spacing: -0.02em;">Page Not Found</h2>
-      <p style="color: #8a98b8; font-size: clamp(1rem, 2.5vw, 1.25rem); margin: 1.2rem auto 0; max-width: 500px; line-height: 1.6;">
+      <h1 data-i18n="notFoundTitle" style="font-size: clamp(6rem, 15vw, 10rem); font-weight: 800; color: #76a8ff; margin: 0; line-height: 1; text-shadow: 0 0 40px rgba(118, 168, 255, 0.2);">404</h1>
+      <h2 data-i18n="notFoundSubtitle" style="font-size: clamp(1.8rem, 5vw, 2.8rem); margin-top: 1rem; color: #dce5fb; font-weight: 700; letter-spacing: -0.02em;">Page Not Found</h2>
+      <p data-i18n="notFoundDesc" style="color: #8a98b8; font-size: clamp(1rem, 2.5vw, 1.25rem); margin: 1.2rem auto 0; max-width: 500px; line-height: 1.6;">
         Oops! The page you're looking for <span style="color: #acb8d4; font-weight: 500;">doesn't exist</span> or has been moved to another location.
       </p>
       <div style="margin-top: 3rem;">
         <a href="/" class="btn primary gh-new-issue-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-width: 220px; font-size: 1.1rem; padding: 16px 32px; border-radius: 12px; background: linear-gradient(180deg, #4f7dff, #3258dd); font-weight: 600; text-decoration: none; color: white;">
-          <i class="bi bi-arrow-left" style="font-size: 1.2rem;"></i> Back to Homepage
+          <i class="bi bi-arrow-left" style="font-size: 1.2rem;"></i>
+          <span data-i18n="notFoundBackHome">Back to Homepage</span>
         </a>
       </div>
     </div>
@@ -68,9 +69,12 @@
 
   <footer class="site-footer" style="padding: 24px;">
     <div class="footer-inner" style="justify-content: center; border: none;">
-      <p class="footer-copyright" style="margin: 0;">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
+      <p class="footer-copyright" data-i18n="footerCopyright" style="margin: 0;">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
     </div>
   </footer>
+
+  <!-- Load app.js so language switching and i18n work on the 404 page too -->
+  <script src="/assets/app.js"></script>
 
 </body>
 </html>
