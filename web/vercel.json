@@ -25,6 +25,15 @@
       ]
     }
   ],
+  "redirects": [
+    { "source": "/CHANGELOG.md", "destination": "/changelog", "permanent": false },
+    { "source": "/changelog.md", "destination": "/changelog", "permanent": false },
+    { "source": "/CHANGELOG-:lang.md", "destination": "/changelog", "permanent": false },
+    { "source": "/README.md", "destination": "/documentation", "permanent": false },
+    { "source": "/README-:lang.md", "destination": "/documentation", "permanent": false },
+    { "source": "/LICENSE.md", "destination": "/license", "permanent": false },
+    { "source": "/LICENSE", "destination": "/license", "permanent": false }
+  ],
   "cleanUrls": true,
   "rewrites": [
     { "source": "/assets/favicon.ico", "destination": "/pixiv_login_pro.ico" },

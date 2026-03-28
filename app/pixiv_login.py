@@ -110,15 +110,23 @@ TUTORIAL_URL = README_URL
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.3"
-APP_BUILD_CODE = "BUILD-UNKNOWN"
+APP_VERSION = "v1.0.4"
+APP_BUILD_CODE = "REL-U1774728698607"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 UPDATE_CACHE = {"latest": None, "latest_code": None, "checked_at": 0.0}
 
-CONFIG_FILE = Path(__file__).with_name("pixiv_login_config.json")
-VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
+
+def _app_dir() -> Path:
+    """Return the persistent app folder (next to exe when frozen, next to script otherwise)."""
+    if getattr(sys, "frozen", False):
+        return Path(sys.executable).resolve().parent
+    return Path(__file__).resolve().parent
+
+
+CONFIG_FILE = _app_dir() / "pixiv_login_config.json"
+VERSION_FILE = _app_dir() / "pixiv_login_version.txt"
 
 
 # ===== LANGUAGE CONFIG =====
@@ -1559,22 +1567,95 @@ def _get_latest_release_code_cached(force: bool = False) -> str | None:
     _fetch_latest_release_tag_cached(force=force)
     return UPDATE_CACHE["latest_code"]
 
+DOWNLOADS_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/raw/HEAD/downloads"
+
+
+def _detect_arch_suffix(exe_path: Path) -> str:
+    """Detect architecture suffix from exe filename (e.g. ' x64', ' ARM64', ' x86', or '' for generic)."""
+    name_lower = exe_path.stem.lower()
+    if "arm64" in name_lower:
+        return " ARM64"
+    if "x64" in name_lower:
+        return " x64"
+    if "x86" in name_lower:
+        return " x86"
+    return ""  # generic (no arch suffix)
+
+
+def _get_cli_portable_url(exe_path: Path) -> str:
+    arch = _detect_arch_suffix(exe_path)
+    from urllib.parse import quote
+    filename = f"Pixiv OAuth CLi (Portable){arch}_latest.exe"
+    return f"{DOWNLOADS_BASE_URL}/{quote(filename)}"
+
+
+def _get_cli_setup_url(exe_path: Path) -> str:
+    arch = _detect_arch_suffix(exe_path)
+    from urllib.parse import quote
+    filename = f"Pixiv OAuth CLi Setup{arch}_latest.exe"
+    return f"{DOWNLOADS_BASE_URL}/{quote(filename)}"
 
 def _self_update(target_version: str, target_code: str) -> bool:
     _clear_menu_screen()
     print(colorize("Downloading latest update and installing requirements...", Ansi.CYAN, True))
+    is_frozen = getattr(sys, "frozen", False)
     try:
-        print(" - Download latest app...")
-        response = requests.get(RAW_MAIN_PY_URL, timeout=30)
-        response.raise_for_status()
-        print(" - Install dependencies...")
-        Path(__file__).write_text(response.text, encoding="utf-8")
-        subprocess.run(
-            [sys.executable, "-m", "pip", "install", "-r", str(Path(__file__).with_name("requirements.txt"))],
-            check=False,
-        )
-        set_current_app_identity(target_version, target_code)
-        return True
+        if is_frozen:
+            exe_path = Path(sys.executable).resolve()
+            is_setup = "program files" in str(exe_path).lower() or "setup" in exe_path.name.lower()
+            if is_setup:
+                import tempfile
+                print(" - Download latest setup installer...")
+                setup_file = Path(tempfile.gettempdir()) / "pixiv_cli_setup_latest.exe"
+                resp_s = requests.get(_get_cli_setup_url(exe_path), timeout=60, stream=True)
+                resp_s.raise_for_status()
+                with setup_file.open("wb") as fh:
+                    for chunk in resp_s.iter_content(chunk_size=1024 * 128):
+                        if chunk:
+                            fh.write(chunk)
+                print(" - Running installer silently...")
+                subprocess.Popen([str(setup_file), "/SP-", "/VERYSILENT", "/NORESTART"], shell=False)
+                set_current_app_identity(target_version, target_code)
+                return True
+            # Portable — download new exe and replace via bat
+            new_exe = exe_path.with_name(exe_path.stem + "_new.exe")
+            print(" - Download latest portable exe...")
+            resp = requests.get(_get_cli_portable_url(exe_path), timeout=60, stream=True)
+            resp.raise_for_status()
+            with new_exe.open("wb") as fh:
+                for chunk in resp.iter_content(chunk_size=1024 * 128):
+                    if chunk:
+                        fh.write(chunk)
+            print(" - Preparing updater...")
+            bat = exe_path.with_name("pixiv_cli_updater.bat")
+            bat.write_text(
+                "@echo off\n"
+                "timeout /t 2 /nobreak >nul\n"
+                f'if exist "{exe_path}.old" del /f /q "{exe_path}.old" >nul 2>nul\n'
+                f'move /y "{exe_path}" "{exe_path}.old" >nul\n'
+                f'move /y "{new_exe}" "{exe_path}" >nul\n'
+                "del \"%~f0\"\n",
+                encoding="utf-8",
+            )
+            set_current_app_identity(target_version, target_code)
+            subprocess.Popen(
+                ["cmd", "/c", str(bat)],
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+            )
+            return True
+        else:
+            # Running as plain .py — overwrite script and reinstall deps
+            print(" - Download latest app...")
+            response = requests.get(RAW_MAIN_PY_URL, timeout=30)
+            response.raise_for_status()
+            print(" - Install dependencies...")
+            Path(__file__).write_text(response.text, encoding="utf-8")
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", "-r", str(Path(__file__).with_name("requirements.txt"))],
+                check=False,
+            )
+            set_current_app_identity(target_version, target_code)
+            return True
     except requests.RequestException:
         _render_rich_text_panel(mt("version_title", "en"), [mt("version_no_internet_update", "en")], mt("enter_continue", "en"))
     except Exception as exc:

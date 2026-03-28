@@ -1,12 +1,26 @@
 # 变更日志
 
-All notable changes to the "Pixiv OAuth Token" toolkit will be documented in this file.
+对“Pixiv OAuth Token”工具包的所有显着更改都将记录在此文件中。
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+格式基于 [保留变更日志](https://keepachangelog.com/en/1.0.0/),
+并且该项目遵循[语义版本控制](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### 🔜 即将推出
+- **移动网络支持** — 该网络应用程序当前仅支持桌面浏览器。即将推出的更新将带来全面的响应式移动支持，允许用户直接从移动设备生成 Pixiv OAuth 令牌，而无需桌面应用程序。
+
+---
+
+## [1.0.4] - 2026-03-29
+
+### 🐞 已修复
+- **便携式 CLI/GUI — 更新后版本回滚**：`VERSION_FILE` 和 `CONFIG_FILE` 使用 `Path(__file__)` 解析，在冻结（PyInstaller onefile）模式下指向临时 `_MEIPASS` 目录 — 该目录在应用程序关闭时被销毁。现在，这两个文件都使用 `_app_dir()` / `app_dir()` 进行解析，这会正确返回包含实际 `.exe` 的文件夹，确保版本标识在重新启动后保持不变。
+- **CLI — 更新覆盖临时 `.py` 而不是 exe**：作为冻结可执行文件运行时，`_self_update()` 覆盖临时目录内提取的 `.py`，而不是替换实际的 `.exe`。该函数现在检测 `is_frozen` 并直接下载新的可执行文件，通过 `.bat` 更新程序脚本替换它（与 GUI 的机制相同）。
+
+### ✨ 已添加
+- **架构感知自动更新（CLI + GUI）**：可移植和安装更新流程现在都可以从文件名中检测正在运行的可执行文件（`x64`、`x86`、`ARM64` 或通用）的架构，并从 `downloads/` 文件夹下载精确匹配的变体，从而防止更新期间出现意外的架构不匹配。
+- **CLI 安装程序更新流程**：CLI 现在镜像安装程序的 GUI 行为 — 当从 `Program Files` 运行时，它会下载最新的 `.exe` 安装程序并以静默方式运行 (`/VERYSILENT /NORESTART`)，而不是尝试就地二进制交换。
 
 ---
 ## [1.0.3] - 2026-03-26 
@@ -24,7 +38,7 @@ GUI 标题右上角的专用 `⚙ Debug` 按钮可打开一个深色主题的终
 ## [1.0.1] - 2026-03-22
 ### ✨ 已添加
 - **用于发布的智能自述文件清理器**
-编译可分发的 `.zip` 时，自动从 `` 文件中删除本地化语言部分，用绝对 GitHub 链接替换内部链接。
+编译可分发的 `.zip` 时，自动从 `__p1__` 文件中删除本地化语言部分，用绝对 GitHub 链接替换内部链接。
 - **统一双安装程序支持**
 InnoSetup 构建器脚本现在生成一个统一的安装程序，提示最终用户选择安装独立 CLI 或图形 GUI。
 

@@ -1,12 +1,26 @@
-# log perubahan
+# Changelog
 
-All notable changes to the "Pixiv OAuth Token" toolkit will be documented in this file.
+Semua perubahan penting pada perangkat "Pixiv OAuth Token" akan didokumentasikan dalam file ini.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Formatnya didasarkan pada [Simpan Log Perubahan](https://keepachangelog.com/en/1.0.0/),
+dan proyek ini menganut [Versi Semantik](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### 🔜 Segera Hadir
+- **Dukungan Web Seluler** — Aplikasi web saat ini hanya mendukung browser desktop. Pembaruan mendatang akan menghadirkan dukungan seluler responsif penuh, memungkinkan pengguna membuat token Pixiv OAuth langsung dari perangkat seluler tanpa memerlukan aplikasi desktop.
+
+---
+
+## [1.0.4] - 2026-03-29
+
+### 🐞 Diperbaiki
+- **CLI/GUI Portabel — Pengembalian versi setelah pembaruan**: `VERSION_FILE` dan `CONFIG_FILE` diselesaikan menggunakan `Path(__file__)`, yang dalam mode beku (PyInstaller onefile) menunjuk ke direktori `_MEIPASS` sementara — direktori yang dimusnahkan saat aplikasi ditutup. Kedua file sekarang diselesaikan menggunakan `_app_dir()` / `app_dir()` yang dengan benar mengembalikan folder yang berisi `.exe` sebenarnya, memastikan identitas versi tetap ada saat restart.
+- **CLI — Perbarui temp `.py` alih-alih exe**: Saat dijalankan sebagai executable yang dibekukan, `_self_update()` menimpa `.py` yang diekstraksi di dalam direktori sementara alih-alih mengganti `.exe` yang sebenarnya. Fungsi tersebut sekarang mendeteksi `is_frozen` dan mengunduh executable baru secara langsung, menggantikannya melalui skrip pembaru `.bat` (mekanisme yang sama seperti GUI).
+
+### ✨ Ditambahkan
+- **Pembaruan otomatis sadar arsitektur (CLI + GUI)**: Alur pembaruan portabel dan pengaturan kini mendeteksi arsitektur executable yang sedang berjalan (`x64`, `x86`, `ARM64`, atau generik) dari nama filenya dan mengunduh varian yang sama persis dari folder `downloads/`, sehingga mencegah ketidakcocokan arsitektur yang tidak disengaja selama pembaruan.
+- **Alur pembaruan penginstal penyiapan CLI**: CLI kini mencerminkan perilaku GUI untuk penginstalan penyiapan — saat dijalankan dari `Program Files`, CLI akan mengunduh penginstal penyiapan `.exe` terbaru dan menjalankannya secara diam-diam (`/VERYSILENT /NORESTART`) alih-alih mencoba pertukaran biner di tempat.
 
 ---
 ## [1.0.3] - 2026-03-26 
@@ -24,7 +38,7 @@ Tombol `⚙ Debug` khusus di sudut kanan atas header GUI membuka konsol terminal
 ## [1.0.1] - 2026-03-22
 ### ✨ Ditambahkan
 - **Pembersih README Cerdas untuk Rilis**
-Secara otomatis menghapus bagian bahasa pelokalan dari file `` saat mengkompilasi `.zip` yang dapat didistribusikan, menggantikan tautan internal dengan tautan GitHub absolut.
+Secara otomatis menghapus bagian bahasa pelokalan dari file `__p1__` saat mengkompilasi `.zip` yang dapat didistribusikan, menggantikan tautan internal dengan tautan GitHub absolut.
 - **Dukungan Pemasang Ganda Terpadu**
 Skrip pembuat InnoSetup sekarang menghasilkan penginstal terpadu yang meminta pengguna akhir untuk menginstal CLI mandiri atau GUI grafis secara opsional.
 

@@ -111,7 +111,7 @@ Wysoce zoptymalizowana, responsywna aplikacja internetowa z dynamiczną obsług�
 ### Kluczowe funkcje internetowe
 - **Rozbudowane strony**: strona główna, pliki do pobrania, samouczek, kontakt, problemy i PR, narzędzie do śledzenia dyskusji, przeglądarka dokumentacji Markdown oraz integracja wsparcia/datków.
 - **Zaawansowane SEO**: automatycznie wstrzykiwane zlokalizowane tagi `<meta>`, obszerne dane strukturalne JSON-LD (linki do podstron, aplikacje programowe itp.), automatyczne generowanie `hreflang`, `robots.txt` i `sitemap.xml`.
-- **Bezpieczeństwo i wydajność**: Automatyczne zaciemnianie kodu JavaScript (ekstremalne zniekształcanie), minifikacja HTML/CSS (przez `cd web && node build_minify.js`) i czysta ochrona przed `XSS` poprzez `escapeHTML`.
+- **Bezpieczeństwo i wydajność**: Automatyczne zaciemnianie kodu JavaScript (ekstremalne zniekształcanie), minifikacja HTML/CSS (przez `cd web && node build_minify.js`) i czyste zapobieganie `XSS` poprzez `escapeHTML`.
 - **GitHub API Serwer proxy**: Bezserwerowe punkty końcowe Vercel (`/api/github`) proxy GitHub API żąda przy użyciu osobistego tokenu dostępu (`GITHUB_PAT`) w celu całkowitego ominięcia publicznych limitów szybkości.
 
 ### Wdróż w Vercel
@@ -238,6 +238,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 
 Zobacz wszystkie istotne zmiany dla każdej wersji w pliku [Dziennik zmian](CHANGELOG-PL.md).
 📦 Możesz także wyświetlić informacje o wersji bezpośrednio na stronie [GitHub Wydania](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
+
+### Najnowsze: v1.0.4 (29.03.2026)
+
+**🐞 Naprawiono**
+- Przenośny CLI/GUI: wersja nie powraca już do starej wersji po aktualizacji — `VERSION_FILE` / `CONFIG_FILE` są teraz poprawnie zapisywane obok `.exe` zamiast tymczasowego folderu wyodrębniania PyInstaller.
+- Zamrożona aktualizacja CLI: teraz poprawnie zastępuje rzeczywisty `.exe` za pomocą skryptu aktualizującego `.bat` zamiast nadpisywać plik tymczasowy.
+
+**✨ Dodano**
+- **Aktualizacja uwzględniająca architekturę** — zarówno CLI, jak i GUI automatycznie wykrywają teraz działającą architekturę (`x64`, `x86`, `ARM64`) i pobierają pasujący wariant kompilacji podczas aktualizacji.
+- **Przebieg aktualizacji instalacji CLI** — CLI teraz po cichu uruchamia instalatora podczas aktualizacji z instalacji `Program Files` (odzwierciedla zachowanie GUI).
+
+**🔜 Już w następnej aktualizacji**
+- Obsługa internetu mobilnego – aplikacja internetowa zyska w pełni responsywny układ dla przeglądarek mobilnych.
 
 ## Licencja
 

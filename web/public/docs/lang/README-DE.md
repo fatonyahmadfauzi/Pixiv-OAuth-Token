@@ -13,7 +13,7 @@ Ein Toolkit zum Generieren von Pixiv OAuth-Tokens in drei Modi:
 ## Anforderungen
 
 - Python 3.11+
-- Windows (erforderlich für `.bat`-Build-Skripte und Inno Setup-Installationsprogramm)
+- Windows (erforderlich für `.bat` Build-Skripte und Inno Setup-Installationsprogramm)
 - Python-Abhängigkeiten von `app/requirements.txt`
 
 ## Von der Quelle ausführen
@@ -24,7 +24,7 @@ python -m pip install -r requirements.txt
 python pixiv_login.py
 ```
 
-Führen Sie die GUI aus:
+GUI ausführen:
 
 ```bash
 cd app
@@ -37,7 +37,7 @@ python pixiv_login_gui.py
 |---|---|
 | **Mehrsprachig** | 11 Sprachen – automatisch aus der Konfiguration erkannt, live über Dropdown umschaltbar |
 | **⚙ Debug-Konsole** | Schaltfläche in der Kopfzeile oben rechts; öffnet ein dunkles Terminal, das **alle** Ereignisse (Schaltflächenklicks, Sprachänderungen, HTTP-Anfragen, PKCE-Schritte, Zwischenablage, Konfigurationsspeicherungen, Warnungen) in Echtzeit und in der aktuellen Sprache protokolliert |
-| **Token-Austausch** | Fügen Sie pixiv:// URL oder Rohcode ein → Austausch gegen Zugriffs- und Aktualisierungstoken |
+| **Token-Austausch** | Paste pixiv:// URL or raw code → exchange for access + refresh token |
 | **Aktualisierungstoken** | Aktualisierung mit einem Klick mit gespeichertem Refresh_token aus der Konfiguration |
 | **Token kopieren** | Access_token/refresh_token sofort in die Zwischenablage kopieren |
 | **Tutorial** | In die App integrierte Schritt-für-Schritt-Bildanleitung |
@@ -75,7 +75,7 @@ build_all_pro.bat patch noinst nosign
 
 ### Hauptausgänge
 
-- Portable CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
+- Tragbare CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
 - Portable GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
 - Unified Installer: `dist_installer\PixivLoginSetup_v<version>.exe` (Installiert sowohl CLI als auch GUI)
 - Installer-CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Kopie des einheitlichen Installers)
@@ -109,7 +109,7 @@ Der standardmäßige Nicht-Release-Fallback ist jetzt `BUILD-UNKNOWN` (anstelle 
 Eine hochoptimierte, reaktionsfähige Web-App mit dynamischer Mehrsprachenunterstützung (11 Sprachen mit automatischer Erkennung) und umfassenden SEO-Metadaten.
 
 ### Wichtige Webfunktionen
-- **Umfangreiche Seiten**: Homepage, Downloads, Tutorial, Kontakt, Probleme und PRs, Diskussions-Tracker, Dokumentation Markdown Viewer und Support/Spenden-Integration.
+- **Umfangreiche Seiten**: Homepage, Downloads, Tutorial, Kontakt, Probleme und PRs, Diskussions-Tracker, Dokumentation Markdown-Viewer und Support/Spenden-Integration.
 - **Erweiterte SEO**: Automatisch eingefügte lokalisierte `<meta>`-Tags, umfangreiche JSON-LD-strukturierte Daten (Sitelinks, SoftwareApplication usw.), automatisierte `hreflang`-Generierung, `robots.txt` und `sitemap.xml`.
 - **Sicherheit und Leistung**: Automatische JavaScript-Verschleierung (extreme Entstellung), HTML/CSS-Minimierung (über `cd web && node build_minify.js`) und saubere `XSS`-Verhinderung über `escapeHTML`.
 - **GitHub API Proxy**: Serverlose Vercel-Endpunkte (`/api/github`) Proxy GitHub API-Anfragen mithilfe eines persönlichen Zugriffstokens (`GITHUB_PAT`), um öffentliche Ratenbeschränkungen vollständig zu umgehen.
@@ -126,7 +126,7 @@ Eine hochoptimierte, reaktionsfähige Web-App mit dynamischer Mehrsprachenunters
 - Statisches Hosting von `public/`
 - Serverlose APIs bei `/api/*`
 - Integriertes benutzerdefiniertes 404-Seitenrouting
-– Caching für die ferne Zukunft über Edge-Cache-Header.
+- Caching für die ferne Zukunft über Edge-Cache-Header.
 5. Bereitstellen.
 
 > [!IMPORTANT]
@@ -144,7 +144,7 @@ Dateien:
 
 - Portable GUI: `Pixiv OAuth GUi (Portable).exe`
 - Setup-GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
-- Portable CLI: `Pixiv OAuth CLi (Portable).exe`
+- Tragbare CLI: `Pixiv OAuth CLi (Portable).exe`
 - Setup-CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
 
 ### PowerShell (Assets der neuesten Version automatisch erkennen)
@@ -237,7 +237,20 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 ## 🧾 Änderungsprotokoll
 
 Sehen Sie sich alle wichtigen Änderungen für jede Version in der Datei [Änderungsprotokoll](CHANGELOG-DE.md) an.
-📦 Sie können Versionshinweise auch direkt auf der [GitHub Releases-Seite](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases). anzeigen.
+📦 Sie können Versionshinweise auch direkt auf der Seite [GitHub Releases](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases). anzeigen.
+
+### Neueste: v1.0.4 (29.03.2026)
+
+**🐞 Behoben**
+- Portable CLI/GUI: Die Version wird nach dem Update nicht mehr auf die alte Version zurückgesetzt – `VERSION_FILE` / `CONFIG_FILE` werden jetzt korrekt neben `.exe` und nicht im temporären PyInstaller-Extraktionsordner gespeichert.
+- CLI-eingefrorenes Update: Ersetzt jetzt ordnungsgemäß das tatsächliche `.exe` über ein `.bat`-Updater-Skript, anstatt eine temporäre Datei zu überschreiben.
+
+**✨ Hinzugefügt**
+- **Architekturfähiges Update** – Sowohl CLI als auch GUI erkennen jetzt automatisch die laufende Architektur (`x64`, `x86`, `ARM64`) und laden beim Update die passende Build-Variante herunter.
+- **CLI-Setup-Aktualisierungsablauf** – CLI führt das Setup-Installationsprogramm jetzt unbeaufsichtigt aus, wenn von einer `Program Files`-Installation aktualisiert wird (spiegelt das GUI-Verhalten wider).
+
+**🔜 Erscheint im nächsten Update**
+- Unterstützung für mobiles Web – die Web-App erhält ein vollständig responsives Layout für mobile Browser.
 
 ## Lizenz
 

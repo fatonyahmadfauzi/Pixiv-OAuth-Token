@@ -1,12 +1,26 @@
 # 변경 내역
 
-All notable changes to the "Pixiv OAuth Token" toolkit will be documented in this file.
+"Pixiv OAuth 토큰" 툴킷의 모든 주요 변경 사항은 이 파일에 문서화됩니다.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+형식은 [변경 로그 유지](https://keepachangelog.com/en/1.0.0/),)를 기반으로 합니다.
+그리고 이 프로젝트는 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).)을 준수합니다.
 
 ## [Unreleased]
 
+### 🔜 출시 예정
+- **모바일 웹 지원** — 웹 앱은 현재 데스크톱 브라우저만 지원합니다. 향후 업데이트에서는 완전한 반응형 모바일 지원을 제공하여 사용자가 데스크톱 앱 없이도 모바일 장치에서 직접 Pixiv OAuth 토큰을 생성할 수 있게 해줍니다.
+
+---
+
+## [1.0.4] - 2026-03-29
+
+### 🐞 수정됨
+- **휴대용 CLI/GUI — 업데이트 후 버전 롤백**: `VERSION_FILE` 및 `CONFIG_FILE`은 `Path(__file__)`를 사용하여 확인되었습니다. 이는 고정(PyInstaller onefile) 모드에서 임시 `_MEIPASS` 디렉터리(앱이 닫힐 때 삭제되는 디렉터리)를 가리킵니다. 이제 두 파일 모두 실제 `.exe`이 포함된 폴더를 올바르게 반환하는 `_app_dir()` / `app_dir()`를 사용하여 확인되므로 다시 시작해도 버전 ID가 유지됩니다.
+- **CLI — exe 대신 업데이트가 임시 `.py`을 덮어썼습니다**: 고정 실행 파일로 실행할 때 `_self_update()`은 실제 `.exe`을 바꾸는 대신 임시 디렉터리 내에서 추출된 `.py`을 덮어썼습니다. 이제 이 함수는 `is_frozen`를 감지하고 새 실행 파일을 직접 다운로드하여 `.bat` 업데이트 스크립트(GUI와 동일한 메커니즘)를 통해 대체합니다.
+
+### ✨ 추가됨
+- **아키텍처 인식 자동 업데이트(CLI + GUI)**: 이제 이식 가능한 업데이트 흐름과 설정 업데이트 흐름 모두 파일 이름에서 실행 중인 실행 파일(`x64`, `x86`, `ARM64` 또는 일반)의 아키텍처를 감지하고 `downloads/` 폴더에서 정확히 일치하는 변형을 다운로드하여 업데이트 중에 우발적인 아키텍처 불일치를 방지합니다.
+- **CLI 설치 프로그램 업데이트 흐름**: CLI는 이제 설치 설치를 위한 GUI 동작을 미러링합니다. `Program Files`에서 실행할 때 내부 바이너리 스왑을 시도하는 대신 최신 `.exe` 설치 프로그램을 다운로드하고 자동으로(`/VERYSILENT /NORESTART`) 실행합니다.
 
 ---
 ## [1.0.3] - 2026-03-26 
@@ -24,13 +38,13 @@ GUI 헤더의 오른쪽 상단에 있는 전용 `⚙ Debug` 버튼을 누르면 
 ## [1.0.1] - 2026-03-22
 ### ✨ 추가됨
 - **릴리스용 스마트 README 클리너**
-배포 가능한 `.zip`을 컴파일할 때 `` 파일에서 지역화 언어 섹션을 자동으로 제거하고 내부 링크를 절대 GitHub 링크로 바꿉니다.
+배포 가능한 `.zip`을 컴파일할 때 `__p1__` 파일에서 지역화 언어 섹션을 자동으로 제거하고 내부 링크를 절대 GitHub 링크로 바꿉니다.
 - **통합 이중 설치 프로그램 지원**
 InnoSetup 빌더 스크립트는 이제 최종 사용자에게 선택적으로 독립형 CLI 또는 그래픽 GUI를 설치하라는 메시지를 표시하는 통합 설치 프로그램을 생성합니다.
 
 ### 🐞 수정됨
 - **설치 프로그램 빌드 경로 확인**
-구성된 `scripts\` 디렉터리 내에서 직접 빌드 파일을 생성하여 `iscc`이 `app\pixiv_oauth.ico`을 찾지 못하는 `make_installer_iss_dual.py`의 중요한 경로 불일치 문제를 수정했습니다.
+구성된 `scripts\` 디렉터리 내에서 직접 빌드 파일을 생성하여 `iscc`이 `app\pixiv_oauth.ico`을 찾지 못하는 `make_installer_iss_dual.py`의 중요한 경로 불일치 문제를 해결했습니다.
 
 ## [1.0.0] - 2026-03-21
 ### ✨ 추가됨

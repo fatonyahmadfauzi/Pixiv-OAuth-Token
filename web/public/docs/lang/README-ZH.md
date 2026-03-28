@@ -33,7 +33,7 @@ python pixiv_login_gui.py
 
 ### 图形用户界面功能
 
-|特色 |描述 |
+|特色|描述 |
 |---|---|
 | **多语言** | 11 种语言 — 从配置中自动检测，可通过下拉菜单实时切换 |
 | **⚙ 调试控制台** |右上角标题中的按钮；打开一个黑暗的终端，以当前语言实时记录**所有**事件（按钮单击、语言更改、HTTP 请求、PKCE 步骤、剪贴板、配置保存、警告）|
@@ -221,7 +221,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## Python 安装
+##Python安装
 
 ```bash
 cd app
@@ -238,6 +238,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 
 在 [变更日志](CHANGELOG-ZH.md) 文件中查看每个版本的所有显着更改。
 📦 您还可以直接在 [GitHub 发布页面](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
+
+### 最新：v1.0.4 (2026-03-29)
+
+**🐞 已修复**
+- 便携式 CLI/GUI：更新后版本不再恢复为旧版本 — `VERSION_FILE` / `CONFIG_FILE` 现在正确保存在 `.exe` 旁边，而不是临时 PyInstaller 提取文件夹。
+- CLI 冻结更新：现在通过 `.bat` 更新程序脚本正确替换实际的 `.exe`，而不是覆盖临时文件。
+
+**✨已添加**
+- **架构感知更新** — CLI 和 GUI 现在都会自动检测正在运行的架构（`x64`、`x86`、`ARM64`）并在更新时下载匹配的构建变体。
+- **CLI 设置更新流程** — CLI 现在在从 `Program Files` 安装更新时以静默方式运行设置安装程序（镜像 GUI 行为）。
+
+**🔜 下次更新时推出**
+- 移动网络支持——网络应用程序将获得移动浏览器的完全响应式布局。
 
 ＃＃ 执照
 

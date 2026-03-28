@@ -182,7 +182,7 @@ Invoke-WebRequest $guiSetup    -OutFile "Pixiv OAuth GUi Setup.exe"
 Invoke-WebRequest $cliSetup    -OutFile "Pixiv OAuth CLi Setup.exe"
 ```
 
-Exécutez ceci dans **PowerShell** (pas CMD).
+Exécutez-le dans **PowerShell** (pas CMD).
 
 Si vous exécutez seulement :
 
@@ -238,6 +238,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 
 Consultez tous les changements notables pour chaque version dans le fichier [Journal des modifications](CHANGELOG-FR.md).
 📦 Vous pouvez également consulter les notes de version directement sur la [GitHub page Releases](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
+
+### Dernier : v1.0.4 (2026-03-29)
+
+**🐞 Corrigé**
+- CLI/GUI portable : la version ne revient plus à l'ancienne version après la mise à jour — `VERSION_FILE` / `CONFIG_FILE` sont désormais correctement enregistrés à côté du `.exe` au lieu du dossier d'extraction temporaire de PyInstaller.
+- Mise à jour gelée de la CLI : remplace désormais correctement le `.exe` réel via un script de mise à jour `.bat` au lieu d'écraser un fichier temporaire.
+
+**✨ Ajouté**
+- **Mise à jour tenant compte de l'architecture** — la CLI et l'interface graphique détectent désormais automatiquement l'architecture en cours d'exécution (`x64`, `x86`, `ARM64`) et téléchargent la variante de construction correspondante lors de la mise à jour.
+- **Flux de mise à jour de la configuration CLI** — La CLI exécute désormais silencieusement le programme d'installation lors de la mise à jour à partir d'une installation `Program Files` (reflète le comportement de l'interface graphique).
+
+**🔜 À venir dans la prochaine mise à jour**
+- Prise en charge du Web mobile : l'application Web bénéficiera d'une mise en page entièrement réactive pour les navigateurs mobiles.
 
 ## Licence
 

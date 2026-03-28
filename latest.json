@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
-  "build_code": "BUILD-UNKNOWN",
+  "version": "1.0.4",
+  "build_code": "REL-U1774728698607",
   "published_at": null,
   "notes_url": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest",
   "assets": {
@@ -24,6 +24,6 @@
       "x64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20Setup%20x64_latest.exe",
       "arm64": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/Pixiv%20OAuth%20GUi%20Setup%20ARM64_latest.exe"
     },
-    "release_zip": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/PixivOAuthRelease_v1.0.3_BUILD-UNKNOWN.zip"
+    "release_zip": "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest/download/PixivOAuthRelease_v1.0.4_REL-U1774728698607.zip"
   }
 }

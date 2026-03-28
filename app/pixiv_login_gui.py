@@ -45,14 +45,14 @@ RELEASES_URL = f"{REPO_BASE_URL}/releases"
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.3"
-APP_BUILD_CODE = "BUILD-UNKNOWN"
+APP_VERSION = "v1.0.4"
+APP_BUILD_CODE = "REL-U1774728698607"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 DOWNLOADS_RAW_BASE = f"{REPO_BASE_URL}/raw/HEAD/downloads"
 PORTABLE_LATEST_URL = f"{DOWNLOADS_RAW_BASE}/Pixiv%20OAuth%20GUi%20(Portable)_latest.exe"
 SETUP_LATEST_URL = f"{DOWNLOADS_RAW_BASE}/Pixiv%20OAuth%20GUi%20Setup_latest.exe"
-VERSION_FILE = Path(__file__).with_name("pixiv_login_version.txt")
+# VERSION_FILE is resolved at runtime via _get_version_file() to support both frozen and script modes
 # ===== LANGUAGE =====
 SUPPORTED_LANGS = ("en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr")
 
@@ -1177,6 +1177,7 @@ def app_dir() -> Path:
 
 
 CONFIG_FILE = app_dir() / "pixiv_login_config.json"
+VERSION_FILE = app_dir() / "pixiv_login_version.txt"
 ICON_CANDIDATES = ("pixiv_login_pro.ico", "pixiv_login.ico")
 
 
@@ -1323,6 +1324,34 @@ def fetch_latest_release_meta() -> tuple[str | None, str | None]:
         return tag, code
     except Exception:
         return None, None
+
+DOWNLOADS_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/raw/HEAD/downloads"
+
+
+def _detect_arch_suffix(exe_path: Path) -> str:
+    """Detect architecture suffix from exe filename ( x64,  ARM64,  x86 or empty for generic)."""
+    name_lower = exe_path.stem.lower()
+    if "arm64" in name_lower:
+        return " ARM64"
+    if "x64" in name_lower:
+        return " x64"
+    if "x86" in name_lower:
+        return " x86"
+    return ""
+
+
+def _get_gui_portable_url(exe_path: Path) -> str:
+    from urllib.parse import quote
+    arch = _detect_arch_suffix(exe_path)
+    filename = f"Pixiv OAuth GUi (Portable){arch}_latest.exe"
+    return f"{DOWNLOADS_BASE_URL}/{quote(filename)}"
+
+
+def _get_gui_setup_url(exe_path: Path) -> str:
+    from urllib.parse import quote
+    arch = _detect_arch_suffix(exe_path)
+    filename = f"Pixiv OAuth GUi Setup{arch}_latest.exe"
+    return f"{DOWNLOADS_BASE_URL}/{quote(filename)}"
 
 
 class App(tk.Tk):
@@ -1808,13 +1837,13 @@ class App(tk.Tk):
                 is_setup = "program files" in str(exe_path).lower() or "setup" in exe_path.name.lower()
                 if is_setup:
                     setup_file = Path(tempfile.gettempdir()) / "pixiv_gui_setup_latest.exe"
-                    self._download_to_file(SETUP_LATEST_URL, setup_file)
+                    self._download_to_file(_get_gui_setup_url(exe_path), setup_file)
                     subprocess.Popen([str(setup_file), "/SP-", "/VERYSILENT", "/NORESTART"], shell=False)
                     self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))
                     return
 
                 new_exe = exe_path.with_name(exe_path.stem + "_new.exe")
-                self._download_to_file(PORTABLE_LATEST_URL, new_exe)
+                self._download_to_file(_get_gui_portable_url(exe_path), new_exe)
                 self._replace_exe_with_updater(exe_path, new_exe)
                 set_current_app_identity(latest_version, latest_code)
                 self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))

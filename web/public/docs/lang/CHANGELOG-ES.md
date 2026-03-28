@@ -1,12 +1,26 @@
 # Registro de cambios
 
-All notable changes to the "Pixiv OAuth Token" toolkit will be documented in this file.
+Todos los cambios notables en el kit de herramientas "Pixiv OAuth Token" se documentarán en este archivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+El formato se basa en [Mantener un registro de cambios](https://keepachangelog.com/en/1.0.0/),
+y este proyecto se adhiere a [Versionado Semántico](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### 🔜 Próximamente
+- **Soporte web móvil**: la aplicación web actualmente solo admite navegadores de escritorio. La próxima actualización brindará soporte móvil totalmente responsivo, lo que permitirá a los usuarios generar tokens Pixiv OAuth directamente desde dispositivos móviles sin necesidad de la aplicación de escritorio.
+
+---
+
+## [1.0.4] - 2026-03-29
+
+### 🐞 Corregido
+- **CLI/GUI portátil: reversión de la versión después de la actualización**: `VERSION_FILE` y `CONFIG_FILE` se resolvieron usando `Path(__file__)`, que en modo congelado (PyInstaller onefile) apunta al directorio temporal `_MEIPASS`, un directorio que se destruye cuando se cierra la aplicación. Ambos archivos ahora se resuelven usando `_app_dir()` / `app_dir()`, que devuelve correctamente la carpeta que contiene el `.exe` real, lo que garantiza que la identidad de la versión persista durante los reinicios.
+- **CLI: la actualización sobrescribió el `.py` temporal en lugar de exe**: cuando se ejecutaba como un ejecutable congelado, `_self_update()` sobrescribía el `.py` extraído dentro del directorio temporal en lugar de reemplazar el `.exe` real. La función ahora detecta `is_frozen` y descarga el nuevo ejecutable directamente, reemplazándolo mediante un script de actualización `.bat` (el mismo mecanismo que la GUI).
+
+### ✨ Agregado
+- **Actualización automática basada en la arquitectura (CLI + GUI)**: tanto los flujos de actualización portátiles como los de configuración ahora detectan la arquitectura del ejecutable en ejecución (`x64`, `x86`, `ARM64` o genérico) a partir de su nombre de archivo y descargan la variante coincidente exacta de la carpeta `downloads/`, lo que evita discrepancias accidentales en la arquitectura durante las actualizaciones.
+- **Flujo de actualización del instalador de configuración CLI**: CLI ahora refleja el comportamiento de la GUI para las instalaciones de configuración: cuando se ejecuta desde `Program Files`, descarga el último instalador de configuración `.exe` y lo ejecuta silenciosamente (`/VERYSILENT /NORESTART`) en lugar de intentar un intercambio binario in situ.
 
 ---
 ## [1.0.3] - 2026-03-26 
@@ -24,7 +38,7 @@ Un botón dedicado `⚙ Debug` en la esquina superior derecha del encabezado de 
 ## [1.0.1] - 2026-03-22
 ### ✨ Agregado
 - **Limpiador inteligente README para versiones**
-Elimina automáticamente las secciones de idioma de localización del archivo `` al compilar el `.zip` distribuible, reemplazando los enlaces internos con enlaces GitHub absolutos.
+Elimina automáticamente las secciones de idioma de localización del archivo `__p1__` al compilar el `.zip` distribuible, reemplazando los enlaces internos con enlaces GitHub absolutos.
 - **Soporte unificado de instalador dual**
 El script del constructor InnoSetup ahora genera un instalador unificado que solicita a los usuarios finales que instalen opcionalmente la CLI independiente o la GUI gráfica.
 

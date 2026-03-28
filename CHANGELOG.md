@@ -7,11 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### ✨ Changed
-- Replaced default local build label from `REL-LOCAL` to `BUILD-UNKNOWN` across runtime/version tooling and generated manifests.
-- GUI now includes a **Changelog** top-menu action and a **Version** dropdown with explicit version check entry.
-- Added automatic startup version check in GUI with update popup actions (**Update** / **Later**), plus update flow handling for frozen setup/portable distributions.
-- Updated build-code generation to unix-style `REL-U<unix_ms>` on version bumps (`patch/minor/major`).
+### 🔜 Coming Soon
+- **Mobile Web Support** — The web app currently only supports desktop browsers. Upcoming update will bring full responsive mobile support, allowing users to generate Pixiv OAuth tokens directly from mobile devices without needing the desktop app.
+
+---
+
+## [1.0.4] - 2026-03-29
+
+### 🐞 Fixed
+- **Portable CLI/GUI — Version rollback after update**: `VERSION_FILE` and `CONFIG_FILE` were resolved using `Path(__file__)`, which in frozen (PyInstaller onefile) mode points to the temporary `_MEIPASS` directory — a directory that is destroyed when the app closes. Both files are now resolved using `_app_dir()` / `app_dir()` which correctly returns the folder containing the actual `.exe`, ensuring version identity persists across restarts.
+- **CLI — Update overwrote temp `.py` instead of exe**: When running as a frozen executable, `_self_update()` was overwriting the extracted `.py` inside the temporary directory instead of replacing the actual `.exe`. The function now detects `is_frozen` and downloads the new executable directly, replacing it via a `.bat` updater script (same mechanism as the GUI).
+
+### ✨ Added
+- **Architecture-aware auto-update (CLI + GUI)**: Both portable and setup update flows now detect the architecture of the running executable (`x64`, `x86`, `ARM64`, or generic) from its filename and download the exact matching variant from the `downloads/` folder, preventing accidental architecture mismatches during updates.
+- **CLI setup installer update flow**: CLI now mirrors the GUI behavior for setup installations — when running from `Program Files`, it downloads the latest `.exe` setup installer and runs it silently (`/VERYSILENT /NORESTART`) instead of attempting an in-place binary swap.
 
 ---
 ## [1.0.3] - 2026-03-26 

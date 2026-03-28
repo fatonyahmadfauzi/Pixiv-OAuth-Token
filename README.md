@@ -238,6 +238,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 See all notable changes for each version in the [CHANGELOG.md](CHANGELOG.md) file.  
 📦 You can also view release notes directly on the [GitHub Releases page](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
+### Latest: v1.0.4 (2026-03-29)
+
+**🐞 Fixed**
+- Portable CLI/GUI: version no longer reverts to old version after update — `VERSION_FILE` / `CONFIG_FILE` are now correctly saved next to the `.exe` instead of the temporary PyInstaller extraction folder.
+- CLI frozen update: now properly replaces the actual `.exe` via a `.bat` updater script instead of overwriting a temp file.
+
+**✨ Added**
+- **Architecture-aware update** — both CLI and GUI now automatically detect the running architecture (`x64`, `x86`, `ARM64`) and download the matching build variant when updating.
+- **CLI setup update flow** — CLI now silently runs the setup installer when updating from a `Program Files` installation (mirrors GUI behavior).
+
+**🔜 Coming in next update**
+- Mobile web support — the web app will gain full responsive layout for mobile browsers.
+
 ## License
 
 MIT License. See `LICENSE`.

@@ -84,6 +84,28 @@ async function loadDocs() {
       }
     });
 
+    // Rewrite relative .md links so they work on the web app instead of 404-ing.
+    // e.g. CHANGELOG.md → /changelog, README.md → /documentation
+    var mdRouteMap = {
+      'changelog.md': '/changelog',
+      'readme.md': '/documentation',
+      'license': '/license',
+      'license.md': '/license'
+    };
+    t.querySelectorAll('a[href]').forEach(function(anchor) {
+      var href = anchor.getAttribute('href') || '';
+      // Only rewrite relative links (no protocol, no leading /)
+      if (!href.startsWith('http') && !href.startsWith('/') && !href.startsWith('#') && !href.startsWith('mailto')) {
+        // Strip any language suffix like -JP, -ID, etc. before .md to normalize
+        var normalized = href.replace(/-[A-Z]{2,5}\.md$/i, '.md').toLowerCase().split('#')[0].trim();
+        var route = mdRouteMap[normalized];
+        if (route) {
+          anchor.setAttribute('href', route);
+          anchor.removeAttribute('target');
+        }
+      }
+    });
+
     buildTOC();
     t.querySelectorAll("pre code").forEach(function(e) {
       hljs.highlightElement(e)
