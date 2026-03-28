@@ -36,14 +36,21 @@ python scripts\sync_app_identity.py
 python scripts\generate_version_info.py
 
 REM --- build portable ---
-python -m PyInstaller --noconfirm --onefile ^
-  --name %OUTNAME% ^
-  --icon=%ICON% ^
-  --version-file=version_info.txt ^
+python -m nuitka --onefile ^
+  --output-dir=dist ^
+  --output-filename=%OUTNAME%.exe ^
+  --windows-icon-from-ico=%ICON% ^
+  --windows-product-version=%VER%.0 ^
+  --windows-file-version=%VER%.0 ^
+  --windows-company-name="Fatony Ahmad Fauzi" ^
+  --windows-product-name="Pixiv OAuth CLI" ^
+  --windows-file-description="Pixiv OAuth Command Line Interface" ^
+  --remove-output ^
+  --assume-yes-for-downloads ^
   %SCRIPT%
 
 if errorlevel 1 (
-  echo [ERROR] PyInstaller failed. Stopping.
+  echo [ERROR] Nuitka compilation failed. Stopping.
   exit /b 1
 )
 

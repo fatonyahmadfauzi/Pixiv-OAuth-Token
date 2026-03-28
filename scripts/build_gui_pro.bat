@@ -63,21 +63,26 @@ if exist build rmdir /s /q build
 del /q *.spec 2>nul
 
 REM Bundle tutorial images if available
-if exist "tutorial_images" set ADD_TUTORIAL=--add-data "tutorial_images;tutorial_images"
+if exist "tutorial_images" set ADD_TUTORIAL=--include-data-dir="tutorial_images=tutorial_images"
 
 REM Build (windowed = no console)
-python -m PyInstaller --noconfirm --onefile --windowed ^
-  --name %NAME% ^
-  --icon=%ICON% ^
-  --version-file=version_info.txt ^
-  --hidden-import tkinter ^
-  --hidden-import tkinter.ttk ^
-  --hidden-import _tkinter ^
+python -m nuitka --onefile --windows-disable-console ^
+  --output-dir=dist ^
+  --output-filename=%NAME%.exe ^
+  --windows-icon-from-ico=%ICON% ^
+  --enable-plugin=tk-inter ^
+  --windows-product-version=%VER%.0 ^
+  --windows-file-version=%VER%.0 ^
+  --windows-company-name="Fatony Ahmad Fauzi" ^
+  --windows-product-name="Pixiv OAuth GUI" ^
+  --windows-file-description="Pixiv OAuth Graphical Interface" ^
+  --remove-output ^
+  --assume-yes-for-downloads ^
   %ADD_TUTORIAL% ^
   %SCRIPT%
 
 if errorlevel 1 (
-  echo [ERROR] PyInstaller failed.
+  echo [ERROR] Nuitka compilation failed.
   exit /b 1
 )
 

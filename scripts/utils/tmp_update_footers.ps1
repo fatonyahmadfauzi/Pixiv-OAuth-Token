@@ -1,8 +1,11 @@
+# Resolve project root relative to this script's location (scripts/utils/ -> project root)
+$ProjectRoot = (Get-Item "$PSScriptRoot\..\..")
+
 $files = @(
-    "web\src_backup\public__components__footer.js",
-    "web\src_backup\public__tutorial.html",
-    "web\public\components\footer.js",
-    "web\public\tutorial.html"
+    "$ProjectRoot\web\src_backup\public__components__footer.js",
+    "$ProjectRoot\web\src_backup\public__tutorial.html",
+    "$ProjectRoot\web\public\components\footer.js",
+    "$ProjectRoot\web\public\tutorial.html"
 )
 
 $keys = @(

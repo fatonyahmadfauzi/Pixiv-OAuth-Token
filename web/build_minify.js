@@ -26,6 +26,7 @@ const FILES = [
   'public/assets/schema.js',
   'public/assets/contact.js',
   'public/components/footer.js',
+  'public/components/header.js',
   'public/assets/style.css',
   'public/404.html',
   'public/contact.html',

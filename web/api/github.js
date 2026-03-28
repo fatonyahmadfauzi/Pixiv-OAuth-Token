@@ -5,6 +5,8 @@
  * Never exposes the token to the client.
  */
 
+const { checkSecurity } = require('./_security');
+
 const ALLOWED_PREFIXES = [
   'repos/fatonyahmadfauzi/Pixiv-OAuth-Token/issues',
   'repos/fatonyahmadfauzi/Pixiv-OAuth-Token/pulls',
@@ -15,6 +17,11 @@ module.exports = async (req, res) => {
   // Only allow GET requests
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method Not Allowed' });
+  }
+
+  const sec = checkSecurity(req);
+  if (!sec.ok) {
+    return res.status(sec.status).json({ error: sec.error });
   }
 
   const { path, ...params } = req.query;

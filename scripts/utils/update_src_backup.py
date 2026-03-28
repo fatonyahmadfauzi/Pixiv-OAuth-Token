@@ -1,7 +1,10 @@
 import re
 import os
+from pathlib import Path
 
-base_dir = r"C:\Users\faton\Downloads\Pixiv-OAuth-Token\web"
+# Resolve paths relative to this script's location (scripts/utils/ -> project root)
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+base_dir = str(PROJECT_ROOT / "web")
 pub_index = os.path.join(base_dir, "public", "index.html")
 pub_style = os.path.join(base_dir, "public", "assets", "style.css")
 
