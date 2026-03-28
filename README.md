@@ -1,6 +1,6 @@
 # Pixiv OAuth Token
 
-> 🌐 Available in other languages: [Polski](docs/lang/README-PL.md) | [中文](docs/lang/README-ZH.md) | [日本語](docs/lang/README-JP.md) | [Deutsch](docs/lang/README-DE.md) | [Français](docs/lang/README-FR.md) | [Español](docs/lang/README-ES.md) | [Русский](docs/lang/README-RU.md) | [Português](docs/lang/README-PT.md) | [Bahasa Indonesia](docs/lang/README-ID.md) | [한국어](docs/lang/README-KR.md)
+> 🌐 Available in other languages: [Polski](web/public/docs/lang/README-PL.md) | [中文](web/public/docs/lang/README-ZH.md) | [日本語](web/public/docs/lang/README-JP.md) | [Deutsch](web/public/docs/lang/README-DE.md) | [Français](web/public/docs/lang/README-FR.md) | [Español](web/public/docs/lang/README-ES.md) | [Русский](web/public/docs/lang/README-RU.md) | [Português](web/public/docs/lang/README-PT.md) | [Bahasa Indonesia](web/public/docs/lang/README-ID.md) | [한국어](web/public/docs/lang/README-KR.md)
 
 
 A toolkit to generate Pixiv OAuth tokens in three modes:

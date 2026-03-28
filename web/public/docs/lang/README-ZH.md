@@ -1,7 +1,7 @@
 # Pixiv OAuth Token
 
 
-> 🌐 提供其他语言版本： [English](../../README.md) | [Polski](README-PL.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+> 🌐 提供其他语言版本： [English](../../../../README.md) | [Polski](README-PL.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 用于以三种模式生成 Pixiv OAuth 令牌的工具包：

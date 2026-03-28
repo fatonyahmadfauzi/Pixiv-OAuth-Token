@@ -1,7 +1,7 @@
 # Pixiv OAuth Token
 
 
-> 🌐 他の言語でも利用可能: [English](../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+> 🌐 他の言語でも利用可能: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 Pixiv OAuth トークンを 3 つのモードで生成するツールキット:

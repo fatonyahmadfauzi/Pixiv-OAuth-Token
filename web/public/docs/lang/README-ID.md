@@ -1,7 +1,7 @@
 # Pixiv OAuth Token
 
 
-> 🌐 Tersedia dalam bahasa lain: [English](../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [한국어](README-KR.md)
+> 🌐 Tersedia dalam bahasa lain: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [한국어](README-KR.md)
 
 ---
 Toolkit untuk menghasilkan token Pixiv OAuth dalam tiga mode:
