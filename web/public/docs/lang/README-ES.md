@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 Disponible en otros idiomas: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 Un conjunto de herramientas para generar tokens Pixiv OAuth en tres modos:
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### Funciones de la GUI
 
-| Característica | Descripción |
-|---|---|
-| **Multilingüe** | 11 idiomas: detectado automáticamente desde la configuración, conmutable en vivo a través del menú desplegable |
+| Característica              | Descripción                                                                                                                                                                                                                                                              |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Multilingüe**             | 11 idiomas: detectado automáticamente desde la configuración, conmutable en vivo a través del menú desplegable                                                                                                                                                           |
 | **⚙ Consola de depuración** | Botón en el encabezado superior derecho; abre una terminal oscura que registra **todos** los eventos (clics en botones, cambios de idioma, solicitudes HTTP, pasos de PKCE, portapapeles, guardados de configuración, advertencias) en tiempo real y en el idioma actual |
-| **Intercambio de tokens** | Pegue pixiv:// URL o código sin formato → intercambiar por acceso + token de actualización |
-| **Actualizar token** | Actualización con un clic utilizando el token de actualización guardado desde la configuración |
-| **Copiar tokens** | Copie access_token/refresh_token al portapapeles al instante |
-| **Tutorial** | Guía de imágenes paso a paso integrada en la aplicación |
+| **Intercambio de tokens**   | Pegue pixiv:// URL o código sin formato → intercambiar por acceso + token de actualización                                                                                                                                                                               |
+| **Actualizar token**        | Actualización con un clic utilizando el token de actualización guardado desde la configuración                                                                                                                                                                           |
+| **Copiar tokens**           | Copie access_token/refresh_token al portapapeles al instante                                                                                                                                                                                                             |
+| **Tutorial**                | Guía de imágenes paso a paso integrada en la aplicación                                                                                                                                                                                                                  |
 
 ## Construir
 
@@ -109,6 +109,7 @@ El respaldo predeterminado para no lanzamiento ahora es `BUILD-UNKNOWN` (en luga
 Una aplicación web responsiva y altamente optimizada que ofrece soporte dinámico en varios idiomas (11 idiomas con detección automática) y metadatos SEO completos.
 
 ### Funciones web clave
+
 - **Páginas extensas**: página de inicio, descargas, tutorial, contacto, problemas y relaciones públicas, seguimiento de debates, visor de documentación Markdown e integración de soporte/donación.
 - **SEO avanzado**: etiquetas `<meta>` localizadas inyectadas automáticamente, datos estructurados JSON-LD extensos (enlaces de sitio, aplicaciones de software, etc.), generación automatizada de `hreflang`, `robots.txt` y `sitemap.xml`.
 - **Seguridad y rendimiento**: ofuscación automática de JavaScript (manipulación extrema), minificación de HTML/CSS (a través de `cd web && node build_minify.js`) y prevención de limpieza `XSS` a través de `escapeHTML`.
@@ -119,14 +120,18 @@ Una aplicación web responsiva y altamente optimizada que ofrece soporte dinámi
 1. Empuje el repositorio a GitHub.
 2. Vercel → **Agregar nuevo...** → **Proyecto** → importar este repositorio.
 3. Configure sus variables de entorno en Vercel:
+
 - `PIXIV_CLIENT_SECRET`: Su secreto de cliente Pixiv OAuth.
 - `GITHUB_PAT`: opcional pero muy recomendable (su token de acceso personal GitHub para evitar límites de tasa en emisiones y lanzamientos de repositorios).
+
 4. `vercel.json` ya configura:
+
 - Limpiar URL (eliminar `.html`)
 - Alojamiento estático de `public/`
 - APIs sin servidor en `/api/*`
 - Enrutamiento de páginas 404 personalizado incorporado
 - Almacenamiento en caché en un futuro lejano a través de encabezados de Edge Cache.
+
 5. Implementar.
 
 > [!IMPORTANTE]
@@ -242,14 +247,17 @@ Vea todos los cambios notables para cada versión en el archivo [Registro de cam
 ### Último: v1.0.4 (2026-03-29)
 
 **🐞 Corregido**
+
 - CLI/GUI portátil: la versión ya no vuelve a la versión anterior después de la actualización: `VERSION_FILE` / `CONFIG_FILE` ahora se guardan correctamente junto a `.exe` en lugar de la carpeta de extracción temporal de PyInstaller.
 - Actualización congelada de CLI: ahora reemplaza correctamente el `.exe` real mediante un script de actualización `.bat` en lugar de sobrescribir un archivo temporal.
 
 **✨ Agregado**
+
 - **Actualización basada en la arquitectura**: tanto la CLI como la GUI ahora detectan automáticamente la arquitectura en ejecución (`x64`, `x86`, `ARM64`) y descargan la variante de compilación correspondiente al actualizar.
 - **Flujo de actualización de la configuración de CLI**: CLI ahora ejecuta silenciosamente el instalador de configuración cuando se actualiza desde una instalación `Program Files` (refleja el comportamiento de la GUI).
 
 **🔜 Próximamente en la próxima actualización**
+
 - Soporte web móvil: la aplicación web obtendrá un diseño totalmente responsivo para navegadores móviles.
 
 ## Licencia

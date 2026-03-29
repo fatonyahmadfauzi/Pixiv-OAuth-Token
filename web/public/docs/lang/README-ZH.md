@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 提供其他语言版本： [English](../../../../README.md) | [Polski](README-PL.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 用于以三种模式生成 Pixiv OAuth 令牌的工具包：
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### 图形用户界面功能
 
-|特色|描述 |
-|---|---|
-| **多语言** | 11 种语言 — 从配置中自动检测，可通过下拉菜单实时切换 |
-| **⚙ 调试控制台** |右上角标题中的按钮；打开一个黑暗的终端，以当前语言实时记录**所有**事件（按钮单击、语言更改、HTTP 请求、PKCE 步骤、剪贴板、配置保存、警告）|
-| **代币兑换** |粘贴pixiv:// URL 或原始代码→ 交换访问权限+刷新令牌 |
-| **刷新令牌** |使用配置中保存的refresh_token一键刷新|
-| **复制令牌** |立即将 access_token / refresh_token 复制到剪贴板 |
-| **教程** |应用程序内置分步图像指南 |
+| 特色             | 描述                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **多语言**       | 11 种语言 — 从配置中自动检测，可通过下拉菜单实时切换                                                                                       |
+| **⚙ 调试控制台** | 右上角标题中的按钮；打开一个黑暗的终端，以当前语言实时记录**所有**事件（按钮单击、语言更改、HTTP 请求、PKCE 步骤、剪贴板、配置保存、警告） |
+| **代币兑换**     | 粘贴pixiv:// URL 或原始代码→ 交换访问权限+刷新令牌                                                                                         |
+| **刷新令牌**     | 使用配置中保存的refresh_token一键刷新                                                                                                      |
+| **复制令牌**     | 立即将 access_token / refresh_token 复制到剪贴板                                                                                           |
+| **教程**         | 应用程序内置分步图像指南                                                                                                                   |
 
 ＃＃ 建造
 
@@ -109,6 +109,7 @@ build_all_pro.bat patch noinst nosign
 高度优化的响应式 Web 应用程序，具有动态多语言支持（自动检测 11 种语言）和全面的 SEO 元数据。
 
 ### 主要网络功能
+
 - **广泛的页面**：主页、下载、教程、联系方式、问题和 PR、讨论跟踪器、文档 Markdown 查看器以及支持/捐赠集成。
 - **高级 SEO**：自动注入本地化 `<meta>` 标签、广泛的 JSON-LD 结构化数据（站点链接、软件应用程序等）、自动 `hreflang` 生成、`robots.txt` 和 `sitemap.xml`。
 - **安全性和性能**：自动 JavaScript 混淆（极端修改）、HTML/CSS 缩小（通过 `cd web && node build_minify.js`）以及通过 `escapeHTML` 进行干净的 `XSS` 预防。
@@ -119,14 +120,18 @@ build_all_pro.bat patch noinst nosign
 1. 将存储库推送到 GitHub。
 2. Vercel → **添加新...** → **项目** → 导入此存储库。
 3. 在 Vercel 中设置环境变量：
+
 - `PIXIV_CLIENT_SECRET`：您的 Pixiv OAuth 客户端密钥。
 - `GITHUB_PAT`：可选但强烈推荐（您的 GitHub 个人访问令牌以避免回购问题和发布的速率限制）。
+
 4. `vercel.json` 已经配置：
+
 - 干净的 URL（剥离 `.html`）
 - 来自 `public/` 的静态托管
 - `/api/*` 处的无服务器 APIs
 - 内置自定义 404 页面路由
 - 通过边缘缓存标头进行远期缓存。
+
 5. 部署。
 
 > [!重要]
@@ -242,14 +247,17 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 ### 最新：v1.0.4 (2026-03-29)
 
 **🐞 已修复**
+
 - 便携式 CLI/GUI：更新后版本不再恢复为旧版本 — `VERSION_FILE` / `CONFIG_FILE` 现在正确保存在 `.exe` 旁边，而不是临时 PyInstaller 提取文件夹。
 - CLI 冻结更新：现在通过 `.bat` 更新程序脚本正确替换实际的 `.exe`，而不是覆盖临时文件。
 
 **✨已添加**
+
 - **架构感知更新** — CLI 和 GUI 现在都会自动检测正在运行的架构（`x64`、`x86`、`ARM64`）并在更新时下载匹配的构建变体。
 - **CLI 设置更新流程** — CLI 现在在从 `Program Files` 安装更新时以静默方式运行设置安装程序（镜像 GUI 行为）。
 
 **🔜 下次更新时推出**
+
 - 移动网络支持——网络应用程序将获得移动浏览器的完全响应式布局。
 
 ＃＃ 执照

@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 Disponível em outros idiomas: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 Um kit de ferramentas para gerar tokens Pixiv OAuth em três modos:
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### Recursos da GUI
 
-| Recurso | Descrição |
-|---|---|
-| **Multilíngue** | 11 idiomas – detectados automaticamente na configuração, alternáveis ​​ao vivo via menu suspenso |
+| Recurso                    | Descrição                                                                                                                                                                                                                                                 |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multilíngue**            | 11 idiomas – detectados automaticamente na configuração, alternáveis ​​ao vivo via menu suspenso                                                                                                                                                          |
 | **⚙ Console de depuração** | Botão no cabeçalho superior direito; abre um terminal escuro registrando **todos** eventos (cliques em botões, alterações de idioma, solicitações HTTP, etapas PKCE, área de transferência, configurações salvas, avisos) em tempo real e no idioma atual |
-| **Troca de Tokens** | Cole URL pixiv:// ou código bruto → troca por acesso + token de atualização |
-| **Token de atualização** | Atualização com um clique usando update_token salvo da configuração |
-| **Copiar Tokens** | Copie access_token/refresh_token para a área de transferência instantaneamente |
-| **Tutorial** | Guia de imagem passo a passo integrado ao aplicativo |
+| **Troca de Tokens**        | Cole URL pixiv:// ou código bruto → troca por acesso + token de atualização                                                                                                                                                                               |
+| **Token de atualização**   | Atualização com um clique usando update_token salvo da configuração                                                                                                                                                                                       |
+| **Copiar Tokens**          | Copie access_token/refresh_token para a área de transferência instantaneamente                                                                                                                                                                            |
+| **Tutorial**               | Guia de imagem passo a passo integrado ao aplicativo                                                                                                                                                                                                      |
 
 ## Construir
 
@@ -109,6 +109,7 @@ O substituto padrão de não lançamento agora é `BUILD-UNKNOWN` (em vez de `RE
 Um aplicativo da web altamente otimizado e responsivo com suporte dinâmico a vários idiomas (11 idiomas com detecção automática) e metadados de SEO abrangentes.
 
 ### Principais recursos da web
+
 - **Páginas extensas**: página inicial, downloads, tutorial, contato, problemas e relações públicas, rastreador de discussões, visualizador de documentação Markdown e integração de suporte/doações.
 - **SEO avançado**: tags `<meta>` localizadas injetadas automaticamente, dados estruturados JSON-LD extensos (Sitelinks, SoftwareApplication, etc.), geração automatizada de `hreflang`, `robots.txt` e `sitemap.xml`.
 - **Segurança e desempenho**: ofuscação automática de JavaScript (manipulação extrema), minificação de HTML/CSS (via `cd web && node build_minify.js`) e prevenção limpa de `XSS` via `escapeHTML`.
@@ -119,14 +120,18 @@ Um aplicativo da web altamente otimizado e responsivo com suporte dinâmico a v�
 1. Envie o repositório para GitHub.
 2. Vercel → **Adicionar Novo...** → **Projeto** → importe este repositório.
 3. Defina suas variáveis ​​de ambiente no Vercel:
+
 - `PIXIV_CLIENT_SECRET`: Seu segredo do cliente Pixiv OAuth.
 - `GITHUB_PAT`: opcional, mas altamente recomendado (seu token de acesso pessoal GitHub para evitar limites de taxa em emissões e lançamentos de recompra).
+
 4. `vercel.json` já configura:
+
 - URLs limpos (remoção de `.html`)
 - Hospedagem estática de `public/`
 - APIs sem servidor em `/api/*`
 - Roteamento de página 404 personalizado integrado
 - Cache de futuro distante por meio de cabeçalhos Edge Cache.
+
 5. Implante.
 
 > [!IMPORTANTE]
@@ -242,14 +247,17 @@ Veja todas as alterações notáveis ​​para cada versão no arquivo [Registr
 ### Mais recente: v1.0.4 (29/03/2026)
 
 **🐞 Corrigido**
+
 - CLI/GUI portátil: a versão não reverte mais para a versão antiga após a atualização - `VERSION_FILE` / `CONFIG_FILE` agora são salvos corretamente ao lado de `.exe` em vez da pasta de extração temporária do PyInstaller.
 - Atualização congelada da CLI: agora substitui corretamente o `.exe` real por meio de um script atualizador `.bat` em vez de substituir um arquivo temporário.
 
 **✨ Adicionado **
+
 - **Atualização com reconhecimento de arquitetura** — tanto a CLI quanto a GUI agora detectam automaticamente a arquitetura em execução (`x64`, `x86`, `ARM64`) e baixam a variante de compilação correspondente durante a atualização.
 - **Fluxo de atualização de configuração da CLI** — A CLI agora executa silenciosamente o instalador de configuração ao atualizar de uma instalação `Program Files` (espelha o comportamento da GUI).
 
 **🔜 Na próxima atualização**
+
 - Suporte web móvel — o aplicativo web ganhará layout totalmente responsivo para navegadores móveis.
 
 ## Licença

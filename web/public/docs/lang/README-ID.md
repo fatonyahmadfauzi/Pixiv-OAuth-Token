@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 Tersedia dalam bahasa lain: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [한국어](README-KR.md)
 
 ---
+
 Toolkit untuk menghasilkan token Pixiv OAuth dalam tiga mode:
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### Fitur GUI
 
-| Fitur | Deskripsi |
-|---|---|
-| **Multi-bahasa** | 11 bahasa — terdeteksi otomatis dari konfigurasi, dapat dialihkan langsung melalui dropdown |
-| **⚙ Konsol Debug** | Tombol di header kanan atas; membuka terminal gelap yang mencatat **semua** peristiwa (klik tombol, perubahan bahasa, permintaan HTTP, langkah PKCE, papan klip, penyimpanan konfigurasi, peringatan) secara real-time dan dalam bahasa saat ini |
-| **Penukaran Token** | Tempel URL pixiv:// atau kode mentah → tukarkan dengan akses + token penyegaran |
-| **Segarkan Token** | Penyegaran sekali klik menggunakan refresh_token yang disimpan dari config |
-| **Salin Token** | Salin access_token / refresh_token ke clipboard secara instan |
-| **Tutorial** | Panduan gambar langkah demi langkah yang ada di dalam aplikasi |
+| Fitur               | Deskripsi                                                                                                                                                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Multi-bahasa**    | 11 bahasa — terdeteksi otomatis dari konfigurasi, dapat dialihkan langsung melalui dropdown                                                                                                                                                      |
+| **⚙ Konsol Debug**  | Tombol di header kanan atas; membuka terminal gelap yang mencatat **semua** peristiwa (klik tombol, perubahan bahasa, permintaan HTTP, langkah PKCE, papan klip, penyimpanan konfigurasi, peringatan) secara real-time dan dalam bahasa saat ini |
+| **Penukaran Token** | Tempel URL pixiv:// atau kode mentah → tukarkan dengan akses + token penyegaran                                                                                                                                                                  |
+| **Segarkan Token**  | Penyegaran sekali klik menggunakan refresh_token yang disimpan dari config                                                                                                                                                                       |
+| **Salin Token**     | Salin access_token / refresh_token ke clipboard secara instan                                                                                                                                                                                    |
+| **Tutorial**        | Panduan gambar langkah demi langkah yang ada di dalam aplikasi                                                                                                                                                                                   |
 
 ## Membangun
 
@@ -109,6 +109,7 @@ Penggantian non-rilis default sekarang adalah `BUILD-UNKNOWN` (bukan `REL-LOCAL`
 Aplikasi web responsif dan sangat optimal yang menampilkan dukungan multibahasa dinamis (11 bahasa dengan deteksi otomatis) dan metadata SEO komprehensif.
 
 ### Fitur Web Utama
+
 - **Halaman Luas**: Beranda, Unduhan, Tutorial, Kontak, Masalah & Humas, Pelacak Diskusi, Penampil Dokumentasi Markdown, dan integrasi Dukungan/Sumbang.
 - **SEO Tingkat Lanjut**: Tag `<meta>` lokal yang dimasukkan secara otomatis, data terstruktur JSON-LD yang ekstensif (Tautan Situs, Aplikasi Perangkat Lunak, dll.), pembuatan `hreflang` otomatis, `robots.txt`, dan `sitemap.xml`.
 - **Keamanan & Performa**: Kebingungan JavaScript otomatis (pengrusakan ekstrem), minifikasi HTML/CSS (melalui `cd web && node build_minify.js`), dan pencegahan `XSS` bersih melalui `escapeHTML`.
@@ -119,14 +120,18 @@ Aplikasi web responsif dan sangat optimal yang menampilkan dukungan multibahasa 
 1. Dorong repositori ke GitHub.
 2. Vercel → **Tambahkan Baru...** → **Proyek** → impor repo ini.
 3. Atur Variabel Lingkungan Anda di Vercel:
+
 - `PIXIV_CLIENT_SECRET`: Rahasia klien Pixiv OAuth Anda.
 - `GITHUB_PAT`: Opsional tetapi sangat disarankan (Token Akses Pribadi GitHub Anda untuk menghindari batasan nilai pada masalah & rilis repo).
+
 4. `vercel.json` sudah mengkonfigurasi:
+
 - URL bersih (menghapus `.html`)
 - Hosting statis dari `public/`
 - APIs tanpa server di `/api/*`
 - Perutean halaman 404 Kustom bawaan
 - Caching masa depan melalui header Edge Cache.
+
 5. Terapkan.
 
 > [!PENTING]
@@ -242,14 +247,17 @@ Lihat semua perubahan penting untuk setiap versi di file [log perubahan](CHANGEL
 ### Terbaru: v1.0.4 (29-03-2026)
 
 **🐞 Diperbaiki**
+
 - CLI/GUI portabel: versi tidak lagi kembali ke versi lama setelah pembaruan — `VERSION_FILE` / `CONFIG_FILE` kini disimpan dengan benar di sebelah `.exe`, bukan di folder ekstraksi PyInstaller sementara.
 - Pembaruan CLI yang dibekukan: sekarang menggantikan `.exe` yang sebenarnya dengan benar melalui skrip pembaru `.bat` alih-alih menimpa file sementara.
 
 **✨ Ditambahkan**
+
 - **Pembaruan berbasis arsitektur** — CLI dan GUI kini secara otomatis mendeteksi arsitektur yang berjalan (`x64`, `x86`, `ARM64`) dan mengunduh varian build yang cocok saat memperbarui.
 - **Aliran pembaruan penyiapan CLI** — CLI kini menjalankan penginstal penyiapan secara diam-diam saat memperbarui dari penginstalan `Program Files` (mencerminkan perilaku GUI).
 
 **🔜 Akan hadir pada pembaruan berikutnya**
+
 - Dukungan web seluler — aplikasi web akan mendapatkan tata letak responsif penuh untuk browser seluler.
 
 ## Lisensi

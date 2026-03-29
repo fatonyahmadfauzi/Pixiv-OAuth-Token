@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 Disponible dans d'autres langues : [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 Une boîte à outils pour générer des jetons Pixiv OAuth dans trois modes :
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### Fonctionnalités de l'interface graphique
 
-| Fonctionnalité | Descriptif |
-|---|---|
-| **Multi-langue** | 11 langues — détectées automatiquement à partir de la configuration, commutables en direct via la liste déroulante |
+| Fonctionnalité            | Descriptif                                                                                                                                                                                                                                                                               |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multi-langue**          | 11 langues — détectées automatiquement à partir de la configuration, commutables en direct via la liste déroulante                                                                                                                                                                       |
 | **⚙ Console de débogage** | Bouton dans l’en-tête en haut à droite ; ouvre un terminal sombre enregistrant **tous** les événements (clics sur les boutons, changements de langue, requêtes HTTP, étapes PKCE, presse-papiers, sauvegardes de configuration, avertissements) en temps réel et dans la langue actuelle |
-| **Échange de jetons** | Coller pixiv:// URL ou code brut → échange contre accès + jeton d'actualisation |
-| **Actualiser le jeton** | Actualisation en un clic à l'aide du rafraîchissement_token enregistré à partir de la configuration |
-| **Copier les jetons** | Copiez instantanément access_token /fresh_token dans le presse-papiers |
-| **Tutoriel** | Guide image étape par étape intégré à l'application |
+| **Échange de jetons**     | Coller pixiv:// URL ou code brut → échange contre accès + jeton d'actualisation                                                                                                                                                                                                          |
+| **Actualiser le jeton**   | Actualisation en un clic à l'aide du rafraîchissement_token enregistré à partir de la configuration                                                                                                                                                                                      |
+| **Copier les jetons**     | Copiez instantanément access_token /fresh_token dans le presse-papiers                                                                                                                                                                                                                   |
+| **Tutoriel**              | Guide image étape par étape intégré à l'application                                                                                                                                                                                                                                      |
 
 ## Construire
 
@@ -109,6 +109,7 @@ La solution de secours par défaut non publiée est désormais `BUILD-UNKNOWN` (
 Une application Web hautement optimisée et réactive offrant une prise en charge multilingue dynamique (11 langues avec détection automatique) et des métadonnées SEO complètes.
 
 ### Principales fonctionnalités Web
+
 - **Pages étendues** : page d'accueil, téléchargements, didacticiel, contact, problèmes et relations publiques, suivi des discussions, visionneuse de documentation Markdown et intégration support/don.
 - **Référencement avancé** : balises `<meta>` localisées automatiquement injectées, données structurées JSON-LD étendues (liens annexes, application logicielle, etc.), génération automatisée de `hreflang`, `robots.txt` et `sitemap.xml`.
 - **Sécurité et performances** : obscurcissement automatique de JavaScript (modification extrême), minification HTML/CSS (via `cd web && node build_minify.js`) et prévention propre `XSS` via `escapeHTML`.
@@ -119,14 +120,18 @@ Une application Web hautement optimisée et réactive offrant une prise en charg
 1. Poussez le référentiel vers GitHub.
 2. Vercel → **Ajouter un nouveau...** → **Projet** → importer ce dépôt.
 3. Définissez vos variables d'environnement dans Vercel :
+
 - `PIXIV_CLIENT_SECRET` : Votre secret client Pixiv OAuth.
 - `GITHUB_PAT` : facultatif mais fortement recommandé (votre jeton d'accès personnel GitHub pour éviter les limites de taux sur les problèmes et les versions de repo).
+
 4. `vercel.json` configure déjà :
+
 - Nettoyer les URL (suppression de `.html`)
 - Hébergement statique à partir de `public/`
 - API sans serveur à `/api/*`
 - Routage de pages 404 personnalisé intégré
 - Mise en cache dans un futur lointain via les en-têtes Edge Cache.
+
 5. Déployez.
 
 > [!IMPORTANT]
@@ -242,14 +247,17 @@ Consultez tous les changements notables pour chaque version dans le fichier [Jou
 ### Dernier : v1.0.4 (2026-03-29)
 
 **🐞 Corrigé**
+
 - CLI/GUI portable : la version ne revient plus à l'ancienne version après la mise à jour — `VERSION_FILE` / `CONFIG_FILE` sont désormais correctement enregistrés à côté du `.exe` au lieu du dossier d'extraction temporaire de PyInstaller.
 - Mise à jour gelée de la CLI : remplace désormais correctement le `.exe` réel via un script de mise à jour `.bat` au lieu d'écraser un fichier temporaire.
 
 **✨ Ajouté**
+
 - **Mise à jour tenant compte de l'architecture** — la CLI et l'interface graphique détectent désormais automatiquement l'architecture en cours d'exécution (`x64`, `x86`, `ARM64`) et téléchargent la variante de construction correspondante lors de la mise à jour.
 - **Flux de mise à jour de la configuration CLI** — La CLI exécute désormais silencieusement le programme d'installation lors de la mise à jour à partir d'une installation `Program Files` (reflète le comportement de l'interface graphique).
 
 **🔜 À venir dans la prochaine mise à jour**
+
 - Prise en charge du Web mobile : l'application Web bénéficiera d'une mise en page entièrement réactive pour les navigateurs mobiles.
 
 ## Licence

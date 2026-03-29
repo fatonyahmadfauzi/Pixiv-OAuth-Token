@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 In anderen Sprachen verfügbar: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 Ein Toolkit zum Generieren von Pixiv OAuth-Tokens in drei Modi:
 
 - CLI (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### GUI-Funktionen
 
-| Funktion | Beschreibung |
-|---|---|
-| **Mehrsprachig** | 11 Sprachen – automatisch aus der Konfiguration erkannt, live über Dropdown umschaltbar |
-| **⚙ Debug-Konsole** | Schaltfläche in der Kopfzeile oben rechts; öffnet ein dunkles Terminal, das **alle** Ereignisse (Schaltflächenklicks, Sprachänderungen, HTTP-Anfragen, PKCE-Schritte, Zwischenablage, Konfigurationsspeicherungen, Warnungen) in Echtzeit und in der aktuellen Sprache protokolliert |
-| **Token-Austausch** | Paste pixiv:// URL or raw code → exchange for access + refresh token |
-| **Aktualisierungstoken** | Aktualisierung mit einem Klick mit gespeichertem Refresh_token aus der Konfiguration |
-| **Token kopieren** | Access_token/refresh_token sofort in die Zwischenablage kopieren |
-| **Tutorial** | In die App integrierte Schritt-für-Schritt-Bildanleitung |
+| Funktion                 | Beschreibung                                                                                                                                                                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Mehrsprachig**         | 11 Sprachen – automatisch aus der Konfiguration erkannt, live über Dropdown umschaltbar                                                                                                                                                                                              |
+| **⚙ Debug-Konsole**      | Schaltfläche in der Kopfzeile oben rechts; öffnet ein dunkles Terminal, das **alle** Ereignisse (Schaltflächenklicks, Sprachänderungen, HTTP-Anfragen, PKCE-Schritte, Zwischenablage, Konfigurationsspeicherungen, Warnungen) in Echtzeit und in der aktuellen Sprache protokolliert |
+| **Token-Austausch**      | Paste pixiv:// URL or raw code → exchange for access + refresh token                                                                                                                                                                                                                 |
+| **Aktualisierungstoken** | Aktualisierung mit einem Klick mit gespeichertem Refresh_token aus der Konfiguration                                                                                                                                                                                                 |
+| **Token kopieren**       | Access_token/refresh_token sofort in die Zwischenablage kopieren                                                                                                                                                                                                                     |
+| **Tutorial**             | In die App integrierte Schritt-für-Schritt-Bildanleitung                                                                                                                                                                                                                             |
 
 ## Bauen
 
@@ -109,6 +109,7 @@ Der standardmäßige Nicht-Release-Fallback ist jetzt `BUILD-UNKNOWN` (anstelle 
 Eine hochoptimierte, reaktionsfähige Web-App mit dynamischer Mehrsprachenunterstützung (11 Sprachen mit automatischer Erkennung) und umfassenden SEO-Metadaten.
 
 ### Wichtige Webfunktionen
+
 - **Umfangreiche Seiten**: Homepage, Downloads, Tutorial, Kontakt, Probleme und PRs, Diskussions-Tracker, Dokumentation Markdown-Viewer und Support/Spenden-Integration.
 - **Erweiterte SEO**: Automatisch eingefügte lokalisierte `<meta>`-Tags, umfangreiche JSON-LD-strukturierte Daten (Sitelinks, SoftwareApplication usw.), automatisierte `hreflang`-Generierung, `robots.txt` und `sitemap.xml`.
 - **Sicherheit und Leistung**: Automatische JavaScript-Verschleierung (extreme Entstellung), HTML/CSS-Minimierung (über `cd web && node build_minify.js`) und saubere `XSS`-Verhinderung über `escapeHTML`.
@@ -119,14 +120,18 @@ Eine hochoptimierte, reaktionsfähige Web-App mit dynamischer Mehrsprachenunters
 1. Repository nach GitHub verschieben.
 2. Vercel → **Neu hinzufügen...** → **Projekt** → dieses Repo importieren.
 3. Legen Sie Ihre Umgebungsvariablen in Vercel fest:
+
 - `PIXIV_CLIENT_SECRET`: Ihr Pixiv OAuth-Client-Geheimnis.
 - `GITHUB_PAT`: Optional, aber dringend empfohlen (Ihr persönlicher GitHub-Zugriffstoken, um Ratenbeschränkungen bei Repo-Problemen und -Releases zu vermeiden).
+
 4. `vercel.json` konfiguriert bereits:
+
 - URLs bereinigen (`.html` entfernen)
 - Statisches Hosting von `public/`
 - Serverlose APIs bei `/api/*`
 - Integriertes benutzerdefiniertes 404-Seitenrouting
 - Caching für die ferne Zukunft über Edge-Cache-Header.
+
 5. Bereitstellen.
 
 > [!IMPORTANT]
@@ -242,14 +247,17 @@ Sehen Sie sich alle wichtigen Änderungen für jede Version in der Datei [Änder
 ### Neueste: v1.0.4 (29.03.2026)
 
 **🐞 Behoben**
+
 - Portable CLI/GUI: Die Version wird nach dem Update nicht mehr auf die alte Version zurückgesetzt – `VERSION_FILE` / `CONFIG_FILE` werden jetzt korrekt neben `.exe` und nicht im temporären PyInstaller-Extraktionsordner gespeichert.
 - CLI-eingefrorenes Update: Ersetzt jetzt ordnungsgemäß das tatsächliche `.exe` über ein `.bat`-Updater-Skript, anstatt eine temporäre Datei zu überschreiben.
 
 **✨ Hinzugefügt**
+
 - **Architekturfähiges Update** – Sowohl CLI als auch GUI erkennen jetzt automatisch die laufende Architektur (`x64`, `x86`, `ARM64`) und laden beim Update die passende Build-Variante herunter.
 - **CLI-Setup-Aktualisierungsablauf** – CLI führt das Setup-Installationsprogramm jetzt unbeaufsichtigt aus, wenn von einer `Program Files`-Installation aktualisiert wird (spiegelt das GUI-Verhalten wider).
 
 **🔜 Erscheint im nächsten Update**
+
 - Unterstützung für mobiles Web – die Web-App erhält ein vollständig responsives Layout für mobile Browser.
 
 ## Lizenz

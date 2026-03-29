@@ -1,9 +1,9 @@
 # Pixiv OAuth Token
 
-
 > 🌐 Dostępne w innych językach: [English](../../../../README.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
+
 Zestaw narzędzi do generowania tokenów Pixiv OAuth w trzech trybach:
 
 - Interfejs wiersza polecenia (`app/pixiv_login.py`)
@@ -33,14 +33,14 @@ python pixiv_login_gui.py
 
 ### Funkcje GUI
 
-| Funkcja | Opis |
-|---|---|
-| **Wielojęzyczny** | 11 języków — automatycznie wykrywane w konfiguracji, przełączane na bieżąco poprzez menu rozwijane |
+| Funkcja                   | Opis                                                                                                                                                                                                                                                     |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Wielojęzyczny**         | 11 języków — automatycznie wykrywane w konfiguracji, przełączane na bieżąco poprzez menu rozwijane                                                                                                                                                       |
 | **⚙ Konsola debugowania** | Przycisk w prawym górnym nagłówku; otwiera ciemny terminal rejestrujący **wszystkie** zdarzenia (kliknięcia przycisków, zmiany języka, żądania HTTP, kroki PKCE, schowek, zapisanie konfiguracji, ostrzeżenia) w czasie rzeczywistym i w bieżącym języku |
-| **Wymiana tokenów** | Wklej adres URL pixiv:// lub surowy kod → wymiana na dostęp + odśwież token |
-| **Odśwież token** | Odśwież jednym kliknięciem przy użyciu zapisanego tokenu odświeżania z konfiguracji |
-| **Kopiuj tokeny** | Natychmiast skopiuj token dostępu / token_odświeżenia do schowka |
-| **Poradnik** | Przewodnik po obrazach krok po kroku wbudowany w aplikację |
+| **Wymiana tokenów**       | Wklej adres URL pixiv:// lub surowy kod → wymiana na dostęp + odśwież token                                                                                                                                                                              |
+| **Odśwież token**         | Odśwież jednym kliknięciem przy użyciu zapisanego tokenu odświeżania z konfiguracji                                                                                                                                                                      |
+| **Kopiuj tokeny**         | Natychmiast skopiuj token dostępu / token_odświeżenia do schowka                                                                                                                                                                                         |
+| **Poradnik**              | Przewodnik po obrazach krok po kroku wbudowany w aplikację                                                                                                                                                                                               |
 
 ## Zbudować
 
@@ -109,6 +109,7 @@ Domyślnym rozwiązaniem awaryjnym innym niż wydanie jest teraz `BUILD-UNKNOWN`
 Wysoce zoptymalizowana, responsywna aplikacja internetowa z dynamiczną obsługą wielu języków (11 języków z automatycznym wykrywaniem) i kompleksowymi metadanymi SEO.
 
 ### Kluczowe funkcje internetowe
+
 - **Rozbudowane strony**: strona główna, pliki do pobrania, samouczek, kontakt, problemy i PR, narzędzie do śledzenia dyskusji, przeglądarka dokumentacji Markdown oraz integracja wsparcia/datków.
 - **Zaawansowane SEO**: automatycznie wstrzykiwane zlokalizowane tagi `<meta>`, obszerne dane strukturalne JSON-LD (linki do podstron, aplikacje programowe itp.), automatyczne generowanie `hreflang`, `robots.txt` i `sitemap.xml`.
 - **Bezpieczeństwo i wydajność**: Automatyczne zaciemnianie kodu JavaScript (ekstremalne zniekształcanie), minifikacja HTML/CSS (przez `cd web && node build_minify.js`) i czyste zapobieganie `XSS` poprzez `escapeHTML`.
@@ -119,14 +120,18 @@ Wysoce zoptymalizowana, responsywna aplikacja internetowa z dynamiczną obsług�
 1. Prześlij repozytorium do GitHub.
 2. Vercel → **Dodaj nowy...** → **Projekt** → zaimportuj to repozytorium.
 3. Ustaw zmienne środowiskowe w Vercel:
+
 - `PIXIV_CLIENT_SECRET`: Twój sekret klienta Pixiv OAuth.
 - `GITHUB_PAT`: Opcjonalny, ale wysoce zalecany (Twój GitHub osobisty token dostępu, aby uniknąć ograniczeń stawek w przypadku wydawania i wydań repo).
+
 4. `vercel.json` już konfiguruje:
+
 - Wyczyść adresy URL (usuwanie `.html`)
 - Hosting statyczny od `public/`
 - Bezserwerowe APIs w `/api/*`
 - Wbudowane niestandardowe routing stron 404
 - Buforowanie dalekiej przyszłości poprzez nagłówki Edge Cache.
+
 5. Wdróż.
 
 > [!WAŻNE]
@@ -242,14 +247,17 @@ Zobacz wszystkie istotne zmiany dla każdej wersji w pliku [Dziennik zmian](CHAN
 ### Najnowsze: v1.0.4 (29.03.2026)
 
 **🐞 Naprawiono**
+
 - Przenośny CLI/GUI: wersja nie powraca już do starej wersji po aktualizacji — `VERSION_FILE` / `CONFIG_FILE` są teraz poprawnie zapisywane obok `.exe` zamiast tymczasowego folderu wyodrębniania PyInstaller.
 - Zamrożona aktualizacja CLI: teraz poprawnie zastępuje rzeczywisty `.exe` za pomocą skryptu aktualizującego `.bat` zamiast nadpisywać plik tymczasowy.
 
 **✨ Dodano**
+
 - **Aktualizacja uwzględniająca architekturę** — zarówno CLI, jak i GUI automatycznie wykrywają teraz działającą architekturę (`x64`, `x86`, `ARM64`) i pobierają pasujący wariant kompilacji podczas aktualizacji.
 - **Przebieg aktualizacji instalacji CLI** — CLI teraz po cichu uruchamia instalatora podczas aktualizacji z instalacji `Program Files` (odzwierciedla zachowanie GUI).
 
 **🔜 Już w następnej aktualizacji**
+
 - Obsługa internetu mobilnego – aplikacja internetowa zyska w pełni responsywny układ dla przeglądarek mobilnych.
 
 ## Licencja

@@ -1,0 +1,1 @@
+function setupCliPreviewToggle(){const e=q("cliPreviewBox"),i=q("cliToggleBtn");if(!e||!i)return;let o=!1;const a=()=>{e.classList.toggle("expanded",o),i.textContent=t(o?"showLess":"showMore")};i.addEventListener("click",()=>{o=!o,a()}),a()}
