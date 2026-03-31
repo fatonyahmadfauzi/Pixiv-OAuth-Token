@@ -2,6 +2,25 @@ const LICENSE_REPO = "fatonyahmadfauzi/Pixiv-OAuth-Token";
 const LICENSE_API = `/api/github?path=repos/${LICENSE_REPO}/contents/LICENSE`;
 const LICENSE_WEB_URL = `https://github.com/${LICENSE_REPO}/blob/master/LICENSE`;
 
+function escapeHtmlLocal(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function tSafe(key, fallback) {
+  try {
+    if (typeof t === "function") {
+      const translated = t(key);
+      if (translated && translated !== key) return translated;
+    }
+  } catch {}
+  return fallback;
+}
+
 function decodeBase64Utf8(input) {
   try {
     return decodeURIComponent(
@@ -18,10 +37,13 @@ function decodeBase64Utf8(input) {
 function renderLicense(text) {
   const skeleton = document.getElementById("docSkeleton");
   const body = document.getElementById("docBody");
+  if (!body) return;
+
   body.innerHTML =
     '<pre style="background:transparent;border:none;padding:0;overflow-x:auto;"><code>' +
-    escapeHTML(text) +
+    escapeHtmlLocal(text) +
     "</code></pre>";
+
   if (skeleton) skeleton.remove();
   body.hidden = false;
 }
@@ -29,12 +51,17 @@ function renderLicense(text) {
 function renderError() {
   const skeleton = document.getElementById("docSkeleton");
   const body = document.getElementById("docBody");
+  if (!body) return;
+
+  const errorText = tSafe("licenseErrorMsg", "Failed to load License. Please check GitHub directly.");
+  const buttonText = tSafe("licenseViewBtn", "View on GitHub");
+
   if (skeleton) skeleton.remove();
   body.innerHTML =
     '<div class="gh-error-state">' +
     '<i class="bi bi-exclamation-triangle" aria-hidden="true"></i>' +
-    `<p>${escapeHTML(t("licenseErrorMsg"))}</p>` +
-    `<a href="${LICENSE_WEB_URL}" target="_blank" rel="noopener" class="btn link-btn">${escapeHTML(t("licenseViewBtn"))}</a>` +
+    `<p>${escapeHtmlLocal(errorText)}</p>` +
+    `<a href="${escapeHtmlLocal(LICENSE_WEB_URL)}" target="_blank" rel="noopener" class="btn link-btn">${escapeHtmlLocal(buttonText)}</a>` +
     "</div>";
   body.hidden = false;
 }
