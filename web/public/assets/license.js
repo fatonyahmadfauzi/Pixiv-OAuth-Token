@@ -1,6 +1,6 @@
-const REPO = "fatonyahmadfauzi/Pixiv-OAuth-Token";
-const LICENSE_API = `/api/github?path=repos/${REPO}/contents/LICENSE`;
-const LICENSE_WEB_URL = `https://github.com/${REPO}/blob/master/LICENSE`;
+const LICENSE_REPO = "fatonyahmadfauzi/Pixiv-OAuth-Token";
+const LICENSE_API = `/api/github?path=repos/${LICENSE_REPO}/contents/LICENSE`;
+const LICENSE_WEB_URL = `https://github.com/${LICENSE_REPO}/blob/master/LICENSE`;
 
 function decodeBase64Utf8(input) {
   try {
