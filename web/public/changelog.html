@@ -42,9 +42,7 @@
       content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
     />
     <meta name="theme-color" content="#6ea2ff" />
-    <link
-      rel="canonical"
-      href="https://pixiv-o-auth-token.vercel.app/changelog"
+    <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/changelog"
     />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -63,6 +61,29 @@
       href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"
     />
     <link rel="stylesheet" href="/assets/style.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Pixiv OAuth Web",
+      "description": "Toolkit to generate and refresh Pixiv OAuth tokens via CLI, GUI, and Web with a secure PKCE flow.",
+      "inLanguage": "en",
+      "url": "https://pixiv-o-auth-token.vercel.app/changelog",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web, Windows"
+    }</script>
+    <link rel="alternate" hreflang="x-default" href="https://pixiv-o-auth-token.vercel.app/changelog" />
+    <link rel="alternate" hreflang="en" href="https://pixiv-o-auth-token.vercel.app/en/changelog" />
+    <link rel="alternate" hreflang="pl" href="https://pixiv-o-auth-token.vercel.app/pl/changelog" />
+    <link rel="alternate" hreflang="zh" href="https://pixiv-o-auth-token.vercel.app/zh/changelog" />
+    <link rel="alternate" hreflang="ja" href="https://pixiv-o-auth-token.vercel.app/jp/changelog" />
+    <link rel="alternate" hreflang="de" href="https://pixiv-o-auth-token.vercel.app/de/changelog" />
+    <link rel="alternate" hreflang="fr" href="https://pixiv-o-auth-token.vercel.app/fr/changelog" />
+    <link rel="alternate" hreflang="es" href="https://pixiv-o-auth-token.vercel.app/es/changelog" />
+    <link rel="alternate" hreflang="ru" href="https://pixiv-o-auth-token.vercel.app/ru/changelog" />
+    <link rel="alternate" hreflang="pt" href="https://pixiv-o-auth-token.vercel.app/pt/changelog" />
+    <link rel="alternate" hreflang="id" href="https://pixiv-o-auth-token.vercel.app/id/changelog" />
+    <link rel="alternate" hreflang="ko" href="https://pixiv-o-auth-token.vercel.app/kr/changelog" />
   </head>
   <body class="download-showcase-body">
     <noscript>
@@ -79,8 +100,8 @@
     <main class="download-showcase-main">
       <div class="gh-doc-content-wrap">
         <section class="download-showcase-hero gh-doc-hero">
-          <h1 id="changelogPageTitle">Changelog</h1>
-          <p id="changelogPageDesc" data-file="CHANGELOG.md">
+          <h1 id="changelogPageTitle" data-i18n="changelogPageTitle">Changelog</h1>
+          <p id="changelogPageDesc" data-file="CHANGELOG.md" data-i18n-html="docsAutoFetchHtml">
             Auto-fetched from <code>CHANGELOG.md</code> on the
             <a
               href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token"
@@ -111,6 +132,6 @@
     <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js"></script>
     <script defer src="/assets/app.js?v=4"></script>
     <script defer src="/assets/docs.js"></script>
-    <script defer src="/assets/changelog.js"></script>
+    
   </body>
 </html>

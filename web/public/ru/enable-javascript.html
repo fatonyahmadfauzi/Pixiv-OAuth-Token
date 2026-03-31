@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Веб-сайт Pixiv OAuth | Professional Token Helper</title>
+    <meta name="description" content="Инструмент для генерации токенов Pixiv OAuth через CLI, GUI и Web с безопасным PKCE-потоком и развёртыванием, готовым для Vercel."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#6ea2ff" />
+    <script>
+      // If JavaScript is enabled, redirect back to the homepage automatically
+      window.location.replace("/");
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #1a1a1a;
+        --text-muted: #4b5563;
+        --border: #e5e7eb;
+        --blue: #2563eb;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0b0d12;
+          --text: #dce5fb;
+          --text-muted: #8a98b8;
+          --border: rgba(79, 125, 255, 0.18);
+          --blue: #76a8ff;
+        }
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Inter", system-ui, sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+      }
+      .ejs-container {
+        max-width: 1000px;
+        margin: 80px auto;
+        padding: 0 24px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        flex: 1;
+      }
+      @media (min-width: 768px) {
+        .ejs-container {
+          grid-template-columns: 1.2fr 1.5fr;
+          gap: 60px;
+        }
+      }
+      .ejs-left h1 {
+        font-size: 2.2rem;
+        font-weight: 500;
+        line-height: 1.25;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+      }
+      .ejs-right > p {
+        font-size: 1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        color: var(--text-muted);
+      }
+      .ejs-accordion {
+        border-bottom: 1px solid var(--border);
+      }
+      .ejs-accordion:first-of-type {
+        border-top: 1px solid var(--border);
+      }
+      .ejs-accordion summary {
+        padding: 20px 0;
+        cursor: pointer;
+        list-style: none; /* Hide default arrow */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 400;
+      }
+      .ejs-accordion summary::-webkit-details-marker {
+        display: none;
+      }
+      .ejs-accordion summary::after {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: translateY(-2px) rotate(45deg);
+        transition: transform 0.2s ease;
+        margin-right: 4px;
+      }
+      .ejs-accordion[open] summary::after {
+        transform: translateY(2px) rotate(-135deg);
+      }
+      .ejs-accordion summary span {
+        color: var(--blue);
+      }
+      .ejs-accordion-content {
+        padding: 0 0 24px;
+        font-size: 0.95rem;
+        color: var(--text);
+      }
+      .ejs-accordion-content ol {
+        padding-left: 20px;
+        margin: 0;
+      }
+      .ejs-accordion-content li {
+        margin-bottom: 8px;
+        padding-left: 4px;
+      }
+      .ejs-accordion-content strong {
+        font-weight: 600;
+      }
+      .ejs-footer {
+        text-align: center;
+        padding: 24px;
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        margin-top: auto;
+      }
+      .ejs-footer a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.15s;
+      }
+      .ejs-footer a:hover {
+        color: var(--text);
+      }
+      .ejs-footer .sep {
+        margin: 0 8px;
+        opacity: 0.5;
+      }
+    </style>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Веб-сайт Pixiv OAuth",
+      "description": "Инструмент для генерации токенов Pixiv OAuth через CLI, GUI и Web с безопасным PKCE-потоком и развёртыванием, готовым для Vercel.",
+      "inLanguage": "ru",
+      "url": "https://pixiv-o-auth-token.vercel.app/ru/enable-javascript",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Web, Windows"
+    }</script>
+    <link rel="alternate" hreflang="x-default" href="https://pixiv-o-auth-token.vercel.app/enable-javascript" />
+    <link rel="alternate" hreflang="en" href="https://pixiv-o-auth-token.vercel.app/en/enable-javascript" />
+    <link rel="alternate" hreflang="pl" href="https://pixiv-o-auth-token.vercel.app/pl/enable-javascript" />
+    <link rel="alternate" hreflang="zh" href="https://pixiv-o-auth-token.vercel.app/zh/enable-javascript" />
+    <link rel="alternate" hreflang="ja" href="https://pixiv-o-auth-token.vercel.app/jp/enable-javascript" />
+    <link rel="alternate" hreflang="de" href="https://pixiv-o-auth-token.vercel.app/de/enable-javascript" />
+    <link rel="alternate" hreflang="fr" href="https://pixiv-o-auth-token.vercel.app/fr/enable-javascript" />
+    <link rel="alternate" hreflang="es" href="https://pixiv-o-auth-token.vercel.app/es/enable-javascript" />
+    <link rel="alternate" hreflang="ru" href="https://pixiv-o-auth-token.vercel.app/ru/enable-javascript" />
+    <link rel="alternate" hreflang="pt" href="https://pixiv-o-auth-token.vercel.app/pt/enable-javascript" />
+    <link rel="alternate" hreflang="id" href="https://pixiv-o-auth-token.vercel.app/id/enable-javascript" />
+    <link rel="alternate" hreflang="ko" href="https://pixiv-o-auth-token.vercel.app/kr/enable-javascript" />
+  </head>
+  <body>
+    <main class="ejs-container">
+      <div class="ejs-left">
+        <h1>Enable JavaScript to continue to the Website</h1>
+      </div>
+
+      <div class="ejs-right">
+        <p>
+          The browser you are using has JavaScript disabled.<br />To continue to
+          the website, please enable JavaScript.
+        </p>
+
+        <!-- Google Chrome -->
+        <details class="ejs-accordion" open>
+          <summary>
+            <div>Learn how to enable for <span>Google Chrome</span></div>
+          </summary>
+          <div class="ejs-accordion-content">
+            <ol>
+              <li>
+                Click the <strong>three-dot menu</strong> (&#8942;) in the
+                top-right corner of Chrome, then select
+                <strong>Settings</strong>.
+              </li>
+              <li>Select <strong>Privacy and security</strong>.</li>
+              <li>Click <strong>Site settings</strong>.</li>
+              <li>Click <strong>JavaScript</strong>.</li>
+              <li>Select <strong>Sites can use JavaScript</strong>.</li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Microsoft Edge -->
+        <details class="ejs-accordion">
+          <summary>
+            <div>Learn how to enable for <span>Microsoft Edge</span></div>
+          </summary>
+          <div class="ejs-accordion-content">
+            <ol>
+              <li>
+                Click the <strong>three-dot menu</strong> (&#8943;) in the
+                top-right corner, then select <strong>Settings</strong>.
+              </li>
+              <li>Select <strong>Cookies and site permissions</strong>.</li>
+              <li>Scroll down and click on <strong>JavaScript</strong>.</li>
+              <li>
+                Toggle the switch to <strong>Allowed (recommended)</strong>.
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Mozilla Firefox -->
+        <details class="ejs-accordion">
+          <summary>
+            <div>Learn how to enable for <span>Mozilla Firefox</span></div>
+          </summary>
+          <div class="ejs-accordion-content">
+            <ol>
+              <li>
+                Type <strong>about:config</strong> in the address bar and press
+                Enter.
+              </li>
+              <li>
+                If a warning message appears, click
+                <strong>Accept the Risk and Continue</strong>.
+              </li>
+              <li>
+                Search for <strong>javascript.enabled</strong> in the search
+                box.
+              </li>
+              <li>
+                If the value is <strong>false</strong>, double-click it to
+                change it to <strong>true</strong>.
+              </li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Safari -->
+        <details class="ejs-accordion">
+          <summary>
+            <div>Learn how to enable for <span>Safari</span></div>
+          </summary>
+          <div class="ejs-accordion-content">
+            <ol>
+              <li>
+                In the menu bar, click on <strong>Safari</strong> and select
+                <strong>Settings</strong> (or <strong>Preferences</strong>).
+              </li>
+              <li>Click on the <strong>Security</strong> tab.</li>
+              <li>Check the box next to <strong>Enable JavaScript</strong>.</li>
+            </ol>
+          </div>
+        </details>
+
+        <!-- Opera -->
+        <details class="ejs-accordion">
+          <summary>
+            <div>Learn how to enable for <span>Opera</span></div>
+          </summary>
+          <div class="ejs-accordion-content">
+            <ol>
+              <li>
+                Click the <strong>Opera icon</strong> in the top-left corner,
+                then select <strong>Settings</strong>.
+              </li>
+              <li>
+                Scroll down and select <strong>Privacy and security</strong> in
+                the left sidebar.
+              </li>
+              <li>Click <strong>Site settings</strong>.</li>
+              <li>Click <strong>JavaScript</strong>.</li>
+              <li>Select <strong>Sites can use JavaScript</strong>.</li>
+            </ol>
+          </div>
+        </details>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="ejs-footer">
+      <span>&copy; 2025 Pixiv OAuth Web</span>
+      <span class="sep">&middot;</span>
+      <span
+        >Developed by
+        <a
+          href="https://github.com/fatonyahmadfauzi"
+          target="_blank"
+          rel="noopener"
+          >fatonyahmadfauzi</a
+        ></span
+      >
+      <span class="sep">&middot;</span>
+      <a href="/">Back to Homepage</a>
+    </footer>
+  </body>
+</html>

@@ -14,7 +14,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const JavaScriptObfuscator = require('javascript-obfuscator');
+const { minify: minifyJs } = require('terser');
 const { minify: minifyHtml } = require('html-minifier-terser');
 const CleanCSS = require('clean-css');
 
@@ -84,19 +84,8 @@ if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
       let outputCode = code;
 
       if (ext === '.js') {
-        const obfuscationResult = JavaScriptObfuscator.obfuscate(code, {
-          compact: true,
-          controlFlowFlattening: true,
-          controlFlowFlatteningThreshold: 1.0,
-          deadCodeInjection: true,
-          deadCodeInjectionThreshold: 0.4,
-          numbersToExpressions: true,
-          simplify: true,
-          stringArrayShuffle: true,
-          splitStrings: true,
-          stringArrayThreshold: 1.0
-        });
-        outputCode = obfuscationResult.getObfuscatedCode();
+        const minifyResult = await minifyJs(code, { mangle: false });
+        outputCode = minifyResult.code;
       } else if (ext === '.css') {
         const output = new CleanCSS({}).minify(code);
         outputCode = output.styles;
