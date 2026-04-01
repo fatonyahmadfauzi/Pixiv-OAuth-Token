@@ -42,8 +42,8 @@ const SITE_FOOTER_HTML = `
         <section class="footer-col footer-social-col" id="footerSocialCol">
           <h4 id="footerContactTitle" data-i18n="footerContactTitle">Social</h4>
           <ul>
-            <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-github footer-inline-icon"></i>GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-linkedin footer-inline-icon"></i>LinkedIn</a></li>
+            <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-github footer-inline-icon"></i><span>GitHub</span></a></li>
+            <li><a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-linkedin footer-inline-icon"></i><span>LinkedIn</span></a></li>
           </ul>
         </section>
       </div>
