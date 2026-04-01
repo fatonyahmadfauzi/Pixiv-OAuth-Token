@@ -1883,7 +1883,7 @@ pre {
 .footer-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px 32px;
+  padding: 72px 24px 32px;
 }
 .footer-columns {
   display: grid;
@@ -1942,6 +1942,9 @@ pre {
   display: none;
 }
 @media (max-width: 980px) {
+  .footer-inner {
+    padding-top: 48px;
+  }
   .footer-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3715,4 +3718,15 @@ textarea.hw-input {
   max-width: 980px;
   color: var(--text-muted);
   font-size: 0.88rem;
+}
+@media (min-width: 981px) {
+  .footer-columns {
+    margin-top: 12px;
+  }
+  .footer-disclaimer {
+    margin-top: 44px;
+  }
+  .footer-version {
+    margin-top: 8px;
+  }
 }
