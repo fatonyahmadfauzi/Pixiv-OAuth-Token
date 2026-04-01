@@ -39,13 +39,13 @@ const SITE_FOOTER_HTML = `
             <li><a href="/support" id="footerDonateLink" data-i18n="footerDonateLink">Support / Donate</a></li>
           </ul>
         </section>
-      </div>
-      <div class="footer-social-section">
-        <h4 id="footerContactTitle" data-i18n="footerContactTitle">Social</h4>
-        <div class="footer-social-icons">
-          <a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-        </div>
+        <section class="footer-col footer-social-col" id="footerSocialCol">
+          <h4 id="footerContactTitle" data-i18n="footerContactTitle">Social</h4>
+          <ul>
+            <li><a href="https://github.com/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-github footer-inline-icon"></i>GitHub</a></li>
+            <li><a href="https://www.linkedin.com/in/fatonyahmadfauzi" target="_blank" rel="noopener"><i class="bi bi-linkedin footer-inline-icon"></i>LinkedIn</a></li>
+          </ul>
+        </section>
       </div>
       <div class="footer-brand-block">
         <span class="footer-ghost-text" data-i18n="footerBrandText">Pixiv OAuth</span>
