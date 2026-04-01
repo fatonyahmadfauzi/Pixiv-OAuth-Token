@@ -283,5 +283,12 @@ export function applyLang() {
     cliToggleBtn.textContent = t(expanded ? "showLess" : "showMore");
   }
 
+  const footerVersion = document.getElementById("footerVersion");
+  if (footerVersion && footerVersion.dataset.version) {
+    footerVersion.textContent = t("footerVersion", {
+      version: footerVersion.dataset.version,
+    });
+  }
+
   updateLangFlag();
 }
