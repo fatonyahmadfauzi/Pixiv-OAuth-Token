@@ -3704,3 +3704,40 @@ textarea.hw-input {
   text-overflow: ellipsis;
   max-width: 140px;
 }
+
+.legal-main {
+  max-width: 960px;
+}
+
+.legal-hero p {
+  margin: 0.4rem 0;
+}
+
+.legal-card {
+  display: grid;
+  gap: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.legal-card section h2 {
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.legal-card section p {
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.footer-disclaimer,
+.footer-version {
+  margin: 0.35rem auto;
+  text-align: center;
+  max-width: 980px;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
