@@ -20,14 +20,31 @@ export function initLocaleRouting() {
       setDisplayLanguage(saved);
     } else {
       const langMap = {
-        id: "id", in: "id", ja: "jp", jp: "jp", zh: "zh",
-        "zh-cn": "zh", "zh-tw": "zh", "zh-sg": "zh", ko: "kr",
-        kr: "kr", de: "de", fr: "fr", es: "es", pt: "pt",
-        "pt-br": "pt", "pt-pt": "pt", ru: "ru", pl: "pl", en: "en"
+        id: "id",
+        in: "id",
+        ja: "jp",
+        jp: "jp",
+        zh: "zh",
+        "zh-cn": "zh",
+        "zh-tw": "zh",
+        "zh-sg": "zh",
+        ko: "kr",
+        kr: "kr",
+        de: "de",
+        fr: "fr",
+        es: "es",
+        pt: "pt",
+        "pt-br": "pt",
+        "pt-pt": "pt",
+        ru: "ru",
+        pl: "pl",
+        en: "en",
       };
-      const candidates = Array.from(navigator.languages || [navigator.language || "en"]);
+      const candidates = Array.from(
+        navigator.languages || [navigator.language || "en"],
+      );
       let detected = "en";
-      
+
       for (const lang of candidates) {
         const lower = String(lang).toLowerCase(),
           exact = langMap[lower],
@@ -46,23 +63,26 @@ export function initLocaleRouting() {
   }
 
   document.documentElement.lang =
-      DISPLAY_LANG === "jp" ? "ja" : DISPLAY_LANG === "kr" ? "ko" : DISPLAY_LANG;
+    DISPLAY_LANG === "jp" ? "ja" : DISPLAY_LANG === "kr" ? "ko" : DISPLAY_LANG;
 }
-
 
 /**
  * Route to a new language folder when user clicks dropdown
- * @param {string} selectedLang 
+ * @param {string} selectedLang
  */
 export function updateUrlLocale(selectedLang) {
-    localStorage.setItem("pixiv_lang", selectedLang);
-    const parts = window.location.pathname.split("/").filter(Boolean);
-    let newPath = "";
-    if (parts.length > 0 && LANG_ORDER.includes(parts[0])) {
-      parts[0] = selectedLang;
-      newPath = "/" + parts.join("/");
-    } else {
-      newPath = "/" + selectedLang + ("/" === window.location.pathname ? "" : window.location.pathname);
-    }
-    window.location.href = newPath + window.location.search + window.location.hash;
+  localStorage.setItem("pixiv_lang", selectedLang);
+  const parts = window.location.pathname.split("/").filter(Boolean);
+  let newPath = "";
+  if (parts.length > 0 && LANG_ORDER.includes(parts[0])) {
+    parts[0] = selectedLang;
+    newPath = "/" + parts.join("/");
+  } else {
+    newPath =
+      "/" +
+      selectedLang +
+      ("/" === window.location.pathname ? "" : window.location.pathname);
+  }
+  window.location.href =
+    newPath + window.location.search + window.location.hash;
 }

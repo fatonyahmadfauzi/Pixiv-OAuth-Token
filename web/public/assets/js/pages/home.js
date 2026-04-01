@@ -5,22 +5,22 @@ export function setupCustomFileInput() {
   const fileInput = document.getElementById("attachment"),
     customBtn = document.getElementById("customFileBtn"),
     customText = document.getElementById("customFileText");
-    
+
   if (fileInput && customBtn && customText) {
-      customBtn.addEventListener("click", () => fileInput.click());
-      fileInput.addEventListener("change", () => {
-        if (fileInput.files.length > 0) {
-          const fileNames = Array.from(fileInput.files)
-            .map((f) => f.name)
-            .join(", ");
-          customText.textContent = fileNames;
-          customText.removeAttribute("data-i18n");
-        } else {
-            customText.setAttribute("data-i18n", "contactNoFile");
-            customText.textContent = t("contactNoFile");
-        }
-      });
-      
+    customBtn.addEventListener("click", () => fileInput.click());
+    fileInput.addEventListener("change", () => {
+      if (fileInput.files.length > 0) {
+        const fileNames = Array.from(fileInput.files)
+          .map((f) => f.name)
+          .join(", ");
+        customText.textContent = fileNames;
+        customText.removeAttribute("data-i18n");
+      } else {
+        customText.setAttribute("data-i18n", "contactNoFile");
+        customText.textContent = t("contactNoFile");
+      }
+    });
+
     // Remove inline style injection and put it in index.css if necessary.
     // However, keeping style injection replicates the exact previous behavior.
     const style = document.createElement("style");
@@ -56,22 +56,21 @@ export function setupCustomFileInput() {
   }
 }
 
-
 export function setupCliPreviewToggle() {
   const preview = q("cliPreviewBox"),
     toggle = q("cliToggleBtn");
   if (!preview || !toggle) return;
   let expanded = false;
-  
+
   const render = () => {
     preview.classList.toggle("expanded", expanded);
     toggle.textContent = t(expanded ? "showLess" : "showMore");
   };
-  
+
   toggle.addEventListener("click", () => {
     expanded = !expanded;
     render();
   });
-  
+
   render();
 }

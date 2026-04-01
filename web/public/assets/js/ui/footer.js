@@ -52,6 +52,8 @@ const SITE_FOOTER_HTML = `
 `;
 
 export function initializeFooter() {
-  const foot = document.getElementById("mainFooter") || document.querySelector(".site-footer");
+  const foot =
+    document.getElementById("mainFooter") ||
+    document.querySelector(".site-footer");
   if (foot) foot.innerHTML = SITE_FOOTER_HTML;
 }

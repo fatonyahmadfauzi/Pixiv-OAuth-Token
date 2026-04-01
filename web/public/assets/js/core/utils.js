@@ -7,7 +7,7 @@ import { t } from "./i18n.js";
 
 /**
  * Formats a time string into a relative time (e.g. "just now", "5m ago")
- * @param {string} dateString 
+ * @param {string} dateString
  * @returns {string}
  */
 export function formatTimeRelative(dateString) {
@@ -27,12 +27,17 @@ export function formatTimeRelative(dateString) {
 
 /**
  * Copy text to clipboard and update button UI
- * @param {string} textToCopy 
- * @param {HTMLButtonElement} btn 
- * @param {string} originalHtml 
- * @param {string} successHtml 
+ * @param {string} textToCopy
+ * @param {HTMLButtonElement} btn
+ * @param {string} originalHtml
+ * @param {string} successHtml
  */
-export async function copyToClipboard(textToCopy, btn, originalHtml, successHtml) {
+export async function copyToClipboard(
+  textToCopy,
+  btn,
+  originalHtml,
+  successHtml,
+) {
   if (!textToCopy) return;
   try {
     await navigator.clipboard.writeText(textToCopy);

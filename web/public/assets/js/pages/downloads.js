@@ -12,17 +12,25 @@ export function setDownloadLinks(assets = {}) {
     guiSetup = q("dlGuiSetup"),
     guiPortable = q("dlGuiPortable");
   if (cliSetup)
-    cliSetup.href = assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
+    cliSetup.href =
+      assets.cliSetup || repoDownloadLink("Pixiv OAuth CLi Setup_latest.exe");
   if (cliPortable)
-    cliPortable.href = assets.cliPortable || repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
+    cliPortable.href =
+      assets.cliPortable ||
+      repoDownloadLink("Pixiv OAuth CLi (Portable)_latest.exe");
   if (guiSetup)
-    guiSetup.href = assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
+    guiSetup.href =
+      assets.guiSetup || repoDownloadLink("Pixiv OAuth GUi Setup_latest.exe");
   if (guiPortable)
-    guiPortable.href = assets.guiPortable || repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
+    guiPortable.href =
+      assets.guiPortable ||
+      repoDownloadLink("Pixiv OAuth GUi (Portable)_latest.exe");
 }
 
 export function setupDownloadTabs() {
-  const tabs = Array.from(document.querySelectorAll(".download-inline-tabs a[data-tab-target]"));
+  const tabs = Array.from(
+    document.querySelectorAll(".download-inline-tabs a[data-tab-target]"),
+  );
   if (!tabs.length) return;
   const panels = Array.from(document.querySelectorAll(".download-tab-panel"));
   const activate = (targetId) => {
@@ -42,9 +50,13 @@ export function setupDownloadTabs() {
     });
     tab.addEventListener("keydown", (e) => {
       const currentIndex = tabs.indexOf(tab);
-      if (!(currentIndex < 0 || (e.key !== "ArrowRight" && e.key !== "ArrowLeft"))) {
+      if (
+        !(currentIndex < 0 || (e.key !== "ArrowRight" && e.key !== "ArrowLeft"))
+      ) {
         e.preventDefault();
-        const next = (currentIndex + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+        const next =
+          (currentIndex + (e.key === "ArrowRight" ? 1 : -1) + tabs.length) %
+          tabs.length;
         activate(tabs[next].dataset.tabTarget);
         tabs[next].focus();
       }
@@ -56,10 +68,26 @@ export function setupDownloadTabs() {
 export function setupArchDownloadRows() {
   const ARCH_MAP = { x86: "x86", x64: "x64", arm64: "ARM64" };
   [
-    { selectId: "archSelectGuiSetup", btnId: "btnGuiSetupArch", prefix: "Pixiv OAuth GUi Setup" },
-    { selectId: "archSelectCliSetup", btnId: "btnCliSetupArch", prefix: "Pixiv OAuth CLi Setup" },
-    { selectId: "archSelectGuiPortable", btnId: "btnGuiPortableArch", prefix: "Pixiv OAuth GUi (Portable)" },
-    { selectId: "archSelectCliPortable", btnId: "btnCliPortableArch", prefix: "Pixiv OAuth CLi (Portable)" },
+    {
+      selectId: "archSelectGuiSetup",
+      btnId: "btnGuiSetupArch",
+      prefix: "Pixiv OAuth GUi Setup",
+    },
+    {
+      selectId: "archSelectCliSetup",
+      btnId: "btnCliSetupArch",
+      prefix: "Pixiv OAuth CLi Setup",
+    },
+    {
+      selectId: "archSelectGuiPortable",
+      btnId: "btnGuiPortableArch",
+      prefix: "Pixiv OAuth GUi (Portable)",
+    },
+    {
+      selectId: "archSelectCliPortable",
+      btnId: "btnCliPortableArch",
+      prefix: "Pixiv OAuth CLi (Portable)",
+    },
   ].forEach(({ selectId, btnId, prefix }) => {
     const select = q(selectId),
       btn = q(btnId);
@@ -76,24 +104,48 @@ export function setupArchDownloadRows() {
 function setCommandBlocks(assets = {}) {
   const files = {
     guiPortable: {
-      x64: assets.guiPortableX64 || repoDownloadLink("Pixiv OAuth GUi (Portable) x64_latest.exe"),
-      x86: assets.guiPortableX86 || repoDownloadLink("Pixiv OAuth GUi (Portable) x86_latest.exe"),
-      arm64: assets.guiPortableArm64 || repoDownloadLink("Pixiv OAuth GUi (Portable) ARM64_latest.exe"),
+      x64:
+        assets.guiPortableX64 ||
+        repoDownloadLink("Pixiv OAuth GUi (Portable) x64_latest.exe"),
+      x86:
+        assets.guiPortableX86 ||
+        repoDownloadLink("Pixiv OAuth GUi (Portable) x86_latest.exe"),
+      arm64:
+        assets.guiPortableArm64 ||
+        repoDownloadLink("Pixiv OAuth GUi (Portable) ARM64_latest.exe"),
     },
     cliPortable: {
-      x64: assets.cliPortableX64 || repoDownloadLink("Pixiv OAuth CLi (Portable) x64_latest.exe"),
-      x86: assets.cliPortableX86 || repoDownloadLink("Pixiv OAuth CLi (Portable) x86_latest.exe"),
-      arm64: assets.cliPortableArm64 || repoDownloadLink("Pixiv OAuth CLi (Portable) ARM64_latest.exe"),
+      x64:
+        assets.cliPortableX64 ||
+        repoDownloadLink("Pixiv OAuth CLi (Portable) x64_latest.exe"),
+      x86:
+        assets.cliPortableX86 ||
+        repoDownloadLink("Pixiv OAuth CLi (Portable) x86_latest.exe"),
+      arm64:
+        assets.cliPortableArm64 ||
+        repoDownloadLink("Pixiv OAuth CLi (Portable) ARM64_latest.exe"),
     },
     guiSetup: {
-      x64: assets.guiSetupX64 || repoDownloadLink("Pixiv OAuth GUi Setup x64_latest.exe"),
-      x86: assets.guiSetupX86 || repoDownloadLink("Pixiv OAuth GUi Setup x86_latest.exe"),
-      arm64: assets.guiSetupArm64 || repoDownloadLink("Pixiv OAuth GUi Setup ARM64_latest.exe"),
+      x64:
+        assets.guiSetupX64 ||
+        repoDownloadLink("Pixiv OAuth GUi Setup x64_latest.exe"),
+      x86:
+        assets.guiSetupX86 ||
+        repoDownloadLink("Pixiv OAuth GUi Setup x86_latest.exe"),
+      arm64:
+        assets.guiSetupArm64 ||
+        repoDownloadLink("Pixiv OAuth GUi Setup ARM64_latest.exe"),
     },
     cliSetup: {
-      x64: assets.cliSetupX64 || repoDownloadLink("Pixiv OAuth CLi Setup x64_latest.exe"),
-      x86: assets.cliSetupX86 || repoDownloadLink("Pixiv OAuth CLi Setup x86_latest.exe"),
-      arm64: assets.cliSetupArm64 || repoDownloadLink("Pixiv OAuth CLi Setup ARM64_latest.exe"),
+      x64:
+        assets.cliSetupX64 ||
+        repoDownloadLink("Pixiv OAuth CLi Setup x64_latest.exe"),
+      x86:
+        assets.cliSetupX86 ||
+        repoDownloadLink("Pixiv OAuth CLi Setup x86_latest.exe"),
+      arm64:
+        assets.cliSetupArm64 ||
+        repoDownloadLink("Pixiv OAuth CLi Setup ARM64_latest.exe"),
     },
   };
   const archOrder = [
@@ -101,7 +153,8 @@ function setCommandBlocks(assets = {}) {
     ["x86", "32-Bit"],
     ["arm64", "ARM 64-Bit"],
   ];
-  const psCommands = [], cmdCommands = [];
+  const psCommands = [],
+    cmdCommands = [];
   [
     ["guiPortable", "Portable GUI"],
     ["cliPortable", "Portable CLI"],
@@ -110,8 +163,14 @@ function setCommandBlocks(assets = {}) {
   ].forEach(([key, name]) => {
     archOrder.forEach(([arch, archLabel]) => {
       const url = files[key][arch];
-      psCommands.push({ title: `${name} ${archLabel}`, value: `Invoke-WebRequest "${url}" -OutFile "Pixiv OAuth ${name} (${archLabel}).exe"` });
-      cmdCommands.push({ title: `${name} ${archLabel}`, value: `curl -L "${url}" -o "Pixiv OAuth ${name} (${archLabel}).exe"` });
+      psCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `Invoke-WebRequest "${url}" -OutFile "Pixiv OAuth ${name} (${archLabel}).exe"`,
+      });
+      cmdCommands.push({
+        title: `${name} ${archLabel}`,
+        value: `curl -L "${url}" -o "Pixiv OAuth ${name} (${archLabel}).exe"`,
+      });
     });
   });
 
@@ -149,7 +208,8 @@ function setCommandBlocks(assets = {}) {
   };
   renderList("psCmdList", psCommands);
   renderList("cmdCmdList", cmdCommands);
-  const ps = q("psCmd"), cmd = q("cmdCmd");
+  const ps = q("psCmd"),
+    cmd = q("cmdCmd");
   if (ps) ps.textContent = psCommands.map((x) => x.value).join("n");
   if (cmd) cmd.textContent = cmdCommands.map((x) => x.value).join("n");
 }
@@ -171,7 +231,9 @@ export function setupDownloadCategorySwitch() {
     });
   };
   items.forEach((item) => {
-    item.addEventListener("click", () => activatePanel(item.dataset.downloadPanel));
+    item.addEventListener("click", () =>
+      activatePanel(item.dataset.downloadPanel),
+    );
     item.addEventListener("keydown", (e) => {
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
@@ -186,9 +248,9 @@ export function setupCommandCopyButtons() {
     btn.addEventListener("click", async () => {
       const text = btn.getAttribute("data-copy-text") || "";
       if (text) {
-          await navigator.clipboard.writeText(text);
-          const output = q("output");
-          if(output) output.textContent = "Command copied.";
+        await navigator.clipboard.writeText(text);
+        const output = q("output");
+        if (output) output.textContent = "Command copied.";
       }
     });
   });
@@ -200,14 +262,19 @@ export function setupMobilePlatformDropdown() {
     select.addEventListener("change", () => {
       const targetId = select.value,
         panels = document.querySelectorAll(".download-category-panel"),
-        sidebarItems = document.querySelectorAll(".download-showcase-sidebar li");
+        sidebarItems = document.querySelectorAll(
+          ".download-showcase-sidebar li",
+        );
       panels.forEach((p) => {
         p.hidden = p.id !== targetId;
         p.classList.toggle("active", p.id === targetId);
       });
       sidebarItems.forEach((li) => {
         li.classList.toggle("active", li.dataset.downloadPanel === targetId);
-        li.setAttribute("aria-pressed", li.dataset.downloadPanel === targetId ? "true" : "false");
+        li.setAttribute(
+          "aria-pressed",
+          li.dataset.downloadPanel === targetId ? "true" : "false",
+        );
       });
     });
   }

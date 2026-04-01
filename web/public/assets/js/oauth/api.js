@@ -2,7 +2,7 @@ import { t } from "../core/i18n.js";
 
 /**
  * Fetch wrapper hitting the backend serverless endpoint
- * @param {object} payload 
+ * @param {object} payload
  */
 export async function callApi(payload) {
   const res = await fetch("/api/token", {

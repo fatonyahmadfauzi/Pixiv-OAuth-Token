@@ -40,7 +40,7 @@ export function setupHelpWidget() {
       </form>
     </div>
   </div>`;
-  
+
   if (
     "/404" !== window.location.pathname &&
     "/enable-javascript" !== window.location.pathname &&
@@ -51,7 +51,7 @@ export function setupHelpWidget() {
     const hwBtn = document.getElementById("hwBtn"),
       hwBox = document.getElementById("hwBox"),
       hwClose = document.getElementById("hwClose");
-      
+
     if (hwBtn && hwBox && hwClose) {
       hwBtn.addEventListener("click", () => {
         hwBox.classList.add("show");
@@ -65,16 +65,18 @@ export function setupHelpWidget() {
         hwBtn.style.pointerEvents = "auto";
       });
     }
-    
+
     // Make sure the newly injected HTML gets translated!
     applyLang();
-    
+
     const hwFileEl = document.getElementById("hwFile"),
       hwFileNameEl = document.getElementById("hwFileName");
     if (hwFileEl && hwFileNameEl) {
       hwFileEl.addEventListener("change", function () {
         if (this.files && this.files.length > 0) {
-          hwFileNameEl.textContent = Array.from(this.files).map((f) => f.name).join(", ");
+          hwFileNameEl.textContent = Array.from(this.files)
+            .map((f) => f.name)
+            .join(", ");
           hwFileNameEl.style.color = "#2c374a";
         } else {
           hwFileNameEl.textContent = t("hwNoFile");

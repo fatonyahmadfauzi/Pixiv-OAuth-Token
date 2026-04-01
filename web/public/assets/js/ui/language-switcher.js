@@ -25,20 +25,20 @@ export function setupLanguageMenu() {
   langOptions.forEach((option) => {
     option.addEventListener("click", () => {
       const selectedLang = option.getAttribute("data-lang");
-      
+
       // Update DOM
       langCurrent.textContent = LANG_NAME[selectedLang];
       langFlag.className = `fi ${FLAG_CLASS[selectedLang]}`;
       langToggle.setAttribute("aria-expanded", "false");
       langMenu.classList.remove("open");
-      
+
       // Update language state
       setDisplayLanguage(selectedLang);
-      
+
       // Propagate translations to DOM
       applyLang();
-      
-      // Route URL (e.g., /jp/downloads) without reloading 
+
+      // Route URL (e.g., /jp/downloads) without reloading
       // if supported by locale-routing (PushState)
       updateUrlLocale(selectedLang);
     });

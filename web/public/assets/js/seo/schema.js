@@ -57,7 +57,7 @@ export function injectSchema() {
       },
     ],
   };
-  
+
   const script = document.createElement("script");
   script.type = "application/ld+json";
   script.textContent = JSON.stringify(schema, null, 2);

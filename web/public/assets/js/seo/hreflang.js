@@ -4,5 +4,5 @@
  * Existing hreflang attributes are loaded natively via Server/HTML rendering.
  */
 export function initHreflangTags() {
-    // Dynamic hreflang appending logic
+  // Dynamic hreflang appending logic
 }

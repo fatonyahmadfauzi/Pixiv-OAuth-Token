@@ -13,7 +13,9 @@ export function setupContactFileInput() {
   customBtn.addEventListener("click", () => fileInput.click());
   fileInput.addEventListener("change", () => {
     if (fileInput.files.length > 0) {
-      const names = Array.from(fileInput.files).map((f) => f.name).join(", ");
+      const names = Array.from(fileInput.files)
+        .map((f) => f.name)
+        .join(", ");
       customText.textContent = names;
       customText.removeAttribute("data-i18n");
     } else {

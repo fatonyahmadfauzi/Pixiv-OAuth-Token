@@ -10,7 +10,7 @@ let tokenState = { access_token: "", refresh_token: "" };
 export function b64Url(bytes) {
   return btoa(String.fromCharCode(...bytes))
     .replace(/\\+/g, "-")
-    .replace(/\\//g, "_")
+    .replace(/\\/ / g, "_")
     .replace(/=+$/, "");
 }
 
@@ -22,7 +22,7 @@ export async function createPkce() {
   codeVerifier = b64Url(arr);
   const digest = await crypto.subtle.digest(
     "SHA-256",
-    new TextEncoder().encode(codeVerifier)
+    new TextEncoder().encode(codeVerifier),
   );
   return {
     codeVerifier: codeVerifier,
@@ -30,9 +30,15 @@ export async function createPkce() {
   };
 }
 
-export function getCodeVerifier() { return codeVerifier; }
-export function getTokenState() { return tokenState; }
-export function setTokenState(data) { tokenState = data; }
+export function getCodeVerifier() {
+  return codeVerifier;
+}
+export function getTokenState() {
+  return tokenState;
+}
+export function setTokenState(data) {
+  tokenState = data;
+}
 
 /**
  * Extracts code from pixiv callback URL or plain code string

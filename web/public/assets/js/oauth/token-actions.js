@@ -2,7 +2,13 @@ import { t } from "../core/i18n.js";
 import { q } from "../core/dom.js";
 import { copyToClipboard } from "../core/utils.js";
 import { callApi } from "./api.js";
-import { createPkce, parseCode, getCodeVerifier, getTokenState, setTokenState } from "./pkce.js";
+import {
+  createPkce,
+  parseCode,
+  getCodeVerifier,
+  getTokenState,
+  setTokenState,
+} from "./pkce.js";
 import { LOGIN_URL, REDIRECT_URI, CLIENT_ID } from "../core/config.js";
 
 function bindClick(id, handler) {
@@ -15,7 +21,7 @@ function bindClick(id, handler) {
  */
 export function setupOAuthConsole() {
   const output = q("output");
-  
+
   bindClick("openLoginBtn", async () => {
     const { codeChallenge } = await createPkce();
     const url = `${LOGIN_URL}?${new URLSearchParams({ code_challenge: codeChallenge, code_challenge_method: "S256", client: "pixiv-android" })}`;
@@ -29,7 +35,7 @@ export function setupOAuthConsole() {
       const code = parseCode(input?.value || "");
       if (!code) throw new Error(t("codeEmpty"));
       if (!getCodeVerifier()) throw new Error(t("clickOpen"));
-      
+
       const data = await callApi({
         grant_type: "authorization_code",
         code: code,
@@ -65,18 +71,18 @@ export function setupOAuthConsole() {
   bindClick("copyAccessBtn", async () => {
     const tokenState = getTokenState();
     if (tokenState.access_token) {
-        await copyText(tokenState.access_token, t("copiedAccess"));
+      await copyText(tokenState.access_token, t("copiedAccess"));
     } else {
-        if (output) output.textContent = t("nothingAccess");
+      if (output) output.textContent = t("nothingAccess");
     }
   });
 
   bindClick("copyRefreshBtn", async () => {
     const tokenState = getTokenState();
     if (tokenState.refresh_token) {
-        await copyText(tokenState.refresh_token, t("copiedRefresh"));
+      await copyText(tokenState.refresh_token, t("copiedRefresh"));
     } else {
-        if (output) output.textContent = t("nothingRefresh");
+      if (output) output.textContent = t("nothingRefresh");
     }
   });
 
@@ -94,7 +100,7 @@ export function setupOAuthConsole() {
     const el = q("pipCmd");
     if (el) await copyText(el.textContent, t("copiedPip"));
   });
-  
+
   async function copyText(text, okMessage) {
     await navigator.clipboard.writeText(text);
     if (output) output.textContent = okMessage;

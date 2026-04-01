@@ -8,12 +8,15 @@ const cache = {};
 function timeAgo(dateStr) {
   const seconds = (Date.now() - new Date(dateStr)) / 1000;
   if (seconds < 60) return t("timeJustNow");
-  if (seconds < 3600) return t("timeMinsAgo", { count: Math.floor(seconds / 60) });
-  if (seconds < 86400) return t("timeHoursAgo", { count: Math.floor(seconds / 3600) });
-  if (seconds < 2592000) return t("timeDaysAgo", { count: Math.floor(seconds / 86400) });
+  if (seconds < 3600)
+    return t("timeMinsAgo", { count: Math.floor(seconds / 60) });
+  if (seconds < 86400)
+    return t("timeHoursAgo", { count: Math.floor(seconds / 3600) });
+  if (seconds < 2592000)
+    return t("timeDaysAgo", { count: Math.floor(seconds / 86400) });
   return new Date(dateStr).toLocaleDateString(
     DISPLAY_LANG === "en" ? "en-US" : DISPLAY_LANG,
-    { month: "short", day: "numeric", year: "numeric" }
+    { month: "short", day: "numeric", year: "numeric" },
   );
 }
 
@@ -22,15 +25,17 @@ function renderIssueCard(issue) {
   const iconClass = isPR
     ? "bi bi-git c-pr"
     : issue.state === "open"
-    ? "bi bi-circle c-open"
-    : "bi bi-check-circle c-closed";
+      ? "bi bi-circle c-open"
+      : "bi bi-check-circle c-closed";
   const labelsHtml = (issue.labels || [])
-    .map((label) =>
-      `<span class="gh-issue-label gh-label-custom" data-bg="#${escapeHtml(label.color)}">${escapeHtml(label.name)}</span>`
+    .map(
+      (label) =>
+        `<span class="gh-issue-label gh-label-custom" data-bg="#${escapeHtml(label.color)}">${escapeHtml(label.name)}</span>`,
     )
     .join("");
   const body = issue.body
-    ? escapeHtml(issue.body.replace(/\n/g, " ").slice(0, 150)) + (issue.body.length > 150 ? "…" : "")
+    ? escapeHtml(issue.body.replace(/\n/g, " ").slice(0, 150)) +
+      (issue.body.length > 150 ? "…" : "")
     : "";
 
   return [
@@ -91,19 +96,25 @@ function renderIssueList(items, state) {
     closedTabEl?.classList.remove("active");
     openTabEl?.setAttribute("aria-selected", "true");
     closedTabEl?.setAttribute("aria-selected", "false");
-    if (openLabelEl) openLabelEl.textContent = t("issueCountOpen", { count: issues.length });
+    if (openLabelEl)
+      openLabelEl.textContent = t("issueCountOpen", { count: issues.length });
   } else {
     openTabEl?.classList.remove("active");
     closedTabEl?.classList.add("active");
     openTabEl?.setAttribute("aria-selected", "false");
     closedTabEl?.setAttribute("aria-selected", "true");
-    if (closedLabelEl) closedLabelEl.textContent = t("issueCountClosed", { count: issues.length });
+    if (closedLabelEl)
+      closedLabelEl.textContent = t("issueCountClosed", {
+        count: issues.length,
+      });
   }
 
   if (!issues.length && !prs.length) {
     if (emptyEl) emptyEl.hidden = false;
     const emptyText = document.getElementById("emptyStateText");
-    if (emptyText) emptyText.textContent = state === "open" ? t("issueEmptyOpen") : t("issueEmptyClosed");
+    if (emptyText)
+      emptyText.textContent =
+        state === "open" ? t("issueEmptyOpen") : t("issueEmptyClosed");
     if (listEl) listEl.innerHTML = "";
     return;
   }
@@ -131,10 +142,17 @@ async function loadIssues(state) {
     skeletonEl.hidden = false;
   }
 
-  if (cache[state]) { renderIssueList(cache[state], state); return; }
+  if (cache[state]) {
+    renderIssueList(cache[state], state);
+    return;
+  }
 
   try {
-    const params = new URLSearchParams({ path: `repos/${REPO}/issues`, state, per_page: 30 });
+    const params = new URLSearchParams({
+      path: `repos/${REPO}/issues`,
+      state,
+      per_page: 30,
+    });
     const res = await fetch(`/api/github?${params}`);
     if (!res.ok) throw new Error(`proxy HTTP ${res.status}`);
     const data = await res.json();
@@ -154,11 +172,17 @@ export function setupIssuesPage() {
 
   openTab?.addEventListener("click", (e) => {
     e.preventDefault();
-    if (currentState !== "open") { currentState = "open"; loadIssues("open"); }
+    if (currentState !== "open") {
+      currentState = "open";
+      loadIssues("open");
+    }
   });
   closedTab?.addEventListener("click", (e) => {
     e.preventDefault();
-    if (currentState !== "closed") { currentState = "closed"; loadIssues("closed"); }
+    if (currentState !== "closed") {
+      currentState = "closed";
+      loadIssues("closed");
+    }
   });
   loadIssues("open");
 }
