@@ -1,4 +1,116 @@
+# robots.txt — Pixiv OAuth Web
+# https://pixiv-o-auth-token.vercel.app/
+
+# ─────────────────────────────────────────────
+# Allow all major search engine crawlers
+# ─────────────────────────────────────────────
+
 User-agent: *
 Allow: /
+
+# ─────────────────────────────────────────────
+# Explicitly allow important page paths
+# ─────────────────────────────────────────────
+
+User-agent: *
+Allow: /en/
+Allow: /id/
+Allow: /jp/
+Allow: /zh/
+Allow: /de/
+Allow: /fr/
+Allow: /es/
+Allow: /ru/
+Allow: /pt/
+Allow: /pl/
+Allow: /kr/
+Allow: /downloads
+Allow: /tutorial
+Allow: /documentation
+Allow: /changelog
+Allow: /issues
+Allow: /discussions
+Allow: /license
+Allow: /contact
+Allow: /support
+Allow: /privacy-policy
+Allow: /terms-conditions
+
+# ─────────────────────────────────────────────
+# Google bots
+# ─────────────────────────────────────────────
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# ─────────────────────────────────────────────
+# Bing / Microsoft bots
+# ─────────────────────────────────────────────
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: msnbot
+Allow: /
+
+User-agent: msnbot-media
+Allow: /
+
+# ─────────────────────────────────────────────
+# Yahoo (served by Bing crawlers)
+# ─────────────────────────────────────────────
+
+User-agent: Slurp
+Allow: /
+
+# ─────────────────────────────────────────────
+# DuckDuckGo (served by Bing index)
+# ─────────────────────────────────────────────
+
+User-agent: DuckDuckBot
+Allow: /
+
+# ─────────────────────────────────────────────
+# Yandex
+# ─────────────────────────────────────────────
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
+
+# ─────────────────────────────────────────────
+# Baidu
+# ─────────────────────────────────────────────
+
+User-agent: Baiduspider
+Allow: /
+
+# ─────────────────────────────────────────────
+# Social media crawlers
+# ─────────────────────────────────────────────
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+# ─────────────────────────────────────────────
+# Sitemap reference
+# ─────────────────────────────────────────────
 
 Sitemap: https://pixiv-o-auth-token.vercel.app/sitemap.xml

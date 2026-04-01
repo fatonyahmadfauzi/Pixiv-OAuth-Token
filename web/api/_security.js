@@ -17,47 +17,73 @@ setInterval(() => {
 
 function checkSecurity(req) {
   // 1. Rate Limiting (IP Based)
-  const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
+  const clientIp =
+    req.headers["x-forwarded-for"] || req.socket.remoteAddress || "unknown";
   const currentCount = ipRequestCounts.get(clientIp) || 0;
 
   if (currentCount >= MAX_REQUESTS) {
     console.warn(`[Security] Rate limited for IP: ${clientIp}`);
-    return { ok: false, status: 429, error: "Too Many Requests. Please try again later." };
+    return {
+      ok: false,
+      status: 429,
+      error: "Too Many Requests. Please try again later.",
+    };
   }
   ipRequestCounts.set(clientIp, currentCount + 1);
 
   // 2. User-Agent Validation (Block simple scripted attacks)
-  const ua = (req.headers['user-agent'] || '').toLowerCase();
-  if (!ua || ua.includes('curl/') || ua.includes('python-requests') || ua.includes('postman')) {
+  const ua = (req.headers["user-agent"] || "").toLowerCase();
+  if (
+    !ua ||
+    ua.includes("curl/") ||
+    ua.includes("python-requests") ||
+    ua.includes("postman")
+  ) {
     console.warn(`[Security] Blocked suspicious User-Agent: ${ua}`);
-    return { ok: false, status: 403, error: "Forbidden: Suspicious User-Agent detected." };
+    return {
+      ok: false,
+      status: 403,
+      error: "Forbidden: Suspicious User-Agent detected.",
+    };
   }
 
   // 3. Origin/Referer Validation (Prevent cross-origin API abuse)
-  const referer = (req.headers['referer'] || '').toLowerCase();
-  const origin = (req.headers['origin'] || '').toLowerCase();
-  
+  const referer = (req.headers["referer"] || "").toLowerCase();
+  const origin = (req.headers["origin"] || "").toLowerCase();
+
   // Exempt localhost for development purposes
-  if (origin.includes('localhost') || referer.includes('localhost')) {
-    console.log(`[Security] Localhost exempted - origin: ${origin}, referer: ${referer}`);
+  if (origin.includes("localhost") || referer.includes("localhost")) {
+    console.log(
+      `[Security] Localhost exempted - origin: ${origin}, referer: ${referer}`,
+    );
     return { ok: true };
   }
 
   // Production check: Only allow your vercel app / custom domain
   // Replace these domains with your actual production domains if you have custom ones
-  const allowedDomains = ['pixiv-oauth', 'faton', 'vercel.app'];
-  
-  const isRefererValid = referer && allowedDomains.some(d => referer.includes(d));
-  const isOriginValid = origin && allowedDomains.some(d => origin.includes(d));
+  const allowedDomains = ["pixiv-oauth", "faton", "vercel.app"];
 
-  if (!isRefererValid && !isOriginValid && req.method !== 'GET') {
+  const isRefererValid =
+    referer && allowedDomains.some((d) => referer.includes(d));
+  const isOriginValid =
+    origin && allowedDomains.some((d) => origin.includes(d));
+
+  if (!isRefererValid && !isOriginValid && req.method !== "GET") {
     // We allow GET (github.js) without strict origin if it was opened directly,
     // but POST (token.js) MUST come from our domain.
-    console.warn(`[Security] Rejected ${req.method} - origin: ${origin}, referer: ${referer}`);
-    return { ok: false, status: 403, error: "Forbidden: Invalid Origin/Referer." };
+    console.warn(
+      `[Security] Rejected ${req.method} - origin: ${origin}, referer: ${referer}`,
+    );
+    return {
+      ok: false,
+      status: 403,
+      error: "Forbidden: Invalid Origin/Referer.",
+    };
   }
 
-  console.log(`[Security] Allowed ${req.method} - origin: ${origin}, referer: ${referer}`);
+  console.log(
+    `[Security] Allowed ${req.method} - origin: ${origin}, referer: ${referer}`,
+  );
   return { ok: true };
 }
 

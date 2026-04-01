@@ -31,10 +31,17 @@ async function forwardTokenRequest(payload) {
 
   const text = await res.text();
   let data;
-  try { data = JSON.parse(text); } catch { data = { raw: text }; }
+  try {
+    data = JSON.parse(text);
+  } catch {
+    data = { raw: text };
+  }
 
   if (!res.ok) {
-    return { status: res.status, data: { error: data?.error || "Token request failed", details: data } };
+    return {
+      status: res.status,
+      data: { error: data?.error || "Token request failed", details: data },
+    };
   }
   return { status: 200, data };
 }

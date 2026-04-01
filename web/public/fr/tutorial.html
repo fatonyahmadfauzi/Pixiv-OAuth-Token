@@ -1,9 +1,154 @@
-<!doctype html><html lang="fr"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"><meta name="format-detection" content="telephone=no"><title>Web OAuth Pixiv | Professional Token Helper</title><meta name="description" content="Boîte à outils pour générer des jetons Pixiv OAuth via CLI, GUI et Web avec un flux PKCE sécurisé et un déploiement prêt pour Vercel."><meta name="keywords" content="pixiv oauth tutorial, pixiv login guide, pkce flow, oauth token tutorial, pixiv setup"><meta name="author" content="Fatony Ahmad Fauzi"><meta name="robots" content="index, follow"><meta property="og:type" content="website"><meta property="og:site_name" content="Pixiv OAuth Web"><meta property="og:title" content="Web OAuth Pixiv | Professional Token Helper"><meta property="og:description" content="Boîte à outils pour générer des jetons Pixiv OAuth via CLI, GUI et Web avec un flux PKCE sécurisé et un déploiement prêt pour Vercel."><meta property="og:url" content="https://pixiv-o-auth-token.vercel.app/tutorial"><meta property="og:locale" content="fr_FR"><meta property="og:image" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta property="og:image:secure_url" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Pixiv OAuth Web – Pixiv OAuth – Tutorial"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fatonyahmadfauzi"><meta name="twitter:creator" content="@fatonyahmadfauzi"><meta name="twitter:title" content="Web OAuth Pixiv | Professional Token Helper"><meta name="twitter:description" content="Boîte à outils pour générer des jetons Pixiv OAuth via CLI, GUI et Web avec un flux PKCE sécurisé et un déploiement prêt pour Vercel."><meta name="twitter:image" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta name="twitter:image:alt" content="Pixiv OAuth Web – Pixiv OAuth – Tutorial"><meta name="theme-color" content="#6ea2ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Pixiv OAuth"><link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/fr/tutorial"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"><link rel="stylesheet" href="/assets/style.css"><script type="application/ld+json">
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=5"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Tutoriel | Pixiv OAuth</title>
+    <meta name="description" content="Remplissez cette section avec des captures d’écran ordonnées pour guider les utilisateurs de la connexion jusqu’à l’échange de jetons."
+    />
+    <meta
+      name="keywords" content="Boîte à outils Pixiv OAuth, Web OAuth Pixiv, pixiv oauth token, pixiv api, pkce, oauth2, pixiv login"
+    />
+    <meta name="author" content="Fatony Ahmad Fauzi" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pixiv OAuth Web" />
+    <meta property="og:title" content="Tutoriel | Pixiv OAuth" />
+    <meta
+      property="og:description" content="Remplissez cette section avec des captures d’écran ordonnées pour guider les utilisateurs de la connexion jusqu’à l’échange de jetons."
+    />
+    <meta
+      property="og:url"
+      content="https://pixiv-o-auth-token.vercel.app/tutorial"
+    />
+    <meta property="og:locale" content="fr_FR" />
+    <meta
+      property="og:image"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt" content="Pixiv OAuth Web – Tutoriel | Pixiv OAuth"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fatonyahmadfauzi" />
+    <meta name="twitter:creator" content="@fatonyahmadfauzi" />
+    <meta name="twitter:title" content="Tutoriel | Pixiv OAuth" />
+    <meta
+      name="twitter:description" content="Remplissez cette section avec des captures d’écran ordonnées pour guider les utilisateurs de la connexion jusqu’à l’échange de jetons."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta
+      name="twitter:image:alt" content="Pixiv OAuth Web – Tutoriel | Pixiv OAuth"
+    />
+    <meta name="theme-color" content="#6ea2ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pixiv OAuth" />
+    <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/fr/tutorial"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"
+    />
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://pixiv-o-auth-token.vercel.app/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://pixiv-o-auth-token.vercel.app/de/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://pixiv-o-auth-token.vercel.app/en/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://pixiv-o-auth-token.vercel.app/es/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://pixiv-o-auth-token.vercel.app/fr/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="id"
+      href="https://pixiv-o-auth-token.vercel.app/id/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="ja"
+      href="https://pixiv-o-auth-token.vercel.app/jp/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://pixiv-o-auth-token.vercel.app/kr/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href="https://pixiv-o-auth-token.vercel.app/pl/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="pt"
+      href="https://pixiv-o-auth-token.vercel.app/pt/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://pixiv-o-auth-token.vercel.app/ru/tutorial"
+    />
+    <link
+      rel="alternate"
+      hreflang="zh"
+      href="https://pixiv-o-auth-token.vercel.app/zh/tutorial"
+    />
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Web OAuth Pixiv",
-      "description": "Boîte à outils pour générer des jetons Pixiv OAuth via CLI, GUI et Web avec un flux PKCE sécurisé et un déploiement prêt pour Vercel.",
+      "name": "Tutoriel | Pixiv OAuth",
+      "description": "Remplissez cette section avec des captures d’écran ordonnées pour guider les utilisateurs de la connexion jusqu’à l’échange de jetons.",
       "inLanguage": "fr",
       "url": "https://pixiv-o-auth-token.vercel.app/fr/tutorial",
       "applicationCategory": "DeveloperApplication",
@@ -21,4 +166,196 @@
     <link rel="alternate" hreflang="pt" href="https://pixiv-o-auth-token.vercel.app/pt/tutorial" />
     <link rel="alternate" hreflang="ru" href="https://pixiv-o-auth-token.vercel.app/ru/tutorial" />
     <link rel="alternate" hreflang="zh" href="https://pixiv-o-auth-token.vercel.app/zh/tutorial" />
-  </head><body class="tutorial-docs-body"><noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"></noscript><header class="tutorial-docs-header"><div class="tutorial-docs-inner"><div class="tutorial-docs-top"><a class="tutorial-docs-brand" href="/"><strong>Pixiv OAuth</strong><span data-i18n="navHeaderTutorial">TUTORIAL</span></a><nav class="tutorial-docs-actions" aria-label="Tutorial actions"><div class="sidebar-header"><a class="sidebar-brand" href="/"><strong>Pixiv OAuth</strong></a> <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button></div><a id="navHomepageLabel" href="/" data-i18n="navHomepageLabel">Homepage</a> <a id="navConsole" href="/#console" data-i18n="navConsole">Console</a> <a id="navDownloads" href="/downloads" data-i18n="navDownloads">Download</a></nav><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="bi bi-list" aria-hidden="true"></i></button></div></div><div class="sidebar-overlay" id="sidebarOverlay"></div></header><main class="tutorial-docs-main"><section id="start" class="tutorial-intro"><h1 id="tutorialPageTitle">Get Started with Pixiv OAuth Tutorial</h1><p id="tutorialPageDesc">Follow each step from login to token exchange so the process is easier on desktop and mobile.</p></section><section id="steps" class="tutorial-problems"><h2 id="tutorialStepsTitle">Tutorial Steps</h2><div class="tutorial-docs-grid"><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-box-arrow-up-right"></i></span><h3 id="tutorialStep1Title">Open Login Page</h3><p id="tutorialStep1Desc">Buka halaman login Pixiv dari console web tool.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_1.png" alt="Step 1" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/01-open-login-page.png")),card&&card.classList.add("missing")'></article><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-person-check"></i></span><h3 id="tutorialStep2Title">Continue Login</h3><p id="tutorialStep2Desc">Lanjutkan proses login akun Pixiv hingga diarahkan ke callback.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/02-continue-login.png" alt="Step 2" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/02-continue-login.png")),card&&card.classList.add("missing")'></article><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-window-sidebar"></i></span><h3 id="tutorialStep3Title">Open Console</h3><p id="tutorialStep3Desc">Buka devtools/console untuk mengambil URL callback pixiv.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/03-open-console.png" alt="Step 3" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/03-open-console.png")),card&&card.classList.add("missing")'></article><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-clipboard2-check"></i></span><h3 id="tutorialStep4Title">Copy pixiv URL</h3><p id="tutorialStep4Desc">Copy URL callback yang berisi code authorization dari Pixiv.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/04-copy-pixiv-url.png" alt="Step 4" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/04-copy-pixiv-url.png")),card&&card.classList.add("missing")'></article><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-input-cursor"></i></span><h3 id="tutorialStep5Title">Paste URL / Code</h3><p id="tutorialStep5Desc">Tempel URL callback atau code ke input pada OAuth console.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_5.png" alt="Step 5" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/05-paste-url-code.png")),card&&card.classList.add("missing")'></article><article class="tutorial-doc-card"><span class="tutorial-icon"><i class="bi bi-shield-check"></i></span><h3 id="tutorialStep6Title">Exchange Token</h3><p id="tutorialStep6Desc">Klik Exchange Token lalu copy access_token / refresh_token.</p><img src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png" alt="Step 6" onerror='var card=this.closest(".tutorial-doc-card");this.replaceWith(document.createTextNode("Add tutorial_images/06-exchange-token.png")),card&&card.classList.add("missing")'></article></div></section><section id="tips" class="tutorial-footer-note"><a class="tutorial-cta-btn" href="/"><span id="tutorialBackBtnLabel">Back to OAuth Console</span> <i class="bi bi-arrow-right"></i></a></section></main><footer class="tutorial-docs-footer site-footer" id="mainFooter"></footer>\n<script type="module" src="/assets/js/main.js"></script></body></html>
+  </head>
+  <body class="tutorial-docs-body">
+    <noscript
+      ><meta http-equiv="refresh" content="0; url=/enable-javascript"
+    /></noscript>
+    <header class="tutorial-docs-header">
+      <div class="tutorial-docs-inner">
+        <div class="tutorial-docs-top">
+          <a class="tutorial-docs-brand" href="/"
+            ><strong>Pixiv OAuth</strong
+            ><span data-i18n="navHeaderTutorial">TUTORIAL</span></a
+          >
+          <nav class="tutorial-docs-actions" aria-label="Tutorial actions">
+            <div class="sidebar-header">
+              <a class="sidebar-brand" href="/"><strong>Pixiv OAuth</strong></a>
+              <button class="close-sidebar" aria-label="Close menu">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+              </button>
+            </div>
+            <a id="navHomepageLabel" href="/" data-i18n="navHomepageLabel"
+              >Homepage</a
+            >
+            <a id="navConsole" href="/#console" data-i18n="navConsole"
+              >Console</a
+            >
+            <a id="navDownloads" href="/downloads" data-i18n="navDownloads"
+              >Download</a
+            >
+          </nav>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <i class="bi bi-list" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    </header>
+    <main class="tutorial-docs-main">
+      <section id="start" class="tutorial-intro">
+        <h1 id="tutorialPageTitle">Get Started with Pixiv OAuth Tutorial</h1>
+        <p id="tutorialPageDesc">
+          Follow each step from login to token exchange so the process is easier
+          on desktop and mobile.
+        </p>
+      </section>
+      <section id="steps" class="tutorial-problems">
+        <h2 id="tutorialStepsTitle">Tutorial Steps</h2>
+        <div class="tutorial-docs-grid">
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-box-arrow-up-right"></i
+            ></span>
+            <h3 id="tutorialStep1Title">Open Login Page</h3>
+            <p id="tutorialStep1Desc">
+              Buka halaman login Pixiv dari console web tool.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_1.png"
+              alt="Step 1"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/01-open-login-page.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-person-check"></i
+            ></span>
+            <h3 id="tutorialStep2Title">Continue Login</h3>
+            <p id="tutorialStep2Desc">
+              Lanjutkan proses login akun Pixiv hingga diarahkan ke callback.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/02-continue-login.png"
+              alt="Step 2"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/02-continue-login.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-window-sidebar"></i
+            ></span>
+            <h3 id="tutorialStep3Title">Open Console</h3>
+            <p id="tutorialStep3Desc">
+              Buka devtools/console untuk mengambil URL callback pixiv.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/03-open-console.png"
+              alt="Step 3"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/03-open-console.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-clipboard2-check"></i
+            ></span>
+            <h3 id="tutorialStep4Title">Copy pixiv URL</h3>
+            <p id="tutorialStep4Desc">
+              Copy URL callback yang berisi code authorization dari Pixiv.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/04-copy-pixiv-url.png"
+              alt="Step 4"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/04-copy-pixiv-url.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-input-cursor"></i
+            ></span>
+            <h3 id="tutorialStep5Title">Paste URL / Code</h3>
+            <p id="tutorialStep5Desc">
+              Tempel URL callback atau code ke input pada OAuth console.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/step_5.png"
+              alt="Step 5"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/05-paste-url-code.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+          <article class="tutorial-doc-card">
+            <span class="tutorial-icon"
+              ><i class="bi bi-shield-check"></i
+            ></span>
+            <h3 id="tutorialStep6Title">Exchange Token</h3>
+            <p id="tutorialStep6Desc">
+              Klik Exchange Token lalu copy access_token / refresh_token.
+            </p>
+            <img
+              src="https://cdn.jsdelivr.net/gh/fatonyahmadfauzi/Pixiv-OAuth-Token@master/tutorial_images/result.png"
+              alt="Step 6"
+              onerror="
+                var card = this.closest('.tutorial-doc-card');
+                (this.replaceWith(
+                  document.createTextNode(
+                    'Add tutorial_images/06-exchange-token.png',
+                  ),
+                ),
+                  card && card.classList.add('missing'));
+              "
+            />
+          </article>
+        </div>
+      </section>
+      <section id="tips" class="tutorial-footer-note">
+        <a class="tutorial-cta-btn" href="/"
+          ><span id="tutorialBackBtnLabel">Back to OAuth Console</span>
+          <i class="bi bi-arrow-right"></i
+        ></a>
+      </section>
+    </main>
+    <footer class="tutorial-docs-footer site-footer" id="mainFooter"></footer>
+    \n
+    <script type="module" src="/assets/js/main.js"></script>
+  </body>
+</html>

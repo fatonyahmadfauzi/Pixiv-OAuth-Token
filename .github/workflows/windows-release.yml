@@ -3,7 +3,7 @@ name: Windows Auto Release
 on:
   push:
     tags:
-      - "v*.*.*"  # Trigger automation whenever you push a version tag like v1.0.6
+      - "v*.*.*" # Trigger automation whenever you push a version tag like v1.0.6
 
 jobs:
   build_and_release:

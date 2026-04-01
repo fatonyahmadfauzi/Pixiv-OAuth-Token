@@ -1,8 +1,152 @@
-<!doctype html><html lang="id"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5"><meta name="format-detection" content="telephone=no"><title>Web OAuth Pixiv | Professional Token Helper</title><meta name="description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."><meta name="keywords" content="pixiv oauth, pixiv token helper, oauth pkce, pixiv api, cli gui web, vercel, python oauth"><meta name="author" content="Fatony Ahmad Fauzi"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta property="og:type" content="website"><meta property="og:site_name" content="Pixiv OAuth Web"><meta property="og:title" content="Web OAuth Pixiv | Professional Token Helper"><meta property="og:description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."><meta property="og:url" content="https://pixiv-o-auth-token.vercel.app/"><meta property="og:locale" content="id_ID"><meta property="og:image" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta property="og:image:secure_url" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Pixiv OAuth Web – Pixiv OAuth Homepage"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@fatonyahmadfauzi"><meta name="twitter:creator" content="@fatonyahmadfauzi"><meta name="twitter:title" content="Web OAuth Pixiv | Professional Token Helper"><meta name="twitter:description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."><meta name="twitter:image" content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"><meta name="twitter:image:alt" content="Pixiv OAuth Web – Pixiv OAuth Homepage"><meta name="theme-color" content="#6ea2ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Pixiv OAuth"><link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/id/"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"><link rel="stylesheet" href="/assets/style.css?v=2"><script type="application/ld+json">
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=5"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <title>Web OAuth Pixiv | Professional Token Helper</title>
+    <meta name="description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."
+    />
+    <meta
+      name="keywords" content="Toolkit Pixiv OAuth, Web OAuth Pixiv, pixiv oauth token, pixiv api, pkce, oauth2, pixiv login"
+    />
+    <meta name="author" content="Fatony Ahmad Fauzi" />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pixiv OAuth Web" />
+    <meta property="og:title" content="Web OAuth Pixiv | Professional Token Helper" />
+    <meta
+      property="og:description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."
+    />
+    <meta property="og:url" content="https://pixiv-o-auth-token.vercel.app/" />
+    <meta property="og:locale" content="id_ID" />
+    <meta
+      property="og:image"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta
+      property="og:image:secure_url"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt" content="Pixiv OAuth Web – Web OAuth Pixiv | Professional Token Helper"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fatonyahmadfauzi" />
+    <meta name="twitter:creator" content="@fatonyahmadfauzi" />
+    <meta name="twitter:title" content="Web OAuth Pixiv | Professional Token Helper" />
+    <meta
+      name="twitter:description" content="Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel."
+    />
+    <meta
+      name="twitter:image"
+      content="https://pixiv-o-auth-token.vercel.app/assets/og-jumbotron.png"
+    />
+    <meta
+      name="twitter:image:alt" content="Pixiv OAuth Web – Web OAuth Pixiv | Professional Token Helper"
+    />
+    <meta name="theme-color" content="#6ea2ff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Pixiv OAuth" />
+    <link rel="canonical" href="https://pixiv-o-auth-token.vercel.app/id/" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/css/flag-icons.min.css"
+    />
+    <link rel="stylesheet" href="/assets/style.css?v=2" />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://pixiv-o-auth-token.vercel.app/"
+    />
+    <link
+      rel="alternate"
+      hreflang="de"
+      href="https://pixiv-o-auth-token.vercel.app/de/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://pixiv-o-auth-token.vercel.app/en/"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://pixiv-o-auth-token.vercel.app/es/"
+    />
+    <link
+      rel="alternate"
+      hreflang="fr"
+      href="https://pixiv-o-auth-token.vercel.app/fr/"
+    />
+    <link
+      rel="alternate"
+      hreflang="id"
+      href="https://pixiv-o-auth-token.vercel.app/id/"
+    />
+    <link
+      rel="alternate"
+      hreflang="ja"
+      href="https://pixiv-o-auth-token.vercel.app/jp/"
+    />
+    <link
+      rel="alternate"
+      hreflang="ko"
+      href="https://pixiv-o-auth-token.vercel.app/kr/"
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href="https://pixiv-o-auth-token.vercel.app/pl/"
+    />
+    <link
+      rel="alternate"
+      hreflang="pt"
+      href="https://pixiv-o-auth-token.vercel.app/pt/"
+    />
+    <link
+      rel="alternate"
+      hreflang="ru"
+      href="https://pixiv-o-auth-token.vercel.app/ru/"
+    />
+    <link
+      rel="alternate"
+      hreflang="zh"
+      href="https://pixiv-o-auth-token.vercel.app/zh/"
+    />
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Web OAuth Pixiv",
+      "name": "Web OAuth Pixiv | Professional Token Helper",
       "description": "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel.",
       "inLanguage": "id",
       "url": "https://pixiv-o-auth-token.vercel.app/id/",
@@ -21,7 +165,232 @@
     <link rel="alternate" hreflang="pt" href="https://pixiv-o-auth-token.vercel.app/pt/" />
     <link rel="alternate" hreflang="ru" href="https://pixiv-o-auth-token.vercel.app/ru/" />
     <link rel="alternate" hreflang="zh" href="https://pixiv-o-auth-token.vercel.app/zh/" />
-  </head><body><noscript><meta http-equiv="refresh" content="0; url=/enable-javascript"></noscript><header class="tutorial-docs-header"><div class="tutorial-docs-inner"><div class="tutorial-docs-top"><a class="tutorial-docs-brand" href="#hero"><strong>Pixiv OAuth</strong><span data-i18n="navHeaderWeb">WEB</span></a><nav class="tutorial-docs-actions" aria-label="Main navigation"><div class="sidebar-header"><a class="sidebar-brand" href="#hero"><strong>Pixiv OAuth</strong></a> <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button></div><a id="navConsole" href="#console">Console</a> <a id="navDownloads" href="/downloads">Download</a> <a id="navTutorial" href="/tutorial">Tutorial</a></nav><div class="lang-wrap"><div class="lang-control" id="langControl"><button type="button" id="langToggle" class="lang-toggle" aria-haspopup="listbox" aria-expanded="false"><span id="langFlag" class="fi fi-gb" aria-hidden="true"></span> <span id="langCurrent">English</span> <i class="bi bi-chevron-down" aria-hidden="true"></i></button><ul id="langMenu" class="lang-menu" role="listbox" aria-label="Language"><li role="option" data-lang="en"><span class="fi fi-gb" aria-hidden="true"></span><span>English</span></li><li role="option" data-lang="pl"><span class="fi fi-pl" aria-hidden="true"></span><span>Polski</span></li><li role="option" data-lang="zh"><span class="fi fi-cn" aria-hidden="true"></span><span>中文</span></li><li role="option" data-lang="jp"><span class="fi fi-jp" aria-hidden="true"></span><span>日本語</span></li><li role="option" data-lang="de"><span class="fi fi-de" aria-hidden="true"></span><span>Deutsch</span></li><li role="option" data-lang="fr"><span class="fi fi-fr" aria-hidden="true"></span><span>Français</span></li><li role="option" data-lang="es"><span class="fi fi-es" aria-hidden="true"></span><span>Español</span></li><li role="option" data-lang="ru"><span class="fi fi-ru" aria-hidden="true"></span><span>Русский</span></li><li role="option" data-lang="pt"><span class="fi fi-pt" aria-hidden="true"></span><span>Português</span></li><li role="option" data-lang="id"><span class="fi fi-id" aria-hidden="true"></span><span>Indonesia</span></li><li role="option" data-lang="kr"><span class="fi fi-kr" aria-hidden="true"></span><span>한국어</span></li></ul></div></div><button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="bi bi-list" aria-hidden="true"></i></button></div></div><div class="sidebar-overlay" id="sidebarOverlay"></div></header><main class="container"><section id="hero" class="hero"><p id="kickerText" class="kicker">Pixiv OAuth Toolkit</p><h1 id="titleText">Pixiv OAuth Web</h1><p id="subtitleText" class="muted">Toolkit to generate and refresh Pixiv OAuth tokens through CLI, GUI, and Web using a secure PKCE flow.</p><div class="hero-badges"><span id="badgePkce" class="badge">PKCE Flow</span> <span id="badgeDeploy" class="badge">Vercel Ready</span> <span id="badgeRelease" class="badge">Release Download</span></div><div class="hero-actions"><a id="docsBtn" class="btn primary" href="/documentation" target="_blank" rel="noopener"><i class="bi bi-book" aria-hidden="true"></i><span id="docsBtnLabel">Read the docs</span></a> <a class="btn" href="#console"><i class="bi bi-terminal" aria-hidden="true"></i><span id="openLoginBtnLabel">1) Open Login Page</span></a></div></section><section id="console" class="card grid"><h2 id="oauthTitle">OAuth Token Console</h2><button id="openLoginBtn" class="btn primary"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i> <span id="openLoginBtnLabel2">1) Open Login Page</span></button> <textarea id="inputCode" aria-label="Paste pixiv:// callback URL or code here" autocomplete="off" placeholder="2) Paste pixiv:// callback URL or code here"></textarea><div class="actions"><button id="exchangeBtn" class="btn"><i class="bi bi-arrow-repeat" aria-hidden="true"></i><span id="exchangeBtnLabel">Exchange Token</span></button> <button id="refreshBtn" class="btn"><i class="bi bi-arrow-clockwise" aria-hidden="true"></i><span id="refreshBtnLabel">Refresh Token</span></button></div></section><section id="resultCard" class="card"><h2 id="resultTitle">Result</h2><pre id="output">Ready.</pre><div class="actions result-actions"><button id="copyAccessBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyAccessBtnLabel">Copy access_token</span></button> <button id="copyRefreshBtn" class="btn"><i class="bi bi-clipboard-check" aria-hidden="true"></i><span id="copyRefreshBtnLabel">Copy refresh_token</span></button></div></section><section class="tutorial-cta-wrap"><p id="needVisualGuideText" class="muted">Need visual step-by-step guide?</p><a id="tutorialCtaBtn" class="tutorial-cta-btn" href="/tutorial"><span id="tutorialCtaBtnLabel">Open Tutorial Page</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a></section><section class="app-showcase card"><div class="showcase-head"><span id="windowsPreviewBadge" class="showcase-badge"><i class="bi bi-windows" aria-hidden="true"></i> Windows App Preview</span><h2 id="windowsPreviewTitle">See Pixiv OAuth Windows App in Action</h2><p id="windowsPreviewDesc" class="muted">Preview singkat ini memperlihatkan alur aplikasi Windows dari tahap login hingga token berhasil dibuat.</p></div><video id="windowsDemoVideo" class="showcase-video" autoplay loop muted playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-label="Windows app preview video"><source src="https://proud-mode-56f2.fatonyahmadfauzi.workers.dev/" type="video/mp4">Browser Anda tidak mendukung video HTML5.</video></section><section class="cli-showcase card"><div class="showcase-head"><span id="cliPreviewBadge" class="showcase-badge"><i class="bi bi-terminal" aria-hidden="true"></i> CLI Preview</span><h2 id="cliPreviewTitle">Preview Pixiv OAuth CLI Output</h2><p id="cliPreviewDesc" class="muted">Simulasi output CLI untuk membantu melihat proses login, pembacaan code, dan hasil token secara ringkas.</p></div><div class="cli-code-shell"><span id="cliPreviewFigure" class="cli-fig">Fig. CLI — Pixiv OAuth Token Preview</span><div class="cli-console-split"><pre id="cliPreviewBox" class="cli-preview"><code><span class="cli-white">Pixiv OAuth Token</span>
+  </head>
+  <body>
+    <noscript
+      ><meta http-equiv="refresh" content="0; url=/enable-javascript"
+    /></noscript>
+    <header class="tutorial-docs-header">
+      <div class="tutorial-docs-inner">
+        <div class="tutorial-docs-top">
+          <a class="tutorial-docs-brand" href="#hero"
+            ><strong>Pixiv OAuth</strong
+            ><span data-i18n="navHeaderWeb">WEB</span></a
+          >
+          <nav class="tutorial-docs-actions" aria-label="Main navigation">
+            <div class="sidebar-header">
+              <a class="sidebar-brand" href="#hero"
+                ><strong>Pixiv OAuth</strong></a
+              >
+              <button class="close-sidebar" aria-label="Close menu">
+                <i class="bi bi-x-lg" aria-hidden="true"></i>
+              </button>
+            </div>
+            <a id="navConsole" href="#console">Console</a>
+            <a id="navDownloads" href="/downloads">Download</a>
+            <a id="navTutorial" href="/tutorial">Tutorial</a>
+          </nav>
+          <div class="lang-wrap">
+            <div class="lang-control" id="langControl">
+              <button
+                type="button"
+                id="langToggle"
+                class="lang-toggle"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+              >
+                <span id="langFlag" class="fi fi-gb" aria-hidden="true"></span>
+                <span id="langCurrent">English</span>
+                <i class="bi bi-chevron-down" aria-hidden="true"></i>
+              </button>
+              <ul
+                id="langMenu"
+                class="lang-menu"
+                role="listbox"
+                aria-label="Language"
+              >
+                <li role="option" data-lang="en">
+                  <span class="fi fi-gb" aria-hidden="true"></span
+                  ><span>English</span>
+                </li>
+                <li role="option" data-lang="pl">
+                  <span class="fi fi-pl" aria-hidden="true"></span
+                  ><span>Polski</span>
+                </li>
+                <li role="option" data-lang="zh">
+                  <span class="fi fi-cn" aria-hidden="true"></span
+                  ><span>中文</span>
+                </li>
+                <li role="option" data-lang="jp">
+                  <span class="fi fi-jp" aria-hidden="true"></span
+                  ><span>日本語</span>
+                </li>
+                <li role="option" data-lang="de">
+                  <span class="fi fi-de" aria-hidden="true"></span
+                  ><span>Deutsch</span>
+                </li>
+                <li role="option" data-lang="fr">
+                  <span class="fi fi-fr" aria-hidden="true"></span
+                  ><span>Français</span>
+                </li>
+                <li role="option" data-lang="es">
+                  <span class="fi fi-es" aria-hidden="true"></span
+                  ><span>Español</span>
+                </li>
+                <li role="option" data-lang="ru">
+                  <span class="fi fi-ru" aria-hidden="true"></span
+                  ><span>Русский</span>
+                </li>
+                <li role="option" data-lang="pt">
+                  <span class="fi fi-pt" aria-hidden="true"></span
+                  ><span>Português</span>
+                </li>
+                <li role="option" data-lang="id">
+                  <span class="fi fi-id" aria-hidden="true"></span
+                  ><span>Indonesia</span>
+                </li>
+                <li role="option" data-lang="kr">
+                  <span class="fi fi-kr" aria-hidden="true"></span
+                  ><span>한국어</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+            <i class="bi bi-list" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    </header>
+    <main class="container">
+      <section id="hero" class="hero">
+        <p id="kickerText" class="kicker">Pixiv OAuth Toolkit</p>
+        <h1 id="titleText">Pixiv OAuth Web</h1>
+        <p id="subtitleText" class="muted">
+          Toolkit to generate and refresh Pixiv OAuth tokens through CLI, GUI,
+          and Web using a secure PKCE flow.
+        </p>
+        <div class="hero-badges">
+          <span id="badgePkce" class="badge">PKCE Flow</span>
+          <span id="badgeDeploy" class="badge">Vercel Ready</span>
+          <span id="badgeRelease" class="badge">Release Download</span>
+        </div>
+        <div class="hero-actions">
+          <a
+            id="docsBtn"
+            class="btn primary"
+            href="/documentation"
+            target="_blank"
+            rel="noopener"
+            ><i class="bi bi-book" aria-hidden="true"></i
+            ><span id="docsBtnLabel">Read the docs</span></a
+          >
+          <a class="btn" href="#console"
+            ><i class="bi bi-terminal" aria-hidden="true"></i
+            ><span id="openLoginBtnLabel">1) Open Login Page</span></a
+          >
+        </div>
+      </section>
+      <section id="console" class="card grid">
+        <h2 id="oauthTitle">OAuth Token Console</h2>
+        <button id="openLoginBtn" class="btn primary">
+          <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+          <span id="openLoginBtnLabel2">1) Open Login Page</span>
+        </button>
+        <textarea
+          id="inputCode"
+          aria-label="Paste pixiv:// callback URL or code here"
+          autocomplete="off"
+          placeholder="2) Paste pixiv:// callback URL or code here"
+        ></textarea>
+        <div class="actions">
+          <button id="exchangeBtn" class="btn">
+            <i class="bi bi-arrow-repeat" aria-hidden="true"></i
+            ><span id="exchangeBtnLabel">Exchange Token</span>
+          </button>
+          <button id="refreshBtn" class="btn">
+            <i class="bi bi-arrow-clockwise" aria-hidden="true"></i
+            ><span id="refreshBtnLabel">Refresh Token</span>
+          </button>
+        </div>
+      </section>
+      <section id="resultCard" class="card">
+        <h2 id="resultTitle">Result</h2>
+        <pre id="output">Ready.</pre>
+        <div class="actions result-actions">
+          <button id="copyAccessBtn" class="btn">
+            <i class="bi bi-clipboard-check" aria-hidden="true"></i
+            ><span id="copyAccessBtnLabel">Copy access_token</span>
+          </button>
+          <button id="copyRefreshBtn" class="btn">
+            <i class="bi bi-clipboard-check" aria-hidden="true"></i
+            ><span id="copyRefreshBtnLabel">Copy refresh_token</span>
+          </button>
+        </div>
+      </section>
+      <section class="tutorial-cta-wrap">
+        <p id="needVisualGuideText" class="muted">
+          Need visual step-by-step guide?
+        </p>
+        <a id="tutorialCtaBtn" class="tutorial-cta-btn" href="/tutorial"
+          ><span id="tutorialCtaBtnLabel">Open Tutorial Page</span>
+          <i class="bi bi-arrow-right" aria-hidden="true"></i
+        ></a>
+      </section>
+      <section class="app-showcase card">
+        <div class="showcase-head">
+          <span id="windowsPreviewBadge" class="showcase-badge"
+            ><i class="bi bi-windows" aria-hidden="true"></i> Windows App
+            Preview</span
+          >
+          <h2 id="windowsPreviewTitle">
+            See Pixiv OAuth Windows App in Action
+          </h2>
+          <p id="windowsPreviewDesc" class="muted">
+            Preview singkat ini memperlihatkan alur aplikasi Windows dari tahap
+            login hingga token berhasil dibuat.
+          </p>
+        </div>
+        <video
+          id="windowsDemoVideo"
+          class="showcase-video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          disablepictureinpicture
+          disableremoteplayback
+          aria-label="Windows app preview video"
+        >
+          <source
+            src="https://proud-mode-56f2.fatonyahmadfauzi.workers.dev/"
+            type="video/mp4"
+          />
+          Browser Anda tidak mendukung video HTML5.
+        </video>
+      </section>
+      <section class="cli-showcase card">
+        <div class="showcase-head">
+          <span id="cliPreviewBadge" class="showcase-badge"
+            ><i class="bi bi-terminal" aria-hidden="true"></i> CLI Preview</span
+          >
+          <h2 id="cliPreviewTitle">Preview Pixiv OAuth CLI Output</h2>
+          <p id="cliPreviewDesc" class="muted">
+            Simulasi output CLI untuk membantu melihat proses login, pembacaan
+            code, dan hasil token secara ringkas.
+          </p>
+        </div>
+        <div class="cli-code-shell">
+          <span id="cliPreviewFigure" class="cli-fig"
+            >Fig. CLI — Pixiv OAuth Token Preview</span
+          >
+          <div class="cli-console-split">
+            <pre
+              id="cliPreviewBox"
+              class="cli-preview"
+            ><code><span class="cli-white">Pixiv OAuth Token</span>
 <span class="cli-dim">Developer: Fatony Ahmad Fauzi</span>
 
 <span class="cli-green">[1] Change Language</span>
@@ -34,7 +403,12 @@
 <span class="cli-magenta">[8] Debug</span>
 <span class="cli-dim">[0] Exit</span>
 
-<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-6"></span><span class="cli-white blink-cursor">|</span></code></pre><pre id="cliFlowAnim" class="cli-flow-console" aria-label="Login flow animation"><code><span class="cli-cyan"><span class="cli-login-target"><span class="cli-login-target-dot" aria-hidden="true"></span>Login Actions</span></span>
+<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-6"></span><span class="cli-white blink-cursor">|</span></code></pre>
+            <pre
+              id="cliFlowAnim"
+              class="cli-flow-console"
+              aria-label="Login flow animation"
+            ><code><span class="cli-cyan"><span class="cli-login-target"><span class="cli-login-target-dot" aria-hidden="true"></span>Login Actions</span></span>
 
 <span class="cli-white">Opening browser for login...</span>
 <span class="cli-white">Paste FULL URL (pixiv://...) or paste code here:</span>
@@ -49,4 +423,26 @@
 <span class="cli-green">[3] Copy refresh token<span class="cli-notif notif-3">&nbsp;&nbsp;(Refresh token copied.)</span></span>
 <span class="cli-dim">[0] Exit</span>
 
-<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-options"></span><span class="cli-white blink-cursor">|</span></code></pre></div><svg class="cli-flow-svg" aria-hidden="true"><path id="cliFlowPathGlow" class="cli-flow-path-glow"></path><path id="cliFlowPath" class="cli-flow-path"></path></svg></div></section><section class="tutorial-cta-wrap"><p id="downloadsDedicatedDesc" class="muted">Downloads & quick commands setup instructions.</p><a id="downloadsCtaBtn" class="tutorial-cta-btn" href="/downloads"><span id="downloadsCtaBtnLabel">Open Downloads Page</span><i class="bi bi-arrow-right" aria-hidden="true"></i></a></section></main><footer class="tutorial-docs-footer site-footer" id="mainFooter"></footer><script type="module" src="/assets/js/main.js"></script><script defer="defer" src="/assets/cli-flow.js"></script></body></html>
+<span class="cli-yellow">[+] Select option: </span><span class="cli-white type-options"></span><span class="cli-white blink-cursor">|</span></code></pre>
+          </div>
+          <svg class="cli-flow-svg" aria-hidden="true">
+            <path id="cliFlowPathGlow" class="cli-flow-path-glow"></path>
+            <path id="cliFlowPath" class="cli-flow-path"></path>
+          </svg>
+        </div>
+      </section>
+      <section class="tutorial-cta-wrap">
+        <p id="downloadsDedicatedDesc" class="muted">
+          Downloads & quick commands setup instructions.
+        </p>
+        <a id="downloadsCtaBtn" class="tutorial-cta-btn" href="/downloads"
+          ><span id="downloadsCtaBtnLabel">Open Downloads Page</span
+          ><i class="bi bi-arrow-right" aria-hidden="true"></i
+        ></a>
+      </section>
+    </main>
+    <footer class="tutorial-docs-footer site-footer" id="mainFooter"></footer>
+    <script type="module" src="/assets/js/main.js"></script>
+    <script defer="defer" src="/assets/cli-flow.js"></script>
+  </body>
+</html>

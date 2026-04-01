@@ -2,7 +2,6 @@
 
 > 🌐 Available in other languages: [Polski](web/public/docs/lang/README-PL.md) | [中文](web/public/docs/lang/README-ZH.md) | [日本語](web/public/docs/lang/README-JP.md) | [Deutsch](web/public/docs/lang/README-DE.md) | [Français](web/public/docs/lang/README-FR.md) | [Español](web/public/docs/lang/README-ES.md) | [Русский](web/public/docs/lang/README-RU.md) | [Português](web/public/docs/lang/README-PT.md) | [Bahasa Indonesia](web/public/docs/lang/README-ID.md) | [한국어](web/public/docs/lang/README-KR.md)
 
-
 A toolkit to generate Pixiv OAuth tokens in three modes:
 
 - CLI (`app/pixiv_login.py`)
@@ -32,14 +31,14 @@ python pixiv_login_gui.py
 
 ### GUI Features
 
-| Feature | Description |
-|---|---|
-| **Multi-language** | 11 languages — auto-detected from config, switchable live via dropdown |
+| Feature             | Description                                                                                                                                                                                                       |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multi-language**  | 11 languages — auto-detected from config, switchable live via dropdown                                                                                                                                            |
 | **⚙ Debug Console** | Button in top-right header; opens a dark terminal logging **all** events (button clicks, language changes, HTTP requests, PKCE steps, clipboard, config saves, warnings) in real-time and in the current language |
-| **Token Exchange** | Paste pixiv:// URL or raw code → exchange for access + refresh token |
-| **Refresh Token** | One-click refresh using saved refresh_token from config |
-| **Copy Tokens** | Copy access_token / refresh_token to clipboard instantly |
-| **Tutorial** | Step-by-step image guide built into the app |
+| **Token Exchange**  | Paste pixiv:// URL or raw code → exchange for access + refresh token                                                                                                                                              |
+| **Refresh Token**   | One-click refresh using saved refresh_token from config                                                                                                                                                           |
+| **Copy Tokens**     | Copy access_token / refresh_token to clipboard instantly                                                                                                                                                          |
+| **Tutorial**        | Step-by-step image guide built into the app                                                                                                                                                                       |
 
 ## Build
 
@@ -108,6 +107,7 @@ Default non-release fallback is now `BUILD-UNKNOWN` (instead of `REL-LOCAL`), wh
 A highly optimized, responsive web app featuring dynamic multi-language support (11 languages with auto-detection) and comprehensive SEO metadata.
 
 ### Key Web Features
+
 - **Extensive Pages**: Homepage, Downloads, Tutorial, Contact, Issues & PRs, Discussions Tracker, Documentation Markdown viewer, and Support/Donate integration.
 - **Advanced SEO**: Auto-injected localized `<meta>` tags, extensive JSON-LD structured data (Sitelinks, SoftwareApplication, etc.), automated `hreflang` generation, `robots.txt`, and `sitemap.xml`.
 - **Security & Performance**: Automatic JavaScript obfuscation (extreme mangling), HTML/CSS minification (via `cd web && node build_minify.js`), and clean `XSS` prevention via `escapeHTML`.
@@ -241,14 +241,17 @@ See all notable changes for each version in the [CHANGELOG.md](CHANGELOG.md) fil
 ### Latest: v1.0.4 (2026-03-29)
 
 **🐞 Fixed**
+
 - Portable CLI/GUI: version no longer reverts to old version after update — `VERSION_FILE` / `CONFIG_FILE` are now correctly saved next to the `.exe` instead of the temporary PyInstaller extraction folder.
 - CLI frozen update: now properly replaces the actual `.exe` via a `.bat` updater script instead of overwriting a temp file.
 
 **✨ Added**
+
 - **Architecture-aware update** — both CLI and GUI now automatically detect the running architecture (`x64`, `x86`, `ARM64`) and download the matching build variant when updating.
 - **CLI setup update flow** — CLI now silently runs the setup installer when updating from a `Program Files` installation (mirrors GUI behavior).
 
 **🔜 Coming in next update**
+
 - Mobile web support — the web app will gain full responsive layout for mobile browsers.
 
 ## License

@@ -290,8 +290,7 @@ export const DISPLAY_LANGUAGES = {
       "This website is an independent open-source utility for Pixiv OAuth token workflows.",
     termsTitle: "Terms & Conditions",
     termsLastUpdated: "Last updated: April 1, 2026",
-    termsIntro:
-      "By using this website and tool, you agree to these terms.",
+    termsIntro: "By using this website and tool, you agree to these terms.",
     privacySectionIndependentTitle: "Independent Project",
     privacySectionIndependentBody:
       "Pixiv OAuth Token is developed independently and is not an official Pixiv product or service.",
@@ -312,7 +311,7 @@ export const DISPLAY_LANGUAGES = {
       "For support or privacy-related questions, please use the Contact page or the project's GitHub repository.",
     termsSectionAsIsTitle: "Provided As Is",
     termsSectionAsIsBody:
-      "This open-source tool is provided \"as is\" without warranties of availability, reliability, or fitness for a particular purpose.",
+      'This open-source tool is provided "as is" without warranties of availability, reliability, or fitness for a particular purpose.',
     termsSectionRiskTitle: "Use at Your Own Risk",
     termsSectionRiskBody:
       "You are solely responsible for how you use this tool, including how you store and protect any OAuth credentials or tokens.",
@@ -626,9 +625,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Kontakt",
     privacySectionContactBody:
       "W sprawach wsparcia lub pytań dotyczących prywatności skorzystaj ze strony Contact albo repozytorium projektu na GitHub.",
-    termsSectionAsIsTitle: "Dostarczane w stanie \"as is\"",
+    termsSectionAsIsTitle: 'Dostarczane w stanie "as is"',
     termsSectionAsIsBody:
-      "To narzędzie open-source jest udostępniane \"as is\", bez gwarancji dostępności, niezawodności ani przydatności do określonego celu.",
+      'To narzędzie open-source jest udostępniane "as is", bez gwarancji dostępności, niezawodności ani przydatności do określonego celu.',
     termsSectionRiskTitle: "Korzystanie na własne ryzyko",
     termsSectionRiskBody:
       "Pełna odpowiedzialność za sposób korzystania z narzędzia, w tym przechowywanie i ochronę danych OAuth oraz tokenów, spoczywa na użytkowniku.",
@@ -896,12 +895,10 @@ export const DISPLAY_LANGUAGES = {
     footerVersion: "网页版本 {version}",
     privacyTitle: "隐私政策",
     privacyLastUpdated: "最后更新：2026年4月1日",
-    privacyIntro:
-      "本网站是用于 Pixiv OAuth 流程的独立开源工具。",
+    privacyIntro: "本网站是用于 Pixiv OAuth 流程的独立开源工具。",
     termsTitle: "条款与条件",
     termsLastUpdated: "最后更新：2026年4月1日",
-    termsIntro:
-      "使用本网站和工具即表示你同意这些条款。",
+    termsIntro: "使用本网站和工具即表示你同意这些条款。",
     privacySectionIndependentTitle: "独立项目",
     privacySectionIndependentBody:
       "Pixiv OAuth Token 是独立开发的项目，并非 Pixiv 官方产品或服务。",
@@ -1551,9 +1548,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Kontakt",
     privacySectionContactBody:
       "Für Support oder datenschutzbezogene Fragen nutzen Sie bitte die Contact-Seite oder das GitHub-Repository des Projekts.",
-    termsSectionAsIsTitle: "Bereitstellung \"as is\"",
+    termsSectionAsIsTitle: 'Bereitstellung "as is"',
     termsSectionAsIsBody:
-      "Dieses Open-Source-Tool wird \"as is\" bereitgestellt, ohne Gewährleistung für Verfügbarkeit, Zuverlässigkeit oder Eignung für einen bestimmten Zweck.",
+      'Dieses Open-Source-Tool wird "as is" bereitgestellt, ohne Gewährleistung für Verfügbarkeit, Zuverlässigkeit oder Eignung für einen bestimmten Zweck.',
     termsSectionRiskTitle: "Nutzung auf eigenes Risiko",
     termsSectionRiskBody:
       "Sie sind allein verantwortlich für die Nutzung dieses Tools, einschließlich Speicherung und Schutz Ihrer OAuth-Zugangsdaten und Tokens.",
@@ -1867,9 +1864,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Contact",
     privacySectionContactBody:
       "Pour toute assistance ou question liée à la confidentialité, veuillez utiliser la page Contact ou le dépôt GitHub du projet.",
-    termsSectionAsIsTitle: "Fourni \"tel quel\"",
+    termsSectionAsIsTitle: 'Fourni "tel quel"',
     termsSectionAsIsBody:
-      "Cet outil open source est fourni \"tel quel\", sans garantie de disponibilité, de fiabilité ni d'adéquation à un usage particulier.",
+      'Cet outil open source est fourni "tel quel", sans garantie de disponibilité, de fiabilité ni d\'adéquation à un usage particulier.',
     termsSectionRiskTitle: "Utilisation à vos risques",
     termsSectionRiskBody:
       "Vous êtes seul responsable de votre utilisation de cet outil, y compris du stockage et de la protection de vos identifiants et jetons OAuth.",
@@ -2163,8 +2160,7 @@ export const DISPLAY_LANGUAGES = {
       "Este sitio es una herramienta independiente de código abierto para flujos OAuth de Pixiv.",
     termsTitle: "Términos y condiciones",
     termsLastUpdated: "Última actualización: 1 de abril de 2026",
-    termsIntro:
-      "Al usar este sitio y herramienta, aceptas estos términos.",
+    termsIntro: "Al usar este sitio y herramienta, aceptas estos términos.",
     privacySectionIndependentTitle: "Proyecto independiente",
     privacySectionIndependentBody:
       "Pixiv OAuth Token se desarrolla de forma independiente y no es un producto o servicio oficial de Pixiv.",
@@ -2183,9 +2179,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Contacto",
     privacySectionContactBody:
       "Para soporte o preguntas relacionadas con la privacidad, usa la página Contact o el repositorio de GitHub del proyecto.",
-    termsSectionAsIsTitle: "Se proporciona \"tal cual\"",
+    termsSectionAsIsTitle: 'Se proporciona "tal cual"',
     termsSectionAsIsBody:
-      "Esta herramienta de código abierto se proporciona \"tal cual\", sin garantías de disponibilidad, fiabilidad o idoneidad para un propósito particular.",
+      'Esta herramienta de código abierto se proporciona "tal cual", sin garantías de disponibilidad, fiabilidad o idoneidad para un propósito particular.',
     termsSectionRiskTitle: "Uso bajo tu propio riesgo",
     termsSectionRiskBody:
       "Eres el único responsable de cómo utilizas esta herramienta, incluido cómo almacenas y proteges tus credenciales y tokens OAuth.",
@@ -2497,9 +2493,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Контакты",
     privacySectionContactBody:
       "По вопросам поддержки или конфиденциальности используйте страницу Contact или GitHub-репозиторий проекта.",
-    termsSectionAsIsTitle: "Предоставляется \"как есть\"",
+    termsSectionAsIsTitle: 'Предоставляется "как есть"',
     termsSectionAsIsBody:
-      "Этот open-source инструмент предоставляется \"как есть\" без гарантий доступности, надёжности или пригодности для конкретной цели.",
+      'Этот open-source инструмент предоставляется "как есть" без гарантий доступности, надёжности или пригодности для конкретной цели.',
     termsSectionRiskTitle: "Использование на ваш риск",
     termsSectionRiskBody:
       "Вы полностью отвечаете за использование инструмента, включая хранение и защиту OAuth-данных и токенов.",
@@ -2810,9 +2806,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Contato",
     privacySectionContactBody:
       "Para suporte ou dúvidas sobre privacidade, use a página Contact ou o repositório do projeto no GitHub.",
-    termsSectionAsIsTitle: "Fornecido \"como está\"",
+    termsSectionAsIsTitle: 'Fornecido "como está"',
     termsSectionAsIsBody:
-      "Esta ferramenta open-source é fornecida \"como está\", sem garantias de disponibilidade, confiabilidade ou adequação a um propósito específico.",
+      'Esta ferramenta open-source é fornecida "como está", sem garantias de disponibilidade, confiabilidade ou adequação a um propósito específico.',
     termsSectionRiskTitle: "Uso por sua conta e risco",
     termsSectionRiskBody:
       "Você é totalmente responsável por como usa esta ferramenta, incluindo armazenamento e proteção de credenciais e tokens OAuth.",
@@ -3120,9 +3116,9 @@ export const DISPLAY_LANGUAGES = {
     privacySectionContactTitle: "Kontak",
     privacySectionContactBody:
       "Untuk dukungan atau pertanyaan terkait privasi, gunakan halaman Contact atau repositori GitHub proyek.",
-    termsSectionAsIsTitle: "Disediakan \"sebagaimana adanya\"",
+    termsSectionAsIsTitle: 'Disediakan "sebagaimana adanya"',
     termsSectionAsIsBody:
-      "Alat open-source ini disediakan \"sebagaimana adanya\" tanpa jaminan ketersediaan, keandalan, atau kesesuaian untuk tujuan tertentu.",
+      'Alat open-source ini disediakan "sebagaimana adanya" tanpa jaminan ketersediaan, keandalan, atau kesesuaian untuk tujuan tertentu.',
     termsSectionRiskTitle: "Gunakan dengan risiko Anda sendiri",
     termsSectionRiskBody:
       "Anda sepenuhnya bertanggung jawab atas cara Anda menggunakan alat ini, termasuk penyimpanan dan perlindungan kredensial serta token OAuth.",
@@ -3432,7 +3428,7 @@ export const DISPLAY_LANGUAGES = {
       "지원 또는 개인정보 관련 문의는 Contact 페이지 또는 프로젝트 GitHub 저장소를 이용해 주세요.",
     termsSectionAsIsTitle: "있는 그대로 제공",
     termsSectionAsIsBody:
-      "이 오픈소스 도구는 \"있는 그대로(as is)\" 제공되며, 가용성, 신뢰성 또는 특정 목적 적합성에 대한 보증은 제공되지 않습니다.",
+      '이 오픈소스 도구는 "있는 그대로(as is)" 제공되며, 가용성, 신뢰성 또는 특정 목적 적합성에 대한 보증은 제공되지 않습니다.',
     termsSectionRiskTitle: "사용자 책임 하에 사용",
     termsSectionRiskBody:
       "OAuth 자격 증명 및 토큰의 저장/보호를 포함하여 이 도구의 사용 방식에 대한 책임은 전적으로 사용자에게 있습니다.",
