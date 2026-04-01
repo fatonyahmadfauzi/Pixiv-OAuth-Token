@@ -6,8 +6,7 @@ export function initializeHeader() {
     pageLabelI18n = headerEl.getAttribute("data-page-i18n") || "",
     brandHref = headerEl.getAttribute("data-brand-href") || "/",
     showLangSwitcher = headerEl.getAttribute("data-lang-switcher") === "true",
-    navAttr = headerEl.getAttribute("data-nav") || "",
-    activeNavs = navAttr ? navAttr.split(",") : [];
+    navAttr = headerEl.getAttribute("data-nav") || "";
 
   const HEADER_HTML =
       '<div class="tutorial-docs-inner"><div class="tutorial-docs-top"><a class="tutorial-docs-brand" href="' +
@@ -25,14 +24,8 @@ export function initializeHeader() {
       '"><strong>Pixiv OAuth</strong></a> <button class="close-sidebar" aria-label="Close menu"><i class="bi bi-x-lg" aria-hidden="true"></i></button></div>' +
       [
         {
-          id: "navHomepageLabel",
-          href: "/",
-          i18n: "navHomepageLabel",
-          label: "Homepage",
-        },
-        {
           id: "navConsole",
-          href: "/#console",
+          href: navAttr === "navConsole" ? "#console" : "/#console",
           i18n: "navConsole",
           label: "Console",
         },
@@ -48,11 +41,7 @@ export function initializeHeader() {
           i18n: "navTutorial",
           label: "Tutorial",
         },
-      ]
-        .filter(function (link) {
-          return -1 === activeNavs.indexOf(link.id);
-        })
-        .map(function (link) {
+      ].map(function (link) {
           return (
             '<a id="' +
             link.id +
