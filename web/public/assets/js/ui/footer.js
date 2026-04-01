@@ -47,9 +47,6 @@ const SITE_FOOTER_HTML = `
           </ul>
         </section>
       </div>
-      <div class="footer-brand-block">
-        <span class="footer-ghost-text" data-i18n="footerBrandText">Pixiv OAuth</span>
-      </div>
       <p class="footer-disclaimer" id="footerDisclaimer" data-i18n="footerDisclaimer">Pixiv OAuth Token is an independent open-source project and is not affiliated with Pixiv Inc.</p>
       <p class="footer-version" id="footerVersion"></p>
       <p class="footer-copyright" data-i18n="footerCopyright">© 2025 Pixiv OAuth Web · Built by Fatony Ahmad Fauzi</p>
