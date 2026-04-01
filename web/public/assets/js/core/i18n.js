@@ -279,6 +279,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (for cloning the repository)",
     dlMinReqPy4: "Internet connection",
     changelogPageTitle: "Changelog",
+    footerPrivacy: "Privacy Policy",
+    footerTerms: "Terms & Conditions",
+    footerDisclaimer:
+      "Pixiv OAuth Token is an independent open-source project and is not affiliated with, authorized by, maintained by, sponsored by, or endorsed by Pixiv Inc.",
+    footerVersion: "Web Version {version}",
+    privacyTitle: "Privacy Policy",
+    privacyLastUpdated: "Last updated: April 1, 2026",
+    privacyIntro:
+      "This website is an independent open-source utility for Pixiv OAuth token workflows.",
+    termsTitle: "Terms & Conditions",
+    termsLastUpdated: "Last updated: April 1, 2026",
+    termsIntro:
+      "By using this website and tool, you agree to these terms.",
+    privacySectionIndependentTitle: "Independent Project",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token is developed independently and is not an official Pixiv product or service.",
+    privacySectionProcessingTitle: "How Token Data Is Processed",
+    privacySectionProcessingBody:
+      "This tool helps you submit authorization data to official Pixiv OAuth endpoints to exchange or refresh tokens. Token values may be processed in your browser and API flow only as needed for the requested action.",
+    privacySectionCollectionTitle: "Data Collection & Misuse",
+    privacySectionCollectionBody:
+      "The developer does not intentionally collect, sell, or misuse your Pixiv credentials or OAuth tokens.",
+    privacySectionThirdPartyTitle: "Third-Party Services",
+    privacySectionThirdPartyBody:
+      "This project may link to or rely on services such as GitHub, Vercel, Pixiv endpoints, and related documentation. Those services have separate privacy practices.",
+    privacySectionResponsibilityTitle: "Your Responsibility",
+    privacySectionResponsibilityBody:
+      "You are responsible for securing your own device, browser, network environment, and account credentials.",
+    privacySectionContactTitle: "Contact",
+    privacySectionContactBody:
+      "For support or privacy-related questions, please use the Contact page or the project's GitHub repository.",
+    termsSectionAsIsTitle: "Provided As Is",
+    termsSectionAsIsBody:
+      "This open-source tool is provided \"as is\" without warranties of availability, reliability, or fitness for a particular purpose.",
+    termsSectionRiskTitle: "Use at Your Own Risk",
+    termsSectionRiskBody:
+      "You are solely responsible for how you use this tool, including how you store and protect any OAuth credentials or tokens.",
+    termsSectionLiabilityTitle: "Limitation of Liability",
+    termsSectionLiabilityBody:
+      "The developer is not liable for account bans, suspensions, data loss, token leakage caused by your device or environment, user misuse, or third-party outages and API changes.",
+    termsSectionComplianceTitle: "Compliance",
+    termsSectionComplianceBody:
+      "You must comply with Pixiv rules, API terms, and applicable local laws in your jurisdiction.",
+    termsSectionAffiliationTitle: "Non-Affiliation",
+    termsSectionAffiliationBody:
+      "This project is independent and is not officially affiliated with or endorsed by Pixiv Inc.",
+    termsSectionChangesTitle: "Service Changes",
+    termsSectionChangesBody:
+      "The developer may modify, suspend, or discontinue parts of the website or tool at any time without prior notice.",
     navHomepageLabel: "Homepage",
   },
   pl: {
@@ -546,6 +595,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (do klonowania repozytorium)",
     dlMinReqPy4: "Połączenie z internetem",
     changelogPageTitle: "Dziennik Zmian",
+    footerPrivacy: "Polityka prywatności",
+    footerTerms: "Regulamin",
+    footerDisclaimer:
+      "Pixiv OAuth Token to niezależny projekt open-source i nie jest powiązany z Pixiv Inc., ani przez nią autoryzowany, utrzymywany, sponsorowany lub wspierany.",
+    footerVersion: "Wersja web {version}",
+    privacyTitle: "Polityka prywatności",
+    privacyLastUpdated: "Ostatnia aktualizacja: 1 kwietnia 2026",
+    privacyIntro:
+      "Ta strona to niezależne narzędzie open-source do obsługi Pixiv OAuth.",
+    termsTitle: "Regulamin",
+    termsLastUpdated: "Ostatnia aktualizacja: 1 kwietnia 2026",
+    termsIntro:
+      "Korzystając z tej witryny i narzędzia, akceptujesz niniejsze warunki.",
+    privacySectionIndependentTitle: "Niezależny projekt",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token jest rozwijany niezależnie i nie jest oficjalnym produktem ani usługą Pixiv.",
+    privacySectionProcessingTitle: "Jak przetwarzane są dane tokena",
+    privacySectionProcessingBody:
+      "To narzędzie pomaga przesyłać dane autoryzacyjne do oficjalnych endpointów OAuth Pixiv w celu wymiany lub odświeżenia tokenów. Wartości tokenów mogą być przetwarzane w przeglądarce i przepływie API wyłącznie w zakresie niezbędnym do wykonania żądanej akcji.",
+    privacySectionCollectionTitle: "Gromadzenie danych i nadużycia",
+    privacySectionCollectionBody:
+      "Deweloper nie gromadzi, nie sprzedaje ani nie wykorzystuje celowo Twoich danych logowania Pixiv ani tokenów OAuth.",
+    privacySectionThirdPartyTitle: "Usługi stron trzecich",
+    privacySectionThirdPartyBody:
+      "Projekt może zawierać linki do usług takich jak GitHub, Vercel, endpointy Pixiv i powiązana dokumentacja lub na nich polegać. Usługi te mają własne zasady prywatności.",
+    privacySectionResponsibilityTitle: "Twoja odpowiedzialność",
+    privacySectionResponsibilityBody:
+      "Za bezpieczeństwo urządzenia, przeglądarki, środowiska sieciowego oraz danych konta odpowiada użytkownik.",
+    privacySectionContactTitle: "Kontakt",
+    privacySectionContactBody:
+      "W sprawach wsparcia lub pytań dotyczących prywatności skorzystaj ze strony Contact albo repozytorium projektu na GitHub.",
+    termsSectionAsIsTitle: "Dostarczane w stanie \"as is\"",
+    termsSectionAsIsBody:
+      "To narzędzie open-source jest udostępniane \"as is\", bez gwarancji dostępności, niezawodności ani przydatności do określonego celu.",
+    termsSectionRiskTitle: "Korzystanie na własne ryzyko",
+    termsSectionRiskBody:
+      "Pełna odpowiedzialność za sposób korzystania z narzędzia, w tym przechowywanie i ochronę danych OAuth oraz tokenów, spoczywa na użytkowniku.",
+    termsSectionLiabilityTitle: "Ograniczenie odpowiedzialności",
+    termsSectionLiabilityBody:
+      "Deweloper nie odpowiada za blokady kont, zawieszenia, utratę danych, wyciek tokenów wynikający z urządzenia lub środowiska użytkownika, nadużycia użytkownika ani awarie usług zewnętrznych i zmiany API.",
+    termsSectionComplianceTitle: "Zgodność z zasadami",
+    termsSectionComplianceBody:
+      "Użytkownik musi przestrzegać zasad Pixiv, warunków API oraz obowiązującego prawa lokalnego.",
+    termsSectionAffiliationTitle: "Brak powiązania",
+    termsSectionAffiliationBody:
+      "Projekt jest niezależny i nie jest oficjalnie powiązany ani wspierany przez Pixiv Inc.",
+    termsSectionChangesTitle: "Zmiany usługi",
+    termsSectionChangesBody:
+      "Deweloper może w dowolnym momencie, bez uprzedniego powiadomienia, zmienić, zawiesić lub zakończyć działanie części strony lub narzędzia.",
     navHomepageLabel: "Strona Główna",
   },
   zh: {
@@ -791,6 +889,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git（用于克隆仓库）",
     dlMinReqPy4: "互联网连接",
     changelogPageTitle: "更新日志",
+    footerPrivacy: "隐私政策",
+    footerTerms: "条款与条件",
+    footerDisclaimer:
+      "Pixiv OAuth Token 是一个独立开源项目，不隶属于、未获授权、未由 Pixiv Inc. 维护、赞助或背书。",
+    footerVersion: "网页版本 {version}",
+    privacyTitle: "隐私政策",
+    privacyLastUpdated: "最后更新：2026年4月1日",
+    privacyIntro:
+      "本网站是用于 Pixiv OAuth 流程的独立开源工具。",
+    termsTitle: "条款与条件",
+    termsLastUpdated: "最后更新：2026年4月1日",
+    termsIntro:
+      "使用本网站和工具即表示你同意这些条款。",
+    privacySectionIndependentTitle: "独立项目",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token 是独立开发的项目，并非 Pixiv 官方产品或服务。",
+    privacySectionProcessingTitle: "令牌数据如何处理",
+    privacySectionProcessingBody:
+      "本工具会协助你将授权数据提交到 Pixiv 官方 OAuth 端点，以交换或刷新令牌。令牌数据仅会在完成所请求操作所需范围内于浏览器和 API 流程中处理。",
+    privacySectionCollectionTitle: "数据收集与滥用",
+    privacySectionCollectionBody:
+      "开发者不会故意收集、出售或滥用你的 Pixiv 凭据或 OAuth 令牌。",
+    privacySectionThirdPartyTitle: "第三方服务",
+    privacySectionThirdPartyBody:
+      "本项目可能链接或依赖 GitHub、Vercel、Pixiv 端点及相关文档等外部服务。这些服务有其各自的隐私政策。",
+    privacySectionResponsibilityTitle: "你的责任",
+    privacySectionResponsibilityBody:
+      "你需要自行负责设备、浏览器、网络环境以及账户凭据的安全。",
+    privacySectionContactTitle: "联系",
+    privacySectionContactBody:
+      "如需支持或有隐私相关问题，请使用 Contact 页面或项目 GitHub 仓库。",
+    termsSectionAsIsTitle: "按“现状”提供",
+    termsSectionAsIsBody:
+      "本开源工具按“现状（as is）”提供，不对可用性、可靠性或特定用途适用性作任何保证。",
+    termsSectionRiskTitle: "风险自担",
+    termsSectionRiskBody:
+      "你需对工具使用方式承担全部责任，包括 OAuth 凭据和令牌的存储与保护。",
+    termsSectionLiabilityTitle: "责任限制",
+    termsSectionLiabilityBody:
+      "开发者不对账号封禁/停用、数据丢失、由你设备或环境导致的令牌泄露、用户滥用、第三方服务中断或 API 变更负责。",
+    termsSectionComplianceTitle: "合规",
+    termsSectionComplianceBody:
+      "你必须遵守 Pixiv 规则、API 条款以及你所在地适用法律。",
+    termsSectionAffiliationTitle: "非关联声明",
+    termsSectionAffiliationBody:
+      "本项目为独立项目，与 Pixiv Inc. 无官方关联，也未获其背书。",
+    termsSectionChangesTitle: "服务变更",
+    termsSectionChangesBody:
+      "开发者可在任何时候、无需提前通知地修改、暂停或终止网站或工具的部分功能。",
     navHomepageLabel: "主页",
   },
   jp: {
@@ -1058,6 +1205,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git（リポジトリのクローン用）",
     dlMinReqPy4: "インターネット接続",
     changelogPageTitle: "変更履歴",
+    footerPrivacy: "プライバシーポリシー",
+    footerTerms: "利用規約",
+    footerDisclaimer:
+      "Pixiv OAuth Token は独立したオープンソースプロジェクトであり、Pixiv Inc. とは提携・承認・運営・スポンサー・推奨の関係にありません。",
+    footerVersion: "Webバージョン {version}",
+    privacyTitle: "プライバシーポリシー",
+    privacyLastUpdated: "最終更新日: 2026年4月1日",
+    privacyIntro:
+      "本サイトは Pixiv OAuth トークン処理向けの独立したオープンソースツールです。",
+    termsTitle: "利用規約",
+    termsLastUpdated: "最終更新日: 2026年4月1日",
+    termsIntro:
+      "本サイトおよびツールを利用することで、本規約に同意したものとみなされます。",
+    privacySectionIndependentTitle: "独立プロジェクト",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token は独立して開発されたプロジェクトであり、Pixiv の公式製品・公式サービスではありません。",
+    privacySectionProcessingTitle: "トークンデータの処理方法",
+    privacySectionProcessingBody:
+      "本ツールは、トークンの交換・更新のために、認可情報を Pixiv 公式 OAuth エンドポイントへ送信する処理を支援します。トークン値は、要求された操作に必要な範囲で、ブラウザおよび API フロー内で処理される場合があります。",
+    privacySectionCollectionTitle: "データ収集と不正利用について",
+    privacySectionCollectionBody:
+      "開発者は、Pixiv の認証情報や OAuth トークンを意図的に収集・販売・不正利用しません。",
+    privacySectionThirdPartyTitle: "第三者サービス",
+    privacySectionThirdPartyBody:
+      "本プロジェクトは、GitHub、Vercel、Pixiv エンドポイント、関連ドキュメントなどの外部サービスへリンク、または依存する場合があります。これらのサービスには独自のプライバシーポリシーが適用されます。",
+    privacySectionResponsibilityTitle: "利用者の責任",
+    privacySectionResponsibilityBody:
+      "ご利用の端末、ブラウザ、ネットワーク環境、アカウント認証情報の保護は利用者ご自身の責任です。",
+    privacySectionContactTitle: "お問い合わせ",
+    privacySectionContactBody:
+      "サポートまたはプライバシーに関するお問い合わせは、Contact ページまたは GitHub リポジトリをご利用ください。",
+    termsSectionAsIsTitle: "現状有姿での提供",
+    termsSectionAsIsBody:
+      "本オープンソースツールは「現状有姿（as is）」で提供され、可用性・信頼性・特定目的への適合性についての保証はありません。",
+    termsSectionRiskTitle: "自己責任での利用",
+    termsSectionRiskBody:
+      "OAuth 認証情報やトークンの保管・保護を含め、本ツールの利用方法に関する責任はすべて利用者にあります。",
+    termsSectionLiabilityTitle: "責任の制限",
+    termsSectionLiabilityBody:
+      "アカウント停止・凍結、データ損失、利用者の端末/環境に起因するトークン漏えい、利用者による不正利用、第三者サービス障害や API 変更について、開発者は責任を負いません。",
+    termsSectionComplianceTitle: "遵守事項",
+    termsSectionComplianceBody:
+      "利用者は、Pixiv の規約・API 利用条件および適用される地域法令を遵守する必要があります。",
+    termsSectionAffiliationTitle: "非提携",
+    termsSectionAffiliationBody:
+      "本プロジェクトは独立しており、Pixiv Inc. と公式な提携・承認関係はありません。",
+    termsSectionChangesTitle: "サービス変更",
+    termsSectionChangesBody:
+      "開発者は、事前通知なく本サイトまたはツールの一部を変更・停止・終了する場合があります。",
     navHomepageLabel: "ホーム",
   },
   de: {
@@ -1324,6 +1520,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (zum Klonen des Repositorys)",
     dlMinReqPy4: "Internetverbindung",
     changelogPageTitle: "Änderungsprotokoll",
+    footerPrivacy: "Datenschutzerklärung",
+    footerTerms: "Nutzungsbedingungen",
+    footerDisclaimer:
+      "Pixiv OAuth Token ist ein unabhängiges Open-Source-Projekt und steht in keiner Verbindung zu Pixiv Inc.; es wird weder autorisiert, betrieben, gesponsert noch empfohlen.",
+    footerVersion: "Web-Version {version}",
+    privacyTitle: "Datenschutzerklärung",
+    privacyLastUpdated: "Zuletzt aktualisiert: 1. April 2026",
+    privacyIntro:
+      "Diese Website ist ein unabhängiges Open-Source-Tool für Pixiv OAuth-Abläufe.",
+    termsTitle: "Nutzungsbedingungen",
+    termsLastUpdated: "Zuletzt aktualisiert: 1. April 2026",
+    termsIntro:
+      "Durch die Nutzung dieser Website und dieses Tools stimmen Sie diesen Bedingungen zu.",
+    privacySectionIndependentTitle: "Unabhängiges Projekt",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token wird unabhängig entwickelt und ist kein offizielles Produkt oder offizieller Dienst von Pixiv.",
+    privacySectionProcessingTitle: "Wie Token-Daten verarbeitet werden",
+    privacySectionProcessingBody:
+      "Dieses Tool hilft Ihnen, Autorisierungsdaten an offizielle Pixiv-OAuth-Endpunkte zu senden, um Tokens auszutauschen oder zu aktualisieren. Tokenwerte können im Browser und im API-Flow nur soweit verarbeitet werden, wie es für die angeforderte Aktion erforderlich ist.",
+    privacySectionCollectionTitle: "Datenerhebung und Missbrauch",
+    privacySectionCollectionBody:
+      "Der Entwickler sammelt, verkauft oder missbraucht Ihre Pixiv-Anmeldedaten oder OAuth-Tokens nicht absichtlich.",
+    privacySectionThirdPartyTitle: "Drittanbieter-Dienste",
+    privacySectionThirdPartyBody:
+      "Dieses Projekt kann auf Dienste wie GitHub, Vercel, Pixiv-Endpunkte und zugehörige Dokumentation verlinken oder von ihnen abhängen. Diese Dienste haben eigene Datenschutzpraktiken.",
+    privacySectionResponsibilityTitle: "Ihre Verantwortung",
+    privacySectionResponsibilityBody:
+      "Sie sind für die Sicherheit Ihres Geräts, Browsers, Netzwerkumfelds und Ihrer Kontodaten verantwortlich.",
+    privacySectionContactTitle: "Kontakt",
+    privacySectionContactBody:
+      "Für Support oder datenschutzbezogene Fragen nutzen Sie bitte die Contact-Seite oder das GitHub-Repository des Projekts.",
+    termsSectionAsIsTitle: "Bereitstellung \"as is\"",
+    termsSectionAsIsBody:
+      "Dieses Open-Source-Tool wird \"as is\" bereitgestellt, ohne Gewährleistung für Verfügbarkeit, Zuverlässigkeit oder Eignung für einen bestimmten Zweck.",
+    termsSectionRiskTitle: "Nutzung auf eigenes Risiko",
+    termsSectionRiskBody:
+      "Sie sind allein verantwortlich für die Nutzung dieses Tools, einschließlich Speicherung und Schutz Ihrer OAuth-Zugangsdaten und Tokens.",
+    termsSectionLiabilityTitle: "Haftungsbeschränkung",
+    termsSectionLiabilityBody:
+      "Der Entwickler haftet nicht für Kontosperrungen, Aussetzungen, Datenverlust, Token-Lecks durch Ihr Gerät oder Umfeld, Missbrauch durch Nutzer oder Ausfälle und API-Änderungen bei Drittanbietern.",
+    termsSectionComplianceTitle: "Einhaltung",
+    termsSectionComplianceBody:
+      "Sie müssen die Regeln von Pixiv, die API-Bedingungen und die in Ihrer Region geltenden Gesetze einhalten.",
+    termsSectionAffiliationTitle: "Keine Verbindung",
+    termsSectionAffiliationBody:
+      "Dieses Projekt ist unabhängig und weder offiziell mit Pixiv Inc. verbunden noch von ihr unterstützt.",
+    termsSectionChangesTitle: "Änderungen am Service",
+    termsSectionChangesBody:
+      "Der Entwickler kann Teile der Website oder des Tools jederzeit ohne vorherige Ankündigung ändern, aussetzen oder einstellen.",
     navHomepageLabel: "Startseite",
   },
   fr: {
@@ -1591,6 +1836,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (pour le clonage du dépôt)",
     dlMinReqPy4: "Connexion Internet",
     changelogPageTitle: "Notes de version",
+    footerPrivacy: "Politique de confidentialité",
+    footerTerms: "Conditions générales",
+    footerDisclaimer:
+      "Pixiv OAuth Token est un projet open source indépendant et n'est pas affilié à Pixiv Inc., ni autorisé, maintenu, sponsorisé ou approuvé par celle-ci.",
+    footerVersion: "Version Web {version}",
+    privacyTitle: "Politique de confidentialité",
+    privacyLastUpdated: "Dernière mise à jour : 1 avril 2026",
+    privacyIntro:
+      "Ce site est un outil open source indépendant lié aux flux OAuth Pixiv.",
+    termsTitle: "Conditions générales",
+    termsLastUpdated: "Dernière mise à jour : 1 avril 2026",
+    termsIntro:
+      "En utilisant ce site et cet outil, vous acceptez les présentes conditions.",
+    privacySectionIndependentTitle: "Projet indépendant",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token est développé de manière indépendante et n'est pas un produit ou service officiel de Pixiv.",
+    privacySectionProcessingTitle: "Comment les données de jeton sont traitées",
+    privacySectionProcessingBody:
+      "Cet outil vous aide à envoyer des données d'autorisation vers les endpoints OAuth officiels de Pixiv pour échanger ou rafraîchir des jetons. Les valeurs de jeton peuvent être traitées dans le navigateur et le flux API uniquement dans la mesure nécessaire à l'action demandée.",
+    privacySectionCollectionTitle: "Collecte et usage abusif des données",
+    privacySectionCollectionBody:
+      "Le développeur ne collecte, ne vend ni n'utilise intentionnellement vos identifiants Pixiv ou vos jetons OAuth de manière abusive.",
+    privacySectionThirdPartyTitle: "Services tiers",
+    privacySectionThirdPartyBody:
+      "Ce projet peut contenir des liens vers des services tels que GitHub, Vercel, les endpoints Pixiv et la documentation associée, ou en dépendre. Ces services appliquent leurs propres pratiques de confidentialité.",
+    privacySectionResponsibilityTitle: "Votre responsabilité",
+    privacySectionResponsibilityBody:
+      "Vous êtes responsable de la sécurité de votre appareil, de votre navigateur, de votre environnement réseau et de vos identifiants de compte.",
+    privacySectionContactTitle: "Contact",
+    privacySectionContactBody:
+      "Pour toute assistance ou question liée à la confidentialité, veuillez utiliser la page Contact ou le dépôt GitHub du projet.",
+    termsSectionAsIsTitle: "Fourni \"tel quel\"",
+    termsSectionAsIsBody:
+      "Cet outil open source est fourni \"tel quel\", sans garantie de disponibilité, de fiabilité ni d'adéquation à un usage particulier.",
+    termsSectionRiskTitle: "Utilisation à vos risques",
+    termsSectionRiskBody:
+      "Vous êtes seul responsable de votre utilisation de cet outil, y compris du stockage et de la protection de vos identifiants et jetons OAuth.",
+    termsSectionLiabilityTitle: "Limitation de responsabilité",
+    termsSectionLiabilityBody:
+      "Le développeur n'est pas responsable des bans/suspensions de compte, pertes de données, fuites de jeton dues à votre appareil ou environnement, mauvaise utilisation par l'utilisateur, ou pannes/changements d'API de services tiers.",
+    termsSectionComplianceTitle: "Conformité",
+    termsSectionComplianceBody:
+      "Vous devez respecter les règles de Pixiv, les conditions API et les lois locales applicables dans votre juridiction.",
+    termsSectionAffiliationTitle: "Non-affiliation",
+    termsSectionAffiliationBody:
+      "Ce projet est indépendant et n'est pas officiellement affilié à Pixiv Inc., ni approuvé par celle-ci.",
+    termsSectionChangesTitle: "Modifications du service",
+    termsSectionChangesBody:
+      "Le développeur peut modifier, suspendre ou supprimer des parties du site ou de l'outil à tout moment, sans préavis.",
     navHomepageLabel: "Accueil",
   },
   es: {
@@ -1858,6 +2152,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (para clonar el repositorio)",
     dlMinReqPy4: "Conexión a Internet",
     changelogPageTitle: "Registro de cambios",
+    footerPrivacy: "Política de privacidad",
+    footerTerms: "Términos y condiciones",
+    footerDisclaimer:
+      "Pixiv OAuth Token es un proyecto independiente de código abierto y no está afiliado, autorizado, mantenido, patrocinado ni respaldado por Pixiv Inc.",
+    footerVersion: "Versión web {version}",
+    privacyTitle: "Política de privacidad",
+    privacyLastUpdated: "Última actualización: 1 de abril de 2026",
+    privacyIntro:
+      "Este sitio es una herramienta independiente de código abierto para flujos OAuth de Pixiv.",
+    termsTitle: "Términos y condiciones",
+    termsLastUpdated: "Última actualización: 1 de abril de 2026",
+    termsIntro:
+      "Al usar este sitio y herramienta, aceptas estos términos.",
+    privacySectionIndependentTitle: "Proyecto independiente",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token se desarrolla de forma independiente y no es un producto o servicio oficial de Pixiv.",
+    privacySectionProcessingTitle: "Cómo se procesan los datos del token",
+    privacySectionProcessingBody:
+      "Esta herramienta te ayuda a enviar datos de autorización a los endpoints oficiales de OAuth de Pixiv para intercambiar o actualizar tokens. Los valores del token pueden procesarse en el navegador y en el flujo API solo cuando sea necesario para la acción solicitada.",
+    privacySectionCollectionTitle: "Recopilación y uso indebido de datos",
+    privacySectionCollectionBody:
+      "El desarrollador no recopila, vende ni hace un uso indebido intencional de tus credenciales de Pixiv ni de tus tokens OAuth.",
+    privacySectionThirdPartyTitle: "Servicios de terceros",
+    privacySectionThirdPartyBody:
+      "Este proyecto puede enlazar o depender de servicios como GitHub, Vercel, endpoints de Pixiv y documentación relacionada. Estos servicios tienen sus propias prácticas de privacidad.",
+    privacySectionResponsibilityTitle: "Tu responsabilidad",
+    privacySectionResponsibilityBody:
+      "Eres responsable de proteger tu dispositivo, navegador, entorno de red y credenciales de cuenta.",
+    privacySectionContactTitle: "Contacto",
+    privacySectionContactBody:
+      "Para soporte o preguntas relacionadas con la privacidad, usa la página Contact o el repositorio de GitHub del proyecto.",
+    termsSectionAsIsTitle: "Se proporciona \"tal cual\"",
+    termsSectionAsIsBody:
+      "Esta herramienta de código abierto se proporciona \"tal cual\", sin garantías de disponibilidad, fiabilidad o idoneidad para un propósito particular.",
+    termsSectionRiskTitle: "Uso bajo tu propio riesgo",
+    termsSectionRiskBody:
+      "Eres el único responsable de cómo utilizas esta herramienta, incluido cómo almacenas y proteges tus credenciales y tokens OAuth.",
+    termsSectionLiabilityTitle: "Limitación de responsabilidad",
+    termsSectionLiabilityBody:
+      "El desarrollador no es responsable de bloqueos/suspensiones de cuentas, pérdida de datos, filtración de tokens causada por tu dispositivo o entorno, mal uso por parte del usuario, ni caídas/cambios de API de terceros.",
+    termsSectionComplianceTitle: "Cumplimiento",
+    termsSectionComplianceBody:
+      "Debes cumplir las reglas de Pixiv, los términos de la API y las leyes locales aplicables en tu jurisdicción.",
+    termsSectionAffiliationTitle: "No afiliación",
+    termsSectionAffiliationBody:
+      "Este proyecto es independiente y no está afiliado oficialmente ni respaldado por Pixiv Inc.",
+    termsSectionChangesTitle: "Cambios del servicio",
+    termsSectionChangesBody:
+      "El desarrollador puede modificar, suspender o retirar partes del sitio o la herramienta en cualquier momento y sin previo aviso.",
     navHomepageLabel: "Inicio",
   },
   ru: {
@@ -2123,6 +2466,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (для клонирования репозитория)",
     dlMinReqPy4: "Подключение к Интернету",
     changelogPageTitle: "Журнал изменений",
+    footerPrivacy: "Политика конфиденциальности",
+    footerTerms: "Условия использования",
+    footerDisclaimer:
+      "Pixiv OAuth Token — независимый проект с открытым исходным кодом и не связан с Pixiv Inc., не авторизован, не поддерживается, не спонсируется и не одобряется этой компанией.",
+    footerVersion: "Версия веб-приложения {version}",
+    privacyTitle: "Политика конфиденциальности",
+    privacyLastUpdated: "Последнее обновление: 1 апреля 2026",
+    privacyIntro:
+      "Этот сайт — независимый open-source инструмент для работы с Pixiv OAuth.",
+    termsTitle: "Условия использования",
+    termsLastUpdated: "Последнее обновление: 1 апреля 2026",
+    termsIntro:
+      "Используя этот сайт и инструмент, вы соглашаетесь с этими условиями.",
+    privacySectionIndependentTitle: "Независимый проект",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token разрабатывается независимо и не является официальным продуктом или сервисом Pixiv.",
+    privacySectionProcessingTitle: "Как обрабатываются данные токена",
+    privacySectionProcessingBody:
+      "Этот инструмент помогает отправлять данные авторизации на официальные OAuth-эндпоинты Pixiv для обмена или обновления токенов. Значения токенов могут обрабатываться в браузере и API-потоке только в объёме, необходимом для запрошенного действия.",
+    privacySectionCollectionTitle: "Сбор данных и злоупотребление",
+    privacySectionCollectionBody:
+      "Разработчик не собирает, не продаёт и не злоупотребляет вашими учетными данными Pixiv или OAuth-токенами намеренно.",
+    privacySectionThirdPartyTitle: "Сторонние сервисы",
+    privacySectionThirdPartyBody:
+      "Проект может ссылаться на сервисы, такие как GitHub, Vercel, эндпоинты Pixiv и связанную документацию, или зависеть от них. У этих сервисов есть собственные политики конфиденциальности.",
+    privacySectionResponsibilityTitle: "Ваша ответственность",
+    privacySectionResponsibilityBody:
+      "Вы несёте ответственность за защиту своего устройства, браузера, сетевого окружения и учетных данных.",
+    privacySectionContactTitle: "Контакты",
+    privacySectionContactBody:
+      "По вопросам поддержки или конфиденциальности используйте страницу Contact или GitHub-репозиторий проекта.",
+    termsSectionAsIsTitle: "Предоставляется \"как есть\"",
+    termsSectionAsIsBody:
+      "Этот open-source инструмент предоставляется \"как есть\" без гарантий доступности, надёжности или пригодности для конкретной цели.",
+    termsSectionRiskTitle: "Использование на ваш риск",
+    termsSectionRiskBody:
+      "Вы полностью отвечаете за использование инструмента, включая хранение и защиту OAuth-данных и токенов.",
+    termsSectionLiabilityTitle: "Ограничение ответственности",
+    termsSectionLiabilityBody:
+      "Разработчик не несёт ответственности за блокировки/приостановки аккаунта, потерю данных, утечку токенов из-за вашего устройства или окружения, злоупотребление пользователем, а также сбои сторонних сервисов и изменения API.",
+    termsSectionComplianceTitle: "Соблюдение требований",
+    termsSectionComplianceBody:
+      "Вы обязаны соблюдать правила Pixiv, условия API и применимое местное законодательство.",
+    termsSectionAffiliationTitle: "Отсутствие аффилированности",
+    termsSectionAffiliationBody:
+      "Проект является независимым и официально не связан с Pixiv Inc. и не одобрен ею.",
+    termsSectionChangesTitle: "Изменения сервиса",
+    termsSectionChangesBody:
+      "Разработчик может в любое время без предварительного уведомления изменить, приостановить или удалить части сайта или инструмента.",
     navHomepageLabel: "Главная страница",
   },
   pt: {
@@ -2387,6 +2779,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (para clonar o repositório)",
     dlMinReqPy4: "Conexão com a Internet",
     changelogPageTitle: "Log de alterações",
+    footerPrivacy: "Política de Privacidade",
+    footerTerms: "Termos e Condições",
+    footerDisclaimer:
+      "Pixiv OAuth Token é um projeto open-source independente e não é afiliado, autorizado, mantido, patrocinado nem endossado pela Pixiv Inc.",
+    footerVersion: "Versão Web {version}",
+    privacyTitle: "Política de Privacidade",
+    privacyLastUpdated: "Última atualização: 1 de abril de 2026",
+    privacyIntro:
+      "Este site é uma ferramenta open-source independente para fluxos OAuth da Pixiv.",
+    termsTitle: "Termos e Condições",
+    termsLastUpdated: "Última atualização: 1 de abril de 2026",
+    termsIntro:
+      "Ao usar este site e ferramenta, você concorda com estes termos.",
+    privacySectionIndependentTitle: "Projeto independente",
+    privacySectionIndependentBody:
+      "O Pixiv OAuth Token é desenvolvido de forma independente e não é um produto ou serviço oficial da Pixiv.",
+    privacySectionProcessingTitle: "Como os dados de token são processados",
+    privacySectionProcessingBody:
+      "Esta ferramenta ajuda você a enviar dados de autorização para endpoints OAuth oficiais da Pixiv para trocar ou renovar tokens. Os valores de token podem ser processados no navegador e no fluxo de API apenas quando necessário para a ação solicitada.",
+    privacySectionCollectionTitle: "Coleta e uso indevido de dados",
+    privacySectionCollectionBody:
+      "O desenvolvedor não coleta, vende nem faz uso indevido intencional das suas credenciais Pixiv ou tokens OAuth.",
+    privacySectionThirdPartyTitle: "Serviços de terceiros",
+    privacySectionThirdPartyBody:
+      "Este projeto pode conter links ou depender de serviços como GitHub, Vercel, endpoints da Pixiv e documentação relacionada. Esses serviços possuem suas próprias práticas de privacidade.",
+    privacySectionResponsibilityTitle: "Sua responsabilidade",
+    privacySectionResponsibilityBody:
+      "Você é responsável por proteger seu dispositivo, navegador, ambiente de rede e credenciais da conta.",
+    privacySectionContactTitle: "Contato",
+    privacySectionContactBody:
+      "Para suporte ou dúvidas sobre privacidade, use a página Contact ou o repositório do projeto no GitHub.",
+    termsSectionAsIsTitle: "Fornecido \"como está\"",
+    termsSectionAsIsBody:
+      "Esta ferramenta open-source é fornecida \"como está\", sem garantias de disponibilidade, confiabilidade ou adequação a um propósito específico.",
+    termsSectionRiskTitle: "Uso por sua conta e risco",
+    termsSectionRiskBody:
+      "Você é totalmente responsável por como usa esta ferramenta, incluindo armazenamento e proteção de credenciais e tokens OAuth.",
+    termsSectionLiabilityTitle: "Limitação de responsabilidade",
+    termsSectionLiabilityBody:
+      "O desenvolvedor não se responsabiliza por banimentos/suspensões de conta, perda de dados, vazamento de token causado por seu dispositivo ou ambiente, mau uso do usuário, nem indisponibilidade de terceiros e mudanças de API.",
+    termsSectionComplianceTitle: "Conformidade",
+    termsSectionComplianceBody:
+      "Você deve cumprir as regras da Pixiv, os termos de API e as leis locais aplicáveis em sua jurisdição.",
+    termsSectionAffiliationTitle: "Não afiliação",
+    termsSectionAffiliationBody:
+      "Este projeto é independente e não é oficialmente afiliado nem endossado pela Pixiv Inc.",
+    termsSectionChangesTitle: "Mudanças no serviço",
+    termsSectionChangesBody:
+      "O desenvolvedor pode modificar, suspender ou encerrar partes do site ou da ferramenta a qualquer momento, sem aviso prévio.",
     navHomepageLabel: "Página Inicial",
   },
   id: {
@@ -2648,6 +3089,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (untuk meng-clone repositori)",
     dlMinReqPy4: "Koneksi internet",
     changelogPageTitle: "Catatan Perubahan",
+    footerPrivacy: "Kebijakan Privasi",
+    footerTerms: "Syarat & Ketentuan",
+    footerDisclaimer:
+      "Pixiv OAuth Token adalah proyek open-source independen dan tidak berafiliasi, tidak diotorisasi, tidak dikelola, tidak disponsori, atau didukung oleh Pixiv Inc.",
+    footerVersion: "Versi Web {version}",
+    privacyTitle: "Kebijakan Privasi",
+    privacyLastUpdated: "Terakhir diperbarui: 1 April 2026",
+    privacyIntro:
+      "Situs ini adalah utilitas open-source independen untuk alur token OAuth Pixiv.",
+    termsTitle: "Syarat & Ketentuan",
+    termsLastUpdated: "Terakhir diperbarui: 1 April 2026",
+    termsIntro:
+      "Dengan menggunakan situs dan alat ini, Anda menyetujui syarat ini.",
+    privacySectionIndependentTitle: "Proyek Independen",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token dikembangkan secara independen dan bukan produk atau layanan resmi Pixiv.",
+    privacySectionProcessingTitle: "Cara data token diproses",
+    privacySectionProcessingBody:
+      "Alat ini membantu Anda mengirim data otorisasi ke endpoint OAuth resmi Pixiv untuk menukar atau memperbarui token. Nilai token dapat diproses di browser dan alur API hanya sejauh yang diperlukan untuk tindakan yang diminta.",
+    privacySectionCollectionTitle: "Pengumpulan data & penyalahgunaan",
+    privacySectionCollectionBody:
+      "Developer tidak secara sengaja mengumpulkan, menjual, atau menyalahgunakan kredensial Pixiv maupun token OAuth Anda.",
+    privacySectionThirdPartyTitle: "Layanan pihak ketiga",
+    privacySectionThirdPartyBody:
+      "Proyek ini dapat menautkan atau bergantung pada layanan seperti GitHub, Vercel, endpoint Pixiv, dan dokumentasi terkait. Layanan tersebut memiliki praktik privasi masing-masing.",
+    privacySectionResponsibilityTitle: "Tanggung jawab Anda",
+    privacySectionResponsibilityBody:
+      "Anda bertanggung jawab menjaga keamanan perangkat, browser, lingkungan jaringan, dan kredensial akun Anda.",
+    privacySectionContactTitle: "Kontak",
+    privacySectionContactBody:
+      "Untuk dukungan atau pertanyaan terkait privasi, gunakan halaman Contact atau repositori GitHub proyek.",
+    termsSectionAsIsTitle: "Disediakan \"sebagaimana adanya\"",
+    termsSectionAsIsBody:
+      "Alat open-source ini disediakan \"sebagaimana adanya\" tanpa jaminan ketersediaan, keandalan, atau kesesuaian untuk tujuan tertentu.",
+    termsSectionRiskTitle: "Gunakan dengan risiko Anda sendiri",
+    termsSectionRiskBody:
+      "Anda sepenuhnya bertanggung jawab atas cara Anda menggunakan alat ini, termasuk penyimpanan dan perlindungan kredensial serta token OAuth.",
+    termsSectionLiabilityTitle: "Batasan tanggung jawab",
+    termsSectionLiabilityBody:
+      "Developer tidak bertanggung jawab atas banned/suspend akun, kehilangan data, kebocoran token akibat perangkat atau lingkungan Anda, penyalahgunaan oleh pengguna, maupun gangguan layanan pihak ketiga dan perubahan API.",
+    termsSectionComplianceTitle: "Kepatuhan",
+    termsSectionComplianceBody:
+      "Anda wajib mematuhi aturan Pixiv, ketentuan API, dan hukum lokal yang berlaku di yurisdiksi Anda.",
+    termsSectionAffiliationTitle: "Non-afiliasi",
+    termsSectionAffiliationBody:
+      "Proyek ini independen dan tidak berafiliasi resmi maupun didukung oleh Pixiv Inc.",
+    termsSectionChangesTitle: "Perubahan layanan",
+    termsSectionChangesBody:
+      "Developer dapat mengubah, menangguhkan, atau menghentikan bagian dari website atau alat kapan saja tanpa pemberitahuan sebelumnya.",
     navHomepageLabel: "Beranda",
   },
   kr: {
@@ -2909,6 +3399,55 @@ export const DISPLAY_LANGUAGES = {
     dlMinReqPy3: "Git (리포지토리 복제용)",
     dlMinReqPy4: "인터넷 연결",
     changelogPageTitle: "변경 내역",
+    footerPrivacy: "개인정보 처리방침",
+    footerTerms: "이용 약관",
+    footerDisclaimer:
+      "Pixiv OAuth Token은 독립적인 오픈소스 프로젝트이며 Pixiv Inc.와 제휴, 승인, 유지관리, 후원 또는 보증 관계가 없습니다.",
+    footerVersion: "웹 버전 {version}",
+    privacyTitle: "개인정보 처리방침",
+    privacyLastUpdated: "최종 업데이트: 2026년 4월 1일",
+    privacyIntro:
+      "이 웹사이트는 Pixiv OAuth 토큰 흐름을 위한 독립 오픈소스 도구입니다.",
+    termsTitle: "이용 약관",
+    termsLastUpdated: "최종 업데이트: 2026년 4월 1일",
+    termsIntro:
+      "이 사이트와 도구를 사용하면 본 약관에 동의한 것으로 간주됩니다.",
+    privacySectionIndependentTitle: "독립 프로젝트",
+    privacySectionIndependentBody:
+      "Pixiv OAuth Token은 독립적으로 개발되었으며 Pixiv의 공식 제품이나 서비스가 아닙니다.",
+    privacySectionProcessingTitle: "토큰 데이터 처리 방식",
+    privacySectionProcessingBody:
+      "이 도구는 토큰 교환 또는 갱신을 위해 인증 데이터를 Pixiv 공식 OAuth 엔드포인트로 전송하는 과정을 지원합니다. 토큰 값은 요청된 작업 수행에 필요한 범위에서만 브라우저와 API 흐름에서 처리될 수 있습니다.",
+    privacySectionCollectionTitle: "데이터 수집 및 오용",
+    privacySectionCollectionBody:
+      "개발자는 Pixiv 자격 증명이나 OAuth 토큰을 의도적으로 수집, 판매 또는 오용하지 않습니다.",
+    privacySectionThirdPartyTitle: "제3자 서비스",
+    privacySectionThirdPartyBody:
+      "이 프로젝트는 GitHub, Vercel, Pixiv 엔드포인트 및 관련 문서와 같은 외부 서비스에 링크하거나 의존할 수 있습니다. 해당 서비스에는 별도의 개인정보 처리방침이 적용됩니다.",
+    privacySectionResponsibilityTitle: "사용자 책임",
+    privacySectionResponsibilityBody:
+      "기기, 브라우저, 네트워크 환경 및 계정 자격 증명 보호는 사용자 본인의 책임입니다.",
+    privacySectionContactTitle: "문의",
+    privacySectionContactBody:
+      "지원 또는 개인정보 관련 문의는 Contact 페이지 또는 프로젝트 GitHub 저장소를 이용해 주세요.",
+    termsSectionAsIsTitle: "있는 그대로 제공",
+    termsSectionAsIsBody:
+      "이 오픈소스 도구는 \"있는 그대로(as is)\" 제공되며, 가용성, 신뢰성 또는 특정 목적 적합성에 대한 보증은 제공되지 않습니다.",
+    termsSectionRiskTitle: "사용자 책임 하에 사용",
+    termsSectionRiskBody:
+      "OAuth 자격 증명 및 토큰의 저장/보호를 포함하여 이 도구의 사용 방식에 대한 책임은 전적으로 사용자에게 있습니다.",
+    termsSectionLiabilityTitle: "책임의 제한",
+    termsSectionLiabilityBody:
+      "개발자는 계정 정지/제재, 데이터 손실, 사용자 기기/환경으로 인한 토큰 유출, 사용자 오용, 제3자 서비스 장애 및 API 변경에 대해 책임지지 않습니다.",
+    termsSectionComplianceTitle: "준수 사항",
+    termsSectionComplianceBody:
+      "사용자는 Pixiv 규칙, API 약관 및 해당 지역의 적용 법률을 준수해야 합니다.",
+    termsSectionAffiliationTitle: "비제휴",
+    termsSectionAffiliationBody:
+      "이 프로젝트는 독립 프로젝트이며 Pixiv Inc.와 공식적인 제휴 또는 보증 관계가 없습니다.",
+    termsSectionChangesTitle: "서비스 변경",
+    termsSectionChangesBody:
+      "개발자는 사전 고지 없이 언제든지 웹사이트 또는 도구의 일부를 변경, 중단 또는 종료할 수 있습니다.",
     navHomepageLabel: "홈페이지",
   },
 };

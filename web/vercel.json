@@ -101,6 +101,16 @@
       "permanent": true
     },
     {
+      "source": "/privacy-policy",
+      "destination": "/en/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-conditions",
+      "destination": "/en/terms-conditions",
+      "permanent": true
+    },
+    {
       "source": "/dumper",
       "destination": "/en/dumper",
       "permanent": true
