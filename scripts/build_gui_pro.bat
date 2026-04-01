@@ -59,11 +59,11 @@ if errorlevel 1 (
 
 REM Clean minimal (GUI only)
 if exist dist rmdir /s /q dist
-if exist build rmdir /s /q build
+if exist nuitka_tmp rmdir /s /q nuitka_tmp
 del /q *.spec 2>nul
 
 REM Bundle tutorial images if available
-if exist "tutorial_images" set ADD_TUTORIAL=--include-data-dir="tutorial_images=tutorial_images"
+if exist "docs\images" set ADD_TUTORIAL=--include-data-dir="docs\images=docs\images"
 
 REM Build (windowed = no console)
 python -m nuitka --onefile --windows-disable-console ^
@@ -87,14 +87,14 @@ if errorlevel 1 (
 )
 
 REM Copy outputs
-if not exist dist_gui mkdir dist_gui
-del /q dist_gui\*_v*.exe 2>nul
-copy /y dist\%NAME%.exe dist_gui\%NAME%.exe >nul
-copy /y dist\%NAME%.exe "dist_gui\%PORTABLE_LABEL%.exe" >nul
+if not exist build\gui mkdir build\gui
+del /q build\gui\*_v*.exe 2>nul
+copy /y dist\%NAME%.exe build\gui\%NAME%.exe >nul
+copy /y dist\%NAME%.exe "build\gui\%PORTABLE_LABEL%.exe" >nul
 
 echo.
 echo GUI built:
-echo   dist_gui\%NAME%.exe
-echo   dist_gui\%PORTABLE_LABEL%.exe
+echo   build\gui\%NAME%.exe
+echo   build\gui\%PORTABLE_LABEL%.exe
 echo.
 exit /b 0

@@ -623,7 +623,7 @@ EXTRA_UI_EN = {
     "tutorial_header": "How to Use",
     "tutorial_desc": "Follow this guided flow to exchange Pixiv OAuth tokens quickly.",
     "tutorial_steps": "Step by step",
-    "tutorial_missing": "No tutorial images found. Put ordered PNG files in tutorial_images/.",
+    "tutorial_missing": "No tutorial images found. Put ordered PNG files in docs/images/.",
     "tutorial_image_open_error": "Cannot open image: {file}",
     "dev_info_title": "Developer",
     "res_docs_documentation": "Documentation",
@@ -675,7 +675,7 @@ EXTRA_UI_OVERRIDES = {
         "tutorial_header": "Cara Penggunaan",
         "tutorial_desc": "Ikuti langkah berikut untuk menukar token Pixiv OAuth dengan cepat.",
         "tutorial_steps": "Langkah-langkah",
-        "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder tutorial_images/.",
+        "tutorial_missing": "Gambar tutorial tidak ditemukan. Taruh file PNG berurutan di folder docs/images/.",
         "tutorial_image_open_error": "Gagal membuka gambar: {file}",
         "res_docs_documentation": "Dokumentasi",
         "res_docs_license": "Lisensi",
@@ -724,7 +724,7 @@ EXTRA_UI_OVERRIDES = {
         "tutorial_header": "使い方",
         "tutorial_desc": "このガイドに沿って Pixiv OAuth トークンを素早く取得できます。",
         "tutorial_steps": "手順",
-        "tutorial_missing": "チュートリアル画像が見つかりません。tutorial_images/ に連番PNGを配置してください。",
+        "tutorial_missing": "チュートリアル画像が見つかりません。docs/images/ に連番PNGを配置してください。",
         "tutorial_image_open_error": "画像を開けません: {file}",
         "dev_info_title": "開発者",
         "res_docs_documentation": "ドキュメント",
@@ -1368,7 +1368,7 @@ class App(tk.Tk):
         self.last_access_token: str | None = None
         self.last_refresh_token: str | None = self.cfg.get("refresh_token")
         self.tutorial_dirs = self._resolve_tutorial_dirs()
-        self._tutorial_images: list[Path] = []
+        self._docs/images: list[Path] = []
         self._tutorial_index = 0
         self._tutorial_photo = None
 
@@ -1449,15 +1449,15 @@ class App(tk.Tk):
         dirs = []
 
         # 1) Preferred: beside executable/script (persistent app folder)
-        dirs.append(app_dir() / "tutorial_images")
+        dirs.append(app_dir() / "docs/images")
 
         # 2) Source checkout location (when running from repo)
-        dirs.append(Path(__file__).resolve().parent / "tutorial_images")
+        dirs.append(Path(__file__).resolve().parent / "docs/images")
 
         # 3) PyInstaller temp extraction folder (onefile runtime)
         meipass = getattr(__import__("sys"), "_MEIPASS", None)
         if meipass:
-            dirs.append(Path(meipass) / "tutorial_images")
+            dirs.append(Path(meipass) / "docs/images")
 
         # unique order-preserving
         uniq = []
@@ -1641,7 +1641,7 @@ class App(tk.Tk):
             f"{DEVELOPER_NAME}\n\nGitHub: {REPO_BASE_URL}\nTikTok: {TIKTOK_URL}\nTwitter/X: {TWITTER_URL}",
         )
 
-    def _load_tutorial_images(self):
+    def _load_docs/images(self):
         images = []
         for d in self.tutorial_dirs:
             if not d.exists():
@@ -1658,7 +1658,7 @@ class App(tk.Tk):
                 continue
             seen.add(k)
             uniq.append(img)
-        self._tutorial_images = uniq
+        self._docs/images = uniq
 
     def _scaled_tutorial_photo(self, image_path: Path, max_width: int = 860):
         photo = tk.PhotoImage(file=str(image_path))
@@ -1670,7 +1670,7 @@ class App(tk.Tk):
 
     def show_tutorial(self):
         self.debug(self.t("dbg_tutorial_open"))
-        self._load_tutorial_images()
+        self._load_docs/images()
 
         tutorial = tk.Toplevel(self)
         tutorial.title(self.tx("tutorial_title"))
@@ -1714,13 +1714,13 @@ class App(tk.Tk):
 
         self._tutorial_photos = []
 
-        if not self._tutorial_images:
+        if not self._docs/images:
             ttk.Label(content, text=self.tx("tutorial_missing"), style="TLabel").pack(anchor="w", pady=8)
         else:
             code = self.current_lang_code()
             captions = TUTORIAL_CAPTIONS.get(code, TUTORIAL_CAPTIONS["en"])
 
-            for i, image_path in enumerate(self._tutorial_images, start=1):
+            for i, image_path in enumerate(self._docs/images, start=1):
                 caption = captions[i - 1] if i - 1 < len(captions) else image_path.name
 
                 section = ttk.Frame(content, style="Card.TFrame", padding=(8, 8, 8, 16))

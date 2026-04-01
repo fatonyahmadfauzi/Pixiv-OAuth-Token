@@ -11,4 +11,4 @@ export const REPO_BASE =
 export const RELEASE_BASE = `${REPO_BASE}/releases/latest/download`;
 export const RELEASE_API =
   "/api/github?path=repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest";
-export const DOWNLOADS_BASE = `${REPO_BASE}/raw/HEAD/downloads`;
+export const DOWNLOADS_BASE = `${REPO_BASE}/raw/HEAD/build/downloads`;

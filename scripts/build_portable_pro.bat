@@ -20,7 +20,7 @@ if errorlevel 1 exit /b 1
 
 REM --- clean ---
 if exist dist rmdir /s /q dist
-if exist build rmdir /s /q build
+if exist nuitka_tmp rmdir /s /q nuitka_tmp
 del /q *.spec 2>nul
 
 REM --- bump version (patch by default). Usage: scripts\build_portable_pro.bat minor|major|patch|none ---
@@ -55,15 +55,15 @@ if errorlevel 1 (
 )
 
 REM --- copy portable output ---
-if not exist dist_portable mkdir dist_portable
-del /q dist_portable\*_v*.exe 2>nul
-copy /y dist\%OUTNAME%.exe dist_portable\%OUTNAME%.exe >nul
-copy /y dist\%OUTNAME%.exe "dist_portable\%PORTABLE_LABEL%.exe" >nul
+if not exist build\portable mkdir build\portable
+del /q build\portable\*_v*.exe 2>nul
+copy /y dist\%OUTNAME%.exe build\portable\%OUTNAME%.exe >nul
+copy /y dist\%OUTNAME%.exe "build\portable\%PORTABLE_LABEL%.exe" >nul
 
 echo.
 echo Portable built:
-echo   dist_portable\%OUTNAME%.exe
-echo   dist_portable\%PORTABLE_LABEL%.exe
+echo   build\portable\%OUTNAME%.exe
+echo   build\portable\%PORTABLE_LABEL%.exe
 echo.
 
 exit /b 0

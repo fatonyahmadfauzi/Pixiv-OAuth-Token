@@ -11,13 +11,18 @@ env/
 .venv/
 
 # ==============================
-# PyInstaller
+# Build Outputs (Compiler / Packager)
 # ==============================
 build/
+!build/downloads/
+!build/downloads/**
 dist/
+dist_gui/
 dist_portable/
 dist_installer/
+dist_release/
 release/
+nuitka_tmp/
 *.spec
 
 # ==============================
@@ -60,6 +65,3 @@ site/
 # ==============================
 .git/
 .gitmodules
-# Keep release binaries if manually placed in repository downloads folder
-!downloads/
-!downloads/**

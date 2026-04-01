@@ -41,8 +41,8 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         with:
           files: |
-            dist_release/PixivOAuthRelease_*.zip
-            dist_portable/*.exe
-            dist_gui/*.exe
-            dist_installer/*.exe
+            build/releases/PixivOAuthRelease_*.zip
+            build/portable/*.exe
+            build/gui/*.exe
+            build/installer/*.exe
           generate_release_notes: true

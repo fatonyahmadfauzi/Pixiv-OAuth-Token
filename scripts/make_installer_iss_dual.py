@@ -10,9 +10,9 @@ from pathlib import Path
 
 PRODUCT_NAME = "Pixiv OAuth"
 PUBLISHER = "Fatony Ahmad Fauzi"
-EXE_CLI = r"dist_portable\pixiv_login_plus.exe"
-EXE_GUI = r"dist_gui\pixiv_login_gui.exe"
-OUT_DIR = "dist_installer"
+EXE_CLI = r"build\portable\pixiv_login_plus.exe"
+EXE_GUI = r"build\gui\pixiv_login_gui.exe"
+OUT_DIR = r"build\installer"
 ICON_FILE = r"app\pixiv_oauth.ico"
 
 # Keep a stable AppId GUID across regenerations by storing it (optional).
