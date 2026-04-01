@@ -24,6 +24,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "No file chosen",
     kicker: "Pixiv OAuth Toolkit",
     title: "Pixiv OAuth Web",
+    indexTitleSuffix: "Professional Token Helper",
     subtitle:
       "Toolkit to generate and refresh Pixiv OAuth tokens via CLI, GUI, and Web with a secure PKCE flow.",
     badgePkce: "PKCE Flow",
@@ -334,6 +335,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Nie wybrano pliku",
     kicker: "Zestaw narzędzi Pixiv OAuth",
     title: "Sieć Pixiv OAuth",
+    indexTitleSuffix: "Profesjonalny Asystent Tokenów",
     subtitle:
       "Zestaw narzędzi do generowania tokenów Pixiv OAuth przez CLI, GUI i WWW z bezpiecznym przepływem PKCE oraz wdrożeniem gotowym dla Vercel.",
     badgePkce: "Przepływ PKCE",
@@ -650,6 +652,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "未选择文件",
     kicker: "Pixiv OAuth 工具包",
     title: "Pixiv OAuth 网页",
+    indexTitleSuffix: "专业令牌助手",
     subtitle:
       "通过 CLI、GUI 和 Web 生成 Pixiv OAuth 令牌的工具包，采用安全 PKCE 流程，并可直接部署到 Vercel。",
     badgePkce: "PKCE 流程",
@@ -942,6 +945,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "選択されていません",
     kicker: "Pixiv OAuth ツールキット",
     title: "Pixiv OAuth Web",
+    indexTitleSuffix: "プロフェッショナルトークンヘルパー",
     subtitle:
       "安全な PKCE フローと Vercel 対応デプロイを備えた、CLI・GUI・Web 向け Pixiv OAuth トークン生成ツールキットです。",
     badgePkce: "PKCE フロー",
@@ -1258,6 +1262,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Keine Datei ausgewählt",
     kicker: "Pixiv OAuth-Toolkit",
     title: "Pixiv OAuth-Web",
+    indexTitleSuffix: "Professioneller Token-Helfer",
     subtitle:
       "Toolkit zum Erzeugen von Pixiv-OAuth-Tokens per CLI, GUI und Web mit sicherem PKCE-Flow und Vercel-fähigem Deployment.",
     badgePkce: "PKCE-Flow",
@@ -1573,6 +1578,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Aucun fichier choisi",
     kicker: "Boîte à outils Pixiv OAuth",
     title: "Web OAuth Pixiv",
+    indexTitleSuffix: "Assistant de Jeton Professionnel",
     subtitle:
       "Boîte à outils pour générer des jetons Pixiv OAuth via CLI, GUI et Web avec un flux PKCE sécurisé et un déploiement prêt pour Vercel.",
     badgePkce: "Flux PKCE",
@@ -1889,6 +1895,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Ningún archivo seleccionado",
     kicker: "Kit de herramientas Pixiv OAuth",
     title: "Web de Pixiv OAuth",
+    indexTitleSuffix: "Asistente de Tokens Profesional",
     subtitle:
       "Kit para generar tokens Pixiv OAuth mediante CLI, GUI y Web con flujo PKCE seguro y despliegue listo para Vercel.",
     badgePkce: "Flujo PKCE",
@@ -2204,6 +2211,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Файл не выбран",
     kicker: "Набор инструментов Pixiv OAuth",
     title: "Веб-сайт Pixiv OAuth",
+    indexTitleSuffix: "Профессиональный Помощник по Токенам",
     subtitle:
       "Инструмент для генерации токенов Pixiv OAuth через CLI, GUI и Web с безопасным PKCE-потоком и развёртыванием, готовым для Vercel.",
     badgePkce: "PKCE-поток",
@@ -2518,6 +2526,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Nenhum arquivo",
     kicker: "Kit de ferramentas Pixiv OAuth",
     title: "Pixiv OAuth Web",
+    indexTitleSuffix: "Assistente de Token Profissional",
     subtitle:
       "Kit para gerar tokens Pixiv OAuth via CLI, GUI e Web com fluxo PKCE seguro e implantação pronta para Vercel.",
     badgePkce: "Fluxo PKCE",
@@ -2831,6 +2840,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "Tidak ada file dipilih",
     kicker: "Toolkit Pixiv OAuth",
     title: "Web OAuth Pixiv",
+    indexTitleSuffix: "Asisten Token Profesional",
     subtitle:
       "Toolkit untuk mendapatkan token Pixiv OAuth melalui CLI, GUI, dan Web dengan alur PKCE aman serta siap deploy di Vercel.",
     badgePkce: "Alur PKCE",
@@ -3141,6 +3151,7 @@ export const DISPLAY_LANGUAGES = {
     hwNoFile: "선택된 파일 없음",
     kicker: "Pixiv OAuth 툴킷",
     title: "Pixiv OAuth 웹",
+    indexTitleSuffix: "전문 토큰 도우미",
     subtitle:
       "안전한 PKCE 흐름과 Vercel 배포 지원을 갖춘 CLI, GUI, Web용 Pixiv OAuth 토큰 생성 툴킷입니다.",
     badgePkce: "PKCE 흐름",

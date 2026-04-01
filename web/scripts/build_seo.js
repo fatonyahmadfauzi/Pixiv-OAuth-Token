@@ -203,7 +203,9 @@ function getPageMetaData(fileName, trans) {
 
   let titleVal = `${pageTitle} | Pixiv OAuth`;
   if (baseName === "index") {
-    titleVal = `${pageTitle} | Professional Token Helper`;
+    const defaultSuffix = "Professional Token Helper";
+    const suffix = trans.indexTitleSuffix || defaultSuffix;
+    titleVal = `${pageTitle} | ${suffix}`;
   }
   return { titleVal, descVal: pageDesc };
 }
@@ -248,7 +250,7 @@ function processFile(filePath, fileName, localeFolder) {
     `<html lang="${seoLang}">`,
   );
 
-  const { titleVal, descVal } = getPageMetaData(fileName, trans);
+  const { titleVal, descVal } = getPageMetaData(fileName, trans, localeFolder);
 
   content = content.replace(
     /<title>.*?<\/title>/gi,
@@ -284,11 +286,11 @@ function processFile(filePath, fileName, localeFolder) {
   // Update og:image:alt and twitter:image:alt with translated title
   content = content.replace(
     /property="og:image:alt"\s+content="[^"]*"/gi,
-    `property="og:image:alt" content="Pixiv OAuth Web \u2013 ${titleVal}"`,
+    `property="og:image:alt" content="${trans.title || "Pixiv OAuth Web"} \u2013 ${titleVal}"`,
   );
   content = content.replace(
     /name="twitter:image:alt"\s+content="[^"]*"/gi,
-    `name="twitter:image:alt" content="Pixiv OAuth Web \u2013 ${titleVal}"`,
+    `name="twitter:image:alt" content="${trans.title || "Pixiv OAuth Web"} \u2013 ${titleVal}"`,
   );
 
   // Update keywords — use translated subtitle words as keywords if available
