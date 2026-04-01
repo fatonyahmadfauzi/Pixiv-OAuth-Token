@@ -17,7 +17,7 @@ export function setupTutorialPage() {
         const filename = this.src.substring(this.src.lastIndexOf('/') + 1);
         
         // Replace image element with text string
-        const fallbackText = document.createTextNode(`Add tutorial_images/${filename}`);
+        const fallbackText = document.createTextNode(`Add docs/images/${filename}`);
         this.replaceWith(fallbackText);
         
         // Apply missing style to card
