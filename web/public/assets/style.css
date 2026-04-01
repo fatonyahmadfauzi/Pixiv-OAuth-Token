@@ -1878,7 +1878,7 @@ pre {
   pointer-events: auto;
 }
 .site-footer {
-  border-top: 1px solid #1a2438;
+  border-top: none;
 }
 .footer-inner {
   max-width: 1200px;
@@ -1928,7 +1928,7 @@ pre {
   font-size: 1rem;
 }
 .footer-brand-block {
-  margin: 32px 0 0;
+  margin: 44px 0 64px;
   overflow: hidden;
   pointer-events: none;
 }
@@ -1943,6 +1943,8 @@ pre {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: clip;
+  text-align: right;
+  padding-right: 8px;
 }
 .footer-copyright {
   margin: 24px 0 0;
