@@ -1218,42 +1218,42 @@ export const DISPLAY_LANGUAGES = {
     termsLastUpdated: "最終更新日: 2026年4月1日",
     termsIntro:
       "本サイトおよびツールを利用することで、本規約に同意したものとみなされます。",
-    privacySectionIndependentTitle: "Independent Project",
+    privacySectionIndependentTitle: "独立プロジェクト",
     privacySectionIndependentBody:
-      "Pixiv OAuth Token is developed independently and is not an official Pixiv product or service.",
-    privacySectionProcessingTitle: "How Token Data Is Processed",
+      "Pixiv OAuth Token は独立して開発されたプロジェクトであり、Pixiv の公式製品・公式サービスではありません。",
+    privacySectionProcessingTitle: "トークンデータの処理方法",
     privacySectionProcessingBody:
-      "This tool helps you submit authorization data to official Pixiv OAuth endpoints to exchange or refresh tokens. Token values may be processed in your browser and API flow only as needed for the requested action.",
-    privacySectionCollectionTitle: "Data Collection & Misuse",
+      "本ツールは、トークンの交換・更新のために、認可情報を Pixiv 公式 OAuth エンドポイントへ送信する処理を支援します。トークン値は、要求された操作に必要な範囲で、ブラウザおよび API フロー内で処理される場合があります。",
+    privacySectionCollectionTitle: "データ収集と不正利用について",
     privacySectionCollectionBody:
-      "The developer does not intentionally collect, sell, or misuse your Pixiv credentials or OAuth tokens.",
-    privacySectionThirdPartyTitle: "Third-Party Services",
+      "開発者は、Pixiv の認証情報や OAuth トークンを意図的に収集・販売・不正利用しません。",
+    privacySectionThirdPartyTitle: "第三者サービス",
     privacySectionThirdPartyBody:
-      "This project may link to or rely on services such as GitHub, Vercel, Pixiv endpoints, and related documentation. Those services have separate privacy practices.",
-    privacySectionResponsibilityTitle: "Your Responsibility",
+      "本プロジェクトは、GitHub、Vercel、Pixiv エンドポイント、関連ドキュメントなどの外部サービスへリンク、または依存する場合があります。これらのサービスには独自のプライバシーポリシーが適用されます。",
+    privacySectionResponsibilityTitle: "利用者の責任",
     privacySectionResponsibilityBody:
-      "You are responsible for securing your own device, browser, network environment, and account credentials.",
-    privacySectionContactTitle: "Contact",
+      "ご利用の端末、ブラウザ、ネットワーク環境、アカウント認証情報の保護は利用者ご自身の責任です。",
+    privacySectionContactTitle: "お問い合わせ",
     privacySectionContactBody:
-      "For support or privacy-related questions, please use the Contact page or the project's GitHub repository.",
-    termsSectionAsIsTitle: "Provided As Is",
+      "サポートまたはプライバシーに関するお問い合わせは、Contact ページまたは GitHub リポジトリをご利用ください。",
+    termsSectionAsIsTitle: "現状有姿での提供",
     termsSectionAsIsBody:
-      "This open-source tool is provided \"as is\" without warranties of availability, reliability, or fitness for a particular purpose.",
-    termsSectionRiskTitle: "Use at Your Own Risk",
+      "本オープンソースツールは「現状有姿（as is）」で提供され、可用性・信頼性・特定目的への適合性についての保証はありません。",
+    termsSectionRiskTitle: "自己責任での利用",
     termsSectionRiskBody:
-      "You are solely responsible for how you use this tool, including how you store and protect any OAuth credentials or tokens.",
-    termsSectionLiabilityTitle: "Limitation of Liability",
+      "OAuth 認証情報やトークンの保管・保護を含め、本ツールの利用方法に関する責任はすべて利用者にあります。",
+    termsSectionLiabilityTitle: "責任の制限",
     termsSectionLiabilityBody:
-      "The developer is not liable for account bans, suspensions, data loss, token leakage caused by your device or environment, user misuse, or third-party outages and API changes.",
-    termsSectionComplianceTitle: "Compliance",
+      "アカウント停止・凍結、データ損失、利用者の端末/環境に起因するトークン漏えい、利用者による不正利用、第三者サービス障害や API 変更について、開発者は責任を負いません。",
+    termsSectionComplianceTitle: "遵守事項",
     termsSectionComplianceBody:
-      "You must comply with Pixiv rules, API terms, and applicable local laws in your jurisdiction.",
-    termsSectionAffiliationTitle: "Non-Affiliation",
+      "利用者は、Pixiv の規約・API 利用条件および適用される地域法令を遵守する必要があります。",
+    termsSectionAffiliationTitle: "非提携",
     termsSectionAffiliationBody:
-      "This project is independent and is not officially affiliated with or endorsed by Pixiv Inc.",
-    termsSectionChangesTitle: "Service Changes",
+      "本プロジェクトは独立しており、Pixiv Inc. と公式な提携・承認関係はありません。",
+    termsSectionChangesTitle: "サービス変更",
     termsSectionChangesBody:
-      "The developer may modify, suspend, or discontinue parts of the website or tool at any time without prior notice.",
+      "開発者は、事前通知なく本サイトまたはツールの一部を変更・停止・終了する場合があります。",
     navHomepageLabel: "ホーム",
   },
   de: {
