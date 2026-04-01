@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "node scripts/build_seo.js && node build_minify.js"
+    "build": "node scripts/build_seo.js"
   },
   "devDependencies": {
     "clean-css": "^5.3.3",
