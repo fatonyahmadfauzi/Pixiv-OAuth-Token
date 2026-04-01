@@ -59,9 +59,26 @@ module.exports = async (req, res) => {
     const rl = upstream.headers.get('x-ratelimit-remaining');
     if (rl) res.setHeader('X-RateLimit-Remaining', rl);
 
-    const data = await upstream.json();
+    // Log for debugging
+    console.log(`[GitHub API] ${path} -> ${upstream.status}`);
+
+    // Try to parse response
+    let data;
+    try {
+      data = await upstream.json();
+    } catch (parseErr) {
+      console.error(`[GitHub API] Failed to parse JSON response:`, parseErr.message);
+      console.error(`[GitHub API] Response status: ${upstream.status}`);
+      return res.status(502).json({ 
+        error: 'Failed to parse GitHub API response', 
+        detail: `HTTP ${upstream.status} - possibly invalid JSON`, 
+        upstream_status: upstream.status 
+      });
+    }
+
     return res.status(upstream.status).json(data);
   } catch (err) {
+    console.error(`[GitHub API] Fetch error:`, err.message);
     return res.status(502).json({ error: 'Failed to fetch from GitHub API', detail: err.message });
   }
 };

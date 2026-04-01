@@ -3,20 +3,20 @@ const fs = require('fs');
 const path = require('path');
 
 const PUBLIC_DIR = path.join(__dirname, '../public');
-const APP_JS_PATH = path.join(PUBLIC_DIR, 'assets/app.js');
+const I18N_JS_PATH = path.join(PUBLIC_DIR, 'assets/js/core/i18n.js');
 
-const LANG_ORDER = ["en", "pl", "zh", "jp", "de", "fr", "es", "ru", "pt", "id", "kr"];
+const LANG_ORDER = ["de", "en", "es", "fr", "id", "jp", "kr", "pl", "pt", "ru", "zh"];
 const SEO_MAP = { jp: "ja", kr: "ko" };
 
 function getLangCode(folder) {
   return SEO_MAP[folder] || folder;
 }
 
-// 1. Extract Translations from app.js to populate SEO Metadata safely.
+// 1. Extract Translations from i18n.js to populate SEO Metadata safely.
 function getTranslations() {
-  const code = fs.readFileSync(APP_JS_PATH, 'utf8');
-  const match = code.match(/DISPLAY_LANGUAGES\s*=\s*\{/);
-  if (!match) throw new Error('Could not find DISPLAY_LANGUAGES in app.js');
+  const code = fs.readFileSync(I18N_JS_PATH, 'utf8');
+  const match = code.match(/export\s+const\s+DISPLAY_LANGUAGES\s*=\s*\{/);
+  if (!match) throw new Error('Could not find DISPLAY_LANGUAGES in i18n.js');
   
   const startObj = code.indexOf('{', match.index);
   let braceCount = 0;
