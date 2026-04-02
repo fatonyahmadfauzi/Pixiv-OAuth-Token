@@ -2,11 +2,11 @@
 ; Do not edit manually unless you know what you're doing.
 
 #define ProductName "Pixiv OAuth"
-#define ProductVersion "1.0.4"
-#define BuildCode "REL-U1774728698607"
+#define ProductVersion "1.0.5"
+#define BuildCode "REL-U1775122868915"
 #define Publisher "Fatony Ahmad Fauzi"
-#define ExeCLI "dist_portable\pixiv_login_plus.exe"
-#define ExeGUI "dist_gui\pixiv_login_gui.exe"
+#define ExeCLI "build\portable\pixiv_login_plus.exe"
+#define ExeGUI "build\gui\pixiv_login_gui.exe"
 
 [Setup]
 SourceDir=..
@@ -17,7 +17,7 @@ AppPublisher={#Publisher}
 DefaultDirName={autopf}\{#ProductName}
 DefaultGroupName={#ProductName}
 DisableProgramGroupPage=yes
-OutputDir=dist_installer
+OutputDir=build\installer
 OutputBaseFilename=PixivLoginSetup_v{#ProductVersion}_{#BuildCode}
 Compression=lzma2
 SolidCompression=yes

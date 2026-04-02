@@ -105,8 +105,8 @@ TUTORIAL_URL = README_URL
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.4"
-APP_BUILD_CODE = "REL-U1774728698607"
+APP_VERSION = "v1.0.5"
+APP_BUILD_CODE = "REL-U1775122868915"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
@@ -2146,32 +2146,17 @@ _GITHUB_LANG_DOC_SUFFIX: dict[str, str] = {
     "kr": "KR",
 }
 
-# Default (fallback) URLs
-_GITHUB_DOC_DEFAULTS = {
-    "documentation": f"{_GITHUB_RAW_BASE}/README.md",
-    "license": f"{_GITHUB_RAW_BASE}/LICENSE",
-    "changelog": f"{_GITHUB_RAW_BASE}/CHANGELOG.md",
-}
 
-
-def _get_localized_doc_url(doc_type: str, lang: str) -> tuple[str, str | None]:
-    """
-    Returns (primary_url, fallback_url_or_None).
-    For README/CHANGELOG: primary = localized file if lang supported, else default.
-    For license: always default, no localized version.
-    """
-    default_url = _GITHUB_DOC_DEFAULTS[doc_type]
-    if doc_type == "license":
-        return default_url, None
+def _get_localized_doc_url(file_name: str, lang: str) -> tuple[str, str]:
+    """Return (localized_url, default_english_url) for a doc file."""
     suffix = _GITHUB_LANG_DOC_SUFFIX.get(lang)
-    if not suffix:
-        # English or unsupported lang → use default, no fallback needed
-        return default_url, None
-    file_name = {
-        "documentation": f"README-{suffix}.md",
-        "changelog": f"CHANGELOG-{suffix}.md",
-    }[doc_type]
-    localized_url = f"{_GITHUB_RAW_BASE}/{_GITHUB_LANG_DOCS_PATH}/{file_name}"
+    base = _GITHUB_RAW_BASE
+    path = _GITHUB_LANG_DOCS_PATH
+    default_url = f"{base}/{path}/{file_name}"
+    if suffix:
+        localized_url = f"{base}/{path}/{file_name}-{suffix}"
+    else:
+        localized_url = default_url
     return localized_url, default_url
 
 _FETCH_LABELS = {
@@ -2269,48 +2254,20 @@ def _fetch_github_raw(url: str, lang: str, color_on: bool, fallback_url: str | N
         return None
 
 
-def _clean_markdown_for_cli(content: str) -> str:
-    """Strip markdown elements that don't render well in a terminal."""
-    import re
-    cleaned: list[str] = []
-    blank_run = 0
-    for line in content.splitlines():
-        # Remove blockquote lines (> ...)
-        if line.startswith(">"):
-            continue
-        # Remove horizontal rules (---, ***, ===)
-        if re.fullmatch(r"[-\*=]{3,}", line.strip()):
-            continue
-        # Strip inline markdown links from badge/image lines: ![alt](url)
-        line = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", line)
-        # Strip inline markdown links: [text](url)
-        line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
-        # Track blank lines — collapse consecutive blanks into one
-        if line.strip() == "":
-            blank_run += 1
-            if blank_run > 1:
-                continue
-        else:
-            blank_run = 0
-        cleaned.append(line)
-    return "\n".join(cleaned)
-
-
-def _display_paged_github_content(
-    title: str, content: str, lang: str, color_on: bool, page_size: int = 28
-) -> None:
-    """Display content with a simple terminal pager."""
-    all_lines = _clean_markdown_for_cli(content).splitlines()
-    total = len(all_lines)
+def _display_paged_github_content(title: str, content: str, lang: str, color_on: bool) -> None:
+    """Display fetched text content with paged navigation."""
+    lines = content.splitlines()
+    total = len(lines)
+    page_size = 30
     pos = 0
     while True:
         _clear_menu_screen()
-        print(colorize(title, Ansi.CYAN + Ansi.BOLD, color_on))
+        print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, color_on))
         print()
-        chunk = all_lines[pos: pos + page_size]
+        chunk = lines[pos:pos + page_size]
         print("\n".join(chunk))
         print()
-        at_end = (pos + page_size) >= total
+        at_end = (pos + page_size >= total)
         if at_end:
             print(colorize(_fl("end_of_doc", lang), Ansi.DIM, color_on))
             print(colorize(_fl("page_prompt", lang), Ansi.YELLOW, color_on))
@@ -2334,13 +2291,13 @@ def _display_paged_github_content(
 def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
     options = [
         ("1", mt("res_docs_documentation", lang)),
-        ("2", mt("res_docs_license", lang)),
-        ("3", mt("res_docs_pixiv", lang)),
-        ("4", mt("res_docs_python", lang)),
-        ("5", mt("res_docs_vercel", lang)),
-        ("6", mt("opt_changelog", lang)),
-        ("7", mt("res_docs_privacy", lang)),
-        ("8", mt("res_docs_terms", lang)),
+        ("2", mt("opt_changelog", lang)),
+        ("3", mt("res_docs_license", lang)),
+        ("4", mt("res_docs_privacy", lang)),
+        ("5", mt("res_docs_terms", lang)),
+        ("6", mt("res_docs_pixiv", lang)),
+        ("7", mt("res_docs_python", lang)),
+        ("8", mt("res_docs_vercel", lang)),
         ("0", mt("back", lang)),
     ]
     while True:
@@ -2352,26 +2309,1078 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
             if content:
                 _display_paged_github_content(mt("res_docs_documentation", lang), content, lang, color_on)
         elif choice == "2":
+            _open_changelog(lang, color_on)
+        elif choice == "3":
             url, fallback = _get_localized_doc_url("license", lang)
             content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
             if content:
                 _display_paged_github_content(mt("res_docs_license", lang), content, lang, color_on)
-        elif choice == "3":
-            open_url("https://oauth.secure.pixiv.net/auth/token")
         elif choice == "4":
-            open_url("https://www.python.org/")
-        elif choice == "5":
-            open_url("https://vercel.com/")
-        elif choice == "6":
-            _open_changelog(lang, color_on)
-        elif choice == "7":
             _open_privacy_policy_cli(lang, color_on)
-        elif choice == "8":
+        elif choice == "5":
             _open_terms_conditions_cli(lang, color_on)
+        elif choice == "6":
+            open_url("https://oauth.secure.pixiv.net/auth/token")
+        elif choice == "7":
+            open_url("https://www.python.org/")
+        elif choice == "8":
+            open_url("https://vercel.com/")
         elif choice == "0":
             return
         else:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+def _gh_time_ago(iso_str: str) -> str:
+    """Format ISO 8601 GitHub timestamp as relative time string."""
+    try:
+        import datetime
+        dt = datetime.datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
+        now = datetime.datetime.now(datetime.timezone.utc)
+        delta = now - dt
+        d = delta.days
+        s = delta.seconds
+        if d >= 365: return f"{d // 365}y ago"
+        if d >= 30:  return f"{d // 30}mo ago"
+        if d >= 1:   return f"{d}d ago"
+        if s >= 3600: return f"{s // 3600}h ago"
+        if s >= 60:   return f"{s // 60}m ago"
+        return "just now"
+    except Exception:
+        return iso_str[:10]
+
+
+def _open_issues_cli(lang: str, color_on: bool) -> None:
+    """Fetch and display GitHub Issues with Open/Closed/PR tabs, like the GitHub website."""
+    REPO    = "fatonyahmadfauzi/Pixiv-OAuth-Token"
+    HEADERS = {"Accept": "application/vnd.github+json"}
+    NEW_URL = f"https://github.com/{REPO}/issues/new/choose"
+    _L: dict[str, dict[str, str]] = {
+        "en": {"title": "Issues", "tab_open": "Open", "tab_closed": "Closed",
+               "tab_pr": "Pull Requests", "loading": "Fetching from GitHub...",
+               "none_open": "No open issues.\nGreat job! \U0001f389",
+               "none_closed": "No closed issues.", "none_pr": "No open pull requests.",
+               "err": "Could not fetch issues.", "by": "by", "comments": "comments",
+               "hint_o": "[o] Open  [c] Closed  [p] Pull Requests  [n] New Issue  [0] Back",
+               "hint_c": "[o] Open  [c] Closed  [p] Pull Requests  [n] New Issue  [0] Back",
+               "hint_p": "[o] Open  [c] Closed  [p] Pull Requests  [0] Back",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "id": {"title": "Isu", "tab_open": "Terbuka", "tab_closed": "Tertutup",
+               "tab_pr": "Pull Requests", "loading": "Mengambil dari GitHub...",
+               "none_open": "Tidak ada isu terbuka.\nKerja bagus! \U0001f389",
+               "none_closed": "Tidak ada isu tertutup.", "none_pr": "Tidak ada PR terbuka.",
+               "err": "Gagal mengambil isu.", "by": "oleh", "comments": "komentar",
+               "hint_o": "[o] Terbuka  [c] Tertutup  [p] PR  [n] Buat Isu  [0] Kembali",
+               "hint_c": "[o] Terbuka  [c] Tertutup  [p] PR  [n] Buat Isu  [0] Kembali",
+               "hint_p": "[o] Terbuka  [c] Tertutup  [p] PR  [0] Kembali",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "jp": {"title": "Issue一覧", "tab_open": "オープン", "tab_closed": "クローズ",
+               "tab_pr": "プルリク", "loading": "GitHubから取得中...",
+               "none_open": "未解決のIssueはありません。\n素晴らしい！\U0001f389",
+               "none_closed": "クローズ済みIssueはありません。",
+               "none_pr": "オープンなプルリクはありません。",
+               "err": "Issueの取得に失敗しました。",
+               "by": "投稿者", "comments": "コメント",
+               "hint_o": "[o] オープン  [c] クローズ  [p] プルリク  [n] 新規Issue  [0] 戻る",
+               "hint_c": "[o] オープン  [c] クローズ  [p] プルリク  [n] 新規Issue  [0] 戻る",
+               "hint_p": "[o] オープン  [c] クローズ  [p] プルリク  [0] 戻る",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "kr": {"title": "\uc774\uc288", "tab_open": "\uc5f4\ub9b0", "tab_closed": "\ub2eb\ud78c",
+               "tab_pr": "\ud480 \ub9ac\ud034\uc2a4\ud2b8", "loading": "GitHub\uc5d0\uc11c \uac00\uc838\uc624\ub294 \uc911...",
+               "none_open": "\uc5f4\ub9b0 \uc774\uc288\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.\n\ud6c4\ub96d\ud558\uc2b5\ub2c8\ub2e4! \U0001f389",
+               "none_closed": "\ub2eb\ud78c \uc774\uc288\uac00 \uc5c6\uc2b5\ub2c8\ub2e4.",
+               "none_pr": "\uc5f4\ub9b0 PR\uc774 \uc5c6\uc2b5\ub2c8\ub2e4.",
+               "err": "\uc774\uc288\ub97c \uac00\uc838\uc62c \uc218 \uc5c6\uc2b5\ub2c8\ub2e4.",
+               "by": "", "comments": "\ub313\uae00",
+               "hint_o": "[o] \uc5f4\ub9b0  [c] \ub2eb\ud78c  [p] PR  [n] \uc0c8 \uc774\uc288  [0] \ub4a4\ub85c",
+               "hint_c": "[o] \uc5f4\ub9b0  [c] \ub2eb\ud78c  [p] PR  [n] \uc0c8 \uc774\uc288  [0] \ub4a4\ub85c",
+               "hint_p": "[o] \uc5f4\ub9b0  [c] \ub2eb\ud78c  [p] PR  [0] \ub4a4\ub85c",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "zh": {"title": "\u8bae\u9898", "tab_open": "\u5f00\u542f", "tab_closed": "\u5df2\u5173\u95ed",
+               "tab_pr": "\u62c9\u53d6\u8bf7\u6c42", "loading": "\u6b63\u5728\u4ece GitHub \u83b7\u53d6...",
+               "none_open": "\u6ca1\u6709\u5f00\u653e\u7684\u8bae\u9898\u3002\n\u5e72\u5f97\u597d\uff01\U0001f389",
+               "none_closed": "\u6ca1\u6709\u5df2\u5173\u95ed\u7684\u8bae\u9898\u3002",
+               "none_pr": "\u6ca1\u6709\u5f00\u653e\u7684\u62c9\u53d6\u8bf7\u6c42\u3002",
+               "err": "\u65e0\u6cd5\u83b7\u53d6\u8bae\u9898\u3002",
+               "by": "", "comments": "\u6761\u8bc4\u8bba",
+               "hint_o": "[o] \u5f00\u542f  [c] \u5df2\u5173\u95ed  [p] PR  [n] \u65b0\u5efa  [0] \u8fd4\u56de",
+               "hint_c": "[o] \u5f00\u542f  [c] \u5df2\u5173\u95ed  [p] PR  [n] \u65b0\u5efa  [0] \u8fd4\u56de",
+               "hint_p": "[o] \u5f00\u542f  [c] \u5df2\u5173\u95ed  [p] PR  [0] \u8fd4\u56de",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "de": {"title": "Issues", "tab_open": "Offen", "tab_closed": "Geschlossen",
+               "tab_pr": "Pull-Anfragen", "loading": "Von GitHub laden...",
+               "none_open": "Keine offenen Issues.\nGute Arbeit! \U0001f389",
+               "none_closed": "Keine geschlossenen Issues.", "none_pr": "Keine offenen PRs.",
+               "err": "Issues konnten nicht geladen werden.", "by": "von", "comments": "Kommentare",
+               "hint_o": "[o] Offen  [c] Geschlossen  [p] PR  [n] Neu  [0] Zur\u00fcck",
+               "hint_c": "[o] Offen  [c] Geschlossen  [p] PR  [n] Neu  [0] Zur\u00fcck",
+               "hint_p": "[o] Offen  [c] Geschlossen  [p] PR  [0] Zur\u00fcck",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "fr": {"title": "Issues", "tab_open": "Ouvertes", "tab_closed": "Ferm\u00e9es",
+               "tab_pr": "Demandes de fusion", "loading": "Chargement depuis GitHub...",
+               "none_open": "Aucune issue ouverte.\nContinuez comme \u00e7a ! \U0001f389",
+               "none_closed": "Aucune issue fermée.", "none_pr": "Aucune demande de fusion ouverte.",
+               "err": "Impossible de charger les issues.", "by": "par", "comments": "commentaires",
+               "hint_o": "[o] Ouvertes  [c] Fermées  [p] Fusions  [n] Nouvelle  [0] Retour",
+               "hint_c": "[o] Ouvertes  [c] Fermées  [p] Fusions  [n] Nouvelle  [0] Retour",
+               "hint_p": "[o] Ouvertes  [c] Fermées  [p] Fusions  [0] Retour",
+               "prompt_oc": "o / c / p / n / 0 : ", "prompt_p": "o / c / p / 0 : "},
+        "es": {"title": "Issues", "tab_open": "Abiertas", "tab_closed": "Cerradas",
+               "tab_pr": "Solicitudes de fusión", "loading": "Cargando desde GitHub...",
+               "none_open": "No hay issues abiertas.\n\u00a1Buen trabajo! \U0001f389",
+               "none_closed": "No hay issues cerradas.", "none_pr": "No hay solicitudes de fusión abiertas.",
+               "err": "No se pudieron cargar las issues.", "by": "por", "comments": "comentarios",
+               "hint_o": "[o] Abiertas  [c] Cerradas  [p] Fusiones  [n] Nueva  [0] Volver",
+               "hint_c": "[o] Abiertas  [c] Cerradas  [p] Fusiones  [n] Nueva  [0] Volver",
+               "hint_p": "[o] Abiertas  [c] Cerradas  [p] Fusiones  [0] Volver",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "ru": {"title": "\u0417\u0430\u0434\u0430\u0447\u0438", "tab_open": "\u041e\u0442\u043a\u0440\u044b\u0442\u044b\u0435",
+               "tab_closed": "\u0417\u0430\u043a\u0440\u044b\u0442\u044b\u0435",
+               "tab_pr": "Запросы на слияние", "loading": "Загрузка с GitHub...",
+               "none_open": "\u041d\u0435\u0442 \u043e\u0442\u043a\u0440\u044b\u0442\u044b\u0445 \u0437\u0430\u0434\u0430\u0447.\n\u041e\u0442\u043b\u0438\u0447\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430! \U0001f389",
+               "none_closed": "\u041d\u0435\u0442 \u0437\u0430\u043a\u0440\u044b\u0442\u044b\u0445 \u0437\u0430\u0434\u0430\u0447.",
+               "none_pr": "Нет открытых запросов.",
+               "err": "Не удалось загрузить задачи.",
+               "by": "автор", "comments": "комментариев",
+               "hint_o": "[o] Открытые  [c] Закрытые  [p] Запросы  [n] Создать  [0] Назад",
+               "hint_c": "[o] Открытые  [c] Закрытые  [p] Запросы  [n] Создать  [0] Назад",
+               "hint_p": "[o] Открытые  [c] Закрытые  [p] Запросы  [0] Назад",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "pt": {"title": "Issues", "tab_open": "Abertas", "tab_closed": "Fechadas",
+               "tab_pr": "Pedidos de fusão", "loading": "Carregando do GitHub...",
+               "none_open": "Nenhuma issue aberta.\n\u00d3timo trabalho! \U0001f389",
+               "none_closed": "Nenhuma issue fechada.", "none_pr": "Nenhum pedido de fusão aberto.",
+               "err": "Não foi possível carregar as issues.", "by": "por", "comments": "comentários",
+               "hint_o": "[o] Abertas  [c] Fechadas  [p] Fusões  [n] Nova  [0] Voltar",
+               "hint_c": "[o] Abertas  [c] Fechadas  [p] Fusões  [n] Nova  [0] Voltar",
+               "hint_p": "[o] Abertas  [c] Fechadas  [p] Fusões  [0] Voltar",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+        "pl": {"title": "Zg\u0142oszenia", "tab_open": "Otwarte", "tab_closed": "Zamkni\u0119te",
+               "tab_pr": "Żądania scalenia", "loading": "Pobieranie z GitHub...",
+               "none_open": "Brak otwartych zgłoszeń.\nŚwietna robota! \U0001f389",
+               "none_closed": "Brak zamkniętych zgłoszeń.", "none_pr": "Brak otwartych żądań scalenia.",
+               "err": "Nie można pobrać zgłoszeń.", "by": "przez", "comments": "komentarzy",
+               "hint_o": "[o] Otwarte  [c] Zamknięte  [p] Scalenia  [n] Nowe  [0] Wróć",
+               "hint_c": "[o] Otwarte  [c] Zamknięte  [p] Scalenia  [n] Nowe  [0] Wróć",
+               "hint_p": "[o] Otwarte  [c] Zamknięte  [p] Scalenia  [0] Wróć",
+               "prompt_oc": "o / c / p / n / 0: ", "prompt_p": "o / c / p / 0: "},
+    }
+    L = _L.get(lang, _L["en"])
+    width = 60
+    bar   = "\u2550" * width
+
+    # ── Fetch all data upfront (with per-endpoint retry) ───────────────
+    def _gh_fetch(url: str, max_retries: int = 3) -> list:
+        """Fetch a GitHub API endpoint; retry up to max_retries times on 5xx."""
+        delay = 1.5
+        last_exc: Exception = Exception("unknown")
+        for attempt in range(max_retries):
+            try:
+                resp = requests.get(url, headers=HEADERS, timeout=12)
+                if resp.status_code in (502, 503, 504) and attempt < max_retries - 1:
+                    time.sleep(delay)
+                    delay *= 2
+                    continue
+                resp.raise_for_status()
+                return resp.json()
+            except Exception as exc:
+                last_exc = exc
+                if attempt < max_retries - 1:
+                    time.sleep(delay)
+                    delay *= 2
+        raise last_exc
+
+    _clear_menu_screen()
+    print(colorize(f"  {L['loading']}", Ansi.DIM, color_on))
+
+    fetch_errors: list[str] = []
+    open_issues: list = []
+    closed_issues: list = []
+    pull_requests: list = []
+
+    for label, url, dest in [
+        ("open",   f"https://api.github.com/repos/{REPO}/issues?state=open&per_page=50&sort=updated",   "open"),
+        ("closed", f"https://api.github.com/repos/{REPO}/issues?state=closed&per_page=50&sort=updated", "closed"),
+        ("pr",     f"https://api.github.com/repos/{REPO}/pulls?state=open&per_page=50&sort=updated",    "pr"),
+    ]:
+        try:
+            data = _gh_fetch(url)
+            if dest == "open":
+                open_issues   = [i for i in data if "pull_request" not in i]
+            elif dest == "closed":
+                closed_issues = [i for i in data if "pull_request" not in i]
+            else:
+                pull_requests = data
+        except Exception as exc:
+            fetch_errors.append(f"{label}: {exc}")
+
+    if fetch_errors and not (open_issues or closed_issues or pull_requests):
+        # All endpoints failed — nothing useful to show
+        _clear_menu_screen()
+        print(colorize(f"  [!] {L['err']}", Ansi.RED, color_on))
+        for fe in fetch_errors:
+            print(colorize(f"      {fe}", Ansi.DIM, color_on))
+        input(colorize(f"\n  {mt('enter_continue', lang)}", Ansi.YELLOW, color_on))
+        return
+
+    item_map: dict[int, str] = {}
+    tab = "o"  # current tab: o=open, c=closed, p=pr
+
+    while True:
+        _clear_menu_screen()
+        # Header
+        print(colorize(L['title'], Ansi.CYAN + Ansi.BOLD, color_on))
+        print()
+        # Tab bar
+        def _tab_label(label: str, count: int, active: bool) -> str:
+            s = f"{label} ({count})"
+            return colorize(s, Ansi.GREEN + Ansi.BOLD if active else Ansi.DIM, color_on)
+        tabs = (
+            _tab_label(L["tab_open"],   len(open_issues),   tab == "o") + "    " +
+            _tab_label(L["tab_closed"], len(closed_issues), tab == "c") + "    " +
+            _tab_label(L["tab_pr"],     len(pull_requests), tab == "p")
+        )
+        print(tabs)
+        print()
+        # List for current tab
+        item_map.clear()
+        if tab == "o":
+            items, none_msg, hint = open_issues, L["none_open"], L["hint_o"]
+            prompt = L["prompt_oc"]
+        elif tab == "c":
+            items, none_msg, hint = closed_issues, L["none_closed"], L["hint_c"]
+            prompt = L["prompt_oc"]
+        else:
+            items, none_msg, hint = pull_requests, L["none_pr"], L["hint_p"]
+            prompt = L["prompt_p"]
+        if not items:
+            for line in none_msg.splitlines():
+                clr = Ansi.GREEN if "\U0001f389" in line else Ansi.DIM
+                print(colorize(line, clr, color_on))
+            print()
+        else:
+            for item in items:
+                num      = item["number"]
+                title    = item["title"]
+                user     = item.get("user", {}).get("login", "?")
+                updated  = _gh_time_ago(item.get("updated_at", ""))
+                comments = item.get("comments", 0)
+                labels   = ", ".join(lb["name"] for lb in item.get("labels", [])[:3])
+                label_str = f"  [{labels}]" if labels else ""
+                item_map[num] = item["html_url"]
+                title_disp = title if len(title) <= 50 else title[:47] + "..."
+                clr = Ansi.MAGENTA if tab == "p" else Ansi.GREEN
+                print(colorize(f"#{num:<5} {title_disp}{label_str}", clr, color_on))
+                meta = f"       {L['by']} {user} \u00b7 {updated}"
+                if comments:
+                    meta += f" \u00b7 {comments} {L['comments']}"
+                print(colorize(meta, Ansi.DIM, color_on))
+                print()
+        print(colorize(hint, Ansi.YELLOW, color_on))
+        try:
+            choice = input(colorize(f"\n{prompt}", Ansi.YELLOW, color_on)).strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            return
+        if choice == "0":
+            return
+        elif choice in ("o", "c", "p"):
+            tab = choice
+        elif choice == "n" and tab != "p":
+            open_url(NEW_URL)
+        elif choice.isdigit():
+            url = item_map.get(int(choice))
+            if url:
+                open_url(url)
+            else:
+                print(colorize(f"#{choice} not found.", Ansi.RED, color_on))
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def _open_discussions_cli(lang: str, color_on: bool) -> None:
+    """Display GitHub Discussions page (static, no API call — avoids GraphQL 403 rate-limit)."""
+    REPO     = "fatonyahmadfauzi/Pixiv-OAuth-Token"
+    DISC_URL = f"https://github.com/{REPO}/discussions"
+    NEW_URL  = f"https://github.com/{REPO}/discussions/new/choose"
+    Q_URL    = f"https://github.com/{REPO}/discussions/categories/q-a"
+    IDEA_URL = f"https://github.com/{REPO}/discussions/categories/ideas"
+    SHOW_URL = f"https://github.com/{REPO}/discussions/categories/show-and-tell"
+    BUG_URL  = f"https://github.com/{REPO}/issues/new?template=bug_report.md"
+
+    _L: dict[str, dict] = {
+        "en": {
+            "title":        "Discussions",
+            "subtitle":     "Ask questions, share ideas, and connect with the community.",
+            "hosted":       "Discussions are hosted on GitHub",
+            "desc":         "Join the conversation, ask questions, or share your ideas\n"
+                            "  directly on the GitHub Discussions page.\n"
+                            "  GitHub account required to post.",
+            "open_btn":     "Open Discussions on GitHub",
+            "quick_title":  "Quick Links",
+            "q_label":      "Ask a Question",
+            "q_sub":        "Get help from the community",
+            "idea_label":   "Share an Idea",
+            "idea_sub":     "Suggest features or improvements",
+            "show_label":   "Show & Tell",
+            "show_sub":     "Share what you built with this tool",
+            "bug_label":    "Report a Bug",
+            "bug_sub":      "Found something broken?",
+            "hint":         "[1] Open Discussions  [2] Ask a Question  [3] Share an Idea\n"
+                            "  [4] Show & Tell  [5] Report a Bug  [0] Back",
+            "prompt":       "Select: ",
+        },
+        "id": {
+            "title":        "Diskusi",
+            "subtitle":     "Ajukan pertanyaan, bagikan ide, dan terhubung dengan komunitas.",
+            "hosted":       "Diskusi di-host di GitHub",
+            "desc":         "Bergabunglah, ajukan pertanyaan, atau bagikan ide kamu\n"
+                            "  langsung di halaman GitHub Discussions.\n"
+                            "  Akun GitHub diperlukan untuk memposting.",
+            "open_btn":     "Buka Diskusi di GitHub",
+            "quick_title":  "Tautan Cepat",
+            "q_label":      "Ajukan Pertanyaan",
+            "q_sub":        "Dapatkan bantuan dari komunitas",
+            "idea_label":   "Bagikan Ide",
+            "idea_sub":     "Sarankan fitur atau perbaikan",
+            "show_label":   "Pamer Karya",
+            "show_sub":     "Bagikan apa yang kamu buat",
+            "bug_label":    "Laporkan Bug",
+            "bug_sub":      "Menemukan sesuatu yang rusak?",
+            "hint":         "[1] Buka Diskusi  [2] Pertanyaan  [3] Bagikan Ide\n"
+                            "  [4] Pamer Karya  [5] Laporkan Bug  [0] Kembali",
+            "prompt":       "Pilih: ",
+        },
+        "jp": {
+            "title":        "ディスカッション",
+            "subtitle":     "質問したり、アイデアを共有したり、コミュニティとつながりましょう。",
+            "hosted":       "ディスカッションはGitHubでホストされています",
+            "desc":         "GitHubのディスカッションページで会話に参加し、\n"
+                            "  質問したり、アイデアを共有したりしましょう。\n"
+                            "  投稿にはGitHubアカウントが必要です。",
+            "open_btn":     "GitHubでディスカッションを開く",
+            "quick_title":  "クイックリンク",
+            "q_label":      "質問する",
+            "q_sub":        "コミュニティからサポートを受ける",
+            "idea_label":   "アイデアを共有",
+            "idea_sub":     "機能や改善点を提案する",
+            "show_label":   "作品を披露",
+            "show_sub":     "このツールで作ったものを共有する",
+            "bug_label":    "バグを報告",
+            "bug_sub":      "不具合を見つけましたか？",
+            "hint":         "[1] ディスカッションを開く  [2] 質問  [3] アイデア\n"
+                            "  [4] 作品を披露  [5] バグ報告  [0] 戻る",
+            "prompt":       "選択: ",
+        },
+        "kr": {
+            "title":        "토론",
+            "subtitle":     "질문하고, 아이디어를 공유하고, 커뮤니티와 소통하세요.",
+            "hosted":       "토론은 GitHub에서 호스팅됩니다",
+            "desc":         "GitHub Discussions 페이지에서 대화에 참여하고,\n"
+                            "  질문하거나 아이디어를 공유하세요.\n"
+                            "  게시하려면 GitHub 계정이 필요합니다.",
+            "open_btn":     "GitHub에서 토론 열기",
+            "quick_title":  "빠른 링크",
+            "q_label":      "질문하기",
+            "q_sub":        "커뮤니티에서 도움받기",
+            "idea_label":   "아이디어 공유",
+            "idea_sub":     "기능이나 개선 사항 제안",
+            "show_label":   "작품 공유",
+            "show_sub":     "이 도구로 만든 것 공유",
+            "bug_label":    "버그 신고",
+            "bug_sub":      "문제를 발견했나요?",
+            "hint":         "[1] 토론 열기  [2] 질문  [3] 아이디어\n"
+                            "  [4] 작품 공유  [5] 버그 신고  [0] 뒤로",
+            "prompt":       "선택: ",
+        },
+        "zh": {
+            "title":        "讨论区",
+            "subtitle":     "提问、分享想法，与社区建立联系。",
+            "hosted":       "讨论托管在 GitHub 上",
+            "desc":         "直接在 GitHub Discussions 页面加入对话，\n"
+                            "  提问或分享你的想法。\n"
+                            "  发帖需要 GitHub 账号。",
+            "open_btn":     "在 GitHub 上打开讨论",
+            "quick_title":  "快速链接",
+            "q_label":      "提问",
+            "q_sub":        "向社区寻求帮助",
+            "idea_label":   "分享想法",
+            "idea_sub":     "建议功能或改进",
+            "show_label":   "展示作品",
+            "show_sub":     "分享你用此工具制作的内容",
+            "bug_label":    "报告错误",
+            "bug_sub":      "发现了问题？",
+            "hint":         "[1] 打开讨论  [2] 提问  [3] 分享想法\n"
+                            "  [4] 展示作品  [5] 报告错误  [0] 返回",
+            "prompt":       "选择: ",
+        },
+        "de": {
+            "title":        "Diskussionen",
+            "subtitle":     "Fragen stellen, Ideen teilen und mit der Community verbinden.",
+            "hosted":       "Diskussionen werden auf GitHub gehostet",
+            "desc":         "Nehmen Sie an Gesprächen teil, stellen Sie Fragen oder teilen\n"
+                            "  Sie Ihre Ideen direkt auf der GitHub Discussions-Seite.\n"
+                            "  Zum Posten ist ein GitHub-Konto erforderlich.",
+            "open_btn":     "Diskussionen auf GitHub öffnen",
+            "quick_title":  "Schnelllinks",
+            "q_label":      "Frage stellen",
+            "q_sub":        "Hilfe von der Community erhalten",
+            "idea_label":   "Idee teilen",
+            "idea_sub":     "Funktionen oder Verbesserungen vorschlagen",
+            "show_label":   "Zeigen & Erzählen",
+            "show_sub":     "Teilen Sie, was Sie mit diesem Tool erstellt haben",
+            "bug_label":    "Fehler melden",
+            "bug_sub":      "Etwas Defektes gefunden?",
+            "hint":         "[1] Diskussionen öffnen  [2] Fragen  [3] Idee\n"
+                            "  [4] Zeigen & Erzählen  [5] Fehler melden  [0] Zurück",
+            "prompt":       "Auswählen: ",
+        },
+        "fr": {
+            "title":        "Discussions",
+            "subtitle":     "Posez des questions, partagez des idées et connectez-vous avec la communauté.",
+            "hosted":       "Les discussions sont hébergées sur GitHub",
+            "desc":         "Rejoignez la conversation, posez des questions ou partagez\n"
+                            "  vos idées directement sur la page GitHub Discussions.\n"
+                            "  Un compte GitHub est requis pour publier.",
+            "open_btn":     "Ouvrir les discussions sur GitHub",
+            "quick_title":  "Liens rapides",
+            "q_label":      "Poser une question",
+            "q_sub":        "Obtenir de l'aide de la communauté",
+            "idea_label":   "Partager une idée",
+            "idea_sub":     "Suggérer des fonctionnalités ou améliorations",
+            "show_label":   "Montrer & Raconter",
+            "show_sub":     "Partagez ce que vous avez créé",
+            "bug_label":    "Signaler un bug",
+            "bug_sub":      "Quelque chose de cassé ?",
+            "hint":         "[1] Ouvrir discussions  [2] Questions  [3] Idée\n"
+                            "  [4] Montrer & Raconter  [5] Signaler bug  [0] Retour",
+            "prompt":       "Sélectionner : ",
+        },
+        "es": {
+            "title":        "Discusiones",
+            "subtitle":     "Haz preguntas, comparte ideas y conecta con la comunidad.",
+            "hosted":       "Las discusiones están alojadas en GitHub",
+            "desc":         "Únete a la conversación, haz preguntas o comparte tus ideas\n"
+                            "  directamente en la página de GitHub Discussions.\n"
+                            "  Se requiere cuenta de GitHub para publicar.",
+            "open_btn":     "Abrir Discussions en GitHub",
+            "quick_title":  "Enlaces rápidos",
+            "q_label":      "Hacer una pregunta",
+            "q_sub":        "Obtener ayuda de la comunidad",
+            "idea_label":   "Compartir una Idea",
+            "idea_sub":     "Sugerir funciones o mejoras",
+            "show_label":   "Mostrar & Contar",
+            "show_sub":     "Comparte lo que construiste",
+            "bug_label":    "Reportar un Bug",
+            "bug_sub":      "¿Encontraste algo roto?",
+            "hint":         "[1] Abrir discusiones  [2] Preguntas  [3] Idea\n"
+                            "  [4] Mostrar & Contar  [5] Reportar bug  [0] Volver",
+            "prompt":       "Seleccionar: ",
+        },
+        "ru": {
+            "title":        "Обсуждения",
+            "subtitle":     "Задавайте вопросы, делитесь идеями и общайтесь с сообществом.",
+            "hosted":       "Обсуждения размещены на GitHub",
+            "desc":         "Присоединяйтесь к разговору, задавайте вопросы или делитесь\n"
+                            "  идеями прямо на странице GitHub Discussions.\n"
+                            "  Для публикации требуется аккаунт GitHub.",
+            "open_btn":     "Открыть обсуждения на GitHub",
+            "quick_title":  "Быстрые ссылки",
+            "q_label":      "Задать вопрос",
+            "q_sub":        "Получить помощь от сообщества",
+            "idea_label":   "Поделиться идеей",
+            "idea_sub":     "Предложить функции или улучшения",
+            "show_label":   "Показать & Рассказать",
+            "show_sub":     "Поделитесь тем, что вы создали",
+            "bug_label":    "Сообщить об ошибке",
+            "bug_sub":      "Нашли что-то сломанное?",
+            "hint":         "[1] Открыть обсуждения  [2] Вопрос  [3] Идея\n"
+                            "  [4] Показать & Рассказать  [5] Сообщить об ошибке  [0] Назад",
+            "prompt":       "Выбрать: ",
+        },
+        "pt": {
+            "title":        "Discussões",
+            "subtitle":     "Faça perguntas, compartilhe ideias e conecte-se com a comunidade.",
+            "hosted":       "As discussões são hospedadas no GitHub",
+            "desc":         "Junte-se à conversa, faça perguntas ou compartilhe suas ideias\n"
+                            "  diretamente na página do GitHub Discussions.\n"
+                            "  Conta GitHub necessária para publicar.",
+            "open_btn":     "Abrir Discussions no GitHub",
+            "quick_title":  "Links Rápidos",
+            "q_label":      "Fazer uma Pergunta",
+            "q_sub":        "Obtenha ajuda da comunidade",
+            "idea_label":   "Compartilhar uma Ideia",
+            "idea_sub":     "Sugira recursos ou melhorias",
+            "show_label":   "Mostrar & Contar",
+            "show_sub":     "Compartilhe o que você criou",
+            "bug_label":    "Reportar um Bug",
+            "bug_sub":      "Encontrou algo quebrado?",
+            "hint":         "[1] Abrir discussões  [2] Pergunta  [3] Ideia\n"
+                            "  [4] Mostrar & Contar  [5] Reportar bug  [0] Voltar",
+            "prompt":       "Selecionar: ",
+        },
+        "pl": {
+            "title":        "Dyskusje",
+            "subtitle":     "Zadawaj pytania, dziel się pomysłami i łącz się ze społecznością.",
+            "hosted":       "Dyskusje są hostowane na GitHub",
+            "desc":         "Dołącz do rozmowy, zadawaj pytania lub dziel się pomysłami\n"
+                            "  bezpośrednio na stronie GitHub Discussions.\n"
+                            "  Do publikowania wymagane jest konto GitHub.",
+            "open_btn":     "Otwórz Discussions na GitHub",
+            "quick_title":  "Szybkie linki",
+            "q_label":      "Zadaj pytanie",
+            "q_sub":        "Uzyskaj pomoc od społeczności",
+            "idea_label":   "Udostępnij pomysł",
+            "idea_sub":     "Zaproponuj funkcje lub ulepszenia",
+            "show_label":   "Pokaż & Powiedz",
+            "show_sub":     "Podziel się tym, co stworzyłeś",
+            "bug_label":    "Zgłoś błąd",
+            "bug_sub":      "Znalazłeś coś zepsutego?",
+            "hint":         "[1] Otwórz dyskusje  [2] Pytanie  [3] Pomysł\n"
+                            "  [4] Pokaż & Powiedz  [5] Zgłoś błąd  [0] Wróć",
+            "prompt":       "Wybierz: ",
+        },
+    }
+    L = _L.get(lang, _L["en"])
+    sep   = "─" * 58
+
+    _ACTIONS = [
+        (DISC_URL, L["open_btn"]),
+        (Q_URL,    L["q_label"]),
+        (IDEA_URL, L["idea_label"]),
+        (SHOW_URL, L["show_label"]),
+        (BUG_URL,  L["bug_label"]),
+    ]
+
+    while True:
+        _clear_menu_screen()
+
+        # ── Header ────────────────────────────────────────────────────────
+        print(colorize(L['title'], Ansi.CYAN + Ansi.BOLD, color_on))
+        print(colorize(L['subtitle'], Ansi.DIM, color_on))
+        print()
+
+        # ── GitHub banner ─────────────────────────────────────────────────
+        print(colorize(f"🐙 {L['hosted']}", Ansi.BOLD, color_on))
+        print(colorize(sep, Ansi.DIM, color_on))
+        for line in L["desc"].splitlines():
+            print(colorize(line.strip(), Ansi.DIM, color_on))
+        print()
+        print(colorize(f"▶  [1] {L['open_btn']}", Ansi.GREEN + Ansi.BOLD, color_on))
+        print()
+
+        # ── Quick Links ───────────────────────────────────────────────────
+        print(colorize(sep, Ansi.DIM, color_on))
+        print(colorize(L['quick_title'], Ansi.BOLD, color_on))
+        print(colorize(sep, Ansi.DIM, color_on))
+        print()
+
+        cards = [
+            ("2", L["q_label"],    L["q_sub"],    Ansi.CYAN),
+            ("3", L["idea_label"], L["idea_sub"],  Ansi.MAGENTA),
+            ("4", L["show_label"], L["show_sub"],  Ansi.YELLOW),
+            ("5", L["bug_label"],  L["bug_sub"],   Ansi.RED),
+        ]
+        for key, label, sub, clr in cards:
+            print(colorize(f"[{key}] {label}", clr + Ansi.BOLD, color_on))
+            print(colorize(f"    {sub}", Ansi.DIM, color_on))
+            print()
+
+        # ── Hint + Prompt ─────────────────────────────────────────────────
+        for hint_line in L["hint"].splitlines():
+            print(colorize(hint_line.strip(), Ansi.YELLOW, color_on))
+        try:
+            choice = input(colorize(f"\n{L['prompt']}", Ansi.YELLOW, color_on)).strip()
+        except (EOFError, KeyboardInterrupt):
+            return
+        if choice == "0":
+            return
+        elif choice.isdigit() and 1 <= int(choice) <= 5:
+            open_url(_ACTIONS[int(choice) - 1][0])
+        elif choice == "":
+            pass
+        else:
+            print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
+
+
+def _open_donate_screen(lang: str, color_on: bool) -> None:
+    """Display QRIS donate screen with QR code rendered in terminal."""
+    # Localized strings per language
+    _DONATE_MSGS: dict[str, dict[str, str]] = {
+        "en": {
+            "title":   "Support / Donate",
+            "thanks":  "Thank you for supporting this project!",
+            "scan":    "Scan the QRIS code below to donate.",
+            "wallet":  "Scan with your supported e-wallet or banking app.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Press Enter to go back...",
+        },
+        "id": {
+            "title":   "Dukungan / Donasi",
+            "thanks":  "Terima kasih telah mendukung proyek ini!",
+            "scan":    "Pindai kode QRIS di bawah ini untuk berdonasi.",
+            "wallet":  "Gunakan aplikasi e-wallet atau mobile banking yang mendukung QRIS.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Tekan Enter untuk kembali...",
+        },
+        "jp": {
+            "title":   "サポート / 寄付",
+            "thanks":  "このプロジェクトをご支援いただきありがとうございます！",
+            "scan":    "以下の QRIS コードをスキャンして寄付してください。",
+            "wallet":  "QRIS 対応のe-wallet または銀行アプリで読み取ってください。",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Enterキーを押して戻る...",
+        },
+        "kr": {
+            "title":   "지원 / 기부",
+            "thanks":  "이 프로젝트를 지원해 주셔서 감사합니다!",
+            "scan":    "기부하려면 아래 QRIS 코드를 스캔하세요.",
+            "wallet":  "QRIS를 지원하는 e-wallet 또는 뱅킹 앱으로 스캔하세요.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Enter 키를 눌러 뒤로 가세요...",
+        },
+        "zh": {
+            "title":   "支持 / 捐赠",
+            "thanks":  "感谢您支持此项目！",
+            "scan":    "扫描下方 QRIS 二维码进行捐赠。",
+            "wallet":  "请使用支持 QRIS 的 e-wallet 或银行应用扫描。",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "按 Enter 返回...",
+        },
+        "de": {
+            "title":   "Unterstützung / Spende",
+            "thanks":  "Vielen Dank für die Unterstützung dieses Projekts!",
+            "scan":    "Scannen Sie den folgenden QRIS-Code, um zu spenden.",
+            "wallet":  "Scannen Sie mit einer QRIS-kompatiblen E-Wallet oder Banking-App.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Drücken Sie Enter, um zurückzugehen...",
+        },
+        "fr": {
+            "title":   "Soutien / Don",
+            "thanks":  "Merci de soutenir ce projet !",
+            "scan":    "Scannez le code QRIS ci-dessous pour faire un don.",
+            "wallet":  "Utilisez un e-wallet ou une appli bancaire compatible QRIS.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Appuyez sur Entrée pour revenir...",
+        },
+        "es": {
+            "title":   "Soporte / Donación",
+            "thanks":  "¡Gracias por apoyar este proyecto!",
+            "scan":    "Escanea el código QRIS a continuación para donar.",
+            "wallet":  "Escanea con tu e-wallet o app de banca compatible con QRIS.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Presiona Enter para volver...",
+        },
+        "ru": {
+            "title":   "Поддержка / Донат",
+            "thanks":  "Спасибо за поддержку этого проекта!",
+            "scan":    "Отсканируйте код QRIS ниже, чтобы сделать пожертвование.",
+            "wallet":  "Используйте совместимый e-wallet или банковское приложение.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Нажмите Enter для возврата...",
+        },
+        "pt": {
+            "title":   "Suporte / Doação",
+            "thanks":  "Obrigado por apoiar este projeto!",
+            "scan":    "Escaneie o código QRIS abaixo para doar.",
+            "wallet":  "Use um e-wallet ou app bancário compatível com QRIS.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Pressione Enter para voltar...",
+        },
+        "pl": {
+            "title":   "Wsparcie / Darowizna",
+            "thanks":  "Dziękujemy za wsparcie tego projektu!",
+            "scan":    "Zeskanuj poniższy kod QRIS, aby przekazać darowiznę.",
+            "wallet":  "Użyj obsługiwanego e-portfela lub aplikacji bankowej QRIS.",
+            "name":    "FATONY AHMAD FAUZI, DIGITAL & KREATIF",
+            "nmid":    "NMID: ID1026489430243",
+            "back":    "Naciśnij Enter, aby wrócić...",
+        },
+    }
+    msgs = _DONATE_MSGS.get(lang, _DONATE_MSGS["en"])
+
+    # QRIS string decoded from qris.png
+    QRIS_DATA = (
+        "00020101021126610014COM.GO-JEK.WWW01189360091434985457910210G4985457910303UMI"
+        "51440014ID.CO.QRIS.WWW0215ID10264894302430303UMI5204899953033605802ID"
+        "5925FATONY AHMAD FAUZI, Digit6005BOGOR61051671062070703A0163041836"
+    )
+
+    def _render_qr_ascii() -> str:
+        try:
+            import qrcode  # type: ignore
+            import io
+            qr = qrcode.QRCode(border=1, error_correction=qrcode.constants.ERROR_CORRECT_M)
+            qr.add_data(QRIS_DATA)
+            qr.make(fit=True)
+            buf = io.StringIO()
+            qr.print_ascii(out=buf, invert=True)
+            buf.seek(0)
+            return buf.read().strip()
+        except ImportError:
+            return "  [!] Install 'qrcode' to display QR: pip install qrcode"
+
+    _clear_menu_screen()
+    qr_str = _render_qr_ascii()
+
+    print(colorize(msgs["title"], Ansi.CYAN + Ansi.BOLD, color_on))
+    print()
+    print(colorize(msgs['thanks'], Ansi.GREEN + Ansi.BOLD, color_on))
+    print(colorize(msgs['scan'], Ansi.GREEN, color_on))
+    print()
+
+    # Print QR code
+    for line in qr_str.splitlines():
+        print(line)
+
+    print()
+    print(colorize(f"♦  {msgs['name']}", Ansi.YELLOW + Ansi.BOLD, color_on))
+    print(colorize(f"   {msgs['nmid']}", Ansi.DIM, color_on))
+    print()
+    print(colorize(f"── {msgs['wallet']}", Ansi.CYAN, color_on))
+    print()
+    try:
+        input(colorize(msgs['back'], Ansi.YELLOW, color_on))
+    except (EOFError, KeyboardInterrupt):
+        pass
+
+
+def _open_contact_us_cli(lang: str, color_on: bool) -> None:
+    """Terminal contact-us form — collects input then POSTs to FormSubmit."""
+    _L: dict[str, dict[str, str]] = {
+        "en": {
+            "title":      "Contact Us",
+            "subtitle":   "Have questions, suggestions, or need help? Send us a message.",
+            "first":      "First Name",
+            "last":       "Last Name",
+            "email":      "Email Address",
+            "attach":     "Attachment path (optional, press Enter to skip)",
+            "msg":        "Message",
+            "sending":    "Sending...",
+            "ok":         "Message sent! We'll get back to you soon.",
+            "err":        "Failed to send message",
+            "required":   "This field is required.",
+            "bad_email":  "Invalid email address.",
+            "back":       "Press Enter to go back...",
+            "cancel":     "(leave blank to cancel)",
+            "err_exe":    "Error: Executable files ({ext}) are not allowed for security reasons.",
+            "type_zero":  "(0 to cancel)",
+        },
+        "id": {
+            "title":      "Hubungi Kami",
+            "subtitle":   "Ada pertanyaan, saran, atau butuh bantuan? Kirim pesan ke kami.",
+            "first":      "Nama Depan",
+            "last":       "Nama Belakang",
+            "email":      "Alamat Email",
+            "attach":     "Path lampiran (opsional, tekan Enter untuk lewati)",
+            "msg":        "Pesan",
+            "sending":    "Mengirim...",
+            "ok":         "Pesan terkirim! Kami akan segera menghubungi Anda.",
+            "err":        "Gagal mengirim pesan",
+            "required":   "Kolom ini wajib diisi.",
+            "bad_email":  "Alamat email tidak valid.",
+            "back":       "Tekan Enter untuk kembali...",
+            "cancel":     "(kosongkan untuk batal)",
+            "err_exe":    "Error: File aplikasi ({ext}) tidak diizinkan demi keamanan.",
+            "type_zero":  "(0 untuk batal)",
+        },
+        "jp": {
+            "title":      "お問い合わせ",
+            "subtitle":   "ご質問・ご提案・お困りのことがあればメッセージをお送りください。",
+            "first":      "名",
+            "last":       "姓",
+            "email":      "メールアドレス",
+            "attach":     "添付ファイルのパス（任意、スキップはEnter）",
+            "msg":        "メッセージ",
+            "sending":    "送信中...",
+            "ok":         "送信完了！近日中にご連絡いたします。",
+            "err":        "送信に失敗しました",
+            "required":   "このフィールドは必須です。",
+            "bad_email":  "メールアドレスの形式が正しくありません。",
+            "back":       "Enterキーで戻る...",
+            "cancel":     "（空白でキャンセル）",
+            "err_exe":    "エラー: セキュリティ上の理由から、実行可能ファイル ({ext}) は許可されていません。",
+            "type_zero":  "(0でキャンセル)",
+        },
+        "kr": {
+            "title":      "문의하기",
+            "subtitle":   "질문, 제안 또는 도움이 필요하신가요? 메시지를 보내세요.",
+            "first":      "이름",
+            "last":       "성",
+            "email":      "이메일 주소",
+            "attach":     "첨부 파일 경로 (선택 사항, 건너뛰려면 Enter)",
+            "msg":        "메시지",
+            "sending":    "전송 중...",
+            "ok":         "메시지가 전송되었습니다! 곧 연락드리겠습니다.",
+            "err":        "메시지 전송 실패",
+            "required":   "이 필드는 필수입니다.",
+            "bad_email":  "이메일 주소가 올바르지 않습니다.",
+            "back":       "Enter 키를 눌러 뒤로 가기...",
+            "cancel":     "(취소하려면 비워 두세요)",
+            "err_exe":    "오류: 보안상의 이유로 실행 파일({ext})은 허용되지 않습니다.",
+            "type_zero":  "(0으로 취소)",
+        },
+        "zh": {
+            "title":      "联系我们",
+            "subtitle":   "有问题、建议或需要帮助？给我们发消息吧。",
+            "first":      "名字",
+            "last":       "姓氏",
+            "email":      "电子邮件地址",
+            "attach":     "附件路径（可选，按 Enter 跳过）",
+            "msg":        "消息",
+            "sending":    "发送中...",
+            "ok":         "消息已发送！我们会尽快回复您。",
+            "err":        "发送失败",
+            "required":   "此字段为必填项。",
+            "bad_email":  "电子邮件地址无效。",
+            "back":       "按 Enter 返回...",
+            "cancel":     "（留空取消）",
+            "err_exe":    "错误：出于安全原因，不允许使用可执行文件 ({ext})。",
+            "type_zero":  "(0 取消)",
+        },
+        "de": {
+            "title":      "Kontaktiere uns",
+            "subtitle":   "Fragen, Anregungen oder Hilfe nötig? Schreib uns eine Nachricht.",
+            "first":      "Vorname",
+            "last":       "Nachname",
+            "email":      "E-Mail-Adresse",
+            "attach":     "Anhangpfad (optional, Enter zum Überspringen)",
+            "msg":        "Nachricht",
+            "sending":    "Senden...",
+            "ok":         "Nachricht gesendet! Wir melden uns bald.",
+            "err":        "Nachricht konnte nicht gesendet werden",
+            "required":   "Dieses Feld ist erforderlich.",
+            "bad_email":  "Ungültige E-Mail-Adresse.",
+            "back":       "Enter drücken zum Zurückgehen...",
+            "cancel":     "(leer lassen zum Abbrechen)",
+            "err_exe":    "Fehler: Ausführbare Dateien ({ext}) sind aus Sicherheitsgründen nicht zulässig.",
+            "type_zero":  "(0 zum Abbrechen)",
+        },
+        "fr": {
+            "title":      "Contactez-nous",
+            "subtitle":   "Des questions, suggestions, ou besoin d'aide ? Envoyez-nous un message.",
+            "first":      "Prénom",
+            "last":       "Nom",
+            "email":      "Adresse e-mail",
+            "attach":     "Chemin de la pièce jointe (optionnel, Enter pour ignorer)",
+            "msg":        "Message",
+            "sending":    "Envoi en cours...",
+            "ok":         "Message envoyé ! Nous vous répondrons bientôt.",
+            "err":        "Échec de l'envoi du message",
+            "required":   "Ce champ est obligatoire.",
+            "bad_email":  "Adresse e-mail invalide.",
+            "back":       "Appuyez sur Entrée pour revenir...",
+            "cancel":     "(laisser vide pour annuler)",
+            "err_exe":    "Erreur : Les fichiers exécutables ({ext}) ne sont pas autorisés pour des raisons de sécurité.",
+            "type_zero":  "(0 pour annuler)",
+        },
+        "es": {
+            "title":      "Contáctanos",
+            "subtitle":   "¿Preguntas, sugerencias o necesitas ayuda? Envíanos un mensaje.",
+            "first":      "Nombre",
+            "last":       "Apellido",
+            "email":      "Correo electrónico",
+            "attach":     "Ruta del archivo adjunto (opcional, Enter para omitir)",
+            "msg":        "Mensaje",
+            "sending":    "Enviando...",
+            "ok":         "¡Mensaje enviado! Nos pondremos en contacto pronto.",
+            "err":        "Error al enviar el mensaje",
+            "required":   "Este campo es obligatorio.",
+            "bad_email":  "Dirección de correo inválida.",
+            "back":       "Presiona Enter para volver...",
+            "cancel":     "(dejar en blanco para cancelar)",
+            "err_exe":    "Error: No se permiten archivos ejecutables ({ext}) por razones de seguridad.",
+            "type_zero":  "(0 para cancelar)",
+        },
+        "ru": {
+            "title":      "Связаться с нами",
+            "subtitle":   "Есть вопросы, предложения или нужна помощь? Отправьте нам сообщение.",
+            "first":      "Имя",
+            "last":       "Фамилия",
+            "email":      "Адрес электронной почты",
+            "attach":     "Путь к вложению (необязательно, Enter для пропуска)",
+            "msg":        "Сообщение",
+            "sending":    "Отправка...",
+            "ok":         "Сообщение отправлено! Мы скоро свяжемся с вами.",
+            "err":        "Не удалось отправить сообщение",
+            "required":   "Это поле обязательно.",
+            "bad_email":  "Неверный адрес электронной почты.",
+            "back":       "Нажмите Enter для возврата...",
+            "cancel":     "(оставьте пустым для отмены)",
+            "err_exe":    "Ошибка: Исполняемые файлы ({ext}) не разрешены по соображениям безопасности.",
+            "type_zero":  "(0 для отмены)",
+        },
+        "pt": {
+            "title":      "Fale Conosco",
+            "subtitle":   "Tem dúvidas, sugestões ou precisa de ajuda? Envie uma mensagem.",
+            "first":      "Nome",
+            "last":       "Sobrenome",
+            "email":      "Endereço de e-mail",
+            "attach":     "Caminho do anexo (opcional, Enter para ignorar)",
+            "msg":        "Mensagem",
+            "sending":    "Enviando...",
+            "ok":         "Mensagem enviada! Entraremos em contato em breve.",
+            "err":        "Falha ao enviar mensagem",
+            "required":   "Este campo é obrigatório.",
+            "bad_email":  "Endereço de e-mail inválido.",
+            "back":       "Pressione Enter para voltar...",
+            "cancel":     "(deixe em branco para cancelar)",
+            "err_exe":    "Erro: Arquivos executáveis ({ext}) não são permitidos por motivos de segurança.",
+            "type_zero":  "(0 para cancelar)",
+        },
+        "pl": {
+            "title":      "Skontaktuj się z nami",
+            "subtitle":   "Masz pytania, sugestie lub potrzebujesz pomocy? Wyślij wiadomość.",
+            "first":      "Imię",
+            "last":       "Nazwisko",
+            "email":      "Adres e-mail",
+            "attach":     "Ścieżka załącznika (opcjonalnie, Enter aby pominąć)",
+            "msg":        "Wiadomość",
+            "sending":    "Wysyłanie...",
+            "ok":         "Wiadomość wysłana! Odezwiemy się wkrótce.",
+            "err":        "Nie udało się wysłać wiadomości",
+            "required":   "To pole jest wymagane.",
+            "bad_email":  "Nieprawidłowy adres e-mail.",
+            "back":       "Naciśnij Enter, aby wrócić...",
+            "cancel":     "(pozostaw puste, aby anulować)",
+            "err_exe":    "Błąd: Pliki wykonywalne ({ext}) są niedozwolone ze względów bezpieczeństwa.",
+            "type_zero":  "(0 aby anulować)",
+        },
+    }
+    L = _L.get(lang, _L["en"])
+    FORMSUBMIT_URL = "https://formsubmit.co/ajax/fatonyahmadfauzi@gmail.com"
+
+    def _ask(field: str, required: bool = True) -> str | None:
+        """Prompt user for a field value, re-ask if required and blank."""
+        marker = colorize(" *", Ansi.RED, color_on) if required else ""
+        while True:
+            val = input(colorize(f"{field}{marker} {L['type_zero']}: ", Ansi.CYAN, color_on)).strip()
+            if val == "0":
+                return None
+            if not val and required:
+                print(colorize(L["required"], Ansi.RED, color_on))
+                continue
+            return val
+
+    import re as _re
+
+    _clear_menu_screen()
+    print(colorize(L["title"], Ansi.CYAN + Ansi.BOLD, color_on))
+    print(colorize(L["subtitle"], Ansi.DIM, color_on))
+    print()
+
+    # First Name
+    first = _ask(L["first"])
+    if first is None:
+        return
+
+    # Last Name
+    last = _ask(L["last"])
+    if last is None:
+        return
+
+    # Email
+    while True:
+        email = _ask(L["email"])
+        if email is None:
+            return
+        if not _re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email):
+            print(colorize(L["bad_email"], Ansi.RED, color_on))
+            continue
+        break
+
+    # Attachment (optional)
+    attach_path = input(colorize(f"{L['attach']} {L['type_zero']}: ", Ansi.CYAN, color_on)).strip()
+    if attach_path == "0":
+        return
+
+    # Message
+    print(colorize(f"{L['msg']} * ({L['cancel']})", Ansi.CYAN, color_on))
+    msg_lines: list[str] = []
+    while True:
+        line = input()
+        if line == "" and not msg_lines:
+            return  # Cancel if first line is blank
+        if line == "" and msg_lines:
+            break
+        msg_lines.append(line)
+    message = "\n".join(msg_lines)
+    if not message.strip():
+        return
+
+    # Send
+    print()
+    print(colorize(L["sending"], Ansi.YELLOW, color_on))
+    try:
+        import mimetypes
+        from pathlib import Path as _Path
+
+        form_data: dict = {
+            "_subject":  f"[CLI Contact] {first} {last}",
+            "name":      f"{first} {last}",
+            "email":     email,
+            "message":   message,
+            "_template": "table",
+            "_captcha":  "false",
+        }
+        files = None
+        if attach_path:
+            ap = _Path(attach_path.strip('"').strip("'"))
+            if ap.is_file():
+                if ap.suffix.lower() in [".exe", ".bat", ".cmd", ".sh", ".vbs", ".msi"]:
+                    print(colorize(L["err_exe"].format(ext=ap.suffix), Ansi.RED, color_on))
+                    print()
+                    try:
+                        input(colorize(L["back"], Ansi.YELLOW, color_on))
+                    except (EOFError, KeyboardInterrupt):
+                        pass
+                    return
+
+                mime = mimetypes.guess_type(str(ap))[0] or "application/octet-stream"
+                files = {"attachment": (ap.name, ap.read_bytes(), mime)}
+
+        headers = {
+            "Accept": "application/json",
+            "Origin": "https://pixiv-o-auth-token.vercel.app",
+            "Referer": "https://pixiv-o-auth-token.vercel.app/",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+        }
+        if files:
+            # The FormSubmit /ajax/ endpoint discards attachments.
+            # We must use the standard HTML endpoint for form submissions with files.
+            submit_url = FORMSUBMIT_URL.replace("/ajax/", "/")
+            resp = requests.post(submit_url, data=form_data, files=files, headers=headers, timeout=30)
+        else:
+            resp = requests.post(FORMSUBMIT_URL, data=form_data, headers=headers, timeout=20)
+
+        if resp.status_code == 200:
+            try:
+                result = resp.json()
+                if result.get("success") == "true" or result.get("success") is True:
+                    print(colorize(L["ok"], Ansi.GREEN + Ansi.BOLD, color_on))
+                else:
+                    print(colorize(f"{L['err']}: {result}", Ansi.RED, color_on))
+            except Exception:
+                print(colorize(L["ok"], Ansi.GREEN + Ansi.BOLD, color_on))
+        else:
+            print(colorize(f"{L['err']}: HTTP {resp.status_code}", Ansi.RED, color_on))
+    except Exception as exc:
+        print(colorize(f"{L['err']}: {exc}", Ansi.RED, color_on))
+
+    print()
+    try:
+        input(colorize(L["back"], Ansi.YELLOW, color_on))
+    except (EOFError, KeyboardInterrupt):
+        pass
+
 
 def _open_support_menu(lang: str, color_on: bool) -> None:
     options = [
@@ -2386,15 +3395,15 @@ def _open_support_menu(lang: str, color_on: bool) -> None:
         choice = _choose_boxed_option(mt("support_title", lang), options, lang, color_on).lower()
         debug_print(f"Support menu choice: {choice}", color_on)
         if choice == "1":
-            open_url("https://pixiv-o-auth-token.vercel.app/contact")
+            _open_contact_us_cli(lang, color_on)
         elif choice == "2":
-            open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/issues")
+            _open_issues_cli(lang, color_on)
         elif choice == "3":
-            open_url("https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/discussions")
+            _open_discussions_cli(lang, color_on)
         elif choice == "4":
             open_url("https://github.com/fatonyahmadfauzi")
         elif choice == "5":
-            open_url("https://pixiv-o-auth-token.vercel.app/support")
+            _open_donate_screen(lang, color_on)
         elif choice == "0":
             return
         else:

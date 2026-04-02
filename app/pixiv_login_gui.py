@@ -28,6 +28,9 @@ from urllib.parse import urlencode, urlparse, parse_qs
 from webbrowser import open as open_url
 
 import requests
+import locale
+import os
+from argparse import ArgumentParser
 
 
 # ===== PIXIV CONFIG =====
@@ -45,8 +48,8 @@ RELEASES_URL = f"{REPO_BASE_URL}/releases"
 TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
-APP_VERSION = "v1.0.4"
-APP_BUILD_CODE = "REL-U1774728698607"
+APP_VERSION = "v1.0.5"
+APP_BUILD_CODE = "REL-U1775122868915"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 DOWNLOADS_RAW_BASE = f"{REPO_BASE_URL}/raw/HEAD/downloads"
@@ -1198,6 +1201,56 @@ def load_config() -> dict:
     return {}
 
 
+def _map_locale_to_lang(two_letter: str) -> str | None:
+    mapping = {
+        "en": "en", "id": "id", "in": "id",
+        "ja": "jp", "jp": "jp",
+        "ko": "kr", "kr": "kr",
+        "zh": "zh", "de": "de", "fr": "fr",
+        "es": "es", "ru": "ru", "pt": "pt", "pl": "pl",
+    }
+    return mapping.get(str(two_letter).lower())
+
+
+def detect_system_lang_gui() -> str | None:
+    """Detect OS/system language for GUI startup."""
+    for key in ("LC_ALL", "LC_MESSAGES", "LANG"):
+        v = os.environ.get(key, "")
+        if v:
+            code = v.replace("-", "_").split(".")[0].split("_")[0].lower()
+            mapped = _map_locale_to_lang(code)
+            if mapped:
+                return mapped
+    try:
+        import locale as _locale
+        loc = _locale.getlocale()[0]
+        if loc:
+            code = str(loc).replace("-", "_").split("_")[0].lower()
+            mapped = _map_locale_to_lang(code)
+            if mapped:
+                return mapped
+    except Exception:
+        pass
+    return None
+
+
+def resolve_startup_lang(explicit: str | None = None) -> str:
+    """
+    Determine the language to use at GUI startup.
+    Priority: --lang flag  >  config default_lang  >  OS locale  >  English
+    """
+    if explicit and explicit in SUPPORTED_LANGS:
+        return explicit
+    cfg = load_config()
+    cfg_lang = cfg.get("default_lang", "")
+    if cfg_lang in SUPPORTED_LANGS:
+        return cfg_lang
+    sys_lang = detect_system_lang_gui()
+    if sys_lang:
+        return sys_lang
+    return "en"
+
+
 def save_config(cfg: dict) -> None:
     CONFIG_FILE.write_text(json.dumps(cfg, indent=2, ensure_ascii=False), encoding="utf-8")
 
@@ -1355,11 +1408,12 @@ def _get_gui_setup_url(exe_path: Path) -> str:
 
 
 class App(tk.Tk):
-    def __init__(self):
+    def __init__(self, initial_lang: str = "en"):
         super().__init__()
 
         self.cfg = load_config()
-        default_code = self.cfg.get("default_lang", "en")
+        # --lang flag or OS-detected lang takes priority over config
+        default_code = initial_lang if initial_lang in SUPPORTED_LANGS else self.cfg.get("default_lang", "en")
         if default_code not in SUPPORTED_LANGS:
             default_code = "en"
         default_name = LANG_CODE_TO_NAME.get(default_code, "🇬🇧  English")
@@ -1368,7 +1422,7 @@ class App(tk.Tk):
         self.last_access_token: str | None = None
         self.last_refresh_token: str | None = self.cfg.get("refresh_token")
         self.tutorial_dirs = self._resolve_tutorial_dirs()
-        self._docs/images: list[Path] = []
+        self._tutorial_images: list[Path] = []
         self._tutorial_index = 0
         self._tutorial_photo = None
 
@@ -1641,7 +1695,7 @@ class App(tk.Tk):
             f"{DEVELOPER_NAME}\n\nGitHub: {REPO_BASE_URL}\nTikTok: {TIKTOK_URL}\nTwitter/X: {TWITTER_URL}",
         )
 
-    def _load_docs/images(self):
+    def _load_tutorial_images(self):
         images = []
         for d in self.tutorial_dirs:
             if not d.exists():
@@ -1658,7 +1712,7 @@ class App(tk.Tk):
                 continue
             seen.add(k)
             uniq.append(img)
-        self._docs/images = uniq
+        self._tutorial_images = uniq
 
     def _scaled_tutorial_photo(self, image_path: Path, max_width: int = 860):
         photo = tk.PhotoImage(file=str(image_path))
@@ -2186,4 +2240,14 @@ class App(tk.Tk):
 
 
 if __name__ == "__main__":
-    App().mainloop()
+    _parser = ArgumentParser(description="Pixiv OAuth Token GUI")
+    _parser.add_argument(
+        "--lang",
+        default=None,
+        metavar="CODE",
+        help="Set UI language (e.g. jp, id, zh, kr). Overrides config & OS detection."
+    )
+    _parser.add_argument("--no-color", action="store_true", help="(ignored for GUI)")
+    _args, _ = _parser.parse_known_args()
+    _lang = resolve_startup_lang(_args.lang)
+    App(initial_lang=_lang).mainloop()
