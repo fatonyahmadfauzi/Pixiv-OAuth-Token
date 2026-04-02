@@ -557,102 +557,30 @@
             </div>
           </div>
           <h3 id="dlInstallPy" class="download-installation-title">Installation</h3>
-          <!-- Python install tabs -->
-          <div class="download-inline-tabs" role="tablist" aria-label="Python installation options">
-            <a href="#" role="tab" class="active" id="dlTabPyQuick" data-tab-target="pyQuickTabPanel" aria-current="page" aria-selected="true">Quick Install</a>
-            <a href="#" role="tab" id="dlTabPyCloneTab" data-tab-target="pyCloneTabPanel" aria-selected="false">Clone</a>
-          </div>
           <div class="download-tab-panels">
-            <!-- Quick Install -->
-            <section id="pyQuickTabPanel" role="tabpanel" class="download-tab-panel active">
-              <p class="cmd-tab-intro" id="dlDescPyQuick">
-                Download only <code>pixiv_login.py</code> &mdash; no Git required. Choose your platform:
+            <section id="pyDirectTabPanel" role="region" class="python-direct-panel">
+              <p class="cmd-tab-intro" id="dlDescPyDirect">
+                Install directly with one command. Choose your platform below:
               </p>
-              <div class="download-inline-tabs download-inline-tabs--sub" role="tablist" style="margin-bottom:0.75rem">
-                <a href="#" role="tab" class="active" data-tab-target="pyQuickWinPanel" aria-selected="true">Windows</a>
-                <a href="#" role="tab" data-tab-target="pyQuickLinuxPanel" aria-selected="false">Linux / macOS</a>
-              </div>
-              <div id="pyQuickWinPanel" class="download-tab-panel active">
-                <div class="cmd-command-list">
-                  <div class="cmd-command-item">
-                    <small class="cmd-command-label" id="dlPyQWinLabel">Run in PowerShell</small>
-                    <div class="cmd-command-row">
-                      <code class="cmd-command-code" id="dlPyQWinCode">irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex</code>
-                      <button class="cmd-copy-btn" type="button" data-copy-text="irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex" aria-label="Copy PowerShell command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
-                  <div class="cmd-command-item">
-                    <small class="cmd-command-label" id="dlPyQWinRunLabel">Then run</small>
-                    <div class="cmd-command-row">
-                      <code class="cmd-command-code">python pixiv_login.py</code>
-                      <button class="cmd-copy-btn" type="button" data-copy-text="python pixiv_login.py" aria-label="Copy run command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="pyQuickLinuxPanel" class="download-tab-panel" hidden>
-                <div class="cmd-command-list">
-                  <div class="cmd-command-item">
-                    <small class="cmd-command-label" id="dlPyQLinuxLabel">Run in Terminal (Bash / Zsh)</small>
-                    <div class="cmd-command-row">
-                      <code class="cmd-command-code" id="dlPyQLinuxCode">bash &lt;(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)</code>
-                      <button class="cmd-copy-btn" type="button" data-copy-text="bash &lt;(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)" aria-label="Copy bash command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
-                  <div class="cmd-command-item">
-                    <small class="cmd-command-label" id="dlPyQLinuxRunLabel">Then run</small>
-                    <div class="cmd-command-row">
-                      <code class="cmd-command-code">python3 pixiv_login.py</code>
-                      <button class="cmd-copy-btn" type="button" data-copy-text="python3 pixiv_login.py" aria-label="Copy run command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <!-- Clone tab -->
-            <section id="pyCloneTabPanel" role="tabpanel" class="download-tab-panel" hidden>
-              <p class="cmd-tab-intro" id="dlDescPyClone">
-                Clone the full repository (includes web, downloads &amp; all assets):
-              </p>
-              <div class="cmd-command-list python-install-list" aria-live="polite">
+              <div class="cmd-command-list python-direct-list" aria-live="polite">
                 <div class="cmd-command-item">
-                  <small class="cmd-command-label" id="dlPyClone">Clone repository</small>
+                  <small class="cmd-command-label" id="dlPyDirectWinTitle">Windows (PowerShell)</small>
                   <div class="cmd-command-row">
-                    <code class="cmd-command-code">git clone https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git</code>
-                    <button class="cmd-copy-btn" type="button" data-copy-text="git clone https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token.git" aria-label="Copy clone command"><i class="bi bi-copy" aria-hidden="true"></i></button>
+                    <code class="cmd-command-code" id="dlPyDirectWinCode">irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex</code>
+                    <button class="cmd-copy-btn" type="button" data-copy-text="irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex" aria-label="Copy PowerShell command"><i class="bi bi-copy" aria-hidden="true"></i></button>
                   </div>
                 </div>
                 <div class="cmd-command-item">
-                  <small class="cmd-command-label" id="dlPyOpen">Open project folder</small>
+                  <small class="cmd-command-label" id="dlPyDirectLinuxTitle">Linux / macOS / WSL</small>
                   <div class="cmd-command-row">
-                    <code class="cmd-command-code">cd Pixiv-OAuth-Token</code>
-                    <button class="cmd-copy-btn" type="button" data-copy-text="cd Pixiv-OAuth-Token" aria-label="Copy cd command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                  </div>
-                </div>
-                <div class="cmd-command-item">
-                  <small class="cmd-command-label" id="dlPyVenv">Optional: Create virtual environment</small>
-                  <div class="cmd-command-row">
-                    <code class="cmd-command-code">python -m venv .venv</code>
-                    <button class="cmd-copy-btn" type="button" data-copy-text="python -m venv .venv" aria-label="Copy venv command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                  </div>
-                </div>
-                <div class="cmd-command-item">
-                  <small class="cmd-command-label" id="dlPyReqs">Install requirements</small>
-                  <div class="cmd-command-row">
-                    <code class="cmd-command-code">pip install -r app/requirements.txt</code>
-                    <button class="cmd-copy-btn" type="button" data-copy-text="pip install -r app/requirements.txt" aria-label="Copy requirements command"><i class="bi bi-copy" aria-hidden="true"></i></button>
-                  </div>
-                </div>
-                <div class="cmd-command-item">
-                  <small class="cmd-command-label" id="dlPyRun">Run CLI app</small>
-                  <div class="cmd-command-row">
-                    <code class="cmd-command-code">python app/pixiv_login.py</code>
-                    <button class="cmd-copy-btn" type="button" data-copy-text="python app/pixiv_login.py" aria-label="Copy run command"><i class="bi bi-copy" aria-hidden="true"></i></button>
+                    <code class="cmd-command-code" id="dlPyDirectLinuxCode">bash &lt;(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)</code>
+                    <button class="cmd-copy-btn" type="button" data-copy-text="bash &lt;(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)" aria-label="Copy bash command"><i class="bi bi-copy" aria-hidden="true"></i></button>
                   </div>
                 </div>
               </div>
             </section>
           </div>
+
           <div class="min-req-section">
             <h3 class="min-req-title" id="dlMinReqPyTitle">
               Minimum Requirements
@@ -672,7 +600,7 @@
               </li>
               <li>
                 <i class="bi bi-check2" aria-hidden="true"></i>
-                <span id="dlMinReqPy4">Git <em>(only for Clone method)</em></span>
+                <span id="dlMinReqPy4">PowerShell (Windows) or Bash-compatible shell</span>
               </li>
             </ul>
           </div>
