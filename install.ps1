@@ -36,6 +36,7 @@ Write-Banner
 
 # --- 1. Check Python ---
 Write-Step "Checking Python installation..."
+$needsPython = $false
 try {
     $pyVer = python --version 2>&1
     if ($pyVer -match "Python (\d+)\.(\d+)") {
@@ -43,16 +44,36 @@ try {
         $minor = [int]$Matches[2]
         if ($major -lt 3 -or ($major -eq 3 -and $minor -lt 11)) {
             Write-Err "Python 3.11+ is required. Found: $pyVer"
-            Write-Err "Download Python from https://www.python.org/downloads/"
-            exit 1
+            $needsPython = $true
+        } else {
+            Write-Ok "Found $pyVer"
         }
-        Write-Ok "Found $pyVer"
     } else {
         throw "Cannot parse version"
     }
 } catch {
-    Write-Err "Python not found. Install Python 3.11+ from https://www.python.org/downloads/"
-    exit 1
+    $needsPython = $true
+}
+
+if ($needsPython) {
+    Write-Step "Python not found or version < 3.11."
+    Write-Step "Attempting to install Python via winget..."
+    try {
+        winget install -e --id Python.Python.3.12 --accept-package-agreements --accept-source-agreements
+        if ($LASTEXITCODE -ne 0 -and $LASTEXITCODE -ne 2316632065) {
+            throw "winget returned $LASTEXITCODE"
+        }
+        Write-Ok "Python installed. Reloading environment variables..."
+        
+        Start-Sleep -Seconds 2
+        $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+        
+        $pyVerTest = python --version 2>&1
+        Write-Ok "Now using: $pyVerTest"
+    } catch {
+        Write-Err "Auto-install failed. Please install Python 3.11+ manually from https://www.python.org/downloads/"
+        exit 1
+    }
 }
 
 # --- 2. Download pixiv_login.py ---

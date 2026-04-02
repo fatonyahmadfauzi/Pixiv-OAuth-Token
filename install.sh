@@ -55,9 +55,25 @@ for cmd in python3 python; do
 done
 
 if [ -z "$PYTHON_CMD" ]; then
-    err "Python 3.11+ not found."
-    err "Install from: https://www.python.org/downloads/"
-    exit 1
+    step "Python 3.11+ not found."
+    step "Attempting auto-installation..."
+    if command -v apt &>/dev/null; then
+        sudo apt update
+        sudo apt install -y python3 python3-pip python3-venv
+        PYTHON_CMD="python3"
+    elif command -v dnf &>/dev/null; then
+        sudo dnf install -y python3 python3-pip
+        PYTHON_CMD="python3"
+    elif command -v pacman &>/dev/null; then
+        sudo pacman -Sy --noconfirm python python-pip
+        PYTHON_CMD="python"
+    elif command -v brew &>/dev/null; then
+        brew install python
+        PYTHON_CMD="python3"
+    else
+        err "Could not find a supported package manager. Install Python 3.11+ manually from https://www.python.org/downloads/"
+        exit 1
+    fi
 fi
 
 # --- 2. Check download tool ---
