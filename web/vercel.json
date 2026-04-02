@@ -52,68 +52,3188 @@
   "redirects": [
     {
       "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl",
+      "permanent": false
+    },
+    {
+      "source": "/",
       "destination": "/en",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/downloads",
+      "permanent": false
+    },
+    {
+      "source": "/downloads",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/downloads",
+      "permanent": false
     },
     {
       "source": "/downloads",
       "destination": "/en/downloads",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/tutorial",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/tutorial",
+      "permanent": false
     },
     {
       "source": "/tutorial",
       "destination": "/en/tutorial",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/documentation",
+      "permanent": false
+    },
+    {
+      "source": "/documentation",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/documentation",
+      "permanent": false
     },
     {
       "source": "/documentation",
       "destination": "/en/documentation",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/license",
+      "permanent": false
+    },
+    {
+      "source": "/license",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/license",
+      "permanent": false
     },
     {
       "source": "/license",
       "destination": "/en/license",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/changelog",
+      "permanent": false
+    },
+    {
+      "source": "/changelog",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/changelog",
+      "permanent": false
     },
     {
       "source": "/changelog",
       "destination": "/en/changelog",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/issues",
+      "permanent": false
+    },
+    {
+      "source": "/issues",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/issues",
+      "permanent": false
     },
     {
       "source": "/issues",
       "destination": "/en/issues",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/discussions",
+      "permanent": false
+    },
+    {
+      "source": "/discussions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/discussions",
+      "permanent": false
     },
     {
       "source": "/discussions",
       "destination": "/en/discussions",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/support",
+      "permanent": false
+    },
+    {
+      "source": "/support",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/support",
+      "permanent": false
     },
     {
       "source": "/support",
       "destination": "/en/support",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/contact",
+      "permanent": false
+    },
+    {
+      "source": "/contact",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/contact",
+      "permanent": false
     },
     {
       "source": "/contact",
       "destination": "/en/contact",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/privacy-policy",
+      "permanent": false
+    },
+    {
+      "source": "/privacy-policy",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/privacy-policy",
+      "permanent": false
     },
     {
       "source": "/privacy-policy",
       "destination": "/en/privacy-policy",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/terms-conditions",
+      "permanent": false
+    },
+    {
+      "source": "/terms-conditions",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/terms-conditions",
+      "permanent": false
     },
     {
       "source": "/terms-conditions",
       "destination": "/en/terms-conditions",
-      "permanent": true
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(JP)$"
+        }
+      ],
+      "destination": "/jp/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ja).*"
+        }
+      ],
+      "destination": "/jp/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ID)$"
+        }
+      ],
+      "destination": "/id/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(id).*"
+        }
+      ],
+      "destination": "/id/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(DE|AT|CH)$"
+        }
+      ],
+      "destination": "/de/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(de).*"
+        }
+      ],
+      "destination": "/de/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(FR|BE|CH|CA)$"
+        }
+      ],
+      "destination": "/fr/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(fr).*"
+        }
+      ],
+      "destination": "/fr/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(ES|MX|AR|CO|PE|VE|CL|EC|GT|CU|BO|DO|HN|PY|SV|NI|CR|PR|PA|UY|GQ)$"
+        }
+      ],
+      "destination": "/es/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(es).*"
+        }
+      ],
+      "destination": "/es/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(RU|BY|KZ|KG)$"
+        }
+      ],
+      "destination": "/ru/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ru).*"
+        }
+      ],
+      "destination": "/ru/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PT|BR|AO|MZ)$"
+        }
+      ],
+      "destination": "/pt/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pt).*"
+        }
+      ],
+      "destination": "/pt/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(KR)$"
+        }
+      ],
+      "destination": "/kr/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(ko).*"
+        }
+      ],
+      "destination": "/kr/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(CN|TW|HK|MO|SG)$"
+        }
+      ],
+      "destination": "/zh/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(zh).*"
+        }
+      ],
+      "destination": "/zh/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "(?i)^(PL)$"
+        }
+      ],
+      "destination": "/pl/dumper",
+      "permanent": false
+    },
+    {
+      "source": "/dumper",
+      "has": [
+        {
+          "type": "header",
+          "key": "Accept-Language",
+          "value": "(?i)^(pl).*"
+        }
+      ],
+      "destination": "/pl/dumper",
+      "permanent": false
     },
     {
       "source": "/dumper",
       "destination": "/en/dumper",
-      "permanent": true
+      "permanent": false
     },
     {
       "source": "/CHANGELOG.md",
