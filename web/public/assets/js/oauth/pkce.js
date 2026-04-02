@@ -9,8 +9,8 @@ let tokenState = { access_token: "", refresh_token: "" };
  */
 export function b64Url(bytes) {
   return btoa(String.fromCharCode(...bytes))
-    .replace(/\\+/g, "-")
-    .replace(/\\/ / g, "_")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
     .replace(/=+$/, "");
 }
 
