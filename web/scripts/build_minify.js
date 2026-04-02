@@ -29,7 +29,8 @@ async function processDirectory(dir) {
       try {
         const result = await minifyJs(code, {
           compress: { drop_console: true },
-          mangle: true
+          mangle: true,
+          module: true
         });
         if (result.code) fs.writeFileSync(fullPath, result.code, "utf8");
       } catch (err) {
