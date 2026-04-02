@@ -189,6 +189,7 @@ else
   echo -e "    ${CYAN}$PYTHON_CMD pixiv_login.py${RESET}"
 fi
 echo ""
-echo -e "  ${DIM}[i] Language '$RESOLVED_LANG' was auto-detected from your OS.${RESET}"
-echo -e "  ${DIM}    To override: PIXIV_LANG=jp bash <(curl -sL ..../install.sh)${RESET}"
+echo -e "  ${DIM}[i] Language detected: $RESOLVED_LANG${RESET}"
+echo -e "  ${DIM}    To use a different language: $PYTHON_CMD pixiv_login.py --lang jp${RESET}"
+echo -e "  ${DIM}    To save permanently:         $PYTHON_CMD pixiv_login.py config set-lang jp${RESET}"
 echo ""
