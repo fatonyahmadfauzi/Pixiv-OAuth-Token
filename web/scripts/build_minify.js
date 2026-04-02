@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const { minify: minifyJs } = require("terser");
 const CleanCSS = require("clean-css");
 const { minify: minifyHtml } = require("html-minifier-terser");
 
@@ -23,19 +22,6 @@ async function processDirectory(dir) {
 
     if (stat.isDirectory()) {
       await processDirectory(fullPath);
-    } else if (file.endsWith(".js") && !file.includes(".min.")) {
-      console.log("Minifying JS:", fullPath.replace(PUBLIC_DIR, ""));
-      const code = fs.readFileSync(fullPath, "utf8");
-      try {
-        const result = await minifyJs(code, {
-          compress: { drop_console: true },
-          mangle: false, // Disabled: files are minified independently (no bundler), mangling breaks cross-file ES Module imports
-          module: true
-        });
-        if (result.code) fs.writeFileSync(fullPath, result.code, "utf8");
-      } catch (err) {
-        console.error(`Failed to minify JS ${fullPath}:`, err);
-      }
     } else if (file.endsWith(".css") && !file.includes(".min.")) {
       console.log("Minifying CSS:", fullPath.replace(PUBLIC_DIR, ""));
       const css = fs.readFileSync(fullPath, "utf8");
