@@ -26,12 +26,7 @@ import subprocess
 import time
 import requests
 
-from rich import box
-from rich.align import Align
-from rich.console import Console
-from rich.panel import Panel
-from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
-from rich.text import Text
+# rich library removed — using plain ANSI output only
 
 
 # ===== CONFIG =====
@@ -400,7 +395,757 @@ MENU_UI_EN = {
     "login_action_access_copy_failed": "Failed to copy access token.",
     "login_action_refresh_copied": "Refresh token copied.",
     "login_action_refresh_copy_failed": "Failed to copy refresh token.",
-    "exiting": "Exiting..."
+    "exiting": "Exiting...",
+    "res_docs_privacy": "Privacy Policy",
+    "res_docs_terms": "Terms & Conditions",
+    "privacy_title": "Privacy Policy",
+    "terms_title": "Terms & Conditions",
+    "policy_last_updated": "Last updated",
+}
+
+
+# ===== POLICY TEXTS =====
+PRIVACY_POLICY_TEXT = {
+    "en": [
+        "Last updated: April 1, 2026",
+        "",
+        "This website is an independent open-source utility for Pixiv",
+        "OAuth token workflows.",
+        "",
+        "Independent Project",
+        "Pixiv OAuth Token is developed independently and is not an",
+        "official Pixiv product or service.",
+        "",
+        "How Token Data Is Processed",
+        "This tool helps you submit authorization data to official Pixiv",
+        "OAuth endpoints to exchange or refresh tokens. Token values may",
+        "be processed in your browser and API flow only as needed.",
+        "",
+        "Data Collection & Misuse",
+        "The developer does not intentionally collect, sell, or misuse",
+        "your Pixiv credentials or OAuth tokens.",
+        "",
+        "Third-Party Services",
+        "This project may link to or rely on services such as GitHub,",
+        "Vercel, Pixiv endpoints, and related documentation. Those",
+        "services have separate privacy practices.",
+        "",
+        "Your Responsibility",
+        "You are responsible for securing your own device, browser,",
+        "network environment, and account credentials.",
+        "",
+        "Contact",
+        "For support or privacy-related questions, please use the",
+        "Contact page or the project's GitHub repository.",
+    ],
+    "id": [
+        "Terakhir diperbarui: 1 April 2026",
+        "",
+        "Situs ini adalah utilitas open-source independen untuk alur",
+        "kerja token OAuth Pixiv.",
+        "",
+        "Proyek Independen",
+        "Pixiv OAuth Token dikembangkan secara independen dan bukan",
+        "produk atau layanan resmi Pixiv.",
+        "",
+        "Cara Data Token Diproses",
+        "Alat ini membantu Anda mengirimkan data otorisasi ke endpoint",
+        "OAuth resmi Pixiv untuk menukar atau memperbarui token.",
+        "",
+        "Pengumpulan & Penyalahgunaan Data",
+        "Pengembang tidak dengan sengaja mengumpulkan, menjual, atau",
+        "menyalahgunakan kredensial Pixiv atau token OAuth Anda.",
+        "",
+        "Layanan Pihak Ketiga",
+        "Proyek ini dapat menautkan ke layanan seperti GitHub, Vercel,",
+        "endpoint Pixiv, dan dokumentasi terkait.",
+        "",
+        "Tanggung Jawab Anda",
+        "Anda bertanggung jawab untuk mengamankan perangkat, browser,",
+        "lingkungan jaringan, dan kredensial akun Anda sendiri.",
+        "",
+        "Kontak",
+        "Untuk pertanyaan dukungan atau privasi, gunakan halaman Kontak",
+        "atau repositori GitHub proyek.",
+    ],
+    "jp": [
+        "最終更新日: 2026年4月1日",
+        "",
+        "このサイトはPixiv OAuthトークンのための",
+        "独立したオープンソースユーティリティです。",
+        "",
+        "独立プロジェクト",
+        "Pixiv OAuth Tokenは独立して開発されており、Pixivの",
+        "公式製品またはサービスではありません。",
+        "",
+        "トークンデータの処理方法",
+        "このツールはPixivの公式OAuthエンドポイントに認証データを",
+        "送信してトークンを交換または更新します。",
+        "",
+        "データ収集と不正使用",
+        "開発者はあなたのPixiv認証情報やOAuthトークンを",
+        "意図的に収集、販売、または悪用しません。",
+        "",
+        "サードパーティサービス",
+        "このプロジェクトはGitHub、Vercel、Pixivエンドポイントなどの",
+        "サービスに依存する場合があります。",
+        "",
+        "お客様の責任",
+        "ご自身のデバイス、ブラウザ、ネットワーク環境、",
+        "アカウント認証情報の保護はお客様の責任です。",
+        "",
+        "お問い合わせ",
+        "サポートやプライバシーに関するご質問は、",
+        "お問い合わせページまたはGitHubリポジトリをご利用ください。",
+    ],
+}
+
+TERMS_CONDITIONS_TEXT = {
+    "en": [
+        "Last updated: April 1, 2026",
+        "",
+        "By using this tool, you agree to these terms.",
+        "",
+        "Open-Source License",
+        "This project is released under the MIT License. You are free",
+        "to use, modify, and distribute it under those terms.",
+        "",
+        "No Warranty",
+        "This tool is provided 'as is' without any warranty. The",
+        "developer makes no guarantees about reliability, accuracy,",
+        "or fitness for a particular purpose.",
+        "",
+        "Acceptable Use",
+        "You agree to use this tool only for lawful purposes and in",
+        "compliance with Pixiv's own Terms of Service.",
+        "",
+        "Third-Party Services",
+        "Use of third-party services (GitHub, Vercel, Pixiv) is",
+        "governed by their respective terms.",
+        "",
+        "Changes",
+        "These terms may be updated at any time. Continued use",
+        "implies acceptance of updated terms.",
+        "",
+        "Contact",
+        "For questions, use the Contact page or the project's",
+        "GitHub repository.",
+    ],
+    "id": [
+        "Terakhir diperbarui: 1 April 2026",
+        "",
+        "Dengan menggunakan alat ini, Anda menyetujui syarat-syarat ini.",
+        "",
+        "Lisensi Open-Source",
+        "Proyek ini dirilis di bawah Lisensi MIT. Anda bebas",
+        "menggunakan, memodifikasi, dan mendistribusikannya.",
+        "",
+        "Tanpa Garansi",
+        "Alat ini disediakan 'sebagaimana adanya' tanpa jaminan apa pun.",
+        "Pengembang tidak memberikan jaminan keandalan atau akurasi.",
+        "",
+        "Penggunaan yang Diterima",
+        "Anda setuju untuk menggunakan alat ini hanya untuk tujuan",
+        "yang sah dan sesuai dengan Syarat Layanan Pixiv.",
+        "",
+        "Layanan Pihak Ketiga",
+        "Penggunaan layanan pihak ketiga (GitHub, Vercel, Pixiv)",
+        "diatur oleh ketentuan masing-masing layanan.",
+        "",
+        "Perubahan",
+        "Syarat ini dapat diperbarui kapan saja. Penggunaan",
+        "berkelanjutan berarti penerimaan syarat yang diperbarui.",
+        "",
+        "Kontak",
+        "Untuk pertanyaan, gunakan halaman Kontak atau repositori",
+        "GitHub proyek.",
+    ],
+    "jp": [
+        "最終更新日: 2026年4月1日",
+        "",
+        "このツールを使用することで、これらの条件に同意したことになります。",
+        "",
+        "オープンソースライセンス",
+        "このプロジェクトはMITライセンスの下でリリースされています。",
+        "その条件の下で自由に使用、変更、配布できます。",
+        "",
+        "無保証",
+        "このツールは保証なしで'現状のまま'提供されます。",
+        "開発者は信頼性や正確性について保証しません。",
+        "",
+        "許容される使用",
+        "このツールは合法的な目的のみに使用し、",
+        "PixivのサービスのTerms of Serviceに準拠してください。",
+        "",
+        "サードパーティサービス",
+        "サードパーティサービス(GitHub、Vercel、Pixiv)の使用は",
+        "それぞれの利用規約に従います。",
+        "",
+        "変更",
+        "これらの条件はいつでも更新される場合があります。",
+        "継続的な使用は更新された条件の承認を意味します。",
+        "",
+        "お問い合わせ",
+        "ご質問はお問い合わせページまたは",
+        "GitHubリポジトリをご利用ください。",
+    ],
+    "de": [
+        "Zuletzt aktualisiert: 1. April 2026",
+        "",
+        "Diese Website ist ein unabhängiges Open-Source-Hilfsprogramm",
+        "für Pixiv OAuth-Token-Workflows.",
+        "",
+        "Unabhängiges Projekt",
+        "Pixiv OAuth Token wird unabhängig entwickelt und ist kein",
+        "offizielles Pixiv-Produkt oder -Service.",
+        "",
+        "Verarbeitung der Token-Daten",
+        "Dieses Tool hilft beim Senden von Autorisierungsdaten an die",
+        "offiziellen Pixiv-OAuth-Endpunkte zum Austauschen oder Aktualisieren.",
+        "",
+        "Datenerfassung & Missbrauch",
+        "Der Entwickler sammelt, verkauft oder missbraucht Ihre Pixiv-",
+        "Anmeldedaten oder OAuth-Token nicht absichtlich.",
+        "",
+        "Drittanbieterdienste",
+        "Dieses Projekt kann auf Dienste wie GitHub, Vercel und Pixiv-",
+        "Endpunkte verlinken oder sich auf diese verlassen.",
+        "",
+        "Ihre Verantwortung",
+        "Sie sind für die Sicherung Ihres Geräts, Browsers,",
+        "Netzwerks und Ihrer Anmeldedaten verantwortlich.",
+        "",
+        "Kontakt",
+        "Für Support oder Datenschutzfragen nutzen Sie die Kontaktseite",
+        "oder das GitHub-Repository des Projekts.",
+    ],
+    "fr": [
+        "Dernière mise à jour: 1er avril 2026",
+        "",
+        "Ce site est un utilitaire open-source indépendant pour les",
+        "flux de travail de jetons OAuth Pixiv.",
+        "",
+        "Projet indépendant",
+        "Pixiv OAuth Token est développé indépendamment et n'est pas",
+        "un produit ou service officiel de Pixiv.",
+        "",
+        "Traitement des données de jeton",
+        "Cet outil soumet des données d'autorisation aux points de",
+        "terminaison OAuth officiels de Pixiv pour échanger des jetons.",
+        "",
+        "Collecte de données & utilisation abusive",
+        "Le développeur ne collecte pas, ne vend pas et n'utilise pas",
+        "abusivement vos identifiants Pixiv ou jetons OAuth.",
+        "",
+        "Services tiers",
+        "Ce projet peut utiliser des services comme GitHub, Vercel et",
+        "les points de terminaison Pixiv.",
+        "",
+        "Votre responsabilité",
+        "Vous êtes responsable de la sécurité de votre appareil,",
+        "navigateur, réseau et de vos identifiants.",
+        "",
+        "Contact",
+        "Pour toute question, utilisez la page de contact ou le",
+        "dépôt GitHub du projet.",
+    ],
+    "es": [
+        "Última actualización: 1 de abril de 2026",
+        "",
+        "Este sitio es una utilidad open-source independiente para",
+        "flujos de trabajo de tokens OAuth de Pixiv.",
+        "",
+        "Proyecto independiente",
+        "Pixiv OAuth Token se desarrolla de forma independiente y no",
+        "es un producto ni servicio oficial de Pixiv.",
+        "",
+        "Procesamiento de datos de token",
+        "Esta herramienta ayuda a enviar datos de autorización a los",
+        "endpoints OAuth oficiales de Pixiv para intercambiar tokens.",
+        "",
+        "Recopilación de datos y uso indebido",
+        "El desarrollador no recopila, vende ni usa indebidamente sus",
+        "credenciales de Pixiv o tokens OAuth.",
+        "",
+        "Servicios de terceros",
+        "Este proyecto puede depender de servicios como GitHub, Vercel",
+        "y los endpoints de Pixiv.",
+        "",
+        "Su responsabilidad",
+        "Usted es responsable de proteger su dispositivo, navegador,",
+        "entorno de red y credenciales de cuenta.",
+        "",
+        "Contacto",
+        "Para soporte o consultas de privacidad, use la página de",
+        "contacto o el repositorio GitHub del proyecto.",
+    ],
+    "ru": [
+        "Последнее обновление: 1 апреля 2026 г.",
+        "",
+        "Этот сайт — независимая утилита с открытым исходным кодом",
+        "для работы с токенами Pixiv OAuth.",
+        "",
+        "Независимый проект",
+        "Pixiv OAuth Token разрабатывается независимо и не является",
+        "официальным продуктом или сервисом Pixiv.",
+        "",
+        "Обработка данных токена",
+        "Этот инструмент отправляет данные авторизации к официальным",
+        "OAuth-эндпоинтам Pixiv для обмена или обновления токенов.",
+        "",
+        "Сбор данных и злоупотребление",
+        "Разработчик не собирает намеренно, не продаёт и не злоупотребляет",
+        "вашими учётными данными Pixiv или OAuth-токенами.",
+        "",
+        "Сторонние сервисы",
+        "Проект может использовать сервисы GitHub, Vercel, Pixiv.",
+        "Эти сервисы имеют собственную политику конфиденциальности.",
+        "",
+        "Ваша ответственность",
+        "Вы несёте ответственность за защиту своего устройства,",
+        "браузера, сети и учётных данных.",
+        "",
+        "Контакт",
+        "По вопросам поддержки или конфиденциальности используйте",
+        "страницу контактов или репозиторий GitHub.",
+    ],
+    "pt": [
+        "Última atualização: 1 de abril de 2026",
+        "",
+        "Este site é um utilitário open-source independente para",
+        "fluxos de trabalho de tokens OAuth do Pixiv.",
+        "",
+        "Projeto Independente",
+        "O Pixiv OAuth Token é desenvolvido independentemente e não é",
+        "um produto ou serviço oficial do Pixiv.",
+        "",
+        "Processamento de Dados de Token",
+        "Esta ferramenta envia dados de autorização para os endpoints",
+        "OAuth oficiais do Pixiv para trocar ou atualizar tokens.",
+        "",
+        "Coleta de Dados e Uso Indevido",
+        "O desenvolvedor não coleta, vende ou usa indevidamente suas",
+        "credenciais Pixiv ou tokens OAuth.",
+        "",
+        "Serviços de Terceiros",
+        "Este projeto pode depender de serviços como GitHub, Vercel",
+        "e endpoints do Pixiv.",
+        "",
+        "Sua Responsabilidade",
+        "Você é responsável por proteger seu dispositivo, navegador,",
+        "rede e credenciais de conta.",
+        "",
+        "Contato",
+        "Para suporte ou dúvidas de privacidade, use a página de",
+        "contato ou o repositório GitHub do projeto.",
+    ],
+    "pl": [
+        "Ostatnia aktualizacja: 1 kwietnia 2026",
+        "",
+        "Ta strona to niezależne narzędzie open-source do obsługi",
+        "przepływów tokenów OAuth Pixiv.",
+        "",
+        "Niezależny projekt",
+        "Pixiv OAuth Token jest rozwijany niezależnie i nie jest",
+        "oficjalnym produktem ani usługą Pixiv.",
+        "",
+        "Przetwarzanie danych tokenów",
+        "To narzędzie wysyła dane autoryzacyjne do oficjalnych",
+        "punktów końcowych OAuth Pixiv w celu wymiany tokenów.",
+        "",
+        "Zbieranie danych i nadużycia",
+        "Deweloper nie gromadzi, nie sprzedaje ani nie nadużywa",
+        "Twoich danych uwierzytelniających Pixiv ani tokenów OAuth.",
+        "",
+        "Usługi stron trzecich",
+        "Projekt może korzystać z usług takich jak GitHub, Vercel",
+        "i punkty końcowe Pixiv.",
+        "",
+        "Twoja odpowiedzialność",
+        "Jesteś odpowiedzialny za zabezpieczenie swojego urządzenia,",
+        "przeglądarki, sieci i danych uwierzytelniających.",
+        "",
+        "Kontakt",
+        "W sprawie wsparcia lub prywatności skorzystaj ze strony kontaktowej",
+        "lub repozytorium GitHub projektu.",
+    ],
+    "zh": [
+        "最后更新：2026年4月1日",
+        "",
+        "本网站是用于Pixiv OAuth令牌工作流程的独立开源工具。",
+        "",
+        "独立项目",
+        "Pixiv OAuth Token是独立开发的，不是Pixiv的官方产品或服务。",
+        "",
+        "令牌数据处理方式",
+        "此工具将授权数据提交到Pixiv官方OAuth端点",
+        "以交换或刷新令牌。",
+        "",
+        "数据收集与滥用",
+        "开发者不会故意收集、出售或滥用您的Pixiv",
+        "凭据或OAuth令牌。",
+        "",
+        "第三方服务",
+        "本项目可能使用GitHub、Vercel、Pixiv端点等服务。",
+        "这些服务有各自的隐私政策。",
+        "",
+        "您的责任",
+        "您负责保护自己的设备、浏览器、网络环境和账户凭据。",
+        "",
+        "联系方式",
+        "如有支持或隐私问题，请使用联系页面或项目的GitHub仓库。",
+    ],
+    "kr": [
+        "마지막 업데이트: 2026년 4월 1일",
+        "",
+        "이 사이트는 Pixiv OAuth 토큰 워크플로를 위한",
+        "독립적인 오픈소스 유틸리티입니다.",
+        "",
+        "독립 프로젝트",
+        "Pixiv OAuth Token은 독립적으로 개발되었으며 Pixiv의",
+        "공식 제품이나 서비스가 아닙니다.",
+        "",
+        "토큰 데이터 처리 방법",
+        "이 도구는 공식 Pixiv OAuth 엔드포인트에 인증 데이터를",
+        "전송하여 토큰을 교환하거나 갱신합니다.",
+        "",
+        "데이터 수집 및 악용",
+        "개발자는 귀하의 Pixiv 자격 증명이나 OAuth 토큰을",
+        "의도적으로 수집, 판매 또는 악용하지 않습니다.",
+        "",
+        "타사 서비스",
+        "이 프로젝트는 GitHub, Vercel, Pixiv 엔드포인트 등의",
+        "서비스를 사용할 수 있습니다.",
+        "",
+        "귀하의 책임",
+        "귀하의 기기, 브라우저, 네트워크 환경 및 계정 자격 증명의",
+        "보안은 귀하의 책임입니다.",
+        "",
+        "문의",
+        "지원이나 개인정보 관련 문의는 연락처 페이지 또는",
+        "프로젝트의 GitHub 저장소를 이용하세요.",
+    ],
+}
+
+TERMS_CONDITIONS_TEXT = {
+    "en": [
+        "Last updated: April 1, 2026",
+        "",
+        "By using this tool, you agree to these terms.",
+        "",
+        "Open-Source License",
+        "This project is released under the MIT License. You are free",
+        "to use, modify, and distribute it under those terms.",
+        "",
+        "No Warranty",
+        "This tool is provided 'as is' without any warranty. The",
+        "developer makes no guarantees about reliability, accuracy,",
+        "or fitness for a particular purpose.",
+        "",
+        "Acceptable Use",
+        "You agree to use this tool only for lawful purposes and in",
+        "compliance with Pixiv's own Terms of Service.",
+        "",
+        "Third-Party Services",
+        "Use of third-party services (GitHub, Vercel, Pixiv) is",
+        "governed by their respective terms.",
+        "",
+        "Changes",
+        "These terms may be updated at any time. Continued use",
+        "implies acceptance of updated terms.",
+        "",
+        "Contact",
+        "For questions, use the Contact page or the project's",
+        "GitHub repository.",
+    ],
+    "id": [
+        "Terakhir diperbarui: 1 April 2026",
+        "",
+        "Dengan menggunakan alat ini, Anda menyetujui syarat-syarat ini.",
+        "",
+        "Lisensi Open-Source",
+        "Proyek ini dirilis di bawah Lisensi MIT. Anda bebas",
+        "menggunakan, memodifikasi, dan mendistribusikannya.",
+        "",
+        "Tanpa Garansi",
+        "Alat ini disediakan 'sebagaimana adanya' tanpa jaminan apa pun.",
+        "Pengembang tidak memberikan jaminan keandalan atau akurasi.",
+        "",
+        "Penggunaan yang Diterima",
+        "Anda setuju untuk menggunakan alat ini hanya untuk tujuan",
+        "yang sah dan sesuai dengan Syarat Layanan Pixiv.",
+        "",
+        "Layanan Pihak Ketiga",
+        "Penggunaan layanan pihak ketiga (GitHub, Vercel, Pixiv)",
+        "diatur oleh ketentuan masing-masing layanan.",
+        "",
+        "Perubahan",
+        "Syarat ini dapat diperbarui kapan saja. Penggunaan",
+        "berkelanjutan berarti penerimaan syarat yang diperbarui.",
+        "",
+        "Kontak",
+        "Untuk pertanyaan, gunakan halaman Kontak atau repositori",
+        "GitHub proyek.",
+    ],
+    "jp": [
+        "最終更新日: 2026年4月1日",
+        "",
+        "このツールを使用することで、これらの条件に同意したことになります。",
+        "",
+        "オープンソースライセンス",
+        "このプロジェクトはMITライセンスの下でリリースされています。",
+        "その条件の下で自由に使用、変更、配布できます。",
+        "",
+        "無保証",
+        "このツールは保証なしで'現状のまま'提供されます。",
+        "開発者は信頼性や正確性について保証しません。",
+        "",
+        "許容される使用",
+        "このツールは合法的な目的のみに使用し、",
+        "PixivのサービスのTerms of Serviceに準拠してください。",
+        "",
+        "サードパーティサービス",
+        "サードパーティサービス(GitHub、Vercel、Pixiv)の使用は",
+        "それぞれの利用規約に従います。",
+        "",
+        "変更",
+        "これらの条件はいつでも更新される場合があります。",
+        "継続的な使用は更新された条件の承認を意味します。",
+        "",
+        "お問い合わせ",
+        "ご質問はお問い合わせページまたは",
+        "GitHubリポジトリをご利用ください。",
+    ],
+    "de": [
+        "Zuletzt aktualisiert: 1. April 2026",
+        "",
+        "Durch die Nutzung dieses Tools stimmen Sie diesen Bedingungen zu.",
+        "",
+        "Open-Source-Lizenz",
+        "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht.",
+        "Sie können es frei verwenden, ändern und verteilen.",
+        "",
+        "Keine Gewährleistung",
+        "Dieses Tool wird 'wie besehen' ohne jegliche Gewährleistung",
+        "bereitgestellt. Keine Garantie für Zuverlässigkeit oder Genauigkeit.",
+        "",
+        "Akzeptable Nutzung",
+        "Sie verpflichten sich, dieses Tool nur für rechtmäßige Zwecke",
+        "und gemäß den Nutzungsbedingungen von Pixiv zu verwenden.",
+        "",
+        "Drittanbieterdienste",
+        "Die Nutzung von Diensten wie GitHub, Vercel und Pixiv",
+        "unterliegt deren jeweiligen Bedingungen.",
+        "",
+        "Änderungen",
+        "Diese Bedingungen können jederzeit aktualisiert werden.",
+        "Die weitere Nutzung bedeutet die Annahme der aktualisierten Bedingungen.",
+        "",
+        "Kontakt",
+        "Bei Fragen nutzen Sie die Kontaktseite oder das",
+        "GitHub-Repository des Projekts.",
+    ],
+    "fr": [
+        "Dernière mise à jour: 1er avril 2026",
+        "",
+        "En utilisant cet outil, vous acceptez ces conditions.",
+        "",
+        "Licence open-source",
+        "Ce projet est publié sous la licence MIT. Vous êtes libre",
+        "de l'utiliser, le modifier et le distribuer.",
+        "",
+        "Aucune garantie",
+        "Cet outil est fourni 'tel quel' sans aucune garantie.",
+        "Aucune garantie sur la fiabilité ou la précision.",
+        "",
+        "Utilisation acceptable",
+        "Vous acceptez d'utiliser cet outil uniquement à des fins",
+        "légales et conformes aux Conditions d'utilisation de Pixiv.",
+        "",
+        "Services tiers",
+        "L'utilisation des services tiers (GitHub, Vercel, Pixiv)",
+        "est régie par leurs conditions respectives.",
+        "",
+        "Modifications",
+        "Ces conditions peuvent être mises à jour à tout moment.",
+        "L'utilisation continue implique l'acceptation des conditions mises à jour.",
+        "",
+        "Contact",
+        "Pour toute question, utilisez la page de contact ou le",
+        "dépôt GitHub du projet.",
+    ],
+    "es": [
+        "Última actualización: 1 de abril de 2026",
+        "",
+        "Al usar esta herramienta, acepta estos términos.",
+        "",
+        "Licencia open-source",
+        "Este proyecto se publica bajo la Licencia MIT. Puede usarlo,",
+        "modificarlo y distribuirlo libremente.",
+        "",
+        "Sin garantía",
+        "Esta herramienta se proporciona 'tal cual' sin ninguna garantía.",
+        "No se garantiza fiabilidad ni precisión.",
+        "",
+        "Uso aceptable",
+        "Acepta usar esta herramienta solo con fines legales y en",
+        "conformidad con los Términos de Servicio de Pixiv.",
+        "",
+        "Servicios de terceros",
+        "El uso de servicios de terceros (GitHub, Vercel, Pixiv)",
+        "se rige por sus respectivos términos.",
+        "",
+        "Cambios",
+        "Estos términos pueden actualizarse en cualquier momento.",
+        "El uso continuo implica la aceptación de los términos actualizados.",
+        "",
+        "Contacto",
+        "Para preguntas, use la página de contacto o el repositorio",
+        "GitHub del proyecto.",
+    ],
+    "ru": [
+        "Последнее обновление: 1 апреля 2026 г.",
+        "",
+        "Используя этот инструмент, вы соглашаетесь с данными условиями.",
+        "",
+        "Лицензия с открытым исходным кодом",
+        "Этот проект выпущен под лицензией MIT. Вы можете свободно",
+        "использовать, изменять и распространять его.",
+        "",
+        "Без гарантий",
+        "Инструмент предоставляется 'как есть' без каких-либо гарантий.",
+        "Нет гарантий надёжности или точности.",
+        "",
+        "Допустимое использование",
+        "Вы соглашаетесь использовать инструмент только в законных целях",
+        "и в соответствии с Условиями использования Pixiv.",
+        "",
+        "Сторонние сервисы",
+        "Использование сторонних сервисов (GitHub, Vercel, Pixiv)",
+        "регулируется их условиями.",
+        "",
+        "Изменения",
+        "Эти условия могут обновляться в любое время.",
+        "Продолжение использования означает принятие обновлённых условий.",
+        "",
+        "Контакт",
+        "По вопросам используйте страницу контактов или",
+        "репозиторий GitHub проекта.",
+    ],
+    "pt": [
+        "Última atualização: 1 de abril de 2026",
+        "",
+        "Ao usar esta ferramenta, você concorda com estes termos.",
+        "",
+        "Licença open-source",
+        "Este projeto é lançado sob a Licença MIT. Você pode",
+        "usá-lo, modificá-lo e distribuí-lo livremente.",
+        "",
+        "Sem garantia",
+        "Esta ferramenta é fornecida 'como está' sem qualquer garantia.",
+        "Sem garantias de confiabilidade ou precisão.",
+        "",
+        "Uso aceitável",
+        "Você concorda em usar esta ferramenta apenas para fins legais",
+        "e em conformidade com os Termos de Serviço do Pixiv.",
+        "",
+        "Serviços de terceiros",
+        "O uso de serviços de terceiros (GitHub, Vercel, Pixiv)",
+        "é regido por seus respectivos termos.",
+        "",
+        "Alterações",
+        "Estes termos podem ser atualizados a qualquer momento.",
+        "O uso contínuo implica aceitação dos termos atualizados.",
+        "",
+        "Contato",
+        "Para dúvidas, use a página de contato ou o repositório",
+        "GitHub do projeto.",
+    ],
+    "pl": [
+        "Ostatnia aktualizacja: 1 kwietnia 2026",
+        "",
+        "Korzystając z tego narzędzia, zgadzasz się na te warunki.",
+        "",
+        "Licencja open-source",
+        "Ten projekt jest wydany na licencji MIT. Możesz go swobodnie",
+        "używać, modyfikować i dystrybuować.",
+        "",
+        "Brak gwarancji",
+        "Narzędzie jest dostarczane 'tak jak jest' bez żadnej gwarancji.",
+        "Brak gwarancji niezawodności ani dokładności.",
+        "",
+        "Dopuszczalne użytkowanie",
+        "Zgadzasz się używać narzędzia wyłącznie w celach zgodnych z prawem",
+        "i zgodnie z Warunkami Korzystania z Serwisu Pixiv.",
+        "",
+        "Usługi stron trzecich",
+        "Korzystanie z usług stron trzecich (GitHub, Vercel, Pixiv)",
+        "podlega ich odpowiednim warunkom.",
+        "",
+        "Zmiany",
+        "Warunki te mogą być aktualizowane w dowolnym czasie.",
+        "Dalsze korzystanie oznacza akceptację zaktualizowanych warunków.",
+        "",
+        "Kontakt",
+        "W przypadku pytań skorzystaj ze strony kontaktowej lub",
+        "repozytorium GitHub projektu.",
+    ],
+    "zh": [
+        "最后更新：2026年4月1日",
+        "",
+        "使用本工具即表示您同意这些条款。",
+        "",
+        "开源许可证",
+        "本项目在MIT许可证下发布。您可以自由地使用、",
+        "修改和分发它。",
+        "",
+        "无保证",
+        "本工具按'原样'提供，不附带任何保证。",
+        "不保证可靠性或准确性。",
+        "",
+        "可接受的使用",
+        "您同意仅出于合法目的使用本工具，并遵守",
+        "Pixiv的服务条款。",
+        "",
+        "第三方服务",
+        "使用第三方服务（GitHub、Vercel、Pixiv）",
+        "须遵守各自的条款。",
+        "",
+        "变更",
+        "这些条款可能随时更新。继续使用即表示接受更新后的条款。",
+        "",
+        "联系方式",
+        "如有问题，请使用联系页面或项目的GitHub仓库。",
+    ],
+    "kr": [
+        "마지막 업데이트: 2026년 4월 1일",
+        "",
+        "이 도구를 사용함으로써 이 약관에 동의하게 됩니다.",
+        "",
+        "오픈소스 라이선스",
+        "이 프로젝트는 MIT 라이선스로 출시됩니다. 해당 조건",
+        "하에 자유롭게 사용, 수정 및 배포할 수 있습니다.",
+        "",
+        "무보증",
+        "이 도구는 어떠한 보증도 없이 '있는 그대로' 제공됩니다.",
+        "신뢰성이나 정확성에 대한 보증이 없습니다.",
+        "",
+        "허용 가능한 사용",
+        "합법적인 목적으로만 이 도구를 사용하고 Pixiv의",
+        "서비스 약관을 준수할 것에 동의합니다.",
+        "",
+        "타사 서비스",
+        "타사 서비스(GitHub, Vercel, Pixiv) 사용은",
+        "각각의 약관에 따릅니다.",
+        "",
+        "변경 사항",
+        "이 약관은 언제든지 업데이트될 수 있습니다.",
+        "계속 사용하면 업데이트된 약관에 동의하는 것으로 간주됩니다.",
+        "",
+        "문의",
+        "질문이 있으시면 연락처 페이지 또는 프로젝트의",
+        "GitHub 저장소를 이용하세요.",
+    ],
 }
 
 MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
@@ -483,7 +1228,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'project': 'Pixiv OAuth Token',
         'developer': 'Pengembang',
         'opt_changelog': 'Catatan Perubahan',
-        'opt_version': 'Versi'},
+        'opt_version': 'Versi',
+        'res_docs_privacy': 'Kebijakan Privasi',
+        'res_docs_terms': 'Syarat & Ketentuan',
+        'privacy_title': 'Kebijakan Privasi',
+        'terms_title': 'Syarat & Ketentuan'},
  'jp': {'menu_title': 'メインメニュー',
         'opt_change_lang': '言語を変更',
         'opt_tutorial': 'チュートリアル',
@@ -564,7 +1313,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_refresh_copy_failed': 'リフレッシュトークンのコピーに失敗しました。',
         'exiting': '終了しています...',
         'project': 'Pixiv OAuth Token',
-        'developer': '開発者'},
+        'developer': '開発者',
+        'res_docs_privacy': 'プライバシーポリシー',
+        'res_docs_terms': '利用規約',
+        'privacy_title': 'プライバシーポリシー',
+        'terms_title': '利用規約'},
  'pl': {'menu_title': 'Menu główne',
         'opt_change_lang': 'Zmień język',
         'opt_tutorial': 'Samouczek',
@@ -645,7 +1398,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': 'Nie udało się skopiować access token.',
         'login_action_refresh_copied': 'Skopiowano refresh token.',
         'login_action_refresh_copy_failed': 'Nie udało się skopiować refresh token.',
-        'exiting': 'Zamykanie...'},
+        'exiting': 'Zamykanie...',
+        'res_docs_privacy': 'Polityka prywatności',
+        'res_docs_terms': 'Regulamin',
+        'privacy_title': 'Polityka prywatności',
+        'terms_title': 'Regulamin'},
  'zh': {'menu_title': '主菜单',
         'opt_change_lang': '更改语言',
         'opt_tutorial': '教程',
@@ -726,7 +1483,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': '复制访问令牌失败。',
         'login_action_refresh_copied': '刷新令牌已复制。',
         'login_action_refresh_copy_failed': '复制刷新令牌失败。',
-        'exiting': '正在退出...'},
+        'exiting': '正在退出...',
+        'res_docs_privacy': '隐私政策',
+        'res_docs_terms': '条款与条件',
+        'privacy_title': '隐私政策',
+        'terms_title': '条款与条件'},
  'de': {'menu_title': 'Hauptmenü',
         'opt_change_lang': 'Sprache ändern',
         'opt_tutorial': 'Anleitung',
@@ -807,7 +1568,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': 'Access Token konnte nicht kopiert werden.',
         'login_action_refresh_copied': 'Refresh Token kopiert.',
         'login_action_refresh_copy_failed': 'Refresh Token konnte nicht kopiert werden.',
-        'exiting': 'Wird beendet...'},
+        'exiting': 'Wird beendet...',
+        'res_docs_privacy': 'Datenschutzrichtlinie',
+        'res_docs_terms': 'Nutzungsbedingungen',
+        'privacy_title': 'Datenschutzrichtlinie',
+        'terms_title': 'Nutzungsbedingungen'},
  'fr': {'menu_title': 'Menu principal',
         'opt_change_lang': 'Changer la langue',
         'opt_tutorial': 'Tutoriel',
@@ -888,7 +1653,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': "Échec de la copie de l'access token.",
         'login_action_refresh_copied': 'Refresh token copié.',
         'login_action_refresh_copy_failed': 'Échec de la copie du refresh token.',
-        'exiting': 'Fermeture...'},
+        'exiting': 'Fermeture...',
+        'res_docs_privacy': 'Politique de confidentialité',
+        'res_docs_terms': 'Conditions générales',
+        'privacy_title': 'Politique de confidentialité',
+        'terms_title': 'Conditions générales'},
  'es': {'menu_title': 'Menú principal',
         'opt_change_lang': 'Cambiar idioma',
         'opt_tutorial': 'Tutorial',
@@ -969,7 +1738,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': 'Error al copiar el access token.',
         'login_action_refresh_copied': 'Refresh token copiado.',
         'login_action_refresh_copy_failed': 'Error al copiar el refresh token.',
-        'exiting': 'Saliendo...'},
+        'exiting': 'Saliendo...',
+        'res_docs_privacy': 'Política de privacidad',
+        'res_docs_terms': 'Términos y condiciones',
+        'privacy_title': 'Política de privacidad',
+        'terms_title': 'Términos y condiciones'},
  'ru': {'menu_title': 'Главное меню',
         'opt_change_lang': 'Изменить язык',
         'opt_tutorial': 'Руководство',
@@ -1050,7 +1823,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': 'Не удалось скопировать access token.',
         'login_action_refresh_copied': 'Refresh token скопирован.',
         'login_action_refresh_copy_failed': 'Не удалось скопировать refresh token.',
-        'exiting': 'Выход...'},
+        'exiting': 'Выход...',
+        'res_docs_privacy': 'Политика конфиденциальности',
+        'res_docs_terms': 'Условия использования',
+        'privacy_title': 'Политика конфиденциальности',
+        'terms_title': 'Условия использования'},
  'pt': {'menu_title': 'Menu principal',
         'opt_change_lang': 'Mudar idioma',
         'opt_tutorial': 'Tutorial',
@@ -1131,7 +1908,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': 'Falha ao copiar access token.',
         'login_action_refresh_copied': 'Refresh token copiado.',
         'login_action_refresh_copy_failed': 'Falha ao copiar refresh token.',
-        'exiting': 'Saindo...'},
+        'exiting': 'Saindo...',
+        'res_docs_privacy': 'Política de Privacidade',
+        'res_docs_terms': 'Termos e Condições',
+        'privacy_title': 'Política de Privacidade',
+        'terms_title': 'Termos e Condições'},
  'kr': {'menu_title': '메인 메뉴',
         'opt_change_lang': '언어 변경',
         'opt_tutorial': '튜토리얼',
@@ -1212,7 +1993,11 @@ MENU_UI_OVERRIDES = {'id': {'menu_title': 'Menu Utama',
         'login_action_access_copy_failed': '액세스 토큰 복사 실패.',
         'login_action_refresh_copied': '리프레시 토큰이 복사되었습니다.',
         'login_action_refresh_copy_failed': '리프레시 토큰 복사 실패.',
-        'exiting': '종료 중...'}}
+        'exiting': '종료 중...',
+        'res_docs_privacy': '개인정보 처리방침',
+        'res_docs_terms': '이용 약관',
+        'privacy_title': '개인정보 처리방침',
+        'terms_title': '이용 약관'}}
 
 MENU_UI = {code: {**MENU_UI_EN, **MENU_UI_OVERRIDES.get(code, {})} for code in SUPPORTED_LANGS}
 
@@ -1225,8 +2010,8 @@ def _rich_available() -> bool:
     return False
 
 
-def _menu_console() -> Console:
-    return Console(width=MENU_CONSOLE_WIDTH)
+def _menu_console() -> None:
+    pass  # rich removed; no-op
 
 
 def _clear_menu_screen() -> None:
@@ -1331,6 +2116,221 @@ def _choose_language_interactive(current_lang: str, color_on: bool) -> str:
     return new_lang
 
 
+def _open_privacy_policy_cli(lang: str, color_on: bool) -> None:
+    debug_print(f"Opening privacy policy CLI view (lang={lang})", color_on)
+    lines = PRIVACY_POLICY_TEXT.get(lang) or PRIVACY_POLICY_TEXT["en"]
+    _render_rich_text_panel(mt("privacy_title", lang), lines, mt("enter_main_menu", lang))
+
+
+def _open_terms_conditions_cli(lang: str, color_on: bool) -> None:
+    debug_print(f"Opening terms & conditions CLI view (lang={lang})", color_on)
+    lines = TERMS_CONDITIONS_TEXT.get(lang) or TERMS_CONDITIONS_TEXT["en"]
+    _render_rich_text_panel(mt("terms_title", lang), lines, mt("enter_main_menu", lang))
+
+
+# ===== GITHUB RAW CONTENT VIEWER =====
+_GITHUB_RAW_BASE = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master"
+_GITHUB_LANG_DOCS_PATH = "web/public/docs/lang"
+
+# Languages that have localized doc files (suffix = LANG-CODE uppercased)
+_GITHUB_LANG_DOC_SUFFIX: dict[str, str] = {
+    "id": "ID",
+    "jp": "JP",
+    "de": "DE",
+    "fr": "FR",
+    "es": "ES",
+    "ru": "RU",
+    "pt": "PT",
+    "pl": "PL",
+    "zh": "ZH",
+    "kr": "KR",
+}
+
+# Default (fallback) URLs
+_GITHUB_DOC_DEFAULTS = {
+    "documentation": f"{_GITHUB_RAW_BASE}/README.md",
+    "license": f"{_GITHUB_RAW_BASE}/LICENSE",
+    "changelog": f"{_GITHUB_RAW_BASE}/CHANGELOG.md",
+}
+
+
+def _get_localized_doc_url(doc_type: str, lang: str) -> tuple[str, str | None]:
+    """
+    Returns (primary_url, fallback_url_or_None).
+    For README/CHANGELOG: primary = localized file if lang supported, else default.
+    For license: always default, no localized version.
+    """
+    default_url = _GITHUB_DOC_DEFAULTS[doc_type]
+    if doc_type == "license":
+        return default_url, None
+    suffix = _GITHUB_LANG_DOC_SUFFIX.get(lang)
+    if not suffix:
+        # English or unsupported lang → use default, no fallback needed
+        return default_url, None
+    file_name = {
+        "documentation": f"README-{suffix}.md",
+        "changelog": f"CHANGELOG-{suffix}.md",
+    }[doc_type]
+    localized_url = f"{_GITHUB_RAW_BASE}/{_GITHUB_LANG_DOCS_PATH}/{file_name}"
+    return localized_url, default_url
+
+_FETCH_LABELS = {
+    "en": {
+        "fetching": "Fetching content from GitHub...",
+        "fetch_failed": "Failed to fetch content. Check your internet connection.",
+        "page_prompt": "[Enter] Next page  [q] Quit  [t] Top",
+        "end_of_doc": "-- End of document --",
+    },
+    "id": {
+        "fetching": "Mengambil konten dari GitHub...",
+        "fetch_failed": "Gagal mengambil konten. Periksa koneksi internet Anda.",
+        "page_prompt": "[Enter] Halaman berikutnya  [q] Keluar  [t] Atas",
+        "end_of_doc": "-- Akhir dokumen --",
+    },
+    "jp": {
+        "fetching": "GitHubからコンテンツを取得中...",
+        "fetch_failed": "コンテンツの取得に失敗しました。インターネット接続を確認してください。",
+        "page_prompt": "[Enter] 次のページ  [q] 終了  [t] 先頭",
+        "end_of_doc": "-- ドキュメントの終わり --",
+    },
+    "de": {
+        "fetching": "Inhalt von GitHub wird abgerufen...",
+        "fetch_failed": "Inhalt konnte nicht abgerufen werden. Internetverbindung prüfen.",
+        "page_prompt": "[Enter] Nächste Seite  [q] Beenden  [t] Anfang",
+        "end_of_doc": "-- Ende des Dokuments --",
+    },
+    "fr": {
+        "fetching": "Récupération du contenu depuis GitHub...",
+        "fetch_failed": "Échec de la récupération. Vérifiez votre connexion internet.",
+        "page_prompt": "[Enter] Page suivante  [q] Quitter  [t] Début",
+        "end_of_doc": "-- Fin du document --",
+    },
+    "es": {
+        "fetching": "Obteniendo contenido de GitHub...",
+        "fetch_failed": "Error al obtener el contenido. Verifique su conexión.",
+        "page_prompt": "[Enter] Siguiente página  [q] Salir  [t] Inicio",
+        "end_of_doc": "-- Fin del documento --",
+    },
+    "ru": {
+        "fetching": "Загрузка содержимого с GitHub...",
+        "fetch_failed": "Не удалось загрузить содержимое. Проверьте подключение к интернету.",
+        "page_prompt": "[Enter] Следующая страница  [q] Выход  [t] Начало",
+        "end_of_doc": "-- Конец документа --",
+    },
+    "pt": {
+        "fetching": "Buscando conteúdo do GitHub...",
+        "fetch_failed": "Falha ao buscar conteúdo. Verifique sua conexão.",
+        "page_prompt": "[Enter] Próxima página  [q] Sair  [t] Início",
+        "end_of_doc": "-- Fim do documento --",
+    },
+    "pl": {
+        "fetching": "Pobieranie treści z GitHub...",
+        "fetch_failed": "Nie udało się pobrać treści. Sprawdź połączenie z internetem.",
+        "page_prompt": "[Enter] Następna strona  [q] Wyjdź  [t] Góra",
+        "end_of_doc": "-- Koniec dokumentu --",
+    },
+    "zh": {
+        "fetching": "正在从GitHub获取内容...",
+        "fetch_failed": "获取内容失败。请检查您的网络连接。",
+        "page_prompt": "[Enter] 下一页  [q] 退出  [t] 顶部",
+        "end_of_doc": "-- 文档结尾 --",
+    },
+    "kr": {
+        "fetching": "GitHub에서 콘텐츠를 가져오는 중...",
+        "fetch_failed": "콘텐츠를 가져오는 데 실패했습니다. 인터넷 연결을 확인하세요.",
+        "page_prompt": "[Enter] 다음 페이지  [q] 종료  [t] 처음",
+        "end_of_doc": "-- 문서 끝 --",
+    },
+}
+
+
+def _fl(key: str, lang: str) -> str:
+    """Get fetch label string for given lang."""
+    return _FETCH_LABELS.get(lang, _FETCH_LABELS["en"]).get(key, _FETCH_LABELS["en"][key])
+
+
+def _fetch_github_raw(url: str, lang: str, color_on: bool, fallback_url: str | None = None) -> str | None:
+    """Fetch raw text from URL, return content string or None on failure.
+    If the primary URL returns 404, try fallback_url before giving up.
+    """
+    _clear_menu_screen()
+    print(colorize(_fl("fetching", lang), Ansi.CYAN, color_on))
+    try:
+        resp = requests.get(url, timeout=15)
+        if resp.status_code == 404 and fallback_url:
+            debug_print(f"404 for {url}, trying fallback: {fallback_url}")
+            resp = requests.get(fallback_url, timeout=15)
+        resp.raise_for_status()
+        return resp.text
+    except Exception as exc:
+        debug_print(f"Fetch failed for {url}: {exc}")
+        print(colorize(_fl("fetch_failed", lang), Ansi.RED, color_on))
+        input(colorize(f"\n[+] {mt('enter_continue', lang)}: ", Ansi.YELLOW, color_on))
+        return None
+
+
+def _clean_markdown_for_cli(content: str) -> str:
+    """Strip markdown elements that don't render well in a terminal."""
+    import re
+    cleaned: list[str] = []
+    blank_run = 0
+    for line in content.splitlines():
+        # Remove blockquote lines (> ...)
+        if line.startswith(">"):
+            continue
+        # Remove horizontal rules (---, ***, ===)
+        if re.fullmatch(r"[-\*=]{3,}", line.strip()):
+            continue
+        # Strip inline markdown links from badge/image lines: ![alt](url)
+        line = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", line)
+        # Strip inline markdown links: [text](url)
+        line = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", line)
+        # Track blank lines — collapse consecutive blanks into one
+        if line.strip() == "":
+            blank_run += 1
+            if blank_run > 1:
+                continue
+        else:
+            blank_run = 0
+        cleaned.append(line)
+    return "\n".join(cleaned)
+
+
+def _display_paged_github_content(
+    title: str, content: str, lang: str, color_on: bool, page_size: int = 28
+) -> None:
+    """Display content with a simple terminal pager."""
+    all_lines = _clean_markdown_for_cli(content).splitlines()
+    total = len(all_lines)
+    pos = 0
+    while True:
+        _clear_menu_screen()
+        print(colorize(title, Ansi.CYAN + Ansi.BOLD, color_on))
+        print()
+        chunk = all_lines[pos: pos + page_size]
+        print("\n".join(chunk))
+        print()
+        at_end = (pos + page_size) >= total
+        if at_end:
+            print(colorize(_fl("end_of_doc", lang), Ansi.DIM, color_on))
+            print(colorize(_fl("page_prompt", lang), Ansi.YELLOW, color_on))
+        else:
+            remaining = total - pos - page_size
+            print(colorize(f"{_fl('page_prompt', lang)}  [{remaining} lines left]", Ansi.YELLOW, color_on))
+        try:
+            key = input("> ").strip().lower()
+        except (EOFError, KeyboardInterrupt):
+            return
+        if key == "q":
+            return
+        elif key == "t":
+            pos = 0
+        elif at_end:
+            return
+        else:
+            pos = min(pos + page_size, max(0, total - page_size))
+
+
 def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
     options = [
         ("1", mt("res_docs_documentation", lang)),
@@ -1339,15 +2339,23 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
         ("4", mt("res_docs_python", lang)),
         ("5", mt("res_docs_vercel", lang)),
         ("6", mt("opt_changelog", lang)),
+        ("7", mt("res_docs_privacy", lang)),
+        ("8", mt("res_docs_terms", lang)),
         ("0", mt("back", lang)),
     ]
     while True:
         choice = _choose_boxed_option(mt("resources_docs_title", lang), options, lang, color_on).lower()
         debug_print(f"Resources menu choice: {choice}", color_on)
         if choice == "1":
-            open_url("https://pixiv-o-auth-token.vercel.app/documentation")
+            url, fallback = _get_localized_doc_url("documentation", lang)
+            content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
+            if content:
+                _display_paged_github_content(mt("res_docs_documentation", lang), content, lang, color_on)
         elif choice == "2":
-            open_url("https://pixiv-o-auth-token.vercel.app/license")
+            url, fallback = _get_localized_doc_url("license", lang)
+            content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
+            if content:
+                _display_paged_github_content(mt("res_docs_license", lang), content, lang, color_on)
         elif choice == "3":
             open_url("https://oauth.secure.pixiv.net/auth/token")
         elif choice == "4":
@@ -1355,7 +2363,11 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
         elif choice == "5":
             open_url("https://vercel.com/")
         elif choice == "6":
-            _open_changelog()
+            _open_changelog(lang, color_on)
+        elif choice == "7":
+            _open_privacy_policy_cli(lang, color_on)
+        elif choice == "8":
+            _open_terms_conditions_cli(lang, color_on)
         elif choice == "0":
             return
         else:
@@ -1464,9 +2476,12 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
     _render_rich_text_panel(mt("tutorial_title", lang), lines, mt("enter_main_menu", lang))
 
 
-def _open_changelog() -> None:
-    debug_print("Opening changelog URL")
-    open_url("https://pixiv-o-auth-token.vercel.app/changelog")
+def _open_changelog(lang: str = "en", color_on: bool = True) -> None:
+    debug_print("Fetching changelog from GitHub")
+    url, fallback = _get_localized_doc_url("changelog", lang)
+    content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
+    if content:
+        _display_paged_github_content(mt("opt_changelog", lang), content, lang, color_on)
 
 
 def _open_debug_menu(lang: str, color_on: bool) -> None:
@@ -1741,15 +2756,162 @@ def show_developer_info_cli(lang: str, color_on: bool) -> None:
     print(colorize(f"TikTok: {TIKTOK_URL}", Ansi.BLUE, color_on))
     print(colorize(f"Twitter/X: {TWITTER_URL}", Ansi.BLUE, color_on))
 
+
+# ===== STARTUP INTERNET CHECK =====
+_NET_CHECK_LABELS: dict[str, dict[str, str]] = {
+    "en": {
+        "checking": "Checking internet connection",
+        "connected": "Connected",
+        "no_internet": "No internet connection. Retrying",
+        "tip": "Press Ctrl+C to exit",
+    },
+    "id": {
+        "checking": "Memeriksa koneksi internet",
+        "connected": "Terhubung",
+        "no_internet": "Tidak ada koneksi internet. Mencoba lagi",
+        "tip": "Tekan Ctrl+C untuk keluar",
+    },
+    "jp": {
+        "checking": "インターネット接続を確認中",
+        "connected": "接続済み",
+        "no_internet": "インターネット接続なし。再試行中",
+        "tip": "Ctrl+C で終了",
+    },
+    "de": {
+        "checking": "Internetverbindung wird geprüft",
+        "connected": "Verbunden",
+        "no_internet": "Keine Internetverbindung. Erneuter Versuch",
+        "tip": "Strg+C zum Beenden",
+    },
+    "fr": {
+        "checking": "Vérification de la connexion internet",
+        "connected": "Connecté",
+        "no_internet": "Pas de connexion internet. Nouvelle tentative",
+        "tip": "Ctrl+C pour quitter",
+    },
+    "es": {
+        "checking": "Verificando conexión a internet",
+        "connected": "Conectado",
+        "no_internet": "Sin conexión a internet. Reintentando",
+        "tip": "Ctrl+C para salir",
+    },
+    "ru": {
+        "checking": "Проверка интернет-соединения",
+        "connected": "Подключено",
+        "no_internet": "Нет соединения с интернетом. Повторная попытка",
+        "tip": "Ctrl+C для выхода",
+    },
+    "pt": {
+        "checking": "Verificando conexão com a internet",
+        "connected": "Conectado",
+        "no_internet": "Sem conexão com a internet. Tentando novamente",
+        "tip": "Ctrl+C para sair",
+    },
+    "pl": {
+        "checking": "Sprawdzanie połączenia z internetem",
+        "connected": "Połączono",
+        "no_internet": "Brak połączenia z internetem. Ponowna próba",
+        "tip": "Ctrl+C aby wyjść",
+    },
+    "zh": {
+        "checking": "正在检查网络连接",
+        "connected": "已连接",
+        "no_internet": "没有网络连接。正在重试",
+        "tip": "Ctrl+C 退出",
+    },
+    "kr": {
+        "checking": "인터넷 연결 확인 중",
+        "connected": "연결됨",
+        "no_internet": "인터넷 연결 없음. 재시도 중",
+        "tip": "Ctrl+C로 종료",
+    },
+}
+
+
+def _nl(key: str, lang: str) -> str:
+    return _NET_CHECK_LABELS.get(lang, _NET_CHECK_LABELS["en"]).get(
+        key, _NET_CHECK_LABELS["en"][key]
+    )
+
+
+def _check_internet(timeout: int = 4) -> bool:
+    """Try to reach GitHub (used for docs) and Pixiv OAuth endpoint."""
+    try:
+        resp = requests.get(
+            "https://raw.githubusercontent.com", timeout=timeout, stream=False
+        )
+        return resp.status_code < 500
+    except Exception:
+        return False
+
+
+def _startup_internet_check(lang: str, color_on: bool) -> None:
+    """Block until internet is available, displaying a spinner."""
+    import itertools
+    import sys
+    import threading
+
+    SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+    spin_iter = itertools.cycle(SPINNER)
+    _stop_event = threading.Event()
+    _result: list[bool] = [False]
+
+    def _checker() -> None:
+        _result[0] = _check_internet()
+        _stop_event.set()
+
+    RETRY_DELAY = 3  # seconds between retries
+
+    while True:
+        _stop_event.clear()
+        _result[0] = False
+        t = threading.Thread(target=_checker, daemon=True)
+        t.start()
+
+        # Animate while checking
+        checking_label = _nl("checking", lang)
+        while not _stop_event.is_set():
+            frame = next(spin_iter)
+            sys.stdout.write(
+                f"\r  {colorize(frame, Ansi.CYAN, color_on)} "
+                f"{colorize(checking_label + '...', Ansi.DIM, color_on)}    "
+            )
+            sys.stdout.flush()
+            time.sleep(0.08)
+
+        t.join()
+
+        if _result[0]:
+            # Connected!
+            sys.stdout.write(
+                f"\r  {colorize('[+]', Ansi.GREEN, color_on)} "
+                f"{colorize(_nl('connected', lang), Ansi.GREEN + Ansi.BOLD, color_on)}          \n"
+            )
+            sys.stdout.flush()
+            time.sleep(0.8)
+            return
+        else:
+            # No internet — show message and keep retrying
+            no_int_label = _nl("no_internet", lang)
+            tip_label = _nl("tip", lang)
+            for i in range(RETRY_DELAY * 12):  # count down in 1/12s steps
+                frame = next(spin_iter)
+                elapsed = RETRY_DELAY - (i // 12)
+                sys.stdout.write(
+                    f"\r  {colorize(frame, Ansi.RED, color_on)} "
+                    f"{colorize(no_int_label + f' ({elapsed}s)...', Ansi.RED, color_on)}  "
+                    f"{colorize(f'  [{tip_label}]', Ansi.DIM, color_on)}    "
+                )
+                sys.stdout.flush()
+                time.sleep(1 / 12)
+
+
 def run_interactive_menu(lang: str, color_on: bool) -> None:
     current_lang = lang
-    use_rich_menu = _rich_available()
+    _startup_internet_check(current_lang, color_on)
     while True:
-        if use_rich_menu:
-            _render_rich_main_menu(current_lang)
-            choice = _menu_console().input(
-                "\n[bold yellow][+][/bold yellow] [bold yellow]" + mt("select_option", current_lang) + ":[/bold yellow] "
-            ).strip()
+        if False:  # rich removed, always use plain ANSI
+            pass
         else:
             _clear_menu_screen()
             print_cli_banner(current_lang, color_on)
