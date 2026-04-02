@@ -87,4 +87,7 @@
     clearTimeout(a);
     a = setTimeout(s, 120);
   });
+  document.addEventListener("lang-applied", function () {
+    setTimeout(s, 50);
+  });
 })();

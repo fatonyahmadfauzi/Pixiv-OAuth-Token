@@ -294,4 +294,5 @@ export function applyLang() {
   }
 
   updateLangFlag();
+  document.dispatchEvent(new CustomEvent("lang-applied"));
 }
