@@ -15,6 +15,7 @@ import {
   setupArchDownloadRows,
   setupCommandCopyButtons,
   hydrateReleaseAssets,
+  updatePySdkInstallCommands,
 } from "./pages/downloads.js";
 import { initializeHeader } from "./ui/header.js";
 import { initializeFooter } from "./ui/footer.js";

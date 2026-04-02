@@ -1,6 +1,17 @@
 import { q } from "../core/dom.js";
 import { DOWNLOADS_BASE, RELEASE_BASE } from "../core/config.js";
 import { copyToClipboard } from "../core/utils.js";
+import { DISPLAY_LANG } from "../core/i18n.js";
+
+/**
+ * Returns --lang <code> suffix if page language is not English.
+ * This ensures commands displayed on /jp/downloads automatically
+ * include --lang jp, etc.
+ */
+function getLangSuffix() {
+  // DISPLAY_LANG is resolved from URL prefix > localStorage > browser language
+  return DISPLAY_LANG && DISPLAY_LANG !== "en" ? ` --lang ${DISPLAY_LANG}` : "";
+}
 
 function repoDownloadLink(name) {
   return `${DOWNLOADS_BASE}/${encodeURIComponent(name)}`;
@@ -283,4 +294,45 @@ export function setupMobilePlatformDropdown() {
 export async function hydrateReleaseAssets() {
   setDownloadLinks();
   setCommandBlocks();
+  updatePySdkInstallCommands();
+}
+
+/**
+ * Updates the Python SDK install commands on the page
+ * to include --lang <code> based on current page locale.
+ *
+ * Q1: When user visits /jp/downloads, commands get --lang jp appended.
+ * Q2: If --lang not provided by user, install scripts fallback to OS language.
+ */
+export function updatePySdkInstallCommands() {
+  const langSuffix = getLangSuffix();
+
+  const PS_BASE = "irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex";
+  const CMD_BASE = `powershell -Command "irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex"`;
+  const BASH_BASE = "bash <(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)";
+
+  // How to pass lang to PowerShell installer (env var approach, works with pipe)
+  const psCmd  = langSuffix ? `$env:PIXIV_LANG='${DISPLAY_LANG}'; ${PS_BASE}` : PS_BASE;
+  const cmdCmd = langSuffix ? `powershell -Command "$env:PIXIV_LANG='${DISPLAY_LANG}'; irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex"` : CMD_BASE;
+  const bashCmd = langSuffix ? `${BASH_BASE}${langSuffix}` : BASH_BASE;
+
+  // Update <code> elements
+  const winCode   = q("dlPyDirectWinCode");
+  const cmdCode   = q("dlPyDirectCmdCode");
+  const linuxCode = q("dlPyDirectLinuxCode");
+
+  if (winCode)   winCode.textContent   = psCmd;
+  if (cmdCode)   cmdCode.textContent   = cmdCmd;
+  if (linuxCode) linuxCode.textContent = bashCmd;
+
+  // Update copy buttons' data-copy-text
+  document.querySelectorAll(".cmd-copy-btn[aria-label='Copy PowerShell command']").forEach(btn => {
+    btn.setAttribute("data-copy-text", psCmd);
+  });
+  document.querySelectorAll(".cmd-copy-btn[aria-label='Copy CMD command']").forEach(btn => {
+    btn.setAttribute("data-copy-text", cmdCmd);
+  });
+  document.querySelectorAll(".cmd-copy-btn[aria-label='Copy bash command']").forEach(btn => {
+    btn.setAttribute("data-copy-text", bashCmd);
+  });
 }

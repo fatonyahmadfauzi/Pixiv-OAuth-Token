@@ -3,7 +3,11 @@
 #  Pixiv OAuth Token CLI - Quick Installer (Bash)
 #  Supports: Bash, Zsh, WSL, Git Bash, macOS Terminal
 #  Usage:
-#    bash <(curl -sL https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.sh)
+#    bash <(curl -sL https://raw.githubusercontent.com/.../install.sh)
+#    bash <(curl -sL https://raw.githubusercontent.com/.../install.sh) --lang jp
+#    PIXIV_LANG=jp bash <(curl -sL https://raw.githubusercontent.com/.../install.sh)
+# =============================================================
+#  Supported --lang values: en, jp, kr, zh, id, de, fr, es, ru, pt, pl
 # =============================================================
 
 set -e
@@ -12,12 +16,73 @@ RAW_BASE="https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/m
 FILE_URL="$RAW_BASE/app/pixiv_login.py"
 OUT_FILE="pixiv_login.py"
 
-# Colors
+# ---- Language detection ----
+# Priority: --lang flag > $PIXIV_LANG env > $LANG/$LC_ALL OS env > English
+RESOLVED_LANG="en"
+SUPPORTED_LANGS="en jp kr zh id de fr es ru pt pl"
+
+# Helper: map POSIX locale string to our lang code
+map_locale_to_lang() {
+  local loc
+  loc=$(echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/_/-/g' | cut -d. -f1)
+  case "$loc" in
+    ja|ja-jp)   echo "jp" ;;
+    ko|ko-kr)   echo "kr" ;;
+    zh|zh-cn|zh-tw|zh-sg|zh-hk) echo "zh" ;;
+    id|in|id-id) echo "id" ;;
+    de|de-de)   echo "de" ;;
+    fr|fr-fr)   echo "fr" ;;
+    es|es-es)   echo "es" ;;
+    ru|ru-ru)   echo "ru" ;;
+    pt|pt-br|pt-pt) echo "pt" ;;
+    pl|pl-pl)   echo "pl" ;;
+    en*)        echo "en" ;;
+    *)          echo "" ;;
+  esac
+}
+
+is_supported_lang() {
+  echo "$SUPPORTED_LANGS" | grep -qw "$1"
+}
+
+# 1. Parse --lang from script arguments
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --lang)
+      shift
+      if is_supported_lang "$1"; then RESOLVED_LANG="$1"; fi
+      shift ;;
+    --lang=*)
+      val="${1#--lang=}"
+      if is_supported_lang "$val"; then RESOLVED_LANG="$val"; fi
+      shift ;;
+    *) shift ;;
+  esac
+done
+
+# 2. Try $PIXIV_LANG env var (only if not already set via --lang)
+if [ "$RESOLVED_LANG" = "en" ] && [ -n "$PIXIV_LANG" ] && is_supported_lang "$PIXIV_LANG"; then
+  RESOLVED_LANG="$PIXIV_LANG"
+fi
+
+# 3. Auto-detect from OS locale
+if [ "$RESOLVED_LANG" = "en" ]; then
+  for loc_var in "$LC_ALL" "$LANG" "$LANGUAGE"; do
+    if [ -n "$loc_var" ]; then
+      detected=$(map_locale_to_lang "$loc_var")
+      if [ -n "$detected" ]; then
+        RESOLVED_LANG="$detected"
+        break
+      fi
+    fi
+  done
+fi
 CYAN='\033[0;36m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 RED='\033[0;31m'
 BOLD='\033[1m'
+DIM='\033[2m'
 RESET='\033[0m'
 
 banner() {
@@ -32,8 +97,10 @@ banner() {
 step()  { echo -e "  ${YELLOW}[*]${RESET} $1"; }
 ok()    { echo -e "  ${GREEN}[+]${RESET} $1"; }
 err()   { echo -e "  ${RED}[!]${RESET} $1" >&2; }
+info()  { echo -e "  ${DIM}[i]${RESET} $1"; }
 
 banner
+info "Language: ${CYAN}${RESOLVED_LANG}${RESET}"
 
 # --- 1. Check Python ---
 step "Checking Python installation..."
@@ -116,5 +183,12 @@ echo -e "  ${GREEN}${BOLD}║           Installation complete!         ║${RESE
 echo -e "  ${GREEN}${BOLD}╚══════════════════════════════════════════╝${RESET}"
 echo ""
 echo -e "  Run with:"
-echo -e "    ${CYAN}$PYTHON_CMD pixiv_login.py${RESET}"
+if [ "$RESOLVED_LANG" != "en" ]; then
+  echo -e "    ${CYAN}$PYTHON_CMD pixiv_login.py --lang $RESOLVED_LANG${RESET}"
+else
+  echo -e "    ${CYAN}$PYTHON_CMD pixiv_login.py${RESET}"
+fi
+echo ""
+echo -e "  ${DIM}[i] Language '$RESOLVED_LANG' was auto-detected from your OS.${RESET}"
+echo -e "  ${DIM}    To override: PIXIV_LANG=jp bash <(curl -sL ..../install.sh)${RESET}"
 echo ""

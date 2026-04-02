@@ -2,7 +2,12 @@
 #  Pixiv OAuth Token CLI - Quick Installer (PowerShell)
 #  Supports: PowerShell 5.1+, PowerShell 7+
 #  Usage:
-#    irm https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/install.ps1 | iex
+#    irm https://raw.githubusercontent.com/.../install.ps1 | iex
+#    irm https://raw.githubusercontent.com/.../install.ps1 | iex; & { --lang jp }
+#  Or with lang flag:
+#    $env:PIXIV_LANG="jp"; irm https://raw.githubusercontent.com/.../install.ps1 | iex
+# =============================================================
+#  Supported --lang values: en, jp, kr, zh, id, de, fr, es, ru, pt, pl
 # =============================================================
 
 $ErrorActionPreference = "Stop"
@@ -10,6 +15,47 @@ $ErrorActionPreference = "Stop"
 $RAW_BASE  = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master"
 $FILE_URL  = "$RAW_BASE/app/pixiv_login.py"
 $OUT_FILE  = "pixiv_login.py"
+
+# ---- Language detection ----
+# Priority: --lang arg (via $args) > $env:PIXIV_LANG > OS UI culture > English
+$SUPPORTED_LANGS = @("en","jp","kr","zh","id","de","fr","es","ru","pt","pl")
+$LANG_MAP = @{
+  "ja" = "jp"; "ja-jp" = "jp"
+  "ko" = "kr"; "ko-kr" = "kr"
+  "zh" = "zh"; "zh-cn" = "zh"; "zh-tw" = "zh"; "zh-sg" = "zh"
+  "id" = "id"; "in" = "id"
+  "de" = "de"; "de-de" = "de"
+  "fr" = "fr"; "fr-fr" = "fr"
+  "es" = "es"; "es-es" = "es"
+  "ru" = "ru"; "ru-ru" = "ru"
+  "pt" = "pt"; "pt-br" = "pt"; "pt-pt" = "pt"
+  "pl" = "pl"; "pl-pl" = "pl"
+  "en" = "en"
+}
+
+$RESOLVED_LANG = "en"
+
+# 1. Try explicit --lang argument (passed via $args when piped to iex)
+$langArg = $args | Where-Object { $_ -ne $null } | Select-Object -First 1
+if ($langArg -and $SUPPORTED_LANGS -contains $langArg.ToLower().Trim()) {
+    $RESOLVED_LANG = $langArg.ToLower().Trim()
+}
+# 2. Try $env:PIXIV_LANG
+elseif ($env:PIXIV_LANG -and $SUPPORTED_LANGS -contains $env:PIXIV_LANG.ToLower().Trim()) {
+    $RESOLVED_LANG = $env:PIXIV_LANG.ToLower().Trim()
+}
+# 3. Auto-detect from OS UI culture
+else {
+    try {
+        $uiCulture = (Get-Culture).Name.ToLower()
+        $baseCulture = $uiCulture.Split('-')[0]
+        if ($LANG_MAP.ContainsKey($uiCulture)) {
+            $RESOLVED_LANG = $LANG_MAP[$uiCulture]
+        } elseif ($LANG_MAP.ContainsKey($baseCulture)) {
+            $RESOLVED_LANG = $LANG_MAP[$baseCulture]
+        }
+    } catch { $RESOLVED_LANG = "en" }
+}
 
 function Write-Banner {
     Write-Host ""
@@ -33,6 +79,7 @@ function Write-Err([string]$msg) {
 }
 
 Write-Banner
+Write-Host "  [i] Language: $RESOLVED_LANG" -ForegroundColor DarkCyan
 
 # --- 1. Check Python ---
 Write-Step "Checking Python installation..."
@@ -104,5 +151,12 @@ Write-Host "  ║           Installation complete!         ║" -ForegroundColor
 Write-Host "  ╚══════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
 Write-Host "  Run with:" -ForegroundColor White
-Write-Host "    python pixiv_login.py" -ForegroundColor Cyan
+if ($RESOLVED_LANG -ne "en") {
+    Write-Host "    python pixiv_login.py --lang $RESOLVED_LANG" -ForegroundColor Cyan
+} else {
+    Write-Host "    python pixiv_login.py" -ForegroundColor Cyan
+}
+Write-Host ""
+Write-Host "  [i] Language '$RESOLVED_LANG' was auto-detected from your OS." -ForegroundColor DarkGray
+Write-Host "      To override, set: `$env:PIXIV_LANG='jp' before running." -ForegroundColor DarkGray
 Write-Host ""
