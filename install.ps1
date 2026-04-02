@@ -157,6 +157,7 @@ if ($RESOLVED_LANG -ne "en") {
     Write-Host "    python pixiv_login.py" -ForegroundColor Cyan
 }
 Write-Host ""
-Write-Host "  [i] Language '$RESOLVED_LANG' was auto-detected from your OS." -ForegroundColor DarkGray
-Write-Host "      To override, set: `$env:PIXIV_LANG='jp' before running." -ForegroundColor DarkGray
+Write-Host "  [i] Language detected: $RESOLVED_LANG" -ForegroundColor DarkGray
+Write-Host "      To use a different language: python pixiv_login.py --lang jp" -ForegroundColor DarkGray
+Write-Host "      To save permanently:         python pixiv_login.py config set-lang jp" -ForegroundColor DarkGray
 Write-Host ""

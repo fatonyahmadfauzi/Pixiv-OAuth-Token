@@ -3384,6 +3384,16 @@ def _pause_before_exit_if_frozen() -> None:
 def main():
     parser = ArgumentParser(description="Pixiv OAuth Login Tool")
     parser.add_argument("--no-color", action="store_true", help="Disable colored output")
+    parser.add_argument(
+        "--lang",
+        default=None,
+        metavar="CODE",
+        help=(
+            "Set language for this session (e.g. jp, id, zh, kr, de, fr, es, ru, pt, pl, en). "
+            "Overrides saved config and OS detection. "
+            "Use 'config set-lang <code>' to save permanently."
+        )
+    )
 
     subparsers = parser.add_subparsers(dest="command")
 
@@ -3404,7 +3414,8 @@ def main():
     config_parser = subparsers.add_parser("config", help="Show or set config")
 
     # menu
-    subparsers.add_parser("menu", help="Open interactive menu")
+    menu_parser = subparsers.add_parser("menu", help="Open interactive menu")
+    menu_parser.add_argument("--lang", default=None, help="Language code (e.g. en, id, jp)")
     config_sub = config_parser.add_subparsers(dest="config_cmd")
 
     config_sub.add_parser("show", help="Show current config (default)")
@@ -3417,21 +3428,26 @@ def main():
     debug_print(_dbg_msg("parsed_arguments", args=args), color_on)
     debug_print(_dbg_msg("command_selected", command=args.command), color_on)
 
+    # Determine effective lang: subcommand --lang takes priority over top-level --lang
+    top_lang = getattr(args, "lang", None)
+
     if args.command == "login":
-        lang = resolve_lang(args.lang)
+        # subcommand --lang overrides top-level --lang
+        sub_lang = getattr(args, "lang", None)
+        lang = resolve_lang(sub_lang or top_lang)
         login(lang, color_on)
 
     elif args.command == "lang":
-        lang = resolve_lang(args.language)
+        lang = resolve_lang(getattr(args, "language", None) or top_lang)
         login(lang, color_on)
 
     elif args.command == "refresh":
-        lang = resolve_lang(args.lang)
+        sub_lang = getattr(args, "lang", None)
+        lang = resolve_lang(sub_lang or top_lang)
         refresh(args.refresh_token, lang, color_on)
 
     elif args.command == "config":
-        # pick a language for the config UI as well:
-        ui_lang = resolve_lang(None)
+        ui_lang = resolve_lang(top_lang)
 
         if args.config_cmd in (None, "show"):
             print_config(ui_lang, color_on)
@@ -3451,12 +3467,13 @@ def main():
             return
 
     elif args.command == "menu":
-        lang = resolve_lang(None)
+        sub_lang = getattr(args, "lang", None)
+        lang = resolve_lang(sub_lang or top_lang)
         run_interactive_menu(lang, color_on)
 
     else:
-        # no subcommand: open interactive menu by default for better UX
-        lang = resolve_lang(None)
+        # no subcommand: open interactive menu — use --lang if provided
+        lang = resolve_lang(top_lang)
         run_interactive_menu(lang, color_on)
 
 
