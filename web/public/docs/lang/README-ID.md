@@ -1,6 +1,7 @@
 # Pixiv OAuth Token
 
-> 🌐 Tersedia dalam bahasa lain: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [한국어](README-KR.md)
+
+> 🌐 Tersedia dalam bahasa lain: [English](..\..\..\../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [한국어](README-KR.md)
 
 ---
 
@@ -14,7 +15,7 @@ Toolkit untuk menghasilkan token Pixiv OAuth dalam tiga mode:
 
 - Python 3.11+
 - Windows (diperlukan untuk skrip build `.bat` dan penginstal Inno Setup)
-- Ketergantungan Python dari `app/requirements.txt`
+- Python ketergantungan dari `app/requirements.txt`
 
 ## Jalankan dari sumber
 
@@ -31,20 +32,20 @@ cd app
 python pixiv_login_gui.py
 ```
 
-### Fitur GUI
+### GUI Fitur
 
-| Fitur               | Deskripsi                                                                                                                                                                                                                                        |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Multi-bahasa**    | 11 bahasa — terdeteksi otomatis dari konfigurasi, dapat dialihkan langsung melalui dropdown                                                                                                                                                      |
-| **⚙ Konsol Debug**  | Tombol di header kanan atas; membuka terminal gelap yang mencatat **semua** peristiwa (klik tombol, perubahan bahasa, permintaan HTTP, langkah PKCE, papan klip, penyimpanan konfigurasi, peringatan) secara real-time dan dalam bahasa saat ini |
-| **Penukaran Token** | Tempel URL pixiv:// atau kode mentah → tukarkan dengan akses + token penyegaran                                                                                                                                                                  |
-| **Segarkan Token**  | Penyegaran sekali klik menggunakan refresh_token yang disimpan dari config                                                                                                                                                                       |
-| **Salin Token**     | Salin access_token / refresh_token ke clipboard secara instan                                                                                                                                                                                    |
-| **Tutorial**        | Panduan gambar langkah demi langkah yang ada di dalam aplikasi                                                                                                                                                                                   |
+| Fitur | Deskripsi |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multi-bahasa** | 11 bahasa — terdeteksi otomatis dari konfigurasi, dapat dialihkan langsung melalui dropdown |
+| **⚙ Konsol Debug** | Tombol di header kanan atas; membuka terminal gelap yang mencatat **semua** peristiwa (klik tombol, perubahan bahasa, permintaan HTTP, langkah PKCE, papan klip, penyimpanan konfigurasi, peringatan) secara real-time dan dalam bahasa saat ini |
+| **Penukaran Token** | Tempel URL pixiv:// atau kode mentah → tukarkan dengan akses + token penyegaran |
+| **Segarkan Token** | Penyegaran sekali klik menggunakan refresh_token yang disimpan dari config |
+| **Salin Token** | Salin access_token / refresh_token ke clipboard secara instan |
+| **Tutorial** | Panduan gambar langkah demi langkah yang ada di dalam aplikasi |
 
 ## Membangun
 
-### Bangun semua artefak (CLI + GUI + Installer + ZIP)
+### Bangun semua artefak (CLI + GUI + Pemasang + ZIP)
 
 ```bat
 cd scripts
@@ -75,11 +76,11 @@ build_all_pro.bat patch noinst nosign
 
 ### Keluaran utama
 
-- CLI portabel: `dist_portable\Pixiv OAuth CLi (Portable).exe`
-- GUI portabel: `dist_gui\Pixiv OAuth GUi (Portable).exe`
+- Portabel CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
+- Portabel GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
 - Penginstal Terpadu: `dist_installer\PixivLoginSetup_v<version>.exe` (Menginstal CLI + GUI)
-- CLI Penginstal: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Salinan penginstal terpadu)
-- GUI Pemasang: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Salinan pemasang terpadu)
+- Pemasang CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Salinan pemasang terpadu)
+- Pemasang GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Salinan pemasang terpadu)
 - Rilis ZIP: `PixivOAuthRelease_v<version>.zip`
 - Folder yang disinkronkan otomatis: `downloads/` (portabel/pengaturan terbaru + rilis ZIP)
 
@@ -113,25 +114,21 @@ Aplikasi web responsif dan sangat optimal yang menampilkan dukungan multibahasa 
 - **Halaman Luas**: Beranda, Unduhan, Tutorial, Kontak, Masalah & Humas, Pelacak Diskusi, Penampil Dokumentasi Markdown, dan integrasi Dukungan/Sumbang.
 - **SEO Tingkat Lanjut**: Tag `<meta>` lokal yang dimasukkan secara otomatis, data terstruktur JSON-LD yang ekstensif (Tautan Situs, Aplikasi Perangkat Lunak, dll.), pembuatan `hreflang` otomatis, `robots.txt`, dan `sitemap.xml`.
 - **Keamanan & Performa**: Kebingungan JavaScript otomatis (pengrusakan ekstrem), minifikasi HTML/CSS (melalui `cd web && node build_minify.js`), dan pencegahan `XSS` bersih melalui `escapeHTML`.
-- **GitHub API Proksi**: Proksi titik akhir Vercel Tanpa Server (`/api/github`) GitHub API meminta menggunakan Token Akses Pribadi (`GITHUB_PAT`) untuk sepenuhnya melewati batas tarif publik.
+- **GitHub API Proxy**: Permintaan proxy GitHub API titik akhir Vercel tanpa server (`/api/github`) menggunakan Token Akses Pribadi (`GITHUB_PAT`) untuk sepenuhnya melewati batas tarif publik.
 
 ### Terapkan ke Vercel
 
 1. Dorong repositori ke GitHub.
 2. Vercel → **Tambahkan Baru...** → **Proyek** → impor repo ini.
-3. Atur Variabel Lingkungan Anda di Vercel:
-
+3. Tetapkan Variabel Lingkungan Anda di Vercel:
 - `PIXIV_CLIENT_SECRET`: Rahasia klien Pixiv OAuth Anda.
 - `GITHUB_PAT`: Opsional tetapi sangat disarankan (Token Akses Pribadi GitHub Anda untuk menghindari batasan nilai pada masalah & rilis repo).
-
 4. `vercel.json` sudah mengkonfigurasi:
-
 - URL bersih (menghapus `.html`)
 - Hosting statis dari `public/`
 - APIs tanpa server di `/api/*`
 - Perutean halaman 404 Kustom bawaan
 - Caching masa depan melalui header Edge Cache.
-
 5. Terapkan.
 
 > [!PENTING]
@@ -147,9 +144,9 @@ URL Dasar:
 
 File:
 
-- GUI portabel: `Pixiv OAuth GUi (Portable).exe`
+- Portabel GUI: `Pixiv OAuth GUi (Portable).exe`
 - Pengaturan GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
-- CLI portabel: `Pixiv OAuth CLi (Portable).exe`
+- Portabel CLI: `Pixiv OAuth CLi (Portable).exe`
 - Pengaturan CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
 
 ### PowerShell (deteksi otomatis aset rilis terbaru)
@@ -226,7 +223,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## Pemasangan piton
+## Python pasang
 
 ```bash
 cd app
@@ -244,17 +241,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 Lihat semua perubahan penting untuk setiap versi di file [log perubahan](CHANGELOG-ID.md).
 📦 Anda juga dapat melihat catatan rilis langsung di [GitHub halaman Rilis](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
-### Terbaru: v1.0.4 (29-03-2026)
-
-**🐞 Diperbaiki**
-
-- CLI/GUI portabel: versi tidak lagi kembali ke versi lama setelah pembaruan — `VERSION_FILE` / `CONFIG_FILE` kini disimpan dengan benar di sebelah `.exe`, bukan di folder ekstraksi PyInstaller sementara.
-- Pembaruan CLI yang dibekukan: sekarang menggantikan `.exe` yang sebenarnya dengan benar melalui skrip pembaru `.bat` alih-alih menimpa file sementara.
+### Terbaru: v1.0.5 (2026-04-03)
 
 **✨ Ditambahkan**
 
-- **Pembaruan berbasis arsitektur** — CLI dan GUI kini secara otomatis mendeteksi arsitektur yang berjalan (`x64`, `x86`, `ARM64`) dan mengunduh varian build yang cocok saat memperbarui.
-- **Aliran pembaruan penyiapan CLI** — CLI kini menjalankan penginstal penyiapan secara diam-diam saat memperbarui dari penginstalan `Program Files` (mencerminkan perilaku GUI).
+- **Permulaan GUI Sadar Internet** — Pemeriksaan pra-penerbangan koneksi cerdas sebelum mem-boot GUI, lengkap dengan pemantauan koneksi runtime langsung.
+- **Modal Dokumentasi GUI Asli** — Syarat & Ketentuan, Kebijakan Privasi, dan Changelog kini disajikan dalam popup dinamis secara langsung daripada memaksa pengalihan web.
+- **Lokalisasi Terminal Komprehensif** — Pelacak GitHub CLI dan halaman resmi kini diterjemahkan secara autentik dalam 11 bahasa yang didukung.
+
+**✨ Diubah & Diperbaiki**
+
+- **Penandatanganan Kode Digital Otomatis** — Semua executable secara bawaan menggabungkan identitas yang ditandatangani sendiri untuk menyembunyikan Windows SmartScreen.
+- **Bug Properti Penginstal** — Setup executable dengan benar menyiarkan Versi File `1.0.5.0` secara ketat ke dalam header Windows PE alih-alih menetapkan default ke nol.
+- **Didesain ulang CLI Estetika** — Batas kotak UI dihilangkan untuk tampilan terminal rata kiri yang ramping.
 
 **🔜 Akan hadir pada pembaruan berikutnya**
 

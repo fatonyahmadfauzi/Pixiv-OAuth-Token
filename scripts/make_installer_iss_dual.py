@@ -66,6 +66,13 @@ DefaultGroupName={{#ProductName}}
 DisableProgramGroupPage=yes
 OutputDir={OUT_DIR}
 OutputBaseFilename=PixivLoginSetup_v{{#ProductVersion}}_{{#BuildCode}}
+
+VersionInfoVersion={{#ProductVersion}}
+VersionInfoProductVersion={{#ProductVersion}}
+VersionInfoProductTextVersion={{#ProductVersion}}
+VersionInfoCompany={{#Publisher}}
+VersionInfoDescription=Pixiv OAuth Setup
+
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern

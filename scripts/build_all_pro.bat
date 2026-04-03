@@ -57,6 +57,7 @@ if exist build\gui (
   del /q "build\gui\Pixiv OAuth GUi (Portable) ARM64.exe" 2>nul
 )
 if exist build\installer (
+  del /q "build\installer\PixivLoginSetup_v*.exe" 2>nul
   del /q "build\installer\Pixiv OAuth CLi Setup_v*.exe" 2>nul
   del /q "build\installer\Pixiv OAuth GUi Setup_v*.exe" 2>nul
 )

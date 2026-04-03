@@ -1,12 +1,13 @@
 # Pixiv OAuth Token
 
-> 🌐 Dostępne w innych językach: [English](../../../../README.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+
+> 🌐 Dostępne w innych językach: [English](..\..\..\../README.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 
 Zestaw narzędzi do generowania tokenów Pixiv OAuth w trzech trybach:
 
-- Interfejs wiersza polecenia (`app/pixiv_login.py`)
+- CLI (`app/pixiv_login.py`)
 - GUI (`app/pixiv_login_gui.py`)
 - Aplikacja internetowa (`web/public/` + bezserwerowa API)
 
@@ -14,7 +15,7 @@ Zestaw narzędzi do generowania tokenów Pixiv OAuth w trzech trybach:
 
 - Python 3.11+
 - Windows (wymagany dla skryptów kompilacji `.bat` i instalatora Inno Setup)
-- Zależności Pythona od `app/requirements.txt`
+- Python zależności od `app/requirements.txt`
 
 ## Uruchom ze źródła
 
@@ -24,27 +25,27 @@ python -m pip install -r requirements.txt
 python pixiv_login.py
 ```
 
-Uruchom interfejs graficzny:
+Uruchom GUI:
 
 ```bash
 cd app
 python pixiv_login_gui.py
 ```
 
-### Funkcje GUI
+### GUI Funkcje
 
-| Funkcja                   | Opis                                                                                                                                                                                                                                                     |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Wielojęzyczny**         | 11 języków — automatycznie wykrywane w konfiguracji, przełączane na bieżąco poprzez menu rozwijane                                                                                                                                                       |
+| Funkcja | Opis |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Wielojęzyczny** | 11 języków — automatycznie wykrywane w konfiguracji, przełączane na bieżąco poprzez menu rozwijane |
 | **⚙ Konsola debugowania** | Przycisk w prawym górnym nagłówku; otwiera ciemny terminal rejestrujący **wszystkie** zdarzenia (kliknięcia przycisków, zmiany języka, żądania HTTP, kroki PKCE, schowek, zapisanie konfiguracji, ostrzeżenia) w czasie rzeczywistym i w bieżącym języku |
-| **Wymiana tokenów**       | Wklej adres URL pixiv:// lub surowy kod → wymiana na dostęp + odśwież token                                                                                                                                                                              |
-| **Odśwież token**         | Odśwież jednym kliknięciem przy użyciu zapisanego tokenu odświeżania z konfiguracji                                                                                                                                                                      |
-| **Kopiuj tokeny**         | Natychmiast skopiuj token dostępu / token_odświeżenia do schowka                                                                                                                                                                                         |
-| **Poradnik**              | Przewodnik po obrazach krok po kroku wbudowany w aplikację                                                                                                                                                                                               |
+| **Wymiana tokenów** | Wklej pixiv:// adres URL lub surowy kod → wymiana na dostęp + odśwież token |
+| **Odśwież token** | Odśwież jednym kliknięciem przy użyciu zapisanego tokena odświeżania z konfiguracji |
+| **Kopiuj tokeny** | Natychmiast skopiuj token dostępu / token_odświeżenia do schowka |
+| **Poradnik** | Przewodnik po obrazach krok po kroku wbudowany w aplikację |
 
 ## Zbudować
 
-### Zbuduj wszystkie artefakty (CLI + GUI + Instalator + ZIP)
+### Zbuduj wszystkie artefakty (CLI + GUI + instalator + ZIP)
 
 ```bat
 cd scripts
@@ -76,10 +77,10 @@ build_all_pro.bat patch noinst nosign
 ### Główne wyjścia
 
 - Przenośny CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
-- Przenośny graficzny interfejs użytkownika: `dist_gui\Pixiv OAuth GUi (Portable).exe`
-- Ujednolicony instalator: `dist_installer\PixivLoginSetup_v<version>.exe` (instaluje zarówno CLI, jak i GUI)
-- Instalator CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (kopia ujednoliconego instalatora)
-- GUI instalatora: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (kopia ujednoliconego instalatora)
+- Przenośny GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
+- Ujednolicony instalator: `dist_installer\PixivLoginSetup_v<version>.exe` (instaluje oba CLI + GUI)
+- Instalator CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Kopia ujednoliconego instalatora)
+- Instalator GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Kopia ujednoliconego instalatora)
 - Zwolnij kod pocztowy: `PixivOAuthRelease_v<version>.zip`
 - Folder automatycznie synchronizowany: `downloads/` (najnowsza wersja przenośna/konfiguracja + wersja ZIP)
 
@@ -112,26 +113,22 @@ Wysoce zoptymalizowana, responsywna aplikacja internetowa z dynamiczną obsług�
 
 - **Rozbudowane strony**: strona główna, pliki do pobrania, samouczek, kontakt, problemy i PR, narzędzie do śledzenia dyskusji, przeglądarka dokumentacji Markdown oraz integracja wsparcia/datków.
 - **Zaawansowane SEO**: automatycznie wstrzykiwane zlokalizowane tagi `<meta>`, obszerne dane strukturalne JSON-LD (linki do podstron, aplikacje programowe itp.), automatyczne generowanie `hreflang`, `robots.txt` i `sitemap.xml`.
-- **Bezpieczeństwo i wydajność**: Automatyczne zaciemnianie kodu JavaScript (ekstremalne zniekształcanie), minifikacja HTML/CSS (przez `cd web && node build_minify.js`) i czyste zapobieganie `XSS` poprzez `escapeHTML`.
-- **GitHub API Serwer proxy**: Bezserwerowe punkty końcowe Vercel (`/api/github`) proxy GitHub API żąda przy użyciu osobistego tokenu dostępu (`GITHUB_PAT`) w celu całkowitego ominięcia publicznych limitów szybkości.
+- **Bezpieczeństwo i wydajność**: Automatyczne zaciemnianie kodu JavaScript (ekstremalne zniekształcanie), minifikacja HTML/CSS (przez `cd web && node build_minify.js`) i czysta ochrona przed `XSS` poprzez `escapeHTML`.
+- **GitHub API Serwer proxy**: Bezserwerowe Vercel punkty końcowe (`/api/github`) proxy GitHub API żądań przy użyciu osobistego tokena dostępu (`GITHUB_PAT`) w celu całkowitego ominięcia publicznych limitów szybkości.
 
 ### Wdróż w Vercel
 
 1. Prześlij repozytorium do GitHub.
 2. Vercel → **Dodaj nowy...** → **Projekt** → zaimportuj to repozytorium.
 3. Ustaw zmienne środowiskowe w Vercel:
-
 - `PIXIV_CLIENT_SECRET`: Twój sekret klienta Pixiv OAuth.
 - `GITHUB_PAT`: Opcjonalny, ale wysoce zalecany (Twój GitHub osobisty token dostępu, aby uniknąć ograniczeń stawek w przypadku wydawania i wydań repo).
-
 4. `vercel.json` już konfiguruje:
-
 - Wyczyść adresy URL (usuwanie `.html`)
 - Hosting statyczny od `public/`
 - Bezserwerowe APIs w `/api/*`
 - Wbudowane niestandardowe routing stron 404
 - Buforowanie dalekiej przyszłości poprzez nagłówki Edge Cache.
-
 5. Wdróż.
 
 > [!WAŻNE]
@@ -147,10 +144,10 @@ Bazowy adres URL:
 
 Akta:
 
-- Przenośny graficzny interfejs użytkownika: `Pixiv OAuth GUi (Portable).exe`
-- Skonfiguruj GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
+- Przenośny GUI: `Pixiv OAuth GUi (Portable).exe`
+- Konfiguracja GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
 - Przenośny CLI: `Pixiv OAuth CLi (Portable).exe`
-- Skonfiguruj CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
+- Konfiguracja CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
 
 ### PowerShell (automatycznie wykrywa zasoby najnowszej wersji)
 
@@ -197,7 +194,7 @@ $guiPortable = "..."
 
 i nic się nie pojawia, tego można się spodziewać. Przechowuje tylko wartość w zmiennej. Pobieranie rozpoczyna się po uruchomieniu `Invoke-WebRequest`.
 
-Po zakończeniu pobierania i PowerShell powróci do `PS C:\...>` bez błędu:
+Po zakończeniu pobierania i PowerShell powraca do `PS C:\...>` bez błędu:
 
 ```powershell
 Get-ChildItem "Pixiv OAuth GUi (Portable).exe"
@@ -226,7 +223,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## Instalacja Pythona
+## Python instalacja
 
 ```bash
 cd app
@@ -242,19 +239,21 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 ## 🧾 Dziennik zmian
 
 Zobacz wszystkie istotne zmiany dla każdej wersji w pliku [Dziennik zmian](CHANGELOG-PL.md).
-📦 Możesz także wyświetlić informacje o wersji bezpośrednio na stronie [GitHub Wydania](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
+📦 Możesz także wyświetlić informacje o wersji bezpośrednio na [GitHub stronie wydań](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
-### Najnowsze: v1.0.4 (29.03.2026)
-
-**🐞 Naprawiono**
-
-- Przenośny CLI/GUI: wersja nie powraca już do starej wersji po aktualizacji — `VERSION_FILE` / `CONFIG_FILE` są teraz poprawnie zapisywane obok `.exe` zamiast tymczasowego folderu wyodrębniania PyInstaller.
-- Zamrożona aktualizacja CLI: teraz poprawnie zastępuje rzeczywisty `.exe` za pomocą skryptu aktualizującego `.bat` zamiast nadpisywać plik tymczasowy.
+### Najnowsze: v1.0.5 (2026-04-03)
 
 **✨ Dodano**
 
-- **Aktualizacja uwzględniająca architekturę** — zarówno CLI, jak i GUI automatycznie wykrywają teraz działającą architekturę (`x64`, `x86`, `ARM64`) i pobierają pasujący wariant kompilacji podczas aktualizacji.
-- **Przebieg aktualizacji instalacji CLI** — CLI teraz po cichu uruchamia instalatora podczas aktualizacji z instalacji `Program Files` (odzwierciedla zachowanie GUI).
+- **Uruchamianie GUI obsługujące Internet** — Inteligentne sprawdzenie połączenia przed uruchomieniem przed uruchomieniem GUI wraz z monitorowaniem połączenia na żywo.
+- **Natywne moduły dokumentacji GUI** — Warunki, Polityka prywatności i Dziennik zmian są teraz prezentowane bezpośrednio w dynamicznych wyskakujących okienkach, zamiast wymuszać przekierowania internetowe.
+- **Kompleksowe lokalizacje terminali** — Moduł śledzący GitHub CLI i strony prawne są teraz autentycznie przetłumaczone na wszystkie 11 obsługiwanych języków.
+
+**✨ Zmieniono i naprawiono**
+
+- **Automatyczne cyfrowe podpisywanie kodu** — wszystkie pliki wykonywalne natywnie łączą w sobie tożsamość z podpisem własnym, aby wyeliminować filtr Windows SmartScreen.
+- **Błąd właściwości instalatora** — Pliki wykonywalne instalatora prawidłowo emitują wersje plików `1.0.5.0` wyłącznie do nagłówków Windows PE zamiast domyślnie zer.
+- **Przeprojektowana estetyka CLI** — Ramki interfejsu użytkownika zostały usunięte, aby uzyskać elegancki wyświetlacz terminala wyrównany do lewej strony.
 
 **🔜 Już w następnej aktualizacji**
 

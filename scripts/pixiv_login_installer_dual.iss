@@ -3,7 +3,7 @@
 
 #define ProductName "Pixiv OAuth"
 #define ProductVersion "1.0.5"
-#define BuildCode "REL-U1775122868915"
+#define BuildCode "REL-U1775158612338"
 #define Publisher "Fatony Ahmad Fauzi"
 #define ExeCLI "build\portable\pixiv_login_plus.exe"
 #define ExeGUI "build\gui\pixiv_login_gui.exe"
@@ -19,6 +19,13 @@ DefaultGroupName={#ProductName}
 DisableProgramGroupPage=yes
 OutputDir=build\installer
 OutputBaseFilename=PixivLoginSetup_v{#ProductVersion}_{#BuildCode}
+
+VersionInfoVersion={#ProductVersion}
+VersionInfoProductVersion={#ProductVersion}
+VersionInfoProductTextVersion={#ProductVersion}
+VersionInfoCompany={#Publisher}
+VersionInfoDescription=Pixiv OAuth Setup
+
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern

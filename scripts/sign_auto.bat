@@ -4,57 +4,65 @@ cd /d "%~dp0\.."
 
 REM ========= CONFIG =========
 set PFX_PATH=%~dp0codesign.pfx
-set PFX_PASS=YOUR_PASSWORD_HERE
+set PFX_PASS=PixivOAuthSign2025
 set TS_URL=http://timestamp.digicert.com
 
-set PORTABLE=dist_portable\Pixiv OAuth CLi (Portable).exe
-
-set INSTALLER_CLI=
-for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth CLi Setup_v*.exe" 2^>nul') do (
-  set INSTALLER_CLI=dist_installer\%%f
-  goto :found_cli
-)
-:found_cli
-
-set INSTALLER_GUI=
-for /f "delims=" %%f in ('dir /b /o:-d "dist_installer\Pixiv OAuth GUi Setup_v*.exe" 2^>nul') do (
-  set INSTALLER_GUI=dist_installer\%%f
-  goto :found_gui
-)
-:found_gui
-
-where signtool.exe >nul 2>nul
-if errorlevel 1 (
-  for /f "delims=" %%S in ('dir /b /s "C:\Program Files (x86)\Windows Kits\10\bin\*\x64\signtool.exe" 2^>nul') do (
-    set "SDK_SIGNTOOL=%%S"
-    goto :have_signtool
-  )
-  echo [WARN] signtool.exe not found. Install Windows SDK / VS Build Tools.
-  exit /b 0
-)
-
-:have_signtool
-if defined SDK_SIGNTOOL (
-  for %%D in ("!SDK_SIGNTOOL!") do set "SDK_DIR=%%~dpD"
-  set "PATH=!SDK_DIR!;!PATH!"
-)
-
+REM Ensure we have the certificate
 if not exist "%PFX_PATH%" (
-  echo [WARN] PFX not found: "%PFX_PATH%"
-  exit /b 0
+    echo [!] Certificate not found at: %PFX_PATH%
+    echo     Please run create_selfsigned_cert.ps1 first.
+    exit /b 1
 )
 
-if exist "%PORTABLE%" (
-  signtool sign /f "%PFX_PATH%" /p "%PFX_PASS%" /tr "%TS_URL%" /td sha256 /fd sha256 "%PORTABLE%"
+REM Find signtool.exe
+set SIGNTOOL=
+where signtool.exe >nul 2>nul
+if not errorlevel 1 (
+    set SIGNTOOL=signtool.exe
+    goto :found_signtool
 )
 
-if not "%INSTALLER_CLI%"=="" if exist "%INSTALLER_CLI%" (
-  signtool sign /f "%PFX_PATH%" /p "%PFX_PASS%" /tr "%TS_URL%" /td sha256 /fd sha256 "%INSTALLER_CLI%"
+REM Prefer x64, fallback to x86, never use arm/arm64 on standard pcs
+for /f "delims=" %%S in ('dir /b /s "C:\Program Files (x86)\Windows Kits\10\bin\signtool.exe" 2^>nul') do (
+    echo "%%S" | findstr /i "\\x64\\" >nul
+    if not errorlevel 1 (
+        set "SIGNTOOL=%%S"
+        goto :found_signtool
+    )
+)
+for /f "delims=" %%S in ('dir /b /s "C:\Program Files (x86)\Windows Kits\10\bin\signtool.exe" 2^>nul') do (
+    echo "%%S" | findstr /i "\\x86\\" >nul
+    if not errorlevel 1 (
+        set "SIGNTOOL=%%S"
+        goto :found_signtool
+    )
+)
+:found_signtool
+
+if "%SIGNTOOL%"=="" (
+    echo [!] signtool.exe not found. Please install Windows SDK.
+    exit /b 1
 )
 
-if not "%INSTALLER_GUI%"=="" if exist "%INSTALLER_GUI%" (
-  signtool sign /f "%PFX_PATH%" /p "%PFX_PASS%" /tr "%TS_URL%" /td sha256 /fd sha256 "%INSTALLER_GUI%"
+echo [*] Using signtool: %SIGNTOOL%
+echo [*] Certificate: %PFX_PATH%
+echo.
+
+REM --- Sign Portable Executables ---
+echo [*] Signing portable executables...
+for %%f in ("build\portable\*.exe" "build\gui\*.exe") do (
+    echo   - Signing: %%f
+    "%SIGNTOOL%" sign /v /f "%PFX_PATH%" /p "%PFX_PASS%" /fd SHA256 /tr %TS_URL% /td SHA256 "%%f"
 )
 
-echo Done signing.
+REM --- Sign Installers & Downloads ---
+echo.
+echo [*] Signing installer and downloads executables...
+for %%f in ("build\installer\*.exe" "build\downloads\*.exe") do (
+    echo   - Signing: %%f
+    "%SIGNTOOL%" sign /v /f "%PFX_PATH%" /p "%PFX_PASS%" /fd SHA256 /tr %TS_URL% /td SHA256 "%%f"
+)
+
+echo.
+echo [V] All signing complete!
 exit /b 0

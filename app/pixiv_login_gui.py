@@ -33,6 +33,11 @@ import os
 from argparse import ArgumentParser
 
 
+def debug_print(msg: str):
+    if os.environ.get("DEBUG") == "1":
+        print(msg)
+
+
 # ===== PIXIV CONFIG =====
 USER_AGENT = "PixivAndroidApp/5.0.234 (Android 11; Pixel 5)"
 REDIRECT_URI = "https://app-api.pixiv.net/web/v1/users/auth/pixiv/callback"
@@ -49,7 +54,7 @@ TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 APP_VERSION = "v1.0.5"
-APP_BUILD_CODE = "REL-U1775122868915"
+APP_BUILD_CODE = "REL-U1775158612338"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 DOWNLOADS_RAW_BASE = f"{REPO_BASE_URL}/raw/HEAD/downloads"
@@ -700,6 +705,13 @@ EXTRA_UI_OVERRIDES = {
         "debug_clear": "Bersihkan",
         "debug_copied": "Log debug disalin.",
         "debug_cleared": "Log debug dibersihkan.",
+        "net_checking": "Memeriksa koneksi internet...",
+        "net_connected": "Terhubung! Memulai aplikasi...",
+        "net_no_internet": "Tidak ada koneksi internet.",
+        "net_retrying": "Mencoba lagi dalam {s}d...",
+        "net_tip": "Tutup jendela ini untuk keluar",
+        "net_disconnected": "Koneksi terputus. Kembali ke layar pemuatan...",
+        "net_reconnecting": "Menghubungkan ulang...",
     },
     "jp": {
         "app_subtitle": "クイックトークン交換のためのモダンなログインヘルパー",
@@ -750,6 +762,13 @@ EXTRA_UI_OVERRIDES = {
         "debug_clear": "クリア",
         "debug_copied": "デバッグログをコピーしました。",
         "debug_cleared": "デバッグログをクリアしました。",
+        "net_checking": "インターネット接続を確認中...",
+        "net_connected": "接続済み！アプリを起動しています...",
+        "net_no_internet": "インターネット接続がありません。",
+        "net_retrying": "{s}秒後に再試行...",
+        "net_tip": "終了するにはウィンドウを閉じてください",
+        "net_disconnected": "接続が切断されました。読み込み画面に戻ります...",
+        "net_reconnecting": "再接続中...",
     },
     "pl": {
         "menu_tutorial": "Samouczek",
@@ -790,6 +809,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Konsola debugowania"
         ,"debug_copy_all": "Kopiuj wszystko"
         ,"debug_clear": "Wyczyść"
+        ,"net_checking": "Sprawdzanie połączenia z internetem..."
+        ,"net_connected": "Połączono! Uruchamianie aplikacji..."
+        ,"net_no_internet": "Brak połączenia z internetem."
+        ,"net_retrying": "Ponowna próba za {s}s..."
+        ,"net_tip": "Zamknij to okno, aby wyjść"
+        ,"net_disconnected": "Utracono połączenie. Powrót do ekranu ładowania..."
+        ,"net_reconnecting": "Ponowne łączenie..."
     },
     "zh": {
         "menu_tutorial": "教程",
@@ -830,6 +856,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  调试控制台"
         ,"debug_copy_all": "全部复制"
         ,"debug_clear": "清除"
+        ,"net_checking": "正在检查网络连接..."
+        ,"net_connected": "已连接！正在启动应用程序..."
+        ,"net_no_internet": "没有网络连接。"
+        ,"net_retrying": "{s}秒后重试..."
+        ,"net_tip": "关闭此窗口退出"
+        ,"net_disconnected": "连接中断，正在返回加载界面..."
+        ,"net_reconnecting": "重新连接中..."
     },
     "de": {
         "menu_tutorial": "Tutorial",
@@ -870,6 +903,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Debug-Konsole"
         ,"debug_copy_all": "Alles kopieren"
         ,"debug_clear": "Leeren"
+        ,"net_checking": "Internetverbindung wird geprüft..."
+        ,"net_connected": "Verbunden! Anwendung wird gestartet..."
+        ,"net_no_internet": "Keine Internetverbindung."
+        ,"net_retrying": "Erneuter Versuch in {s}s..."
+        ,"net_tip": "Schließe dieses Fenster zum Beenden"
+        ,"net_disconnected": "Verbindung unterbrochen. Zurück zum Ladebildschirm..."
+        ,"net_reconnecting": "Erneut verbinden..."
     },
     "fr": {
         "menu_tutorial": "Tutoriel",
@@ -910,6 +950,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Console de débogage"
         ,"debug_copy_all": "Tout copier"
         ,"debug_clear": "Effacer"
+        ,"net_checking": "Vérification de la connexion internet..."
+        ,"net_connected": "Connecté ! Démarrage de l'application..."
+        ,"net_no_internet": "Pas de connexion internet."
+        ,"net_retrying": "Nouvelle tentative dans {s}s..."
+        ,"net_tip": "Fermez cette fenêtre pour quitter"
+        ,"net_disconnected": "Connexion perdue. Retour à l'écran de chargement..."
+        ,"net_reconnecting": "Reconnexion en cours..."
     },
     "es": {
         "menu_tutorial": "Tutorial",
@@ -950,6 +997,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Consola de depuración"
         ,"debug_copy_all": "Copiar todo"
         ,"debug_clear": "Limpiar"
+        ,"net_checking": "Comprobando conexión a internet..."
+        ,"net_connected": "¡Conectado! Iniciando aplicación..."
+        ,"net_no_internet": "Sin conexión a internet."
+        ,"net_retrying": "Reintentando en {s}s..."
+        ,"net_tip": "Cierra esta ventana para salir"
+        ,"net_disconnected": "Conexión perdida. Volviendo a la pantalla de carga..."
+        ,"net_reconnecting": "Reconectando..."
     },
     "ru": {
         "menu_tutorial": "Руководство",
@@ -990,6 +1044,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Консоль отладки"
         ,"debug_copy_all": "Копировать всё"
         ,"debug_clear": "Очистить"
+        ,"net_checking": "Проверка интернет-соединения..."
+        ,"net_connected": "Подключено! Запуск приложения..."
+        ,"net_no_internet": "Нет интернет-соединения."
+        ,"net_retrying": "Повторная попытка через {s}с..."
+        ,"net_tip": "Закройте окно для выхода"
+        ,"net_disconnected": "Соединение потеряно. Возврат к экрану загрузки..."
+        ,"net_reconnecting": "Переподключение..."
     },
     "pt": {
         "menu_tutorial": "Tutorial",
@@ -1030,6 +1091,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  Console de depuração"
         ,"debug_copy_all": "Copiar tudo"
         ,"debug_clear": "Limpar"
+        ,"net_checking": "Verificando conexão com a internet..."
+        ,"net_connected": "Conectado! Iniciando aplicativo..."
+        ,"net_no_internet": "Sem conexão com a internet."
+        ,"net_retrying": "Tentando novamente em {s}s..."
+        ,"net_tip": "Feche esta janela para sair"
+        ,"net_disconnected": "Conexão perdida. Retornando à tela de carregamento..."
+        ,"net_reconnecting": "Reconectando..."
     },
     "kr": {
         "menu_tutorial": "튜토리얼",
@@ -1070,6 +1138,13 @@ EXTRA_UI_OVERRIDES = {
         ,"debug_console_header": "⚙  디버그 콘솔"
         ,"debug_copy_all": "전체 복사"
         ,"debug_clear": "지우기"
+        ,"net_checking": "인터넷 연결 확인 중..."
+        ,"net_connected": "연결됨! 애플리케이션 시작 중..."
+        ,"net_no_internet": "인터넷 연결이 없습니다."
+        ,"net_retrying": "{s}초 후 재시도..."
+        ,"net_tip": "종료하려면 이 창을 닫으세요"
+        ,"net_disconnected": "연결이 끊겨졌습니다. 로딩 화면으로 돌아갑니다..."
+        ,"net_reconnecting": "재연결 중..."
     },
 }
 
@@ -2239,6 +2314,254 @@ class App(tk.Tk):
         threading.Thread(target=worker, daemon=True).start()
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Net Loading Screen
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _gui_check_internet(timeout: int = 4) -> bool:
+    """Lightweight internet check — tries to reach GitHub raw CDN."""
+    debug_print("[FUNC] _gui_check_internet() called")
+    try:
+        resp = requests.get(
+            "https://raw.githubusercontent.com", timeout=timeout, stream=False
+        )
+        return resp.status_code < 500
+    except Exception:
+        return False
+
+
+class NetLoadingScreen(tk.Tk):
+    """
+    Splash / loading window shown before the main App.
+    Checks internet in a background thread, retries every 5 s when offline.
+    On connect → destroys itself and launches App.
+    """
+
+    SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"]
+    RETRY_SECONDS = 5
+
+    def __init__(self, lang: str):
+        super().__init__()
+        debug_print("[FUNC] NetLoadingScreen.__init__() called")
+
+        self._lang = lang
+        self._phrases = EXTRA_UI.get(lang, EXTRA_UI["en"])
+        self._spin_idx = 0
+        self._countdown = self.RETRY_SECONDS
+        self._state = "checking"   # "checking" | "no_internet" | "connected"
+        self._keep_running = True
+
+        # ── Window setup ──────────────────────────────────────────────────
+        self.title("Pixiv OAuth Token")
+        self.resizable(False, False)
+        self.configure(bg="#0f172a")
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
+
+        # Center the window (380×280)
+        W, H = 420, 300
+        sw, sh = self.winfo_screenwidth(), self.winfo_screenheight()
+        self.geometry(f"{W}x{H}+{(sw-W)//2}+{(sh-H)//2}")
+
+        # Set icon
+        icon_path = resolve_icon_path()
+        if icon_path:
+            try:
+                self.iconbitmap(str(icon_path))
+            except Exception:
+                pass
+
+        # ── Layout ────────────────────────────────────────────────────────
+        frame = tk.Frame(self, bg="#0f172a")
+        frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        # Logo / app name
+        tk.Label(
+            frame,
+            text="Pixiv OAuth Token",
+            font=("Segoe UI", 18, "bold"),
+            fg="#38bdf8",
+            bg="#0f172a",
+        ).pack(pady=(0, 4))
+
+        tk.Label(
+            frame,
+            text="fatonyahmadfauzi",
+            font=("Segoe UI", 9),
+            fg="#475569",
+            bg="#0f172a",
+        ).pack(pady=(0, 24))
+
+        # Spinner label
+        self._spin_lbl = tk.Label(
+            frame,
+            text=self.SPINNER[0],
+            font=("Segoe UI", 26),
+            fg="#38bdf8",
+            bg="#0f172a",
+        )
+        self._spin_lbl.pack()
+
+        # Status text
+        self._status_lbl = tk.Label(
+            frame,
+            text=self._t("net_checking"),
+            font=("Segoe UI", 10),
+            fg="#94a3b8",
+            bg="#0f172a",
+            wraplength=360,
+            justify="center",
+        )
+        self._status_lbl.pack(pady=(8, 4))
+
+        # Sub-status (retry countdown / tip)
+        self._sub_lbl = tk.Label(
+            frame,
+            text=self._t("net_tip"),
+            font=("Segoe UI", 8),
+            fg="#334155",
+            bg="#0f172a",
+        )
+        self._sub_lbl.pack()
+
+        # ── Start background check ─────────────────────────────────────────
+        self._tick_spinner()
+        self._run_check()
+
+    # ── helpers ──────────────────────────────────────────────────────────────
+
+    def _t(self, key: str) -> str:
+        return self._phrases.get(key, EXTRA_UI["en"].get(key, key))
+
+    def _on_close(self):
+        debug_print("[NetLoadingScreen] Window closed by user")
+        self._keep_running = False
+        self.destroy()
+
+    # ── spinner animation ────────────────────────────────────────────────────
+
+    def _tick_spinner(self):
+        if not self._keep_running:
+            return
+        self._spin_idx = (self._spin_idx + 1) % len(self.SPINNER)
+        try:
+            self._spin_lbl.config(text=self.SPINNER[self._spin_idx])
+        except tk.TclError:
+            return
+        self.after(80, self._tick_spinner)
+
+    # ── internet-check loop ───────────────────────────────────────────────────
+
+    def _run_check(self):
+        """Start a background thread to check internet."""
+        debug_print("[NetLoadingScreen] Starting internet check thread")
+        self._state = "checking"
+        self._status_lbl.config(text=self._t("net_checking"), fg="#94a3b8")
+        self._sub_lbl.config(text=self._t("net_tip"), fg="#334155")
+        threading.Thread(target=self._check_worker, daemon=True).start()
+
+    def _check_worker(self):
+        ok = _gui_check_internet()
+        if self._keep_running:
+            self.after(0, self._on_check_result, ok)
+
+    def _on_check_result(self, ok: bool):
+        if not self._keep_running:
+            return
+        if ok:
+            debug_print("[NetLoadingScreen] Internet OK — launching App")
+            self._state = "connected"
+            self._spin_lbl.config(fg="#22c55e")
+            self._status_lbl.config(text=self._t("net_connected"), fg="#22c55e")
+            self._sub_lbl.config(text="")
+            self.after(800, self._launch_app)
+        else:
+            debug_print("[NetLoadingScreen] No internet — will retry")
+            self._state = "no_internet"
+            self._spin_lbl.config(fg="#ef4444")
+            self._status_lbl.config(text=self._t("net_no_internet"), fg="#ef4444")
+            self._countdown = self.RETRY_SECONDS
+            self._tick_countdown()
+
+    def _tick_countdown(self):
+        if not self._keep_running:
+            return
+        if self._countdown <= 0:
+            self._run_check()
+            return
+        try:
+            self._sub_lbl.config(
+                text=self._t("net_retrying").format(s=self._countdown),
+                fg="#64748b",
+            )
+        except tk.TclError:
+            return
+        self._countdown -= 1
+        self.after(1000, self._tick_countdown)
+
+    # ── launch main app ───────────────────────────────────────────────────────
+
+    def _launch_app(self):
+        debug_print("[NetLoadingScreen] Destroying splash and launching App")
+        self._keep_running = False
+        self.destroy()
+        _run_main_app(self._lang)
+
+
+def _run_main_app(lang: str):
+    """Create the main App, start connectivity monitor, run mainloop."""
+    debug_print("[FUNC] _run_main_app() called")
+    app = App(initial_lang=lang)
+
+    # ── background connectivity monitor ──────────────────────────────────────
+    _monitor_stop = threading.Event()
+
+    def _monitor():
+        debug_print("[monitor] Connectivity monitor started")
+        import time as _time
+        CHECK_INTERVAL = 15   # seconds between checks while app is running
+        FAIL_THRESHOLD = 2    # consecutive failures before showing loading screen
+
+        fails = 0
+        while not _monitor_stop.is_set():
+            _time.sleep(CHECK_INTERVAL)
+            if _monitor_stop.is_set():
+                break
+            ok = _gui_check_internet(timeout=5)
+            if ok:
+                fails = 0
+            else:
+                fails += 1
+                debug_print(f"[monitor] Connectivity fail #{fails}")
+                if fails >= FAIL_THRESHOLD:
+                    debug_print("[monitor] Connection lost — returning to loading screen")
+                    _monitor_stop.set()
+                    app.after(0, _on_connection_lost, app, lang)
+                    break
+
+    def _on_connection_lost(app_ref: App, lang: str):
+        debug_print("[monitor] Showing disconnected message then loading screen")
+        try:
+            from tkinter import messagebox as _mb
+            phrase = EXTRA_UI.get(lang, EXTRA_UI["en"]).get(
+                "net_disconnected",
+                "Connection lost. Returning to loading screen..."
+            )
+            _mb.showwarning("Pixiv OAuth Token", phrase)
+            app_ref.destroy()
+        except Exception:
+            pass
+        # Return to loading screen
+        NetLoadingScreen(lang).mainloop()
+
+    mon_thread = threading.Thread(target=_monitor, daemon=True)
+    mon_thread.start()
+
+    try:
+        app.mainloop()
+    finally:
+        _monitor_stop.set()
+
+
 if __name__ == "__main__":
     _parser = ArgumentParser(description="Pixiv OAuth Token GUI")
     _parser.add_argument(
@@ -2250,4 +2573,5 @@ if __name__ == "__main__":
     _parser.add_argument("--no-color", action="store_true", help="(ignored for GUI)")
     _args, _ = _parser.parse_known_args()
     _lang = resolve_startup_lang(_args.lang)
-    App(initial_lang=_lang).mainloop()
+    NetLoadingScreen(_lang).mainloop()
+

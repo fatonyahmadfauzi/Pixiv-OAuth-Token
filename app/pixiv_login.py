@@ -106,7 +106,7 @@ TIKTOK_URL = "https://www.tiktok.com/@fatonyahmadfauzi"
 TWITTER_URL = "https://x.com/fatonyahmad89"
 DEVELOPER_NAME = "Fatony Ahmad Fauzi"
 APP_VERSION = "v1.0.5"
-APP_BUILD_CODE = "REL-U1775122868915"
+APP_BUILD_CODE = "REL-U1775158612338"
 GITHUB_API_LATEST_RELEASE = "https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"
 RAW_MAIN_PY_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/app/pixiv_login.py"
 LATEST_MANIFEST_URL = "https://raw.githubusercontent.com/fatonyahmadfauzi/Pixiv-OAuth-Token/master/latest.json"
@@ -115,6 +115,7 @@ UPDATE_CACHE = {"latest": None, "latest_code": None, "checked_at": 0.0}
 
 def _app_dir() -> Path:
     """Return the persistent app folder (next to exe when frozen, next to script otherwise)."""
+    debug_print(f"[FUNC] _app_dir() called")
     if getattr(sys, "frozen", False):
         return Path(sys.executable).resolve().parent
     return Path(__file__).resolve().parent
@@ -2003,22 +2004,27 @@ MENU_UI = {code: {**MENU_UI_EN, **MENU_UI_OVERRIDES.get(code, {})} for code in S
 
 
 def mt(key: str, lang: str) -> str:
+    debug_print(f"[FUNC] mt() called")
     return MENU_UI.get(lang, MENU_UI_EN).get(key, MENU_UI_EN.get(key, key))
 
 
 def _rich_available() -> bool:
+    debug_print(f"[FUNC] _rich_available() called")
     return False
 
 
 def _menu_console() -> None:
+    debug_print(f"[FUNC] _menu_console() called")
     pass  # rich removed; no-op
 
 
 def _clear_menu_screen() -> None:
+    debug_print(f"[FUNC] _clear_menu_screen() called")
     os.system("cls" if os.name == "nt" else "clear")
 
 
 def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
+    debug_print(f"[FUNC] _build_menu_options() called")
     latest = _fetch_latest_release_tag_cached()
     latest_code = _get_latest_release_code_cached()
     version_label = mt("opt_version", lang)
@@ -2038,6 +2044,7 @@ def _build_menu_options(lang: str) -> list[tuple[str, str, str]]:
 
 
 def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt: str) -> str:
+    debug_print(f"[FUNC] _render_rich_option_panel() called")
     _clear_menu_screen()
     print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
     print()
@@ -2048,6 +2055,7 @@ def _render_rich_option_panel(title: str, options: list[tuple[str, str]], prompt
 
 
 def _render_rich_text_panel(title: str, lines: list[str], prompt: str | None = None) -> str | None:
+    debug_print(f"[FUNC] _render_rich_text_panel() called")
     _clear_menu_screen()
     print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
     print()
@@ -2063,6 +2071,7 @@ def _render_rich_combined_panel(
     options: list[tuple[str, str]],
     prompt: str,
 ) -> str:
+    debug_print(f"[FUNC] _render_rich_combined_panel() called")
     _clear_menu_screen()
     print(colorize(f"{title}", Ansi.CYAN + Ansi.BOLD, True))
     print()
@@ -2076,10 +2085,12 @@ def _render_rich_combined_panel(
 
 
 def _choose_boxed_option(title: str, options: list[tuple[str, str]], lang: str, color_on: bool) -> str:
+    debug_print(f"[FUNC] _choose_boxed_option() called")
     return _render_rich_option_panel(title, options, mt("select_option", lang))
 
 
 def _render_rich_main_menu(lang: str) -> None:
+    debug_print(f"[FUNC] _render_rich_main_menu() called")
     _clear_menu_screen()
     print_cli_banner(lang, True)
     print(colorize(mt('menu_title', lang), Ansi.CYAN + Ansi.BOLD, True))
@@ -2149,6 +2160,7 @@ _GITHUB_LANG_DOC_SUFFIX: dict[str, str] = {
 
 def _get_localized_doc_url(file_name: str, lang: str) -> tuple[str, str]:
     """Return (localized_url, default_english_url) for a doc file."""
+    debug_print(f"[FUNC] _get_localized_doc_url() called")
     suffix = _GITHUB_LANG_DOC_SUFFIX.get(lang)
     base = _GITHUB_RAW_BASE
     path = _GITHUB_LANG_DOCS_PATH
@@ -2231,6 +2243,7 @@ _FETCH_LABELS = {
 
 def _fl(key: str, lang: str) -> str:
     """Get fetch label string for given lang."""
+    debug_print(f"[FUNC] _fl() called")
     return _FETCH_LABELS.get(lang, _FETCH_LABELS["en"]).get(key, _FETCH_LABELS["en"][key])
 
 
@@ -2256,6 +2269,7 @@ def _fetch_github_raw(url: str, lang: str, color_on: bool, fallback_url: str | N
 
 def _display_paged_github_content(title: str, content: str, lang: str, color_on: bool) -> None:
     """Display fetched text content with paged navigation."""
+    debug_print(f"[FUNC] _display_paged_github_content() called")
     lines = content.splitlines()
     total = len(lines)
     page_size = 30
@@ -2289,6 +2303,7 @@ def _display_paged_github_content(title: str, content: str, lang: str, color_on:
 
 
 def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] _open_resources_docs_menu() called")
     options = [
         ("1", mt("res_docs_documentation", lang)),
         ("2", mt("opt_changelog", lang)),
@@ -2332,6 +2347,7 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
 
 def _gh_time_ago(iso_str: str) -> str:
     """Format ISO 8601 GitHub timestamp as relative time string."""
+    debug_print(f"[FUNC] _gh_time_ago() called")
     try:
         import datetime
         dt = datetime.datetime.fromisoformat(iso_str.replace("Z", "+00:00"))
@@ -2351,6 +2367,7 @@ def _gh_time_ago(iso_str: str) -> str:
 
 def _open_issues_cli(lang: str, color_on: bool) -> None:
     """Fetch and display GitHub Issues with Open/Closed/PR tabs, like the GitHub website."""
+    debug_print(f"[FUNC] _open_issues_cli() called")
     REPO    = "fatonyahmadfauzi/Pixiv-OAuth-Token"
     HEADERS = {"Accept": "application/vnd.github+json"}
     NEW_URL = f"https://github.com/{REPO}/issues/new/choose"
@@ -2471,6 +2488,7 @@ def _open_issues_cli(lang: str, color_on: bool) -> None:
     # ── Fetch all data upfront (with per-endpoint retry) ───────────────
     def _gh_fetch(url: str, max_retries: int = 3) -> list:
         """Fetch a GitHub API endpoint; retry up to max_retries times on 5xx."""
+        debug_print(f"[FUNC] _gh_fetch() called")
         delay = 1.5
         last_exc: Exception = Exception("unknown")
         for attempt in range(max_retries):
@@ -2532,6 +2550,7 @@ def _open_issues_cli(lang: str, color_on: bool) -> None:
         print()
         # Tab bar
         def _tab_label(label: str, count: int, active: bool) -> str:
+            debug_print(f"[FUNC] _tab_label() called")
             s = f"{label} ({count})"
             return colorize(s, Ansi.GREEN + Ansi.BOLD if active else Ansi.DIM, color_on)
         tabs = (
@@ -2598,6 +2617,7 @@ def _open_issues_cli(lang: str, color_on: bool) -> None:
 
 def _open_discussions_cli(lang: str, color_on: bool) -> None:
     """Display GitHub Discussions page (static, no API call — avoids GraphQL 403 rate-limit)."""
+    debug_print(f"[FUNC] _open_discussions_cli() called")
     REPO     = "fatonyahmadfauzi/Pixiv-OAuth-Token"
     DISC_URL = f"https://github.com/{REPO}/discussions"
     NEW_URL  = f"https://github.com/{REPO}/discussions/new/choose"
@@ -2903,6 +2923,7 @@ def _open_discussions_cli(lang: str, color_on: bool) -> None:
 
 def _open_donate_screen(lang: str, color_on: bool) -> None:
     """Display QRIS donate screen with QR code rendered in terminal."""
+    debug_print(f"[FUNC] _open_donate_screen() called")
     # Localized strings per language
     _DONATE_MSGS: dict[str, dict[str, str]] = {
         "en": {
@@ -3015,6 +3036,7 @@ def _open_donate_screen(lang: str, color_on: bool) -> None:
     )
 
     def _render_qr_ascii() -> str:
+        debug_print(f"[FUNC] _render_qr_ascii() called")
         try:
             import qrcode  # type: ignore
             import io
@@ -3055,6 +3077,7 @@ def _open_donate_screen(lang: str, color_on: bool) -> None:
 
 def _open_contact_us_cli(lang: str, color_on: bool) -> None:
     """Terminal contact-us form — collects input then POSTs to FormSubmit."""
+    debug_print(f"[FUNC] _open_contact_us_cli() called")
     _L: dict[str, dict[str, str]] = {
         "en": {
             "title":      "Contact Us",
@@ -3260,6 +3283,7 @@ def _open_contact_us_cli(lang: str, color_on: bool) -> None:
 
     def _ask(field: str, required: bool = True) -> str | None:
         """Prompt user for a field value, re-ask if required and blank."""
+        debug_print(f"[FUNC] _ask() called")
         marker = colorize(" *", Ansi.RED, color_on) if required else ""
         while True:
             val = input(colorize(f"{field}{marker} {L['type_zero']}: ", Ansi.CYAN, color_on)).strip()
@@ -3428,6 +3452,7 @@ def _open_social_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def _open_resources_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] _open_resources_menu() called")
     while True:
         print()
         print(colorize(f"[1] {mt('res_repo', lang)}", Ansi.BLUE, color_on))
@@ -3444,6 +3469,7 @@ def _open_resources_menu(lang: str, color_on: bool) -> None:
             print(colorize(mt("invalid_option", lang), Ansi.RED, color_on))
 
 def _open_contact_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] _open_contact_menu() called")
     while True:
         print()
         print(colorize(f"[1] {mt('contact_tiktok', lang)}", Ansi.BLUE, color_on))
@@ -3494,6 +3520,7 @@ def _open_changelog(lang: str = "en", color_on: bool = True) -> None:
 
 
 def _open_debug_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] _open_debug_menu() called")
     while True:
         recent_logs = DEBUG_LOGS[-30:] if DEBUG_LOGS else [mt("debug_empty", lang)]
         _clear_menu_screen()
@@ -3520,6 +3547,7 @@ def _open_debug_menu(lang: str, color_on: bool) -> None:
 
 
 def _normalize_version_tag(version: str | None) -> str | None:
+    debug_print(f"[FUNC] _normalize_version_tag() called")
     if not version:
         return None
     v = str(version).strip()
@@ -3529,6 +3557,7 @@ def _normalize_version_tag(version: str | None) -> str | None:
 
 
 def _version_key(version: str | None) -> tuple[int, ...]:
+    debug_print(f"[FUNC] _version_key() called")
     if not version:
         return (0, 0, 0)
     cleaned = str(version).strip().lstrip("vV")
@@ -3544,6 +3573,7 @@ def _version_key(version: str | None) -> tuple[int, ...]:
 
 
 def _fetch_latest_manifest_meta() -> tuple[str | None, str | None]:
+    debug_print(f"[FUNC] _fetch_latest_manifest_meta() called")
     try:
         response = requests.get(LATEST_MANIFEST_URL, timeout=15)
         response.raise_for_status()
@@ -3556,6 +3586,7 @@ def _fetch_latest_manifest_meta() -> tuple[str | None, str | None]:
 
 
 def _fetch_latest_release_meta() -> tuple[str | None, str | None]:
+    debug_print(f"[FUNC] _fetch_latest_release_meta() called")
     manifest_tag, manifest_code = _fetch_latest_manifest_meta()
     if manifest_tag:
         return manifest_tag, manifest_code
@@ -3572,11 +3603,13 @@ def _fetch_latest_release_meta() -> tuple[str | None, str | None]:
 
 
 def _fetch_latest_release_tag() -> str | None:
+    debug_print(f"[FUNC] _fetch_latest_release_tag() called")
     tag, _ = _fetch_latest_release_meta()
     return tag
 
 
 def _fetch_latest_release_tag_cached(force: bool = False) -> str | None:
+    debug_print(f"[FUNC] _fetch_latest_release_tag_cached() called")
     now = time.time()
     if not force and UPDATE_CACHE["checked_at"] and now - float(UPDATE_CACHE["checked_at"]) < 300:
         return UPDATE_CACHE["latest"]
@@ -3588,6 +3621,7 @@ def _fetch_latest_release_tag_cached(force: bool = False) -> str | None:
 
 
 def _get_latest_release_code_cached(force: bool = False) -> str | None:
+    debug_print(f"[FUNC] _get_latest_release_code_cached() called")
     _fetch_latest_release_tag_cached(force=force)
     return UPDATE_CACHE["latest_code"]
 
@@ -3596,6 +3630,7 @@ DOWNLOADS_BASE_URL = "https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/raw/
 
 def _detect_arch_suffix(exe_path: Path) -> str:
     """Detect architecture suffix from exe filename (e.g. ' x64', ' ARM64', ' x86', or '' for generic)."""
+    debug_print(f"[FUNC] _detect_arch_suffix() called")
     name_lower = exe_path.stem.lower()
     if "arm64" in name_lower:
         return " ARM64"
@@ -3607,6 +3642,7 @@ def _detect_arch_suffix(exe_path: Path) -> str:
 
 
 def _get_cli_portable_url(exe_path: Path) -> str:
+    debug_print(f"[FUNC] _get_cli_portable_url() called")
     arch = _detect_arch_suffix(exe_path)
     from urllib.parse import quote
     filename = f"Pixiv OAuth CLi (Portable){arch}_latest.exe"
@@ -3614,12 +3650,14 @@ def _get_cli_portable_url(exe_path: Path) -> str:
 
 
 def _get_cli_setup_url(exe_path: Path) -> str:
+    debug_print(f"[FUNC] _get_cli_setup_url() called")
     arch = _detect_arch_suffix(exe_path)
     from urllib.parse import quote
     filename = f"Pixiv OAuth CLi Setup{arch}_latest.exe"
     return f"{DOWNLOADS_BASE_URL}/{quote(filename)}"
 
 def _self_update(target_version: str, target_code: str) -> bool:
+    debug_print(f"[FUNC] _self_update() called")
     _clear_menu_screen()
     print(colorize("Downloading latest update and installing requirements...", Ansi.CYAN, True))
     is_frozen = getattr(sys, "frozen", False)
@@ -3758,6 +3796,7 @@ def _open_version_menu(lang: str, color_on: bool) -> None:
 
 
 def show_developer_info_cli(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] show_developer_info_cli() called")
     print()
     print(colorize(mt("developer_info", lang), Ansi.BOLD + Ansi.CYAN, color_on))
     print(colorize(f"{mt('developer', lang)}: {DEVELOPER_NAME}", Ansi.BOLD, color_on))
@@ -3845,6 +3884,7 @@ def _nl(key: str, lang: str) -> str:
 
 def _check_internet(timeout: int = 4) -> bool:
     """Try to reach GitHub (used for docs) and Pixiv OAuth endpoint."""
+    debug_print(f"[FUNC] _check_internet() called")
     try:
         resp = requests.get(
             "https://raw.githubusercontent.com", timeout=timeout, stream=False
@@ -3856,6 +3896,7 @@ def _check_internet(timeout: int = 4) -> bool:
 
 def _startup_internet_check(lang: str, color_on: bool) -> None:
     """Block until internet is available, displaying a spinner."""
+    debug_print(f"[FUNC] _startup_internet_check() called")
     import itertools
     import sys
     import threading
@@ -3866,6 +3907,7 @@ def _startup_internet_check(lang: str, color_on: bool) -> None:
     _result: list[bool] = [False]
 
     def _checker() -> None:
+        debug_print(f"[FUNC] _checker() called")
         _result[0] = _check_internet()
         _stop_event.set()
 
@@ -3916,6 +3958,7 @@ def _startup_internet_check(lang: str, color_on: bool) -> None:
 
 
 def run_interactive_menu(lang: str, color_on: bool) -> None:
+    debug_print(f"[FUNC] run_interactive_menu() called")
     current_lang = lang
     _startup_internet_check(current_lang, color_on)
     while True:
@@ -3980,6 +4023,7 @@ class Ansi:
 
 
 def _supports_color(no_color: bool) -> bool:
+    debug_print(f"[FUNC] _supports_color() called")
     if no_color:
         return False
     if not hasattr(stdout, "isatty") or not stdout.isatty():
@@ -3999,6 +4043,7 @@ def colorize(text: str, color: str, enabled: bool) -> str:
 
 # ===== CONFIG FILE =====
 def get_current_app_version() -> str:
+    debug_print(f"[FUNC] get_current_app_version() called")
     try:
         if VERSION_FILE.exists():
             raw = VERSION_FILE.read_text(encoding="utf-8").strip()
@@ -4020,6 +4065,7 @@ def get_current_app_version() -> str:
 
 
 def get_current_app_code() -> str:
+    debug_print(f"[FUNC] get_current_app_code() called")
     try:
         if VERSION_FILE.exists():
             raw = VERSION_FILE.read_text(encoding="utf-8").strip()
@@ -4043,6 +4089,7 @@ def get_current_app_code() -> str:
 
 
 def set_current_app_identity(version: str, build_code: str) -> None:
+    debug_print(f"[FUNC] set_current_app_identity() called")
     identity = {
         "version": version.strip(),
         "build_code": build_code.strip(),
@@ -4128,6 +4175,7 @@ def detect_system_lang() -> str | None:
 
 
 def map_locale_to_lang(two_letter: str) -> str | None:
+    debug_print(f"[FUNC] map_locale_to_lang() called")
     # Map OS locale language to our supported codes
     mapping = {
         "en": "en",
@@ -4185,6 +4233,7 @@ def oauth_pkce(transform):
 
 # ===== CLIPBOARD =====
 def _copy_to_clipboard(value: str) -> bool:
+    debug_print(f"[FUNC] _copy_to_clipboard() called")
     if not value:
         return False
     try:
@@ -4201,6 +4250,7 @@ def _copy_to_clipboard(value: str) -> bool:
 
 
 def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: str = "") -> None:
+    debug_print(f"[FUNC] _post_login_actions() called")
     L = get_lang(lang)
     status_msg: str = ""
     status_opt: str = ""  # "1", "2", or "3"
@@ -4219,6 +4269,7 @@ def _post_login_actions(tokens: dict, lang: str, color_on: bool, detected_code: 
         print()
 
         def _opt_line(num: str, label: str) -> str:
+            debug_print(f"[FUNC] _opt_line() called")
             base = f"[{num}] {label}"
             if status_opt == num and status_msg:
                 return base + colorize(f"  ({status_msg})", Ansi.DIM, color_on)
@@ -4285,6 +4336,7 @@ def print_auth_token_response(response, lang: str, color_on: bool) -> dict | Non
 
 # ===== LOGIN FLOW =====
 def login(lang: str, color_on: bool):
+    debug_print(f"[FUNC] login() called")
     L = get_lang(lang)
 
     code_verifier, code_challenge = oauth_pkce(s256)
@@ -4369,6 +4421,7 @@ def refresh(refresh_token: str, lang: str, color_on: bool):
 
 
 def print_config(lang: str, color_on: bool):
+    debug_print(f"[FUNC] print_config() called")
     L = get_lang(lang)
     cfg_lang = get_default_lang_from_config()
     sys_lang = detect_system_lang()
@@ -4381,6 +4434,7 @@ def print_config(lang: str, color_on: bool):
 
 
 def _pause_before_exit_if_frozen() -> None:
+    debug_print(f"[FUNC] _pause_before_exit_if_frozen() called")
     if not getattr(sys, "frozen", False):
         return
     try:
@@ -4391,6 +4445,7 @@ def _pause_before_exit_if_frozen() -> None:
 
 # ===== MAIN =====
 def main():
+    debug_print(f"[FUNC] main() called")
     parser = ArgumentParser(description="Pixiv OAuth Login Tool")
     parser.add_argument("--no-color", action="store_true", help="Disable colored output")
     parser.add_argument(

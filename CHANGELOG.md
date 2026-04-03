@@ -13,6 +13,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [1.0.5] - 2026-04-03
+
+### ✨ Added
+
+- **Internet-Aware GUI Startup**
+  Before launching the main GUI window, a smart `NetLoadingScreen` splash screen now performs a pre-flight internet connectivity check. If no connection is found, it safely retries in the background until connected. Furthermore, an active runtime monitor will display an alert bounding back to the loading screen if the connection drops midway during usage.
+- **Native GUI Documentation Modals**
+  Replaced external browser redirects for critical documentation. **Changelog**, **Terms & Conditions**, and **Privacy Policy** are now displayed inside native, dynamic, and clean `tkinter` dialog windows (fetching asynchronously straight from the GitHub repo).
+- **Comprehensive Terminal Localizations**
+  The interactive GitHub CLI interface (Issues navigation) and all terminal-based Legal/Support layouts are now authentically localized across all 11 supported languages.
+
+### ✨ Changed
+
+- **Redesigned CLI Aesthetics**
+  Removed legacy decorative box borders for a significantly cleaner, modernized, left-aligned terminal display.
+- **Automated Digital Code Signing**
+  Substantially upgraded the `sign_auto.bat` pipeline. The script now dynamically auto-discovers `signtool.exe` deep within the Windows SDK, effortlessly applying the self-signed certificate across all generated builds concurrently (including Installer setups and Download `_latest` aliases) to suppress basic SmartScreen 'Unknown Publisher' flags.
+
+### 🐞 Fixed
+
+- **Installer Properties Bug**
+  Fixed an anomaly where the Installer `Setup.exe` displayed `0.0.0.0` in Windows Properties. The builder now properly injects the strict PE `VersionInfoVersion` headers during compilation to reflect the exact matching release number (e.g., 1.0.5.0) immediately upon rendering.
+
+---
+
 ## [1.0.4] - 2026-03-29
 
 ### 🐞 Fixed

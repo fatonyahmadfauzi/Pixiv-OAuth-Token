@@ -1,6 +1,7 @@
 # Pixiv OAuth Token
 
-> 🌐 Disponible en otros idiomas: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+
+> 🌐 Disponible en otros idiomas: [English](..\..\..\../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 
@@ -12,9 +13,9 @@ Un conjunto de herramientas para generar tokens Pixiv OAuth en tres modos:
 
 ## Requisitos
 
-- Pitón 3.11+
+- Python 3.11+
 - Windows (requerido para los scripts de compilación `.bat` y el instalador de Inno Setup)
-- Dependencias de Python de `app/requirements.txt`
+- Python dependencias de `app/requirements.txt`
 
 ## Ejecutar desde la fuente
 
@@ -24,27 +25,27 @@ python -m pip install -r requirements.txt
 python pixiv_login.py
 ```
 
-Ejecute la GUI:
+Ejecute GUI:
 
 ```bash
 cd app
 python pixiv_login_gui.py
 ```
 
-### Funciones de la GUI
+### GUI Características
 
-| Característica              | Descripción                                                                                                                                                                                                                                                              |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Multilingüe**             | 11 idiomas: detectado automáticamente desde la configuración, conmutable en vivo a través del menú desplegable                                                                                                                                                           |
+| Característica | Descripción |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Multilingüe** | 11 idiomas: detectado automáticamente desde la configuración, conmutable en vivo a través del menú desplegable |
 | **⚙ Consola de depuración** | Botón en el encabezado superior derecho; abre una terminal oscura que registra **todos** los eventos (clics en botones, cambios de idioma, solicitudes HTTP, pasos de PKCE, portapapeles, guardados de configuración, advertencias) en tiempo real y en el idioma actual |
-| **Intercambio de tokens**   | Pegue pixiv:// URL o código sin formato → intercambiar por acceso + token de actualización                                                                                                                                                                               |
-| **Actualizar token**        | Actualización con un clic utilizando el token de actualización guardado desde la configuración                                                                                                                                                                           |
-| **Copiar tokens**           | Copie access_token/refresh_token al portapapeles al instante                                                                                                                                                                                                             |
-| **Tutorial**                | Guía de imágenes paso a paso integrada en la aplicación                                                                                                                                                                                                                  |
+| **Intercambio de tokens** | Pegue pixiv:// URL o código sin formato → intercambiar por acceso + token de actualización |
+| **Actualizar token** | Actualización con un clic utilizando el token de actualización guardado desde la configuración |
+| **Copiar tokens** | Copie access_token/refresh_token al portapapeles al instante |
+| **Tutorial** | Guía de imágenes paso a paso integrada en la aplicación |
 
 ## Construir
 
-### Construya todos los artefactos (CLI + GUI + Instalador + ZIP)
+### Construye todos los artefactos (CLI + GUI + Instalador + ZIP)
 
 ```bat
 cd scripts
@@ -63,7 +64,7 @@ Banderas opcionales:
 - `noinst` (omitir instalador)
 - `nosign` (saltar la firma)
 - `nozip` (saltar zip)
-- `nogui` (omitir GUI)
+- `nogui` (saltar GUI)
 - `nopause` (sin pausa al final)
 
 Ejemplo:
@@ -75,11 +76,11 @@ build_all_pro.bat patch noinst nosign
 
 ### Principales resultados
 
-- CLI portátil: `dist_portable\Pixiv OAuth CLi (Portable).exe`
-- GUI portátil: `dist_gui\Pixiv OAuth GUi (Portable).exe`
-- Instalador unificado: `dist_installer\PixivLoginSetup_v<version>.exe` (Instala CLI + GUI)
-- CLI del instalador: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Copia del instalador unificado)
-- GUI del instalador: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Copia del instalador unificado)
+- Portátil CLI: `dist_portable\Pixiv OAuth CLi (Portable).exe`
+- Portátil GUI: `dist_gui\Pixiv OAuth GUi (Portable).exe`
+- Instalador unificado: `dist_installer\PixivLoginSetup_v<version>.exe` (Instala ambos CLI + GUI)
+- Instalador CLI: `dist_installer\Pixiv OAuth CLi Setup_v<version>.exe` (Copia del instalador unificado)
+- Instalador GUI: `dist_installer\Pixiv OAuth GUi Setup_v<version>.exe` (Copia del instalador unificado)
 - Lanzamiento ZIP: `PixivOAuthRelease_v<version>.zip`
 - Carpeta sincronizada automáticamente: `downloads/` (último archivo portátil/configuración + ZIP de lanzamiento)
 
@@ -100,7 +101,7 @@ La versión/identidad de compilación de la aplicación se almacena en `version.
 - `version`: versión semántica (`X.Y.Z`)
 - `build_code`: identificador de compilación único
 
-El respaldo predeterminado para no lanzamiento ahora es `BUILD-UNKNOWN` (en lugar de `REL-LOCAL`), mientras que los golpes de lanzamiento generan códigos de compilación de estilo Unix a través de `scripts/bump_version.py`:
+El respaldo predeterminado que no es de lanzamiento ahora es `BUILD-UNKNOWN` (en lugar de `REL-LOCAL`), mientras que los golpes de lanzamiento generan códigos de compilación de estilo Unix a través de `scripts/bump_version.py`:
 
 - `REL-U<unix_ms>`
 
@@ -113,25 +114,21 @@ Una aplicación web responsiva y altamente optimizada que ofrece soporte dinámi
 - **Páginas extensas**: página de inicio, descargas, tutorial, contacto, problemas y relaciones públicas, seguimiento de debates, visor de documentación Markdown e integración de soporte/donación.
 - **SEO avanzado**: etiquetas `<meta>` localizadas inyectadas automáticamente, datos estructurados JSON-LD extensos (enlaces de sitio, aplicaciones de software, etc.), generación automatizada de `hreflang`, `robots.txt` y `sitemap.xml`.
 - **Seguridad y rendimiento**: ofuscación automática de JavaScript (manipulación extrema), minificación de HTML/CSS (a través de `cd web && node build_minify.js`) y prevención de limpieza `XSS` a través de `escapeHTML`.
-- **GitHub API Proxy**: los puntos finales Vercel sin servidor (`/api/github`) solicitan GitHub API utilizando un token de acceso personal (`GITHUB_PAT`) para evitar por completo los límites de tarifas públicas.
+- **GitHub API Proxy**: solicitudes de proxy GitHub API de puntos finales Vercel sin servidor (`/api/github`) que utilizan un token de acceso personal (`GITHUB_PAT`) para evitar por completo los límites de tarifas públicas.
 
 ### Implementar en Vercel
 
 1. Empuje el repositorio a GitHub.
 2. Vercel → **Agregar nuevo...** → **Proyecto** → importar este repositorio.
 3. Configure sus variables de entorno en Vercel:
-
-- `PIXIV_CLIENT_SECRET`: Su secreto de cliente Pixiv OAuth.
+- `PIXIV_CLIENT_SECRET`: Tu secreto de cliente Pixiv OAuth.
 - `GITHUB_PAT`: opcional pero muy recomendable (su token de acceso personal GitHub para evitar límites de tasa en emisiones y lanzamientos de repositorios).
-
 4. `vercel.json` ya configura:
-
 - Limpiar URL (eliminar `.html`)
 - Alojamiento estático de `public/`
 - APIs sin servidor en `/api/*`
 - Enrutamiento de páginas 404 personalizado incorporado
 - Almacenamiento en caché en un futuro lejano a través de encabezados de Edge Cache.
-
 5. Implementar.
 
 > [!IMPORTANTE]
@@ -147,10 +144,10 @@ URL básica:
 
 Archivos:
 
-- GUI portátil: `Pixiv OAuth GUi (Portable).exe`
-- GUI de configuración: `Pixiv OAuth GUi Setup_v<version>.exe`
-- CLI portátil: `Pixiv OAuth CLi (Portable).exe`
-- CLI de configuración: `Pixiv OAuth CLi Setup_v<version>.exe`
+- Portátil GUI: `Pixiv OAuth GUi (Portable).exe`
+- Configuración GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
+- Portátil CLI: `Pixiv OAuth CLi (Portable).exe`
+- Configuración CLI: `Pixiv OAuth CLi Setup_v<version>.exe`
 
 ### PowerShell (detección automática de activos de la última versión)
 
@@ -226,7 +223,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## Instalación de Python
+## Python instalar
 
 ```bash
 cd app
@@ -244,19 +241,21 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 Vea todos los cambios notables para cada versión en el archivo [Registro de cambios](CHANGELOG-ES.md).
 📦 También puede ver las notas de la versión directamente en la [página de lanzamientos GitHub](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
-### Último: v1.0.4 (2026-03-29)
-
-**🐞 Corregido**
-
-- CLI/GUI portátil: la versión ya no vuelve a la versión anterior después de la actualización: `VERSION_FILE` / `CONFIG_FILE` ahora se guardan correctamente junto a `.exe` en lugar de la carpeta de extracción temporal de PyInstaller.
-- Actualización congelada de CLI: ahora reemplaza correctamente el `.exe` real mediante un script de actualización `.bat` en lugar de sobrescribir un archivo temporal.
+### Último: v1.0.5 (2026-04-03)
 
 **✨ Agregado**
 
-- **Actualización basada en la arquitectura**: tanto la CLI como la GUI ahora detectan automáticamente la arquitectura en ejecución (`x64`, `x86`, `ARM64`) y descargan la variante de compilación correspondiente al actualizar.
-- **Flujo de actualización de la configuración de CLI**: CLI ahora ejecuta silenciosamente el instalador de configuración cuando se actualiza desde una instalación `Program Files` (refleja el comportamiento de la GUI).
+- **Inicio de GUI compatible con Internet**: verificación previa al vuelo de la conexión inteligente antes de iniciar el GUI, completa con monitoreo de conexión en tiempo de ejecución en vivo.
+- **Modales de documentación nativos GUI**: los términos y condiciones, la política de privacidad y el registro de cambios ahora se presentan directamente en ventanas emergentes dinámicas en lugar de forzar redireccionamientos web.
+- **Localizaciones completas de terminales**: el rastreador GitHub CLI y las páginas legales ahora están traducidas de forma auténtica en los 11 idiomas admitidos.
 
-**🔜 Próximamente en la próxima actualización**
+**✨ Cambiado y arreglado**
+
+- **Firma de código digital automatizada**: todos los ejecutables incluyen de forma nativa identidades autofirmadas para suprimir Windows SmartScreen.
+- **Error en las propiedades del instalador**: los ejecutables de configuración transmiten correctamente las versiones de archivos `1.0.5.0` estrictamente en los encabezados de Windows PE en lugar de tener el valor predeterminado ceros.
+- **Estética CLI rediseñada**: se eliminaron los bordes del cuadro de la interfaz de usuario para lograr una elegante pantalla de terminal alineada a la izquierda.
+
+**🔜 Próximamente en la actualización**
 
 - Soporte web móvil: la aplicación web obtendrá un diseño totalmente responsivo para navegadores móviles.
 

@@ -2,6 +2,7 @@
 
 > 🌐 Available in other languages: [Polski](web/public/docs/lang/README-PL.md) | [中文](web/public/docs/lang/README-ZH.md) | [日本語](web/public/docs/lang/README-JP.md) | [Deutsch](web/public/docs/lang/README-DE.md) | [Français](web/public/docs/lang/README-FR.md) | [Español](web/public/docs/lang/README-ES.md) | [Русский](web/public/docs/lang/README-RU.md) | [Português](web/public/docs/lang/README-PT.md) | [Bahasa Indonesia](web/public/docs/lang/README-ID.md) | [한국어](web/public/docs/lang/README-KR.md)
 
+
 A toolkit to generate Pixiv OAuth tokens in three modes:
 
 - CLI (`app/pixiv_login.py`)
@@ -238,17 +239,19 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 See all notable changes for each version in the [CHANGELOG.md](CHANGELOG.md) file.  
 📦 You can also view release notes directly on the [GitHub Releases page](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).
 
-### Latest: v1.0.4 (2026-03-29)
-
-**🐞 Fixed**
-
-- Portable CLI/GUI: version no longer reverts to old version after update — `VERSION_FILE` / `CONFIG_FILE` are now correctly saved next to the `.exe` instead of the temporary PyInstaller extraction folder.
-- CLI frozen update: now properly replaces the actual `.exe` via a `.bat` updater script instead of overwriting a temp file.
+### Latest: v1.0.5 (2026-04-03)
 
 **✨ Added**
 
-- **Architecture-aware update** — both CLI and GUI now automatically detect the running architecture (`x64`, `x86`, `ARM64`) and download the matching build variant when updating.
-- **CLI setup update flow** — CLI now silently runs the setup installer when updating from a `Program Files` installation (mirrors GUI behavior).
+- **Internet-Aware GUI Startup** — Smart connection pre-flight check before booting the GUI, complete with live runtime connection monitoring.
+- **Native GUI Documentation Modals** — Terms & Conditions, Privacy Policy, and Changelog are now presented in dynamic popups directly rather than forcing web redirects.
+- **Comprehensive Terminal Localizations** — The GitHub CLI tracker and legal pages are now authentically translated across all 11 supported languages.
+
+**✨ Changed & Fixed**
+
+- **Automated Digital Code Signing** — All executables natively bundle self-signed identity to suppress Windows SmartScreen.
+- **Installer Properties Bug** — Setup executables properly broadcast `1.0.5.0` File Versions strictly into the Windows PE headers instead of defaulting to zeros.
+- **Redesigned CLI Aesthetics** — UI box borders were eradicated for a sleek left-aligned terminal display.
 
 **🔜 Coming in next update**
 

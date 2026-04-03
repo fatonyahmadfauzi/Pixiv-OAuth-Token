@@ -1,18 +1,19 @@
 # Pixiv OAuth Token
 
-> 🌐 다른 언어로도 사용 가능: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md)
+
+> 🌐 다른 언어로도 사용 가능: [English](..\..\..\../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md)
 
 ---
 
 세 가지 모드로 Pixiv OAuth 토큰을 생성하는 툴킷:
 
-- CLI(`app/pixiv_login.py`)
-- GUI(`app/pixiv_login_gui.py`)
+- CLI (`app/pixiv_login.py`)
+- GUI (`app/pixiv_login_gui.py`)
 - 웹 앱(`web/public/` + 서버리스 API)
 
 ## 요구 사항
 
-- 파이썬 3.11+
+- Python 3.11+
 - Windows(`.bat` 빌드 스크립트 및 Inno 설치 프로그램에 필요)
 - `app/requirements.txt`의 Python 종속성
 
@@ -33,14 +34,14 @@ python pixiv_login_gui.py
 
 ### GUI 기능
 
-| 기능              | 설명                                                                                                                                                                    |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **다국어**        | 11개 언어 — 구성에서 자동 감지, 드롭다운을 통해 실시간으로 전환 가능                                                                                                    |
+| 기능 | 설명 |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **다국어** | 11개 언어 — 구성에서 자동 감지, 드롭다운을 통해 실시간으로 전환 가능 |
 | **⚙ 디버그 콘솔** | 오른쪽 상단 헤더의 버튼; 실시간 및 현재 언어로 **모든** 이벤트(버튼 클릭, 언어 변경, HTTP 요청, PKCE 단계, 클립보드, 구성 저장, 경고)를 기록하는 어두운 터미널을 엽니다 |
-| **토큰 교환**     | pixiv:// URL 또는 원시 코드 붙여넣기 → 액세스 교환 + 새로 고침 토큰                                                                                                     |
-| **새로고침 토큰** | 구성에서 저장된 새로 고침 토큰을 사용하여 원클릭 새로 고침                                                                                                              |
-| **토큰 복사**     | access_token/refresh_token을 클립보드에 즉시 복사                                                                                                                       |
-| **튜토리얼**      | 앱에 내장된 단계별 이미지 가이드                                                                                                                                        |
+| **토큰 교환** | pixiv:// URL 또는 원시 코드 붙여넣기 → 액세스 교환 + 새로 고침 토큰 |
+| **새로고침 토큰** | 구성에서 저장된 새로 고침 토큰을 사용하여 원클릭 새로 고침 |
+| **토큰 복사** | access_token/refresh_token을 클립보드에 즉시 복사 |
+| **튜토리얼** | 앱에 내장된 단계별 이미지 가이드 |
 
 ## 짓다
 
@@ -104,7 +105,7 @@ PFX 파일이 없으면 서명을 건너뜁니다.
 
 - `REL-U<unix_ms>`
 
-## 웹버전(Vercel)
+## 웹 버전(Vercel)
 
 동적 다국어 지원(자동 감지 기능이 있는 11개 언어) 및 포괄적인 SEO 메타데이터를 특징으로 하는 고도로 최적화된 반응형 웹 앱입니다.
 
@@ -120,24 +121,20 @@ PFX 파일이 없으면 서명을 건너뜁니다.
 1. 저장소를 GitHub에 푸시합니다.
 2. Vercel → **새로 추가...** → **프로젝트** → 이 저장소를 가져옵니다.
 3. Vercel에서 환경 변수를 설정합니다.
-
 - `PIXIV_CLIENT_SECRET`: Pixiv OAuth 클라이언트 비밀번호입니다.
 - `GITHUB_PAT`: 선택 사항이지만 적극 권장됩니다(repo 문제 및 릴리스에 대한 속도 제한을 피하기 위한 GitHub 개인 액세스 토큰).
-
 4. `vercel.json`은(는) 이미 다음을 구성했습니다.
-
 - URL 정리(`.html` 제거)
 - `public/`의 정적 호스팅
 - `/api/*`의 서버리스 APIs
 - 내장된 사용자 정의 404 페이지 라우팅
 - Edge Cache 헤더를 통한 먼 미래의 캐싱.
-
 5. 배포.
 
 > [!중요]
 > HTML, CSS 또는 JS를 변경하는 경우 배포하기 전에 `cd web && node build_minify.js`을 실행하여 자동으로 코드를 난독화하고 자산을 압축해야 합니다.
 
-> 보안 참고 사항: 프로덕션의 경우 항상 Vercel 프로젝트 환경 변수에 `PIXIV_CLIENT_SECRET`을 설정하세요.
+> 보안 참고사항: 프로덕션의 경우 항상 Vercel 프로젝트 환경 변수에 `PIXIV_CLIENT_SECRET`을 설정하세요.
 
 ## 애플리케이션 다운로드(최신 릴리스)
 
@@ -148,7 +145,7 @@ PFX 파일이 없으면 서명을 건너뜁니다.
 파일:
 
 - 휴대용 GUI: `Pixiv OAuth GUi (Portable).exe`
-- 설정 GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
+- GUI 설정: `Pixiv OAuth GUi Setup_v<version>.exe`
 - 휴대용 CLI: `Pixiv OAuth CLi (Portable).exe`
 - CLI 설정: `Pixiv OAuth CLi Setup_v<version>.exe`
 
@@ -226,7 +223,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## 파이썬 설치
+## Python 설치
 
 ```bash
 cd app
@@ -244,21 +241,23 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 [변경 내역](CHANGELOG-KR.md) 파일에서 각 버전의 주요 변경 사항을 모두 확인하세요.
 📦 [GitHub 릴리스 페이지](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases).에서 직접 릴리스 노트를 볼 수도 있습니다.
 
-### 최신: v1.0.4 (2026-03-29)
-
-**🐞 수정됨**
-
-- 휴대용 CLI/GUI: 업데이트 후 버전이 더 이상 이전 버전으로 되돌아가지 않습니다. — `VERSION_FILE` / `CONFIG_FILE`은 이제 임시 PyInstaller 추출 폴더 대신 `.exe` 옆에 올바르게 저장됩니다.
-- CLI 고정 업데이트: 이제 임시 파일을 덮어쓰는 대신 `.bat` 업데이트 스크립트를 통해 실제 `.exe`을 올바르게 대체합니다.
+### 최근: v1.0.5 (2026-04-03)
 
 **✨ 추가됨**
 
-- **아키텍처 인식 업데이트** — 이제 CLI와 GUI 모두 실행 중인 아키텍처(`x64`, `x86`, `ARM64`)를 자동으로 감지하고 업데이트 시 일치하는 빌드 변형을 다운로드합니다.
-- **CLI 설정 업데이트 흐름** — CLI는 이제 `Program Files` 설치에서 업데이트할 때 설치 설치 프로그램을 자동으로 실행합니다(GUI 동작 미러링).
+- **인터넷 인식 GUI 시작** — GUI을 부팅하기 전 스마트 연결 비행 전 확인, 실시간 런타임 연결 모니터링 완료.
+- **네이티브 GUI 문서 모달** — 이제 이용 약관, 개인 정보 보호 정책 및 변경 로그가 웹 리디렉션을 강제하는 대신 동적 팝업으로 직접 표시됩니다.
+- **포괄적인 터미널 현지화** — GitHub CLI 추적기 및 법률 페이지가 이제 지원되는 11개 언어 모두에서 확실하게 번역되었습니다.
+
+**✨ 변경 및 수정됨**
+
+- **자동 디지털 코드 서명** — 모든 실행 파일은 자체 서명된 ID를 기본적으로 번들로 묶어 Windows SmartScreen을 억제합니다.
+- **설치 프로그램 속성 버그** — 설치 실행 파일은 `1.0.5.0` 파일 버전을 기본값이 0이 아닌 Windows PE 헤더로 올바르게 브로드캐스트합니다.
+- **재설계된 CLI 미학** — 매끄러운 왼쪽 정렬 터미널 디스플레이를 위해 UI 상자 테두리가 제거되었습니다.
 
 **🔜 다음 업데이트 예정**
 
-- 모바일 웹 지원 - 웹 앱은 모바일 브라우저에 대한 완전한 반응형 레이아웃을 얻습니다.
+- 모바일 웹 지원 — 웹 앱은 모바일 브라우저에 대한 완전한 반응형 레이아웃을 얻습니다.
 
 ## 라이선스
 

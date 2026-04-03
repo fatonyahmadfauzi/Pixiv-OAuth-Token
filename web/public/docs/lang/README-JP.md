@@ -1,6 +1,7 @@
 # Pixiv OAuth Token
 
-> 🌐 他の言語でも利用可能: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+
+> 🌐 他の言語でも利用可能: [English](..\..\..\../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 
@@ -33,14 +34,14 @@ python pixiv_login_gui.py
 
 ### GUI の機能
 
-| 特集                      | 説明                                                                                                                                                                                                                   |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **多言語**                | 11 言語 — 設定から自動検出、ドロップダウン経由でライブで切り替え可能                                                                                                                                                   |
-| **⚙ デバッグ コンソール** | 右上のヘッダーのボタン。 **すべて**のイベント (ボタンのクリック、言語の変更、HTTP リクエスト、PKCE ステップ、クリップボード、設定の保存、警告) をリアルタイムで現在の言語でログに記録するダーク ターミナルを開きます。 |
-| **トークン交換**​​        | pixiv:// URL または生コードを貼り付け → アクセス + リフレッシュトークンと交換                                                                                                                                          |
-| **リフレッシュトークン**  | 設定から保存したrefresh_tokenを使用してワンクリックで更新                                                                                                                                                              |
-| **トークンをコピー**      | access_token /fresh_token を即座にクリップボードにコピーします                                                                                                                                                         |
-| **チュートリアル**        | アプリに組み込まれたステップバイステップの画像ガイド                                                                                                                                                                   |
+|特集 |説明 |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **多言語** | 11 言語 — 設定から自動検出、ドロップダウン経由でライブで切り替え可能 |
+| **⚙ デバッグ コンソール** |右上のヘッダーのボタン。 **すべて**のイベント (ボタンのクリック、言語の変更、HTTP リクエスト、PKCE ステップ、クリップボード、設定の保存、警告) をリアルタイムで現在の言語でログに記録するダーク ターミナルを開きます。
+| **トークン交換**​​ | pixiv:// URL または生コードを貼り付け → アクセス + リフレッシュトークンと交換 |
+| **リフレッシュトークン** |設定から保存したrefresh_tokenを使用してワンクリックで更新 |
+| **トークンをコピー** | access_token /fresh_token を即座にクリップボードにコピーします |
+| **チュートリアル** |アプリに組み込まれたステップバイステップの画像ガイド |
 
 ＃＃ 建てる
 
@@ -85,7 +86,7 @@ build_all_pro.bat patch noinst nosign
 
 ## 署名
 
-`scripts/sign_auto.bat` を編集:
+`scripts/sign_auto.bat`を編集:
 
 - `PFX_PATH`
 - `PFX_PASS`
@@ -104,7 +105,7 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 
 - `REL-U<unix_ms>`
 
-## Web版（Vercel）
+## Web バージョン (Vercel)
 
 動的多言語サポート (自動検出付き 11 言語) と包括的な SEO メタデータを備えた、高度に最適化された応答性の高い Web アプリです。
 
@@ -115,29 +116,25 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 - **セキュリティとパフォーマンス**: JavaScript の自動難読化 (極端なマングリング)、HTML/CSS の縮小 (`cd web && node build_minify.js` 経由)、および `escapeHTML` 経由のクリーンな `XSS` 防止。
 - **GitHub API プロキシ**: サーバーレス Vercel エンドポイント (`/api/github`) プロキシ GitHub API リクエストは、パーソナル アクセス トークン (`GITHUB_PAT`) を使用してパブリック レート制限を完全にバイパスします。
 
-### Vercel にデプロイする
+### Vercel にデプロイします
 
 1. リポジトリを GitHub にプッシュします。
 2. Vercel → **新規追加...** → **プロジェクト** → このリポジトリをインポートします。
 3. Vercel で環境変数を設定します。
-
 - `PIXIV_CLIENT_SECRET`: Pixiv OAuth クライアント シークレット。
 - `GITHUB_PAT`: オプションですが強く推奨されます (リポジトリの問題とリリースのレート制限を回避するための GitHub パーソナル アクセス トークン)。
-
 4. `vercel.json` はすでに以下を構成しています。
-
 - クリーンな URL (`.html` の除去)
 - `public/` からの静的ホスティング
 - `/api/*` のサーバーレス API
 - 組み込みのカスタム 404 ページ ルーティング
-- エッジ キャッシュ ヘッダーを介した遠い将来のキャッシュ。
-
+- Edge Cache ヘッダーを介した遠い将来のキャッシュ。
 5. デプロイします。
 
 > [!重要]
 > HTML、CSS、または JS に変更を加える場合は、コードを自動的に難読化し、アセットを圧縮するために、展開する前に必ず `cd web && node build_minify.js` を実行してください。
 
-> セキュリティ上の注意: 運用環境では、Vercel プロジェクトの環境変数に常に `PIXIV_CLIENT_SECRET` を設定してください。
+> セキュリティ上の注意: 運用環境では、常に Vercel プロジェクト環境変数に `PIXIV_CLIENT_SECRET` を設定してください。
 
 ## アプリケーションをダウンロード (最新リリース)
 
@@ -148,9 +145,9 @@ PFX ファイルが見つからない場合、署名はスキップされます�
 ファイル:
 
 - ポータブル GUI: `Pixiv OAuth GUi (Portable).exe`
-- セットアップ GUI: `Pixiv OAuth GUi Setup_v<version>.exe`
+- GUI: `Pixiv OAuth GUi Setup_v<version>.exe` のセットアップ
 - ポータブル CLI: `Pixiv OAuth CLi (Portable).exe`
-- CLI のセットアップ: `Pixiv OAuth CLi Setup_v<version>.exe`
+- CLI: `Pixiv OAuth CLi Setup_v<version>.exe` のセットアップ
 
 ### PowerShell (最新リリースの資産を自動検出)
 
@@ -226,7 +223,7 @@ for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod ht
 for /f "delims=" %u in ('powershell -NoProfile -Command "$r=Invoke-RestMethod https://api.github.com/repos/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest; ($r.assets|? name -match ''Pixiv OAuth CLi Setup''|select -first 1).browser_download_url"') do curl -L "%u" -o "Pixiv OAuth CLi Setup.exe"
 ```
 
-## Python のインストール
+## Python インストール
 
 ```bash
 cd app
@@ -244,19 +241,21 @@ python -m pip install "git+https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token
 [変更履歴](CHANGELOG-JP.md) ファイル内の各バージョンの注目すべき変更点をすべて参照してください。
 📦 [GitHub リリース ページ](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases). でリリース ノートを直接表示することもできます。
 
-### 最新: v1.0.4 (2026-03-29)
+### 最新: v1.0.5 (2026-04-03)
 
-**🐞修正済み**
+**✨ 追加**
 
-- ポータブル CLI/GUI: 更新後にバージョンが古いバージョンに戻らなくなりました — `VERSION_FILE` / `CONFIG_FILE` は、一時的な PyInstaller 抽出フォルダーではなく `.exe` の隣に正しく保存されるようになりました。
-- CLI の凍結更新: 一時ファイルを上書きするのではなく、`.bat` アップデータ スクリプトを介して実際の `.exe` を適切に置き換えるようになりました。
+- **インターネット対応 GUI スタートアップ** — GUI を起動する前のスマート接続プリフライト チェック。ライブ ランタイム接続モニタリングを備えています。
+- **ネイティブ GUI ドキュメント モーダル** - 利用規約、プライバシー ポリシー、および変更ログが、Web リダイレクトを強制するのではなく、動的なポップアップに直接表示されるようになりました。
+- **包括的なターミナル ローカリゼーション** — GitHub CLI トラッカーと法的ページは、サポートされている 11 言語すべてに正しく翻訳されるようになりました。
 
-**✨追加**
+**✨ 変更および修正**
 
-- **アーキテクチャ対応アップデート** - CLI と GUI の両方が、実行中のアーキテクチャ (`x64`、`x86`、`ARM64`) を自動的に検出し、更新時に一致するビルド バリアントをダウンロードするようになりました。
-- **CLI セットアップ更新フロー** - `Program Files` インストールから更新するときに、CLI はセットアップ インストーラーをサイレントに実行するようになりました (GUI の動作を反映します)。
+- **自動デジタル コード署名** - すべての実行可能ファイルは、Windows SmartScreen を抑制するために自己署名 ID をネイティブにバンドルします。
+- **インストーラー プロパティのバグ** - セットアップ実行可能ファイルは、デフォルトのゼロではなく、`1.0.5.0` ファイル バージョンを Windows PE ヘッダーに厳密にブロードキャストします。
+- **再設計された CLI の美しさ** — 洗練された左揃えの端末ディスプレイのために UI ボックスの境界線が排除されました。
 
-**🔜次回のアップデートで公開予定**
+**🔜 次回のアップデートで登場予定**
 
 - モバイル Web サポート — Web アプリはモバイル ブラウザー向けに完全に応答性の高いレイアウトを取得します。
 
