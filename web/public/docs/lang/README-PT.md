@@ -1,7 +1,7 @@
 # Pixiv OAuth Token
 
 
-> 🌐 Disponível em outros idiomas: [English](..\..\..\../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
+> 🌐 Disponível em outros idiomas: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
 ---
 
