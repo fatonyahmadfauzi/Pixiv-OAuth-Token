@@ -674,7 +674,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "Deweloper może w dowolnym momencie, bez uprzedniego powiadomienia, zmienić, zawiesić lub zakończyć działanie części strony lub narzędzia.",
     navHomepageLabel: "Strona Główna",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Deweloper: Fatony Ahmad Fauzi",
     cliOpt1: "[1] Zmie\u0144 j\u0119zyk",
     cliOpt2: "[2] Samouczek",
     cliOpt3: "[3] Zasoby i dokumentacja",
@@ -992,7 +992,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "开发者可在任何时候、无需提前通知地修改、暂停或终止网站或工具的部分功能。",
     navHomepageLabel: "主页",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "开发者：Fatony Ahmad Fauzi",
     cliOpt1: "[1] \u66f4\u6539\u8bed\u8a00",
     cliOpt2: "[2] \u6559\u7a0b",
     cliOpt3: "[3] \u8d44\u6e90\u548c\u6587\u6863",
@@ -1334,7 +1334,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "開発者は、事前通知なく本サイトまたはツールの一部を変更・停止・終了する場合があります。",
     navHomepageLabel: "ホーム",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "開発者: Fatony Ahmad Fauzi",
     cliOpt1: "[1] \u8a00\u8a9e\u3092\u5909\u66f4",
     cliOpt2: "[2] \u30c1\u30e5\u30fc\u30c8\u30ea\u30a2\u30eb",
     cliOpt3: "[3] \u30ea\u30bd\u30fc\u30b9\u3068\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8",
@@ -1675,7 +1675,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "Der Entwickler kann Teile der Website oder des Tools jederzeit ohne vorherige Ankündigung ändern, aussetzen oder einstellen.",
     navHomepageLabel: "Startseite",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Entwickler: Fatony Ahmad Fauzi",
     cliOpt1: "[1] Sprache \u00e4ndern",
     cliOpt2: "[2] Anleitung",
     cliOpt3: "[3] Ressourcen & Dokumentation",
@@ -2017,7 +2017,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "Le développeur peut modifier, suspendre ou supprimer des parties du site ou de l'outil à tout moment, sans préavis.",
     navHomepageLabel: "Accueil",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Développeur : Fatony Ahmad Fauzi",
     cliOpt1: "[1] Changer la langue",
     cliOpt2: "[2] Tutoriel",
     cliOpt3: "[3] Ressources et documentation",
@@ -2358,7 +2358,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "El desarrollador puede modificar, suspender o retirar partes del sitio o la herramienta en cualquier momento y sin previo aviso.",
     navHomepageLabel: "Inicio",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Desarrollador: Fatony Ahmad Fauzi",
     cliOpt1: "[1] Cambiar idioma",
     cliOpt2: "[2] Tutorial",
     cliOpt3: "[3] Recursos y documentaci\u00f3n",
@@ -2698,7 +2698,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "Разработчик может в любое время без предварительного уведомления изменить, приостановить или удалить части сайта или инструмента.",
     navHomepageLabel: "Главная страница",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Разработчик: Fatony Ahmad Fauzi",
     cliOpt1: "[1] \u0418\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u044f\u0437\u044b\u043a",
     cliOpt2: "[2] \u0420\u0443\u043a\u043e\u0432\u043e\u0434\u0441\u0442\u0432\u043e",
     cliOpt3: "[3] \u0420\u0435\u0441\u0443\u0440\u0441\u044b \u0438 \u0434\u043e\u043a\u0443\u043c\u0435\u043d\u0442\u0430\u0446\u0438\u044f",
@@ -3037,7 +3037,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "O desenvolvedor pode modificar, suspender ou encerrar partes do site ou da ferramenta a qualquer momento, sem aviso prévio.",
     navHomepageLabel: "Página Inicial",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Desenvolvedor: Fatony Ahmad Fauzi",
     cliOpt1: "[1] Mudar idioma",
     cliOpt2: "[2] Tutorial",
     cliOpt3: "[3] Recursos e documenta\u00e7\u00e3o",
@@ -3373,7 +3373,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "Developer dapat mengubah, menangguhkan, atau menghentikan bagian dari website atau alat kapan saja tanpa pemberitahuan sebelumnya.",
     navHomepageLabel: "Beranda",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "Pengembang: Fatony Ahmad Fauzi",
     cliOpt1: "[1] Ubah Bahasa",
     cliOpt2: "[2] Tutorial",
     cliOpt3: "[3] Sumber Daya & Dokumentasi",
@@ -3709,7 +3709,7 @@ export const DISPLAY_LANGUAGES = {
     termsSectionChangesBody:
       "개발자는 사전 고지 없이 언제든지 웹사이트 또는 도구의 일부를 변경, 중단 또는 종료할 수 있습니다.",
     navHomepageLabel: "홈페이지",
-    cliDev: "Developer: Fatony Ahmad Fauzi",
+    cliDev: "개발자: Fatony Ahmad Fauzi",
     cliOpt1: "[1] \uc5b8\uc5b4 \ubcc0\uacbd",
     cliOpt2: "[2] \ud29c\ud1a0\ub9ac\uc5bc",
     cliOpt3: "[3] \ub9ac\uc18c\uc2a4 \ubc0f \ubb38\uc11c",
