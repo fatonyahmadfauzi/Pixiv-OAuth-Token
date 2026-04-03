@@ -1956,7 +1956,7 @@ class App(tk.Tk):
 
         def worker():
             try:
-                is_frozen = bool(getattr(sys, "frozen", False))
+                is_frozen = bool(getattr(sys, "frozen", False) or "__compiled__" in globals())
                 if not is_frozen:
                     open_url(RELEASES_URL)
                     self.after(0, lambda: messagebox.showinfo(self.tx("version_title"), self.tx("version_update_done")))
@@ -2002,7 +2002,7 @@ class App(tk.Tk):
             "del \"%~f0\"\n",
             encoding="utf-8",
         )
-        subprocess.Popen(["cmd", "/c", str(bat)], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        subprocess.Popen(["cmd.exe", "/c", str(bat)], creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
 
 
     def log(self, msg: str):

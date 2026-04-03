@@ -3660,7 +3660,7 @@ def _self_update(target_version: str, target_code: str) -> bool:
     debug_print(f"[FUNC] _self_update() called")
     _clear_menu_screen()
     print(colorize("Downloading latest update and installing requirements...", Ansi.CYAN, True))
-    is_frozen = getattr(sys, "frozen", False)
+    is_frozen = bool(getattr(sys, "frozen", False) or "__compiled__" in globals())
     try:
         if is_frozen:
             exe_path = Path(sys.executable).resolve()
@@ -3701,7 +3701,7 @@ def _self_update(target_version: str, target_code: str) -> bool:
             )
             set_current_app_identity(target_version, target_code)
             subprocess.Popen(
-                ["cmd", "/c", str(bat)],
+                ["cmd.exe", "/c", str(bat)],
                 creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
             )
             return True
