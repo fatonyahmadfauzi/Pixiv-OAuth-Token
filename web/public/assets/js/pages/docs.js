@@ -152,12 +152,36 @@ async function loadDocs() {
     body.innerHTML = marked.parse(markdown);
     if (skeleton) skeleton.style.display = "none";
     body.hidden = false;
+
+    // Strip GitHub-only header elements (logo, badges, language links, centered h1)
+    // 1. Remove <p> elements that contain only <img> tags (logo)
+    body.querySelectorAll("p").forEach((p) => {
+      const imgs = p.querySelectorAll("img");
+      const text = p.textContent.trim();
+      if (imgs.length > 0 && text === "") p.remove();
+    });
+    // 2. Remove <p> elements containing only badge/shield links
+    body.querySelectorAll("p").forEach((p) => {
+      const links = p.querySelectorAll("a");
+      const imgs = p.querySelectorAll("img");
+      if (links.length > 0 && imgs.length > 0 && p.textContent.trim() === "") p.remove();
+    });
+    // 3. Remove the centered <h1> (from <h1 align="center">)
+    const firstH1 = body.querySelector("h1");
+    if (firstH1) firstH1.remove();
+    // 4. Remove language-links blockquote (contains 🌐)
     body.querySelectorAll("blockquote").forEach((bq) => {
       if (!bq.textContent.includes("🌐")) return;
       const next = bq.nextElementSibling;
       bq.remove();
       if (next && next.tagName === "HR") next.remove();
     });
+
+    // 5. Inject plain (non-centered) title at the top
+    const titleEl = document.createElement("h1");
+    titleEl.textContent = "Pixiv OAuth Token";
+    body.prepend(titleEl);
+
     const mdRouteMap = {
       "changelog.md": "/changelog",
       "readme.md": "/documentation",
