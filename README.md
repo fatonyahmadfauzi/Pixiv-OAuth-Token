@@ -1,5 +1,10 @@
 # Pixiv OAuth Token
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/fatonyahmadfauzi/Pixiv-OAuth-Token?color=success)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
+[![Github All Releases](https://img.shields.io/github/downloads/fatonyahmadfauzi/Pixiv-OAuth-Token/total.svg?color=blue)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Windows Build](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml/badge.svg)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml)
+
 > 🌐 Available in other languages: [Polski](web/public/docs/lang/README-PL.md) | [中文](web/public/docs/lang/README-ZH.md) | [日本語](web/public/docs/lang/README-JP.md) | [Deutsch](web/public/docs/lang/README-DE.md) | [Français](web/public/docs/lang/README-FR.md) | [Español](web/public/docs/lang/README-ES.md) | [Русский](web/public/docs/lang/README-RU.md) | [Português](web/public/docs/lang/README-PT.md) | [Bahasa Indonesia](web/public/docs/lang/README-ID.md) | [한국어](web/public/docs/lang/README-KR.md)
 
 
