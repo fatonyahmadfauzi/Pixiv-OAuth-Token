@@ -1,9 +1,15 @@
-# Pixiv OAuth Token
+<p align="center">
+  <img src="web/public/assets/favicon.svg" width="150" alt="Pixiv OAuth Token Logo">
+</p>
 
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/fatonyahmadfauzi/Pixiv-OAuth-Token?color=success)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
-[![Github All Releases](https://img.shields.io/github/downloads/fatonyahmadfauzi/Pixiv-OAuth-Token/total.svg?color=blue)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Windows Build](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml/badge.svg)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml)
+<h1 align="center">Pixiv OAuth Token</h1>
+
+<p align="center">
+  <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"><img src="https://img.shields.io/github/v/release/fatonyahmadfauzi/Pixiv-OAuth-Token?color=success" alt="GitHub release"></a>
+  <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest"><img src="https://img.shields.io/github/downloads/fatonyahmadfauzi/Pixiv-OAuth-Token/total.svg?color=blue" alt="Downloads"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License"></a>
+  <a href="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml"><img src="https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml/badge.svg" alt="Windows Build"></a>
+</p>
 
 > 🌐 Disponible dans d'autres langues : [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md) | [한국어](README-KR.md)
 
