@@ -177,10 +177,12 @@ async function loadDocs() {
       if (next && next.tagName === "HR") next.remove();
     });
 
-    // 5. Inject plain (non-centered) title at the top
-    const titleEl = document.createElement("h1");
-    titleEl.textContent = "Pixiv OAuth Token";
-    body.prepend(titleEl);
+    // 5. Inject plain (non-centered) title — only for README/documentation page
+    if (fileName.toLowerCase() === "readme.md") {
+      const titleEl = document.createElement("h1");
+      titleEl.textContent = "Pixiv OAuth Token";
+      body.prepend(titleEl);
+    }
 
     const mdRouteMap = {
       "changelog.md": "/changelog",

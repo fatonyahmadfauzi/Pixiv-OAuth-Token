@@ -2158,18 +2158,31 @@ _GITHUB_LANG_DOC_SUFFIX: dict[str, str] = {
 }
 
 
+# Map of doc aliases to actual root filenames (for English / fallback)
+_DOC_ROOT_FILES: dict[str, str] = {
+    "README": "README.md",
+    "CHANGELOG": "CHANGELOG.md",
+    "LICENSE": "LICENSE",
+}
+
+
 def _get_localized_doc_url(file_name: str, lang: str) -> tuple[str, str]:
-    """Return (localized_url, default_english_url) for a doc file."""
+    """Return (localized_url, default_english_url) for a doc file.
+
+    file_name should be an UPPERCASE base name, e.g. 'README', 'CHANGELOG', 'LICENSE'.
+    Localized files live at: web/public/docs/lang/{file_name}-{SUFFIX}.md
+    English (fallback) files live at repo root: README.md, CHANGELOG.md, LICENSE, etc.
+    """
     debug_print(f"[FUNC] _get_localized_doc_url() called")
     suffix = _GITHUB_LANG_DOC_SUFFIX.get(lang)
     base = _GITHUB_RAW_BASE
-    path = _GITHUB_LANG_DOCS_PATH
-    default_url = f"{base}/{path}/{file_name}"
+    root_file = _DOC_ROOT_FILES.get(file_name, f"{file_name}.md")
+    english_url = f"{base}/{root_file}"
     if suffix:
-        localized_url = f"{base}/{path}/{file_name}-{suffix}"
+        localized_url = f"{base}/{_GITHUB_LANG_DOCS_PATH}/{file_name}-{suffix}.md"
     else:
-        localized_url = default_url
-    return localized_url, default_url
+        localized_url = english_url
+    return localized_url, english_url
 
 _FETCH_LABELS = {
     "en": {
@@ -2267,10 +2280,47 @@ def _fetch_github_raw(url: str, lang: str, color_on: bool, fallback_url: str | N
         return None
 
 
+def _strip_readme_header(content: str) -> str:
+    """Remove GitHub-only header lines from README (logo, badges, language blockquote).
+
+    Strips any leading lines that are:
+    - HTML tags (<p, <h1, <img, <a, </p>, </h1>, </a>)
+    - Blockquote with language links (🌐)
+    - Blank lines at the very top after stripping
+    Then prepends a plain title line.
+    """
+    lines = content.splitlines()
+    stripped: list[str] = []
+    skip = True
+    for line in lines:
+        stripped_line = line.strip()
+        if skip:
+            # Skip HTML tags (logo, h1, badges)
+            if stripped_line.startswith("<"):
+                continue
+            # Skip language blockquote
+            if stripped_line.startswith(">") and "\U0001f310" in stripped_line:
+                continue
+            # Skip horizontal rule separators (---) that follow the header block
+            if stripped_line in ("---", "***", "___"):
+                continue
+            # Skip blank lines before content starts
+            if stripped_line == "":
+                continue
+            skip = False
+        stripped.append(line)
+    return "\n".join(stripped)
+
+
 def _display_paged_github_content(title: str, content: str, lang: str, color_on: bool) -> None:
     """Display fetched text content with paged navigation."""
     debug_print(f"[FUNC] _display_paged_github_content() called")
     lines = content.splitlines()
+    # Strip leading h1 heading (already shown as pager title) + blank lines after it
+    while lines and lines[0].startswith("# "):
+        lines.pop(0)
+    while lines and lines[0].strip() == "":
+        lines.pop(0)
     total = len(lines)
     page_size = 30
     pos = 0
@@ -2319,14 +2369,15 @@ def _open_resources_docs_menu(lang: str, color_on: bool) -> None:
         choice = _choose_boxed_option(mt("resources_docs_title", lang), options, lang, color_on).lower()
         debug_print(f"Resources menu choice: {choice}", color_on)
         if choice == "1":
-            url, fallback = _get_localized_doc_url("documentation", lang)
+            url, fallback = _get_localized_doc_url("README", lang)
             content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
             if content:
+                content = _strip_readme_header(content)
                 _display_paged_github_content(mt("res_docs_documentation", lang), content, lang, color_on)
         elif choice == "2":
             _open_changelog(lang, color_on)
         elif choice == "3":
-            url, fallback = _get_localized_doc_url("license", lang)
+            url, fallback = _get_localized_doc_url("LICENSE", lang)
             content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
             if content:
                 _display_paged_github_content(mt("res_docs_license", lang), content, lang, color_on)
@@ -3513,7 +3564,7 @@ def show_cli_tutorial(lang: str, color_on: bool) -> None:
 
 def _open_changelog(lang: str = "en", color_on: bool = True) -> None:
     debug_print("Fetching changelog from GitHub")
-    url, fallback = _get_localized_doc_url("changelog", lang)
+    url, fallback = _get_localized_doc_url("CHANGELOG", lang)
     content = _fetch_github_raw(url, lang, color_on, fallback_url=fallback)
     if content:
         _display_paged_github_content(mt("opt_changelog", lang), content, lang, color_on)
