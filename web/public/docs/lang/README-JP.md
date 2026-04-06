@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="web/public/assets/favicon.svg" width="150" alt="Pixiv OAuth Token Logo">
+  <img src="https://raw.githubusercontent.com/fatonyahmadfauzi/pixiv-oauth-token/main/web/public/assets/favicon.svg" width="150" alt="Pixiv OAuth Token Logo">
 </p>
 
 <h1 align="center">Pixiv OAuth Token</h1>
