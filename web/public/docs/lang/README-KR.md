@@ -1,5 +1,9 @@
 # Pixiv OAuth Token
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/fatonyahmadfauzi/Pixiv-OAuth-Token?color=success)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
+[![Github All Releases](https://img.shields.io/github/downloads/fatonyahmadfauzi/Pixiv-OAuth-Token/total.svg?color=blue)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/releases/latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Windows Build](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml/badge.svg)](https://github.com/fatonyahmadfauzi/Pixiv-OAuth-Token/actions/workflows/windows-release.yml)
 
 > 🌐 다른 언어로도 사용 가능: [English](../../../../README.md) | [Polski](README-PL.md) | [中文](README-ZH.md) | [日本語](README-JP.md) | [Deutsch](README-DE.md) | [Français](README-FR.md) | [Español](README-ES.md) | [Русский](README-RU.md) | [Português](README-PT.md) | [Bahasa Indonesia](README-ID.md)
 
